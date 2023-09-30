@@ -11,7 +11,7 @@ namespace math {
         T values[N];
 
         vec() : vec(T(0)) {}
-        vec(T value)
+        explicit vec(T value)
         {
             for (size_t i = 0; i < N; ++i)
             {
@@ -65,14 +65,14 @@ namespace math {
     inline vec<T, N> operator+(vec<T, N> const& lhs, vec<T, N> const& rhs)
     {
         vec<T, N> result;
-        return result += lhs += rhs;
+        return (result += lhs) += rhs;
     }
 
     template<typename T, size_t N>
     inline vec<T, N> operator-(vec<T, N> const& lhs, vec<T, N> const& rhs)
     {
         vec<T, N> result;
-        return result -= lhs -= rhs;
+        return (result -= lhs) -= rhs;
     }
 
 } // math
