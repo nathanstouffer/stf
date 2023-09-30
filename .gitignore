@@ -1,3 +1,7 @@
+# executables
+*.exe
+*.out
+
 # build directories
 .build/
 build/
