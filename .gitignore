@@ -1,2 +1,10 @@
+# build directories
 .build/
 build/
+
+# object files
+*.o
+*.obj
+
+# libraries
+*.a
