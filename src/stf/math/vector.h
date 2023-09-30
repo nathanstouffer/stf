@@ -5,84 +5,86 @@
 namespace stf {
 namespace math {
     
-    template<typename T, size_t N>
-    struct vec
+    /*
+    * A base class to provide functionality common to all vectors via the CRTP
+    */
+    template<typename T, size_t N, typename derived_t>
+    struct vec_base
     {
+    private:
+
+        inline derived_t const& crpt() const { return static_cast<derived_t const&>(*this); }
+        inline derived_t& crpt() { return static_cast<derived_t&>(*this); }
+
     public:
-
-        T values[N];
-
-        vec() : vec(T(0)) {}
-        explicit vec(T value)
-        {
-            for (size_t i = 0; i < N; ++i)
-            {
-                values[i] = value;
-            }
-        }
 
         inline size_t size() const { return N; }
 
-        inline T const& operator[](size_t i) const { return values[i]; }
-        inline T& operator[](size_t i) { return values[i]; }
+        inline T const& operator[](size_t i) const { return crpt().values[i]; }
+        inline T& operator[](size_t i) { return crpt().values[i]; }
 
-        inline vec<T, N>& operator+=(vec<T, N> const& rhs)
+        inline derived_t& operator+=(derived_t const& rhs)
         {
             for (size_t i = 0; i < N; ++i)
             {
-                values[i] += rhs[i]; 
+                crpt().values[i] += rhs[i]; 
             }
-            return *this;
+            return crpt();
         }
 
-        inline vec<T, N>& operator-=(vec<T, N> const& rhs)
+        inline derived_t& operator-=(derived_t const& rhs)
         {
             for (size_t i = 0; i < N; ++i)
             {
-                values[i] -= rhs[i]; 
+                crpt().values[i] -= rhs[i]; 
             }
-            return *this;
+            return crpt();
         }
 
-        inline vec<T, N>& operator*=(T scalar)
+        inline derived_t& operator*=(T scalar)
         {
             for (size_t i = 0; i < N; ++i)
             {
-                values[i] *= scalar; 
+                crpt().values[i] *= scalar; 
             }
-            return *this;
+            return crpt();
         }
 
-        inline T length() const
+        inline T const operator*(derived_t const& rhs) const
         {
             T dot = T(0);
             for (size_t i = 0; i < N; ++i)
             {
-                dot += values[i] * values[i];
+                dot += crpt().values[i] * rhs[i];
             }
+            return dot;
+        }
+
+        inline T length() const
+        {
+            T dot = crpt() * crpt();
             return std::sqrt(dot);
         }
 
-        inline vec<T, N>& normalize()
+        inline derived_t& normalize()
         {
             T scalar = T(1) / length();
-            *this *= scalar;
-            return *this;
+            crpt() *= scalar;
+            return crpt();
         }
 
-        inline vec<T, N> normalized() const
+        inline derived_t normalized() const
         {
-            vec<T, N> result = *this;
-            return result.normalize();
+            return derived_t(crpt()).normalize();
         }
 
         template<typename U>
-        vec<U, N> as() const
+        derived_t as() const
         {
-            vec<U, N> result;
+            derived_t result;
             for (size_t i = 0; i < N; ++i)
             {
-                result[i] = static_cast<U>(values[i]);
+                result[i] = static_cast<U>(crpt().values[i]);
             }
             return result;
         }
@@ -90,6 +92,89 @@ namespace math {
     public:
 
         static inline size_t byte_size() { return sizeof(T) * N; }
+
+    };
+
+    /*
+    * Generic vector type
+    */
+    template<typename T, size_t N>
+    struct vec : public vec_base<T, N, vec<T, N>>
+    {
+
+        T values[N];
+
+        constexpr vec() : vec(T(0)) {}
+        explicit constexpr vec(T value)
+        {
+            for (size_t i = 0; i < N; ++i)
+            {
+                values[i] = value;
+            }
+        }
+
+    };
+
+    /*
+    * Specialization for vec2
+    */
+    template<typename T>
+    struct vec<T, 2> : public vec_base<T, 2, vec<T, 2>>
+    {
+
+        union
+        {
+            T values[2];
+            struct { T x, y; };
+        };
+
+        constexpr vec() : vec(T(0)) {}
+        explicit constexpr vec(T value) : vec(value, value) {}
+        explicit constexpr vec(T _x, T _y) : x(_x), y(_y) {}
+
+    };
+
+    /*
+    * Specialization for vec3
+    */
+    template<typename T>
+    struct vec<T, 3> : public vec_base<T, 3, vec<T, 3>>
+    {
+
+        union
+        {
+            T values[3];
+            struct { T x, y, z; };
+            struct { vec<T, 2> xy; };
+        };
+
+        constexpr vec() : vec(T(0)) {}
+        explicit constexpr vec(T value) : vec(value, value, value) {}
+        explicit constexpr vec(T _x, T _y, T _z) : x(_x), y(_y), z(_z) {}
+        constexpr vec(vec<T, 2> const& _xy, T _z) : xy(_xy), z(_z) {}
+
+    };
+
+    /*
+    * Specialization for vec4
+    */
+    template<typename T>
+    struct vec<T, 4> : public vec_base<T, 4, vec<T, 4>>
+    {
+
+        union
+        {
+            T values[4];
+            struct { T x, y, z, w; };
+            struct { vec<T, 2> xy, zw; };
+            struct { vec<T, 3> xyz; };
+        };
+
+        constexpr vec() : vec(T(0)) {}
+        explicit constexpr vec(T value) : vec(value, value, value, value) {}
+        explicit constexpr vec(T _x, T _y, T _z, T _w) : x(_x), y(_y), z(_z), w(_z) {}
+        constexpr vec(vec<T, 2> const& _xy, vec<T, 2> const& _zw) : xy(_xy), zw(_zw) {}
+        constexpr vec(vec<T, 3> const& _xyz, T _w) : xyz(_xyz), w(_w) {}
 
     };
 
@@ -141,17 +226,6 @@ namespace math {
     inline vec<T, N> const operator-(vec<T, N> const& lhs, vec<T, N> const& rhs)
     {
         return vec<T, N>(lhs) -= rhs;
-    }
-
-    template<typename T, size_t N>
-    inline T const operator*(vec<T, N> const& lhs, vec<T, N> const& rhs)
-    {
-        T result = T(0);
-        for (size_t i = 0; i < N; ++i)
-        {
-            result += lhs[i] * rhs[i];
-        }
-        return result;
     }
 
     template<typename T, size_t N>

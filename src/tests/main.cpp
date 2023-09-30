@@ -18,19 +18,18 @@ std::ostream& operator<<(std::ostream& s, stf::math::vec<T, N> const& rhs) {
 
 int main()
 {
-
     {
         stf::gpu::vec2 tmp;
         std::cout << "tmp: " << tmp << std::endl;
 
-        tmp[0] = 1;
+        tmp.x = 1;
         std::cout << "edit x: " << tmp << std::endl;
 
         tmp += tmp;
         std::cout << "+=: " << tmp << std::endl;
 
         stf::gpu::vec2 other;
-        other[1] = 2;
+        other.y = 2;
         std::cout << "other: " << other << std::endl;
 
         std::cout << "tmp + other: " << tmp + other << std::endl;
@@ -39,7 +38,7 @@ int main()
 
     {
         stf::gpu::vec3 tmp(8);
-        tmp[2] = 9;
+        tmp.z = 9;
 
         std::cout << "cast: " << tmp.as<double>() << std::endl;
         std::cout << std::endl;

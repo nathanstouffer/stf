@@ -4,7 +4,7 @@
 
 namespace stf {
 
-    using gpu_float_t = float; 
+    using gpu_float_t = float;
 
     template<typename T>
     struct instantiate_types
