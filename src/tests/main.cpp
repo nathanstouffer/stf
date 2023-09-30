@@ -42,5 +42,19 @@ int main()
         tmp[2] = 9;
 
         std::cout << "cast: " << tmp.as<double>() << std::endl;
+        std::cout << std::endl;
+    }
+
+    {
+        stf::gpu::vec2 lhs(1);
+        stf::gpu::vec2 rhs(2);
+        std::cout << lhs << " * " << rhs << " = " << lhs * rhs << std::endl;
+        std::cout << std::endl;
+    }
+
+    {
+        stf::gpu::vec2 tmp(5);
+        std::cout << "length(" << tmp << ") = " << tmp.length() << std::endl;
+        std::cout << "normalize(" << tmp << ") = " << tmp.normalized() << std::endl;
     }
 }
