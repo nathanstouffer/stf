@@ -17,6 +17,6 @@ namespace stf {
 
     };
 
-    using gpu = instantiate_types<gpu_float_t>
+    using gpu = instantiate_types<gpu_float_t>;
 
 } // stf

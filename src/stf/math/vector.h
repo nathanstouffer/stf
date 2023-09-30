@@ -8,7 +8,7 @@ namespace math {
     {
     public:
 
-        T[n] values;
+        T values[N];
 
         vec() : vec(T(0)) {}
         vec(T value)
