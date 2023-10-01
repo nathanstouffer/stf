@@ -181,7 +181,7 @@ namespace math {
             return result;
         }
 
-        inline static size_t byte_count() { return sizeof(D) * 4; }
+        inline static size_t byte_count() { return sizeof(T) * D; }
 
     };
 
@@ -307,6 +307,13 @@ namespace math {
         mat<T, 3> rotation;
         // TODO (stouff) write this method
         return rotation;
+    }
+
+    template<typename T>
+    inline vec<T, 3> orbit(vec<T, 3> const& val, vec<T, 3> const& focus, T const theta, T const phi)
+    {
+        // TODO (stouff) write this method
+        return vec<T, 3>();
     }
 
 } // math
