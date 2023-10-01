@@ -116,6 +116,7 @@ int main()
         stf::gpu::vec3 tmp(1, 0, 0);
         std::cout << "tmp: " << tmp << std::endl;
         std::cout << "rotated:" << stf::math::rotate_around(tmp, stf::gpu::vec3(0, 0, 1), stf::constants<stf::gpu_float_t>::half_pi) << std::endl;
+        std::cout << "rotated:" << stf::math::rotate_around(stf::gpu::vec3(0, 0, 1), stf::constants<stf::gpu_float_t>::half_pi) * stf::gpu::vec4(tmp, 0) << std::endl;
         std::cout << std::endl;
     }
 }

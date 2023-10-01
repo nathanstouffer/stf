@@ -128,7 +128,7 @@ namespace math {
         constexpr vec() : vec(T(0)) {}
         explicit constexpr vec(T value) : vec(value, value, value) {}
         explicit constexpr vec(T _x, T _y, T _z) : x(_x), y(_y), z(_z) {}
-        constexpr vec(vec<T, 2> const& _xy, T _z) : xy(_xy), z(_z) {}
+        constexpr vec(vec<T, 2> const& _xy, T _z) : vec(_xy.x, _xy.y, _z) {}
 
         inline size_t size() const { return 3; }
 
@@ -178,8 +178,8 @@ namespace math {
         constexpr vec() : vec(T(0)) {}
         explicit constexpr vec(T value) : vec(value, value, value, value) {}
         explicit constexpr vec(T _x, T _y, T _z, T _w) : x(_x), y(_y), z(_z), w(_z) {}
-        constexpr vec(vec<T, 2> const& _xy, vec<T, 2> const& _zw) : xy(_xy), zw(_zw) {}
-        constexpr vec(vec<T, 3> const& _xyz, T _w) : xyz(_xyz), w(_w) {}
+        constexpr vec(vec<T, 2> const& _xy, vec<T, 2> const& _zw) : vec(_xy.x, _xy.y, _zw.x, _zw.y) {}
+        constexpr vec(vec<T, 3> const& _xyz, T _w) : vec(_xyz.x, _xyz.y, _xyz.z, _w) {}
 
         inline size_t size() const { return 4; }
 

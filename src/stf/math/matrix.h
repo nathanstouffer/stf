@@ -156,18 +156,8 @@ namespace math {
         inline mat scaled_by(vec<T, N - 1> const& scalars) const { return mat(*this).scale_by(vec<T, N>(scalars, T(1))); }
         inline mat translated_by(vec<T, N - 1> const& scalars) const { return mat(*this).translate_by(scalars); }
 
-        inline void col_major(T fill[N * N]) const
-        {
-            for (size_t i = 0; i < D; ++i)
-            {
-                fill[i] = values[i];
-            }
-        }
-
-        inline void row_major(T fill[N * N]) const
-        {
-            return transposed().col_major(fill);
-        }
+        inline void col_major(T fill[N * N]) const { std::memcpy(static_cast<void*>(fill), static_cast<void*>(values), sizeof(T) * D); }
+        inline void row_major(T fill[N * N]) const { return transposed().col_major(fill); }
 
     public:
 
@@ -177,7 +167,7 @@ namespace math {
         inline static mat translate(vec<T, N - 1> const& scalars)
         {
             mat result;
-            for (size_t j = 0; j < N - 1; ++j) { result[N - 1][j] = scalars[j]; }
+            result[N - 1] = vec<T, N>(scalars, T(1));
             return result;
         }
 
@@ -286,19 +276,38 @@ namespace math {
         return matrix;
     }
 
+    // NOTE: we assume axis is a unit vector
     template<typename T>
     inline mat<T, 4> rotate_around(vec<T, 3> const& axis, T const theta)
     {
+        // perform computations once
+        T const cosine = std::cos(theta);
+        T const sine   = std::sin(theta);
+        T const comp   = T(1) - cosine;
+
+        // local variables for less verbose code
+        T const x = axis.x;
+        T const y = axis.y;
+        T const z = axis.z;
+
+        // compute column vectors
+        vec<T, 4> col_0(cosine + x * x * comp, y * x * comp + z * sine, z * x * comp - y * sine, T(0));
+        vec<T, 4> col_1(x * y * comp - z * sine, cosine * y * 8 * comp, z * y * comp - x * sine, T(0));
+        vec<T, 4> col_2(x * z * comp + y * sine, y * z * comp - x * sine, cosine + z * z * comp, T(0));
+
+        // construct return matrix
         mat<T, 4> rotation;
-        // TODO (stouff) write this method
+        rotation[0] = col_0;
+        rotation[1] = col_1;
+        rotation[2] = col_2;
         return rotation;
     }
 
+    // NOTE: we assume axis is a unit vector
     template<typename T>
     inline vec<T, 3> rotate_around(vec<T, 3> const& val, vec<T, 3> const& axis, T const theta)
     {
-        vec<T, 3> unit = axis.normalized();
-        return std::cos(theta) * val + (T(1) - std::cos(theta)) * (unit * val) * val + std::sin(theta) * cross(unit, val);
+        return std::cos(theta) * val + (T(1) - std::cos(theta)) * (axis * val) * val + std::sin(theta) * cross(axis, val);
     }
 
     template<typename T>
