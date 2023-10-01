@@ -2,104 +2,22 @@
 
 #include <cmath>
 
+#include "raw.h"
+
 namespace stf {
 namespace math {
     
     /*
-    * A base class to provide functionality common to all vectors via the CRTP
+    * NOTE: Unfortunately there is a lot of duplication between among the generic vector class and the specializations when
+    * the dimension is specialized for N = 2, 3, 4. This could be avoided by paring Curiously Recurring Template Pattern
+    * with some casting to the derived class type. But I opted for simplicity even though it involves more duplication. To
+    * reduce some of the unwanted duplication, many of the member functions call through to templated functions that operate
+    * directly on the underlying raw pointers
     */
-    template<typename T, size_t N, typename derived_t>
-    struct vec_base
-    {
-    private:
 
-        inline derived_t const& crpt() const { return static_cast<derived_t const&>(*this); }
-        inline derived_t& crpt() { return static_cast<derived_t&>(*this); }
-
-    public:
-
-        inline size_t size() const { return N; }
-
-        inline T const& operator[](size_t i) const { return crpt().values[i]; }
-        inline T& operator[](size_t i) { return crpt().values[i]; }
-
-        inline derived_t& operator+=(derived_t const& rhs)
-        {
-            for (size_t i = 0; i < N; ++i)
-            {
-                crpt().values[i] += rhs[i]; 
-            }
-            return crpt();
-        }
-
-        inline derived_t& operator-=(derived_t const& rhs)
-        {
-            for (size_t i = 0; i < N; ++i)
-            {
-                crpt().values[i] -= rhs[i]; 
-            }
-            return crpt();
-        }
-
-        inline derived_t& operator*=(T scalar)
-        {
-            for (size_t i = 0; i < N; ++i)
-            {
-                crpt().values[i] *= scalar; 
-            }
-            return crpt();
-        }
-
-        inline T const operator*(derived_t const& rhs) const
-        {
-            T dot = T(0);
-            for (size_t i = 0; i < N; ++i)
-            {
-                dot += crpt().values[i] * rhs[i];
-            }
-            return dot;
-        }
-
-        inline T length() const
-        {
-            T dot = crpt() * crpt();
-            return std::sqrt(dot);
-        }
-
-        inline derived_t& normalize()
-        {
-            T scalar = T(1) / length();
-            crpt() *= scalar;
-            return crpt();
-        }
-
-        inline derived_t normalized() const
-        {
-            return derived_t(crpt()).normalize();
-        }
-
-        template<typename U>
-        derived_t as() const
-        {
-            derived_t result;
-            for (size_t i = 0; i < N; ++i)
-            {
-                result[i] = static_cast<U>(crpt().values[i]);
-            }
-            return result;
-        }
-
-    public:
-
-        static inline size_t byte_size() { return sizeof(T) * N; }
-
-    };
-
-    /*
-    * Generic vector type
-    */
+    // Generic vector type
     template<typename T, size_t N>
-    struct vec : public vec_base<T, N, vec<T, N>>
+    struct vec
     {
 
         T values[N];
@@ -113,13 +31,39 @@ namespace math {
             }
         }
 
+        inline size_t size() const { return N; }
+
+        inline T const& operator[](size_t i) const { return values[i]; }
+        inline T& operator[](size_t i) { return values[i]; }
+
+        inline vec<T, N>& operator+=(vec<T, N> const& rhs) { raw::plus_equals(values, rhs.values, N); return *this; }
+        inline vec<T, N>& operator-=(vec<T, N> const& rhs) { raw::minus_equals(values, rhs.values, N); return *this; }
+
+        inline vec<T, N>& operator*=(T scalar) { raw::scale(values, scalar, N); return *this; }
+
+        inline T const operator*(vec<T, N> const& rhs) const { return raw::dot(values, rhs.values, N); }
+        inline T length() const { return raw::length(values, N); }
+
+        inline vec<T, N>& normalize() { raw::normalize(values, N); return *this; }
+        inline vec<T, N> normalized() const { return vec<T, N>(*this).normalize(); }
+
+        template<typename U>
+        vec<U, N> as() const
+        {
+            vec<U, N> result;
+            raw::as(values, result.values, N);
+            return result;
+        }
+
+    public:
+
+        static inline size_t byte_count() { return sizeof(T) * N; }
+
     };
 
-    /*
-    * Specialization for vec2
-    */
+    // Specialization for vec2
     template<typename T>
-    struct vec<T, 2> : public vec_base<T, 2, vec<T, 2>>
+    struct vec<T, 2>
     {
 
         union
@@ -132,13 +76,41 @@ namespace math {
         explicit constexpr vec(T value) : vec(value, value) {}
         explicit constexpr vec(T _x, T _y) : x(_x), y(_y) {}
 
+        inline size_t size() const { return 2; }
+
+        inline T const& operator[](size_t i) const { return values[i]; }
+        inline T& operator[](size_t i) { return values[i]; }
+
+        inline vec<T, 2>& operator+=(vec<T, 2> const& rhs) { raw::plus_equals(values, rhs.values, 2); return *this; }
+        inline vec<T, 2>& operator-=(vec<T, 2> const& rhs) { raw::minus_equals(values, rhs.values, 2); return *this; }
+
+        inline vec<T, 2>& operator*=(T scalar) { raw::scale(values, scalar, 2); return *this; }
+
+        inline T const operator*(vec<T, 2> const& rhs) const { return raw::dot(values, rhs.values, 2); }
+        inline T length() const { return raw::length(values, 2); }
+
+        inline vec<T, 2>& normalize() { raw::normalize(values, 2); return *this; }
+        inline vec<T, 2> normalized() const { return vec<T, 2>(*this).normalize(); }
+
+        template<typename U>
+        vec<U, 2> as() const
+        {
+            vec<U, 2> result;
+            raw::as(values, result.values, 2);
+            return result;
+        }
+
+    public:
+
+        static inline size_t byte_count() { return sizeof(T) * 2; }
+
     };
 
     /*
     * Specialization for vec3
     */
     template<typename T>
-    struct vec<T, 3> : public vec_base<T, 3, vec<T, 3>>
+    struct vec<T, 3>
     {
 
         union
@@ -153,13 +125,41 @@ namespace math {
         explicit constexpr vec(T _x, T _y, T _z) : x(_x), y(_y), z(_z) {}
         constexpr vec(vec<T, 2> const& _xy, T _z) : xy(_xy), z(_z) {}
 
+        inline size_t size() const { return 3; }
+
+        inline T const& operator[](size_t i) const { return values[i]; }
+        inline T& operator[](size_t i) { return values[i]; }
+
+        inline vec<T, 3>& operator+=(vec<T, 3> const& rhs) { raw::plus_equals(values, rhs.values, 3); return *this; }
+        inline vec<T, 3>& operator-=(vec<T, 3> const& rhs) { raw::minus_equals(values, rhs.values, 3); return *this; }
+
+        inline vec<T, 3>& operator*=(T scalar) { raw::scale(values, scalar, 3); return *this; }
+
+        inline T const operator*(vec<T, 3> const& rhs) const { return raw::dot(values, rhs.values, 3); }
+        inline T length() const { return raw::length(values, 3); }
+
+        inline vec<T, 3>& normalize() { raw::normalize(values, 3); return *this; }
+        inline vec<T, 3> normalized() const { return vec<T, 3>(*this).normalize(); }
+
+        template<typename U>
+        vec<U, 3> as() const
+        {
+            vec<U, 3> result;
+            raw::as(values, result.values, 3);
+            return result;
+        }
+
+    public:
+
+        static inline size_t byte_count() { return sizeof(T) * 3; }
+
     };
 
     /*
     * Specialization for vec4
     */
     template<typename T>
-    struct vec<T, 4> : public vec_base<T, 4, vec<T, 4>>
+    struct vec<T, 4>
     {
 
         union
@@ -175,6 +175,34 @@ namespace math {
         explicit constexpr vec(T _x, T _y, T _z, T _w) : x(_x), y(_y), z(_z), w(_z) {}
         constexpr vec(vec<T, 2> const& _xy, vec<T, 2> const& _zw) : xy(_xy), zw(_zw) {}
         constexpr vec(vec<T, 3> const& _xyz, T _w) : xyz(_xyz), w(_w) {}
+
+        inline size_t size() const { return 4; }
+
+        inline T const& operator[](size_t i) const { return values[i]; }
+        inline T& operator[](size_t i) { return values[i]; }
+
+        inline vec<T, 4>& operator+=(vec<T, 4> const& rhs) { raw::plus_equals(values, rhs.values, 4); return *this; }
+        inline vec<T, 4>& operator-=(vec<T, 4> const& rhs) { raw::minus_equals(values, rhs.values, 4); return *this; }
+
+        inline vec<T, 4>& operator*=(T scalar) { raw::scale(values, scalar, 4); return *this; }
+
+        inline T const operator*(vec<T, 4> const& rhs) const { return raw::dot(values, rhs.values, 4); }
+        inline T length() const { return raw::length(values, 4); }
+
+        inline vec<T, 4>& normalize() { raw::normalize(values, 4); return *this; }
+        inline vec<T, 4> normalized() const { return vec<T, 4>(*this).normalize(); }
+
+        template<typename U>
+        vec<U, 4> as() const
+        {
+            vec<U, 4> result;
+            raw::as(values, result.values, 4);
+            return result;
+        }
+
+    public:
+
+        static inline size_t byte_count() { return sizeof(T) * 4; }
 
     };
 
