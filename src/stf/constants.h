@@ -3,7 +3,6 @@
 #include <limits>
 
 namespace stf {
-namespace math {
 
     template<typename T>
     struct constants
@@ -28,5 +27,4 @@ namespace math {
 
     };
 
-} // math
 } // stf
