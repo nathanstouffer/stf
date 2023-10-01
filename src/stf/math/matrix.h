@@ -147,10 +147,14 @@ namespace math {
             return *this;
         }
 
-        inline mat transposed() const
-        {
-            return mat(*this).transpose();
-        }
+        inline mat& scale_by(vec<T, N> const& scalars) { return (*this) *= mat::scale(scalars); }
+        inline mat& scale_by(vec<T, N - 1> const& scalars) { return scale_by(vec<T, N>(scalars, T(1))); }
+        inline mat& translate_by(vec<T, N - 1> const& scalars) { return (*this) *= mat::translate(scalars); }
+
+        inline mat transposed() const { return mat(*this).transpose(); }
+        inline mat scaled_by(vec<T, N> const& scalars) const { return mat(*this).scale_by(scalars); }
+        inline mat scaled_by(vec<T, N - 1> const& scalars) const { return mat(*this).scale_by(vec<T, N>(scalars, T(1))); }
+        inline mat translated_by(vec<T, N - 1> const& scalars) const { return mat(*this).translate_by(scalars); }
 
         inline void col_major(T fill[N * N]) const
         {
@@ -167,12 +171,23 @@ namespace math {
 
     public:
 
-        static mat identity()
+        inline static mat identity() { return mat(); }
+        inline static mat scale(vec<T, N> const& scalars) { return mat(scalars); }
+        inline static mat scale(vec<T, N - 1> const& scalars) { return mat(vec<T, N>(scalars, T(1))); }
+        inline static mat translate(vec<T, N - 1> const& scalars)
         {
-            return mat();
+            mat result;
+            for (size_t j = 0; j < N - 1; ++j) { result[N - 1][j] = scalars[j]; }
+            return result;
         }
 
+        inline static size_t byte_count() { return sizeof(D) * 4; }
+
     };
+
+    // delete invalid matrix specialization
+    template<typename T> struct mat<T, 0> { mat() = delete; };
+    template<typename T> struct mat<T, 1> { mat() = delete; };
 
     template<typename T, size_t N>
     inline mat<T, N> operator*(mat<T, N> const& lhs, mat<T, N> const& rhs)
@@ -199,6 +214,59 @@ namespace math {
         {
             result[i] = dot(lhs, rhs.col(i).as_vec());
         }
+        return result;
+    }
+
+    template<typename T> inline mat<T, 4> scale(vec<T, 3> const& scalars) { return mat<T, 4>::scale(scalars); }
+    template<typename T> inline mat<T, 4> scale_x(T const scalar) { return mat<T, 4>::scale(vec<T, 3>(scalar, T(1), T(1))); }
+    template<typename T> inline mat<T, 4> scale_y(T const scalar) { return mat<T, 4>::scale(vec<T, 3>(T(1), scalar, T(1))); }
+    template<typename T> inline mat<T, 4> scale_z(T const scalar) { return mat<T, 4>::scale(vec<T, 3>(T(1), T(1)), scalar); }
+
+    template<typename T> inline mat<T, 4> translate(vec<T, 3> const& scalars) { return mat<T, 4>::translate(scalars); }
+    template<typename T> inline mat<T, 4> translate_x(T const scalar) { return mat<T, 4>::translate(vec<T, 3>(scalar, T(0), T(0))); }
+    template<typename T> inline mat<T, 4> translate_y(T const scalar) { return mat<T, 4>::translate(vec<T, 3>(T(0), scalar, T(0))); }
+    template<typename T> inline mat<T, 4> translate_z(T const scalar) { return mat<T, 4>::translate(vec<T, 3>(T(0), T(0)), scalar); }
+
+    template<typename T>
+    inline mat<T, 4> rotate_x(T const theta)
+    {
+        mat<T, 4> result;
+        result[1] = vec<T, 3>(T(0),  std::cos(theta), std::sin(theta));
+        result[2] = vec<T, 3>(T(0), -std::sin(theta), std::cos(theta));
+        return result;
+    }
+
+    template<typename T>
+    inline mat<T, 4> rotate_y(T const theta)
+    {
+        mat<T, 4> result;
+        result[0] = vec<T, 3>(std::cos(theta), T(0), -std::sin(theta));
+        result[2] = vec<T, 3>(std::sin(theta), T(0),  std::cos(theta));
+        return result;
+    }
+
+    template<typename T>
+    inline mat<T, 4> rotate_z(T const theta)
+    {
+        mat<T, 4> result;
+        result[0] = vec<T, 3>( std::cos(theta), std::sin(theta), T(0));
+        result[1] = vec<T, 3>(-std::sin(theta), std::cos(theta), T(0));
+        return result;
+    }
+
+    template<typename T> inline mat<T, 4> rotate_xyz(T const x, T const y, T const z) { return (rotate_x(x) *= rotate_y(y)) *= rotate_z(z); }
+    template<typename T> inline mat<T, 4> rotate_xzy(T const x, T const z, T const y) { return (rotate_x(x) *= rotate_z(z)) *= rotate_y(y); }
+    template<typename T> inline mat<T, 4> rotate_yxz(T const y, T const x, T const z) { return (rotate_y(y) *= rotate_x(x)) *= rotate_z(z); }
+    template<typename T> inline mat<T, 4> rotate_yzx(T const y, T const z, T const x) { return (rotate_y(y) *= rotate_z(z)) *= rotate_x(x); }
+    template<typename T> inline mat<T, 4> rotate_zxy(T const z, T const x, T const y) { return (rotate_z(z) *= rotate_x(x)) *= rotate_y(y); }
+    template<typename T> inline mat<T, 4> rotate_zyx(T const z, T const y, T const x) { return (rotate_z(z) *= rotate_y(y)) *= rotate_x(x); }
+
+    template<typename T>
+    inline mat<T, 2> rotate_plane(T const theta)
+    {
+        mat<T, 2> result;
+        result[0] = vec<T, 2>(std::cos(theta), std::sin(theta));
+        result[1] = vec<T, 2>(-std::sin(theta), std::cos(theta));
         return result;
     }
 

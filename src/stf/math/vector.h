@@ -30,6 +30,11 @@ namespace math {
                 values[i] = value;
             }
         }
+        constexpr vec(vec<T, N - 1> const& prefix, T const suffix)
+        {
+            for (size_t i = 0; i < N - 1; ++i) { values[i] = prefix[i]; }
+            values[N - 1] = suffix;
+        }
 
         inline size_t size() const { return N; }
 
@@ -205,6 +210,9 @@ namespace math {
         static inline size_t byte_count() { return sizeof(T) * 4; }
 
     };
+
+    // delete invalid vector specialization
+    template<typename T> struct vec<T, 0> { vec() = delete; };
 
     template<typename T, size_t N>
     inline bool const equ(vec<T, N> const& lhs, vec<T, N> const& rhs, T tol)
