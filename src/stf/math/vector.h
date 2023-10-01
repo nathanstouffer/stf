@@ -245,6 +245,17 @@ namespace math {
     }
 
     template<typename T, size_t N>
+    inline vec<T, N> const operator-(vec<T, N> const& lhs)
+    {
+        vec<T, N> result;
+        for (size_t i = 0; i < N; ++i)
+        {
+            result[i] = -lhs[i];
+        }
+        return result;
+    }
+
+    template<typename T, size_t N>
     inline vec<T, N> const operator+(vec<T, N> const& lhs, vec<T, N> const& rhs)
     {
         return vec<T, N>(lhs) += rhs;
