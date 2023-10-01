@@ -86,11 +86,29 @@ int main()
     }
 
     {
-        stf::gpu::mat2 tmp(1);
+        stf::gpu::mat2 tmp;
         std::cout << "tmp: " << std::endl << tmp << std::endl;
         tmp[0] = stf::gpu::vec2(3, 4);
         std::cout << std::endl << "write [3, 4] to first column" << std::endl << tmp << std::endl;
         std::cout << "transpose: " << std::endl << tmp.transposed() << std::endl;
+        std::cout << std::endl;
+    }
+
+    {
+        stf::gpu::mat2 lhs(1);
+        stf::gpu::mat2 rhs(2);
+        std::cout << "lhs: " << std::endl << lhs << std::endl;
+        std::cout << "rhs: " << std::endl << rhs << std::endl;
+        std::cout << std::endl << "multiply" << std::endl << lhs * rhs << std::endl;
+        std::cout << std::endl;
+    }
+
+    {
+        stf::gpu::mat2 lhs(1);
+        stf::gpu::vec2 rhs(2);
+        std::cout << "lhs: " << std::endl << lhs << std::endl;
+        std::cout << "rhs: " << std::endl << rhs << std::endl;
+        std::cout << std::endl << "multiply" << std::endl << lhs * rhs << std::endl;
         std::cout << std::endl;
     }
 }

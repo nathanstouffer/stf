@@ -280,6 +280,12 @@ namespace math {
     }
 
     template<typename T, size_t N>
+    inline T const dot(vec<T, N> const& lhs, vec<T, N> const& rhs)
+    {
+        return lhs * rhs;
+    }
+
+    template<typename T, size_t N>
     inline vec<T, N> const hadamard(vec<T, N> const& lhs, vec<T, N> const& rhs)
     {
         vec<T, N> result;

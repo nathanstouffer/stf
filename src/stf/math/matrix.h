@@ -1,5 +1,7 @@
 #pragma once
 
+#include <cstring>
+
 #include "vector.h"
 
 namespace stf {
@@ -14,21 +16,23 @@ namespace math {
 
             col_proxy(mat& _m, size_t _c) : m(_m), c(_c) {}
 
-            T const& operator[](size_t i) const { return m.values[c * N + i]; }
-            T& operator[](size_t i) { return m.values[c * N + i]; }
+            inline T const& operator[](size_t i) const { return m.values[c * N + i]; }
+            inline T& operator[](size_t i) { return m.values[c * N + i]; }
 
-            col_proxy& operator=(vec<T, N> const& rhs)
+            inline col_proxy& operator=(vec<T, N> const& rhs)
             {
                 for (size_t i = 0; i < N; ++i) { (*this)[i] = rhs[i]; }
                 return *this;
             }
         
-            operator vec<T, N>() const
+            inline operator vec<T, N>() const
             {
                 vec<T, N> vec;
                 for (size_t i = 0; i < N; ++i) { vec[i] = (*this)[i]; }
                 return vec;
             }
+
+            inline vec<T, N> as_vec() const { return static_cast<vec<T, N>>(*this); }
 
         private:
 
@@ -42,21 +46,23 @@ namespace math {
 
             row_proxy(mat& _m, size_t _r) : m(_m), r(_r) {}
 
-            T const& operator[](size_t j) const { return m.values[r + j * N]; }
-            T& operator[](size_t j) { return m.values[r + j * N]; }
+            inline T const& operator[](size_t j) const { return m.values[r + j * N]; }
+            inline T& operator[](size_t j) { return m.values[r + j * N]; }
         
-            row_proxy& operator=(vec<T, N> const& rhs)
+            inline row_proxy& operator=(vec<T, N> const& rhs)
             {
                 for (size_t i = 0; i < N; ++i) { (*this)[i] = rhs[i]; }
                 return *this;
             }
 
-            operator vec<T, N>() const
+            inline operator vec<T, N>() const
             {
                 vec<T, N> vec;
                 for (size_t i = 0; i < N; ++i) { vec[i] = (*this)[i]; }
                 return vec;
             }
+
+            inline vec<T, N> as_vec() const { return static_cast<vec<T, N>>(*this); }
 
         private:
 
@@ -70,7 +76,7 @@ namespace math {
         // values defining this matrix (stored in column major format)
         T values[N * N];
 
-        mat() : mat(0) {}
+        mat() { identitied(); }
         mat(T value) 
         {
             for (size_t i = 0; i < D; ++i)
@@ -88,10 +94,37 @@ namespace math {
         inline col_proxy const operator[](size_t i) const { return col(i); }
         inline col_proxy operator[](size_t i) { return col(i); }
 
-        mat<T, N>& transpose()
+        mat& operator*=(mat const& rhs)
+        {
+            mat tmp;
+            for (size_t i = 0; i < N; ++i)
+            {
+                for (size_t j = 0; j < N; ++j)
+                {
+                    tmp[i][j] = dot(this->row(i).as_vec(), rhs.col(j).as_vec());
+                }
+            }
+
+            *this = tmp;
+            return *this;
+        }
+
+        inline mat& identitied()
+        {
+            for (size_t i = 0; i < N; ++i)
+            {
+                for (size_t j = 0; j < N; ++j)
+                {
+                    (*this)[i][j] = (i == j) ? T(1) : T(0);
+                }
+            }
+            return *this;
+        }
+
+        inline mat& transpose()
         {
             // TODO write this method by swapping the values in place
-            mat<T, N> transposed;
+            mat transposed;
             for (size_t i = 0; i < N; ++i)          // iterate over columns
             {
                 for (size_t j = 0; j < N; ++j)      // iterate over rows
@@ -101,18 +134,15 @@ namespace math {
             }
 
             // copy to values
-            for (size_t i = 0; i < D; ++i)
-            {
-                values[i] = transposed.values[i];
-            }
+            *this = transposed;
 
             // return reference
             return *this;
         }
 
-        mat<T, N> transposed() const
+        inline mat transposed() const
         {
-            return mat<T, N>(*this).transpose();
+            return mat(*this).transpose();
         }
 
         inline void col_major(T fill[N * N]) const
@@ -128,7 +158,43 @@ namespace math {
             return transposed().col_major(fill);
         }
 
+    public:
+
+        static mat identity()
+        {
+            return mat();
+        }
+
     };
+
+    template<typename T, size_t N>
+    inline mat<T, N> operator*(mat<T, N> const& lhs, mat<T, N> const& rhs)
+    {
+        return mat<T, N>(lhs) *= rhs;
+    }
+
+    template<typename T, size_t N>
+    inline vec<T, N> operator*(mat<T, N> const& lhs, vec<T, N> const& rhs)
+    {
+        vec<T, N> result;
+        for (size_t j = 0; j < N; ++j)
+        {
+            result[j] = dot(lhs.row(j).as_vec(), rhs);
+        }
+        return result;
+    }
+
+    template<typename T, size_t N>
+    inline vec<T, N> operator*(vec<T, N> const& lhs, mat<T, N> const& rhs)
+    {
+        vec<T, N> result;
+        for (size_t i = 0; i < N; ++i)
+        {
+            result[i] = dot(lhs, rhs.col(i).as_vec());
+        }
+        return result;
+    }
+
 
 } // math
 } // stf
