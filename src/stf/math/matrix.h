@@ -16,6 +16,12 @@ namespace math {
 
             T const& operator[](size_t i) const { return m.values[c * N + i]; }
             T& operator[](size_t i) { return m.values[c * N + i]; }
+
+            col_proxy& operator=(vec<T, N> const& rhs)
+            {
+                for (size_t i = 0; i < N; ++i) { (*this)[i] = rhs[i]; }
+                return *this;
+            }
         
             operator vec<T, N>() const
             {
@@ -39,6 +45,12 @@ namespace math {
             T const& operator[](size_t j) const { return m.values[r + j * N]; }
             T& operator[](size_t j) { return m.values[r + j * N]; }
         
+            row_proxy& operator=(vec<T, N> const& rhs)
+            {
+                for (size_t i = 0; i < N; ++i) { (*this)[i] = rhs[i]; }
+                return *this;
+            }
+
             operator vec<T, N>() const
             {
                 vec<T, N> vec;
@@ -79,7 +91,7 @@ namespace math {
         mat<T, N>& transpose()
         {
             // TODO write this method by swapping the values in place
-            T transposed[N * N];
+            mat<T, N> transposed;
             for (size_t i = 0; i < N; ++i)          // iterate over columns
             {
                 for (size_t j = 0; j < N; ++j)      // iterate over rows
@@ -91,8 +103,11 @@ namespace math {
             // copy to values
             for (size_t i = 0; i < D; ++i)
             {
-                values[i] = transposed[i];
+                values[i] = transposed.values[i];
             }
+
+            // return reference
+            return *this;
         }
 
         mat<T, N> transposed() const

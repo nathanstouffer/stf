@@ -81,7 +81,16 @@ int main()
         std::cout << "tmp: " << std::endl << tmp << std::endl;
         std::cout << "tmp[0][0] = " << tmp[0][0] << std::endl;
         tmp[0][0] = 3;
-        std::cout << "write 3 to tmp[0][0]" << std::endl << tmp << std::endl;
+        std::cout << std::endl << "write 3 to tmp[0][0]" << std::endl << tmp << std::endl;
+        std::cout << std::endl;
+    }
+
+    {
+        stf::gpu::mat2 tmp(1);
+        std::cout << "tmp: " << std::endl << tmp << std::endl;
+        tmp[0] = stf::gpu::vec2(3, 4);
+        std::cout << std::endl << "write [3, 4] to first column" << std::endl << tmp << std::endl;
+        std::cout << "transpose: " << std::endl << tmp.transposed() << std::endl;
         std::cout << std::endl;
     }
 }
