@@ -55,5 +55,12 @@ int main()
         stf::gpu::vec2 tmp(5);
         std::cout << "length(" << tmp << ") = " << tmp.length() << std::endl;
         std::cout << "normalize(" << tmp << ") = " << tmp.normalized() << std::endl;
+        std::cout << std::endl;
+    }
+
+    {
+        stf::gpu::vec2 tmp(5);
+        std::cout << "2 * " << tmp << " = " << 2.f * tmp << std::endl;
+        std::cout << std::endl;
     }
 }

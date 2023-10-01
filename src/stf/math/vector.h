@@ -257,6 +257,18 @@ namespace math {
     }
 
     template<typename T, size_t N>
+    inline vec<T, N> const operator*(vec<T, N> const& lhs, T const scalar)
+    {
+        return vec<T, N>(lhs) *= scalar;
+    }
+
+    template<typename T, size_t N>
+    inline vec<T, N> const operator*(T const scalar, vec<T, N> const& rhs)
+    {
+        return rhs * scalar;
+    }
+
+    template<typename T, size_t N>
     inline vec<T, N> const hadamard(vec<T, N> const& lhs, vec<T, N> const& rhs)
     {
         vec<T, N> result;
