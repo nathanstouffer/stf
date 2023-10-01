@@ -76,12 +76,19 @@ namespace math {
         // values defining this matrix (stored in column major format)
         T values[N * N];
 
-        mat() { identitied(); }
+        mat() { identify(); }
         mat(T value) 
         {
             for (size_t i = 0; i < D; ++i)
             {
                 values[i] = value;
+            }
+        }
+        mat(vec<T, N> const& diagonal) : mat()
+        {
+            for (size_t i = 0; i < N; ++i)
+            {
+                (*this)[i][i] = diagonal[i];
             }
         }
 
@@ -109,7 +116,7 @@ namespace math {
             return *this;
         }
 
-        inline mat& identitied()
+        inline mat& identify()
         {
             for (size_t i = 0; i < N; ++i)
             {
@@ -195,6 +202,37 @@ namespace math {
         return result;
     }
 
+    template<typename T>
+    inline mat<T, 4> orthographic()
+    {
+        mat<T, 4> matrix;
+        // TODO (stouff) write this method
+        return matrix;
+    }
+
+    template<typename T>
+    inline mat<T, 4> perspective()
+    {
+        mat<T, 4> matrix;
+        // TODO (stouff) write this method
+        return matrix;
+    }
+
+    template<typename T>
+    inline mat<T, 3> rotate_around(vec<T, 3> const& axis, T const theta)
+    {
+        mat<T, 3> rotation;
+        // TODO (stouff) write this method
+        return rotation;
+    }
+
+    template<typename T>
+    inline mat<T, 3> orbit(vec<T, 3> const& focus, T const theta, T const phi)
+    {
+        mat<T, 3> rotation;
+        // TODO (stouff) write this method
+        return rotation;
+    }
 
 } // math
 } // stf
