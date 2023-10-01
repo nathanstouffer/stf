@@ -119,4 +119,15 @@ int main()
         std::cout << "rotated:" << stf::math::rotate_around(stf::gpu::vec3(0, 0, 1), stf::constants<stf::gpu_float_t>::half_pi) * stf::gpu::vec4(tmp, 0) << std::endl;
         std::cout << std::endl;
     }
+
+    {
+        stf::gpu::vec3 tmp(0, -1, 0);
+        std::cout << "tmp: " << tmp << std::endl;
+        stf::gpu::mat4 mtx = stf::math::orbit(stf::gpu::vec3(), stf::gpu::vec3(1, 0, 0), stf::constants<stf::gpu_float_t>::quarter_pi, stf::constants<stf::gpu_float_t>::half_pi);
+        std::cout << "orbited:" << mtx * stf::gpu::vec4(tmp, 1) << std::endl;
+        std::cout << "orbited:" << stf::math::orbit(tmp, stf::gpu::vec3(), stf::gpu::vec3(1, 0, 0), stf::constants<stf::gpu_float_t>::quarter_pi, stf::constants<stf::gpu_float_t>::half_pi) << std::endl;
+        //std::cout << mtx << std::endl;
+        //std::cout << std::endl << "debugging: " << std::endl << stf::math::rotate_around(stf::gpu::vec3(0, 0, 1), stf::constants<stf::gpu_float_t>::half_pi) << std::endl;
+        std::cout << std::endl;
+    }
 }

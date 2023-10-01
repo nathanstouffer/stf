@@ -280,26 +280,26 @@ namespace math {
     template<typename T>
     inline mat<T, 4> rotate_around(vec<T, 3> const& axis, T const theta)
     {
-        // perform computations once
-        T const cosine = std::cos(theta);
-        T const sine   = std::sin(theta);
-        T const comp   = T(1) - cosine;
+        // perform computations once (negate theta to make rotations right-handed)
+        T const cosine = std::cos(-theta);
+        T const sine   = std::sin(-theta);
+        T const comp   = T(1) - cosine;     // complement
 
         // local variables for less verbose code
         T const x = axis.x;
         T const y = axis.y;
         T const z = axis.z;
 
-        // compute column vectors
-        vec<T, 4> col_0(cosine + x * x * comp, y * x * comp + z * sine, z * x * comp - y * sine, T(0));
-        vec<T, 4> col_1(x * y * comp - z * sine, cosine * y * 8 * comp, z * y * comp - x * sine, T(0));
-        vec<T, 4> col_2(x * z * comp + y * sine, y * z * comp - x * sine, cosine + z * z * comp, T(0));
+        // compute row vectors
+        vec<T, 4> row_0(cosine + x * x * comp, x * y * comp - z * sine, x * z * comp + y * sine, T(0));
+        vec<T, 4> row_1(y * x * comp + z * sine, cosine + y * y * comp, y * z * comp - x * sine, T(0));
+        vec<T, 4> row_2(z * x * comp - y * sine, z * y * comp + x * sine, cosine + z * z * comp, T(0));
 
         // construct return matrix
         mat<T, 4> rotation;
-        rotation[0] = col_0;
-        rotation[1] = col_1;
-        rotation[2] = col_2;
+        rotation.row(0) = row_0;
+        rotation.row(1) = row_1;
+        rotation.row(2) = row_2;
         return rotation;
     }
 
@@ -307,22 +307,29 @@ namespace math {
     template<typename T>
     inline vec<T, 3> rotate_around(vec<T, 3> const& val, vec<T, 3> const& axis, T const theta)
     {
+        // TODO (stouff) fix this
         return std::cos(theta) * val + (T(1) - std::cos(theta)) * (axis * val) * val + std::sin(theta) * cross(axis, val);
     }
 
+    // NOTE: we assume right is a unit vector
     template<typename T>
-    inline mat<T, 3> orbit(vec<T, 3> const& focus, T const theta, T const phi)
+    inline mat<T, 4> orbit(vec<T, 3> const& focus, vec<T, 3> const& right, T const delta_phi, T const delta_theta)
     {
-        mat<T, 3> rotation;
-        // TODO (stouff) write this method
-        return rotation;
+        mat<T, 4> translate = mat<T, 4>::translate(-focus);
+        mat<T, 4> pitch = rotate_around(right, delta_phi);
+        mat<T, 4> yaw = rotate_around(vec<T, 3>(0, 0, 1), delta_theta);
+        mat<T, 4> invert_translation = mat<T, 4>::translate(focus);
+        return invert_translation * yaw * pitch * translate;
     }
 
+    // NOTE: we assume right is a unit vector
     template<typename T>
-    inline vec<T, 3> orbit(vec<T, 3> const& val, vec<T, 3> const& focus, T const theta, T const phi)
+    inline vec<T, 3> orbit(vec<T, 3> const& val, vec<T, 3> const& focus, vec<T, 3> const& right, T const delta_phi, T const delta_theta)
     {
-        // TODO (stouff) write this method
-        return vec<T, 3>();
+        vec<T, 3> relative = val - focus;
+        relative = rotate_around(relative, right, delta_phi);
+        relative = rotate_around(relative, vec<T, 3>(0, 0, 1), delta_theta);
+        return relative + focus;
     }
 
 } // math
