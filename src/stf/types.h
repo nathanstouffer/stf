@@ -1,5 +1,6 @@
 #pragma once
 
+#include "math/matrix.h"
 #include "math/vector.h"
 
 namespace stf {
@@ -14,6 +15,11 @@ namespace stf {
         typedef math::vec<T, 2> vec2;
         typedef math::vec<T, 3> vec3;
         typedef math::vec<T, 4> vec4;
+
+        // matrix types
+        typedef math::mat<T, 2> mat2;
+        typedef math::mat<T, 3> mat3;
+        typedef math::mat<T, 4> mat4;
 
     };
 
