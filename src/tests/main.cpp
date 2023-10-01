@@ -111,4 +111,11 @@ int main()
         std::cout << std::endl << "multiply" << std::endl << lhs * rhs << std::endl;
         std::cout << std::endl;
     }
+
+    {
+        stf::gpu::vec3 tmp(1, 0, 0);
+        std::cout << "tmp: " << tmp << std::endl;
+        std::cout << "rotated:" << stf::math::rotate_around(tmp, stf::gpu::vec3(0, 0, 1), stf::constants<stf::gpu_float_t>::half_pi) << std::endl;
+        std::cout << std::endl;
+    }
 }

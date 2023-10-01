@@ -293,6 +293,17 @@ namespace math {
         return lhs * rhs;
     }
 
+    template<typename T>
+    inline vec<T, 3> cross(vec<T, 3> const& lhs, vec<T, 3> const& rhs)
+    {
+        return vec<T, 3>
+        (
+            lhs.y * rhs.z - rhs.y * lhs.z,
+            rhs.x * lhs.z - lhs.x * rhs.z,
+            lhs.x * rhs.y - rhs.x * lhs.y
+        );
+    }
+
     template<typename T, size_t N>
     inline vec<T, N> const hadamard(vec<T, N> const& lhs, vec<T, N> const& rhs)
     {

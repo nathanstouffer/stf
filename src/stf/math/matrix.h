@@ -287,11 +287,18 @@ namespace math {
     }
 
     template<typename T>
-    inline mat<T, 3> rotate_around(vec<T, 3> const& axis, T const theta)
+    inline mat<T, 4> rotate_around(vec<T, 3> const& axis, T const theta)
     {
-        mat<T, 3> rotation;
+        mat<T, 4> rotation;
         // TODO (stouff) write this method
         return rotation;
+    }
+
+    template<typename T>
+    inline vec<T, 3> rotate_around(vec<T, 3> const& val, vec<T, 3> const& axis, T const theta)
+    {
+        vec<T, 3> unit = axis.normalized();
+        return std::cos(theta) * val + (T(1) - std::cos(theta)) * (unit * val) * val + std::sin(theta) * cross(unit, val);
     }
 
     template<typename T>
