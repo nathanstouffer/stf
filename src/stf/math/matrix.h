@@ -261,11 +261,11 @@ namespace math {
     }
 
     template<typename T>
-    inline mat<T, 4> orthographic()
+    inline mat<T, 4> orthographic(T const l, T const r, T const b, T const t, T const n, T const f)
     {
-        mat<T, 4> matrix;
-        // TODO (stouff) write this method
-        return matrix;
+        vec<T, 3> scalars(T(2) / (r - l), T(2) / (t - b), -T(2) / (f - n));
+        vec<T, 3> translators(-(r + l) / (r - l), -(t + b) / (t - b), -(f + n) / (f - n));
+        return mat<T, 4>::scale(scalars) * mat<T, 4>::translate(translators);
     }
 
     template<typename T>
