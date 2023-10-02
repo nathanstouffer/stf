@@ -51,14 +51,14 @@ namespace math {
         
             inline row_proxy& operator=(vec<T, N> const& rhs)
             {
-                for (size_t i = 0; i < N; ++i) { (*this)[i] = rhs[i]; }
+                for (size_t j = 0; j < N; ++j) { (*this)[j] = rhs[j]; }
                 return *this;
             }
 
             inline operator vec<T, N>() const
             {
                 vec<T, N> vec;
-                for (size_t i = 0; i < N; ++i) { vec[i] = (*this)[i]; }
+                for (size_t j = 0; j < N; ++j) { vec[j] = (*this)[j]; }
                 return vec;
             }
 
@@ -92,23 +92,23 @@ namespace math {
             }
         }
 
-        inline col_proxy const col(size_t i) const { return col_proxy(const_cast<mat&>(*this), i); }
-        inline row_proxy const row(size_t j) const { return row_proxy(const_cast<mat&>(*this), j); }
+        inline col_proxy const col(size_t j) const { return col_proxy(const_cast<mat&>(*this), j); }
+        inline row_proxy const row(size_t i) const { return row_proxy(const_cast<mat&>(*this), i); }
 
-        inline col_proxy col(size_t i) { return col_proxy(*this, i); }
-        inline row_proxy row(size_t j) { return row_proxy(*this, j); }
+        inline col_proxy col(size_t j) { return col_proxy(*this, j); }
+        inline row_proxy row(size_t i) { return row_proxy(*this, i); }
 
-        inline col_proxy const operator[](size_t i) const { return col(i); }
-        inline col_proxy operator[](size_t i) { return col(i); }
+        inline row_proxy const operator[](size_t i) const { return row(i); }
+        inline row_proxy operator[](size_t i) { return row(i); }
 
         mat& operator*=(mat const& rhs)
         {
             mat tmp;
-            for (size_t i = 0; i < N; ++i)
+            for (size_t i = 0; i < N; ++i)          // iterate over rows
             {
-                for (size_t j = 0; j < N; ++j)
+                for (size_t j = 0; j < N; ++j)      // iterate over columns
                 {
-                    tmp[i][j] = dot(this->row(i).as_vec(), rhs.col(j).as_vec());
+                    tmp[i][j] = dot(row(i).as_vec(), rhs.col(j).as_vec());
                 }
             }
 
@@ -118,9 +118,9 @@ namespace math {
 
         inline mat& identify()
         {
-            for (size_t i = 0; i < N; ++i)
+            for (size_t i = 0; i < N; ++i)          // iterate over rows
             {
-                for (size_t j = 0; j < N; ++j)
+                for (size_t j = 0; j < N; ++j)      // iterate over columns
                 {
                     (*this)[i][j] = (i == j) ? T(1) : T(0);
                 }
@@ -132,9 +132,9 @@ namespace math {
         {
             // TODO write this method by swapping the values in place
             mat transposed;
-            for (size_t i = 0; i < N; ++i)          // iterate over columns
+            for (size_t i = 0; i < N; ++i)          // iterate over rows
             {
-                for (size_t j = 0; j < N; ++j)      // iterate over rows
+                for (size_t j = 0; j < N; ++j)      // iterate over columns
                 {
                     transposed[j][i] = (*this)[i][j];
                 }
@@ -167,7 +167,7 @@ namespace math {
         inline static mat translate(vec<T, N - 1> const& scalars)
         {
             mat result;
-            result[N - 1] = vec<T, N>(scalars, T(1));
+            for (size_t i = 0; i < N - 1; ++i) { result[i][N - 1] = scalars[i]; }
             return result;
         }
 
@@ -221,8 +221,8 @@ namespace math {
     inline mat<T, 4> rotate_x(T const theta)
     {
         mat<T, 4> result;
-        result[1] = vec<T, 3>(T(0),  std::cos(theta), std::sin(theta));
-        result[2] = vec<T, 3>(T(0), -std::sin(theta), std::cos(theta));
+        result.row(1) = vec<T, 3>(T(0), std::cos(theta), -std::sin(theta));
+        result.row(2) = vec<T, 3>(T(0), std::sin(theta),  std::cos(theta));
         return result;
     }
 
@@ -230,8 +230,8 @@ namespace math {
     inline mat<T, 4> rotate_y(T const theta)
     {
         mat<T, 4> result;
-        result[0] = vec<T, 3>(std::cos(theta), T(0), -std::sin(theta));
-        result[2] = vec<T, 3>(std::sin(theta), T(0),  std::cos(theta));
+        result.row(0) = vec<T, 3>( std::cos(theta), T(0), std::sin(theta));
+        result.row(2) = vec<T, 3>(-std::sin(theta), T(0), std::cos(theta));
         return result;
     }
 
@@ -239,8 +239,8 @@ namespace math {
     inline mat<T, 4> rotate_z(T const theta)
     {
         mat<T, 4> result;
-        result[0] = vec<T, 3>( std::cos(theta), std::sin(theta), T(0));
-        result[1] = vec<T, 3>(-std::sin(theta), std::cos(theta), T(0));
+        result.row(0) = vec<T, 3>(std::cos(theta), -std::sin(theta), T(0));
+        result.row(1) = vec<T, 3>(std::sin(theta),  std::cos(theta), T(0));
         return result;
     }
 
@@ -255,8 +255,8 @@ namespace math {
     inline mat<T, 2> rotate_plane(T const theta)
     {
         mat<T, 2> result;
-        result[0] = vec<T, 2>(std::cos(theta), std::sin(theta));
-        result[1] = vec<T, 2>(-std::sin(theta), std::cos(theta));
+        result.row(0) = vec<T, 2>(std::cos(theta), -std::sin(theta));
+        result.row(1) = vec<T, 2>(std::sin(theta),  std::cos(theta));
         return result;
     }
 
@@ -278,11 +278,11 @@ namespace math {
 
     // NOTE: we assume axis is a unit vector
     template<typename T>
-    inline mat<T, 4> rotate_around(vec<T, 3> const& axis, T const theta)
+    inline mat<T, 4> rotate(vec<T, 3> const& axis, T const theta)
     {
-        // perform computations once (negate theta to make rotations right-handed)
-        T const cosine = std::cos(-theta);
-        T const sine   = std::sin(-theta);
+        // perform computations once
+        T const cosine = std::cos(theta);
+        T const sine   = std::sin(theta);
         T const comp   = T(1) - cosine;     // complement
 
         // local variables for less verbose code
@@ -305,30 +305,29 @@ namespace math {
 
     // NOTE: we assume axis is a unit vector
     template<typename T>
-    inline vec<T, 3> rotate_around(vec<T, 3> const& val, vec<T, 3> const& axis, T const theta)
+    inline vec<T, 3> rotate(vec<T, 3> const& val, vec<T, 3> const& axis, T const theta)
     {
-        // TODO (stouff) fix this
-        return std::cos(theta) * val + (T(1) - std::cos(theta)) * (axis * val) * val + std::sin(theta) * cross(axis, val);
+        return axis * (axis * val) + std::cos(theta) * cross(cross(axis, val), axis) + std::sin(theta) * cross(axis, val);
     }
 
-    // NOTE: we assume right is a unit vector
+    // NOTE: we assume angles are from the perspective of the focus point and that right is a unit vector
     template<typename T>
     inline mat<T, 4> orbit(vec<T, 3> const& focus, vec<T, 3> const& right, T const delta_phi, T const delta_theta)
     {
         mat<T, 4> translate = mat<T, 4>::translate(-focus);
-        mat<T, 4> pitch = rotate_around(right, delta_phi);
-        mat<T, 4> yaw = rotate_around(vec<T, 3>(0, 0, 1), delta_theta);
+        mat<T, 4> pitch = rotate(right, delta_phi);
+        mat<T, 4> yaw = rotate(vec<T, 3>(0, 0, 1), delta_theta);
         mat<T, 4> invert_translation = mat<T, 4>::translate(focus);
         return invert_translation * yaw * pitch * translate;
     }
 
-    // NOTE: we assume right is a unit vector
+    // NOTE: we assume angles are from the perspective of the focus point and that right is a unit vector
     template<typename T>
     inline vec<T, 3> orbit(vec<T, 3> const& val, vec<T, 3> const& focus, vec<T, 3> const& right, T const delta_phi, T const delta_theta)
     {
         vec<T, 3> relative = val - focus;
-        relative = rotate_around(relative, right, delta_phi);
-        relative = rotate_around(relative, vec<T, 3>(0, 0, 1), delta_theta);
+        relative = rotate(relative, right, delta_phi);
+        relative = rotate(relative, vec<T, 3>(0, 0, 1), delta_theta);
         return relative + focus;
     }
 
