@@ -18,9 +18,9 @@ namespace stf {
         typedef math::vec<T, 4> vec4;
 
         // matrix types
-        typedef math::mat<T, 2> mat2;
-        typedef math::mat<T, 3> mat3;
-        typedef math::mat<T, 4> mat4;
+        typedef math::mtx<T, 2> mtx2;
+        typedef math::mtx<T, 3> mtx3;
+        typedef math::mtx<T, 4> mtx4;
 
     };
 
