@@ -17,6 +17,9 @@ namespace stf {
         using vec3 = math::vec<T, 3>;
         using vec4 = math::vec<T, 4>;
 
+        template<size_t N>
+        using vec = math::vec<T, N>;
+
         // matrix types
         using mtx2 = math::mtx<T, 2>;
         using mtx3 = math::mtx<T, 3>;

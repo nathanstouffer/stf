@@ -1,6 +1,7 @@
-// TODO turn this into a real test project
-
 #include <iostream>
+#include <vector>
+
+#include <gtest/gtest.h>
 
 #include <stf/types.h>
 
@@ -29,7 +30,7 @@ std::ostream& operator<<(std::ostream& s, stf::math::mtx<T, N> const& rhs)
     return s;
 }
 
-int main()
+int tmp()
 {
     {
         stff::vec2 tmp;
