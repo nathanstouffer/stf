@@ -20,7 +20,7 @@ namespace math {
             { stff::vec2(), stff::vec2(1), false },
             { stff::vec2(1), stff::vec2(2), false },
             { stff::vec2(2), stff::vec2(3), false },
-            { stff::vec2(3), stff::vec2(4), true },
+            { stff::vec2(3), stff::vec2(4), false },
         };
 
         for (scaffolding::vec::equality<float, 2> const& test : tests) { scaffolding::vec::verify(test); }
