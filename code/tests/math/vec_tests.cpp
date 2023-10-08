@@ -5,6 +5,8 @@
 
 #include <stf/types.h>
 
+#include "scaffolding/compare.h"
+
 // TODO (stouff) possibly put this in the vector header?
 template <typename T, size_t N>
 std::ostream& operator<<(std::ostream& s, stf::math::vec<T, N> const& rhs)
@@ -32,40 +34,22 @@ std::ostream& operator<<(std::ostream& s, stf::math::mtx<T, N> const& rhs)
 
 namespace stf {
 namespace math {
-namespace tests {
-
-    struct comparison
-    {
-        stff::vec2 lhs;
-        stff::vec2 rhs;
-        bool equal;
-    };
 
     TEST(vec2, equality)
     {
-        std::vector<comparison> tests =
+        std::vector<scaffolding::vec_equality<float, 2>> tests =
         {
             { stff::vec2(), stff::vec2(), true },
             { stff::vec2(1), stff::vec2(1), true },
             { stff::vec2(2), stff::vec2(2), true },
         };
 
-        for (comparison const& test : tests)
+        for (scaffolding::vec_equality<float, 2> const& test : tests)
         {
-            if (test.equal)
-            {
-                ASSERT_EQ(test.lhs, test.rhs) << "failed assertion";
-                ASSERT_FALSE(test.lhs != test.rhs) << "failed negation";
-            }
-            else
-            {
-                ASSERT_NE(test.lhs, test.rhs) << "failed assertion";
-                ASSERT_FALSE(test.lhs == test.rhs) << "failed negation";
-            }
+            scaffolding::verify(test);
         }
     }
 
-} // tests
 } // math
 } // stf
 
