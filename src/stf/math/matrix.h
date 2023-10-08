@@ -2,6 +2,7 @@
 
 #include <cstring>
 
+#include "raw.h"
 #include "vector.h"
 
 namespace stf {
@@ -159,6 +160,15 @@ namespace math {
         inline void col_major(T fill[N * N]) const { std::memcpy(static_cast<void*>(fill), static_cast<void*>(values), sizeof(T) * D); }
         inline void row_major(T fill[N * N]) const { return transposed().col_major(fill); }
 
+        template<typename U>
+        mtx<U, N * N> as() const
+        {
+            mtx<U, D> result;
+            raw::as<T, U, N * N>(values, result.values);
+            return result;
+        }
+
+
     public:
 
         inline static mtx identity() { return mtx(); }
@@ -269,11 +279,17 @@ namespace math {
     }
 
     template<typename T>
-    inline mtx<T, 4> perspective()
+    inline mtx<T, 4> perspective(T const fov, T const aspect, T const near, T const far)
     {
-        mtx<T, 4> matrix;
-        // TODO (stouff) write this method
-        return matrix;
+        T y_scale = T(1.0) / std::tan(T(0.5) * fov);
+        T x_scale = y_scale / aspect;
+        mtx<T, 4> result;
+        result[0][0] = x_scale;
+        result[1][1] = y_scale;
+        result[2][2] = far / (near - far);
+        result[2][3] = near * far / (near - far);
+        result[3][2] = -1;
+        return result;
     }
 
     // NOTE: we assume axis is a unit vector

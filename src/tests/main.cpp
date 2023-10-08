@@ -131,13 +131,19 @@ int main()
 
     {
         stff::vec3 tmp(0, -1, 0);
-        float constexpr delta_phi = -stf::constants<float>::quarter_pi ;
+        float constexpr delta_phi = -stf::constants<float>::quarter_pi;
         float constexpr delta_theta= stf::constants<float>::half_pi;
         std::cout << "tmp: " << tmp << "   delta_phi: -pi/4    delta_theta: pi/2" << std::endl;
         std::cout << "desired: " << stff::vec3(0.707107, 0, 0.707107) << std::endl;
         stff::mtx4 mtx = stf::math::orbit(stff::vec3(), stff::vec3(1, 0, 0), delta_phi, delta_theta);
         std::cout << "orbited:" << mtx * stff::vec4(tmp, 1) << std::endl;
         std::cout << "orbited:" << stf::math::orbit(tmp, stff::vec3(), stff::vec3(1, 0, 0), delta_phi, delta_theta) << std::endl;
+        std::cout << std::endl;
+    }
+
+    {
+        float constexpr quarter_pi = stf::constants<float>::quarter_pi ;
+        std::cout << "perspective:" << std::endl << stf::math::perspective(quarter_pi, 1.7777777f, 2.0f, 1000.0f) << std::endl;
         std::cout << std::endl;
     }
 }
