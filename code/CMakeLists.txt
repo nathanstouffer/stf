@@ -4,5 +4,6 @@ project(stf VERSION 1.0.0 DESCRIPTION "A templated math library for graphics" LA
 
 include(CTest)
 
+add_subdirectory(src)
 add_subdirectory(deps)
 add_subdirectory(tests)

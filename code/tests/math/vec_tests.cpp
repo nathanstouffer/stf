@@ -1,6 +1,5 @@
-// TODO turn this into a real test project
-
 #include <iostream>
+#include <vector>
 
 #include <gtest/gtest.h>
 
@@ -35,9 +34,35 @@ namespace stf {
 namespace math {
 namespace tests {
 
-    TEST(vec, equality)
+    struct comparison
     {
-        ASSERT_EQ(stff::vec2(), stff::vec2());
+        stff::vec2 lhs;
+        stff::vec2 rhs;
+        bool equal;
+    };
+
+    TEST(vec2, equality)
+    {
+        std::vector<comparison> tests =
+        {
+            { stff::vec2(), stff::vec2(), true },
+            { stff::vec2(1), stff::vec2(1), true },
+            { stff::vec2(2), stff::vec2(2), true },
+        };
+
+        for (comparison const& test : tests)
+        {
+            if (test.equal)
+            {
+                ASSERT_EQ(test.lhs, test.rhs) << "failed assertion";
+                ASSERT_FALSE(test.lhs != test.rhs) << "failed negation";
+            }
+            else
+            {
+                ASSERT_NE(test.lhs, test.rhs) << "failed assertion";
+                ASSERT_FALSE(test.lhs == test.rhs) << "failed negation";
+            }
+        }
     }
 
 } // tests
