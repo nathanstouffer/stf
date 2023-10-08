@@ -4,7 +4,7 @@ name: build
 
 on:
   push:
-    branches: ["stouffer/set-up-ci"] # TODO (stouff) revert this to master before merging
+    branches: ["master"]
   pull_request:
     branches: ["master"]
 
