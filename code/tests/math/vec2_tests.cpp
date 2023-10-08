@@ -40,6 +40,7 @@ namespace math {
         std::vector<scaffolding::vec_equality<float, 2>> tests =
         {
             { stff::vec2(), stff::vec2(), true },
+            { stff::vec2(0), stff::vec2(0), true },
             { stff::vec2(1), stff::vec2(1), true },
             { stff::vec2(2), stff::vec2(2), true },
         };
