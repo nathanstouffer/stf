@@ -1,5 +1,5 @@
 if (BUILD_TESTING)
-    add_executable(tests math/vec_tests.cpp)
+    add_executable(tests math/vec2_tests.cpp)
     target_include_directories(tests 
     PUBLIC "${CMAKE_SOURCE_DIR}/src/"
     PUBLIC ".")
