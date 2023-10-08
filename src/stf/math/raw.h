@@ -1,5 +1,7 @@
 #pragma once
 
+#include <cmath>
+
 namespace stf {
 namespace math {
 namespace raw {

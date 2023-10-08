@@ -30,22 +30,27 @@ namespace math {
                 values[i] = value;
             }
         }
+        constexpr vec(vec<T, N - 1> const& prefix, T const suffix)
+        {
+            for (size_t i = 0; i < N - 1; ++i) { values[i] = prefix[i]; }
+            values[N - 1] = suffix;
+        }
 
         inline size_t size() const { return N; }
 
         inline T const& operator[](size_t i) const { return values[i]; }
         inline T& operator[](size_t i) { return values[i]; }
 
-        inline vec<T, N>& operator+=(vec<T, N> const& rhs) { raw::plus_equals<T, N>(values, rhs.values); return *this; }
-        inline vec<T, N>& operator-=(vec<T, N> const& rhs) { raw::minus_equals<T, N>(values, rhs.values); return *this; }
+        inline vec& operator+=(vec const& rhs) { raw::plus_equals<T, N>(values, rhs.values); return *this; }
+        inline vec& operator-=(vec const& rhs) { raw::minus_equals<T, N>(values, rhs.values); return *this; }
 
-        inline vec<T, N>& operator*=(T scalar) { raw::scale<T, N>(values, scalar); return *this; }
+        inline vec& operator*=(T scalar) { raw::scale<T, N>(values, scalar); return *this; }
 
-        inline T const operator*(vec<T, N> const& rhs) const { return raw::dot<T, N>(values, rhs.values); }
+        inline T const operator*(vec const& rhs) const { return raw::dot<T, N>(values, rhs.values); }
         inline T length() const { return raw::length<T, N>(values); }
 
-        inline vec<T, N>& normalize() { raw::normalize<T, N>(values); return *this; }
-        inline vec<T, N> normalized() const { return vec<T, N>(*this).normalize(); }
+        inline vec& normalize() { raw::normalize<T, N>(values); return *this; }
+        inline vec normalized() const { return vec(*this).normalize(); }
 
         template<typename U>
         vec<U, N> as() const
@@ -81,16 +86,16 @@ namespace math {
         inline T const& operator[](size_t i) const { return values[i]; }
         inline T& operator[](size_t i) { return values[i]; }
 
-        inline vec<T, 2>& operator+=(vec<T, 2> const& rhs) { raw::plus_equals<T, 2>(values, rhs.values); return *this; }
-        inline vec<T, 2>& operator-=(vec<T, 2> const& rhs) { raw::minus_equals<T, 2>(values, rhs.values); return *this; }
+        inline vec& operator+=(vec const& rhs) { raw::plus_equals<T, 2>(values, rhs.values); return *this; }
+        inline vec& operator-=(vec const& rhs) { raw::minus_equals<T, 2>(values, rhs.values); return *this; }
 
-        inline vec<T, 2>& operator*=(T scalar) { raw::scale<T, 2>(values, scalar); return *this; }
+        inline vec& operator*=(T scalar) { raw::scale<T, 2>(values, scalar); return *this; }
 
-        inline T const operator*(vec<T, 2> const& rhs) const { return raw::dot<T, 2>(values, rhs.values); }
+        inline T const operator*(vec const& rhs) const { return raw::dot<T, 2>(values, rhs.values); }
         inline T length() const { return raw::length<T, 2>(values); }
 
-        inline vec<T, 2>& normalize() { raw::normalize<T, 2>(values); return *this; }
-        inline vec<T, 2> normalized() const { return vec<T, 2>(*this).normalize(); }
+        inline vec& normalize() { raw::normalize<T, 2>(values); return *this; }
+        inline vec normalized() const { return vec(*this).normalize(); }
 
         template<typename U>
         vec<U, 2> as() const
@@ -123,23 +128,23 @@ namespace math {
         constexpr vec() : vec(T(0)) {}
         explicit constexpr vec(T value) : vec(value, value, value) {}
         explicit constexpr vec(T _x, T _y, T _z) : x(_x), y(_y), z(_z) {}
-        constexpr vec(vec<T, 2> const& _xy, T _z) : xy(_xy), z(_z) {}
+        constexpr vec(vec<T, 2> const& _xy, T _z) : vec(_xy.x, _xy.y, _z) {}
 
         inline size_t size() const { return 3; }
 
         inline T const& operator[](size_t i) const { return values[i]; }
         inline T& operator[](size_t i) { return values[i]; }
 
-        inline vec<T, 3>& operator+=(vec<T, 3> const& rhs) { raw::plus_equals<T, 3>(values, rhs.values); return *this; }
-        inline vec<T, 3>& operator-=(vec<T, 3> const& rhs) { raw::minus_equals<T, 3>(values, rhs.values); return *this; }
+        inline vec& operator+=(vec const& rhs) { raw::plus_equals<T, 3>(values, rhs.values); return *this; }
+        inline vec& operator-=(vec const& rhs) { raw::minus_equals<T, 3>(values, rhs.values); return *this; }
 
-        inline vec<T, 3>& operator*=(T scalar) { raw::scale<T, 3>(values, scalar); return *this; }
+        inline vec& operator*=(T scalar) { raw::scale<T, 3>(values, scalar); return *this; }
 
-        inline T const operator*(vec<T, 3> const& rhs) const { return raw::dot<T, 3>(values, rhs.values); }
+        inline T const operator*(vec const& rhs) const { return raw::dot<T, 3>(values, rhs.values); }
         inline T length() const { return raw::length<T, 3>(values); }
 
-        inline vec<T, 3>& normalize() { raw::normalize<T, 3>(values); return *this; }
-        inline vec<T, 3> normalized() const { return vec<T, 3>(*this).normalize(); }
+        inline vec& normalize() { raw::normalize<T, 3>(values); return *this; }
+        inline vec normalized() const { return vec(*this).normalize(); }
 
         template<typename U>
         vec<U, 3> as() const
@@ -172,25 +177,25 @@ namespace math {
 
         constexpr vec() : vec(T(0)) {}
         explicit constexpr vec(T value) : vec(value, value, value, value) {}
-        explicit constexpr vec(T _x, T _y, T _z, T _w) : x(_x), y(_y), z(_z), w(_z) {}
-        constexpr vec(vec<T, 2> const& _xy, vec<T, 2> const& _zw) : xy(_xy), zw(_zw) {}
-        constexpr vec(vec<T, 3> const& _xyz, T _w) : xyz(_xyz), w(_w) {}
+        explicit constexpr vec(T _x, T _y, T _z, T _w) : x(_x), y(_y), z(_z), w(_w) {}
+        constexpr vec(vec<T, 2> const& _xy, vec<T, 2> const& _zw) : vec(_xy.x, _xy.y, _zw.x, _zw.y) {}
+        constexpr vec(vec<T, 3> const& _xyz, T _w) : vec(_xyz.x, _xyz.y, _xyz.z, _w) {}
 
         inline size_t size() const { return 4; }
 
         inline T const& operator[](size_t i) const { return values[i]; }
         inline T& operator[](size_t i) { return values[i]; }
 
-        inline vec<T, 4>& operator+=(vec<T, 4> const& rhs) { raw::plus_equals<T, 4>(values, rhs.values); return *this; }
-        inline vec<T, 4>& operator-=(vec<T, 4> const& rhs) { raw::minus_equals<T, 4>(values, rhs.values); return *this; }
+        inline vec& operator+=(vec const& rhs) { raw::plus_equals<T, 4>(values, rhs.values); return *this; }
+        inline vec& operator-=(vec const& rhs) { raw::minus_equals<T, 4>(values, rhs.values); return *this; }
 
-        inline vec<T, 4>& operator*=(T scalar) { raw::scale<T, 4>(values, scalar); return *this; }
+        inline vec& operator*=(T scalar) { raw::scale<T, 4>(values, scalar); return *this; }
 
-        inline T const operator*(vec<T, 4> const& rhs) const { return raw::dot<T, 4>(values, rhs.values); }
+        inline T const operator*(vec const& rhs) const { return raw::dot<T, 4>(values, rhs.values); }
         inline T length() const { return raw::length<T, 4>(values); }
 
-        inline vec<T, 4>& normalize() { raw::normalize<T, 4>(values); return *this; }
-        inline vec<T, 4> normalized() const { return vec<T, 4>(*this).normalize(); }
+        inline vec& normalize() { raw::normalize<T, 4>(values); return *this; }
+        inline vec normalized() const { return vec(*this).normalize(); }
 
         template<typename U>
         vec<U, 4> as() const
@@ -205,6 +210,9 @@ namespace math {
         static inline size_t byte_count() { return sizeof(T) * 4; }
 
     };
+
+    // delete invalid vector specialization
+    template<typename T> struct vec<T, 0> { vec() = delete; };
 
     template<typename T, size_t N>
     inline bool const equ(vec<T, N> const& lhs, vec<T, N> const& rhs, T tol)
@@ -277,6 +285,23 @@ namespace math {
     inline vec<T, N> const operator*(T const scalar, vec<T, N> const& rhs)
     {
         return rhs * scalar;
+    }
+
+    template<typename T, size_t N>
+    inline T const dot(vec<T, N> const& lhs, vec<T, N> const& rhs)
+    {
+        return lhs * rhs;
+    }
+
+    template<typename T>
+    inline vec<T, 3> cross(vec<T, 3> const& lhs, vec<T, 3> const& rhs)
+    {
+        return vec<T, 3>
+        (
+            lhs.y * rhs.z - rhs.y * lhs.z,
+            rhs.x * lhs.z - lhs.x * rhs.z,
+            lhs.x * rhs.y - rhs.x * lhs.y
+        );
     }
 
     template<typename T, size_t N>
