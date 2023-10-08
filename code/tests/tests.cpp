@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-#include "../stf/types.h"
+#include <stf/types.h>
 
 // TODO (stouff) possibly put this in the vector header?
 template <typename T, size_t N>
