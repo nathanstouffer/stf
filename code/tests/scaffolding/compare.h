@@ -20,13 +20,13 @@ namespace scaffolding {
     {
         if (test.equal)
         {
-            ASSERT_EQ(test.lhs, test.rhs) << "failed assertion";
-            ASSERT_FALSE(test.lhs != test.rhs) << "failed negation";
+            ASSERT_EQ(test.lhs, test.rhs) << "failed positive assertion";
+            ASSERT_FALSE(test.lhs != test.rhs) << "failed negative assertion";
         }
         else
         {
-            ASSERT_NE(test.lhs, test.rhs) << "failed assertion";
-            ASSERT_FALSE(test.lhs == test.rhs) << "failed negation";
+            ASSERT_NE(test.lhs, test.rhs) << "failed positive assertion";
+            ASSERT_FALSE(test.lhs == test.rhs) << "failed negative assertion";
         }
     }
 
