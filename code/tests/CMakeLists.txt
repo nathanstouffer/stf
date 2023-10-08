@@ -1,4 +1,6 @@
 if (BUILD_TESTING)
+    enable_testing()
+    
     add_executable(tests math/vec2_tests.cpp)
     target_include_directories(tests 
     PUBLIC "${CMAKE_SOURCE_DIR}/src/"
