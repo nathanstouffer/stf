@@ -2,6 +2,8 @@
 
 #include <iostream>
 
+#include <gtest/gtest.h>
+
 #include <stf/types.h>
 
 // TODO (stouff) possibly put this in the vector header?
@@ -29,7 +31,20 @@ std::ostream& operator<<(std::ostream& s, stf::math::mtx<T, N> const& rhs)
     return s;
 }
 
-int main()
+namespace stf {
+namespace math {
+namespace tests {
+
+    TEST(vec, equality)
+    {
+        ASSERT_EQ(stff::vec2(), stff::vec2());
+    }
+
+} // tests
+} // math
+} // stf
+
+int tmp()
 {
     {
         stff::vec2 tmp;
