@@ -4,14 +4,14 @@
 
 #include <stf/types.h>
 
-#include "scaffolding/compare.h"
+#include "scaffolding/vec.h"
 
 namespace stf {
 namespace math {
 
     TEST(vec2, equality)
     {
-        std::vector<scaffolding::vec_equality<float, 2>> tests =
+        std::vector<scaffolding::vec::equality<float, 2>> tests =
         {
             { stff::vec2(), stff::vec2(), true },
             { stff::vec2(0), stff::vec2(0), true },
@@ -23,10 +23,43 @@ namespace math {
             { stff::vec2(3), stff::vec2(4), false },
         };
 
-        for (scaffolding::vec_equality<float, 2> const& test : tests)
+        for (scaffolding::vec::equality<float, 2> const& test : tests) { scaffolding::vec::verify(test); }
+    }
+
+    TEST(vec2, index)
+    {
+        std::vector<scaffolding::vec::read<float, 2>> tests =
         {
-            scaffolding::verify(test);
-        }
+            { stff::vec2(), { 0.f, 0.f } },
+            { stff::vec2(1.f), { 1.f, 1.f } },
+            { stff::vec2(1.f, 2.f), { 1.f, 2.f } },
+        };
+
+        for (scaffolding::vec::read<float, 2> const& test : tests) { scaffolding::vec::verify(test); }
+    }
+
+    TEST(vec2, write)
+    {
+        std::vector<scaffolding::vec::write<float, 2>> tests =
+        {
+            { stff::vec2(), 0, 8.f },
+            { stff::vec2(1.f, 2.f), 0, 10.f },
+            { stff::vec2(1.f), 1, -5.f },
+        };
+
+        for (scaffolding::vec::write<float, 2> const& test : tests) { scaffolding::vec::verify(test); }
+    }
+
+    TEST(vec2, negate)
+    {
+        std::vector<scaffolding::vec::negate<float, 2>> tests =
+        {
+            { stff::vec2() },
+            { stff::vec2(1.f, 2.f) },
+            { stff::vec2(1.f) },
+        };
+
+        for (scaffolding::vec::negate<float, 2> const& test : tests) { scaffolding::vec::verify(test); }
     }
 
 } // math

@@ -35,6 +35,10 @@ namespace math {
             for (size_t i = 0; i < N - 1; ++i) { values[i] = prefix[i]; }
             values[N - 1] = suffix;
         }
+        constexpr vec(T const elements[N])
+        {
+            for (size_t i = 0; i < N; ++i) { values[i] = elements[i]; }
+        }
 
         inline size_t size() const { return N; }
 

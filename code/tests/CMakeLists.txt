@@ -2,7 +2,8 @@ if (BUILD_TESTING)
     enable_testing()
     
     # NOTE: this method of collecting files requires that cmake must be reran every time we add/remove a file
-    # TODO (stouff) set up post-merge and post-checkout scripts
+    # TODO (stouff) set up post-merge and post-checkout scripts?
+    # TODO (stouff) try to get VSCode to automatically refresh tests when cmake reruns
     file(GLOB_RECURSE TEST_FILES "*.cpp")
 
     add_executable(tests ${TEST_FILES})

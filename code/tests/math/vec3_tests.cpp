@@ -4,14 +4,14 @@
 
 #include <stf/types.h>
 
-#include "scaffolding/compare.h"
+#include "scaffolding/vec.h"
 
 namespace stf {
 namespace math {
 
     TEST(vec3, equality)
     {
-        std::vector<scaffolding::vec_equality<float, 3>> tests =
+        std::vector<scaffolding::vec::equality<float, 3>> tests =
         {
             { stff::vec3(), stff::vec3(), true },
             { stff::vec3(0), stff::vec3(0), true },
@@ -23,9 +23,9 @@ namespace math {
             { stff::vec3(3), stff::vec3(4), false },
         };
 
-        for (scaffolding::vec_equality<float, 3> const& test : tests)
+        for (scaffolding::vec::equality<float, 3> const& test : tests)
         {
-            scaffolding::verify(test);
+            scaffolding::vec::verify(test);
         }
     }
 

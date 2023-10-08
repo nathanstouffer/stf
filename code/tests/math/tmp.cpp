@@ -5,8 +5,6 @@
 
 #include <stf/types.h>
 
-#include "scaffolding/compare.h"
-
 // TODO (stouff) possibly put this in the vector header?
 template <typename T, size_t N>
 std::ostream& operator<<(std::ostream& s, stf::math::vec<T, N> const& rhs)
