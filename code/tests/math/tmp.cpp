@@ -147,4 +147,5 @@ int tmp()
         std::cout << "perspective:" << std::endl << stf::math::perspective(quarter_pi, 1.7777777f, 2.0f, 1000.0f) << std::endl;
         std::cout << std::endl;
     }
+    return 0;
 }
