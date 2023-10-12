@@ -94,6 +94,74 @@ namespace vec {
     }
 
     template<typename T, size_t N>
+    struct add
+    {
+        math::vec<T, N> const lhs;
+        math::vec<T, N> const rhs;
+        math::vec<T, N> const expected;
+    };
+
+    template<typename T, size_t N>
+    void verify(add<T, N> const& test)
+    {
+        using vec_t = math::vec<T, N>;
+        ASSERT_EQ(test.expected, test.lhs + test.rhs) << "Failed lhs + rhs";
+        ASSERT_EQ(test.expected, test.rhs + test.lhs) << "Failed rhs + lhs";
+        ASSERT_EQ(test.expected, vec_t(test.lhs) += test.rhs) << "Failed lhs += rhs";
+        ASSERT_EQ(test.expected, vec_t(test.rhs) += test.lhs) << "Failed lhs += rhs";
+    }
+
+    template<typename T, size_t N>
+    struct subtract
+    {
+        math::vec<T, N> const lhs;
+        math::vec<T, N> const rhs;
+        math::vec<T, N> const expected;
+    };
+
+    template<typename T, size_t N>
+    void verify(subtract<T, N> const& test)
+    {
+        using vec_t = math::vec<T, N>;
+        ASSERT_EQ(test.expected, test.lhs - test.rhs) << "Failed lhs - rhs";
+        ASSERT_EQ(-test.expected, test.rhs - test.lhs) << "Failed rhs - lhs";
+        ASSERT_EQ(test.expected, vec_t(test.lhs) -= test.rhs) << "Failed lhs -= rhs";
+        ASSERT_EQ(-test.expected, vec_t(test.rhs) -= test.lhs) << "Failed rhs -= lhs";
+    }
+
+    template<typename T, size_t N>
+    struct scale
+    {
+        math::vec<T, N> const initial;
+        T const scalar;
+        math::vec<T, N> const expected;
+    };
+
+    template<typename T, size_t N>
+    void verify(scale<T, N> const& test)
+    {
+        ASSERT_EQ(test.expected, test.scalar * test.initial) << "Failed scalar * initial";
+        ASSERT_EQ(test.expected, test.initial * test.scalar) << "Failed initial * scalar";
+        math::vec<T, N> actual = test.initial;
+        ASSERT_EQ(test.expected, actual *= test.scalar) << "Failed initial *= scalar";
+    }
+
+    template<typename T, size_t N>
+    struct dot
+    {
+        math::vec<T, N> const lhs;
+        math::vec<T, N> const rhs;
+        T const expected;
+    };
+
+    template<typename T, size_t N>
+    void verify(dot<T, N> const& test)
+    {
+        ASSERT_EQ(test.expected, test.lhs * test.rhs) << "Failed initial order";
+        ASSERT_EQ(test.expected, test.rhs * test.lhs) << "Failed swapped order";
+    }
+
+    template<typename T, size_t N>
     struct negate
     {
         math::vec<T, N> const initial;
@@ -107,21 +175,6 @@ namespace vec {
         {
             ASSERT_EQ(-test.initial[i], result[i]);
         }
-    }
-
-    template<typename T, size_t N>
-    struct scale_equals
-    {
-        math::vec<T, N> const initial;
-        T const scalar;
-        math::vec<T, N> const expected;
-    };
-
-    template<typename T, size_t N>
-    void verify(scale_equals<T, N> const& test)
-    {
-        math::vec<T, N> actual = test.initial;
-        ASSERT_EQ(test.expected, actual *= test.scalar);
     }
 
     template<typename T, size_t N>

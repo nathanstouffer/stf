@@ -33,9 +33,9 @@ namespace math {
         for (scaffolding::vec::write<float, 2> const& test : tests) { scaffolding::vec::verify(test); }
     }
 
-    TEST(vec2, plus_equals)
+    TEST(vec2, add)
     {
-        std::vector<scaffolding::vec::binary_op<float, 2>> tests =
+        std::vector<scaffolding::vec::add<float, 2>> tests =
         {
             { stff::vec2(), stff::vec2(), stff::vec2() },
             { stff::vec2(), stff::vec2(1, 6), stff::vec2(1, 6) },
@@ -43,17 +43,12 @@ namespace math {
             { stff::vec2(-5, -3), stff::vec2(1, 2), stff::vec2(-4, -1) },
         };
 
-        for (scaffolding::vec::binary_op<float, 2> const& test : tests)
-        {
-            stff::vec2 result = test.lhs;
-            result += test.rhs;
-            EXPECT_EQ(test.expected, result);
-        }
+        for (scaffolding::vec::add<float, 2> const& test : tests) { scaffolding::vec::verify(test); }
     }
 
-    TEST(vec2, minus_equals)
+    TEST(vec2, subtract)
     {
-        std::vector<scaffolding::vec::binary_op<float, 2>> tests =
+        std::vector<scaffolding::vec::subtract<float, 2>> tests =
         {
             { stff::vec2(), stff::vec2(), stff::vec2() },
             { stff::vec2(), stff::vec2(1, 6), stff::vec2(-1, -6) },
@@ -61,17 +56,12 @@ namespace math {
             { stff::vec2(-5, -3), stff::vec2(1, 2), stff::vec2(-6, -5) },
         };
 
-        for (scaffolding::vec::binary_op<float, 2> const& test : tests)
-        {
-            stff::vec2 result = test.lhs;
-            result -= test.rhs;
-            EXPECT_EQ(test.expected, result);
-        }
+        for (scaffolding::vec::subtract<float, 2> const& test : tests) { scaffolding::vec::verify(test); }
     }
 
-    TEST(vec2, scale_equals)
+    TEST(vec2, scale)
     {
-        std::vector<scaffolding::vec::scale_equals<float, 2>> tests =
+        std::vector<scaffolding::vec::scale<float, 2>> tests =
         {
             { stff::vec2(), 0, stff::vec2() },
             { stff::vec2(), 1, stff::vec2() },
@@ -81,7 +71,7 @@ namespace math {
             { stff::vec2(2, -3), -2, stff::vec2(-4, 6) },
         };
 
-        for (scaffolding::vec::scale_equals<float, 2> const& test : tests) { scaffolding::vec::verify(test); }
+        for (scaffolding::vec::scale<float, 2> const& test : tests) { scaffolding::vec::verify(test); }
     }
 
     TEST(vec2, equality)
