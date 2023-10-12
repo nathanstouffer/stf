@@ -11,8 +11,8 @@ namespace vec {
     template<typename T, size_t N>
     struct equality
     {
-        stf::math::vec<T, N> const lhs;
-        stf::math::vec<T, N> const rhs;
+        math::vec<T, N> const lhs;
+        math::vec<T, N> const rhs;
         bool equal;
     };
 
@@ -34,7 +34,7 @@ namespace vec {
     template<typename T, size_t N>
     struct read
     {
-        stf::math::vec<T, N> const lhs;
+        math::vec<T, N> const lhs;
         T const expected[N];
     };
 
@@ -80,7 +80,7 @@ namespace vec {
     template<typename T, size_t N>
     struct write
     {
-        stf::math::vec<T, N> const initial;
+        math::vec<T, N> const initial;
         size_t const index;
         T const value;
     };
@@ -88,7 +88,7 @@ namespace vec {
     template<typename T, size_t N>
     void verify(write<T, N> const& test)
     {
-        stf::math::vec<T, N> result = test.initial;
+        math::vec<T, N> result = test.initial;
         result[test.index] = test.value;
         ASSERT_EQ(result[test.index], test.value);
     }
@@ -96,13 +96,13 @@ namespace vec {
     template<typename T, size_t N>
     struct negate
     {
-        stf::math::vec<T, N> const initial;
+        math::vec<T, N> const initial;
     };
 
     template<typename T, size_t N>
     void verify(negate<T, N> const& test)
     {
-        stf::math::vec<T, N> result = -test.initial;
+        math::vec<T, N> result = -test.initial;
         for (size_t i = 0; i < N; ++i)
         {
             ASSERT_EQ(-test.initial[i], result[i]);
@@ -110,11 +110,26 @@ namespace vec {
     }
 
     template<typename T, size_t N>
+    struct scale_equals
+    {
+        math::vec<T, N> const initial;
+        T const scalar;
+        math::vec<T, N> const expected;
+    };
+
+    template<typename T, size_t N>
+    void verify(scale_equals<T, N> const& test)
+    {
+        math::vec<T, N> actual = test.initial;
+        ASSERT_EQ(test.expected, actual *= test.scalar);
+    }
+
+    template<typename T, size_t N>
     struct binary_op
     {
-        stf::math::vec<T, N> const lhs;
-        stf::math::vec<T, N> const rhs;
-        stf::math::vec<T, N> const expected;
+        math::vec<T, N> const lhs;
+        math::vec<T, N> const rhs;
+        math::vec<T, N> const expected;
     };
 
 } // vec

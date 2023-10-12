@@ -69,6 +69,21 @@ namespace math {
         }
     }
 
+    TEST(vec2, scale_equals)
+    {
+        std::vector<scaffolding::vec::scale_equals<float, 2>> tests =
+        {
+            { stff::vec2(), 0, stff::vec2() },
+            { stff::vec2(), 1, stff::vec2() },
+            { stff::vec2(1, -1), 1, stff::vec2(1, -1) },
+            { stff::vec2(1, -1), -1, stff::vec2(-1, 1) },
+            { stff::vec2(1, -1), -2, stff::vec2(-2, 2) },
+            { stff::vec2(2, -3), -2, stff::vec2(-4, 6) },
+        };
+
+        for (scaffolding::vec::scale_equals<float, 2> const& test : tests) { scaffolding::vec::verify(test); }
+    }
+
     TEST(vec2, equality)
     {
         std::vector<scaffolding::vec::equality<float, 2>> tests =
