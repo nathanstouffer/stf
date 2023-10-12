@@ -53,11 +53,9 @@ namespace math {
         inline vec& operator*=(T scalar) { raw::scale<T, N>(values, scalar); return *this; }
 
         inline T const operator*(vec const& rhs) const { return raw::dot<T, N>(values, rhs.values); }
-        // TODO (stouff) switch this to be scaled by inverse of the sqrt of the dot product
-        inline T length() const { return raw::length<T, N>(values); }
+        inline T length() const { return std::sqrt(*this * *this); }
 
-        // TODO (stouff) utilize existing functions to compute this
-        inline vec& normalize() { raw::normalize<T, N>(values); return *this; }
+        inline vec& normalize() { return *this *= (T(1.0) / length()); }
         inline vec normalized() const { return vec(*this).normalize(); }
 
         template<typename U>
@@ -100,9 +98,9 @@ namespace math {
         inline vec& operator*=(T scalar) { raw::scale<T, 2>(values, scalar); return *this; }
 
         inline T const operator*(vec const& rhs) const { return raw::dot<T, 2>(values, rhs.values); }
-        inline T length() const { return raw::length<T, 2>(values); }
+        inline T length() const { return std::sqrt(*this * *this); }
 
-        inline vec& normalize() { raw::normalize<T, 2>(values); return *this; }
+        inline vec& normalize() { return *this *= (T(1.0) / length()); }
         inline vec normalized() const { return vec(*this).normalize(); }
 
         template<typename U>
@@ -149,9 +147,9 @@ namespace math {
         inline vec& operator*=(T scalar) { raw::scale<T, 3>(values, scalar); return *this; }
 
         inline T const operator*(vec const& rhs) const { return raw::dot<T, 3>(values, rhs.values); }
-        inline T length() const { return raw::length<T, 3>(values); }
+        inline T length() const { return std::sqrt(*this * *this); }
 
-        inline vec& normalize() { raw::normalize<T, 3>(values); return *this; }
+        inline vec& normalize() { return *this *= (T(1.0) / length()); }
         inline vec normalized() const { return vec(*this).normalize(); }
 
         template<typename U>
@@ -200,9 +198,9 @@ namespace math {
         inline vec& operator*=(T scalar) { raw::scale<T, 4>(values, scalar); return *this; }
 
         inline T const operator*(vec const& rhs) const { return raw::dot<T, 4>(values, rhs.values); }
-        inline T length() const { return raw::length<T, 4>(values); }
+        inline T length() const { return std::sqrt(*this * *this); }
 
-        inline vec& normalize() { raw::normalize<T, 4>(values); return *this; }
+        inline vec& normalize() { return *this *= (T(1.0) / length()); }
         inline vec normalized() const { return vec(*this).normalize(); }
 
         template<typename U>
