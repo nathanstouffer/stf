@@ -12,6 +12,9 @@ namespace stf {
     struct instantiate_types
     {
 
+        // constant values
+        using constants = constants<T>;
+
         // vector types
         using vec2 = math::vec<T, 2>;
         using vec3 = math::vec<T, 3>;

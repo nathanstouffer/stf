@@ -15,6 +15,8 @@ namespace math {
     * directly on the underlying raw pointers
     */
 
+    // TODO (stouff) possibly use the CRTP to reduce verbosity -- just make sure to test performance implications 
+
     // Generic vector type
     template<typename T, size_t N>
     struct vec
@@ -51,8 +53,10 @@ namespace math {
         inline vec& operator*=(T scalar) { raw::scale<T, N>(values, scalar); return *this; }
 
         inline T const operator*(vec const& rhs) const { return raw::dot<T, N>(values, rhs.values); }
+        // TODO (stouff) switch this to be scaled by inverse of the sqrt of the dot product
         inline T length() const { return raw::length<T, N>(values); }
 
+        // TODO (stouff) utilize existing functions to compute this
         inline vec& normalize() { raw::normalize<T, N>(values); return *this; }
         inline vec normalized() const { return vec(*this).normalize(); }
 

@@ -32,23 +32,6 @@ std::ostream& operator<<(std::ostream& s, stf::math::mtx<T, N> const& rhs)
 
 int tmp()
 {
-    {
-        stff::vec2 tmp;
-        std::cout << "tmp: " << tmp << std::endl;
-
-        tmp.x = 1;
-        std::cout << "edit x: " << tmp << std::endl;
-
-        tmp += tmp;
-        std::cout << "+=: " << tmp << std::endl;
-
-        stff::vec2 other;
-        other.y = 2;
-        std::cout << "other: " << other << std::endl;
-
-        std::cout << "tmp + other: " << tmp + other << std::endl;
-        std::cout << std::endl;
-    }
 
     {
         stff::vec3 tmp(8);

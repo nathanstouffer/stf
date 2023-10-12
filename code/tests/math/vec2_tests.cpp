@@ -62,5 +62,41 @@ namespace math {
         for (scaffolding::vec::negate<float, 2> const& test : tests) { scaffolding::vec::verify(test); }
     }
 
+    TEST(vec2, plus_equals)
+    {
+        std::vector<scaffolding::vec::binary_op<float, 2>> tests =
+        {
+            { stff::vec2(), stff::vec2(), stff::vec2() },
+            { stff::vec2(), stff::vec2(1, 6), stff::vec2(1, 6) },
+            { stff::vec2(4, 3), stff::vec2(1, 6), stff::vec2(5, 9) },
+            { stff::vec2(-5, -3), stff::vec2(1, 2), stff::vec2(-4, -1) },
+        };
+
+        for (scaffolding::vec::binary_op<float, 2> const& test : tests)
+        {
+            stff::vec2 result = test.lhs;
+            result += test.rhs;
+            EXPECT_EQ(test.expected, result);
+        }
+    }
+
+    TEST(vec2, minus_equals)
+    {
+        std::vector<scaffolding::vec::binary_op<float, 2>> tests =
+        {
+            { stff::vec2(), stff::vec2(), stff::vec2() },
+            { stff::vec2(), stff::vec2(1, 6), stff::vec2(-1, -6) },
+            { stff::vec2(4, 3), stff::vec2(1, 6), stff::vec2(3, -3) },
+            { stff::vec2(-5, -3), stff::vec2(1, 2), stff::vec2(-6, -5) },
+        };
+
+        for (scaffolding::vec::binary_op<float, 2> const& test : tests)
+        {
+            stff::vec2 result = test.lhs;
+            result -= test.rhs;
+            EXPECT_EQ(test.expected, result);
+        }
+    }
+
 } // math
 } // stf

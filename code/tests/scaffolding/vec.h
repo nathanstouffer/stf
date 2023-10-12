@@ -11,8 +11,8 @@ namespace vec {
     template<typename T, size_t N>
     struct equality
     {
-        stf::math::vec<T, N> lhs;
-        stf::math::vec<T, N> rhs;
+        stf::math::vec<T, N> const lhs;
+        stf::math::vec<T, N> const rhs;
         bool equal;
     };
 
@@ -34,7 +34,7 @@ namespace vec {
     template<typename T, size_t N>
     struct read
     {
-        stf::math::vec<T, N> lhs;
+        stf::math::vec<T, N> const lhs;
         T const expected[N];
     };
 
@@ -80,9 +80,9 @@ namespace vec {
     template<typename T, size_t N>
     struct write
     {
-        stf::math::vec<T, N> initial;
-        size_t index;
-        T value;
+        stf::math::vec<T, N> const initial;
+        size_t const index;
+        T const value;
     };
 
     template<typename T, size_t N>
@@ -96,7 +96,7 @@ namespace vec {
     template<typename T, size_t N>
     struct negate
     {
-        stf::math::vec<T, N> initial;
+        stf::math::vec<T, N> const initial;
     };
 
     template<typename T, size_t N>
@@ -108,6 +108,14 @@ namespace vec {
             ASSERT_EQ(-test.initial[i], result[i]);
         }
     }
+
+    template<typename T, size_t N>
+    struct binary_op
+    {
+        stf::math::vec<T, N> const lhs;
+        stf::math::vec<T, N> const rhs;
+        stf::math::vec<T, N> const expected;
+    };
 
 } // vec
 } // scaffolding
