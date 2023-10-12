@@ -2,6 +2,8 @@
 
 #include <cmath>
 
+#include <iostream>
+
 #include "raw.h"
 
 namespace stf {
@@ -319,6 +321,18 @@ namespace math {
             result[i] = lhs[i] * rhs[i];
         }
         return result;
+    }
+
+    template <typename T, size_t N>
+    std::ostream& operator<<(std::ostream& s, vec<T, N> const& rhs)
+    {
+        s << "[ " << rhs[0];
+        for (size_t i = 1; i < N; ++i)
+        {
+            s << ", " << rhs[i];
+        }
+        s << " ]";
+        return s;
     }
 
 } // math

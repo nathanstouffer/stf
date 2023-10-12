@@ -5,31 +5,6 @@
 
 #include <stf/types.h>
 
-// TODO (stouff) possibly put this in the vector header?
-template <typename T, size_t N>
-std::ostream& operator<<(std::ostream& s, stf::math::vec<T, N> const& rhs)
-{
-    s << "[ " << rhs[0];
-    for (size_t i = 1; i < N; ++i)
-    {
-        s << ", " << rhs[i];
-    }
-    s << " ]";
-    return s;
-}
-
-// TODO (stouff) possibly put this in the matrix header?
-template <typename T, size_t N>
-std::ostream& operator<<(std::ostream& s, stf::math::mtx<T, N> const& rhs)
-{
-    s << rhs.row(0).as_vec();
-    for (size_t i = 1; i < N; ++i)
-    {
-        s << std::endl << rhs.row(i).as_vec();
-    }
-    return s;
-}
-
 int tmp()
 {
 

@@ -347,5 +347,16 @@ namespace math {
         return relative + focus;
     }
 
+    template <typename T, size_t N>
+    std::ostream& operator<<(std::ostream& s, mtx<T, N> const& rhs)
+    {
+        s << rhs.row(0).as_vec();
+        for (size_t i = 1; i < N; ++i)
+        {
+            s << std::endl << rhs.row(i).as_vec();
+        }
+        return s;
+    }
+
 } // math
 } // stf
