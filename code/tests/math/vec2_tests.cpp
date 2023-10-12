@@ -74,6 +74,21 @@ namespace math {
         for (scaffolding::vec::scale<float, 2> const& test : tests) { scaffolding::vec::verify(test); }
     }
 
+    TEST(vec2, dot)
+    {
+        std::vector<scaffolding::vec::dot<float, 2>> tests =
+        {
+            { stff::vec2(), stff::vec2(), 0 },
+            { stff::vec2(1), stff::vec2(1), 2 },
+            { stff::vec2(1, 4), stff::vec2(4, 1), 8 },
+            { stff::vec2(1, -4), stff::vec2(4, 1), 0 },
+            { stff::vec2(1, -4), stff::vec2(-4, 1), -8 },
+            { stff::vec2(13, 8), stff::vec2(-2, -3), -50 },
+        };
+
+        for (scaffolding::vec::dot<float, 2> const& test : tests) { scaffolding::vec::verify(test); }
+    }
+
     TEST(vec2, equality)
     {
         std::vector<scaffolding::vec::equality<float, 2>> tests =

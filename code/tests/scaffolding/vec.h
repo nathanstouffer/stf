@@ -157,8 +157,8 @@ namespace vec {
     template<typename T, size_t N>
     void verify(dot<T, N> const& test)
     {
-        ASSERT_EQ(test.expected, test.lhs * test.rhs) << "Failed initial order";
-        ASSERT_EQ(test.expected, test.rhs * test.lhs) << "Failed swapped order";
+        ASSERT_EQ(test.expected, test.lhs * test.rhs) << "Failed lhs * rhs";
+        ASSERT_EQ(test.expected, test.rhs * test.lhs) << "Failed rhs * lhs";
     }
 
     template<typename T, size_t N>
