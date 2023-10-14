@@ -95,7 +95,7 @@ namespace math {
         {
             { stff::vec2(), 0 },
             { stff::vec2(1), stff::constants::sqrt_two },
-            { stff::vec2(2, 2), std::sqrt(8) },
+            { stff::vec2(2, 2), std::sqrt(8.f) },
             { stff::vec2(3, 4), 5 },
             { stff::vec2(-3, 4), 5 },
             { stff::vec2(3, -4), 5 },

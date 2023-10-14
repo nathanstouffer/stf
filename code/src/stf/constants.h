@@ -15,7 +15,7 @@ namespace stf {
         static T constexpr half = T(0.5);
         static T constexpr two = T(2);
 
-        static T constexpr sqrt_two = std::sqrt(two);
+        static T constexpr sqrt_two = static_cast<T>(std::sqrt(two));
         static T constexpr sqrt_two_inv = one / sqrt_two;
 
         static T constexpr pi = T(3.141592653589793238462643383279);
