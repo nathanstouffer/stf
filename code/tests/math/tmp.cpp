@@ -5,79 +5,8 @@
 
 #include <stf/types.h>
 
-// TODO (stouff) possibly put this in the vector header?
-template <typename T, size_t N>
-std::ostream& operator<<(std::ostream& s, stf::math::vec<T, N> const& rhs)
-{
-    s << "[ " << rhs[0];
-    for (size_t i = 1; i < N; ++i)
-    {
-        s << ", " << rhs[i];
-    }
-    s << " ]";
-    return s;
-}
-
-// TODO (stouff) possibly put this in the matrix header?
-template <typename T, size_t N>
-std::ostream& operator<<(std::ostream& s, stf::math::mtx<T, N> const& rhs)
-{
-    s << rhs.row(0).as_vec();
-    for (size_t i = 1; i < N; ++i)
-    {
-        s << std::endl << rhs.row(i).as_vec();
-    }
-    return s;
-}
-
 int tmp()
 {
-    {
-        stff::vec2 tmp;
-        std::cout << "tmp: " << tmp << std::endl;
-
-        tmp.x = 1;
-        std::cout << "edit x: " << tmp << std::endl;
-
-        tmp += tmp;
-        std::cout << "+=: " << tmp << std::endl;
-
-        stff::vec2 other;
-        other.y = 2;
-        std::cout << "other: " << other << std::endl;
-
-        std::cout << "tmp + other: " << tmp + other << std::endl;
-        std::cout << std::endl;
-    }
-
-    {
-        stff::vec3 tmp(8);
-        tmp.z = 9;
-
-        std::cout << "cast: " << tmp.as<double>() << std::endl;
-        std::cout << std::endl;
-    }
-
-    {
-        stff::vec2 lhs(1);
-        stff::vec2 rhs(2);
-        std::cout << lhs << " * " << rhs << " = " << lhs * rhs << std::endl;
-        std::cout << std::endl;
-    }
-
-    {
-        stff::vec2 tmp(5);
-        std::cout << "length(" << tmp << ") = " << tmp.length() << std::endl;
-        std::cout << "normalize(" << tmp << ") = " << tmp.normalized() << std::endl;
-        std::cout << std::endl;
-    }
-
-    {
-        stff::vec2 tmp(5);
-        std::cout << "2 * " << tmp << " = " << 2.f * tmp << std::endl;
-        std::cout << std::endl;
-    }
-
     {
         stff::mtx2 tmp(1);
         std::cout << "tmp: " << std::endl << tmp << std::endl;
@@ -119,26 +48,6 @@ int tmp()
         std::cout << "lhs: " << std::endl << lhs << std::endl;
         std::cout << "rhs: " << std::endl << rhs << std::endl;
         std::cout << std::endl << "multiply" << std::endl << lhs * rhs << std::endl;
-        std::cout << std::endl;
-    }
-
-    {
-        stff::vec3 tmp(1, 0, 0);
-        std::cout << "tmp: " << tmp << std::endl;
-        std::cout << "rotated: " << stf::math::rotate(tmp, stff::vec3(0, 0, 1), stf::constants<float>::half_pi) << std::endl;
-        std::cout << "rotated: " << stf::math::rotate(stff::vec3(0, 0, 1), stf::constants<float>::half_pi) * stff::vec4(tmp, 0) << std::endl;
-        std::cout << std::endl;
-    }
-
-    {
-        stff::vec3 tmp(0, -1, 0);
-        float constexpr delta_phi = -stf::constants<float>::quarter_pi;
-        float constexpr delta_theta= stf::constants<float>::half_pi;
-        std::cout << "tmp: " << tmp << "   delta_phi: -pi/4    delta_theta: pi/2" << std::endl;
-        std::cout << "desired: " << stff::vec3(0.707107, 0, 0.707107) << std::endl;
-        stff::mtx4 mtx = stf::math::orbit(stff::vec3(), stff::vec3(1, 0, 0), delta_phi, delta_theta);
-        std::cout << "orbited:" << mtx * stff::vec4(tmp, 1) << std::endl;
-        std::cout << "orbited:" << stf::math::orbit(tmp, stff::vec3(), stff::vec3(1, 0, 0), delta_phi, delta_theta) << std::endl;
         std::cout << std::endl;
     }
 

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "constants.h"
+#include "math/constants.h"
 #include "math/matrix.h"
 #include "math/vector.h"
 
@@ -11,6 +11,9 @@ namespace stf {
     template<typename T>
     struct instantiate_types
     {
+
+        // constant values
+        using constants = math::constants<T>;
 
         // vector types
         using vec2 = math::vec<T, 2>;

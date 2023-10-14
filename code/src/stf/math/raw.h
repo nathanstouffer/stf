@@ -44,22 +44,6 @@ namespace raw {
         return dot;
     }
 
-    template<typename T, size_t N>
-    inline T length(T const vec[N])
-    {
-        return std::sqrt(dot<T, N>(vec, vec));
-    }
-
-    template<typename T, size_t N>
-    inline void normalize(T vec[N])
-    {
-        T scalar = T(1) / length<T, N>(vec);
-        for (size_t i = 0; i < N; ++i)
-        {
-            vec[i] *= scalar;
-        }
-    }
-
     template<typename T, typename U, size_t N>
     inline void as(T const src[N], U dst[N])
     {

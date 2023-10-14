@@ -1,1 +1,3 @@
-include_directories(".")
+add_library(stf INTERFACE)
+
+target_include_directories(stf INTERFACE ${CMAKE_CURRENT_SOURCE_DIR})

@@ -319,13 +319,6 @@ namespace math {
         return rotation;
     }
 
-    // NOTE: we assume axis is a unit vector
-    template<typename T>
-    inline vec<T, 3> rotate(vec<T, 3> const& val, vec<T, 3> const& axis, T const theta)
-    {
-        return axis * (axis * val) + std::cos(theta) * cross(cross(axis, val), axis) + std::sin(theta) * cross(axis, val);
-    }
-
     // NOTE: we assume angles are from the perspective of the focus point and that right is a unit vector
     template<typename T>
     inline mtx<T, 4> orbit(vec<T, 3> const& focus, vec<T, 3> const& right, T const delta_phi, T const delta_theta)
@@ -337,14 +330,15 @@ namespace math {
         return invert_translation * yaw * pitch * translate;
     }
 
-    // NOTE: we assume angles are from the perspective of the focus point and that right is a unit vector
-    template<typename T>
-    inline vec<T, 3> orbit(vec<T, 3> const& val, vec<T, 3> const& focus, vec<T, 3> const& right, T const delta_phi, T const delta_theta)
+    template <typename T, size_t N>
+    std::ostream& operator<<(std::ostream& s, mtx<T, N> const& rhs)
     {
-        vec<T, 3> relative = val - focus;
-        relative = rotate(relative, right, delta_phi);
-        relative = rotate(relative, vec<T, 3>(0, 0, 1), delta_theta);
-        return relative + focus;
+        s << rhs.row(0).as_vec();
+        for (size_t i = 1; i < N; ++i)
+        {
+            s << std::endl << rhs.row(i).as_vec();
+        }
+        return s;
     }
 
 } // math

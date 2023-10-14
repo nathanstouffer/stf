@@ -2,6 +2,9 @@
 
 #include <cmath>
 
+#include <iostream>
+
+#include "constants.h"
 #include "raw.h"
 
 namespace stf {
@@ -14,6 +17,8 @@ namespace math {
     * reduce some of the unwanted duplication, many of the member functions call through to templated functions that operate
     * directly on the underlying raw pointers
     */
+
+    // TODO (stouff) possibly use the CRTP to reduce verbosity -- just make sure to test performance implications 
 
     // Generic vector type
     template<typename T, size_t N>
@@ -51,9 +56,9 @@ namespace math {
         inline vec& operator*=(T scalar) { raw::scale<T, N>(values, scalar); return *this; }
 
         inline T const operator*(vec const& rhs) const { return raw::dot<T, N>(values, rhs.values); }
-        inline T length() const { return raw::length<T, N>(values); }
+        inline T length() const { return std::sqrt(*this * *this); }
 
-        inline vec& normalize() { raw::normalize<T, N>(values); return *this; }
+        inline vec& normalize() { return *this *= (T(1.0) / length()); }
         inline vec normalized() const { return vec(*this).normalize(); }
 
         template<typename U>
@@ -96,9 +101,9 @@ namespace math {
         inline vec& operator*=(T scalar) { raw::scale<T, 2>(values, scalar); return *this; }
 
         inline T const operator*(vec const& rhs) const { return raw::dot<T, 2>(values, rhs.values); }
-        inline T length() const { return raw::length<T, 2>(values); }
+        inline T length() const { return std::sqrt(*this * *this); }
 
-        inline vec& normalize() { raw::normalize<T, 2>(values); return *this; }
+        inline vec& normalize() { return *this *= (T(1.0) / length()); }
         inline vec normalized() const { return vec(*this).normalize(); }
 
         template<typename U>
@@ -145,9 +150,9 @@ namespace math {
         inline vec& operator*=(T scalar) { raw::scale<T, 3>(values, scalar); return *this; }
 
         inline T const operator*(vec const& rhs) const { return raw::dot<T, 3>(values, rhs.values); }
-        inline T length() const { return raw::length<T, 3>(values); }
+        inline T length() const { return std::sqrt(*this * *this); }
 
-        inline vec& normalize() { raw::normalize<T, 3>(values); return *this; }
+        inline vec& normalize() { return *this *= (T(1.0) / length()); }
         inline vec normalized() const { return vec(*this).normalize(); }
 
         template<typename U>
@@ -196,9 +201,9 @@ namespace math {
         inline vec& operator*=(T scalar) { raw::scale<T, 4>(values, scalar); return *this; }
 
         inline T const operator*(vec const& rhs) const { return raw::dot<T, 4>(values, rhs.values); }
-        inline T length() const { return raw::length<T, 4>(values); }
+        inline T length() const { return std::sqrt(*this * *this); }
 
-        inline vec& normalize() { raw::normalize<T, 4>(values); return *this; }
+        inline vec& normalize() { return *this *= (T(1.0) / length()); }
         inline vec normalized() const { return vec(*this).normalize(); }
 
         template<typename U>
@@ -219,35 +224,27 @@ namespace math {
     template<typename T> struct vec<T, 0> { vec() = delete; };
 
     template<typename T, size_t N>
-    inline bool const equ(vec<T, N> const& lhs, vec<T, N> const& rhs, T tol)
+    inline T const dist(vec<T, N> const& lhs, vec<T, N> const& rhs)
     {
-        for (size_t i = 0; i < N; ++i)
-        {
-            if (std::abs(lhs[i] - rhs[i]) > tol)
-            {
-                return false;
-            }
-        }
-        return true;
+        return (lhs - rhs).length();
     }
 
     template<typename T, size_t N>
-    inline bool const neq(vec<T, N> const& lhs, vec<T, N> const& rhs, T tol)
+    inline bool const equ(vec<T, N> const& lhs, vec<T, N> const& rhs, T eps)
     {
-        return !equ(lhs, rhs, tol);
+        return (dist(lhs, rhs) <= eps) ? true : false;
+    }
+
+    template<typename T, size_t N>
+    inline bool const neq(vec<T, N> const& lhs, vec<T, N> const& rhs, T eps)
+    {
+        return !equ(lhs, rhs, eps);
     }
 
     template<typename T, size_t N>
     inline bool const operator==(vec<T, N> const& lhs, vec<T, N> const& rhs)
     {
-        for (size_t i = 0; i < N; ++i)
-        {
-            if (lhs[i] != rhs[i])
-            {
-                return false;
-            }
-        }
-        return true;
+        return equ(lhs, rhs, constants<T>::tol);
     }
 
     template<typename T, size_t N>
@@ -317,6 +314,18 @@ namespace math {
             result[i] = lhs[i] * rhs[i];
         }
         return result;
+    }
+
+    template <typename T, size_t N>
+    std::ostream& operator<<(std::ostream& s, vec<T, N> const& rhs)
+    {
+        s << "[ " << rhs[0];
+        for (size_t i = 1; i < N; ++i)
+        {
+            s << ", " << rhs[i];
+        }
+        s << " ]";
+        return s;
     }
 
 } // math

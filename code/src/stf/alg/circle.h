@@ -34,14 +34,14 @@ namespace alg {
     }
 
     template<typename T>
-    inline T deg_to_rad(T const degrees)
+    inline T rad(T const degrees)
     {
         T constexpr convert = constants<T>::pi / T(180);
         return degrees * convert;
     }
 
     template<typename T>
-    inline T rad_to_deg(T const radians)
+    inline T deg(T const radians)
     {
         T constexpr convert = T(180) / constants<T>::pi;
         return radians * convert;
