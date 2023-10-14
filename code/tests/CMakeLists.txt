@@ -1,19 +1,20 @@
 if (BUILD_TESTING)
     enable_testing()
     
-    # NOTE: this method of collecting files requires that cmake must be reran every time we add/remove a file
-    # TODO (stouff) set up post-merge and post-checkout scripts?
-    # TODO (stouff) try to get VSCode to automatically refresh tests when cmake reruns
-    file(GLOB_RECURSE TEST_FILES "*.cpp")
+    set(TEST_FILES
+        "math/vec2_tests.cpp"
+        "math/vec3_tests.cpp"
+        "math/vec4_tests.cpp"
+        "math/vec5_tests.cpp"
+    )
 
     add_executable(tests ${TEST_FILES})
 
     target_include_directories(tests 
-        PUBLIC "${CMAKE_SOURCE_DIR}/src/"
-        PUBLIC "."
+        PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}
     )
     
-    target_link_libraries(tests PRIVATE GTest::gtest_main)
+    target_link_libraries(tests PRIVATE stf GTest::gtest_main)
 
     include(GoogleTest)
     # finds all the tests associated with the executable
