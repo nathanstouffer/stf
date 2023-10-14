@@ -6,6 +6,10 @@ if (BUILD_TESTING)
         "math/vec3_tests.cpp"
         "math/vec4_tests.cpp"
         "math/vec5_tests.cpp"
+        "math/mtx4_tests.cpp"
+        "alg/circle_tests.cpp"
+        "alg/interpolation_tests.cpp"
+        "alg/transform_tests.cpp"
     )
 
     add_executable(tests ${TEST_FILES})
