@@ -23,11 +23,15 @@ namespace vec {
         {
             ASSERT_EQ(test.lhs, test.rhs) << "failed positive assertion";
             ASSERT_FALSE(test.lhs != test.rhs) << "failed negative assertion";
+            ASSERT_TRUE(math::equ(test.lhs, test.rhs, T(0))) << "failed exact positive assertion";
+            ASSERT_FALSE(math::neq(test.lhs, test.rhs, T(0))) << "failed exact negative assertion";
         }
         else
         {
             ASSERT_NE(test.lhs, test.rhs) << "failed positive assertion";
             ASSERT_FALSE(test.lhs == test.rhs) << "failed negative assertion";
+            ASSERT_TRUE(math::neq(test.lhs, test.rhs, T(0))) << "failed exact positive assertion";
+            ASSERT_FALSE(math::equ(test.lhs, test.rhs, T(0))) << "failed exact negative assertion";
         }
     }
 

@@ -28,7 +28,8 @@ namespace stf {
         static T constexpr pos_inf = std::numeric_limits<T>::max();
         static T constexpr neg_inf = std::numeric_limits<T>::lowest();
 
-        // TODO (stouff) possibly put tolerance here?
+        static T constexpr tol = T(0.00001);
+        static T constexpr tol_tol = tol * tol;
 
     };
 

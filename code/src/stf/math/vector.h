@@ -4,6 +4,7 @@
 
 #include <iostream>
 
+#include "../constants.h"
 #include "raw.h"
 
 namespace stf {
@@ -223,16 +224,15 @@ namespace math {
     template<typename T> struct vec<T, 0> { vec() = delete; };
 
     template<typename T, size_t N>
+    inline T const dist(vec<T, N> const& lhs, vec<T, N> const& rhs)
+    {
+        return (lhs - rhs).length();
+    }
+
+    template<typename T, size_t N>
     inline bool const equ(vec<T, N> const& lhs, vec<T, N> const& rhs, T tol)
     {
-        for (size_t i = 0; i < N; ++i)
-        {
-            if (std::abs(lhs[i] - rhs[i]) > tol)
-            {
-                return false;
-            }
-        }
-        return true;
+        return (dist(lhs, rhs) <= tol) ? true : false;
     }
 
     template<typename T, size_t N>
@@ -244,14 +244,7 @@ namespace math {
     template<typename T, size_t N>
     inline bool const operator==(vec<T, N> const& lhs, vec<T, N> const& rhs)
     {
-        for (size_t i = 0; i < N; ++i)
-        {
-            if (lhs[i] != rhs[i])
-            {
-                return false;
-            }
-        }
-        return true;
+        return equ(lhs, rhs, constants<T>::tol);
     }
 
     template<typename T, size_t N>
