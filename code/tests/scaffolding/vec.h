@@ -140,10 +140,10 @@ namespace vec {
     template<typename T, size_t N>
     void verify(scale<T, N> const& test)
     {
+        using vec_t = math::vec<T, N>;
         ASSERT_EQ(test.expected, test.scalar * test.initial) << "Failed scalar * initial";
         ASSERT_EQ(test.expected, test.initial * test.scalar) << "Failed initial * scalar";
-        math::vec<T, N> actual = test.initial;
-        ASSERT_EQ(test.expected, actual *= test.scalar) << "Failed initial *= scalar";
+        ASSERT_EQ(test.expected, vec_t(test.initial) *= test.scalar) << "Failed initial *= scalar";
     }
 
     template<typename T, size_t N>
@@ -159,6 +159,34 @@ namespace vec {
     {
         ASSERT_EQ(test.expected, test.lhs * test.rhs) << "Failed lhs * rhs";
         ASSERT_EQ(test.expected, test.rhs * test.lhs) << "Failed rhs * lhs";
+    }
+
+    template<typename T, size_t N>
+    struct length
+    {
+        math::vec<T, N> const initial;
+        T const expected;
+    };
+
+    template<typename T, size_t N>
+    void verify(length<T, N> const& test)
+    {
+        ASSERT_EQ(test.expected, test.initial.length()) << "Failed initial.length()";
+    }
+
+    template<typename T, size_t N>
+    struct normalize
+    {
+        math::vec<T, N> const initial;
+        math::vec<T, N> const expected;
+    };
+
+    template<typename T, size_t N>
+    void verify(normalize<T, N> const& test)
+    {
+        using vec_t = math::vec<T, N>;
+        ASSERT_EQ(test.expected, vec_t(test.initial).normalize()) << "Failed initial.normalize()";
+        ASSERT_EQ(test.expected, test.initial.normalized()) << "Failed initial.normalized()";
     }
 
     template<typename T, size_t N>

@@ -89,6 +89,46 @@ namespace math {
         for (scaffolding::vec::dot<float, 2> const& test : tests) { scaffolding::vec::verify(test); }
     }
 
+    TEST(vec2, length)
+    {
+        std::vector<scaffolding::vec::length<float, 2>> tests =
+        {
+            { stff::vec2(), 0 },
+            { stff::vec2(1), stff::constants::sqrt_two },
+            { stff::vec2(2, 2), std::sqrt(8) },
+            { stff::vec2(3, 4), 5 },
+            { stff::vec2(-3, 4), 5 },
+            { stff::vec2(3, -4), 5 },
+            { stff::vec2(-3, -4), 5 },
+        };
+
+        for (scaffolding::vec::length<float, 2> const& test : tests) { scaffolding::vec::verify(test); }
+    }
+
+    TEST(vec2, normalize)
+    {
+        std::vector<scaffolding::vec::normalize<float, 2>> tests =
+        {
+            { stff::vec2(1), stff::vec2(stff::constants::sqrt_two_inv) },
+            { stff::vec2(3), stff::vec2(stff::constants::sqrt_two_inv) },
+            { stff::vec2(300), stff::vec2(stff::constants::sqrt_two_inv) },
+            { stff::vec2(1000), stff::vec2(stff::constants::sqrt_two_inv) },
+            { stff::vec2(-1), stff::vec2(-stff::constants::sqrt_two_inv) },
+            { stff::vec2(-3), stff::vec2(-stff::constants::sqrt_two_inv) },
+            { stff::vec2(-300), stff::vec2(-stff::constants::sqrt_two_inv) },
+            { stff::vec2(-1000), stff::vec2(-stff::constants::sqrt_two_inv) },
+            { stff::vec2(1, 0), stff::vec2(1, 0) },
+            { stff::vec2(4, 0), stff::vec2(1, 0) },
+            { stff::vec2(80, 0), stff::vec2(1, 0) },
+            { stff::vec2(3, 4), stff::vec2(0.6, 0.8) },
+            { stff::vec2(-3, 4), stff::vec2(-0.6, 0.8) },
+            { stff::vec2(3, -4), stff::vec2(0.6, -0.8) },
+            { stff::vec2(-3, -4), stff::vec2(-0.6, -0.8) },
+        };
+
+        for (scaffolding::vec::normalize<float, 2> const& test : tests) { scaffolding::vec::verify(test); }
+    }
+
     TEST(vec2, equality)
     {
         std::vector<scaffolding::vec::equality<float, 2>> tests =
