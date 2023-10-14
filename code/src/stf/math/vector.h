@@ -230,15 +230,15 @@ namespace math {
     }
 
     template<typename T, size_t N>
-    inline bool const equ(vec<T, N> const& lhs, vec<T, N> const& rhs, T tol)
+    inline bool const equ(vec<T, N> const& lhs, vec<T, N> const& rhs, T eps)
     {
-        return (dist(lhs, rhs) <= tol) ? true : false;
+        return (dist(lhs, rhs) <= eps) ? true : false;
     }
 
     template<typename T, size_t N>
-    inline bool const neq(vec<T, N> const& lhs, vec<T, N> const& rhs, T tol)
+    inline bool const neq(vec<T, N> const& lhs, vec<T, N> const& rhs, T eps)
     {
-        return !equ(lhs, rhs, tol);
+        return !equ(lhs, rhs, eps);
     }
 
     template<typename T, size_t N>
