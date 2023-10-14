@@ -4,7 +4,7 @@
 
 #include <iostream>
 
-#include "../constants.h"
+#include "constants.h"
 #include "raw.h"
 
 namespace stf {
