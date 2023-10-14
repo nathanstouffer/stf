@@ -129,6 +129,19 @@ namespace math {
         for (scaffolding::vec::normalize<float, 2> const& test : tests) { scaffolding::vec::verify(test); }
     }
 
+    TEST(vec2, cast)
+    {
+        std::vector<scaffolding::vec::cast<float, double, 2>> tests =
+        {
+            { stff::vec2() },
+            { stff::vec2(1.f, 2.f) },
+            { stff::vec2(1.f) },
+            { stff::vec2(4.f) },
+        };
+
+        for (scaffolding::vec::cast<float, double, 2> const& test : tests) { scaffolding::vec::verify(test); }
+    }
+
     TEST(vec2, equality)
     {
         std::vector<scaffolding::vec::equality<float, 2>> tests =

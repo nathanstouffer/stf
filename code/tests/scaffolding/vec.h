@@ -189,6 +189,22 @@ namespace vec {
         ASSERT_EQ(test.expected, test.initial.normalized()) << "Failed initial.normalized()";
     }
 
+    template<typename T, typename U, size_t N>
+    struct cast
+    {
+        math::vec<T, N> const initial;
+    };
+
+    template<typename T, typename U, size_t N>
+    void verify(cast<T, U, N> const& test)
+    {
+        math::vec<U, N> result = test.initial.template as<U>();
+        for (size_t i = 0; i < N; ++i)
+        {
+            ASSERT_EQ(static_cast<U>(test.initial[i]), result[i]) << "Failed to cast properly";
+        }
+    }
+
     template<typename T, size_t N>
     struct negate
     {

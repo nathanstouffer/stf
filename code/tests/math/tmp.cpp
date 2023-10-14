@@ -7,35 +7,6 @@
 
 int tmp()
 {
-
-    {
-        stff::vec3 tmp(8);
-        tmp.z = 9;
-
-        std::cout << "cast: " << tmp.as<double>() << std::endl;
-        std::cout << std::endl;
-    }
-
-    {
-        stff::vec2 lhs(1);
-        stff::vec2 rhs(2);
-        std::cout << lhs << " * " << rhs << " = " << lhs * rhs << std::endl;
-        std::cout << std::endl;
-    }
-
-    {
-        stff::vec2 tmp(5);
-        std::cout << "length(" << tmp << ") = " << tmp.length() << std::endl;
-        std::cout << "normalize(" << tmp << ") = " << tmp.normalized() << std::endl;
-        std::cout << std::endl;
-    }
-
-    {
-        stff::vec2 tmp(5);
-        std::cout << "2 * " << tmp << " = " << 2.f * tmp << std::endl;
-        std::cout << std::endl;
-    }
-
     {
         stff::mtx2 tmp(1);
         std::cout << "tmp: " << std::endl << tmp << std::endl;
