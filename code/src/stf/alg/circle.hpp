@@ -1,11 +1,24 @@
 #pragma once
 
-// TODO (stouff) set this up with absolute includes
 #include "../math/constants.hpp"
 #include "../math/vector.hpp"
 
 namespace stf {
 namespace alg {
+
+    template<typename T>
+    inline T radians(T const deg)
+    {
+        T constexpr convert = math::constants<T>::pi / T(180);
+        return deg * convert;
+    }
+
+    template<typename T>
+    inline T degrees(T const rad)
+    {
+        T constexpr convert = T(180) / math::constants<T>::pi;
+        return rad * convert;
+    }
 
     template<typename T>
     inline T canonical_angle(T const theta)
@@ -31,20 +44,6 @@ namespace alg {
             T constexpr tau = math::constants<T>::tau;
             return (tau < phi) ? closest_equiv_angle(theta, phi - tau) : closest_equiv_angle(theta, phi + tau);
         }
-    }
-
-    template<typename T>
-    inline T rad(T const degrees)
-    {
-        T constexpr convert = math::constants<T>::pi / T(180);
-        return degrees * convert;
-    }
-
-    template<typename T>
-    inline T deg(T const radians)
-    {
-        T constexpr convert = T(180) / math::constants<T>::pi;
-        return radians * convert;
     }
 
     template<typename T>
