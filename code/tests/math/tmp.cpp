@@ -1,11 +1,9 @@
 #include <iostream>
 #include <vector>
 
-#include <gtest/gtest.h>
-
 #include <stf/types.h>
 
-int tmp()
+int main()
 {
     {
         stff::mtx2 tmp(1);
@@ -52,7 +50,7 @@ int tmp()
     }
 
     {
-        float constexpr quarter_pi = stf::constants<float>::quarter_pi ;
+        float constexpr quarter_pi = stff::constants::quarter_pi ;
         std::cout << "perspective:" << std::endl << stf::math::perspective(quarter_pi, 1.7777777f, 2.0f, 1000.0f) << std::endl;
         std::cout << std::endl;
     }
