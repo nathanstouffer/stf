@@ -2,8 +2,8 @@
 
 #include <cstring>
 
-#include "raw.h"
-#include "vector.h"
+#include "raw.hpp"
+#include "vector.hpp"
 
 namespace stf {
 namespace math {

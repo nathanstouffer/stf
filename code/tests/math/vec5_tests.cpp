@@ -2,9 +2,9 @@
 
 #include <gtest/gtest.h>
 
-#include <stf/types.h>
+#include <stf/types.hpp>
 
-#include "scaffolding/vec.h"
+#include "math/scaffolding/vector.hpp"
 
 namespace stf {
 namespace math {

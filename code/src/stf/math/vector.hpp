@@ -4,8 +4,8 @@
 
 #include <iostream>
 
-#include "constants.h"
-#include "raw.h"
+#include "constants.hpp"
+#include "raw.hpp"
 
 namespace stf {
 namespace math {

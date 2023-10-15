@@ -2,9 +2,10 @@
 
 #include <gtest/gtest.h>
 
-#include <stf/math/vector.h>
+#include <stf/math/vector.hpp>
 
 namespace stf {
+namespace math {
 namespace scaffolding {
 namespace vec {
 
@@ -235,4 +236,5 @@ namespace vec {
 
 } // vec
 } // scaffolding
+} // math
 } // stf

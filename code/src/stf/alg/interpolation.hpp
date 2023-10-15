@@ -5,7 +5,7 @@
 #include <algorithm>
 
 // TODO (stouff) set this up with absolute include paths
-#include "../math/vector.h"
+#include "../math/vector.hpp"
 
 namespace stf {
 namespace alg {
@@ -28,7 +28,7 @@ namespace alg {
         return mad(t, b, nms(t, a, a));
     }
 
-    template<typneame T>
+    template<typename T>
     inline T lerp_inv(T a, T b, T x)
     {
         return (x - a) / (b - a);
@@ -66,7 +66,7 @@ namespace alg {
     }
 
     template<class T, size_t N>
-    inline math::vec<T, N> clamp(math::vec<T, N> const& vec, T con min, T const max)
+    inline math::vec<T, N> clamp(math::vec<T, N> const& vec, T const min, T const max)
     {
         return clamp(vec, math::vec<T, N>(min), math::vec<T, N>(max));
     }

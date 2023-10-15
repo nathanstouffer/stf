@@ -2,9 +2,10 @@
 
 #include <gtest/gtest.h>
 
-#include <stf/types.h>
+#include <stf/types.hpp>
+#include <stf/alg/transform.hpp>
 
-#include "scaffolding/transform.h"
+#include "alg/scaffolding/transform.hpp"
 
 namespace stf {
 namespace alg {
