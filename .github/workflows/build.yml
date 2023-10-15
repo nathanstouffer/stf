@@ -70,6 +70,7 @@ jobs:
         # See https://cmake.org/cmake/help/latest/manual/ctest.1.html for more detail
         run: ctest --build-config ${{ matrix.build_type }}
 
+      # TODO (stouff) consider caching this to speed up CI
       - name: Setup OpenCppCoverage
         run: |
           choco install OpenCppCoverage -y
@@ -78,7 +79,7 @@ jobs:
       - name: Compute Code Coverage
         working-directory: ${{ steps.strings.outputs.build-output-dir }}/tests/Debug/
         ## Execute test coverage
-        run: OpenCppCoverage --export_type cobertura:coverage.xml --sources ${{ github.workspace }}\\code\\src\\stf\\* -- tests.exe
+        run: OpenCppCoverage --export_type cobertura:coverage.xml --sources ${{ github.workspace }}/code/src/stf/* -- tests.exe
 
       - name: Upload coverage report
         uses: codecov/codecov-action@v2
