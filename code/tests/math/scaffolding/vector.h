@@ -5,6 +5,7 @@
 #include <stf/math/vector.h>
 
 namespace stf {
+namespace math {
 namespace scaffolding {
 namespace vec {
 
@@ -235,4 +236,5 @@ namespace vec {
 
 } // vec
 } // scaffolding
+} // math
 } // stf

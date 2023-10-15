@@ -3,8 +3,9 @@
 #include <gtest/gtest.h>
 
 #include <stf/types.h>
+#include <stf/alg/transform.h>
 
-#include "scaffolding/transform.h"
+#include "alg/scaffolding/transform.h"
 
 namespace stf {
 namespace alg {

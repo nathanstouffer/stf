@@ -6,6 +6,7 @@
 #include <stf/alg/transform.h>
 
 namespace stf {
+namespace alg {
 namespace scaffolding {
 namespace transform {
 
@@ -47,4 +48,5 @@ namespace transform {
 
 } // transform
 } // scaffolding
+} // alg
 } // stf
