@@ -70,6 +70,7 @@ jobs:
         # See https://cmake.org/cmake/help/latest/manual/ctest.1.html for more detail
         run: ctest --build-config ${{ matrix.build_type }}
 
+      # TODO (stouff) try to figure out a cleaner way to set up this build step specific to debug+windows
       # TODO (stouff) consider caching this to speed up CI
       - name: Setup OpenCppCoverage
         if: ${{ matrix.build_type == 'Debug' && matrix.os == 'windows-latest' }}
