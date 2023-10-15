@@ -78,7 +78,7 @@ jobs:
       - name: Compute Code Coverage
         working-directory: ${{ steps.strings.outputs.build-output-dir }}/tests/Debug/
         ## Execute test coverage
-        run: OpenCppcoverage --export_type cobertura:coverage.xml --sources code\\src\\stf\\* -- tests.exe
+        run: OpenCppCoverage --export_type cobertura:coverage.xml --sources ${{ github.workspace }}\\code\\src\\stf\\* -- tests.exe
 
       - name: Upload coverage report
         uses: codecov/codecov-action@v2
