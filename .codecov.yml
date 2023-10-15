@@ -14,7 +14,7 @@ coverage:
   status:
     project:
       default:
-        target: 80% # coverage must be above 90% to succeed
+        target: 80% # coverage must be above 80% to succeed
         base: auto # compare coverage to base branch for PRs and parent commit for non-PRs
     patch:
       default:
