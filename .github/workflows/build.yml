@@ -85,5 +85,5 @@ jobs:
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
         with:
-          files: ${{ steps.strings.outputs.build-output-dir }}/coverage.xml
+          files: ${{ steps.strings.outputs.build-output-dir }}/tests/Debug/coverage.xml
           fail_ci_if_error: true
