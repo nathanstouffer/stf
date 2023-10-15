@@ -76,7 +76,7 @@ jobs:
           echo "C:\Program Files\OpenCppCoverage" >> $env:GITHUB_PATH
 
       - name: Compute Code Coverage
-        working-directory: ${{ steps.strings.outputs.build-output-dir }}
+        working-directory: ${{ steps.strings.outputs.build-output-dir }}/tests/Debug/
         ## Execute test coverage
         run: OpenCppcoverage --export_type cobertura:coverage.xml --sources code\\src\\stf\\* -- tests.exe
 
