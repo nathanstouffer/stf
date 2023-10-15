@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 
-#include <stf/types.h>
+#include <stf/types.hpp>
 
 int main()
 {

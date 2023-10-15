@@ -1,8 +1,8 @@
 #pragma once
 
 // TODO (stouff) set this up with absolute includes
-#include "../math/constants.h"
-#include "../math/vector.h"
+#include "../math/constants.hpp"
+#include "../math/vector.hpp"
 
 namespace stf {
 namespace alg {

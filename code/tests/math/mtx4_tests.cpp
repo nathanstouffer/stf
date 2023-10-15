@@ -2,7 +2,7 @@
 
 #include <gtest/gtest.h>
 
-#include <stf/types.h>
+#include <stf/types.hpp>
 
 namespace stf {
 namespace math {

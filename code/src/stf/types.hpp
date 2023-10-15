@@ -1,8 +1,8 @@
 #pragma once
 
-#include "math/constants.h"
-#include "math/matrix.h"
-#include "math/vector.h"
+#include "math/constants.hpp"
+#include "math/matrix.hpp"
+#include "math/vector.hpp"
 
 using gpu_float_t = float;
 

@@ -5,7 +5,7 @@
 #include <algorithm>
 
 // TODO (stouff) set this up with absolute include paths
-#include "../math/vector.h"
+#include "../math/vector.hpp"
 
 namespace stf {
 namespace alg {

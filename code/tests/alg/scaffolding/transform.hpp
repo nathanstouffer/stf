@@ -2,8 +2,8 @@
 
 #include <gtest/gtest.h>
 
-#include <stf/types.h>
-#include <stf/alg/transform.h>
+#include <stf/types.hpp>
+#include <stf/alg/transform.hpp>
 
 namespace stf {
 namespace alg {
