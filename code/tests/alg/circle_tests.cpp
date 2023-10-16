@@ -21,6 +21,25 @@ namespace alg {
         };
 
         for (scaffolding::circle::conversion<float> const& test : tests) { scaffolding::circle::verify(test); }
+    }
+
+    TEST(circle, canonical)
+    {
+        std::vector<scaffolding::circle::canonical<float>> tests = 
+        {
+            { 0, 0 },
+            { stff::constants::quarter_pi, stff::constants::quarter_pi },
+            { stff::constants::half_pi, stff::constants::half_pi },
+            { stff::constants::pi, stff::constants::pi },
+            { stff::constants::tau, 0 },
+            { 1 * stff::constants::tau, 0 },
+            { 2 * stff::constants::tau, 0 },
+            { -1 * stff::constants::tau, 0 },
+            { -2 * stff::constants::tau, 0 },
+            { 9 * stff::constants::quarter_pi, stff::constants::quarter_pi },
+        };
+
+        for (scaffolding::circle::canonical<float> const& test : tests) { scaffolding::circle::verify(test); }
     };
 
 } // math

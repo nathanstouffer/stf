@@ -47,7 +47,7 @@ namespace alg {
     }
 
     template<typename T>
-    inline math::vec<T, 2> direction(T const theta)
+    inline math::vec<T, 2> unit_vector(T const theta)
     {
         return math::vec<T, 2>(std::cos(theta), std::sin(theta));
     }
