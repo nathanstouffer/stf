@@ -2,7 +2,7 @@
 
 #include <cmath>
 
-#include "../math/vector.hpp"
+#include "stf/math/vector.hpp"
 
 namespace stf {
 namespace alg {
