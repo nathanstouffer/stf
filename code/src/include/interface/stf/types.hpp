@@ -37,3 +37,5 @@ namespace stf {
 // default instantiated types for projects that don't have to worry about precision
 using stff = stf::instantiate_types<float>;
 using stfd = stf::instantiate_types<double>;
+using stfi = stf::instantiate_types<int>;
+using stfu = stf::instantiate_types<uint32_t>;
