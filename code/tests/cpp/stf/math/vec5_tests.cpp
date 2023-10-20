@@ -4,7 +4,7 @@
 
 #include <stf/types.hpp>
 
-#include "math/scaffolding/vector.hpp"
+#include "stf/math/scaffolding/vector.hpp"
 
 namespace stf {
 namespace math {

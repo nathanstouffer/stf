@@ -4,7 +4,7 @@
 
 #include <stf/types.hpp>
 
-#include "alg/scaffolding/circle.hpp"
+#include "stf/alg/scaffolding/circle.hpp"
 
 namespace stf {
 namespace alg {
