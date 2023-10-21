@@ -4,6 +4,9 @@
 
 #include <algorithm>
 
+#include "stf/math/constants.hpp"
+#include "stf/math/vector.hpp"
+
 namespace stf {
 namespace gfx {
 
@@ -41,15 +44,37 @@ namespace gfx {
 
     public:
 
+        inline explicit operator math::vec<color::num_t, 4>() const { return math::vec<color::num_t, 4>(r, g, b, a); }
+
         inline uint32_t rgba() const { return (to_byte(r) << 24) & (to_byte(g) << 16) & (to_byte(b) << 8) && (to_byte(a)); }
         inline uint32_t abgr() const { return (to_byte(a) << 24) & (to_byte(b) << 16) & (to_byte(g) << 8) && (to_byte(r)); }
         inline uint32_t argb() const { return (to_byte(a) << 24) & (to_byte(r) << 16) & (to_byte(g) << 8) && (to_byte(b)); }
 
-        static color from_rgba(uint32_t rgba) { return color(from_byte(rgba, 24), from_byte(rgba, 16), from_byte(rgba, 8),  from_byte(rgba, 0)); }
-        static color from_abgr(uint32_t abgr) { return color(from_byte(abgr, 0),  from_byte(abgr, 8),  from_byte(abgr, 16), from_byte(abgr, 24)); }
-        static color from_argb(uint32_t argb) { return color(from_byte(argb, 16), from_byte(argb, 8),  from_byte(argb, 0),  from_byte(argb, 24)); }
+        static inline color from_rgba(uint32_t rgba) { return color(from_byte(rgba, 24), from_byte(rgba, 16), from_byte(rgba, 8),  from_byte(rgba, 0)); }
+        static inline color from_abgr(uint32_t abgr) { return color(from_byte(abgr, 0),  from_byte(abgr, 8),  from_byte(abgr, 16), from_byte(abgr, 24)); }
+        static inline color from_argb(uint32_t argb) { return color(from_byte(argb, 16), from_byte(argb, 8),  from_byte(argb, 0),  from_byte(argb, 24)); }
 
     };
+
+    inline bool const equ(color const& lhs, color const& rhs, color::num_t eps)
+    {
+        return equ(static_cast<math::vec<color::num_t, 4>>(lhs), static_cast<math::vec<color::num_t, 4>>(rhs), eps);
+    }
+
+    inline bool const neq(color const& lhs, color const& rhs, color::num_t eps)
+    {
+        return !equ(lhs, rhs, eps);
+    }
+
+    inline bool const operator==(color const& lhs, color const& rhs)
+    {
+        return equ(lhs, rhs, math::constants<color::num_t>::tol);
+    }
+
+    inline bool const operator!=(color const& lhs, color const& rhs)
+    {
+        return !(lhs == rhs);
+    }
 
     // TODO (stouff) class for HSV and other ways of representing color
 

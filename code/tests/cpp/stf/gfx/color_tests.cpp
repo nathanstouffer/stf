@@ -4,11 +4,27 @@
 
 #include <stf/gfx/color.hpp>
 
+#include <stf/gfx/scaffolding/color.hpp>
+
 namespace stf {
 namespace gfx {
 
-    // TODO (stouff) possibly move the test struct declarations into the scaffolding directory?
-    // it's kind of more a thing for vector because of the templated N param
+    TEST(color, equality)
+    {
+        std::vector<scaffolding::color_equality> tests =
+        {
+            { stf::gfx::color(), stf::gfx::color(), true },
+            { stf::gfx::color(0), stf::gfx::color(0), true },
+            { stf::gfx::color(1), stf::gfx::color(1), true },
+            { stf::gfx::color(2), stf::gfx::color(2), true },
+            { stf::gfx::color(), stf::gfx::color(1), false },
+            { stf::gfx::color(1), stf::gfx::color(2), false },
+            { stf::gfx::color(2), stf::gfx::color(3), false },
+            { stf::gfx::color(3), stf::gfx::color(4), false },
+        };
+
+        for (scaffolding::color_equality const& test : tests) { scaffolding::verify(test); }
+    }
     
     TEST(color, to_byte)
     {
