@@ -25,6 +25,17 @@ namespace gfx {
 
         for (scaffolding::color_equality const& test : tests) { scaffolding::verify(test); }
     }
+
+    TEST(color, construct)
+    {
+        ASSERT_EQ(color(), color(0, 0, 0, 1)) << "Failed to construct default color";
+        ASSERT_EQ(color(0.5), color(0.5, 0.5, 0.5, 0.5)) << "Failed to construct from single float";
+        ASSERT_EQ(color(0.5, 0.75), color(0.5, 0.5, 0.5, 0.75)) << "Failed to construct from two floats";
+        ASSERT_EQ(color(0.5, 0.75, 1.0), color(0.5, 0.75, 1.0, 1.0)) << "Failed to construct three floats";
+        ASSERT_EQ(color(0.5, 0.75, 1.0, 0.25), color(0.5, 0.75, 1.0, 0.25)) << "Failed to construct four floats";
+        ASSERT_EQ(color(math::vec<float, 3>(0.5, 0.75, 1.0)), color(0.5, 0.75, 1.0, 1.0)) << "Failed to construct from float vec3";
+        ASSERT_EQ(color(math::vec<float, 4>(0.5, 0.75, 1.0, 0.25)), color(0.5, 0.75, 1.0, 0.25)) << "Failed to construct from float vec4";
+    }
     
     TEST(color, to_byte)
     {

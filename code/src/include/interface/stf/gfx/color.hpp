@@ -24,8 +24,11 @@ namespace gfx {
 
         color() : color(0, 0, 0, 1) {}
         explicit color(num_t const t) : color(t, t, t, t) {}
+        explicit color(num_t const t, num_t const _a) : color(t, t, t, _a) {}
         color(num_t const _r, num_t const _g, num_t const _b) : color(_r, _g, _b, 1) {}
         color(num_t const _r, num_t const _g, num_t const _b, num_t const _a) : r(_r), g(_g), b(_b), a(_a) {}
+        explicit color(math::vec<num_t, 3> vec) : color(math::vec<num_t, 4>(vec, 1)) {}
+        explicit color(math::vec<num_t, 4> vec) : color(vec.x, vec.y, vec.z, vec.w) {}
 
     public:
 
