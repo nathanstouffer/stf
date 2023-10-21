@@ -21,6 +21,7 @@ namespace math {
         
         static T constexpr pi = T(3.141592653589793238462643383279);
         static T constexpr tau = 2 * pi;
+        static T constexpr two_pi = tau;
         static T constexpr half_pi = T(0.5) * pi;
         static T constexpr quarter_pi = T(0.25) * pi;
 

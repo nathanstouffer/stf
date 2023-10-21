@@ -5,7 +5,7 @@
 #include <stf/types.hpp>
 #include <stf/alg/transform.hpp>
 
-#include "alg/scaffolding/transform.hpp"
+#include "stf/alg/scaffolding/transform.hpp"
 
 namespace stf {
 namespace alg {

@@ -3,8 +3,8 @@
 *.out
 
 # build directories
-.build/
-build/
+.[Bb]uild/
+[Bb]uild/
 
 # object files
 *.o

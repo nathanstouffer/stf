@@ -1,7 +1,7 @@
 #pragma once
 
-#include "../math/constants.hpp"
-#include "../math/vector.hpp"
+#include "stf/math/constants.hpp"
+#include "stf/math/vector.hpp"
 
 namespace stf {
 namespace alg {
@@ -33,21 +33,14 @@ namespace alg {
 
     // of all angles that are equivalent to phi, return the angle that is closest to theta
     template<typename T>
-    inline T closest_equiv_angle(T const theta, T const phi)
+    inline T closest_equiv_angle(T const phi, T const theta)
     {
-        if (std::abs(theta - phi) <= math::constants<T>::pi)
-        {
-            return phi;
-        }
-        else
-        {
-            T constexpr tau = math::constants<T>::tau;
-            return (tau < phi) ? closest_equiv_angle(theta, phi - tau) : closest_equiv_angle(theta, phi + tau);
-        }
+        T const delta = canonical_angle(phi) - canonical_angle(theta);
+        return (delta <= math::constants<T>::pi) ? theta + delta : theta + delta - math::constants<T>::tau;
     }
 
     template<typename T>
-    inline math::vec<T, 2> direction(T const theta)
+    inline math::vec<T, 2> unit_vector(T const theta)
     {
         return math::vec<T, 2>(std::cos(theta), std::sin(theta));
     }

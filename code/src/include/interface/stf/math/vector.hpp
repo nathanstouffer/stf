@@ -4,19 +4,17 @@
 
 #include <iostream>
 
-#include "constants.hpp"
-#include "raw.hpp"
+#include "stf/math/constants.hpp"
+#include "stf/math/raw.hpp"
 
 namespace stf {
 namespace math {
     
-    /*
-    * NOTE: Unfortunately there is a lot of duplication between among the generic vector class and the specializations when
-    * the dimension is specialized for N = 2, 3, 4. This could be avoided by paring Curiously Recurring Template Pattern
-    * with some casting to the derived class type. But I opted for simplicity even though it involves more duplication. To
-    * reduce some of the unwanted duplication, many of the member functions call through to templated functions that operate
-    * directly on the underlying raw pointers
-    */
+    // NOTE: Unfortunately there is a lot of duplication between among the generic vector class and the specializations when
+    // the dimension is specialized for N = 2, 3, 4. This could be avoided by paring Curiously Recurring Template Pattern
+    // with some casting to the derived class type. But I opted for simplicity even though it involves more duplication. To
+    // reduce some of the unwanted duplication, many of the member functions call through to templated functions that operate
+    // directly on the underlying raw pointers
 
     // TODO (stouff) possibly use the CRTP to reduce verbosity -- just make sure to test performance implications 
 

@@ -4,18 +4,19 @@
 
 #include <algorithm>
 
-// TODO (stouff) set this up with absolute include paths
-#include "../math/vector.hpp"
+#include "stf/math/vector.hpp"
 
 namespace stf {
 namespace alg {
 
+    // multiply and add
     template<typename T>
     inline T mad(T a, T b, T c)
     {
         return a * b + c;
     }
 
+    // negate the result of multiply and subtract
     template<typename T>
     inline T nms(T a, T b, T c)
     {
