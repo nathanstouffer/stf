@@ -78,5 +78,10 @@ namespace gfx {
 
     // TODO (stouff) class for HSV and other ways of representing color
 
+    std::ostream& operator<<(std::ostream& s, color const& rhs)
+    {
+        return s << "[ " << rhs.r << ", " << rhs.g << ", " << rhs.b << ", " << rhs.a << " ]";
+    }
+
 } // gfx
 } // stf
