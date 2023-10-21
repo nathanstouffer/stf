@@ -9,12 +9,14 @@
 namespace stf {
 namespace alg {
 
+    // multiply and add
     template<typename T>
     inline T mad(T a, T b, T c)
     {
         return a * b + c;
     }
 
+    // negate the result of multiply and subtract
     template<typename T>
     inline T nms(T a, T b, T c)
     {
