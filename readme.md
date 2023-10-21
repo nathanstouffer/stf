@@ -5,7 +5,7 @@
 [![codecov](https://codecov.io/gh/nathanstouffer/stf/graph/badge.svg?token=WLB5Z8XTYE)](https://codecov.io/gh/nathanstouffer/stf)
 
 
-`stf` is a templated math library built primarily for graphics.
+`stf` is a math library built primarily for graphics.
 
 ## Notes
 
