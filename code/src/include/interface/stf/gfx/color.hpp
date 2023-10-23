@@ -49,9 +49,9 @@ namespace gfx {
 
         inline explicit operator math::vec<color::num_t, 4>() const { return math::vec<color::num_t, 4>(r, g, b, a); }
 
-        inline uint32_t rgba() const { return (to_byte(r) << 24) & (to_byte(g) << 16) & (to_byte(b) << 8) && (to_byte(a)); }
-        inline uint32_t abgr() const { return (to_byte(a) << 24) & (to_byte(b) << 16) & (to_byte(g) << 8) && (to_byte(r)); }
-        inline uint32_t argb() const { return (to_byte(a) << 24) & (to_byte(r) << 16) & (to_byte(g) << 8) && (to_byte(b)); }
+        inline uint32_t rgba() const { return (to_byte(r) << 24) | (to_byte(g) << 16) | (to_byte(b) << 8) | (to_byte(a)); }
+        inline uint32_t abgr() const { return (to_byte(a) << 24) | (to_byte(b) << 16) | (to_byte(g) << 8) | (to_byte(r)); }
+        inline uint32_t argb() const { return (to_byte(a) << 24) | (to_byte(r) << 16) | (to_byte(g) << 8) | (to_byte(b)); }
 
         static inline color from_rgba(uint32_t rgba) { return color(from_byte(rgba, 24), from_byte(rgba, 16), from_byte(rgba, 8),  from_byte(rgba, 0)); }
         static inline color from_abgr(uint32_t abgr) { return color(from_byte(abgr, 0),  from_byte(abgr, 8),  from_byte(abgr, 16), from_byte(abgr, 24)); }
@@ -79,12 +79,12 @@ namespace gfx {
         return !(lhs == rhs);
     }
 
-    // TODO (stouff) class for HSV and other ways of representing color
-
     std::ostream& operator<<(std::ostream& s, color const& rhs)
     {
         return s << "[ " << rhs.r << ", " << rhs.g << ", " << rhs.b << ", " << rhs.a << " ]";
     }
+    
+    // TODO (stouff) class for HSV and other ways of representing color
 
 } // gfx
 } // stf
