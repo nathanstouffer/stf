@@ -106,32 +106,32 @@ namespace alg {
         return result;
     }
 
-    inline gfx::color clamp(gfx::color const& lhs, gfx::color::num_t min, gfx::color::num_t max)
+    inline gfx::rgba clamp(gfx::rgba const& lhs, gfx::rgba::num_t min, gfx::rgba::num_t max)
     {
-        using vec_t = math::vec<gfx::color::num_t, 4>;
-        return gfx::color(clamp(static_cast<vec_t>(lhs), min, max));
+        using vec_t = math::vec<gfx::rgba::num_t, 4>;
+        return gfx::rgba(clamp(static_cast<vec_t>(lhs), min, max));
     }
 
-    inline gfx::color lerp(gfx::color const& lhs, gfx::color const& rhs, gfx::color::num_t t)
+    inline gfx::rgba lerp(gfx::rgba const& lhs, gfx::rgba const& rhs, gfx::rgba::num_t t)
     {
-        using vec_t = math::vec<gfx::color::num_t, 4>;
-        return gfx::color(lerp(static_cast<vec_t>(lhs), static_cast<vec_t>(rhs), t));
+        using vec_t = math::vec<gfx::rgba::num_t, 4>;
+        return gfx::rgba(lerp(static_cast<vec_t>(lhs), static_cast<vec_t>(rhs), t));
     }
 
-    inline gfx::color lerpstep(gfx::color const& lhs, gfx::color const& rhs, gfx::color::num_t t)
+    inline gfx::rgba lerpstep(gfx::rgba const& lhs, gfx::rgba const& rhs, gfx::rgba::num_t t)
     {
-        using vec_t = math::vec<gfx::color::num_t, 4>;
-        return gfx::color(lerpstep(static_cast<vec_t>(lhs), static_cast<vec_t>(rhs), t));
+        using vec_t = math::vec<gfx::rgba::num_t, 4>;
+        return gfx::rgba(lerpstep(static_cast<vec_t>(lhs), static_cast<vec_t>(rhs), t));
     }
 
-    inline gfx::color smoothstep(gfx::color const& lhs, gfx::color const& rhs, gfx::color::num_t t)
+    inline gfx::rgba smoothstep(gfx::rgba const& lhs, gfx::rgba const& rhs, gfx::rgba::num_t t)
     {
-        using vec_t = math::vec<gfx::color::num_t, 4>;
-        return gfx::color(smoothstep(static_cast<vec_t>(lhs), static_cast<vec_t>(rhs), t));
+        using vec_t = math::vec<gfx::rgba::num_t, 4>;
+        return gfx::rgba(smoothstep(static_cast<vec_t>(lhs), static_cast<vec_t>(rhs), t));
     }
 
     // TODO (stouff) write this blend function 
-    //inline gfx::color blend(gfx::color const& current, gfx::color const& writing)
+    //inline gfx::rgba blend(gfx::rgba const& current, gfx::rgba const& writing)
 
 
 } // alg

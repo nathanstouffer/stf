@@ -11,8 +11,8 @@ namespace colors {
 
     struct equality
     {
-        color const lhs;
-        color const rhs;
+        rgba const lhs;
+        rgba const rhs;
         bool equal;
     };
 
@@ -22,35 +22,35 @@ namespace colors {
         {
             ASSERT_EQ(test.lhs, test.rhs) << "failed positive assertion";
             ASSERT_FALSE(test.lhs != test.rhs) << "failed negative assertion";
-            ASSERT_TRUE(equ(test.lhs, test.rhs, color::num_t(0))) << "failed exact positive assertion";
-            ASSERT_FALSE(neq(test.lhs, test.rhs, color::num_t(0))) << "failed exact negative assertion";
+            ASSERT_TRUE(equ(test.lhs, test.rhs, rgba::num_t(0))) << "failed exact positive assertion";
+            ASSERT_FALSE(neq(test.lhs, test.rhs, rgba::num_t(0))) << "failed exact negative assertion";
         }
         else
         {
             ASSERT_NE(test.lhs, test.rhs) << "failed positive assertion";
             ASSERT_FALSE(test.lhs == test.rhs) << "failed negative assertion";
-            ASSERT_TRUE(neq(test.lhs, test.rhs, color::num_t(0))) << "failed exact positive assertion";
-            ASSERT_FALSE(equ(test.lhs, test.rhs, color::num_t(0))) << "failed exact negative assertion";
+            ASSERT_TRUE(neq(test.lhs, test.rhs, rgba::num_t(0))) << "failed exact positive assertion";
+            ASSERT_FALSE(equ(test.lhs, test.rhs, rgba::num_t(0))) << "failed exact negative assertion";
         }
     }
 
     struct hex_conversion
     {
-        uint32_t const rgba;
-        uint32_t const abgr;
-        uint32_t const argb;
-        color const color;
+        uint32_t const hex_rgba;
+        uint32_t const hex_abgr;
+        uint32_t const hex_argb;
+        rgba const color;
     };
 
     void verify(hex_conversion const& test)
     {
-        ASSERT_EQ(test.rgba, test.color.rgba()) << "failed conversion to rgba";
-        ASSERT_EQ(test.abgr, test.color.abgr()) << "failed conversion to abgr";
-        ASSERT_EQ(test.argb, test.color.argb()) << "failed conversion to argb";
+        ASSERT_EQ(test.hex_rgba, test.color.to_hex_rgba()) << "failed conversion to rgba";
+        ASSERT_EQ(test.hex_abgr, test.color.to_hex_abgr()) << "failed conversion to abgr";
+        ASSERT_EQ(test.hex_argb, test.color.to_hex_argb()) << "failed conversion to argb";
 
-        ASSERT_EQ(test.color, color::from_rgba(test.rgba)) << "failed conversion from rgba";
-        ASSERT_EQ(test.color, color::from_abgr(test.abgr)) << "failed conversion from abgr";
-        ASSERT_EQ(test.color, color::from_argb(test.argb)) << "failed conversion from argb";
+        ASSERT_EQ(test.color, rgba::from_hex_rgba(test.hex_rgba)) << "failed conversion from rgba";
+        ASSERT_EQ(test.color, rgba::from_hex_abgr(test.hex_abgr)) << "failed conversion from abgr";
+        ASSERT_EQ(test.color, rgba::from_hex_argb(test.hex_argb)) << "failed conversion from argb";
     }
 
 } // colors
