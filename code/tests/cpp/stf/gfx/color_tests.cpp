@@ -11,7 +11,7 @@ namespace gfx {
 
     TEST(color, equality)
     {
-        std::vector<scaffolding::colors::equality> tests =
+        std::vector<scaffolding::color::rgba_equality> tests =
         {
             { stf::gfx::rgba(), stf::gfx::rgba(), true },
             { stf::gfx::rgba(0), stf::gfx::rgba(0), true },
@@ -23,7 +23,7 @@ namespace gfx {
             { stf::gfx::rgba(3), stf::gfx::rgba(4), false },
         };
 
-        for (scaffolding::colors::equality const& test : tests) { scaffolding::colors::verify(test); }
+        for (scaffolding::color::rgba_equality const& test : tests) { scaffolding::color::verify(test); }
     }
 
     TEST(color, construct_rgba)
@@ -37,7 +37,7 @@ namespace gfx {
         ASSERT_EQ(rgba(math::vec<float, 4>(0.5, 0.75, 1.0, 0.25)), rgba(0.5, 0.75, 1.0, 0.25)) << "Failed to construct from float vec4";
     }
     
-    TEST(color, to_hex)
+    TEST(color, component_to_hex)
     {
         struct test_t
         {
@@ -59,7 +59,7 @@ namespace gfx {
         for (test_t const& test : tests) { ASSERT_EQ(test.expected, rgba::to_hex(test.x)) << "Failed to compute hex correctly"; }
     }
 
-    TEST(color, from_hex)
+    TEST(color, component_from_hex)
     {
         struct test_t
         {
@@ -89,7 +89,7 @@ namespace gfx {
 
     TEST(color, hex_conversion)
     {
-        std::vector<scaffolding::colors::hex_conversion> tests =
+        std::vector<scaffolding::color::rgba_hex_conversion> tests =
         {
             // rgba         abgr            argb            color
             { 0x00000000,   0x00000000,     0x00000000,     rgba(0, 0, 0, 0) },
@@ -98,7 +98,7 @@ namespace gfx {
             { 0xAABBCCDD,   0xDDCCBBAA,     0xDDAABBCC,     rgba(0.66666666666, 0.73333333333, 0.8, 0.86666666666) },
         };
 
-        for (scaffolding::colors::hex_conversion const& test : tests) { scaffolding::colors::verify(test); }
+        for (scaffolding::color::rgba_hex_conversion const& test : tests) { scaffolding::color::verify(test); }
     }
 
 } // gfx

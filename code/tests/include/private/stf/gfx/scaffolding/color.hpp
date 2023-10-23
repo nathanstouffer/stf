@@ -7,16 +7,16 @@
 namespace stf {
 namespace gfx {
 namespace scaffolding {
-namespace colors {
+namespace color {
 
-    struct equality
+    struct rgba_equality
     {
         rgba const lhs;
         rgba const rhs;
         bool equal;
     };
 
-    void verify(equality const& test)
+    void verify(rgba_equality const& test)
     {
         if (test.equal)
         {
@@ -34,7 +34,7 @@ namespace colors {
         }
     }
 
-    struct hex_conversion
+    struct rgba_hex_conversion
     {
         uint32_t const hex_rgba;
         uint32_t const hex_abgr;
@@ -42,7 +42,7 @@ namespace colors {
         rgba const color;
     };
 
-    void verify(hex_conversion const& test)
+    void verify(rgba_hex_conversion const& test)
     {
         ASSERT_EQ(test.hex_rgba, test.color.to_hex_rgba()) << "failed conversion to rgba";
         ASSERT_EQ(test.hex_abgr, test.color.to_hex_abgr()) << "failed conversion to abgr";
@@ -53,7 +53,7 @@ namespace colors {
         ASSERT_EQ(test.color, rgba::from_hex_argb(test.hex_argb)) << "failed conversion from argb";
     }
 
-} // colors
+} // color
 } // scaffolding
 } // gfx
 } // stf
