@@ -4,6 +4,7 @@
 
 #include <algorithm>
 
+#include "stf/gfx/color.hpp"
 #include "stf/math/vector.hpp"
 
 namespace stf {
@@ -45,7 +46,7 @@ namespace alg {
     inline T smoothstep(T a, T b, T x)
     {
         T t = std::clamp(t, T(0), T(1));    // clamped
-        T s = t * t (T(3) - T(2) * t);      // smooth
+        T s = t * t * (T(3) - T(2) * t);    // smooth
         return lerp(a, b, s);
     }
 
@@ -104,6 +105,34 @@ namespace alg {
         }
         return result;
     }
+
+    inline gfx::color clamp(gfx::color const& lhs, gfx::color::num_t min, gfx::color::num_t max)
+    {
+        using vec_t = math::vec<gfx::color::num_t, 4>;
+        return gfx::color(clamp(static_cast<vec_t>(lhs), min, max));
+    }
+
+    inline gfx::color lerp(gfx::color const& lhs, gfx::color const& rhs, gfx::color::num_t t)
+    {
+        using vec_t = math::vec<gfx::color::num_t, 4>;
+        return gfx::color(lerp(static_cast<vec_t>(lhs), static_cast<vec_t>(rhs), t));
+    }
+
+    inline gfx::color lerpstep(gfx::color const& lhs, gfx::color const& rhs, gfx::color::num_t t)
+    {
+        using vec_t = math::vec<gfx::color::num_t, 4>;
+        return gfx::color(lerpstep(static_cast<vec_t>(lhs), static_cast<vec_t>(rhs), t));
+    }
+
+    inline gfx::color smoothstep(gfx::color const& lhs, gfx::color const& rhs, gfx::color::num_t t)
+    {
+        using vec_t = math::vec<gfx::color::num_t, 4>;
+        return gfx::color(smoothstep(static_cast<vec_t>(lhs), static_cast<vec_t>(rhs), t));
+    }
+
+    // TODO (stouff) write this blend function 
+    //inline gfx::color blend(gfx::color const& current, gfx::color const& writing)
+
 
 } // alg
 } // stf

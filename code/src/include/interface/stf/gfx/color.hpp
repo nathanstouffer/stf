@@ -79,11 +79,11 @@ namespace gfx {
         return !(lhs == rhs);
     }
 
-    std::ostream& operator<<(std::ostream& s, color const& rhs)
+    inline std::ostream& operator<<(std::ostream& s, color const& rhs)
     {
         return s << "[ " << rhs.r << ", " << rhs.g << ", " << rhs.b << ", " << rhs.a << " ]";
     }
-    
+
     // TODO (stouff) class for HSV and other ways of representing color
 
 } // gfx
