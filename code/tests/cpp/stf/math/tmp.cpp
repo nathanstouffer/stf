@@ -3,6 +3,7 @@
 
 #include <stf/types.hpp>
 
+// TODO (stouff) remove this file
 int main()
 {
     {
