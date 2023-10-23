@@ -80,9 +80,9 @@ jobs:
 
       - name: Compute Code Coverage
         if: ${{ matrix.build_type == 'Debug' && matrix.os == 'windows-latest' }}
-        working-directory: ${{ steps.strings.outputs.build-output-dir }}/tests/Debug/
+        working-directory: ${{ steps.strings.outputs.build-output-dir }}/tests/stf/Debug/
         ## Execute test coverage
-        run: OpenCppCoverage --export_type cobertura:coverage.xml --sources code\src\stf\* -- tests.exe
+        run: OpenCppCoverage --export_type cobertura:coverage.xml --sources code\src\* -- tests.exe
 
       - name: Upload coverage report
         if: ${{ matrix.build_type == 'Debug' && matrix.os == 'windows-latest' }}
@@ -90,5 +90,5 @@ jobs:
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
         with:
-          files: ${{ steps.strings.outputs.build-output-dir }}/tests/Debug/coverage.xml
+          files: ${{ steps.strings.outputs.build-output-dir }}/tests/stf/Debug/coverage.xml
           fail_ci_if_error: true
