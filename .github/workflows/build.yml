@@ -82,7 +82,7 @@ jobs:
         if: ${{ matrix.build_type == 'Debug' && matrix.os == 'windows-latest' }}
         working-directory: ${{ steps.strings.outputs.build-output-dir }}/tests/Debug/
         ## Execute test coverage
-        run: OpenCppCoverage --export_type cobertura:coverage.xml --sources code\src\stf\* -- tests.exe
+        run: OpenCppCoverage --export_type cobertura:coverage.xml --sources code\src\* -- tests.exe
 
       - name: Upload coverage report
         if: ${{ matrix.build_type == 'Debug' && matrix.os == 'windows-latest' }}
