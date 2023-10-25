@@ -31,7 +31,7 @@ jobs:
             cpp_compiler: clang++
         exclude:
           - os: windows-latest
-            build_ttype: Coverage
+            build_type: Coverage
           - os: windows-latest
             c_compiler: gcc
           - os: windows-latest
