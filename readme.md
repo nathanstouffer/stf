@@ -9,6 +9,6 @@
 
 ## Notes
 
-* At this time, code coverage is not completely accurate because any uninstantiated template (class or function) is not incorporated into coverage computations.
+* At this time, code coverage is not accurate because any uninstantiated template (class or function) is not incorporated into coverage computations.
 Any uninstantiated code is necessarily uncovered.
-As the entire library is templated, this means coverage is possibly **vastly** over-estimated.
+As the most of the library is templated, this means coverage is possibly **vastly** over-estimated.
