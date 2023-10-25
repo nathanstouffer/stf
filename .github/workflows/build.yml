@@ -73,14 +73,14 @@ jobs:
         run: ctest --build-config ${{ matrix.build_type }}
 
       - name: Compute Code Coverage
-        if: ${{ matrix.build_type == 'Coverage' }}
+        if: ${{ matrix.build_type == 'Coverage' && matrix.c_compiler == 'gcc' }}
         ## Execute test coverage
         run: |
           pip install gcovr
           gcovr -r code ${{ steps.strings.outputs.build-output-dir }} -f code/src/stf --xml > coverage.xml
 
       - name: Upload coverage report
-        if: ${{ matrix.build_type == 'Coverage' }}
+        if: ${{ matrix.build_type == 'Coverage' && matrix.c_compiler == 'gcc' }}
         uses: codecov/codecov-action@v3
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
