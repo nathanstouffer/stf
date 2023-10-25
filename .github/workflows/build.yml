@@ -75,9 +75,7 @@ jobs:
       - name: Compute Code Coverage
         if: ${{ matrix.build_type == 'Coverage' }}
         ## Execute test coverage
-        run: |
-          ${{ steps.strings.outputs.build-output-dir }}/tests/stf/tests.exe
-          gcovr -r code ${{ steps.strings.outputs.build-output-dir }} -f code/src/stf --xml > coverage.xml
+        run: gcovr -r code ${{ steps.strings.outputs.build-output-dir }} -f code/src/stf --xml > coverage.xml
 
       - name: Upload coverage report
         if: ${{ matrix.build_type == 'Coverage' }}
