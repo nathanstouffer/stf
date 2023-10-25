@@ -31,13 +31,15 @@ jobs:
             cpp_compiler: clang++
         exclude:
           - os: windows-latest
-            build_type: Coverage
-          - os: windows-latest
             c_compiler: gcc
           - os: windows-latest
             c_compiler: clang
           - os: ubuntu-latest
             c_compiler: cl
+          - c_compiler: clang
+            build_type: Coverage
+          - c_compiler: cl
+            build_type: Coverage
 
     steps:
       - name: checkout
@@ -73,14 +75,14 @@ jobs:
         run: ctest --build-config ${{ matrix.build_type }}
 
       - name: Compute Code Coverage
-        if: ${{ matrix.build_type == 'Coverage' && matrix.c_compiler == 'gcc' }}
+        if: ${{ matrix.build_type == 'Coverage' }}
         ## Execute test coverage
         run: |
           pip install gcovr
           gcovr -r code ${{ steps.strings.outputs.build-output-dir }} -f code/src/stf --xml > coverage.xml
 
       - name: Upload coverage report
-        if: ${{ matrix.build_type == 'Coverage' && matrix.c_compiler == 'gcc' }}
+        if: ${{ matrix.build_type == 'Coverage' }}
         uses: codecov/codecov-action@v3
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
