@@ -41,19 +41,19 @@ namespace alg {
     }
 
     template<typename T>
-    inline math::vec<T, 2> unit_vector(T const theta)
+    inline math::vec2<T> unit_vector(T const theta)
     {
-        return math::vec<T, 2>(std::cos(theta), std::sin(theta));
+        return math::vec2<T>(std::cos(theta), std::sin(theta));
     }
 
     template<typename T>
-    inline math::vec<T, 3> unit_vector(T const theta, T const phi)
+    inline math::vec3<T> unit_vector(T const theta, T const phi)
     {
         return cam::scamera<T>::dir(theta, phi);
     }
 
     template<typename T>
-    inline math::vec<T, 3> to_euclidean(T const radius, T const theta, T const phi)
+    inline math::vec3<T> to_euclidean(T const radius, T const theta, T const phi)
     {
         return radius * unit_vector(theta, phi);
     }

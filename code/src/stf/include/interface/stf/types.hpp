@@ -18,17 +18,17 @@ namespace stf {
         using constants = math::constants<T>;
 
         // vector types
-        using vec2 = math::vec<T, 2>;
-        using vec3 = math::vec<T, 3>;
-        using vec4 = math::vec<T, 4>;
+        using vec2 = math::vec2<T>;
+        using vec3 = math::vec3<T>;
+        using vec4 = math::vec4<T>;
 
         template<size_t N>
         using vec = math::vec<T, N>;
 
         // matrix types
-        using mtx2 = math::mtx<T, 2>;
-        using mtx3 = math::mtx<T, 3>;
-        using mtx4 = math::mtx<T, 4>;
+        using mtx2 = math::mtx2<T>;
+        using mtx3 = math::mtx3<T>;
+        using mtx4 = math::mtx4<T>;
 
         using scamera = cam::scamera<T>;
         using frustum = cam::frustum<T>;

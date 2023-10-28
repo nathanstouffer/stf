@@ -15,8 +15,8 @@ namespace cam {
     public:
 
         // type aliases to reduce verbosity
-        using vec_t = math::vec<T, 3>;
-        using mtx_t = math::mtx<T, 4>;
+        using vec_t = math::vec3<T>;
+        using mtx_t = math::mtx4<T>;
 
     public:
 
@@ -67,7 +67,7 @@ namespace cam {
 
         static inline vec_t dir(T const theta, T const phi)
         {
-            return math::vec<T, 3>(std::cos(theta) * std::sin(phi), std::sin(theta) * std::sin(phi), std::cos(phi));
+            return vec_t(std::cos(theta) * std::sin(phi), std::sin(theta) * std::sin(phi), std::cos(phi));
         }
 
     };
