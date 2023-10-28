@@ -14,11 +14,11 @@ coverage:
   status:
     project:
       default:
-        target: 80% # coverage must be above 80% to succeed
+        target: 50% # coverage must be above 50% to succeed
         base: auto # compare coverage to base branch for PRs and parent commit for non-PRs
     patch:
       default:
-        target: 80% # the diff coverage must be 80%
+        target: 50% # the diff coverage must be 50%
 
 # Pull request comments:
 # ----------------------

@@ -189,6 +189,11 @@ namespace math {
     template<typename T> struct mtx<T, 0> { mtx() = delete; };
     template<typename T> struct mtx<T, 1> { mtx() = delete; };
 
+    // type aliases for ease of use
+    template<typename T> using mtx2 = mtx<T, 2>;
+    template<typename T> using mtx3 = mtx<T, 3>;
+    template<typename T> using mtx4 = mtx<T, 4>;
+
     template<typename T, size_t N>
     inline mtx<T, N> operator*(mtx<T, N> const& lhs, mtx<T, N> const& rhs)
     {
@@ -217,49 +222,49 @@ namespace math {
         return result;
     }
 
-    template<typename T> inline mtx<T, 4> scale(vec<T, 3> const& scalars) { return mtx<T, 4>::scale(scalars); }
-    template<typename T> inline mtx<T, 4> scale_x(T const scalar) { return mtx<T, 4>::scale(vec<T, 3>(scalar, T(1), T(1))); }
-    template<typename T> inline mtx<T, 4> scale_y(T const scalar) { return mtx<T, 4>::scale(vec<T, 3>(T(1), scalar, T(1))); }
-    template<typename T> inline mtx<T, 4> scale_z(T const scalar) { return mtx<T, 4>::scale(vec<T, 3>(T(1), T(1)), scalar); }
+    template<typename T> inline mtx4<T> scale(vec<T, 3> const& scalars) { return mtx4<T>::scale(scalars); }
+    template<typename T> inline mtx4<T> scale_x(T const scalar) { return mtx4<T>::scale(vec<T, 3>(scalar, T(1), T(1))); }
+    template<typename T> inline mtx4<T> scale_y(T const scalar) { return mtx4<T>::scale(vec<T, 3>(T(1), scalar, T(1))); }
+    template<typename T> inline mtx4<T> scale_z(T const scalar) { return mtx4<T>::scale(vec<T, 3>(T(1), T(1)), scalar); }
 
-    template<typename T> inline mtx<T, 4> translate(vec<T, 3> const& scalars) { return mtx<T, 4>::translate(scalars); }
-    template<typename T> inline mtx<T, 4> translate_x(T const scalar) { return mtx<T, 4>::translate(vec<T, 3>(scalar, T(0), T(0))); }
-    template<typename T> inline mtx<T, 4> translate_y(T const scalar) { return mtx<T, 4>::translate(vec<T, 3>(T(0), scalar, T(0))); }
-    template<typename T> inline mtx<T, 4> translate_z(T const scalar) { return mtx<T, 4>::translate(vec<T, 3>(T(0), T(0)), scalar); }
+    template<typename T> inline mtx4<T> translate(vec<T, 3> const& scalars) { return mtx4<T>::translate(scalars); }
+    template<typename T> inline mtx4<T> translate_x(T const scalar) { return mtx4<T>::translate(vec<T, 3>(scalar, T(0), T(0))); }
+    template<typename T> inline mtx4<T> translate_y(T const scalar) { return mtx4<T>::translate(vec<T, 3>(T(0), scalar, T(0))); }
+    template<typename T> inline mtx4<T> translate_z(T const scalar) { return mtx4<T>::translate(vec<T, 3>(T(0), T(0)), scalar); }
 
     template<typename T>
-    inline mtx<T, 4> rotate_x(T const theta)
+    inline mtx4<T> rotate_x(T const theta)
     {
-        mtx<T, 4> result;
+        mtx4<T> result;
         result.row(1) = vec<T, 3>(T(0), std::cos(theta), -std::sin(theta));
         result.row(2) = vec<T, 3>(T(0), std::sin(theta),  std::cos(theta));
         return result;
     }
 
     template<typename T>
-    inline mtx<T, 4> rotate_y(T const theta)
+    inline mtx4<T> rotate_y(T const theta)
     {
-        mtx<T, 4> result;
+        mtx4<T> result;
         result.row(0) = vec<T, 3>( std::cos(theta), T(0), std::sin(theta));
         result.row(2) = vec<T, 3>(-std::sin(theta), T(0), std::cos(theta));
         return result;
     }
 
     template<typename T>
-    inline mtx<T, 4> rotate_z(T const theta)
+    inline mtx4<T> rotate_z(T const theta)
     {
-        mtx<T, 4> result;
+        mtx4<T> result;
         result.row(0) = vec<T, 3>(std::cos(theta), -std::sin(theta), T(0));
         result.row(1) = vec<T, 3>(std::sin(theta),  std::cos(theta), T(0));
         return result;
     }
 
-    template<typename T> inline mtx<T, 4> rotate_xyz(T const x, T const y, T const z) { return (rotate_x(x) *= rotate_y(y)) *= rotate_z(z); }
-    template<typename T> inline mtx<T, 4> rotate_xzy(T const x, T const z, T const y) { return (rotate_x(x) *= rotate_z(z)) *= rotate_y(y); }
-    template<typename T> inline mtx<T, 4> rotate_yxz(T const y, T const x, T const z) { return (rotate_y(y) *= rotate_x(x)) *= rotate_z(z); }
-    template<typename T> inline mtx<T, 4> rotate_yzx(T const y, T const z, T const x) { return (rotate_y(y) *= rotate_z(z)) *= rotate_x(x); }
-    template<typename T> inline mtx<T, 4> rotate_zxy(T const z, T const x, T const y) { return (rotate_z(z) *= rotate_x(x)) *= rotate_y(y); }
-    template<typename T> inline mtx<T, 4> rotate_zyx(T const z, T const y, T const x) { return (rotate_z(z) *= rotate_y(y)) *= rotate_x(x); }
+    template<typename T> inline mtx4<T> rotate_xyz(T const x, T const y, T const z) { return (rotate_x(x) *= rotate_y(y)) *= rotate_z(z); }
+    template<typename T> inline mtx4<T> rotate_xzy(T const x, T const z, T const y) { return (rotate_x(x) *= rotate_z(z)) *= rotate_y(y); }
+    template<typename T> inline mtx4<T> rotate_yxz(T const y, T const x, T const z) { return (rotate_y(y) *= rotate_x(x)) *= rotate_z(z); }
+    template<typename T> inline mtx4<T> rotate_yzx(T const y, T const z, T const x) { return (rotate_y(y) *= rotate_z(z)) *= rotate_x(x); }
+    template<typename T> inline mtx4<T> rotate_zxy(T const z, T const x, T const y) { return (rotate_z(z) *= rotate_x(x)) *= rotate_y(y); }
+    template<typename T> inline mtx4<T> rotate_zyx(T const z, T const y, T const x) { return (rotate_z(z) *= rotate_y(y)) *= rotate_x(x); }
 
     template<typename T>
     inline mtx<T, 2> rotate_plane(T const theta)
@@ -271,19 +276,19 @@ namespace math {
     }
 
     template<typename T>
-    inline mtx<T, 4> orthographic(T const l, T const r, T const b, T const t, T const n, T const f)
+    inline mtx4<T> orthographic(T const l, T const r, T const b, T const t, T const n, T const f)
     {
         vec<T, 3> scalars(T(2) / (r - l), T(2) / (t - b), -T(2) / (f - n));
         vec<T, 3> translators(-(r + l) / (r - l), -(t + b) / (t - b), -(f + n) / (f - n));
-        return mtx<T, 4>::scale(scalars) * mtx<T, 4>::translate(translators);
+        return mtx4<T>::scale(scalars) * mtx4<T>::translate(translators);
     }
 
     template<typename T>
-    inline mtx<T, 4> perspective(T const fov, T const aspect, T const near, T const far)
+    inline mtx4<T> perspective(T const fov, T const aspect, T const near, T const far)
     {
         T y_scale = T(1.0) / std::tan(T(0.5) * fov);
         T x_scale = y_scale / aspect;
-        mtx<T, 4> result;
+        mtx4<T> result;
         result[0][0] = x_scale;
         result[1][1] = y_scale;
         result[2][2] = far / (near - far);
@@ -294,7 +299,7 @@ namespace math {
 
     // NOTE: we assume axis is a unit vector
     template<typename T>
-    inline mtx<T, 4> rotate(vec<T, 3> const& axis, T const theta)
+    inline mtx4<T> rotate(vec<T, 3> const& axis, T const theta)
     {
         // perform computations once
         T const cosine = std::cos(theta);
@@ -312,7 +317,7 @@ namespace math {
         vec<T, 4> row_2(z * x * comp - y * sine, z * y * comp + x * sine, cosine + z * z * comp, T(0));
 
         // construct return matrix
-        mtx<T, 4> rotation;
+        mtx4<T> rotation;
         rotation.row(0) = row_0;
         rotation.row(1) = row_1;
         rotation.row(2) = row_2;
@@ -321,12 +326,12 @@ namespace math {
 
     // NOTE: we assume angles are from the perspective of the focus point and that right is a unit vector
     template<typename T>
-    inline mtx<T, 4> orbit(vec<T, 3> const& focus, vec<T, 3> const& right, T const delta_phi, T const delta_theta)
+    inline mtx4<T> orbit(vec<T, 3> const& focus, vec<T, 3> const& right, T const delta_phi, T const delta_theta)
     {
-        mtx<T, 4> translate = mtx<T, 4>::translate(-focus);
-        mtx<T, 4> pitch = rotate(right, delta_phi);
-        mtx<T, 4> yaw = rotate(vec<T, 3>(0, 0, 1), delta_theta);
-        mtx<T, 4> invert_translation = mtx<T, 4>::translate(focus);
+        mtx4<T> translate = mtx4<T>::translate(-focus);
+        mtx4<T> pitch = rotate(right, delta_phi);
+        mtx4<T> yaw = rotate(vec<T, 3>(0, 0, 1), delta_theta);
+        mtx4<T> invert_translation = mtx4<T>::translate(focus);
         return invert_translation * yaw * pitch * translate;
     }
 
