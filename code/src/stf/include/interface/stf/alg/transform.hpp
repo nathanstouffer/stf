@@ -2,12 +2,24 @@
 
 #include <cmath>
 
+#include "stf/cam/scamera.hpp"
+#include "stf/math/matrix.hpp"
 #include "stf/math/vector.hpp"
 
 namespace stf {
 namespace alg {
 
-    // TODO (stouff) write a 2D version of rotate/orbit
+    template<typename T>
+    inline math::vec<T, 2> rotate(math::vec<T, 2> const& val, T const theta)
+    {
+        return math::rotate_plane<T>(theta) * val;
+    }
+
+    template<typename T>
+    inline math::vec<T, 2> orbit(math::vec<T, 3> const& val, math::vec<T, 2> const& focus, T const theta)
+    {
+        return rotate(val - focus, theta) + focus;
+    }
 
     // NOTE: we assume axis is a unit vector
     // NOTE: rotates about the origin
