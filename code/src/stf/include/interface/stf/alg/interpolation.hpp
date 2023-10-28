@@ -23,8 +23,8 @@ namespace alg {
     template<typename T>
     inline T smooth_time(T t)
     {
-        T t = clamp_time(t);                // clamped
-        return t * t * (T(3) - T(2) * t);   // smoothed
+        T const s = clamp_time(t);                // clamped
+        return s * s * (T(3) - T(2) * s);   // smoothed
     }
 
     // multiply and add
@@ -65,6 +65,27 @@ namespace alg {
         return lerp(a, b, smooth_time(t));
     }
 
+    // function to interpolate between p0 and p1 using cubic hermite splines (https://en.wikipedia.org/wiki/Cubic_Hermite_spline)
+    // the spline function f(t) is defined on [0, 1] and satisfies the following constraints
+    //    * f(0) = p0 and f(1) = p1
+    //    * f'(0) = m0 and f'(1) = m1
+    // so consecutive splines can be made C^1 at the boundary. because this function assumes a domain of [0, 1], the derivatives
+    // passed in (m0 and m1) must be scaled by the length of the actual interval to get accurate results
+    template<typename T>
+    inline T cubic_hermite_spline(T const p0, T const m0, T const p1, T const m1, T const t)
+    {
+        T t_squared = t * t;
+        T t_cubed = t_squared * t;
+
+        // compute basis values
+        T b0 = T(2) * t_cubed - T(3) * t_squared + T(1);
+        T b1 = t_cubed - T(2) * t_squared + t;
+        T b2 = T(-2) * t_cubed + T(3) * t_squared;
+        T b3 = t_cubed - t_squared;
+
+        return b0 * p0 + b1 * m0 + b2 * p1 + b3 * m1;
+    }
+
     template<typename T>
     inline T sigmoid(T x)
     {
@@ -102,13 +123,24 @@ namespace alg {
     template<class T, size_t N>
     inline math::vec<T, N> lerpstep(math::vec<T, N> const& a, math::vec<T, N> const& b, T const t)
     {
-        return lerp(a, b, clamp_time(t))
+        return lerp(a, b, clamp_time(t));
     }
 
     template<class T, size_t N>
     inline math::vec<T, N> smoothstep(math::vec<T, N> const& a, math::vec<T, N> const& b, T const t)
     {
         return lerp(a, b, smooth_time(t));
+    }
+
+    template<typename T, size_t N>
+    inline math::vec<T, N> cubic_hermite_spline(math::vec<T, N> const p0, math::vec<T, N> const m0, math::vec<T, N> const p1, math::vec<T, N> const m1, T const t)
+    {
+        math::vec<T, N> result;
+        for (size_t i = 0; i < N; ++i)
+        {
+            result[i] = cubic_hermite_spline(p0[i], m0[i], p1[i], m1[i], t);
+        }
+        return result;
     }
 
     inline gfx::rgba clamp(gfx::rgba const& lhs, gfx::rgba::num_t min, gfx::rgba::num_t max)
