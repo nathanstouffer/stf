@@ -47,7 +47,8 @@ namespace gfx {
 
     public:
 
-        inline explicit operator math::vec<rgba::num_t, 4>() const { return math::vec<rgba::num_t, 4>(r, g, b, a); }
+        inline math::vec<rgba::num_t, 4> as_vec() const { return math::vec<rgba::num_t, 4>(r, g, b, a); }
+        inline explicit operator math::vec<rgba::num_t, 4>() const { return as_vec(); }
 
         inline uint32_t to_hex_rgba() const { return (to_hex(r) << 24) | (to_hex(g) << 16) | (to_hex(b) << 8) | (to_hex(a)); }
         inline uint32_t to_hex_abgr() const { return (to_hex(a) << 24) | (to_hex(b) << 16) | (to_hex(g) << 8) | (to_hex(r)); }

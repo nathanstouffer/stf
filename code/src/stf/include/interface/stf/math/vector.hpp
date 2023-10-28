@@ -221,6 +221,11 @@ namespace math {
     // delete invalid vector specialization
     template<typename T> struct vec<T, 0> { vec() = delete; };
 
+    // type aliases for ease of use
+    template<typename T> using vec2 = vec<T, 2>;
+    template<typename T> using vec3 = vec<T, 3>;
+    template<typename T> using vec4 = vec<T, 4>;
+
     template<typename T, size_t N>
     inline T const dist(vec<T, N> const& lhs, vec<T, N> const& rhs)
     {
@@ -293,9 +298,9 @@ namespace math {
     }
 
     template<typename T>
-    inline vec<T, 3> cross(vec<T, 3> const& lhs, vec<T, 3> const& rhs)
+    inline vec3<T> const cross(vec3<T> const& lhs, vec3<T> const& rhs)
     {
-        return vec<T, 3>
+        return vec3<T>
         (
             lhs.y * rhs.z - rhs.y * lhs.z,
             rhs.x * lhs.z - lhs.x * rhs.z,

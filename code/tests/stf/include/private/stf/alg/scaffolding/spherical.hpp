@@ -3,12 +3,12 @@
 #include <gtest/gtest.h>
 
 #include <stf/types.hpp>
-#include <stf/alg/circle.hpp>
+#include <stf/alg/spherical.hpp>
 
 namespace stf {
 namespace alg {
 namespace scaffolding {
-namespace circle {
+namespace spherical {
 
     template<typename T>
     struct conversion

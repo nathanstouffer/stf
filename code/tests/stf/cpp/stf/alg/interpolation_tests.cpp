@@ -99,5 +99,5 @@ namespace alg {
         for (scaffolding::interpolation::lerpstep<float> const& test : tests) { scaffolding::interpolation::verify(test); }
     }
 
-} // math
+} // alg
 } // stf
