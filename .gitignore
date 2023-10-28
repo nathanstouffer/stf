@@ -5,6 +5,7 @@
 # build directories
 .[Bb]uild/
 [Bb]uild/
+.vs-build/
 
 # object files
 *.o
