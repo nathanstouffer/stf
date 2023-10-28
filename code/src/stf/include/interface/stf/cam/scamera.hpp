@@ -3,6 +3,7 @@
 #include "stf/alg/spherical.hpp"
 #include "stf/math/constants.hpp"
 #include "stf/math/matrix.hpp"
+#include "stf/math/scalar.hpp"
 #include "stf/math/vector.hpp"
 
 namespace stf {
@@ -68,6 +69,51 @@ namespace cam {
         // mtx_t inv_view_proj() const;
 
     };
+
+    template<typename T>
+    inline bool const equ(scamera<T> const& lhs, scamera<T> const& rhs, T eps)
+    {
+        return equ(lhs.eye, rhs.eye, eps)
+                && math::equ(lhs.theta, rhs.theta, eps)
+                && math::equ(lhs.phi, rhs.phi, eps)
+                && math::equ(lhs.near, rhs.near, eps)
+                && math::equ(lhs.far, rhs.far, eps)
+                && math::equ(lhs.aspect, rhs.aspect, eps)
+                && math::equ(lhs.fov, rhs.fov, eps);
+    }
+
+    template<typename T>
+    inline bool const neq(scamera<T> const& lhs, scamera<T> const& rhs, T eps)
+    {
+        return !equ(lhs, rhs, eps);
+    }
+
+    template<typename T>
+    inline bool const operator==(scamera<T> const& lhs, scamera<T> const& rhs)
+    {
+        return equ(lhs, rhs, math::constants<T>::tol);
+    }
+
+    template<typename T>
+    inline bool const operator!=(scamera<T> const& lhs, scamera<T> const& rhs)
+    {
+        return !(lhs == rhs);
+    }
+
+    template <typename T>
+    std::ostream& operator<<(std::ostream& s, scamera<T> const& rhs)
+    {
+        s << "[";
+        s << " eye: " << rhs.eye;
+        s << " theta: " << rhs.theta;
+        s << " phi: " << rhs.phi;
+        s << " near: " << rhs.near;
+        s << " far: " << rhs.far;
+        s << " aspect: " << rhs.aspect;
+        s << " fov: " << rhs.fov;
+        s << " ]";
+        return s;
+    }
 
 } // cam
 } // stf

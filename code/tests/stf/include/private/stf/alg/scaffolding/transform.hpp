@@ -76,6 +76,22 @@ namespace transform {
         ASSERT_EQ(test.expected, (math::orbit(test.focus, test.right, test.delta_phi, test.delta_theta) * homogenized_t(test.initial, 1)).xyz) << "Failed orbit matrix";
     }
 
+    template<typename T>
+    struct orbit_scamera
+    {
+        cam::scamera<T> const initial;
+        math::vec3<T> const focus;
+        T const delta_phi;
+        T const delta_theta;
+        cam::scamera<T> const expected;
+    };
+
+    template<typename T>
+    void verify(orbit_scamera<T> const& test)
+    {
+        ASSERT_EQ(test.expected, alg::orbit(test.initial, test.focus, test.delta_phi, test.delta_theta)) << "Failed scamera orbit function";
+    }
+
 } // transform
 } // scaffolding
 } // alg
