@@ -21,7 +21,8 @@ namespace cam {
 
     public:
 
-        static T constexpr c_default_eye = vec_t(0);
+        static vec_t constexpr c_default_eye = vec_t(0);
+
         static T constexpr c_default_theta = math::constants<T>::half_pi;
         static T constexpr c_default_phi = math::constants<T>::pi;
         static T constexpr c_default_near = T(0.1);
@@ -50,9 +51,11 @@ namespace cam {
         scamera(vec_t const& _eye, T const _theta, T const _phi) : scamera(_eye, _theta, _phi, c_default_near, c_default_far) {}
         scamera(vec_t const& _eye, T const _theta, T const _phi, T const _near, T const _far) : scamera(_eye, _theta, _phi, _near, _far, c_default_aspect) {}
         scamera(vec_t const& _eye, T const _theta, T const _phi, T const _near, T const _far, T const _aspect) : scamera(_eye, _theta, _phi, _near, _far, _aspect, c_default_fov) {}
+        scamera(T const _theta) : scamera(c_default_eye, _theta) {}
+        scamera(T const _theta, T const _phi) : scamera(c_default_eye, _theta, _phi) {}
 
         vec_t look() const { return alg::unit_vector(theta, phi); }
-        vec_t up() const { return alg::unit_vector(theta, phi - math::constants<T>::half_phi); }
+        vec_t up() const { return alg::unit_vector(theta, phi - math::constants<T>::half_pi); }
         vec_t right() const { return math::cross(look(), up()); }
 
         // TODO (stouff) write these matrix methods

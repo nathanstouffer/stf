@@ -23,7 +23,7 @@ namespace alg {
     template<typename T>
     inline T smooth_time(T t)
     {
-        T const s = clamp_time(t);                // clamped
+        T const s = clamp_time(t);          // clamped
         return s * s * (T(3) - T(2) * s);   // smoothed
     }
 
