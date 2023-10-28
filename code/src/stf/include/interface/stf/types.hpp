@@ -29,7 +29,7 @@ namespace stf {
         using mtx3 = math::mtx<T, 3>;
         using mtx4 = math::mtx<T, 4>;
 
-        using scamera = math::scamera<T>;
+        using scamera = cam::scamera<T>;
 
     };
 

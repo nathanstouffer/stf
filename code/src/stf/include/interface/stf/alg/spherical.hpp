@@ -1,5 +1,6 @@
 #pragma once
 
+#include "stf/cam/scamera.hpp"
 #include "stf/math/constants.hpp"
 #include "stf/math/vector.hpp"
 
@@ -43,6 +44,18 @@ namespace alg {
     inline math::vec<T, 2> unit_vector(T const theta)
     {
         return math::vec<T, 2>(std::cos(theta), std::sin(theta));
+    }
+
+    template<typename T>
+    inline math::vec<T, 3> unit_vector(T const theta, T const phi)
+    {
+        return cam::scamera<T>::dir(theta, phi);
+    }
+
+    template<typename T>
+    inline math::vec<T, 3> to_euclidean(T const radius, T const theta, T const phi)
+    {
+        return radius * unit_vector(theta, phi);
     }
 
 } // alg

@@ -293,7 +293,7 @@ namespace math {
     }
 
     template<typename T>
-    inline vec<T, 3> cross(vec<T, 3> const& lhs, vec<T, 3> const& rhs)
+    inline vec<T, 3> const cross(vec<T, 3> const& lhs, vec<T, 3> const& rhs)
     {
         return vec<T, 3>
         (

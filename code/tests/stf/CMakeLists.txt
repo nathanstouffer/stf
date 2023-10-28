@@ -9,7 +9,7 @@ set(TEST_FILES
     ${TEST_FILES_PREFIX}/math/vec5_tests.cpp
     ${TEST_FILES_PREFIX}/math/mtx4_tests.cpp
     ${TEST_FILES_PREFIX}/gfx/color_tests.cpp
-    ${TEST_FILES_PREFIX}/alg/circle_tests.cpp
+    ${TEST_FILES_PREFIX}/alg/spherical_tests.cpp
     ${TEST_FILES_PREFIX}/alg/interpolation_tests.cpp
     ${TEST_FILES_PREFIX}/alg/transform_tests.cpp
 )
