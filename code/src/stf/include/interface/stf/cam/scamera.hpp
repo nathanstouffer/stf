@@ -1,5 +1,6 @@
 #pragma once
 
+#include "stf/alg/spherical.hpp"
 #include "stf/math/constants.hpp"
 #include "stf/math/matrix.hpp"
 #include "stf/math/vector.hpp"
@@ -8,7 +9,7 @@ namespace stf {
 namespace cam {
 
     // Struct to represent a simple camera -- one where the right vector is always in the plane normal
-    // to (0, 0, 1). The look direction is represented by spherical coordinates centered on the eye
+    // to (0, 0, 1). The look direction is represented by spherical coordinates with the eye as the origin
     template<typename T>
     struct scamera
     {
@@ -50,11 +51,11 @@ namespace cam {
         scamera(vec_t const& _eye, T const _theta, T const _phi, T const _near, T const _far) : scamera(_eye, _theta, _phi, _near, _far, c_default_aspect) {}
         scamera(vec_t const& _eye, T const _theta, T const _phi, T const _near, T const _far, T const _aspect) : scamera(_eye, _theta, _phi, _near, _far, _aspect, c_default_fov) {}
 
-        vec_t look() const { return scamera::dir(theta, phi); }
-        vec_t up() const { return scamera::dir(theta, phi - math::constants<T>::half_phi); }
+        vec_t look() const { return alg::unit_vector(theta, phi); }
+        vec_t up() const { return alg::unit_vector(theta, phi - math::constants<T>::half_phi); }
         vec_t right() const { return math::cross(look(), up()); }
 
-        // TODO (stouff) write this matrix methods
+        // TODO (stouff) write these matrix methods
         // mtx_t view() const;
         // mtx_t proj() const;
         // mtx_t view_proj() const;
@@ -62,13 +63,6 @@ namespace cam {
         // mtx_t inv_view() const;
         // mtx_t inv_proj() const;
         // mtx_t inv_view_proj() const;
-
-    public:
-
-        static inline vec_t dir(T const theta, T const phi)
-        {
-            return vec_t(std::cos(theta) * std::sin(phi), std::sin(theta) * std::sin(phi), std::cos(phi));
-        }
 
     };
 

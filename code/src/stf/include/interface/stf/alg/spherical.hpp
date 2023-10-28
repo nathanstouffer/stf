@@ -1,6 +1,5 @@
 #pragma once
 
-#include "stf/cam/scamera.hpp"
 #include "stf/math/constants.hpp"
 #include "stf/math/vector.hpp"
 
@@ -49,7 +48,7 @@ namespace alg {
     template<typename T>
     inline math::vec3<T> unit_vector(T const theta, T const phi)
     {
-        return cam::scamera<T>::dir(theta, phi);
+        return math::vec3<T>(std::cos(theta) * std::sin(phi), std::sin(theta) * std::sin(phi), std::cos(phi));
     }
 
     template<typename T>
