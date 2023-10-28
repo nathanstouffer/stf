@@ -16,7 +16,7 @@ namespace alg {
     }
 
     template<typename T>
-    inline math::vec2<T> orbit(math::vec3<T> const& val, math::vec2<T> const& focus, T const theta)
+    inline math::vec2<T> orbit(math::vec2<T> const& val, math::vec2<T> const& focus, T const theta)
     {
         return rotate(val - focus, theta) + focus;
     }

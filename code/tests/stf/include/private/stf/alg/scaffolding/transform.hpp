@@ -11,6 +11,36 @@ namespace scaffolding {
 namespace transform {
 
     template<typename T>
+    struct rotate2
+    {
+        math::vec<T, 2> const initial;
+        T const delta_theta;
+        math::vec<T, 2> const expected;
+    };
+
+    template<typename T>
+    void verify(rotate2<T> const& test)
+    {
+        ASSERT_EQ(test.expected, alg::rotate(test.initial, test.delta_theta)) << "Failed rotate function";
+        ASSERT_EQ(test.expected, math::rotate_plane(test.delta_theta) * test.initial) << "Failed rotate matrix";
+    }
+
+    template<typename T>
+    struct orbit2
+    {
+        math::vec<T, 2> const initial;
+        math::vec<T, 2> const focus;
+        T const delta_theta;
+        math::vec<T, 2> const expected;
+    };
+
+    template<typename T>
+    void verify(orbit2<T> const& test)
+    {
+        ASSERT_EQ(test.expected, alg::orbit(test.initial, test.focus, test.delta_theta)) << "Failed orbit function";
+    }
+
+    template<typename T>
     struct rotate3
     {
         math::vec<T, 3> const initial;
