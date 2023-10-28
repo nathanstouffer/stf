@@ -65,6 +65,23 @@ namespace alg {
         return lerp(a, b, smooth_time(t));
     }
 
+    // TODO (stouff) simplify this to just one polynomial
+    template<typename T>
+    inline T cubic_bezier(T const a, T const b, T const c, T const d, T const t)
+    {
+        // first round of lerps
+        T const a1 = lerp(a, b, t);
+        T const b1 = lerp(b, c, t);
+        T const c1 = lerp(c, d, t);
+
+        // second round of lerps
+        T const a2 = lerp(a1, b1, t);
+        T const b2 = lerp(b1, c1, t);
+
+        // final lerp
+        return lerp(a2, b2, t);
+    }
+
     // function to interpolate between p0 and p1 using cubic hermite splines (https://en.wikipedia.org/wiki/Cubic_Hermite_spline)
     // the spline function f(t) is defined on [0, 1] and satisfies the following constraints
     //    * f(0) = p0 and f(1) = p1
@@ -130,6 +147,17 @@ namespace alg {
     inline math::vec<T, N> smoothstep(math::vec<T, N> const& a, math::vec<T, N> const& b, T const t)
     {
         return lerp(a, b, smooth_time(t));
+    }
+
+    template<typename T, size_t N>
+    inline math::vec<T, N> cubic_bezier(math::vec<T, N> const a, math::vec<T, N> const b, math::vec<T, N> const c, math::vec<T, N> const d, T const t)
+    {
+        math::vec<T, N> result;
+        for (size_t i = 0; i < N; ++i)
+        {
+            result[i] = cubic_bezier(a[i], b[i], c[i], d[i], t);
+        }
+        return result;
     }
 
     template<typename T, size_t N>
