@@ -1,5 +1,6 @@
 #pragma once
 
+#include "stf/cam/frustum.hpp"
 #include "stf/cam/scamera.hpp"
 #include "stf/math/constants.hpp"
 #include "stf/math/matrix.hpp"
@@ -30,6 +31,7 @@ namespace stf {
         using mtx4 = math::mtx<T, 4>;
 
         using scamera = cam::scamera<T>;
+        using frustum = cam::frustum<T>;
 
     };
 
