@@ -1,5 +1,6 @@
 #pragma once
 
+#include "stf/cam/scamera.hpp"
 #include "stf/math/constants.hpp"
 #include "stf/math/matrix.hpp"
 #include "stf/math/vector.hpp"
@@ -27,6 +28,8 @@ namespace stf {
         using mtx2 = math::mtx<T, 2>;
         using mtx3 = math::mtx<T, 3>;
         using mtx4 = math::mtx<T, 4>;
+
+        using scamera = math::scamera<T>;
 
     };
 
