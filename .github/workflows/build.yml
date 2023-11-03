@@ -76,15 +76,15 @@ jobs:
         run: ctest --build-config ${{ matrix.build_type }}
 
       # Use this to set up an open ssh debugging session with CI
-      - name: Setup upterm session
-        uses: lhotari/action-upterm@v1
+      # - name: Setup upterm session
+      #   uses: lhotari/action-upterm@v1
 
       - name: Compute Code Coverage
         if: ${{ matrix.build_type == 'Coverage' }}
         ## Execute test coverage
         run: |
           llvm-profdata-14 merge -sparse ${{ steps.strings.outputs.tests-output-dir }}/default.profraw -o ${{ steps.strings.outputs.tests-output-dir }}/tests.profdata
-          llvm-cov-14 show ${{ steps.strings.outputs.tests-output-dir }}/tests -instr-profile=tests.profdata > coverage.txt
+          llvm-cov-14 show ${{ steps.strings.outputs.tests-output-dir }}/tests -instr-profile=${{ steps.strings.outputs.tests-output-dir }}tests.profdata > coverage.txt
 
       - name: Upload coverage report
         if: ${{ matrix.build_type == 'Coverage' }}
