@@ -93,10 +93,10 @@ jobs:
           llvm-cov-14 show tests -instr-profile=tests.profdata ${{ steps.strings.outputs.code-dir }}/src > coverage-lines.txt
           llvm-cov-14 report tests -instr-profile=tests.profdata ${{ steps.strings.outputs.code-dir }}/src > coverage-files.txt
 
-      - name: Upload coverage results to github
+      - name: Upload coverage to github
         uses: actions/upload-artifact@v3
         with:
-          name: coverage-results
+          name: coverage
           path: ${{ steps.strings.outputs.tests-output-dir }}/coverage-*.txt
 
       - name: Upload coverage to codecov
