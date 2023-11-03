@@ -53,6 +53,7 @@ jobs:
         shell: bash
         run: |
           echo "build-output-dir=${{ github.workspace }}/build" >> "$GITHUB_OUTPUT"
+          echo "test-output-dir=${{ github.workspace }}/build/tests/stf" >> "$GITHUB_OUTPUT"
 
       - name: Configure CMake
         # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only required if you are using a single-configuration generator such as make.
@@ -74,15 +75,16 @@ jobs:
         # See https://cmake.org/cmake/help/latest/manual/ctest.1.html for more detail
         run: ctest --build-config ${{ matrix.build_type }}
 
-      - name: Setup upterm session
-        uses: lhotari/action-upterm@v1
+      # Use this to set up an open ssh debugging session with CI
+      # - name: Setup upterm session
+      #   uses: lhotari/action-upterm@v1
 
       - name: Compute Code Coverage
         if: ${{ matrix.build_type == 'Coverage' }}
         ## Execute test coverage
         run: |
-          llvm-profdata-14 merge -sparse ${{ steps.strings.outputs.build-output-dir }}/default.profraw -o ${{ steps.strings.outputs.build-output-dir }}/tests.profdata
-          llvm-cov-14 show ${{ steps.strings.outputs.build-output-dir }}/tests/stf/tests -instr-profile=default.profdata > coverage.txt
+          llvm-profdata-14 merge -sparse ${{ steps.strings.outputs.tests-output-dir }}/default.profraw -o ${{ steps.strings.outputs.tests-output-dir }}/tests.profdata
+          llvm-cov-14 show ${{ steps.strings.outputs.tests-output-dir }}/tests -instr-profile=tests.profdata > coverage.txt
 
       - name: Upload coverage report
         if: ${{ matrix.build_type == 'Coverage' }}
