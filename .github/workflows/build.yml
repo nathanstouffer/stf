@@ -84,7 +84,7 @@ jobs:
         ## Execute test coverage
         run: |
           llvm-profdata-14 merge -sparse ${{ steps.strings.outputs.tests-output-dir }}/default.profraw -o ${{ steps.strings.outputs.tests-output-dir }}/tests.profdata
-          llvm-cov-14 show ${{ steps.strings.outputs.tests-output-dir }}/tests -instr-profile=${{ steps.strings.outputs.tests-output-dir }}tests.profdata > coverage.txt
+          llvm-cov-14 show ${{ steps.strings.outputs.tests-output-dir }}/tests -instr-profile=${{ steps.strings.outputs.tests-output-dir }}/tests.profdata > coverage.txt
 
       - name: Upload coverage report
         if: ${{ matrix.build_type == 'Coverage' }}
