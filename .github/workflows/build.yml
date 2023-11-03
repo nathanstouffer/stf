@@ -99,5 +99,5 @@ jobs:
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
         with:
-          files: ${{ steps.strings.outputs.tests-output-dir }}/coverage*.txt
+          files: ${{ steps.strings.outputs.tests-output-dir }}/coverage-lines.txt
           fail_ci_if_error: true
