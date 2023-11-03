@@ -76,8 +76,8 @@ jobs:
         run: ctest --build-config ${{ matrix.build_type }}
 
       # Use this to set up an open ssh debugging session with CI
-      # - name: Setup upterm session
-      #   uses: lhotari/action-upterm@v1
+      - name: Setup upterm session
+        uses: lhotari/action-upterm@v1
 
       - name: Compute Code Coverage
         if: ${{ matrix.build_type == 'Coverage' }}
