@@ -81,10 +81,11 @@ jobs:
 
       - name: Compute Code Coverage
         if: ${{ matrix.build_type == 'Coverage' }}
+        working-directory: ${{ steps.strings.outputs.tests-output-dir }}
         ## Execute test coverage
         run: |
-          llvm-profdata-14 merge -sparse ${{ steps.strings.outputs.tests-output-dir }}/default.profraw -o ${{ steps.strings.outputs.tests-output-dir }}/tests.profdata
-          llvm-cov-14 show ${{ steps.strings.outputs.tests-output-dir }}/tests -instr-profile=${{ steps.strings.outputs.tests-output-dir }}/tests.profdata > coverage.txt
+          llvm-profdata-14 merge -sparse default.profraw -o tests.profdata
+          llvm-cov-14 show tests -instr-profile=tests.profdata > coverage.txt
 
       - name: Upload coverage report
         if: ${{ matrix.build_type == 'Coverage' }}
@@ -92,5 +93,5 @@ jobs:
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
         with:
-          files: coverage.txt
+          files: ${{ steps.strings.outputs.tests-output-dir }}/coverage.txt
           fail_ci_if_error: true
