@@ -46,7 +46,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           submodules: recursive
-          
+
       # Use this to set up an open ssh debugging session with CI
       # - name: Setup ssh session
       #   uses: lhotari/action-upterm@v1
@@ -93,7 +93,13 @@ jobs:
           llvm-cov-14 show tests -instr-profile=tests.profdata ${{ steps.strings.outputs.code-dir }}/src > coverage-lines.txt
           llvm-cov-14 report tests -instr-profile=tests.profdata ${{ steps.strings.outputs.code-dir }}/src > coverage-files.txt
 
-      - name: Upload coverage report
+      - name: Upload coverage results to github
+        uses: actions/upload-artifact@v3
+        with:
+          name: coverage-results
+          path: ${{ steps.strings.outputs.tests-output-dir }}/coverage-*.txt
+
+      - name: Upload coverage to codecov
         if: ${{ matrix.build_type == 'Coverage' }}
         uses: codecov/codecov-action@v3
         env:
