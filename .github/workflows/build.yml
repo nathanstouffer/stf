@@ -52,6 +52,7 @@ jobs:
         id: strings
         shell: bash
         run: |
+          echo "code-dir=${{ github.workspace }}/code" >> "$GITHUB_OUTPUT"
           echo "build-output-dir=${{ github.workspace }}/build" >> "$GITHUB_OUTPUT"
           echo "tests-output-dir=${{ github.workspace }}/build/tests/stf" >> "$GITHUB_OUTPUT"
 
@@ -85,7 +86,7 @@ jobs:
         ## Execute test coverage
         run: |
           llvm-profdata-14 merge -sparse default.profraw -o tests.profdata
-          llvm-cov-14 show tests -instr-profile=tests.profdata > coverage.txt
+          llvm-cov-14 show tests -instr-profile=tests.profdata -sources ${{ steps.strings.outputs.tests-output-dir }}/src/stf > coverage.txt
 
       - name: Upload coverage report
         if: ${{ matrix.build_type == 'Coverage' }}
