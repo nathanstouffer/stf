@@ -181,10 +181,5 @@ namespace math {
         for (scaffolding::vec::negate<float, 2> const& test : tests) { scaffolding::vec::verify(test); }
     }
 
-    TEST(vec2, stuff)
-    {
-        ASSERT_EQ(1, 1);
-    }
-
 } // math
 } // stf
