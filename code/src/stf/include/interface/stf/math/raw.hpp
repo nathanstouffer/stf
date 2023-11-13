@@ -6,6 +6,8 @@ namespace stf {
 namespace math {
 namespace raw {
 
+    // TODO (stouff) we might be able to implement this is as forward declared functions/classes in the vector header
+
     template<typename T, size_t N>
     inline void plus_equals(T lhs[N], T const rhs[N])
     {
