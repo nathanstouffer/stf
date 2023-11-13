@@ -250,6 +250,17 @@ namespace math {
         return temp(lhs.x + rhs.x);
     }
 
+#define BAR(x) ((x) || (x))
+
+    template <typename T>
+    inline void foo(T x)
+    {
+        for (unsigned I = 0; I < 10; ++I)
+        {
+            BAR(I);
+        }
+    }
+
     template<typename T, size_t N>
     inline T const dist(vec<T, N> const& lhs, vec<T, N> const& rhs)
     {
