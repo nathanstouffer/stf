@@ -14,11 +14,10 @@ jobs:
       # Cancel all in-progress and queued jobs in the matrix if any job in the matrix fails
       fail-fast: true
 
-      # TODO (stouff) revert matrix configuration
       # Set up a matrix to run the different configurations:
       matrix:
-        os: [ubuntu-latest] # [ubuntu-latest, windows-latest]
-        build_type: [Coverage] # [Debug, Release, Coverage]
+        os: [ubuntu-latest, windows-latest]
+        build_type: [Debug, Release, Coverage]
         c_compiler: [gcc, clang, cl]
         include:
           # - os: windows-latest
