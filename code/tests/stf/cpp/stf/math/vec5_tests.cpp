@@ -39,5 +39,10 @@ namespace math {
         ASSERT_EQ(6, stf::math::simple_inc(5)) << "failed increment";
     }
 
+    TEST(vec5, another_temp)
+    {
+        ASSERT_EQ(1, 1);
+    }
+
 } // math
 } // stf
