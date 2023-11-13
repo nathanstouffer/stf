@@ -9,6 +9,11 @@
 namespace stf {
 namespace math {
 
+    TEST(vec2, temp)
+    {
+        stff::vec2 result = stff::vec2(1) + stff::vec2(2);
+    }
+
     TEST(vec2, index)
     {
         std::vector<scaffolding::vec::read<float, 2>> tests =
