@@ -9,6 +9,12 @@
 namespace stf {
 namespace alg {
 
+    template<typename T>
+    inline int increment(int a)
+    {
+        return a + 1;
+    }
+
     TEST(interpolation, lerp)
     {
         std::vector<scaffolding::interpolation::lerp<float>> tests =
