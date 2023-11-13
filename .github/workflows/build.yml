@@ -91,8 +91,8 @@ jobs:
         ## Execute test coverage
         run: |
           llvm-profdata-14 merge default.profraw -o tests.profdata
-          llvm-cov-14 show tests -instr-profile=tests.profdata ${{ steps.strings.outputs.code-dir }} > coverage-lines.txt
-          llvm-cov-14 report tests -instr-profile=tests.profdata ${{ steps.strings.outputs.code-dir }} > coverage-files.txt
+          llvm-cov-14 show tests -instr-profile=tests.profdata ${{ steps.strings.outputs.code-dir }}/ > coverage-lines.txt
+          llvm-cov-14 report tests -instr-profile=tests.profdata ${{ steps.strings.outputs.code-dir }}/ > coverage-files.txt
 
       - name: Upload coverage to github
         uses: actions/upload-artifact@v3
