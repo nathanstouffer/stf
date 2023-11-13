@@ -226,46 +226,6 @@ namespace math {
     template<typename T> using vec3 = vec<T, 3>;
     template<typename T> using vec4 = vec<T, 4>;
 
-    struct temp
-    {
-
-        float x;
-
-        temp(float val) : x(val) {}
-
-        inline bool operator==(temp const& rhs) const
-        {
-            return x == rhs.x;
-        }
-
-    };
-
-    inline temp operator+(temp const& lhs, temp const& rhs)
-    {
-        return temp(lhs.x + rhs.x);
-    }
-
-    inline temp plus(temp const& lhs, temp const& rhs)
-    {
-        return temp(lhs.x + rhs.x);
-    }
-
-#define BAR(x) ((x) || (x))
-
-    template <typename T>
-    inline void foo(T x)
-    {
-        for (unsigned I = 0; I < 10; ++I)
-        {
-            BAR(I);
-        }
-    }
-
-    inline int simple_inc(int x)
-    {
-        return x + 1;
-    }
-
     template<typename T, size_t N>
     inline T const dist(vec<T, N> const& lhs, vec<T, N> const& rhs)
     {

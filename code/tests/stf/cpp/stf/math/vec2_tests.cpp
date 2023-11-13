@@ -9,16 +9,6 @@
 namespace stf {
 namespace math {
 
-    TEST(vec2, temp)
-    {
-        stf::math::temp result = stf::math::temp(1) + stf::math::temp(2);
-        stf::math::temp other = plus(stf::math::temp(1), stf::math::temp(2));
-        ASSERT_EQ(stf::math::temp(3), result) << "failed temp test";
-        stf::math::foo<int>(0);
-        stf::math::foo<float>(0);
-        ASSERT_EQ(6, stf::math::simple_inc(5)) << "failed increment";
-    }
-
     TEST(vec2, index)
     {
         std::vector<scaffolding::vec::read<float, 2>> tests =
