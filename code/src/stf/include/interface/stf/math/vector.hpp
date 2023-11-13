@@ -261,6 +261,11 @@ namespace math {
         }
     }
 
+    inline int simple_inc(int x)
+    {
+        return x + 1;
+    }
+
     template<typename T, size_t N>
     inline T const dist(vec<T, N> const& lhs, vec<T, N> const& rhs)
     {
