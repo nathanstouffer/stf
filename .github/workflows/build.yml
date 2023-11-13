@@ -91,6 +91,7 @@ jobs:
           llvm-cov-14 report tests -instr-profile=tests.profdata ${{ steps.strings.outputs.code-dir }}/src > coverage-files.txt
 
       - name: Upload coverage to github
+        if: ${{ matrix.build_type == 'Coverage' }}
         uses: actions/upload-artifact@v3
         with:
           name: coverage
