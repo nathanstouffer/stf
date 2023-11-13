@@ -12,8 +12,8 @@ namespace math {
     TEST(vec2, temp)
     {
         stf::math::temp result = stf::math::temp(1) + stf::math::temp(2);
+        stf::math::temp other = plus(stf::math::temp(1), stf::math::temp(2));
         ASSERT_EQ(stf::math::temp(3), result) << "failed temp test";
-        ASSERT_TRUE(false);
     }
 
     TEST(vec2, index)

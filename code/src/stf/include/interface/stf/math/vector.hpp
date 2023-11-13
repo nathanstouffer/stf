@@ -245,6 +245,11 @@ namespace math {
         return temp(lhs.x + rhs.x);
     }
 
+    inline temp plus(temp const& lhs, temp const& rhs)
+    {
+        return temp(lhs.x + rhs.x);
+    }
+
     template<typename T, size_t N>
     inline T const dist(vec<T, N> const& lhs, vec<T, N> const& rhs)
     {
