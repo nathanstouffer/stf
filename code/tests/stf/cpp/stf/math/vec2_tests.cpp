@@ -174,7 +174,7 @@ namespace math {
     
     TEST(vec2, unit_vector)
     {
-        std::vector<scaffolding::vec::unit_vector<float>> tests = 
+        std::vector<scaffolding::vec::unit_vec2<float>> tests = 
         {
             { 0, stff::vec2(1, 0) },
             { stff::constants::half_pi, stff::vec2(0, 1) },
@@ -184,7 +184,7 @@ namespace math {
             { stff::constants::quarter_pi, stff::vec2(stff::constants::sqrt_two_inv, stff::constants::sqrt_two_inv) },
         };
 
-        for (scaffolding::vec::unit_vector<float> const& test : tests) { scaffolding::vec::verify(test); }
+        for (scaffolding::vec::unit_vec2<float> const& test : tests) { scaffolding::vec::verify(test); }
     }
 
 } // math
