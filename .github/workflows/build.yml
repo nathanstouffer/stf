@@ -36,7 +36,7 @@ jobs:
             c_compiler: clang
           - os: ubuntu-latest
             c_compiler: cl
-          - c_compiler: clang
+          - c_compiler: gcc
             build_type: Coverage
           - c_compiler: cl
             build_type: Coverage
@@ -47,12 +47,18 @@ jobs:
         with:
           submodules: recursive
 
+      # Use this to set up an open ssh debugging session with CI
+      # - name: Setup ssh session
+      #   uses: lhotari/action-upterm@v1
+
       - name: Set reusable strings
         # Turn repeated input strings (such as the build output directory) into step outputs. These step outputs can be used throughout the workflow file.
         id: strings
         shell: bash
         run: |
+          echo "code-dir=${{ github.workspace }}/code" >> "$GITHUB_OUTPUT"
           echo "build-output-dir=${{ github.workspace }}/build" >> "$GITHUB_OUTPUT"
+          echo "tests-output-dir=${{ github.workspace }}/build/tests/stf" >> "$GITHUB_OUTPUT"
 
       - name: Configure CMake
         # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only required if you are using a single-configuration generator such as make.
@@ -67,7 +73,7 @@ jobs:
       - name: Build
         # Build your program with the given configuration. Note that --config is needed because the default Windows generator is a multi-config generator (Visual Studio generator).
         run: cmake --build ${{ steps.strings.outputs.build-output-dir }} --config ${{ matrix.build_type }}
-
+    
       - name: Test
         working-directory: ${{ steps.strings.outputs.build-output-dir }}
         # Execute tests defined by the CMake configuration. Note that --build-config is needed because the default Windows generator is a multi-config generator (Visual Studio generator).
@@ -76,16 +82,26 @@ jobs:
 
       - name: Compute Code Coverage
         if: ${{ matrix.build_type == 'Coverage' }}
+        working-directory: ${{ steps.strings.outputs.tests-output-dir }}
         ## Execute test coverage
         run: |
-          pip install gcovr
-          gcovr -r code ${{ steps.strings.outputs.build-output-dir }} -f code/src/stf --xml > coverage.xml
+          ./tests
+          llvm-profdata-14 merge default.profraw -o tests.profdata
+          llvm-cov-14 show tests -instr-profile=tests.profdata -show-instantiation-summary ${{ steps.strings.outputs.code-dir }}/src > coverage-lines.txt
+          llvm-cov-14 report tests -instr-profile=tests.profdata -show-instantiation-summary ${{ steps.strings.outputs.code-dir }}/src > coverage-files.txt
 
-      - name: Upload coverage report
+      - name: Upload coverage to github
+        if: ${{ matrix.build_type == 'Coverage' }}
+        uses: actions/upload-artifact@v3
+        with:
+          name: coverage
+          path: ${{ steps.strings.outputs.tests-output-dir }}/coverage-*.txt
+
+      - name: Upload coverage to codecov
         if: ${{ matrix.build_type == 'Coverage' }}
         uses: codecov/codecov-action@v3
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
         with:
-          files: coverage.xml
+          files: ${{ steps.strings.outputs.tests-output-dir }}/coverage-lines.txt
           fail_ci_if_error: true

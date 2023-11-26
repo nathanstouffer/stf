@@ -1,6 +1,6 @@
 #pragma once
 
-#include "stf/alg/spherical.hpp"
+#include "stf/alg/spherical.hpp"        // TODO (stouff) I don't love including something from alg here -- consider moving those functions to stf::math
 #include "stf/math/constants.hpp"
 #include "stf/math/matrix.hpp"
 #include "stf/math/scalar.hpp"
