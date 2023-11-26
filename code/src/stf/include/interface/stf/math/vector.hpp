@@ -319,6 +319,18 @@ namespace math {
         return result;
     }
 
+    template<typename T>
+    inline vec2<T> unit_vector(T const theta)
+    {
+        return vec2<T>(std::cos(theta), std::sin(theta));
+    }
+
+    template<typename T>
+    inline vec3<T> unit_vector(T const theta, T const phi)
+    {
+        return vec3<T>(std::cos(theta) * std::sin(phi), std::sin(theta) * std::sin(phi), std::cos(phi));
+    }
+
     template <typename T, size_t N>
     std::ostream& operator<<(std::ostream& s, vec<T, N> const& rhs)
     {
