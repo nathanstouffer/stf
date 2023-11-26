@@ -1,6 +1,5 @@
 #pragma once
 
-#include "stf/alg/spherical.hpp"        // TODO (stouff) I don't love including something from alg here -- consider moving those functions to stf::math
 #include "stf/math/constants.hpp"
 #include "stf/math/matrix.hpp"
 #include "stf/math/scalar.hpp"
@@ -55,8 +54,8 @@ namespace cam {
         scamera(T const _theta) : scamera(c_default_eye, _theta) {}
         scamera(T const _theta, T const _phi) : scamera(c_default_eye, _theta, _phi) {}
 
-        vec_t look() const { return alg::unit_vector(theta, phi); }
-        vec_t up() const { return alg::unit_vector(theta, phi - math::constants<T>::half_pi); }
+        vec_t look() const { return math::unit_vector(theta, phi); }
+        vec_t up() const { return math::unit_vector(theta, phi - math::constants<T>::half_pi); }
         vec_t right() const { return math::cross(look(), up()); }
 
         // TODO (stouff) write these matrix methods
