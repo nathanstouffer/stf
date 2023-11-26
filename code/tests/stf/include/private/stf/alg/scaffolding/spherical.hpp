@@ -52,19 +52,6 @@ namespace spherical {
         ASSERT_NEAR(test.expected, alg::closest_equiv_angle(test.phi, test.theta), stff::constants::tol) << "Failed to compute closest equivalent angle";
     }
 
-    template<typename T>
-    struct unit_vector
-    {
-        T const theta;
-        math::vec<T, 2> const expected;
-    };
-
-    template<typename T>
-    void verify(unit_vector<T> const& test)
-    {
-        ASSERT_EQ(test.expected, alg::unit_vector(test.theta)) << "Failed to compute unit vector";
-    }
-
 } // circle
 } // scaffolding
 } // alg
