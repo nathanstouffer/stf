@@ -54,7 +54,7 @@ namespace math {
     public:
 
         static aabb everything() { return aabb(); }
-        static aabb nothing() { return aabb(vec_t(std::numeric_limits<T>::lowest()), vec_t(std::numeric_limits<T>::max())); }
+        static aabb nothing() { return aabb(vec_t(std::numeric_limits<T>::max()), vec_t(std::numeric_limits<T>::lowest())); }
         static aabb unit() { return aabb(vec_t(0), vec_t(1)); }
 
     };
@@ -75,9 +75,10 @@ namespace math {
     }
 
     template <typename T, size_t N>
-    std::ostream& operator<<(std::ostream& s, aabb<T, N> const& rhs)
+    inline std::ostream& operator<<(std::ostream& s, aabb<T, N> const& rhs)
     {
-        // TODO (stouff) write this function
+        s << "{ min: " << rhs.min << ", max: " << rhs.max << " }";
+        return s
     }
 
 } // math
