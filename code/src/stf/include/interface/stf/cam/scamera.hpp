@@ -5,8 +5,8 @@
 #include "stf/math/scalar.hpp"
 #include "stf/math/vector.hpp"
 
-namespace stf {
-namespace cam {
+namespace stf::cam
+{
 
     // Struct to represent a simple camera -- one where the right vector is always in the plane normal
     // to (0, 0, 1). The look direction is represented by spherical coordinates with the eye as the origin
@@ -114,5 +114,4 @@ namespace cam {
         return s;
     }
 
-} // cam
-} // stf
+} // stf::cam
