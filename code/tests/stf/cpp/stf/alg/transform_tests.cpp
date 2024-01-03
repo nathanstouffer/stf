@@ -7,9 +7,9 @@
 
 #include "stf/alg/scaffolding/transform.hpp"
 
-namespace stf {
-namespace alg {
-
+namespace stf::alg
+{
+    
     TEST(transform, rotate2)
     {
         std::vector<scaffolding::transform::rotate2<float>> tests = 
@@ -73,5 +73,4 @@ namespace alg {
         for (scaffolding::transform::orbit_scamera<float> const& test : tests) { scaffolding::transform::verify(test); }
     }
 
-} // math
-} // stf
+} // stf::alg

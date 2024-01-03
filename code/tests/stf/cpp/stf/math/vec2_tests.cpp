@@ -6,8 +6,8 @@
 
 #include "stf/math/scaffolding/vector.hpp"
 
-namespace stf {
-namespace math {
+namespace stf::math
+{
 
     TEST(vec2, index)
     {
@@ -187,5 +187,4 @@ namespace math {
         for (scaffolding::vec::unit_vec2<float> const& test : tests) { scaffolding::vec::verify(test); }
     }
 
-} // math
-} // stf
+} // stf::math

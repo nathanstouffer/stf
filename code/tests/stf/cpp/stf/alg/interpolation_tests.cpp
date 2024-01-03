@@ -6,9 +6,8 @@
 
 #include "stf/alg/scaffolding/interpolation.hpp"
 
-namespace stf {
-namespace alg {
-
+namespace stf::alg
+{
     TEST(interpolation, lerp)
     {
         std::vector<scaffolding::interpolation::lerp<float>> tests =
@@ -99,5 +98,4 @@ namespace alg {
         for (scaffolding::interpolation::lerpstep<float> const& test : tests) { scaffolding::interpolation::verify(test); }
     }
 
-} // alg
-} // stf
+} // stf::alg
