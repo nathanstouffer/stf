@@ -6,8 +6,7 @@
 #include "stf/math/matrix.hpp"
 #include "stf/math/vector.hpp"
 
-namespace stf {
-namespace alg {
+namespace stf::alg {
 
     template<typename T>
     inline math::vec2<T> rotate(math::vec2<T> const& val, T const theta)
@@ -56,5 +55,4 @@ namespace alg {
         return result;
     }
 
-} // alg
-} // stf
+} // stf::alg

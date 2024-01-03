@@ -3,8 +3,7 @@
 #include "stf/math/constants.hpp"
 #include "stf/math/vector.hpp"
 
-namespace stf {
-namespace alg {
+namespace stf::alg {
 
     template<typename T>
     inline T radians(T const deg)
@@ -45,5 +44,4 @@ namespace alg {
         return radius * unit_vector(theta, phi);
     }
 
-} // alg
-} // stf
+} // stf::alg

@@ -6,8 +6,8 @@
 
 #include "stf/alg/scaffolding/spherical.hpp"
 
-namespace stf {
-namespace alg {
+namespace stf::alg
+{
 
     TEST(spherical, conversion)
     {
@@ -56,5 +56,4 @@ namespace alg {
         for (scaffolding::spherical::closest_equiv_angle<float> const& test : tests) { scaffolding::spherical::verify(test); }
     }
 
-} // alg
-} // stf
+} // stf::alg

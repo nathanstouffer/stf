@@ -2,8 +2,8 @@
 
 #include <cmath>
 
-namespace stf {
-namespace math {
+namespace stf::math
+{
 
     template<typename T>
     inline bool const equ(T const lhs, T const rhs, T const eps)
@@ -17,5 +17,4 @@ namespace math {
         return !equ(lhs, rhs, eps);
     }
 
-} // math
-} // stf
+} // stf::math

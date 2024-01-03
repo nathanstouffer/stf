@@ -6,8 +6,8 @@
 
 #include "stf/cam/scaffolding/scamera.hpp"
 
-namespace stf {
-namespace cam {
+namespace stf::cam
+{
 
     TEST(scamera, direction_vectors)
     {
@@ -28,5 +28,4 @@ namespace cam {
         for (scaffolding::scamera::direction_vectors<float> const& test : tests) { scaffolding::scamera::verify(test); }
     }
 
-} // cam
-} // stf
+} // stf::cam

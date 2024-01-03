@@ -4,8 +4,8 @@
 
 #include <limits>
 
-namespace stf {
-namespace math {
+namespace stf::math
+{
 
     template<typename T>
     struct constants
@@ -35,5 +35,4 @@ namespace math {
 
     };
 
-} // math
-} // stf
+} // stf::math

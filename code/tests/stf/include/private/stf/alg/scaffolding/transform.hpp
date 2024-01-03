@@ -5,10 +5,8 @@
 #include <stf/types.hpp>
 #include <stf/alg/transform.hpp>
 
-namespace stf {
-namespace alg {
-namespace scaffolding {
-namespace transform {
+namespace stf::alg::scaffolding::transform
+{
 
     template<typename T>
     struct rotate2
@@ -92,7 +90,4 @@ namespace transform {
         ASSERT_EQ(test.expected, alg::orbit(test.initial, test.focus, test.delta_phi, test.delta_theta)) << "Failed scamera orbit function";
     }
 
-} // transform
-} // scaffolding
-} // alg
-} // stf
+} // stf::alg::scaffolding::transform

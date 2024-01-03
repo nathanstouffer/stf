@@ -4,10 +4,8 @@
 
 #include <stf/math/vector.hpp>
 
-namespace stf {
-namespace math {
-namespace scaffolding {
-namespace vec {
+namespace stf::math::scaffolding::vec
+{
 
     template<typename T, size_t N>
     struct equality
@@ -248,7 +246,4 @@ namespace vec {
         ASSERT_EQ(test.expected, math::unit_vector(test.theta)) << "Failed to compute unit vector";
     }
 
-} // vec
-} // scaffolding
-} // math
-} // stf
+} // stf::math::scaffolding::vec

@@ -6,8 +6,8 @@
 
 #include "stf/math/scaffolding/vector.hpp"
 
-namespace stf {
-namespace math {
+namespace stf::math
+{
 
     TEST(vec5, equality)
     {
@@ -29,5 +29,4 @@ namespace math {
         }
     }
 
-} // math
-} // stf
+} // stf::math

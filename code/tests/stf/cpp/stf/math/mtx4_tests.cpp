@@ -4,10 +4,9 @@
 
 #include <stf/types.hpp>
 
-namespace stf {
-namespace math {
+namespace stf::math
+{
 
 
 
-} // math
-} // stf
+} // stf::math
