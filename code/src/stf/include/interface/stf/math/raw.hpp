@@ -2,9 +2,8 @@
 
 #include <cmath>
 
-namespace stf {
-namespace math {
-namespace raw {
+namespace stf::math::raw
+{
 
     // TODO (stouff) we might be able to implement this is as forward declared functions/classes in the vector header
 
@@ -55,6 +54,4 @@ namespace raw {
         }
     }
 
-} // raw
-} // math
-} // stf
+} // stf::math::raw

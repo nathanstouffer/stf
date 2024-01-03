@@ -5,8 +5,8 @@
 #include "stf/math/raw.hpp"
 #include "stf/math/vector.hpp"
 
-namespace stf {
-namespace math {
+namespace stf::math
+{
 
     template<typename T, size_t N>
     struct mtx
@@ -346,5 +346,4 @@ namespace math {
         return s;
     }
 
-} // math
-} // stf
+} // stf::math

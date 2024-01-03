@@ -7,8 +7,8 @@
 #include "stf/math/constants.hpp"
 #include "stf/math/raw.hpp"
 
-namespace stf {
-namespace math {
+namespace stf::math
+{
     
     // NOTE: Unfortunately there is a lot of duplication between among the generic vector class and the specializations when
     // the dimension is specialized for N = 2, 3, 4. This could be avoided by paring Curiously Recurring Template Pattern
@@ -343,10 +343,10 @@ namespace math {
         return s;
     }
 
-} // math
-} // stf
+} // stf::math
 
-namespace std {
+namespace std
+{
 
     template<typename T, size_t N>
     struct hash<stf::math::vec<T, N>>
