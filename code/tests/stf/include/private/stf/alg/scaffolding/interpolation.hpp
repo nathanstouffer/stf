@@ -5,10 +5,8 @@
 #include <stf/types.hpp>
 #include <stf/alg/interpolation.hpp>
 
-namespace stf {
-namespace alg {
-namespace scaffolding {
-namespace interpolation {
+namespace stf::alg::scaffolding::interpolation
+{
 
     template<typename T>
     struct lerp
@@ -55,7 +53,4 @@ namespace interpolation {
         ASSERT_EQ(test.expected, alg::lerpstep(test.a, test.b, test.t)) << "Failed to compute lerp_step";
     }
 
-} // interpolation
-} // scaffolding
-} // alg
-} // stf
+} // stf::alg::scaffolding::interpolation

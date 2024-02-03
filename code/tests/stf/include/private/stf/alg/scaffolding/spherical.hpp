@@ -5,10 +5,8 @@
 #include <stf/types.hpp>
 #include <stf/alg/spherical.hpp>
 
-namespace stf {
-namespace alg {
-namespace scaffolding {
-namespace spherical {
+namespace stf::alg::scaffolding::spherical
+{
 
     template<typename T>
     struct conversion
@@ -52,7 +50,4 @@ namespace spherical {
         ASSERT_NEAR(test.expected, alg::closest_equiv_angle(test.phi, test.theta), stff::constants::tol) << "Failed to compute closest equivalent angle";
     }
 
-} // circle
-} // scaffolding
-} // alg
-} // stf
+} // stf::alg::scaffolding::spherical

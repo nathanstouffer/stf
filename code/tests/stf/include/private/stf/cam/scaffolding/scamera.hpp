@@ -5,10 +5,8 @@
 #include <stf/types.hpp>
 #include <stf/cam/scamera.hpp>
 
-namespace stf {
-namespace cam {
-namespace scaffolding {
-namespace scamera {
+namespace stf::cam::scaffolding::scamera
+{
 
     template<typename T>
     struct direction_vectors
@@ -27,7 +25,4 @@ namespace scamera {
         ASSERT_EQ(test.right, test.camera.right()) << "Failed to compute right vector";
     }
 
-} // scamera
-} // scaffolding
-} // cam
-} // stf
+} // stf::cam::scaffolding::scamera

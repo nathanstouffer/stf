@@ -7,8 +7,8 @@
 #include "stf/math/constants.hpp"
 #include "stf/math/vector.hpp"
 
-namespace stf {
-namespace gfx {
+namespace stf::gfx
+{
 
     // TODO (stouff) possibly template this?
     struct rgba
@@ -87,5 +87,4 @@ namespace gfx {
 
     // TODO (stouff) class for hsv and other ways of representing color
 
-} // gfx
-} // stf
+} // stf::gfx

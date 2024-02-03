@@ -9,8 +9,8 @@
 #include "stf/gfx/color.hpp"
 #include "stf/math/vector.hpp"
 
-namespace stf {
-namespace alg {
+namespace stf::alg
+{
 
     // clamp time to [0, 1]
     template<typename T>
@@ -220,5 +220,4 @@ namespace alg {
         return lerp(lhs, rhs, smooth_time(t));
     }
 
-} // alg
-} // stf
+} // stf::alg

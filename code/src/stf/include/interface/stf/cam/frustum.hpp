@@ -2,8 +2,8 @@
 
 #include "stf/cam/scamera.hpp"
 
-namespace stf {
-namespace cam {
+namespace stf::cam
+{
 
     // TODO (stouff) write this class once we have a plane and aabb class
     template<typename T>
@@ -28,5 +28,4 @@ namespace cam {
 
     };
 
-} // cam
-} // stf
+} // stf::cam

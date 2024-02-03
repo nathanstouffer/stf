@@ -6,8 +6,8 @@
 
 #include <stf/gfx/scaffolding/color.hpp>
 
-namespace stf {
-namespace gfx {
+namespace stf::gfx
+{
 
     TEST(color, equality)
     {
@@ -101,5 +101,4 @@ namespace gfx {
         for (scaffolding::color::rgba_hex_conversion const& test : tests) { scaffolding::color::verify(test); }
     }
 
-} // gfx
-} // stf
+} // stf::gfx
