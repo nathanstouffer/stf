@@ -40,14 +40,7 @@ namespace stf::math
             T measure = constants<T>::one;
             for (size_t i = 0; i < N; ++i)
             {
-                if (len[i] < constants<T>::zero)
-                {
-                    measure *= len[i];
-                }
-                else
-                {
-                    measure = constants<T>::zero;
-                }
+                measure *= (len[i] < constants<T>::zero) ? len[i] : constants<T>::zero;
             }
         }
 
