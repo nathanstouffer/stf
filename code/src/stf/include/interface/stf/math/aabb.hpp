@@ -3,6 +3,7 @@
 #include <cstring>
 
 #include <limits>
+#include <vector>
 
 #include "stf/math/constants.hpp"
 #include "stf/math/vector.hpp"
@@ -33,6 +34,22 @@ namespace stf::math
 
         inline vec_t const length() const { return max - min; }
         inline vec_t const center() const { return min + (constants<T>::half * length()); }
+
+        aabb& scale(T const scalar) { min *= scalar; max *= scalar; return *this; }
+        aabb scaled(T const scalar) const { return aabb(*this).scale(scalar); }
+
+        aabb& translate(vec_t const& delta) { min += delta; max += delta; return *this; }
+        aabb translated(vec_t const& delta) const { return aabb(*this).translate(delta); }
+
+        aabb& fit(vec_t const& x)
+        {
+            for (size_t i = 0; i < N; ++i)
+            {
+                min[i] = std::min(min[i], x[i]);
+                max[i] = std::max(max[i], x[i]);
+            }
+            return *this;
+        }
 
         aabb& fit(aabb const& rhs)
         {
@@ -90,6 +107,18 @@ namespace stf::math
         static aabb everything() { return aabb(); }
         static aabb nothing() { return aabb(vec_t(constants<T>::pos_inf), vec_t(constants<T>::neg_inf)); }
         static aabb unit() { return aabb(vec_t(constants<T>::zero), vec_t(constants<T>::one)); }
+
+        static aabb fit(std::vector<vec_t> const& points)
+        {
+            aabb box = aabb::nothing();
+            for (vec_t const& point : points)
+            {
+                box.fit(point);
+            }
+            return box;
+        }
+
+        inline static size_t byte_count() { return 2 * vec_t::byte_count(); }
 
     };
 

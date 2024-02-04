@@ -35,18 +35,9 @@ namespace stf::math
 
         vec_t interpolate(T const t) const
         {
-            if (t < constants<T>::zero)
-            {
-                return a;
-            }
-            else if (t < constants<T>::one)
-            {
-                return (constants<T>::one - t) * a + t * b;
-            }
-            else
-            {
-                return b;
-            }
+            if (t <= constants<T>::zero) { return a; }
+            else if (t < constants<T>::one) { return (constants<T>::one - t) * a + t * b; }
+            else { return b; }
         }
 
     };
