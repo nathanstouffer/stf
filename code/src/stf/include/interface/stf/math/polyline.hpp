@@ -22,18 +22,18 @@ namespace stf::math
         polyline() : polyline(std::vector<vec_t>()) {}
         polyline(std::vector<vec_t> const& points) : m_points(points), m_aabb(aabb_t::fit(points)) {}
 
-        size_t size() const { return m_points.size(); } 
-        bool is_empty() const { return m_points.size() < 2; }
+        inline size_t size() const { return m_points.size(); } 
+        inline bool is_empty() const { return m_points.size() < 2; }
 
-        segment<T, N> edge(size_t i) const { return segment<T, N>(m_points[i], m_points[i + 1]); }
+        inline segment<T, N> edge(size_t i) const { return segment<T, N>(m_points[i], m_points[i + 1]); }
 
-        void clear() { m_points.clear(); m_aabb = aabb_t::nothing(); }
-        void reserve(size_t const size) { m_points.reserve(size); }
-        void push_back(vec_t const& x) { m_points.push_back(x); m_aabb.fit(x); }
+        inline void clear() { m_points.clear(); m_aabb = aabb_t::nothing(); }
+        inline void reserve(size_t const size) { m_points.reserve(size); }
+        inline void push_back(vec_t const& x) { m_points.push_back(x); m_aabb.fit(x); }
 
         inline vec_t const& operator[](size_t i) const { return m_points[i]; }
 
-        void write(size_t i, vec_t const& x) { m_points[i] = x; m_aabb = aabb_t::fit(m_points); }
+        inline void write(size_t i, vec_t const& x) { m_points[i] = x; m_aabb = aabb_t::fit(m_points); }
 
         inline T length() const
         {
@@ -111,7 +111,7 @@ namespace stf::math
         inline aabb_t const& aabb() const { return m_aabb; }
         inline std::vector<vec_t> const& points() const { return m_aabb; }
 
-        inline size_t byte_count() const { return vec_t::byte_count() * m_points.size() + aabb_t::byte_count(); }
+        inline size_t byte_count() const { return vec_t::byte_count() * m_points.capacity() + aabb_t::byte_count(); }
 
     private:
 
