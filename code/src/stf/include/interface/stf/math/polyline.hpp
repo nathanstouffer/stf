@@ -72,6 +72,7 @@ namespace stf::math
                     if (target < traveled)              // if we overshot, then we have found the correct segment
                     {
                         // compute the amount we need to travel backwards from the endpoint of the segment
+                        T overshot = traveled - target;
                         vec_t offset = overshot * seg.direction();
                         return seg.b - offset;
                     }
