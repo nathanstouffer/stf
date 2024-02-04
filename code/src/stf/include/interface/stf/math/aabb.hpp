@@ -51,9 +51,17 @@ namespace stf::math
                 bool empty = rhs.max[i] < min[i] || max[i] < rhs.min[i];
                 if (empty) { return false; }
             }
+            return true;    // fallthrough to true
+        }
 
-            // fallthrough to true
-            return true;
+        bool contains(vec_t const& x) const
+        {
+            for (size_t i = 0; i < N; ++i)
+            {
+                bool contained = min[i] <= x[i] && x[i] <= max[i];
+                if (!contained) { return false; }
+            }
+            return true;    // fallthrough to true
         }
 
         bool contains(aabb const& rhs) const
@@ -63,9 +71,7 @@ namespace stf::math
                 bool contained = min[i] <= rhs.min[i] && rhs.max[i] <= max[i];
                 if (!contained) { return false; }
             }
-
-            // fallthrough to true
-            return true;
+            return true;    // fallthrough to true
         }
 
         T volume() const
@@ -76,6 +82,7 @@ namespace stf::math
             {
                 measure *= (len[i] < constants<T>::zero) ? len[i] : constants<T>::zero;
             }
+            return measure;
         }
 
     public:
