@@ -11,6 +11,7 @@ set(TEST_FILES
     ${TEST_FILES_PREFIX}/math/mtx4_tests.cpp
     ${TEST_FILES_PREFIX}/math/crange_tests.cpp
     ${TEST_FILES_PREFIX}/math/range_tests.cpp
+    ${TEST_FILES_PREFIX}/math/segment2_tests.cpp
     ${TEST_FILES_PREFIX}/math/spherical_tests.cpp
     ${TEST_FILES_PREFIX}/math/vec2_tests.cpp
     ${TEST_FILES_PREFIX}/math/vec3_tests.cpp

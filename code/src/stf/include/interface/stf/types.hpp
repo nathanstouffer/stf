@@ -7,6 +7,7 @@
 #include "stf/math/crange.hpp"
 #include "stf/math/matrix.hpp"
 #include "stf/math/range.hpp"
+#include "stf/math/segment.hpp"
 #include "stf/math/vector.hpp"
 
 using gpu_float_t = float;
@@ -40,6 +41,10 @@ namespace stf {
         // aabb tyes
         using aabb2 = math::aabb2<T>;
         using aabb3 = math::aabb3<T>;
+
+        // segment types
+        using segment2 = math::segment2<T>;
+        using segment3 = math::segment3<T>;
 
         // camera-related types
         using scamera = cam::scamera<T>;
