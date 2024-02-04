@@ -34,6 +34,16 @@ namespace stf::math
         inline vec_t const length() const { return max - min; }
         inline vec_t const center() const { return min + (constants<T>::half * length()); }
 
+        aabb& fit(aabb const& rhs)
+        {
+            for (size_t i = 0; i < N; ++i)
+            {
+                min[i] = std::min(min[i], rhs.min[i]);
+                max[i] = std::max(max[i], rhs.max[i]);
+            }
+            return *this;
+        }
+
         bool intersects(aabb const& rhs) const
         {
             for (size_t i = 0; i < N; ++i)
@@ -83,17 +93,10 @@ namespace stf::math
     template<typename T> using aabb2 = aabb<T, 2>;
     template<typename T> using aabb3 = aabb<T, 3>;
 
-    // TODO (stouff) move this to a member function?
     template<typename T, size_t N>
     aabb<T, N> const fit(aabb<T, N> const& lhs, aabb<T, N> const& rhs)
     {
-        aabb<T, N> fitted = aabb<T, N>::nothing();
-        for (size_t i = 0; i < N; ++i)
-        {
-            fitted.min[i] = std::min(lhs.min[i], rhs.min[i]);
-            fitted.max[i] = std::max(lhs.max[i], rhs.max[i]);
-        }
-        return fitted;
+        return aabb<T, N>(lhs).fit(rhs);
     }
 
     template <typename T, size_t N>
