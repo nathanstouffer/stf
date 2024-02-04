@@ -2,10 +2,10 @@
 
 #include <gtest/gtest.h>
 
+#include <stf/math/spherical.hpp>
 #include <stf/types.hpp>
-#include <stf/alg/spherical.hpp>
 
-namespace stf::alg::scaffolding::spherical
+namespace stf::math::scaffolding::spherical
 {
 
     template<typename T>
@@ -18,8 +18,8 @@ namespace stf::alg::scaffolding::spherical
     template<typename T>
     void verify(conversion<T> const& test)
     {
-        ASSERT_FLOAT_EQ(test.degrees, degrees(test.radians)) << "Failed to convert radians to degrees";
-        ASSERT_FLOAT_EQ(test.radians, radians(test.degrees)) << "Failed to convert degrees to radians";
+        ASSERT_FLOAT_EQ(test.degrees, to_degrees(test.radians)) << "Failed to convert radians to degrees";
+        ASSERT_FLOAT_EQ(test.radians, to_radians(test.degrees)) << "Failed to convert degrees to radians";
     }
 
     template<typename T>
@@ -32,7 +32,7 @@ namespace stf::alg::scaffolding::spherical
     template<typename T>
     void verify(canonical_angle<T> const& test)
     {
-        ASSERT_FLOAT_EQ(test.expected, alg::canonical_angle(test.radians)) << "Failed to compute canonical angle";
+        ASSERT_FLOAT_EQ(test.expected, math::canonical_angle(test.radians)) << "Failed to compute canonical angle";
     }
 
     template<typename T>
@@ -47,7 +47,7 @@ namespace stf::alg::scaffolding::spherical
     void verify(closest_equiv_angle<T> const& test)
     {
         // NOTE: unfortunately, we had to relax floating point equality on this on a bit
-        ASSERT_NEAR(test.expected, alg::closest_equiv_angle(test.phi, test.theta), stff::constants::tol) << "Failed to compute closest equivalent angle";
+        ASSERT_NEAR(test.expected, math::closest_equiv_angle(test.phi, test.theta), stff::constants::tol) << "Failed to compute closest equivalent angle";
     }
 
-} // stf::alg::scaffolding::spherical
+} // stf::math::scaffolding::spherical

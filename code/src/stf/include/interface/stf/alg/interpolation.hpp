@@ -4,9 +4,9 @@
 
 #include <algorithm>
 
-#include "stf/alg/spherical.hpp"
 #include "stf/cam/scamera.hpp"
 #include "stf/gfx/color.hpp"
+#include "stf/math/spherical.hpp"
 #include "stf/math/vector.hpp"
 
 namespace stf::alg
@@ -199,8 +199,8 @@ namespace stf::alg
     {
         cam::scamera<T> result;
         result.eye    = lerp(lhs.eye, rhs.eye, t);
-        result.theta  = lerp(lhs.theta, closest_equiv_angle(lhs.theta, rhs.theta), t);
-        result.phi    = lerp(lhs.phi, closest_equiv_angle(lhs.phi, rhs.phi), t);
+        result.theta  = lerp(lhs.theta, math::closest_equiv_angle(lhs.theta, rhs.theta), t);
+        result.phi    = lerp(lhs.phi, math::closest_equiv_angle(lhs.phi, rhs.phi), t);
         result.near   = lerp(lhs.near, rhs.far, t);
         result.far    = lerp(lhs.far, rhs.far, t);
         result.aspect = lerp(lhs.aspect, rhs.aspect, t);

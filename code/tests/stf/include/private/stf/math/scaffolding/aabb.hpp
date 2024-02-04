@@ -27,13 +27,13 @@ namespace stf::math::scaffolding::aabb
     {
         math::aabb<T, N> const lhs;
         math::aabb<T, N> const rhs;
-        bool containment;
+        bool contained;
     };
 
     template<typename T, size_t N>
     void verify(contains<T, N> const& test)
     {
-        ASSERT_EQ(test.containment, test.lhs.contains(test.rhs)) << "failed lhs -> rhs containment test";
+        ASSERT_EQ(test.contained, test.lhs.contains(test.rhs)) << "failed lhs -> rhs containment test";
     }
 
 } // stf::math::scaffolding::aabb

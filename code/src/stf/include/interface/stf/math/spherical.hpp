@@ -3,17 +3,18 @@
 #include "stf/math/constants.hpp"
 #include "stf/math/vector.hpp"
 
-namespace stf::alg {
+namespace stf::math
+{
 
     template<typename T>
-    inline T radians(T const deg)
+    inline T to_radians(T const deg)
     {
         T constexpr convert = math::constants<T>::pi / T(180);
         return deg * convert;
     }
 
     template<typename T>
-    inline T degrees(T const rad)
+    inline T to_degrees(T const rad)
     {
         T constexpr convert = T(180) / math::constants<T>::pi;
         return rad * convert;
@@ -44,4 +45,4 @@ namespace stf::alg {
         return radius * unit_vector(theta, phi);
     }
 
-} // stf::alg
+} // stf::math

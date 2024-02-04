@@ -1,6 +1,7 @@
 #pragma once
 
 #include "stf/math/aabb.hpp"
+#include "stf/math/vector.hpp"
 
 namespace stf::alg
 {

@@ -4,7 +4,9 @@
 #include "stf/cam/scamera.hpp"
 #include "stf/math/aabb.hpp"
 #include "stf/math/constants.hpp"
+#include "stf/math/crange.hpp"
 #include "stf/math/matrix.hpp"
+#include "stf/math/range.hpp"
 #include "stf/math/vector.hpp"
 
 using gpu_float_t = float;
@@ -30,6 +32,10 @@ namespace stf {
         using mtx2 = math::mtx2<T>;
         using mtx3 = math::mtx3<T>;
         using mtx4 = math::mtx4<T>;
+
+        // range types
+        using crange = math::crange<T>;
+        using range = math::range<T>;
 
         // aabb tyes
         using aabb2 = math::aabb2<T>;

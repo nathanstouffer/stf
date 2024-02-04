@@ -4,9 +4,9 @@
 
 #include <stf/types.hpp>
 
-#include "stf/alg/scaffolding/spherical.hpp"
+#include "stf/math/scaffolding/spherical.hpp"
 
-namespace stf::alg
+namespace stf::math
 {
 
     TEST(spherical, conversion)
@@ -56,4 +56,4 @@ namespace stf::alg
         for (scaffolding::spherical::closest_equiv_angle<float> const& test : tests) { scaffolding::spherical::verify(test); }
     }
 
-} // stf::alg
+} // stf::math
