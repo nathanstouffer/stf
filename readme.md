@@ -7,8 +7,7 @@
 
 `stf` is a math library built primarily for graphics.
 
-## Notes
+## Note
 
-* At this time, code coverage is not accurate because any uninstantiated template (class or function) is not incorporated into coverage computations.
-Any uninstantiated code is necessarily uncovered.
-As the most of the library is templated, this means coverage is possibly **vastly** over-estimated.
+Unfortunately, the code coverage is a lie because the entire library is templated and an uninstantiated template (class or function) is not incoporated into coverage computations.
+Any uninstantiated code is necessarily uncovered so the coverage is **vastly** over-estimated.

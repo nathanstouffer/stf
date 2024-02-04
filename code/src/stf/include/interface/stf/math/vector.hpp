@@ -59,6 +59,9 @@ namespace stf::math
         inline vec& normalize() { return *this *= (T(1.0) / length()); }
         inline vec normalized() const { return vec(*this).normalize(); }
 
+        inline vec projected_on(vec const& rhs) const { T scalar = (*this * rhs) / (rhs * rhs); return scalar * rhs; }
+        inline vec orthogonal_to(vec const& rhs) const { return vec(*this) -= projected_on(rhs); }
+
         template<typename U>
         vec<U, N> as() const
         {
@@ -103,6 +106,9 @@ namespace stf::math
 
         inline vec& normalize() { return *this *= (T(1.0) / length()); }
         inline vec normalized() const { return vec(*this).normalize(); }
+
+        inline vec projected_on(vec const& rhs) const { T scalar = (*this * rhs) / (rhs * rhs); return scalar * rhs; }
+        inline vec orthogonal_to(vec const& rhs) const { return vec(*this) -= projected_on(rhs); }
 
         template<typename U>
         vec<U, 2> as() const
@@ -152,6 +158,9 @@ namespace stf::math
 
         inline vec& normalize() { return *this *= (T(1.0) / length()); }
         inline vec normalized() const { return vec(*this).normalize(); }
+
+        inline vec projected_on(vec const& rhs) const { T scalar = (*this * rhs) / (rhs * rhs); return scalar * rhs; }
+        inline vec orthogonal_to(vec const& rhs) const { return vec(*this) -= projected_on(rhs); }
 
         template<typename U>
         vec<U, 3> as() const
@@ -203,6 +212,9 @@ namespace stf::math
 
         inline vec& normalize() { return *this *= (T(1.0) / length()); }
         inline vec normalized() const { return vec(*this).normalize(); }
+
+        inline vec projected_on(vec const& rhs) const { T scalar = (*this * rhs) / (rhs * rhs); return scalar * rhs; }
+        inline vec orthogonal_to(vec const& rhs) const { return vec(*this) -= projected_on(rhs); }
 
         template<typename U>
         vec<U, 4> as() const
