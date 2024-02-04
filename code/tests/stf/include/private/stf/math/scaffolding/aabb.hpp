@@ -7,7 +7,6 @@
 namespace stf::math::scaffolding::aabb
 {
 
-    // TODO (stouff) change this to intersect
     template<typename T, size_t N>
     struct intersects
     {
@@ -21,6 +20,20 @@ namespace stf::math::scaffolding::aabb
     {
         ASSERT_EQ(test.intersect, test.lhs.intersects(test.rhs)) << "failed lhs -> rhs intersection test";
         ASSERT_EQ(test.intersect, test.rhs.intersects(test.lhs)) << "failed rhs -> lhs intersection test";
+    }
+
+    template<typename T, size_t N>
+    struct contains
+    {
+        math::aabb<T, N> const lhs;
+        math::aabb<T, N> const rhs;
+        bool containment;
+    };
+
+    template<typename T, size_t N>
+    void verify(contains<T, N> const& test)
+    {
+        ASSERT_EQ(test.containment, test.lhs.contains(test.rhs)) << "failed lhs -> rhs containment test";
     }
 
 } // stf::math::scaffolding::aabb
