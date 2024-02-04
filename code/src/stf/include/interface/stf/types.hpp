@@ -2,6 +2,7 @@
 
 #include "stf/cam/frustum.hpp"
 #include "stf/cam/scamera.hpp"
+#include "stf/math/aabb.hpp"
 #include "stf/math/constants.hpp"
 #include "stf/math/matrix.hpp"
 #include "stf/math/vector.hpp"
@@ -30,6 +31,11 @@ namespace stf {
         using mtx3 = math::mtx3<T>;
         using mtx4 = math::mtx4<T>;
 
+        // aabb tyes
+        using aabb2 = math::aabb2<T>;
+        using aabb3 = math::aabb3<T>;
+
+        // camera-related types
         using scamera = cam::scamera<T>;
         using frustum = cam::frustum<T>;
 
