@@ -13,14 +13,16 @@ namespace stf::math
         T a;
         T b;
 
-        range() : begin(constants<T>::zero), end(constants<T>::zero) {}
+        range() : a(constants<T>::zero), b(constants<T>::zero) {}
+        range(T const _a, T const _b) : a(_a), b(_b) {}
 
         inline bool is_empty(endpoints type)
         {
             switch (type)
             {
-                case: endpoints::CLOSED: return a > b; break;
-                case: endpoints::OPEN: return a >= b; break;
+                case endpoints::CLOSED: return a > b; break;
+                case endpoints::OPEN: return a >= b; break;
+                default: return false;
             }
         }
 
@@ -34,6 +36,7 @@ namespace stf::math
             {
                 case endpoints::CLOSED: return a <= x && x <= b; break;
                 case endpoints::OPEN: return a < x && x < b; break;
+                default: return false;
             };
         }
 
