@@ -34,6 +34,30 @@ namespace stf::math
         inline vec_t const length() const { return max - min; }
         inline vec_t const center() const { return min + (constants<T>::half * length()); }
 
+        bool intersects(aabb const& rhs) const
+        {
+            for (size_t i = 0; i < N; ++i)
+            {
+                bool empty = rhs.max[i] < min[i] || max[i] < rhs.min[i];
+                if (empty) { return false; }
+            }
+
+            // fallthrough to true
+            return true;
+        }
+
+        bool contains(aabb const& rhs) const
+        {
+            for (size_t i = 0; i < N; ++i)
+            {
+                bool contained = min[i] <= rhs.min[i] && rhs.max[i] <= max[i];
+                if (!contained) { return false; }
+            }
+
+            // fallthrough to true
+            return true;
+        }
+
         T volume() const
         {
             T const len = length();
@@ -55,6 +79,10 @@ namespace stf::math
     // delete invalid aabb specialization
     template<typename T> struct aabb<T, 0> { aabb() = delete; };
 
+    // type aliases for ease of use
+    template<typename T> using aabb2 = aabb<T, 2>;
+    template<typename T> using aabb3 = aabb<T, 3>;
+
     // TODO (stouff) move this to a member function?
     template<typename T, size_t N>
     aabb<T, N> const fit(aabb<T, N> const& lhs, aabb<T, N> const& rhs)
@@ -72,7 +100,7 @@ namespace stf::math
     inline std::ostream& operator<<(std::ostream& s, aabb<T, N> const& rhs)
     {
         s << "{ min: " << rhs.min << ", max: " << rhs.max << " }";
-        return s
+        return s;
     }
 
 } // stf::math
