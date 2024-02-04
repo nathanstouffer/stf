@@ -52,8 +52,8 @@ namespace stf::math
     };
 
     // delete invalid segment specializations
-    template<typename T> struct segment<T, 0> { vec() = delete; };
-    template<typename T> struct segment<T, 1> { vec() = delete; };
+    template<typename T> struct segment<T, 0> { segment() = delete; };
+    template<typename T> struct segment<T, 1> { segment() = delete; };
 
     // type aliases for ease of use
     template<typename T> using segment2 = segment<T, 2>;
