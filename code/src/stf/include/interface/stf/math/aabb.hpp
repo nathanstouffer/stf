@@ -44,16 +44,6 @@ namespace stf::math
             return *this;
         }
 
-        bool intersects(aabb const& rhs) const
-        {
-            for (size_t i = 0; i < N; ++i)
-            {
-                bool empty = rhs.max[i] < min[i] || max[i] < rhs.min[i];
-                if (empty) { return false; }
-            }
-            return true;    // fallthrough to true
-        }
-
         bool contains(vec_t const& x) const
         {
             for (size_t i = 0; i < N; ++i)
@@ -70,6 +60,16 @@ namespace stf::math
             {
                 bool contained = min[i] <= rhs.min[i] && rhs.max[i] <= max[i];
                 if (!contained) { return false; }
+            }
+            return true;    // fallthrough to true
+        }
+
+        bool intersects(aabb const& rhs) const
+        {
+            for (size_t i = 0; i < N; ++i)
+            {
+                bool empty = rhs.max[i] < min[i] || max[i] < rhs.min[i];
+                if (empty) { return false; }
             }
             return true;    // fallthrough to true
         }
