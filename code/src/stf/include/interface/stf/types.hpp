@@ -48,7 +48,7 @@ namespace stf {
         using segment3 = math::segment3<T>;
 
         // planar geometry types
-        using polyline = math::polyline<T, 2>;
+        using polyline = math::polyline2<T>;
 
         // camera-related types
         using scamera = cam::scamera<T>;

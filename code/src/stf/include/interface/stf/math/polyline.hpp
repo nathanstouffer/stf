@@ -120,4 +120,13 @@ namespace stf::math
 
     };
 
+    // delete invalid polyline specialization
+    template<typename T> struct polyline<T, 0> { polyline() = delete; };
+    template<typename T> struct polyline<T, 1> { polyline() = delete; };
+
+    // type aliases for ease of use
+    template<typename T> using polyline2 = polyline<T, 2>;
+    template<typename T> using polyline3 = polyline<T, 3>;
+
+
 } // stf::math
