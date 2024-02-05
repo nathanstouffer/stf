@@ -14,7 +14,7 @@ namespace stf::math
     {
     public:
 
-        using vec_t = vec<T, N>;
+        using vec_t = math::vec<T, N>;
         using aabb_t = math::aabb<T, N>;
 
     public:
