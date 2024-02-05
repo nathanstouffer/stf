@@ -108,7 +108,7 @@ namespace stf::math
 
         polyline scaled(T const scalar) const { return polyline(*this).scale(scalar); }
 
-        inline aabb_t const& aabb() const { return m_aabb; }
+        inline aabb_t const& box() const { return m_aabb; }
         inline std::vector<vec_t> const& points() const { return m_aabb; }
 
         inline size_t byte_count() const { return vec_t::byte_count() * m_points.capacity() + aabb_t::byte_count(); }
