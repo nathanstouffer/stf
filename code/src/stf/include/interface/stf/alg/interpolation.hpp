@@ -191,8 +191,15 @@ namespace stf::alg
         return gfx::rgba(smoothstep(lhs.as_vec(), rhs.as_vec(), t));
     }
 
-    // TODO (stouff) write this blend function 
-    //inline gfx::rgba blend(gfx::rgba const& current, gfx::rgba const& writing)
+    inline gfx::rgba blend(gfx::rgba const& current, gfx::rgba const& writing)
+    {
+        gfx::rgba blended = current;
+        blended.r = lerp(blended.r, writing.r, writing.a);
+        blended.g = lerp(blended.g, writing.g, writing.a);
+        blended.b = lerp(blended.b, writing.b, writing.a);
+        blended.a = std::max(blended.a, writing.a);
+        return blended;
+    }
 
     template<typename T>
     inline cam::scamera<T> lerp(cam::scamera<T> const& lhs, cam::scamera<T> const& rhs, T const t)
