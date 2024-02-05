@@ -1,7 +1,7 @@
 #pragma once
 
 #include "stf/math/constants.hpp"
-#include "stf/math/matrix.hpp"
+#include "stf/math/transform.hpp"
 #include "stf/math/vector.hpp"
 
 namespace stf::math
@@ -17,9 +17,9 @@ namespace stf::math
     public:
 
         line(vec_t const& point, vec_t const& normal) : m_point(point), m_normal(normal) {}
-        line(vec_t const& point, T const slope) : m_point(point), m_normal(math::rotate_plane(constants<T>::half_pi) * (constants<T>::one, slope).normalize()) {}
+        line(vec_t const& point, T const slope) : m_point(point), m_normal(rotate((constants<T>::one, slope).normalize(), constants<T>::half_pi) {}
 
-        static inline line from_points(vec_t const& p0, vec_t const& p1) { return line(p0, math::rotate_plane(constants<T>::half_pi) * (p1 - p0).normalize()); }
+        static inline line from_points(vec_t const& p0, vec_t const& p1) { return line(p0, rotate((p1 - p0).normalize(), constants<T>::half_pi); }
 
         inline bool operator==(line const& rhs) const { return (m_normal == rhs.normal()) ? contains(rhs.point()) : false; }
         inline bool operator!=(line const& rhs) const { return !(*this == rhs); }
