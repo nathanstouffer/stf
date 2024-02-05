@@ -3,6 +3,7 @@
 #include "stf/math/constants.hpp"
 #include "stf/math/matrix.hpp"
 #include "stf/math/scalar.hpp"
+#include "stf/math/spherical.hpp"
 #include "stf/math/transform.hpp"
 #include "stf/math/vector.hpp"
 

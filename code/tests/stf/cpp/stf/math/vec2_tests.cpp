@@ -171,20 +171,4 @@ namespace stf::math
         for (scaffolding::vec::negate<float, 2> const& test : tests) { scaffolding::vec::verify(test); }
     }
 
-    
-    TEST(vec2, unit_vector)
-    {
-        std::vector<scaffolding::vec::unit_vec2<float>> tests = 
-        {
-            { 0, stff::vec2(1, 0) },
-            { stff::constants::half_pi, stff::vec2(0, 1) },
-            { stff::constants::pi, stff::vec2(-1, 0) },
-            { 3 * stff::constants::half_pi, stff::vec2(0, -1) },
-            { stff::constants::tau, stff::vec2(1, 0) },
-            { stff::constants::quarter_pi, stff::vec2(stff::constants::sqrt_two_inv, stff::constants::sqrt_two_inv) },
-        };
-
-        for (scaffolding::vec::unit_vec2<float> const& test : tests) { scaffolding::vec::verify(test); }
-    }
-
 } // stf::math
