@@ -41,7 +41,7 @@ namespace stf::math
         // NOTE: assumes that the intersection is a singleton
         vec_t intersection(line const& rhs) const
         {
-            
+            // TODO (stouff) write this function
         }
 
         vec_t const& point() const { return m_point; }

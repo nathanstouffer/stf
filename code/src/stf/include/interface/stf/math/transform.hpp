@@ -1,15 +1,10 @@
 #pragma once
 
-#include <cmath>
-
-#include "stf/cam/scamera.hpp"
 #include "stf/math/matrix.hpp"
 #include "stf/math/vector.hpp"
 
-namespace stf::alg
+namespace stf::math
 {
-
-    // TODO (stouff) consider moving all these functions into more specific namespaces (stf::math for the points and stf::cam for the camera stuff)
 
     template<typename T>
     inline math::vec2<T> rotate(math::vec2<T> const& val, T const theta)
@@ -43,19 +38,4 @@ namespace stf::alg
         return relative + focus;
     }
 
-    template<typename T>
-    inline cam::scamera<T> orbit(cam::scamera<T> const& camera, math::vec3<T> const& focus, T const delta_phi, T const delta_theta)
-    {
-        // copy camera state so unaffected values are preserved
-        cam::scamera<T> result = camera;
-
-        // rotate the eye and adjust heading and pitch appropriately
-        result.eye = orbit(result.eye, focus, camera.right(), -delta_phi, delta_theta);
-        result.theta += delta_theta;
-        result.phi += delta_phi;
-
-        // return result
-        return result;
-    }
-
-} // stf::alg
+} // stf::math

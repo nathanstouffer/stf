@@ -3,11 +3,11 @@
 #include <gtest/gtest.h>
 
 #include <stf/types.hpp>
-#include <stf/alg/transform.hpp>
+#include <stf/math/transform.hpp>
 
-#include "stf/alg/scaffolding/transform.hpp"
+#include "stf/math/scaffolding/transform.hpp"
 
-namespace stf::alg
+namespace stf::math
 {
     
     TEST(transform, rotate2)
@@ -59,18 +59,4 @@ namespace stf::alg
         for (scaffolding::transform::orbit3<float> const& test : tests) { scaffolding::transform::verify(test); }
     }
 
-    TEST(transform, orbit_scamera)
-    {
-        float constexpr half_pi = stff::constants::half_pi;
-        float constexpr pi = stff::constants::pi;
-
-        std::vector<scaffolding::transform::orbit_scamera<float>> tests = 
-        {
-            // initial                                          focus           delta phi                   delta theta             expected
-            { stff::scamera(stff::vec3(0, 0, 10), half_pi, pi), stff::vec3(0),  -stff::constants::half_pi,  stff::constants::pi,    stff::scamera(stff::vec3(0, 10, 0), pi + half_pi, half_pi) },
-        };
-
-        for (scaffolding::transform::orbit_scamera<float> const& test : tests) { scaffolding::transform::verify(test); }
-    }
-
-} // stf::alg
+} // stf::math

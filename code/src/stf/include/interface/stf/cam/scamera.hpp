@@ -3,6 +3,7 @@
 #include "stf/math/constants.hpp"
 #include "stf/math/matrix.hpp"
 #include "stf/math/scalar.hpp"
+#include "stf/math/transform.hpp"
 #include "stf/math/vector.hpp"
 
 namespace stf::cam
@@ -97,6 +98,21 @@ namespace stf::cam
     inline bool const operator!=(scamera<T> const& lhs, scamera<T> const& rhs)
     {
         return !(lhs == rhs);
+    }
+
+    template<typename T>
+    inline scamera<T> orbit(scamera<T> const& camera, math::vec3<T> const& focus, T const delta_phi, T const delta_theta)
+    {
+        // copy camera state so unaffected values are preserved
+        scamera<T> result = camera;
+
+        // rotate the eye and adjust heading and pitch appropriately
+        result.eye = math::orbit(result.eye, focus, camera.right(), -delta_phi, delta_theta);
+        result.theta += delta_theta;
+        result.phi += delta_phi;
+
+        // return result
+        return result;
     }
 
     template <typename T>

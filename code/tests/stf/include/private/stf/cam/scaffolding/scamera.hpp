@@ -25,4 +25,20 @@ namespace stf::cam::scaffolding::scamera
         ASSERT_EQ(test.right, test.camera.right()) << "Failed to compute right vector";
     }
 
+    template<typename T>
+    struct orbit
+    {
+        cam::scamera<T> const initial;
+        math::vec3<T> const focus;
+        T const delta_phi;
+        T const delta_theta;
+        cam::scamera<T> const expected;
+    };
+
+    template<typename T>
+    void verify(orbit<T> const& test)
+    {
+        ASSERT_EQ(test.expected, cam::orbit(test.initial, test.focus, test.delta_phi, test.delta_theta)) << "Failed scamera orbit function";
+    }
+
 } // stf::cam::scaffolding::scamera
