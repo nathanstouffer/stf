@@ -1,7 +1,8 @@
 #pragma once
 
-namespace stf::math
+namespace stf
 {
+
     enum class endpoints
     {
         CLOSED,
@@ -18,4 +19,4 @@ namespace stf::math
         }
     }
     
-}
+} // stf

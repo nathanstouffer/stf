@@ -14,7 +14,7 @@ namespace stf::alg
     template<typename T>
     inline math::vec2<T> rotate(math::vec2<T> const& val, T const theta)
     {
-        return math::rotate_plane<T>(theta) * val;
+        return math::rotate<T>(theta) * val;
     }
 
     template<typename T>

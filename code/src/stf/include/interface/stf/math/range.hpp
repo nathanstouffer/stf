@@ -1,7 +1,7 @@
 #pragma once
 
+#include "stf/enums.hpp"
 #include "stf/math/constants.hpp"
-#include "stf/math/enums.hpp"
 
 namespace stf::math
 {

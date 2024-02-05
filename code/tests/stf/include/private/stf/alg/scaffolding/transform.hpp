@@ -20,7 +20,7 @@ namespace stf::alg::scaffolding::transform
     void verify(rotate2<T> const& test)
     {
         ASSERT_EQ(test.expected, alg::rotate(test.initial, test.delta_theta)) << "Failed rotate function";
-        ASSERT_EQ(test.expected, math::rotate_plane(test.delta_theta) * test.initial) << "Failed rotate matrix";
+        ASSERT_EQ(test.expected, math::rotate(test.delta_theta) * test.initial) << "Failed rotate matrix";
     }
 
     template<typename T>
