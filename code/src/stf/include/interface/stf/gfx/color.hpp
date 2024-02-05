@@ -10,7 +10,7 @@
 namespace stf::gfx
 {
 
-    // TODO (stouff) possibly template this?
+    // TODO possibly template this?
     struct rgba
     {
     public:
@@ -85,6 +85,6 @@ namespace stf::gfx
         return s << "[ " << rhs.r << ", " << rhs.g << ", " << rhs.b << ", " << rhs.a << " ]";
     }
 
-    // TODO (stouff) class for hsv and other ways of representing color
+    // TODO class for hsv and other ways of representing color
 
 } // stf::gfx

@@ -16,7 +16,7 @@ namespace stf::math
     // reduce some of the unwanted duplication, many of the member functions call through to templated functions that operate
     // directly on the underlying raw pointers
 
-    // TODO (stouff) possibly use the CRTP to reduce verbosity -- just make sure to test performance implications 
+    // TODO possibly use the CRTP to reduce verbosity -- just make sure to test performance implications 
 
     // Generic vector type
     template<typename T, size_t N>

@@ -6,7 +6,10 @@
 #include "stf/math/matrix.hpp"
 #include "stf/math/vector.hpp"
 
-namespace stf::alg {
+namespace stf::alg
+{
+
+    // TODO (stouff) consider moving all these functions into more specific namespaces (stf::math for the points and stf::cam for the camera stuff)
 
     template<typename T>
     inline math::vec2<T> rotate(math::vec2<T> const& val, T const theta)

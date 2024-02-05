@@ -5,7 +5,7 @@
 namespace stf::cam
 {
 
-    // TODO (stouff) write this class once we have a plane and aabb class
+    // TODO write this class once we have a plane and aabb class
     template<typename T>
     struct frustum
     {
@@ -19,12 +19,12 @@ namespace stf::cam
 
         void reset(scamera<T> const& camera)
         {
-            // TODO (stouff) write this method
+            // TODO write this method
         }
 
     private:
 
-        // TODO (stouff) probably make members private?
+        // TODO probably make members private?
 
     };
 

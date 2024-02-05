@@ -30,7 +30,7 @@ namespace stf::math
         aabb(vec_t const& _min, T const length) : aabb(_min, min + vec_t(length)) {}
         aabb() : aabb(vec_t(constants<T>::neg_inf), vec_t(constants<T>::pos_inf)) {}
 
-        // TODO (stouff) write a vertex indexing function
+        // TODO write a vertex indexing function
 
         inline vec_t const length() const { return max - min; }
         inline vec_t const center() const { return min + (constants<T>::half * length()); }

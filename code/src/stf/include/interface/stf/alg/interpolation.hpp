@@ -65,10 +65,10 @@ namespace stf::alg
         return lerp(a, b, smooth_time(t));
     }
 
-    // TODO (stouff) simplify this to just one polynomial
     template<typename T>
     inline T cubic_bezier(T const a, T const b, T const c, T const d, T const t)
     {
+        // TODO simplify this implementation to just one polynomial
         // first round of lerps
         T const a1 = lerp(a, b, t);
         T const b1 = lerp(b, c, t);

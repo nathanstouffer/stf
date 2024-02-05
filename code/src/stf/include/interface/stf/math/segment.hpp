@@ -1,5 +1,6 @@
 #pragma once
 
+#include "stf/math/aabb.hpp"
 #include "stf/math/constants.hpp"
 #include "stf/math/vector.hpp"
 
@@ -10,7 +11,8 @@ namespace stf::math
     struct segment
     {
 
-        using vec_t = vec<T, N>;
+        using vec_t = math::vec<T, N>;
+        using aabb_t = math::aabb<T, N>;
 
     public:
 
@@ -23,6 +25,14 @@ namespace stf::math
         inline T length() const { return (b - a).length(); }
         inline vec_t delta() const { return b - a; }
         inline vec_t direction() const { return (b - a).normalize(); }
+
+        inline aabb_t aabb() const
+        {
+            aabb_t box = aabb_t::nothing();
+            box.fit(a);
+            box.fit(b);
+            return box;
+        }
 
         inline T distance_to(vec_t const& x) const
         {

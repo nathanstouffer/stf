@@ -26,7 +26,7 @@ target_include_directories(tests PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include/pri
 target_link_libraries(tests PRIVATE stf GTest::gtest_main)
 
 # set up cpp files with precompiled headers
-# TODO (stouff) consider adding <stf/types.hpp> to this list
+# TODO consider adding <stf/types.hpp> to this list
 target_precompile_headers(tests PRIVATE <vector> <gtest/gtest.h>)
 
 include(GoogleTest)

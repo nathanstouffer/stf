@@ -58,7 +58,7 @@ namespace stf::cam
         vec_t up() const { return math::unit_vector(theta, phi - math::constants<T>::half_pi); }
         vec_t right() const { return math::cross(look(), up()); }
 
-        // TODO (stouff) write these matrix methods
+        // TODO write these matrix methods
         // mtx_t view() const;
         // mtx_t proj() const;
         // mtx_t view_proj() const;
