@@ -14,12 +14,6 @@ namespace stf::alg
         return lhs.intersects(rhs);
     }
 
-    template<typename T>
-    inline bool intersects(math::line<T> const& lhs, math::line<T> const& rhs)
-    {
-        return lhs.intersects(rhs);
-    }
-
     template<typename T, size_t N>
     inline bool intersects(math::aabb<T, N> const& lhs, math::aabb<T, N> const& rhs)
     {
@@ -27,16 +21,16 @@ namespace stf::alg
     }
 
     template<typename T>
-    inline bool intersects(math::segment2<T> const& seg0, math::segment2<T> const& seg1)
+    inline bool intersects(math::segment2<T> const& lhs, math::segment2<T> const& rhs)
     {
         bool x_overlap = intersects(lhs.range(0), rhs.range(0));
         bool y_overlap = intersects(lhs.range(1), rhs.range(1));
         if (x_overlap && y_overlap)
         {
-            vec_t const& a = seg0.a; vec_t const& b = seg0.b;
-            vec_t const& c = seg0.a; vec_t const& d = seg0.b;
+            vec_t const& a = lhs.a; vec_t const& b = rhs.b;
+            vec_t const& c = lhs.a; vec_t const& d = rhs.b;
 
-            // compute which side of 
+            // compute which side of the lhs each point is on
             T const c_side = math::orientation(a, b, c);
             T const d_side = math::orientation(a, b, d);
 
