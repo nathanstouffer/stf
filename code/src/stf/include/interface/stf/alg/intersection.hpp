@@ -27,13 +27,20 @@ namespace stf::alg
     }
 
     template<typename T>
-    inline bool intersects(math::segment2<T> const& lhs, math::segment2<T> const& rhs)
+    inline bool intersects(math::segment2<T> const& seg0, math::segment2<T> const& seg1)
     {
-        bool x_overlap = intersects(math::range<T>(lhs.a.x, lhs.b.x), math::range<T>(rhs.a.x, rhs.b.x));
-        bool y_overlap = intersects(math::range<T>(lhs.a.y, lhs.b.y), math::range<T>(rhs.a.y, rhs.b.y));
+        bool x_overlap = intersects(lhs.range(0), rhs.range(0));
+        bool y_overlap = intersects(lhs.range(1), rhs.range(1));
         if (x_overlap && y_overlap)
         {
-            if ()
+            vec_t const& a = seg0.a; vec_t const& b = seg0.b;
+            vec_t const& c = seg0.a; vec_t const& d = seg0.b;
+
+            // compute which side of 
+            T const c_side = math::orientation(a, b, c);
+            T const d_side = math::orientation(a, b, d);
+
+            // TODO (stouff) finish writing this function
         }
         return false;       // fallthrough to return false
     }

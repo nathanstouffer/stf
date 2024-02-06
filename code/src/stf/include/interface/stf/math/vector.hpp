@@ -310,14 +310,29 @@ namespace stf::math
     }
 
     template<typename T>
+    inline T const cross(vec2<T> const& lhs, vec2<T> const& rhs)
+    {
+        return lhs.x * rhs.y - lhs.y * rhs.x;
+    }
+
+    template<typename T>
     inline vec3<T> const cross(vec3<T> const& lhs, vec3<T> const& rhs)
     {
         return vec3<T>
         (
-            lhs.y * rhs.z - rhs.y * lhs.z,
-            rhs.x * lhs.z - lhs.x * rhs.z,
-            lhs.x * rhs.y - rhs.x * lhs.y
+            cross(vec2<T>(lhs.y, lhs.z), vec2<T>(rhs.y, rhs.z)),
+            -cross(vec2<T>(lhs.x, lhs.z), vec2<T>(rhs.x, rhs.z)),
+            cross(vec2<T>(lhs.x, lhs.y), vec2<T>(rhs.x, rhs.y))
         );
+    }
+
+    // positive => anti-clockwise
+    // zero     => colinear
+    // negative => clockwise
+    template<typename T>
+    inline T orientation(vec2<T> const& p, vec2<T> const& q, vec2<T> const& r)
+    {
+        return cross(q - p, r - p);
     }
 
     template<typename T, size_t N>
