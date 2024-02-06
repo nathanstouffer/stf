@@ -1,7 +1,6 @@
 #pragma once
 
 #include "stf/math/aabb.hpp"
-#include "stf/math/line.hpp"
 #include "stf/math/polyline.hpp"
 #include "stf/math/range.hpp"
 #include "stf/math/segment.hpp"
@@ -34,7 +33,7 @@ namespace stf::alg
         bool y_overlap = intersects(math::range<T>(lhs.a.y, lhs.b.y), math::range<T>(rhs.a.y, rhs.b.y));
         if (x_overlap && y_overlap)
         {
-            // TODO (stouff) compute this
+            if ()
         }
         return false;       // fallthrough to return false
     }
