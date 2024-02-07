@@ -28,7 +28,7 @@ namespace stf::math
         inline vec_t delta() const { return b - a; }
         inline vec_t direction() const { return (b - a).normalize(); }
 
-        inline math::range<T> range(size_t i) const { return math::range<T>(a[i], b[i]); }
+        inline math::range<T> range(size_t i) const { return math::range<T>(std::min(a[i], b[i]), std::max(a[i], b[i])); }
 
         inline aabb_t aabb() const
         {

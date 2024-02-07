@@ -23,8 +23,8 @@ namespace stf::alg
     template<typename T>
     inline bool intersects(math::segment2<T> const& lhs, math::segment2<T> const& rhs)
     {
-        bool x_overlap = intersects(lhs.range(0), rhs.range(0));
-        bool y_overlap = intersects(lhs.range(1), rhs.range(1));
+        bool const x_overlap = intersects(lhs.range(0), rhs.range(0));
+        bool const y_overlap = intersects(lhs.range(1), rhs.range(1));
         if (x_overlap && y_overlap)
         {
             vec_t const& a = lhs.a; vec_t const& b = rhs.b;
@@ -34,7 +34,16 @@ namespace stf::alg
             T const c_side = math::orientation(a, b, c);
             T const d_side = math::orientation(a, b, d);
 
-            // TODO (stouff) finish writing this function
+            if (c_side == constants<T>::zero && d_side == constants<T>::zero)   // if all four points are colinear
+            {
+                return x_overlap && y_overlap;
+            }
+            else    // the general case where not all four points are colinear
+            {
+                T const a_side = math::orientation(c, d, a);
+                T const b_side = math::orientation(c, d, b);
+                return (c_side * d_side <= constants<T>::zero) && (a_side * b_side <= constants<T>::zero);
+            }
         }
         return false;       // fallthrough to return false
     }

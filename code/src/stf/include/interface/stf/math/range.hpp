@@ -26,11 +26,11 @@ namespace stf::math
             }
         }
 
-        inline bool contains(T const x, endpoints type) const { return contains(a, b, x, type); }
+        inline bool contains(T const x, endpoints const type) const { return contains(a, b, x, type); }
         inline bool contains(range const& rhs) const { return a <= rhs.a && rhs.b <= b; }
         inline bool intersects(range const& rhs) const { return !(rhs.b < a || b < rhs.a); }
 
-        static inline bool contains(T const a, T const b, T const x, endpoints type)
+        static inline bool contains(T const a, T const b, T const x, endpoints const type)
         {
             switch (type)
             {
