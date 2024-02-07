@@ -43,7 +43,6 @@ namespace stf::math
             { stff::crange(5, 2), stf::endpoints::OPEN, 2, false },
             { stff::crange(5, 2), stf::endpoints::OPEN, 4, false },
             { stff::crange(5, 2), stf::endpoints::OPEN, 3, false },
-
         };
 
         for (scaffolding::crange::contains_point<float> const& test : tests)

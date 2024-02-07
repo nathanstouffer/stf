@@ -4,6 +4,7 @@ set(TEST_FILES_PREFIX "cpp/stf")
 
 set(TEST_FILES
     ${TEST_FILES_PREFIX}/alg/interpolation_tests.cpp
+    ${TEST_FILES_PREFIX}/alg/intersection_tests.cpp
     ${TEST_FILES_PREFIX}/cam/scamera_tests.cpp
     ${TEST_FILES_PREFIX}/gfx/color_tests.cpp
     ${TEST_FILES_PREFIX}/math/aabb2_tests.cpp
