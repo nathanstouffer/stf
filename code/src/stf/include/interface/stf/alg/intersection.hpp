@@ -24,30 +24,25 @@ namespace stf::alg
     template<typename T>
     inline bool intersect(math::segment2<T> const& lhs, math::segment2<T> const& rhs)
     {
-        // TODO (stouff) possibly wait to compute these until we know if the segments are colinear?
-        bool const x_overlap = intersect(lhs.range(0), rhs.range(0));
-        bool const y_overlap = intersect(lhs.range(1), rhs.range(1));
-        if (x_overlap && y_overlap)
+        math::vec2<T> const& a = lhs.a; math::vec2<T> const& b = lhs.b;
+        math::vec2<T> const& c = rhs.a; math::vec2<T> const& d = rhs.b;
+
+        // compute which side of the lhs each point is on
+        T const c_side = math::orientation(a, b, c);
+        T const d_side = math::orientation(a, b, d);
+
+        if (c_side == math::constants<T>::zero && d_side == math::constants<T>::zero)   // if all four points are colinear
         {
-            math::vec2<T> const& a = lhs.a; math::vec2<T> const& b = lhs.b;
-            math::vec2<T> const& c = rhs.a; math::vec2<T> const& d = rhs.b;
-
-            // compute which side of the lhs each point is on
-            T const c_side = math::orientation(a, b, c);
-            T const d_side = math::orientation(a, b, d);
-
-            if (c_side == math::constants<T>::zero && d_side == math::constants<T>::zero)   // if all four points are colinear
-            {
-                return x_overlap && y_overlap;
-            }
-            else    // the general case where not all four points are colinear
-            {
-                T const a_side = math::orientation(c, d, a);
-                T const b_side = math::orientation(c, d, b);
-                return (c_side * d_side <= math::constants<T>::zero) && (a_side * b_side <= math::constants<T>::zero);
-            }
+            bool const x_overlap = intersect(lhs.range(0), rhs.range(0));
+            bool const y_overlap = intersect(lhs.range(1), rhs.range(1));
+            return x_overlap && y_overlap;
         }
-        return false;       // fallthrough to return false
+        else    // the general case where not all four points are colinear
+        {
+            T const a_side = math::orientation(c, d, a);
+            T const b_side = math::orientation(c, d, b);
+            return (c_side * d_side <= math::constants<T>::zero) && (a_side * b_side <= math::constants<T>::zero);
+        }
     }
 
     template<typename T>
