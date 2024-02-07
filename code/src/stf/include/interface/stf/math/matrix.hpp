@@ -267,7 +267,7 @@ namespace stf::math
     template<typename T> inline mtx4<T> rotate_zyx(T const z, T const y, T const x) { return (rotate_z(z) *= rotate_y(y)) *= rotate_x(x); }
 
     template<typename T>
-    inline mtx<T, 2> rotate_plane(T const theta)
+    inline mtx<T, 2> rotate(T const theta)
     {
         mtx<T, 2> result;
         result.row(0) = vec<T, 2>(std::cos(theta), -std::sin(theta));

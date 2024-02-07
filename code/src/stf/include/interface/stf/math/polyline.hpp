@@ -22,8 +22,8 @@ namespace stf::math
         polyline() : polyline(std::vector<vec_t>()) {}
         polyline(std::vector<vec_t> const& points) : m_points(points), m_aabb(aabb_t::fit(points)) {}
 
-        inline size_t size() const { return m_points.size(); } 
         inline bool is_empty() const { return m_points.size() < 2; }
+        inline size_t size() const { return is_empty() ? 0 : m_points.size(); } 
 
         inline segment<T, N> edge(size_t i) const { return segment<T, N>(m_points[i], m_points[i + 1]); }
 

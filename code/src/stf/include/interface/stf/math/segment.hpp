@@ -1,6 +1,8 @@
 #pragma once
 
+#include "stf/math/aabb.hpp"
 #include "stf/math/constants.hpp"
+#include "stf/math/range.hpp"
 #include "stf/math/vector.hpp"
 
 namespace stf::math
@@ -10,7 +12,8 @@ namespace stf::math
     struct segment
     {
 
-        using vec_t = vec<T, N>;
+        using vec_t = math::vec<T, N>;
+        using aabb_t = math::aabb<T, N>;
 
     public:
 
@@ -21,8 +24,19 @@ namespace stf::math
         segment(vec_t const& _a, vec_t const& _b) : a(_a), b(_b) {}
 
         inline T length() const { return (b - a).length(); }
+        inline T slope() const { vec_t diff = delta(); return diff.y / diff.x; }
         inline vec_t delta() const { return b - a; }
         inline vec_t direction() const { return (b - a).normalize(); }
+
+        inline math::range<T> range(size_t i) const { return math::range<T>(std::min(a[i], b[i]), std::max(a[i], b[i])); }
+
+        inline aabb_t aabb() const
+        {
+            aabb_t box = aabb_t::nothing();
+            box.fit(a);
+            box.fit(b);
+            return box;
+        }
 
         inline T distance_to(vec_t const& x) const
         {

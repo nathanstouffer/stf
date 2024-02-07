@@ -1,7 +1,7 @@
 #pragma once
 
+#include "stf/enums.hpp"
 #include "stf/math/constants.hpp"
-#include "stf/math/enums.hpp"
 #include "stf/math/range.hpp"
 #include "stf/math/spherical.hpp"
 
@@ -33,7 +33,7 @@ namespace stf::math
             return (a <= b) ? range<T>::contains(a, b, x, type) : !range<T>::contains(b, a, x, complement(type));
         }
 
-        // TODO (stouff) think more about these ones
+        // TODO think more about these ones
         // inline bool contains(range const& rhs) const {  }
         // inline bool intersects(range const& rhs) const {  }
 

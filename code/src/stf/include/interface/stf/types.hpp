@@ -13,7 +13,8 @@
 
 using gpu_float_t = float;
 
-namespace stf {
+namespace stf
+{
 
     template<typename T>
     struct instantiate_types

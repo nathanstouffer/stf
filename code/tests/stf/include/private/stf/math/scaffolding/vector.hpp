@@ -232,18 +232,4 @@ namespace stf::math::scaffolding::vec
         math::vec<T, N> const expected;
     };
 
-
-    template<typename T>
-    struct unit_vec2
-    {
-        T const theta;
-        math::vec<T, 2> const expected;
-    };
-
-    template<typename T>
-    void verify(unit_vec2<T> const& test)
-    {
-        ASSERT_EQ(test.expected, math::unit_vector(test.theta)) << "Failed to compute unit vector";
-    }
-
 } // stf::math::scaffolding::vec
