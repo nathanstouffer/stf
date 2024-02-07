@@ -72,7 +72,7 @@ namespace stf::alg
     }
 
     template<typename T>
-    bool intersect(geom::aabb2<T> const& aabb, geom::polyline2<T> const& polyline)
+    bool intersect(geom::polyline2<T> const& polyline, geom::aabb2<T> const& aabb)
     {
         if (!polyline.is_empty() && aabb.intersects(polyline.aabb()))
         {
@@ -85,9 +85,9 @@ namespace stf::alg
     }
 
     template<typename T>
-    inline bool intersect(geom::polyline2<T> const& polyline, geom::aabb2<T> const& aabb)
+    inline bool intersect(geom::aabb2<T> const& aabb, geom::polyline2<T> const& polyline)
     {
-        return intersect(aabb, polyline);
+        return intersect(polyline, aabb);
     }
 
 } // stf::alg
