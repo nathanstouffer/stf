@@ -3,15 +3,15 @@ enable_testing()
 set(TEST_FILES_PREFIX "cpp/stf")
 
 set(TEST_FILES
-    ${TEST_FILES_PREFIX}/alg/interpolation_tests.cpp
     ${TEST_FILES_PREFIX}/alg/intersection_tests.cpp
     ${TEST_FILES_PREFIX}/cam/scamera_tests.cpp
+    ${TEST_FILES_PREFIX}/geom/aabb2_tests.cpp
+    ${TEST_FILES_PREFIX}/geom/segment2_tests.cpp
     ${TEST_FILES_PREFIX}/gfx/color_tests.cpp
-    ${TEST_FILES_PREFIX}/math/aabb2_tests.cpp
     ${TEST_FILES_PREFIX}/math/mtx4_tests.cpp
     ${TEST_FILES_PREFIX}/math/crange_tests.cpp
+    ${TEST_FILES_PREFIX}/math/interpolation_tests.cpp
     ${TEST_FILES_PREFIX}/math/range_tests.cpp
-    ${TEST_FILES_PREFIX}/math/segment2_tests.cpp
     ${TEST_FILES_PREFIX}/math/spherical_tests.cpp
     ${TEST_FILES_PREFIX}/math/transform_tests.cpp
     ${TEST_FILES_PREFIX}/math/vec2_tests.cpp

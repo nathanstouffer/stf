@@ -2,16 +2,16 @@
 
 #include <gtest/gtest.h>
 
-#include <stf/math/aabb.hpp>
+#include <stf/geom/aabb.hpp>
 
-namespace stf::math::scaffolding::aabb
+namespace stf::geom::scaffolding::aabb
 {
 
     template<typename T, size_t N>
     struct intersects
     {
-        math::aabb<T, N> const lhs;
-        math::aabb<T, N> const rhs;
+        geom::aabb<T, N> const lhs;
+        geom::aabb<T, N> const rhs;
         bool intersect;
     };
 
@@ -25,8 +25,8 @@ namespace stf::math::scaffolding::aabb
     template<typename T, size_t N>
     struct contains
     {
-        math::aabb<T, N> const lhs;
-        math::aabb<T, N> const rhs;
+        geom::aabb<T, N> const lhs;
+        geom::aabb<T, N> const rhs;
         bool contained;
     };
 
@@ -36,4 +36,4 @@ namespace stf::math::scaffolding::aabb
         ASSERT_EQ(test.contained, test.lhs.contains(test.rhs)) << "failed lhs -> rhs containment test";
     }
 
-} // stf::math::scaffolding::aabb
+} // stf::math::scaffolding::geom

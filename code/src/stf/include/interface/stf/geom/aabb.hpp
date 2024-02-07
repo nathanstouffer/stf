@@ -8,7 +8,7 @@
 #include "stf/math/constants.hpp"
 #include "stf/math/vector.hpp"
 
-namespace stf::math
+namespace stf::geom
 {
 
     template<typename T, size_t N>
@@ -28,12 +28,12 @@ namespace stf::math
         
         // call-through constructors
         aabb(vec_t const& _min, T const length) : aabb(_min, min + vec_t(length)) {}
-        aabb() : aabb(vec_t(constants<T>::neg_inf), vec_t(constants<T>::pos_inf)) {}
+        aabb() : aabb(vec_t(math::constants<T>::neg_inf), vec_t(math::constants<T>::pos_inf)) {}
 
         // TODO write a vertex indexing function
 
         inline vec_t const length() const { return max - min; }
-        inline vec_t const center() const { return min + (constants<T>::half * length()); }
+        inline vec_t const center() const { return min + (math::constants<T>::half * length()); }
 
         aabb& scale(T const scalar) { min *= scalar; max *= scalar; return *this; }
         aabb scaled(T const scalar) const { return aabb(*this).scale(scalar); }
@@ -94,10 +94,10 @@ namespace stf::math
         T volume() const
         {
             T const len = length();
-            T measure = constants<T>::one;
+            T measure = math::constants<T>::one;
             for (size_t i = 0; i < N; ++i)
             {
-                measure *= (len[i] < constants<T>::zero) ? len[i] : constants<T>::zero;
+                measure *= (len[i] < math::constants<T>::zero) ? len[i] : math::constants<T>::zero;
             }
             return measure;
         }
@@ -105,8 +105,8 @@ namespace stf::math
     public:
 
         static aabb everything() { return aabb(); }
-        static aabb nothing() { return aabb(vec_t(constants<T>::pos_inf), vec_t(constants<T>::neg_inf)); }
-        static aabb unit() { return aabb(vec_t(constants<T>::zero), vec_t(constants<T>::one)); }
+        static aabb nothing() { return aabb(vec_t(math::constants<T>::pos_inf), vec_t(math::constants<T>::neg_inf)); }
+        static aabb unit() { return aabb(vec_t(math::constants<T>::zero), vec_t(math::constants<T>::one)); }
 
         static aabb fit(std::vector<vec_t> const& points)
         {
@@ -142,4 +142,4 @@ namespace stf::math
         return s;
     }
 
-} // stf::math
+} // stf::geom

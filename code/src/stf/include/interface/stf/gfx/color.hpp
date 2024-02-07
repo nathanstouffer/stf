@@ -5,6 +5,7 @@
 #include <algorithm>
 
 #include "stf/math/constants.hpp"
+#include "stf/math/interpolation.hpp"
 #include "stf/math/vector.hpp"
 
 namespace stf::gfx
@@ -78,6 +79,36 @@ namespace stf::gfx
     inline bool const operator!=(rgba const& lhs, rgba const& rhs)
     {
         return !(lhs == rhs);
+    }
+
+    inline gfx::rgba clamp(gfx::rgba const& lhs, gfx::rgba::num_t min, gfx::rgba::num_t max)
+    {
+        return gfx::rgba(clamp(lhs.as_vec(), min, max));
+    }
+
+    inline gfx::rgba lerp(gfx::rgba const& lhs, gfx::rgba const& rhs, gfx::rgba::num_t t)
+    {
+        return gfx::rgba(lerp(lhs.as_vec(), rhs.as_vec(), t));
+    }
+
+    inline gfx::rgba lerpstep(gfx::rgba const& lhs, gfx::rgba const& rhs, gfx::rgba::num_t t)
+    {
+        return gfx::rgba(lerpstep(lhs.as_vec(), rhs.as_vec(), t));
+    }
+
+    inline gfx::rgba smoothstep(gfx::rgba const& lhs, gfx::rgba const& rhs, gfx::rgba::num_t t)
+    {
+        return gfx::rgba(smoothstep(lhs.as_vec(), rhs.as_vec(), t));
+    }
+
+    inline gfx::rgba blend(gfx::rgba const& current, gfx::rgba const& writing)
+    {
+        gfx::rgba blended = current;
+        blended.r = math::lerp(blended.r, writing.r, writing.a);
+        blended.g = math::lerp(blended.g, writing.g, writing.a);
+        blended.b = math::lerp(blended.b, writing.b, writing.a);
+        blended.a = std::max(blended.a, writing.a);
+        return blended;
     }
 
     inline std::ostream& operator<<(std::ostream& s, rgba const& rhs)

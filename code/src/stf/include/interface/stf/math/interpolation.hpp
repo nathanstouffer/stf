@@ -4,12 +4,9 @@
 
 #include <algorithm>
 
-#include "stf/cam/scamera.hpp"
-#include "stf/gfx/color.hpp"
-#include "stf/math/spherical.hpp"
 #include "stf/math/vector.hpp"
 
-namespace stf::alg
+namespace stf::math
 {
 
     // clamp time to [0, 1]
@@ -171,60 +168,4 @@ namespace stf::alg
         return result;
     }
 
-    inline gfx::rgba clamp(gfx::rgba const& lhs, gfx::rgba::num_t min, gfx::rgba::num_t max)
-    {
-        return gfx::rgba(clamp(lhs.as_vec(), min, max));
-    }
-
-    inline gfx::rgba lerp(gfx::rgba const& lhs, gfx::rgba const& rhs, gfx::rgba::num_t t)
-    {
-        return gfx::rgba(lerp(lhs.as_vec(), rhs.as_vec(), t));
-    }
-
-    inline gfx::rgba lerpstep(gfx::rgba const& lhs, gfx::rgba const& rhs, gfx::rgba::num_t t)
-    {
-        return gfx::rgba(lerpstep(lhs.as_vec(), rhs.as_vec(), t));
-    }
-
-    inline gfx::rgba smoothstep(gfx::rgba const& lhs, gfx::rgba const& rhs, gfx::rgba::num_t t)
-    {
-        return gfx::rgba(smoothstep(lhs.as_vec(), rhs.as_vec(), t));
-    }
-
-    inline gfx::rgba blend(gfx::rgba const& current, gfx::rgba const& writing)
-    {
-        gfx::rgba blended = current;
-        blended.r = lerp(blended.r, writing.r, writing.a);
-        blended.g = lerp(blended.g, writing.g, writing.a);
-        blended.b = lerp(blended.b, writing.b, writing.a);
-        blended.a = std::max(blended.a, writing.a);
-        return blended;
-    }
-
-    template<typename T>
-    inline cam::scamera<T> lerp(cam::scamera<T> const& lhs, cam::scamera<T> const& rhs, T const t)
-    {
-        cam::scamera<T> result;
-        result.eye    = lerp(lhs.eye, rhs.eye, t);
-        result.theta  = lerp(lhs.theta, math::closest_equiv_angle(lhs.theta, rhs.theta), t);
-        result.phi    = lerp(lhs.phi, math::closest_equiv_angle(lhs.phi, rhs.phi), t);
-        result.near   = lerp(lhs.near, rhs.far, t);
-        result.far    = lerp(lhs.far, rhs.far, t);
-        result.aspect = lerp(lhs.aspect, rhs.aspect, t);
-        result.fov    = lerp(lhs.fov, rhs.fov, t);
-        return result;
-    }
-
-    template<typename T>
-    inline cam::scamera<T> lerpstep(cam::scamera<T> const& lhs, cam::scamera<T> const& rhs, T const t)
-    {
-        return lerp(lhs, rhs, clamp_time(t));
-    }
-
-    template<typename T>
-    inline cam::scamera<T> smoothstep(cam::scamera<T> const& lhs, cam::scamera<T> const& rhs, T const t)
-    {
-        return lerp(lhs, rhs, smooth_time(t));
-    }
-
-} // stf::alg
+} // stf::math

@@ -2,11 +2,11 @@
 
 #include <vector>
 
-#include "stf/math/aabb.hpp"
-#include "stf/math/segment.hpp"
+#include "stf/geom/aabb.hpp"
+#include "stf/geom/segment.hpp"
 #include "stf/math/vector.hpp"
 
-namespace stf::math
+namespace stf::geom
 {
 
     template<typename T, size_t N>
@@ -15,7 +15,7 @@ namespace stf::math
     public:
 
         using vec_t = math::vec<T, N>;
-        using aabb_t = math::aabb<T, N>;
+        using aabb_t = geom::aabb<T, N>;
 
     public:
 
@@ -37,7 +37,7 @@ namespace stf::math
 
         inline T length() const
         {
-            T len = constants<T>::zero;
+            T len = math::constants<T>::zero;
             if (m_points.size() >= 2)
             {
                 for (size_t i = 0; i + 1 < m_points.size(); ++i)
@@ -50,7 +50,7 @@ namespace stf::math
 
         T distance_to(vec_t const& x) const
         {
-            T dist = constants<T>::pos_inf;
+            T dist = math::constants<T>::pos_inf;
             for (size_t i = 0; i + 1 < m_points.size(); ++i)
             {
                 dist = std::min(dist, edge(i).distance_to(x));
@@ -60,11 +60,11 @@ namespace stf::math
 
         vec_t interpolate(T const t) const
         {
-            if (t <= constants<T>::zero) { return m_points.front(); }
-            else if (t < constants<T>::one)
+            if (t <= math::constants<T>::zero) { return m_points.front(); }
+            else if (t < math::constants<T>::one)
             {
                 T target = t * length();
-                T traveled = constants<T>::zero;
+                T traveled = math::constants<T>::zero;
                 for (size_t i = 0; i + 1 < m_points.size(); ++i)
                 {
                     segment<T, N> seg = edge(i);        // edge we are processing
@@ -129,4 +129,4 @@ namespace stf::math
     template<typename T> using polyline3 = polyline<T, 3>;
 
 
-} // stf::math
+} // stf::geom
