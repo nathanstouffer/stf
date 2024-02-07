@@ -4,9 +4,9 @@
 
 #include <stf/types.hpp>
 
-#include "stf/alg/scaffolding/interpolation.hpp"
+#include "stf/math/scaffolding/interpolation.hpp"
 
-namespace stf::alg
+namespace stf::math
 {
     TEST(interpolation, lerp)
     {
@@ -98,4 +98,4 @@ namespace stf::alg
         for (scaffolding::interpolation::lerpstep<float> const& test : tests) { scaffolding::interpolation::verify(test); }
     }
 
-} // stf::alg
+} // stf::math

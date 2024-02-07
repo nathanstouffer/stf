@@ -3,9 +3,9 @@
 #include <gtest/gtest.h>
 
 #include <stf/types.hpp>
-#include <stf/alg/interpolation.hpp>
+#include <stf/math/interpolation.hpp>
 
-namespace stf::alg::scaffolding::interpolation
+namespace stf::math::scaffolding::interpolation
 {
 
     template<typename T>
@@ -20,7 +20,7 @@ namespace stf::alg::scaffolding::interpolation
     template<typename T>
     void verify(lerp<T> const& test)
     {
-        ASSERT_EQ(test.expected, alg::lerp(test.a, test.b, test.t)) << "Failed to compute lerp";
+        ASSERT_EQ(test.expected, math::lerp(test.a, test.b, test.t)) << "Failed to compute lerp";
     }
 
     template<typename T>
@@ -35,7 +35,7 @@ namespace stf::alg::scaffolding::interpolation
     template<typename T>
     void verify(lerp_inv<T> const& test)
     {
-        ASSERT_EQ(test.expected, alg::lerp_inv(test.a, test.b, test.x)) << "Failed to compute lerp_inv";
+        ASSERT_EQ(test.expected, math::lerp_inv(test.a, test.b, test.x)) << "Failed to compute lerp_inv";
     }
 
     template<typename T>
@@ -50,7 +50,7 @@ namespace stf::alg::scaffolding::interpolation
     template<typename T>
     void verify(lerpstep<T> const& test)
     {
-        ASSERT_EQ(test.expected, alg::lerpstep(test.a, test.b, test.t)) << "Failed to compute lerp_step";
+        ASSERT_EQ(test.expected, math::lerpstep(test.a, test.b, test.t)) << "Failed to compute lerp_step";
     }
 
-} // stf::alg::scaffolding::interpolation
+} // stf::math::scaffolding::interpolation

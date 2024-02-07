@@ -1,6 +1,7 @@
 #pragma once
 
 #include "stf/math/constants.hpp"
+#include "stf/math/interpolation.hpp"
 #include "stf/math/matrix.hpp"
 #include "stf/math/scalar.hpp"
 #include "stf/math/spherical.hpp"
@@ -99,6 +100,32 @@ namespace stf::cam
     inline bool const operator!=(scamera<T> const& lhs, scamera<T> const& rhs)
     {
         return !(lhs == rhs);
+    }
+
+    template<typename T>
+    inline cam::scamera<T> lerp(cam::scamera<T> const& lhs, cam::scamera<T> const& rhs, T const t)
+    {
+        cam::scamera<T> result;
+        result.eye    = math::lerp(lhs.eye, rhs.eye, t);
+        result.theta  = math::lerp(lhs.theta, math::closest_equiv_angle(lhs.theta, rhs.theta), t);
+        result.phi    = math::lerp(lhs.phi, math::closest_equiv_angle(lhs.phi, rhs.phi), t);
+        result.near   = math::lerp(lhs.near, rhs.far, t);
+        result.far    = math::lerp(lhs.far, rhs.far, t);
+        result.aspect = math::lerp(lhs.aspect, rhs.aspect, t);
+        result.fov    = math::lerp(lhs.fov, rhs.fov, t);
+        return result;
+    }
+
+    template<typename T>
+    inline cam::scamera<T> lerpstep(cam::scamera<T> const& lhs, cam::scamera<T> const& rhs, T const t)
+    {
+        return lerp(lhs, rhs, clamp_time(t));
+    }
+
+    template<typename T>
+    inline cam::scamera<T> smoothstep(cam::scamera<T> const& lhs, cam::scamera<T> const& rhs, T const t)
+    {
+        return lerp(lhs, rhs, smooth_time(t));
     }
 
     template<typename T>
