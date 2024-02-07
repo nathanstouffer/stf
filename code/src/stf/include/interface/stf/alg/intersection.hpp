@@ -51,7 +51,18 @@ namespace stf::alg
         // if either point is in the box, there is certainly an intersection
         if (aabb.contains(segment.a) || aabb.contains(segment.b)) { return true; }
 
-        // TODO (stouff) write the rest of this function
+        // iterate over each edge of the box and test if the segment intersects it
+        for (size_t i = 0; i < 3; ++i)
+        {
+            // compute an edge of the bounding box
+            math::vec2<T> const& a = aabb.vertex(i);
+            math::vec2<T> const& b = aabb.vertex((i + 1) % 4);
+            geom::segment2 edge(a, b);
+
+            // if the segment intersects the edge then return true
+            if (intersect(segment, edge)) { return true; }
+        }
+        return false;       // fallthrough to return false
     }
 
     template<typename T>
