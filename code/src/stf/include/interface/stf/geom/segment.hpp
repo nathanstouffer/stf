@@ -1,11 +1,11 @@
 #pragma once
 
-#include "stf/math/aabb.hpp"
+#include "stf/geom/aabb.hpp"
 #include "stf/math/constants.hpp"
 #include "stf/math/range.hpp"
 #include "stf/math/vector.hpp"
 
-namespace stf::math
+namespace stf::geom
 {
 
     template<typename T, size_t N>
@@ -13,14 +13,14 @@ namespace stf::math
     {
 
         using vec_t = math::vec<T, N>;
-        using aabb_t = math::aabb<T, N>;
+        using aabb_t = geom::aabb<T, N>;
 
     public:
 
         vec_t a;
         vec_t b;
 
-        segment() : segment(vec_t(constants<T>::zero), vec_t(constants<T>::zero)) {}
+        segment() : segment(vec_t(math::constants<T>::zero), vec_t(math::constants<T>::zero)) {}
         segment(vec_t const& _a, vec_t const& _b) : a(_a), b(_b) {}
 
         inline T length() const { return (b - a).length(); }
@@ -42,15 +42,15 @@ namespace stf::math
         {
             vec_t diff = delta();
             T scalar = ((x - a) * diff) / (diff * diff);
-            T t = std::max(constants<T>::zero, std::min(constants<T>::one, scalar));
+            T t = std::max(math::constants<T>::zero, std::min(math::constants<T>::one, scalar));
             vec_t proj = a + t * diff;
             return (x - proj).length();
         }
 
         vec_t interpolate(T const t) const
         {
-            if (t <= constants<T>::zero) { return a; }
-            else if (t < constants<T>::one) { return (constants<T>::one - t) * a + t * b; }
+            if (t <= math::constants<T>::zero) { return a; }
+            else if (t < math::constants<T>::one) { return (math::constants<T>::one - t) * a + t * b; }
             else { return b; }
         }
 
@@ -64,4 +64,4 @@ namespace stf::math
     template<typename T> using segment2 = segment<T, 2>;
     template<typename T> using segment3 = segment<T, 3>;
 
-} // stf::math
+} // stf::geom

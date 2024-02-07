@@ -4,9 +4,9 @@
 
 #include <stf/types.hpp>
 
-#include "stf/math/scaffolding/segment.hpp"
+#include "stf/geom/scaffolding/segment.hpp"
 
-namespace stf::math
+namespace stf::geom
 {
 
     TEST(segment2, distance_to)
@@ -24,7 +24,7 @@ namespace stf::math
             { stff::segment2(stff::vec2(0), stff::vec2(1, 0)), stff::vec2(1, 1), 1 },
             { stff::segment2(stff::vec2(0), stff::vec2(1, 0)), stff::vec2(1, -1), 1 },
             { stff::segment2(stff::vec2(0), stff::vec2(1, 0)), stff::vec2(2, 0), 1 },
-            { stff::segment2(stff::vec2(0), stff::vec2(1)), stff::vec2(0, 1), constants<float>::sqrt_two_inv },
+            { stff::segment2(stff::vec2(0), stff::vec2(1)), stff::vec2(0, 1), math::constants<float>::sqrt_two_inv },
         };
 
         for (scaffolding::segment::distance_to<float, 2> const& test : tests)
@@ -53,4 +53,4 @@ namespace stf::math
         }
     }
 
-} // stf::math
+} // stf::geom

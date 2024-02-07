@@ -4,9 +4,9 @@
 
 #include <stf/types.hpp>
 
-#include "stf/math/scaffolding/aabb.hpp"
+#include "stf/geom/scaffolding/aabb.hpp"
 
-namespace stf::math
+namespace stf::geom
 {
 
     TEST(aabb2, intersects)
@@ -48,4 +48,4 @@ namespace stf::math
         }
     }
 
-} // stf::math
+} // stf::geom

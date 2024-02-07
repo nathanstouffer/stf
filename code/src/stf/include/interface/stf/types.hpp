@@ -2,13 +2,13 @@
 
 #include "stf/cam/frustum.hpp"
 #include "stf/cam/scamera.hpp"
-#include "stf/math/aabb.hpp"
+#include "stf/geom/aabb.hpp"
+#include "stf/geom/polyline.hpp"
+#include "stf/geom/segment.hpp"
 #include "stf/math/constants.hpp"
 #include "stf/math/crange.hpp"
 #include "stf/math/matrix.hpp"
-#include "stf/math/polyline.hpp"
 #include "stf/math/range.hpp"
-#include "stf/math/segment.hpp"
 #include "stf/math/vector.hpp"
 
 using gpu_float_t = float;
@@ -41,15 +41,15 @@ namespace stf
         using range = math::range<T>;
 
         // aabb tyes
-        using aabb2 = math::aabb2<T>;
-        using aabb3 = math::aabb3<T>;
+        using aabb2 = geom::aabb2<T>;
+        using aabb3 = geom::aabb3<T>;
 
         // segment types
-        using segment2 = math::segment2<T>;
-        using segment3 = math::segment3<T>;
+        using segment2 = geom::segment2<T>;
+        using segment3 = geom::segment3<T>;
 
         // planar geometry types
-        using polyline = math::polyline2<T>;
+        using polyline = geom::polyline2<T>;
 
         // camera-related types
         using scamera = cam::scamera<T>;

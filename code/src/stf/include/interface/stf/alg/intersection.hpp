@@ -1,10 +1,10 @@
 #pragma once
 
-#include "stf/math/aabb.hpp"
+#include "stf/geom/aabb.hpp"
+#include "stf/geom/polyline.hpp"
+#include "stf/geom/segment.hpp"
 #include "stf/math/constants.hpp"
-#include "stf/math/polyline.hpp"
 #include "stf/math/range.hpp"
-#include "stf/math/segment.hpp"
 
 namespace stf::alg
 {
@@ -16,13 +16,13 @@ namespace stf::alg
     }
 
     template<typename T, size_t N>
-    inline bool intersect(math::aabb<T, N> const& lhs, math::aabb<T, N> const& rhs)
+    inline bool intersect(geom::aabb<T, N> const& lhs, geom::aabb<T, N> const& rhs)
     {
         return lhs.intersects(rhs);
     }
 
     template<typename T>
-    inline bool intersect(math::segment2<T> const& lhs, math::segment2<T> const& rhs)
+    inline bool intersect(geom::segment2<T> const& lhs, geom::segment2<T> const& rhs)
     {
         math::vec2<T> const& a = lhs.a; math::vec2<T> const& b = lhs.b;
         math::vec2<T> const& c = rhs.a; math::vec2<T> const& d = rhs.b;
@@ -46,7 +46,7 @@ namespace stf::alg
     }
 
     template<typename T>
-    bool intersect(math::aabb2<T> const& aabb, math::segment2<T> const& segment)
+    bool intersect(geom::aabb2<T> const& aabb, geom::segment2<T> const& segment)
     {
         // if either point is in the box, there is certainly an intersection
         if (aabb.contains(segment.a) || aabb.contains(segment.b)) { return true; }
@@ -55,13 +55,13 @@ namespace stf::alg
     }
 
     template<typename T>
-    inline bool intersect(math::segment2<T> const& segment, math::aabb2<T> const& aabb)
+    inline bool intersect(geom::segment2<T> const& segment, geom::aabb2<T> const& aabb)
     {
         return intersect(aabb, segment);
     }
 
     template<typename T>
-    bool intersect(math::aabb2<T> const& aabb, math::polyline2<T> const& polyline)
+    bool intersect(geom::aabb2<T> const& aabb, geom::polyline2<T> const& polyline)
     {
         if (!polyline.is_empty() && aabb.intersects(polyline.aabb()))
         {
@@ -74,7 +74,7 @@ namespace stf::alg
     }
 
     template<typename T>
-    inline bool intersect(math::polyline2<T> const& polyline, math::aabb2<T> const& aabb)
+    inline bool intersect(geom::polyline2<T> const& polyline, geom::aabb2<T> const& aabb)
     {
         return intersect(aabb, polyline);
     }

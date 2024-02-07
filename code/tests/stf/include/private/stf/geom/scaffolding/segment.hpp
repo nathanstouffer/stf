@@ -2,15 +2,15 @@
 
 #include <gtest/gtest.h>
 
-#include <stf/math/segment.hpp>
+#include <stf/geom/segment.hpp>
 
-namespace stf::math::scaffolding::segment
+namespace stf::geom::scaffolding::segment
 {
 
     template<typename T, size_t N>
     struct distance_to
     {
-        math::segment<T, N> const seg;
+        geom::segment<T, N> const seg;
         math::vec<T, N> const point;
         T const dist;
     };
@@ -24,7 +24,7 @@ namespace stf::math::scaffolding::segment
     template<typename T, size_t N>
     struct interpolate
     {
-        math::segment<T, N> const seg;
+        geom::segment<T, N> const seg;
         T const t;
         math::vec<T, N> const point;
     };
@@ -35,4 +35,4 @@ namespace stf::math::scaffolding::segment
         ASSERT_EQ(test.point, test.seg.interpolate(test.t)) << "failed interpolation test";
     }
 
-} // stf::math::scaffolding::segment
+} // stf::geom::scaffolding::segment
