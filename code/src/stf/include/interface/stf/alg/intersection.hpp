@@ -46,22 +46,33 @@ namespace stf::alg
     }
 
     template<typename T>
-    bool intersect(geom::aabb2<T> const& aabb, geom::segment2<T> const& segment)
+    bool intersect(geom::segment2<T> const& segment, geom::aabb2<T> const& aabb)
     {
         // if either point is in the box, there is certainly an intersection
         if (aabb.contains(segment.a) || aabb.contains(segment.b)) { return true; }
 
-        // TODO (stouff) write the rest of this function
+        // iterate over each edge of the box and test if the segment intersects it
+        for (size_t i = 0; i < 3; ++i)
+        {
+            // compute an edge of the bounding box
+            math::vec2<T> const& a = aabb.vertex(i);
+            math::vec2<T> const& b = aabb.vertex((i + 1) % 4);
+            geom::segment2<T> edge(a, b);
+
+            // if the segment intersects the edge then return true
+            if (intersect(segment, edge)) { return true; }
+        }
+        return false;       // fallthrough to return false
     }
 
     template<typename T>
-    inline bool intersect(geom::segment2<T> const& segment, geom::aabb2<T> const& aabb)
+    inline bool intersect(geom::aabb2<T> const& aabb, geom::segment2<T> const& segment)
     {
-        return intersect(aabb, segment);
+        return intersect(segment, aabb);
     }
 
     template<typename T>
-    bool intersect(geom::aabb2<T> const& aabb, geom::polyline2<T> const& polyline)
+    bool intersect(geom::polyline2<T> const& polyline, geom::aabb2<T> const& aabb)
     {
         if (!polyline.is_empty() && aabb.intersects(polyline.aabb()))
         {
@@ -74,9 +85,9 @@ namespace stf::alg
     }
 
     template<typename T>
-    inline bool intersect(geom::polyline2<T> const& polyline, geom::aabb2<T> const& aabb)
+    inline bool intersect(geom::aabb2<T> const& aabb, geom::polyline2<T> const& polyline)
     {
-        return intersect(aabb, polyline);
+        return intersect(polyline, aabb);
     }
 
 } // stf::alg

@@ -30,7 +30,26 @@ namespace stf::geom
         aabb(vec_t const& _min, T const length) : aabb(_min, min + vec_t(length)) {}
         aabb() : aabb(vec_t(math::constants<T>::neg_inf), vec_t(math::constants<T>::pos_inf)) {}
 
-        // TODO write a vertex indexing function
+        //    6----7
+        //   /|   /|
+        //  2----3 |
+        //  | 4--|-5
+        //  |/   |/
+        //  0----1
+        // 0 is the min
+        // 3 is the max in 2D and 7 is the max in 3D
+        vec_t vertex(size_t index) const
+        {
+            vec_t vert = min;
+            for (size_t i = 0; i < N; ++i)
+            {
+                if ((index & (1 << i)) != 0)
+                {
+                    vert[i] = max[i];
+                }
+            }
+            return vert;
+        }
 
         inline vec_t const length() const { return max - min; }
         inline vec_t const center() const { return min + (math::constants<T>::half * length()); }
