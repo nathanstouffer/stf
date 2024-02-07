@@ -16,10 +16,11 @@ coverage:
       default:
         target: 50% # coverage must be above 50% to succeed
         base: auto # compare coverage to base branch for PRs and parent commit for non-PRs
-    # TODO uncomment this once we work on coverage a bit more
-    # patch:
-    #   default:
-    #     target: 50% # the diff coverage must be 50%
+    patch:
+      default:
+        informational: true
+        target: 50% # the diff coverage must be 50%
+        
 
 # Pull request comments:
 # ----------------------
