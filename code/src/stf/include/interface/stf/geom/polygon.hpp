@@ -27,7 +27,7 @@ namespace stf::geom
         inline bool is_empty() const { return m_points.size() < 3; }
         inline size_t size() const { return is_empty() ? 0 : m_points.size(); } 
 
-        inline segment<T, N> edge(size_t i) const { return segment<T, N>(m_points[i], m_points[(i + 1) % m_points.size()]); }
+        inline segment2<T> edge(size_t i) const { return segment2<T>(m_points[i], m_points[(i + 1) % m_points.size()]); }
 
         inline void clear() { m_points.clear(); m_aabb = aabb_t::nothing(); }
         inline void reserve(size_t const size) { m_points.reserve(size); }
