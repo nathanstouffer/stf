@@ -117,4 +117,30 @@ namespace stf::alg
         return intersect(polygon, aabb);
     }
 
+    template<typename T>
+    bool intersect(geom::polygon<T> const& polygon, geom::segment2<T> const& segment)
+    {
+        if (!polygon.is_empty() && polygon.aabb().intersects(segment.aabb()))
+        {
+            if (polygon.contains(segment.a) || polygon.contains(segment.b))  // if the polygon contains either point, they certainly intersect
+            {
+                return true;
+            }
+            else
+            {
+                for (size_t i = 0; i < polygon.size(); ++i)    // iterate over all edges checking for intersection
+                {
+                    if (intersect(segment, polygon.edge(i))) { return true; }
+                }
+            }
+        }
+        return false;       // fallthrough to return false
+    }
+
+    template<typename T>
+    inline bool intersect(geom::segment2<T> const& segment, geom::polygon<T> const& polygon)
+    {
+        return intersect(polygon, segment);
+    }
+
 } // stf::alg
