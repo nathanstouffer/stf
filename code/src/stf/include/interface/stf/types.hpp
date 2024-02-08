@@ -3,6 +3,7 @@
 #include "stf/cam/frustum.hpp"
 #include "stf/cam/scamera.hpp"
 #include "stf/geom/aabb.hpp"
+#include "stf/geom/polygon.hpp"
 #include "stf/geom/polyline.hpp"
 #include "stf/geom/segment.hpp"
 #include "stf/math/constants.hpp"
@@ -50,6 +51,7 @@ namespace stf
 
         // planar geometry types
         using polyline = geom::polyline2<T>;
+        using polygon = geom::polygon<T>;
 
         // camera-related types
         using scamera = cam::scamera<T>;

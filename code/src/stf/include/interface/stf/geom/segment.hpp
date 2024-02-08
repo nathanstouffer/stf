@@ -38,13 +38,13 @@ namespace stf::geom
             return box;
         }
 
-        inline T distance_to(vec_t const& x) const
+        inline T distance_to(vec_t const& p) const
         {
             vec_t diff = delta();
-            T scalar = ((x - a) * diff) / (diff * diff);
+            T scalar = ((p - a) * diff) / (diff * diff);
             T t = std::max(math::constants<T>::zero, std::min(math::constants<T>::one, scalar));
             vec_t proj = a + t * diff;
-            return (x - proj).length();
+            return (p - proj).length();
         }
 
         vec_t interpolate(T const t) const
