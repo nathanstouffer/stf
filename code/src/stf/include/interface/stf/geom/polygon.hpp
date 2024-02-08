@@ -81,7 +81,7 @@ namespace stf::geom
             // iterate over all segments
             for (size_t i = 0; i < m_points.size(); ++i)
             {
-                geom::segment2 seg = edge(i);
+                geom::segment2<T> seg = edge(i);
                 sum += (seg.a.y + seg.b.y) * (seg.a.x - seg.b.x);
             }
 
@@ -103,7 +103,7 @@ namespace stf::geom
             // iterate over all edges, computing if the ray crosses the edge
             for (size_t i = 0; i < m_points.size(); ++i)
             {
-                geom::segment2 seg = edge(i);
+                geom::segment2<T> seg = edge(i);
                 if (seg.distance_to(p) == math::constants<T>::zero)     // early out if the point is on the boundary
                 {
                     return true;
