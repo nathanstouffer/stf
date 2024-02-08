@@ -96,7 +96,7 @@ namespace stf::alg
     {
         if (!polygon.is_empty() && aabb.intersects(polygon.aabb()))
         {
-            if (aabb.contains(polygon[0]) || polygon.contains(box.vertex(0)))  // if a point from either is contained in the other, they certainly intersect
+            if (aabb.contains(polygon[0]) || polygon.contains(aabb.vertex(0)))  // if a point from either is contained in the other, they certainly intersect
             {
                 return true;
             }
