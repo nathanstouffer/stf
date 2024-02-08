@@ -15,8 +15,8 @@ namespace stf::geom
     {
     public:
 
-        using vec_t = math::vec<T, N>;
-        using aabb_t = geom::aabb<T, N>;
+        using vec_t = math::vec2<T>;
+        using aabb_t = geom::aabb2<T>;
 
     public:
 
