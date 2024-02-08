@@ -20,6 +20,7 @@ namespace stf::geom
 
     public:
 
+        // NOTE: we assume the input points to be positively oriented (anti-clockwise)
         polygon() : polygon(std::vector<vec_t>()) {}
         polygon(std::vector<vec_t> const& points) : m_points(points), m_aabb(aabb_t::fit(points)) {}
 
@@ -41,6 +42,24 @@ namespace stf::geom
             geom::polyline2<T> polyline(m_points);
             polyline.push_back(m_points.front());
             return polyline;
+        }
+
+        bool is_convex() const
+        {
+            // early out for malformed polygons
+            if (m_points.size() < 3) { return false; }
+
+            size_t size = m_points.size();
+            for (size_t i = 0; i < size; ++i)
+            {
+                // grab three consecutive points
+                vec_t const& a = m_points[(i + 0) % size];
+                vec_t const& b = m_points[(i + 1) % size];
+                vec_t const& c = m_points[(i + 2) % size];
+                // if the orientation is clockwise then the polygon is not convex
+                if (math::orientation(a, b, c) < math::constants<T>::zero) { return false; }
+            }
+            return true;        // fallthrough to return true
         }
 
         // computed using the trapezoid formula for polygon area on https://en.wikipedia.org/wiki/Shoelace_formula
