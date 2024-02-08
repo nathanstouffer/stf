@@ -67,6 +67,9 @@ namespace stf::geom
             return true;        // fallthrough to return true
         }
 
+        // TODO write this function
+        // bool is_simple() const;
+
         // computed using the trapezoid formula for polygon area on https://en.wikipedia.org/wiki/Shoelace_formula
         T signed_area() const
         {
