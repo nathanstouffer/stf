@@ -42,6 +42,18 @@ namespace stf::gfx
                     time_t t = (x - a) / (b - a);
                     return lerp(last.color, first.color, t);
                 }
+                else
+                {
+                    // compute the two points on either side
+                    size_t i = 0;
+                    while (!(m_stops[i].x <= x && x <= m_stops[i + 1].x)) { ++i; }
+
+                    stop const& left = m_stops[i];
+                    stop const& right = m_stops[i + 1];
+
+                    time_t t = (x - left.x) / (right.x - left.x);
+                    return lerp(left.color, right.color, t);
+                }
             }
             else
             {
