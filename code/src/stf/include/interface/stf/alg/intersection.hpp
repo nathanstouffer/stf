@@ -143,4 +143,23 @@ namespace stf::alg
         return intersect(polygon, segment);
     }
 
+    template<typename T>
+    bool intersect(geom::polygon<T> const& polygon, geom::polyline2<T> const& polyline)
+    {
+        if (!polygon.is_empty() && !polyline.is_empty() && polygon.aabb().intersects(polyline.aabb()))
+        {
+            for (size_t i = 0; i + 1 < polyline.size(); ++i)    // iterate over all edges checking for intersection
+            {
+                if (intersect(polygon, polyline.edge(i))) { return true; }
+            }
+        }
+        return false;       // fallthrough to return false
+    }
+
+    template<typename T>
+    inline bool intersect(geom::polyline2<T> const& polyline, geom::polygon<T> const& polygon)
+    {
+        return intersect(polygon, polyline);
+    }
+
 } // stf::alg
