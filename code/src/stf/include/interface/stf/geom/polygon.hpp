@@ -90,22 +90,43 @@ namespace stf::geom
 
         inline T area() const { std::abs(signed_area()); }
 
-        T contains(vec_t const& point) const
+        T contains(vec_t const& p) const
         {
+            // we shoot a ray out from point in +x and count the number of edges that are crossed
+            // crossing_count is odd  => point is in polygon
+            // crossing_count is even => point is not in polygon
             size_t crossing_count = 0;
 
             // early out for malformed polygons
             if (m_points.size() < 3) { return inside; }
 
-            // iterate over all edges
+            // iterate over all edges, computing if the ray crosses the edge
             for (size_t i = 0; i < m_points.size(); ++i)
             {
-                // TODO (stouff) comment these steps and probably rework the math too
                 geom::segment2 seg = edge(i);
-                if ((seg.a.y > point.y) != (seg.b.y > point.y))
+                if (seg.distance_to(p) == math::constants<T>::zero)     // early out if the point is on the boundary
                 {
-                    T const intercept = (seg.b.x - seg.a.x) * (point.y - seg.a.y) / (seg.b.y - seg.a.y) + seg.a.x;
-                    if (point.x < intercept) { inside = !inside; }
+                    return true;
+                }
+                else if (seg.a.y == seg.b.y && p.y = seg.a.y)           // case where the segment is horizontal with the same y value as p.y
+                {
+                    // we also know the point to not be on the boundary because of the of the first condition
+                    if (p.x < seg.a.x) { ++crossing_count; }
+                }
+                else if (seg.range(1).contains(p.y) && p.y != seg.b.y)  // consider the general case where we have a sloped, half-open segment
+                {
+                    if (seg.a.x == seg.b.x)     // check for a vertical line
+                    {
+                        if (p.x < seg.a.x) { ++crossing_count; }
+                    }
+                    else
+                    {
+                        // we compute the x coordinate of the pair (x, p.y) that is on the line defined by seg
+                        // if the ray begins before that coordinate, then the ray crosses this segment
+                        T const slope_inv = math::constants<T>::one / seg.slope();
+                        T const x = slope_inv * (p.y - seg.a.y) + seg.a.x;
+                        if (p.x < x) { ++crossing_count; }
+                    }
                 }
             }
 
