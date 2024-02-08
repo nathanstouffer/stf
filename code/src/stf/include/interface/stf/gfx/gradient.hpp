@@ -8,6 +8,7 @@
 namespace stf::gfx
 {
 
+    // TODO possibly template the color struct
     class gradient
     {
     public:
