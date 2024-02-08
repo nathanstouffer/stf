@@ -1,6 +1,7 @@
 #pragma once
 
 #include "stf/geom/aabb.hpp"
+#include "stf/geom/polygon.hpp"
 #include "stf/geom/polyline.hpp"
 #include "stf/geom/segment.hpp"
 #include "stf/math/constants.hpp"
@@ -88,6 +89,32 @@ namespace stf::alg
     inline bool intersect(geom::aabb2<T> const& aabb, geom::polyline2<T> const& polyline)
     {
         return intersect(polyline, aabb);
+    }
+
+    template<typename T>
+    bool intersect(geom::polygon<T> const& polygon, geom::aabb2<T> const& aabb)
+    {
+        if (!polygon.is_empty() && aabb.intersects(polygon.aabb()))
+        {
+            if (aabb.contains(polygon[0]) || polygon.contains(box[0]))  // if a point from either is contained in the other, they certainly intersect
+            {
+                return true;
+            }
+            else
+            {
+                for (size_t i = 0; i < polygon.size(); ++i)    // iterate over all edges checking for intersection
+                {
+                    if (intersect(aabb, polygon.edge(i))) { return true; }
+                }
+            }
+        }
+        return false;       // fallthrough to return false
+    }
+
+    template<typename T>
+    inline bool intersect(geom::aabb2<T> const& aabb, geom::polygon<T> const& polygon)
+    {
+        return intersect(polygon, aabb);
     }
 
 } // stf::alg

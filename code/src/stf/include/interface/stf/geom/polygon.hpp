@@ -37,10 +37,15 @@ namespace stf::geom
 
         inline void write(size_t i, vec_t const& x) { m_points[i] = x; m_aabb = aabb_t::fit(m_points); }
 
-        geom::polyline2<T> boundary() const
+        // bool indicates whether the returned boundary should be 'closed' (by adding the first point at the end)
+        // or if it should be left open
+        geom::polyline2<T> boundary(bool close) const
         {
             geom::polyline2<T> polyline(m_points);
-            polyline.push_back(m_points.front());
+            if (close)
+            {
+                polyline.push_back(m_points.front());
+            }
             return polyline;
         }
 
