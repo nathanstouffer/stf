@@ -12,7 +12,7 @@ namespace stf::geom
 {
 
     template<typename T, size_t N>
-    struct aabb
+    struct aabb final
     {
     public:
 

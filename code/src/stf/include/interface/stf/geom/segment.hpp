@@ -21,7 +21,7 @@ namespace stf::geom
         vec_t b;
 
         segment() : segment(vec_t(math::constants<T>::zero), vec_t(math::constants<T>::zero)) {}
-        segment(vec_t const& _a, vec_t const& _b) : a(_a), b(_b) {}
+        segment(vec_t const& _a, vec_t const& _b) : a(_a), b(_b) {} final
 
         inline T length() const { return (b - a).length(); }
         inline T slope() const { vec_t diff = delta(); return diff.y / diff.x; }
