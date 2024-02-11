@@ -9,7 +9,7 @@ namespace stf::geom
 {
 
     template<typename T, size_t N>
-    struct segment
+    struct segment final
     {
 
         using vec_t = math::vec<T, N>;
@@ -21,7 +21,7 @@ namespace stf::geom
         vec_t b;
 
         segment() : segment(vec_t(math::constants<T>::zero), vec_t(math::constants<T>::zero)) {}
-        segment(vec_t const& _a, vec_t const& _b) : a(_a), b(_b) {} final
+        segment(vec_t const& _a, vec_t const& _b) : a(_a), b(_b) {}
 
         inline T length() const { return (b - a).length(); }
         inline T slope() const { vec_t diff = delta(); return diff.y / diff.x; }

@@ -326,9 +326,9 @@ namespace stf::math
         );
     }
 
-    // positive => anti-clockwise
-    // zero     => colinear
-    // negative => clockwise
+    // + => anti-clockwise
+    // 0 => colinear
+    // - => clockwise
     template<typename T>
     inline T orientation(vec2<T> const& p, vec2<T> const& q, vec2<T> const& r)
     {
