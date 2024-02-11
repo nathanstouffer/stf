@@ -14,7 +14,7 @@ namespace stf::cam
     // Struct to represent a simple camera -- one where the right vector is always in the plane normal
     // to (0, 0, 1). The look direction is represented by spherical coordinates with the eye as the origin
     template<typename T>
-    struct scamera
+    struct scamera final
     {
     public:
 

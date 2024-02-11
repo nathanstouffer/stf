@@ -11,7 +11,7 @@ namespace stf::geom
 {
 
     template<typename T>
-    class polygon
+    class polygon final
     {
     public:
 

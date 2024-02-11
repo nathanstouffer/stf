@@ -9,7 +9,7 @@ namespace stf::math
 {
 
     template<typename T>
-    struct crange
+    struct crange final
     {
 
         T a;

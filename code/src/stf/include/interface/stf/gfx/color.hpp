@@ -12,7 +12,7 @@ namespace stf::gfx
 {
 
     // TODO possibly template this?
-    struct rgba
+    struct rgba final
     {
     public:
 

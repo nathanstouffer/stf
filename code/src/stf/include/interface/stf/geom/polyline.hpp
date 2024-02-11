@@ -10,7 +10,7 @@ namespace stf::geom
 {
 
     template<typename T, size_t N>
-    class polyline
+    class polyline final
     {
     public:
 

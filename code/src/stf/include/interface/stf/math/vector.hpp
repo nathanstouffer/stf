@@ -20,7 +20,7 @@ namespace stf::math
 
     // Generic vector type
     template<typename T, size_t N>
-    struct vec
+    struct vec final
     {
 
         T values[N];
@@ -78,7 +78,7 @@ namespace stf::math
 
     // Specialization for vec2
     template<typename T>
-    struct vec<T, 2>
+    struct vec<T, 2> final
     {
 
         union
@@ -128,7 +128,7 @@ namespace stf::math
     * Specialization for vec3
     */
     template<typename T>
-    struct vec<T, 3>
+    struct vec<T, 3> final
     {
 
         union
@@ -180,7 +180,7 @@ namespace stf::math
     * Specialization for vec4
     */
     template<typename T>
-    struct vec<T, 4>
+    struct vec<T, 4> final
     {
 
         union
@@ -326,9 +326,9 @@ namespace stf::math
         );
     }
 
-    // positive => anti-clockwise
-    // zero     => colinear
-    // negative => clockwise
+    // + => anti-clockwise
+    // 0 => colinear
+    // - => clockwise
     template<typename T>
     inline T orientation(vec2<T> const& p, vec2<T> const& q, vec2<T> const& r)
     {

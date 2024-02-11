@@ -7,7 +7,7 @@ namespace stf::math
 {
 
     template<typename T>
-    struct range
+    struct range final
     {
 
         T a;

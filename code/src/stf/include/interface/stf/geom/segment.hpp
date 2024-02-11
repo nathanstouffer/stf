@@ -9,7 +9,7 @@ namespace stf::geom
 {
 
     template<typename T, size_t N>
-    struct segment
+    struct segment final
     {
 
         using vec_t = math::vec<T, N>;

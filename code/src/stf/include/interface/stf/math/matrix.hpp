@@ -9,7 +9,7 @@ namespace stf::math
 {
 
     template<typename T, size_t N>
-    struct mtx
+    struct mtx final
     {
 
         struct col_proxy
