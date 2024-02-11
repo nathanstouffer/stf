@@ -27,6 +27,9 @@ namespace stf::geom
         // - => side that the anti-normal points to
         inline T side(vec_t const& p) const { return signed_distance(p); }
 
+        // TODO (stouff) write this function?
+        // inline bool divides(math::aabb<T, N> const& aabb) const;
+
     private:
 
         vec_t m_point;
@@ -41,6 +44,7 @@ namespace stf::geom
     template<typename T> using line = hyperplane<T, 2>;
     template<typename T> using plane = hyperplane<T, 3>;
 
+    // we use the first point to define the plane
     template<typename T>
     line<T> fit_line(math::vec2<T> const& p, math::vec2<T> const& q)
     {
@@ -49,6 +53,7 @@ namespace stf::geom
         return line<T>(point, normal);
     }
 
+    // we use the first point to define the plane
     template<typename T>
     plane<T> fit_plane(math::vec3<T> const& p, math::vec3<T> const& q, math::vec3<T> const& r)
     {

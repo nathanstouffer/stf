@@ -41,7 +41,7 @@ namespace stf::cam
         T near;
         T far;
         T aspect;
-        T fov;
+        T fov;  // in y
         
         // fully qualified constructor
         scamera(vec_t const& _eye, T const _theta, T const _phi, T const _near, T const _far, T const _aspect, T const _fov) :
