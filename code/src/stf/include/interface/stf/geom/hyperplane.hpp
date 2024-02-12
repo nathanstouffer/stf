@@ -20,7 +20,7 @@ namespace stf::geom
         hyperplane(vec_t const& point, vec_t const& normal) : m_point(point), m_normal(normal.normalized()) {}
 
         T signed_distance(vec_t const& p) const { return m_normal * (p - m_point); }
-        inline distance(vec_t const& p) const { return std::abs(signed_distance(p)); }
+        inline T distance(vec_t const& p) const { return std::abs(signed_distance(p)); }
         inline bool contains(vec_t const& p) const { return signed_distance(p) == math::constants<T>::zero; }
 
         // + => side that the normal points to
