@@ -1,5 +1,6 @@
 #pragma once
 
+#include "stf/cam/frustum.hpp"
 #include "stf/geom/aabb.hpp"
 #include "stf/geom/polygon.hpp"
 #include "stf/geom/polyline.hpp"
@@ -160,6 +161,18 @@ namespace stf::alg
     inline bool intersect(geom::polyline2<T> const& polyline, geom::polygon<T> const& polygon)
     {
         return intersect(polygon, polyline);
+    }
+
+    template<typename T>
+    inline bool intersect_fast(cam::frustum<T> const& frustum, geom::aabb3<T> const& aabb)
+    {
+        return frustum.intersects_fast(aabb);
+    }
+
+    template<typename T>
+    inline bool intersect_fast(geom::aabb3<T> const& aabb, cam::frustum<T> const& frustum)
+    {
+        return frustum.intersects_fast(aabb);
     }
 
 } // stf::alg
