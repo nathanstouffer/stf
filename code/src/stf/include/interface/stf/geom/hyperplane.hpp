@@ -1,5 +1,6 @@
 #pragma once
 
+#include "stf/geom/aabb.hpp"
 #include "stf/math/constants.hpp"
 #include "stf/math/transform.hpp"
 #include "stf/math/vector.hpp"
@@ -27,8 +28,14 @@ namespace stf::geom
         // - => side that the anti-normal points to
         inline T side(vec_t const& p) const { return signed_distance(p); }
 
-        // TODO (stouff) write this function?
-        // inline bool divides(math::aabb<T, N> const& aabb) const;
+        bool divides(geom::aabb<T, N> const& aabb) const
+        {
+            // compute the extremities in each direction
+            vec_t extremity = aabb.extremity(m_normal);
+            vec_t anti_extremity = aabb.extremity(-m_normal);
+            // compute whether the extremities are on opposite sides of the hyperplane
+            return side(extremity) * side(anti_extremity) <= math::constants<T>::zero;
+        }
 
     private:
 
@@ -48,8 +55,8 @@ namespace stf::geom
     template<typename T>
     line<T> fit_line(math::vec2<T> const& p, math::vec2<T> const& q)
     {
-        vec_t const& point = p;
-        vec_t normal = math::rotate((p - q).normalize(), math::constants<T>::half_pi);
+        math::vec2<T> const& point = p;
+        math::vec2<T> normal = math::rotate((p - q).normalize(), math::constants<T>::half_pi);
         return line<T>(point, normal);
     }
 
@@ -57,8 +64,8 @@ namespace stf::geom
     template<typename T>
     plane<T> fit_plane(math::vec3<T> const& p, math::vec3<T> const& q, math::vec3<T> const& r)
     {
-        vec_t const& point = p;
-        vec_t normal = math::cross(q - p, r - p);
+        math::vec3<T> const& point = p;
+        math::vec3<T> normal = math::cross(q - p, r - p);
         return line<T>(point, normal);
     }
 

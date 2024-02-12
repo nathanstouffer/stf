@@ -51,6 +51,16 @@ namespace stf::geom
             return vert;
         }
 
+        vec_t extremity(vec_t const& direction) const
+        {
+            vec_t extremity;
+            for (size_t i = 0; i < N; ++i)
+            {
+                extremity[i] = (direction[i] > 0) ? max[i] : min[i];
+            }
+            return extremity;
+        }
+
         inline vec_t const length() const { return max - min; }
         inline vec_t const center() const { return min + (math::constants<T>::half * length()); }
 

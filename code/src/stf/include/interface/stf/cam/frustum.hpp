@@ -16,6 +16,7 @@ namespace stf::cam
 
         using vec_t = math::vec3<T>;
         using aabb_t = geom::aabb3<T>;
+        using plane_t = geom::plane<T>;
 
     public:
 
@@ -23,7 +24,7 @@ namespace stf::cam
 
         bool contains(vec_t const& point) const
         {
-            // check if any plane
+            // check if any plane does not contain the point
             for (size_t i = 0; i < c_num_planes; ++i)
             {
                 if (m_planes[i].side(point) < math::constants<T>::zero) { return false; }
@@ -33,13 +34,29 @@ namespace stf::cam
 
         bool contains(aabb_t const& aabb) const
         {
-            // TODO (stouff) write this function
+            for (size_t i = 0; i < c_num_planes; ++i)
+            {
+                // check if the extremity in the direction of the anti-normal is contained in the halfspace
+                plane_t const& plane = m_planes[i];
+                vec_t extremity = aabb.extremity(-plane.normal());
+                bool contained = plane.side(extremity) >= math::constants<T>::zero;
+                if (!contained) { return false; }
+            }
+            return true;    // fallthrough to return true
         }
 
-        // TODO (stouff) remark about false positives
-        bool intersects(aabb_t const& aabb) const
+        // NOTE: this algorithm identifies false positives (returns true for some frustum/aabb that don't actually intersect)
+        bool intersects_fast(aabb_t const& aabb) const
         {
-            // TODO (stouff) write this function
+            for (size_t i = 0; i < c_num_planes; ++i)
+            {
+                // check if the extremity in the direction of the normal is contained in the halfspace
+                plane_t const& plane = m_planes[i];
+                vec_t extremity = aabb.extremity(plane.normal());
+                bool contained = plane.side(extremity) >= math::constants<T>::zero;
+                if (!contained) { return false; }
+            }
+            return true;    // fallthrough to return true
         }
 
     private:
@@ -106,10 +123,15 @@ namespace stf::cam
 
         explicit frustum(vertices const& verts)
         {
-            // TODO (stouff) write this function
+            m_planes[FAR]    = geom::fit_plane(verts.ftl, verts.fbl, verts.ftr);
+            m_planes[NEAR]   = geom::plane<T>(verts.ntl, -m_planes[FAR].normal());     // define near plane as a function of the far plane to avoid precision issues
+            m_planes[LEFT]   = geom::fit_plane(verts.ftl, verts.ntl, verts.fbl);
+            m_planes[RIGHT]  = geom::fit_plane(verts.ftr, verts.fbr, verts.ntr);
+            m_planes[TOP]    = geom::fit_plane(verts.ftr, verts.ftl, verts.ntr);
+            m_planes[BOTTOM] = geom::fit_plane(verts.fbr, verts.fbl, verts.nbr);
         }
 
-        geom::plane m_planes[c_num_planes];
+        plane_t m_planes[c_num_planes];
 
     };
 
