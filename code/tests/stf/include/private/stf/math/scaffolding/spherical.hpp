@@ -3,7 +3,7 @@
 #include <gtest/gtest.h>
 
 #include <stf/math/spherical.hpp>
-#include <stf/types.hpp>
+#include <stf/stf.hpp>
 
 namespace stf::math::scaffolding::spherical
 {

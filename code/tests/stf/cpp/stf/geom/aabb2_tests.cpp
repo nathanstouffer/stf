@@ -2,7 +2,7 @@
 
 #include <gtest/gtest.h>
 
-#include <stf/types.hpp>
+#include <stf/stf.hpp>
 
 #include "stf/geom/scaffolding/aabb.hpp"
 

@@ -2,7 +2,7 @@
 
 #include <gtest/gtest.h>
 
-#include <stf/types.hpp>
+#include <stf/stf.hpp>
 #include <stf/math/transform.hpp>
 
 namespace stf::math::scaffolding::transform

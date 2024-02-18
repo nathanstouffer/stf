@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 
-#include <stf/types.hpp>
+#include <stf/stf.hpp>
 
 // TODO remove this file
 int main()
