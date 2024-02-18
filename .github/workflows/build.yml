@@ -47,6 +47,10 @@ jobs:
         with:
           submodules: recursive
 
+      # Use this to set up an open ssh debugging session with CI
+      # - name: Setup ssh session
+      #   uses: lhotari/action-upterm@v1
+
       - name: Set reusable strings
         # Turn repeated input strings (such as the build output directory) into step outputs. These step outputs can be used throughout the workflow file.
         id: strings
@@ -76,11 +80,6 @@ jobs:
         # See https://cmake.org/cmake/help/latest/manual/ctest.1.html for more detail
         run: ctest --build-config ${{ matrix.build_type }}
 
-      
-      # Use this to set up an open ssh debugging session with CI
-      - name: Setup ssh session
-        uses: lhotari/action-upterm@v1
-        
       - name: Compute Code Coverage
         if: ${{ matrix.build_type == 'Coverage' }}
         working-directory: ${{ steps.strings.outputs.tests-output-dir }}
