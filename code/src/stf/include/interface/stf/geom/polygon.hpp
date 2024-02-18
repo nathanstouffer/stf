@@ -108,7 +108,7 @@ namespace stf::geom
                 {
                     return true;
                 }
-                else if (seg.a.y == seg.b.y && p.y = seg.a.y)           // case where the segment is horizontal with the same y value as p.y
+                else if (seg.a.y == seg.b.y && p.y == seg.a.y)           // case where the segment is horizontal with the same y value as p.y
                 {
                     // we also know the point to not be on the boundary because of the of the first condition
                     if (p.x < seg.a.x) { ++crossing_count; }
