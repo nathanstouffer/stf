@@ -2,7 +2,7 @@
 
 #include <gtest/gtest.h>
 
-#include <stf/types.hpp>
+#include <stf/stf.hpp>
 #include <stf/alg/intersection.hpp>
 
 namespace stf::alg::scaffolding::intersection

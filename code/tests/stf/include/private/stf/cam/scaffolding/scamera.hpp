@@ -2,7 +2,7 @@
 
 #include <gtest/gtest.h>
 
-#include <stf/types.hpp>
+#include <stf/stf.hpp>
 #include <stf/cam/scamera.hpp>
 
 namespace stf::cam::scaffolding::scamera
