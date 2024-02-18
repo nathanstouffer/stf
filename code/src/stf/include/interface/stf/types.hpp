@@ -1,5 +1,7 @@
 #pragma once
 
+#include <cstdint>
+
 #include "stf/cam/frustum.hpp"
 #include "stf/cam/scamera.hpp"
 #include "stf/geom/aabb.hpp"
