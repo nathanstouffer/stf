@@ -1,28 +1,35 @@
 enable_testing()
 
-set(TEST_FILES_PREFIX "cpp/stf")
-
-set(TEST_FILES
-    ${TEST_FILES_PREFIX}/alg/intersection_tests.cpp
-    ${TEST_FILES_PREFIX}/cam/scamera_tests.cpp
-    ${TEST_FILES_PREFIX}/geom/aabb2_tests.cpp
-    ${TEST_FILES_PREFIX}/geom/segment2_tests.cpp
-    ${TEST_FILES_PREFIX}/gfx/color_tests.cpp
-    ${TEST_FILES_PREFIX}/math/mtx4_tests.cpp
-    ${TEST_FILES_PREFIX}/math/crange_tests.cpp
-    ${TEST_FILES_PREFIX}/math/interpolation_tests.cpp
-    ${TEST_FILES_PREFIX}/math/range_tests.cpp
-    ${TEST_FILES_PREFIX}/math/spherical_tests.cpp
-    ${TEST_FILES_PREFIX}/math/transform_tests.cpp
-    ${TEST_FILES_PREFIX}/math/vec2_tests.cpp
-    ${TEST_FILES_PREFIX}/math/vec3_tests.cpp
-    ${TEST_FILES_PREFIX}/math/vec4_tests.cpp
-    ${TEST_FILES_PREFIX}/math/vec5_tests.cpp
+add_executable(tests
+    "cpp/stf/alg/intersection_tests.cpp"
+    "cpp/stf/cam/scamera_tests.cpp"
+    "cpp/stf/geom/aabb2_tests.cpp"
+    "cpp/stf/geom/segment2_tests.cpp"
+    "cpp/stf/gfx/color_tests.cpp"
+    "cpp/stf/math/mtx4_tests.cpp"
+    "cpp/stf/math/crange_tests.cpp"
+    "cpp/stf/math/interpolation_tests.cpp"
+    "cpp/stf/math/range_tests.cpp"
+    "cpp/stf/math/spherical_tests.cpp"
+    "cpp/stf/math/transform_tests.cpp"
+    "cpp/stf/math/vec2_tests.cpp"
+    "cpp/stf/math/vec3_tests.cpp"
+    "cpp/stf/math/vec4_tests.cpp"
+    "cpp/stf/math/vec5_tests.cpp"
+    "include/private/stf/alg/scaffolding/intersection.hpp"
+    "include/private/stf/cam/scaffolding/scamera.hpp"
+    "include/private/stf/geom/scaffolding/aabb.hpp"
+    "include/private/stf/geom/scaffolding/segment.hpp"
+    "include/private/stf/gfx/scaffolding/color.hpp"
+    "include/private/stf/math/scaffolding/crange.hpp"
+    "include/private/stf/math/scaffolding/interpolation.hpp"
+    "include/private/stf/math/scaffolding/range.hpp"
+    "include/private/stf/math/scaffolding/spherical.hpp"
+    "include/private/stf/math/scaffolding/transform.hpp"
+    "include/private/stf/math/scaffolding/vector.hpp"
 )
 
-add_executable(tests ${TEST_FILES})
-
-target_include_directories(tests PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include/private)
+target_include_directories(tests PRIVATE "include/private")
 
 target_link_libraries(tests PRIVATE stf GTest::gtest_main)
 
