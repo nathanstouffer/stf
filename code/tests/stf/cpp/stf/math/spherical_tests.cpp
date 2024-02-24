@@ -73,4 +73,20 @@ namespace stf::math
         for (scaffolding::spherical::unit_vec2<float> const& test : tests) { scaffolding::spherical::verify(test); }
     }
 
+    TEST(spherical, to_euclidean)
+    {
+        std::vector<scaffolding::spherical::to_euclidean<float>> tests =
+        {
+            { 0, 0, 0, stff::vec3(0) },
+            { 0, stff::constants::pi, stff::constants::half_pi, stff::vec3(0) },
+            { 1, 0, 0, stff::vec3(0, 0, 1) },
+            { stff::constants::sqrt_two, 0, stff::constants::quarter_pi, stff::vec3(1, 0, 1) },
+            { 5 * stff::constants::sqrt_two, 0, stff::constants::quarter_pi, stff::vec3(5, 0, 5) },
+            { stff::constants::sqrt_two, stff::constants::pi, stff::constants::quarter_pi, stff::vec3(-1, 0, 1) },
+            { stff::constants::sqrt_two, stff::constants::pi, 3 * stff::constants::quarter_pi, stff::vec3(-1, 0, -1) },
+        };
+
+        for (scaffolding::spherical::to_euclidean<float> const& test : tests) { scaffolding::spherical::verify(test); }
+    }
+
 } // stf::math
