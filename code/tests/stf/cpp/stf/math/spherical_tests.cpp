@@ -31,6 +31,8 @@ namespace stf::math
             { stff::constants::quarter_pi, stff::constants::quarter_pi },
             { stff::constants::half_pi, stff::constants::half_pi },
             { stff::constants::pi, stff::constants::pi },
+            { -stff::constants::pi, stff::constants::pi },
+            { -5 * stff::constants::pi, stff::constants::pi },
             { stff::constants::tau, 0 },
             { 1 * stff::constants::tau, 0 },
             { 2 * stff::constants::tau, 0 },
