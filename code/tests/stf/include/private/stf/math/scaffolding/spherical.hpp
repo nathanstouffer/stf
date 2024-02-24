@@ -63,4 +63,19 @@ namespace stf::math::scaffolding::spherical
         ASSERT_EQ(test.expected, math::unit_vector(test.theta)) << "Failed to compute unit vector";
     }
 
+    template<typename T>
+    struct to_euclidean
+    {
+        T const radius;
+        T const theta;
+        T const phi;
+        math::vec<T, 3> const expected;
+    };
+
+    template<typename T>
+    void verify(to_euclidean<T> const& test)
+    {
+        ASSERT_EQ(test.expected, math::to_euclidean(test.radius, test.theta, test.phi)) << "Failed to compute euclidean coordinates";
+    }
+
 } // stf::math::scaffolding::spherical

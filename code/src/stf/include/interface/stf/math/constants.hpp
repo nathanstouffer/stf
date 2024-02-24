@@ -27,6 +27,9 @@ namespace stf::math
 
         static T constexpr e = T(2.718281828459045235360287471352);
 
+        static T constexpr deg2rad = pi / T(180.0);
+        static T constexpr rad2deg = T(180.0) / pi;
+
         static T constexpr pos_inf = std::numeric_limits<T>::max();
         static T constexpr neg_inf = std::numeric_limits<T>::lowest();
 
