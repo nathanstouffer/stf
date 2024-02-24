@@ -1,4 +1,4 @@
-add_library(stf INTERFACE
+set(STF_FILES
 	"${CMAKE_CURRENT_SOURCE_DIR}/include/interface/stf/alg/containment.hpp"
 	"${CMAKE_CURRENT_SOURCE_DIR}/include/interface/stf/alg/intersection.hpp"
 	"${CMAKE_CURRENT_SOURCE_DIR}/include/interface/stf/cam/frustum.hpp"
@@ -23,6 +23,11 @@ add_library(stf INTERFACE
 	"${CMAKE_CURRENT_SOURCE_DIR}/include/interface/stf/math/vector.hpp"
 	"${CMAKE_CURRENT_SOURCE_DIR}/include/interface/stf/stf.hpp"
 )
+
+add_library(stf INTERFACE ${STF_FILES})
+
+# add directory structure to IDEs
+source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}/include/interface/" FILES ${STF_FILES})
 
 target_include_directories(stf INTERFACE "include/interface")
 
