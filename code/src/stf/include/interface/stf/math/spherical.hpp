@@ -9,15 +9,13 @@ namespace stf::math
     template<typename T>
     inline T to_radians(T const deg)
     {
-        T constexpr convert = math::constants<T>::pi / T(180);
-        return deg * convert;
+        return deg * math::constants<T>::deg2rad;
     }
 
     template<typename T>
     inline T to_degrees(T const rad)
     {
-        T constexpr convert = T(180) / math::constants<T>::pi;
-        return rad * convert;
+        return rad * math::constants<T>::rad2deg;
     }
 
     template<typename T>
