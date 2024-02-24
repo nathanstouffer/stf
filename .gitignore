@@ -6,6 +6,7 @@
 .[Bb]uild/
 [Bb]uild/
 .vs-build/
+out/
 
 # object files
 *.o
@@ -16,3 +17,4 @@
 
 # IDE files
 .vscode/
+.vs/
