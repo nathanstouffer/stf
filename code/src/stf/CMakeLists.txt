@@ -27,7 +27,7 @@ set(STF_FILES
 add_library(stf INTERFACE ${STF_FILES})
 
 # add directory structure to IDEs
-source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}/include/interface/" FILES ${STF_FILES})
+source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}/" FILES ${STF_FILES})
 
 target_include_directories(stf INTERFACE "include/interface")
 

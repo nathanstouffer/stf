@@ -1,6 +1,6 @@
 enable_testing()
 
-add_executable(tests
+set(STF_TEST_FILES
     "${CMAKE_CURRENT_SOURCE_DIR}/cpp/stf/alg/intersection_tests.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/cpp/stf/cam/scamera_tests.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/cpp/stf/geom/aabb2_tests.cpp"
@@ -28,6 +28,11 @@ add_executable(tests
     "${CMAKE_CURRENT_SOURCE_DIR}/include/private/stf/math/scaffolding/transform.hpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/include/private/stf/math/scaffolding/vector.hpp"
 )
+
+add_executable(tests ${STF_TEST_FILES})
+
+# add directory structure to IDEs
+source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}/" FILES ${STF_TEST_FILES})
 
 target_include_directories(tests PRIVATE "include/private")
 
