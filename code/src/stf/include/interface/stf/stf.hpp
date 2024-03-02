@@ -52,7 +52,7 @@ namespace stf
         using segment3 = geom::segment3<T>;
 
         // planar geometry types
-        using polyline = geom::polyline2<T>;
+        using polyline2 = geom::polyline2<T>;
         using polygon = geom::polygon<T>;
 
         // camera-related types
