@@ -26,7 +26,7 @@ namespace stf::geom
         inline T length() const { return (b - a).length(); }
         inline T slope() const { vec_t diff = delta(); return diff.y / diff.x; }
         inline vec_t delta() const { return b - a; }
-        inline vec_t direction() const { return (b - a).normalize(); }
+        inline vec_t direction() const { return delta().normalize(); }
 
         inline math::range<T> range(size_t i) const { return math::range<T>(std::min(a[i], b[i]), std::max(a[i], b[i])); }
 
