@@ -20,4 +20,18 @@ namespace stf::geom::scaffolding::polyline
         ASSERT_EQ(test.len, test.polyline.length()) << "failed polyline.length()";
     }
 
+    template<typename T, size_t N>
+    struct distance_to
+    {
+        geom::polyline<T, N> const polyline;
+        math::vec<T, N> const point;
+        T const dist;
+    };
+
+    template<typename T, size_t N>
+    void verify(distance_to<T, N> const& test)
+    {
+        ASSERT_EQ(test.dist, test.polyline.distance_to(test.point)) << "failed to compute distance to polyline";
+    }
+
 }
