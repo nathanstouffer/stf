@@ -48,4 +48,24 @@ namespace stf::geom
         }
     }
 
+    TEST(polyline2, interpolate)
+    {
+        std::vector<scaffolding::polyline::interpolate<float, 2>> tests =
+        {
+            { stff::polyline2({ stff::vec2(0), stff::vec2(1) }), 0, stff::vec2(0) },
+            { stff::polyline2({ stff::vec2(0), stff::vec2(1) }), 0.5, stff::vec2(0.5) },
+            { stff::polyline2({ stff::vec2(0), stff::vec2(1, 0) }), 1, stff::vec2(1, 0) },
+            { stff::polyline2({ stff::vec2(0), stff::vec2(1, 0) }), -1, stff::vec2(0) },
+            { stff::polyline2({ stff::vec2(0), stff::vec2(1, 0) }), 2, stff::vec2(1, 0) },
+            { stff::polyline2({ stff::vec2(0), stff::vec2(1), stff::vec2(2, 0) }), 0.25, stff::vec2(0.5) },
+            { stff::polyline2({ stff::vec2(0), stff::vec2(1), stff::vec2(2, 0) }), 0.5, stff::vec2(1) },
+            { stff::polyline2({ stff::vec2(0), stff::vec2(1), stff::vec2(2, 0) }), 0.75, stff::vec2(1.5, 0.5) },
+        };
+
+        for (scaffolding::polyline::interpolate<float, 2> const& test : tests)
+        {
+            scaffolding::polyline::verify(test);
+        }
+    }
+
 } // stf::geom
