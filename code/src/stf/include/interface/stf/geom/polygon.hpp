@@ -2,6 +2,7 @@
 
 #include <vector>
 
+#include "stf/enums.hpp"
 #include "stf/geom/aabb.hpp"
 #include "stf/geom/segment.hpp"
 #include "stf/geom/polyline.hpp"
@@ -98,7 +99,7 @@ namespace stf::geom
 
         inline T area() const { std::abs(signed_area()); }
 
-        T contains(vec_t const& p) const
+        T contains(vec_t const& p, stf::boundary const type) const
         {
             // we shoot a ray out from point in +x and count the number of edges that are crossed
             // crossing_count is odd  => point is in polygon
@@ -114,7 +115,7 @@ namespace stf::geom
                 geom::segment2<T> seg = edge(i);
                 if (seg.distance_to(p) == math::constants<T>::zero)     // early out if the point is on the boundary
                 {
-                    return true;
+                    return (type == stf::boundary::CLOSED) ? true : false;
                 }
                 else if (seg.a.y == seg.b.y && p.y == seg.a.y)           // case where the segment is horizontal with the same y value as p.y
                 {
