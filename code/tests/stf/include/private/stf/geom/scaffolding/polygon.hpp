@@ -8,16 +8,16 @@ namespace stf::geom::scaffolding::polygon
 {
 
     template<typename T>
-    struct something
+    struct is_convex
     {
         geom::polygon<T> const polygon;
-        //T const len;
+        bool const convex;
     };
 
     template<typename T>
-    void verify(something<T> const& test)
+    void verify(is_convex<T> const& test)
     {
-        //ASSERT_EQ(test.len, test.polyline.length()) << "failed polyline.length()";
+        ASSERT_EQ(test.convex, test.polygon.is_convex()) << "failed polygon.is_convex()";
     }
 
 }
