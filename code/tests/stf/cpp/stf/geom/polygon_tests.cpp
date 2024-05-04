@@ -18,7 +18,7 @@ namespace stf::geom
             { stff::polygon({ stff::vec2(0), stff::vec2(1, 0), stff::vec2(2, 0), stff::vec2(1) }), true },
             { stff::polygon({ stff::vec2(0), stff::vec2(1, 0), stff::vec2(0) }), true },
             { stff::polygon({ stff::vec2(0), stff::vec2(1), stff::vec2(1, 0), stff::vec2(2, 1), stff::vec2(2, -2) }), false },
-            { stff::polygon({ stff::vec2(0), stff::vec2(1, 0), stff::vec2(2, 1), stff::vec2(3, 0), stff::vec2(4, 4) }), false},
+            { stff::polygon({ stff::vec2(0), stff::vec2(1, 0), stff::vec2(2, 1), stff::vec2(3, 0), stff::vec2(4, 4) }), false },
         };
 
         for (scaffolding::polygon::is_convex<float> const& test : tests)
