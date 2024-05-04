@@ -3,6 +3,7 @@ enable_testing()
 set(STF_TEST_FILES
     "${CMAKE_CURRENT_SOURCE_DIR}/cpp/stf/alg/intersection_tests.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/cpp/stf/cam/scamera_tests.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/cpp/stf/enums_tests.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/cpp/stf/geom/aabb2_tests.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/cpp/stf/geom/segment2_tests.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/cpp/stf/geom/polygon_tests.cpp"
