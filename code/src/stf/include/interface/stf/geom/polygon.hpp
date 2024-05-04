@@ -20,7 +20,6 @@ namespace stf::geom
 
     public:
 
-        // NOTE: we assume the input points to be positively oriented (anti-clockwise)
         polygon() : polygon(std::vector<vec_t>()) {}
         polygon(std::vector<vec_t> const& points) : m_points(points), m_aabb(aabb_t::fit(points)) {}
 
