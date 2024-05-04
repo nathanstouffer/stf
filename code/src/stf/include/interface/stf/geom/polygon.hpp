@@ -53,6 +53,9 @@ namespace stf::geom
             // early out for malformed polygons
             if (m_points.size() < 3) { return false; }
 
+            size_t clockwise = 0;
+            size_t anticlockwise = 0;
+
             size_t size = m_points.size();
             for (size_t i = 0; i < size; ++i)
             {
@@ -60,8 +63,14 @@ namespace stf::geom
                 vec_t const& a = m_points[(i + 0) % size];
                 vec_t const& b = m_points[(i + 1) % size];
                 vec_t const& c = m_points[(i + 2) % size];
-                // if the orientation is clockwise then the polygon is not convex
-                if (math::orientation(a, b, c) < math::constants<T>::zero) { return false; }
+                T orientation = math::orientation(a, b, c);
+             
+                // update counts
+                if (orientation > math::constants<T>::zero) { ++anticlockwise; }
+                if (orientation < math::constants<T>::zero) { ++clockwise; }
+                
+                // if we have different orientations, then the polygon is not convex
+                if (clockwise && anticlockwise) { return false; }
             }
             return true;        // fallthrough to return true
         }
