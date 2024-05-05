@@ -39,7 +39,7 @@ namespace stf::geom::scaffolding::polygon
     {
         geom::polygon<T> const polygon;
         math::vec2<T> const query;
-        boundary const boundary_type;
+        boundary_types const boundary_type;
         bool const contained;
     };
 

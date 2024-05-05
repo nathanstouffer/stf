@@ -99,15 +99,16 @@ namespace stf::geom
 
         inline T area() const { return std::abs(signed_area()); }
 
-        T contains(vec_t const& p, stf::boundary const type) const
+        bool contains(vec_t const& p, boundary_types const type) const
         {
             // we shoot a ray out from point in +x and count the number of edges that are crossed
             // crossing_count is odd  => point is in polygon
             // crossing_count is even => point is not in polygon
             size_t crossing_count = 0;
 
-            // early out for malformed polygons
+            // early out for malformed polygons and bbox query
             if (m_points.size() < 3) { return false; }
+            if (!m_aabb.contains(p)) { return false; }
 
             // iterate over all edges, computing if the ray crosses the edge
             for (size_t i = 0; i < m_points.size(); ++i)
@@ -115,7 +116,7 @@ namespace stf::geom
                 geom::segment2<T> seg = edge(i);
                 if (seg.distance_to(p) == math::constants<T>::zero)     // early out if the point is on the boundary
                 {
-                    return (type == stf::boundary::CLOSED) ? true : false;
+                    return (type == boundary_types::CLOSED) ? true : false;
                 }
                 else if (seg.a.y > p.y != seg.b.y > p.y)           // test if the y-range is relevent
                 {
@@ -147,7 +148,7 @@ namespace stf::geom
                 dist = std::min(dist, edge(i).distance_to(point));
             }
             if (dist == math::constants<T>::zero) { return dist; }
-            return (contains(point, stf::boundary::OPEN)) ? -dist : dist;
+            return (contains(point, boundary_types::OPEN)) ? -dist : dist;
         }
 
         inline T distance_to(vec_t const& point) const { return std::abs(signed_distance_to(point)); }
@@ -177,7 +178,7 @@ namespace stf::geom
         polygon scaled(T const scalar) const { return polygon(*this).scale(scalar); }
 
         inline aabb_t const& aabb() const { return m_aabb; }
-        inline std::vector<vec_t> const& points() const { return m_aabb; }
+        inline std::vector<vec_t> const& points() const { return m_points; }
 
         inline size_t byte_count() const { return vec_t::byte_count() * m_points.capacity() + aabb_t::byte_count(); }
 
