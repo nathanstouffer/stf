@@ -11,7 +11,7 @@ namespace stf::math::scaffolding::range
     struct contains_point
     {
         math::range<T> const range;
-        endpoints const type;
+        boundary const type;
         T const x;
         bool contained;
     };

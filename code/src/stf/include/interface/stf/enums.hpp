@@ -3,20 +3,16 @@
 namespace stf
 {
 
-    enum class endpoints
+    enum class boundary : uint32_t
     {
-        CLOSED,
-        OPEN
+        CLOSED = 0x00000000,
+        OPEN   = 0xFFFFFFFF
     };
 
-    inline endpoints complement(endpoints input)
+    inline boundary complement(boundary input)
     {
-        switch (input)
-        {
-            case endpoints::CLOSED: return endpoints::OPEN; break;
-            case endpoints::OPEN: return endpoints::CLOSED; break;
-            default: return endpoints::CLOSED;
-        }
+        uint32_t casted = static_cast<uint32_t>(input);
+        return static_cast<boundary>(~casted);
     }
     
 } // stf

@@ -2,6 +2,7 @@
 
 #include <vector>
 
+#include "stf/enums.hpp"
 #include "stf/geom/aabb.hpp"
 #include "stf/geom/segment.hpp"
 #include "stf/geom/polyline.hpp"
@@ -20,7 +21,6 @@ namespace stf::geom
 
     public:
 
-        // NOTE: we assume the input points to be positively oriented (anti-clockwise)
         polygon() : polygon(std::vector<vec_t>()) {}
         polygon(std::vector<vec_t> const& points) : m_points(points), m_aabb(aabb_t::fit(points)) {}
 
@@ -54,6 +54,9 @@ namespace stf::geom
             // early out for malformed polygons
             if (m_points.size() < 3) { return false; }
 
+            size_t clockwise = 0;
+            size_t anticlockwise = 0;
+
             size_t size = m_points.size();
             for (size_t i = 0; i < size; ++i)
             {
@@ -61,8 +64,14 @@ namespace stf::geom
                 vec_t const& a = m_points[(i + 0) % size];
                 vec_t const& b = m_points[(i + 1) % size];
                 vec_t const& c = m_points[(i + 2) % size];
-                // if the orientation is clockwise then the polygon is not convex
-                if (math::orientation(a, b, c) < math::constants<T>::zero) { return false; }
+                T orientation = math::orientation(a, b, c);
+             
+                // update counts
+                if (orientation > math::constants<T>::zero) { ++anticlockwise; }
+                if (orientation < math::constants<T>::zero) { ++clockwise; }
+                
+                // if we have different orientations, then the polygon is not convex
+                if (clockwise && anticlockwise) { return false; }
             }
             return true;        // fallthrough to return true
         }
@@ -88,9 +97,9 @@ namespace stf::geom
             return math::constants<T>::half * sum;
         }
 
-        inline T area() const { std::abs(signed_area()); }
+        inline T area() const { return std::abs(signed_area()); }
 
-        T contains(vec_t const& p) const
+        T contains(vec_t const& p, stf::boundary const type) const
         {
             // we shoot a ray out from point in +x and count the number of edges that are crossed
             // crossing_count is odd  => point is in polygon
@@ -106,14 +115,9 @@ namespace stf::geom
                 geom::segment2<T> seg = edge(i);
                 if (seg.distance_to(p) == math::constants<T>::zero)     // early out if the point is on the boundary
                 {
-                    return true;
+                    return (type == stf::boundary::CLOSED) ? true : false;
                 }
-                else if (seg.a.y == seg.b.y && p.y == seg.a.y)           // case where the segment is horizontal with the same y value as p.y
-                {
-                    // we also know the point to not be on the boundary because of the of the first condition
-                    if (p.x < seg.a.x) { ++crossing_count; }
-                }
-                else if (seg.range(1).contains(p.y) && p.y != seg.b.y)  // consider the general case where we have a sloped, half-open segment
+                else if (seg.a.y > p.y != seg.b.y > p.y)           // test if the y-range is relevent
                 {
                     if (seg.a.x == seg.b.x)     // check for a vertical line
                     {
@@ -142,7 +146,8 @@ namespace stf::geom
             {
                 dist = std::min(dist, edge(i).distance_to(point));
             }
-            return (contains(point)) ? -dist : dist;
+            if (dist == math::constants<T>::zero) { return dist; }
+            return (contains(point, stf::boundary::OPEN)) ? -dist : dist;
         }
 
         inline T distance_to(vec_t const& point) const { return std::abs(signed_distance_to(point)); }
