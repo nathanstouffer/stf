@@ -7,10 +7,10 @@
 namespace stf
 {
 
-    TEST(boundary, complement)
+    TEST(boundary_types, complement)
     {
-        ASSERT_EQ(boundary::CLOSED, complement(boundary::OPEN)) << "failed CLOSED is complement of OPEN";
-        ASSERT_EQ(boundary::OPEN, complement(boundary::CLOSED)) << "failed OPEN is complement of CLOSED";
+        ASSERT_EQ(boundary_types::CLOSED, complement(boundary_types::OPEN)) << "failed CLOSED is complement of OPEN";
+        ASSERT_EQ(boundary_types::OPEN, complement(boundary_types::CLOSED)) << "failed OPEN is complement of CLOSED";
     }
 
 } // stf

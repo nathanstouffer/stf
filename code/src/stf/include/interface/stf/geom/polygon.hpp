@@ -99,7 +99,7 @@ namespace stf::geom
 
         inline T area() const { return std::abs(signed_area()); }
 
-        T contains(vec_t const& p, stf::boundary const type) const
+        bool contains(vec_t const& p, boundary_types const type) const
         {
             // we shoot a ray out from point in +x and count the number of edges that are crossed
             // crossing_count is odd  => point is in polygon
@@ -116,7 +116,7 @@ namespace stf::geom
                 geom::segment2<T> seg = edge(i);
                 if (seg.distance_to(p) == math::constants<T>::zero)     // early out if the point is on the boundary
                 {
-                    return (type == stf::boundary::CLOSED) ? true : false;
+                    return (type == boundary_types::CLOSED) ? true : false;
                 }
                 else if (seg.a.y > p.y != seg.b.y > p.y)           // test if the y-range is relevent
                 {
@@ -148,7 +148,7 @@ namespace stf::geom
                 dist = std::min(dist, edge(i).distance_to(point));
             }
             if (dist == math::constants<T>::zero) { return dist; }
-            return (contains(point, stf::boundary::OPEN)) ? -dist : dist;
+            return (contains(point, boundary_types::OPEN)) ? -dist : dist;
         }
 
         inline T distance_to(vec_t const& point) const { return std::abs(signed_distance_to(point)); }
