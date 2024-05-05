@@ -68,9 +68,9 @@ namespace stf::geom
         }
     }
 
-    TEST(polygon, signed_distance)
+    TEST(polygon, signed_distance_to)
     {
-        std::vector<scaffolding::polygon::signed_distance<float>> tests =
+        std::vector<scaffolding::polygon::signed_distance_to<float>> tests =
         {
             { stff::polygon({ stff::vec2(0), stff::vec2(1, 0), stff::vec2(1), stff::vec2(0, 1) }), stff::vec2(0), 0 },
             { stff::polygon({ stff::vec2(0), stff::vec2(1, 0), stff::vec2(1), stff::vec2(0, 1) }), stff::vec2(0.5, 0), 0 },
@@ -79,7 +79,7 @@ namespace stf::geom
             { stff::polygon({ stff::vec2(0), stff::vec2(2, 0), stff::vec2(2), stff::vec2(0, 2) }), stff::vec2(3), stff::constants::sqrt_two },
         };
 
-        for (scaffolding::polygon::signed_distance<float> const& test : tests)
+        for (scaffolding::polygon::signed_distance_to<float> const& test : tests)
         {
             scaffolding::polygon::verify(test);
         }

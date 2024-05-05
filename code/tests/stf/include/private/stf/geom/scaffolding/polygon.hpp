@@ -50,7 +50,7 @@ namespace stf::geom::scaffolding::polygon
     }
 
     template<typename T>
-    struct signed_distance
+    struct signed_distance_to
     {
         geom::polygon<T> const polygon;
         math::vec2<T> const query;
@@ -58,7 +58,7 @@ namespace stf::geom::scaffolding::polygon
     };
 
     template<typename T>
-    void verify(signed_distance<T> const& test)
+    void verify(signed_distance_to<T> const& test)
     {
         ASSERT_EQ(test.distance, test.polygon.signed_distance_to(test.query)) << "failed polygon::signed_distance_to";
         ASSERT_EQ(std::abs(test.distance), test.polygon.distance_to(test.query)) << "failed polygon::distance_to";
