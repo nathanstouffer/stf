@@ -106,8 +106,9 @@ namespace stf::geom
             // crossing_count is even => point is not in polygon
             size_t crossing_count = 0;
 
-            // early out for malformed polygons
+            // early out for malformed polygons and bbox query
             if (m_points.size() < 3) { return false; }
+            if (!m_aabb.contains(p)) { return false; }
 
             // iterate over all edges, computing if the ray crosses the edge
             for (size_t i = 0; i < m_points.size(); ++i)
