@@ -36,7 +36,7 @@ namespace stf::geom
             {
                 positive -= hole.area();
             }
-            return (initial < math::constants<T>::zero) ? -sum : sum;
+            return (initial < math::constants<T>::zero) ? -positive : positive;
         }
 
         inline T area() const { return std::abs(signed_area()); }
