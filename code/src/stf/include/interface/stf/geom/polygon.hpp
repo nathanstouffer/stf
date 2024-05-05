@@ -146,7 +146,8 @@ namespace stf::geom
             {
                 dist = std::min(dist, edge(i).distance_to(point));
             }
-            return (contains(point)) ? -dist : dist;
+            if (dist == math::constants<T>::zero) { return dist; }
+            return (contains(point, stf::boundary::OPEN)) ? -dist : dist;
         }
 
         inline T distance_to(vec_t const& point) const { return std::abs(signed_distance_to(point)); }
