@@ -8,6 +8,7 @@
 #include "stf/geom/holygon.hpp"
 #include "stf/geom/polygon.hpp"
 #include "stf/geom/polyline.hpp"
+#include "stf/geom/ray.hpp"
 #include "stf/geom/segment.hpp"
 #include "stf/math/constants.hpp"
 #include "stf/math/crange.hpp"
@@ -51,6 +52,10 @@ namespace stf
         // segment types
         using segment2 = geom::segment2<T>;
         using segment3 = geom::segment3<T>;
+
+        // ray types
+        using ray2 = geom::ray2<T>;
+        using ray3 = geom::ray3<T>;
 
         // planar geometry types
         using polyline2 = geom::polyline2<T>;
