@@ -82,7 +82,7 @@ namespace stf::geom
         inline size_t byte_count() const
         {
             size_t count = m_hull.byte_count();
-            for (polygon_t const& hole : m_holes) { count ++ hole.byte_count(); }
+            for (polygon_t const& hole : m_holes) { count += hole.byte_count(); }
             return count;
         }
 
