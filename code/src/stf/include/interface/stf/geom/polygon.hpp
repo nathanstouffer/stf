@@ -97,7 +97,7 @@ namespace stf::geom
             return math::constants<T>::half * sum;
         }
 
-        inline T area() const { std::abs(signed_area()); }
+        inline T area() const { return std::abs(signed_area()); }
 
         T contains(vec_t const& p, stf::boundary const type) const
         {
@@ -117,12 +117,7 @@ namespace stf::geom
                 {
                     return (type == stf::boundary::CLOSED) ? true : false;
                 }
-                else if (seg.a.y == seg.b.y && p.y == seg.a.y)           // case where the segment is horizontal with the same y value as p.y
-                {
-                    // we also know the point to not be on the boundary because of the of the first condition
-                    if (p.x < seg.a.x) { ++crossing_count; }
-                }
-                else if (seg.range(1).contains(p.y) && p.y != seg.b.y)  // consider the general case where we have a sloped, half-open segment
+                else if (seg.a.y > p.y != seg.b.y > p.y)           // test if the y-range is relevent
                 {
                     if (seg.a.x == seg.b.x)     // check for a vertical line
                     {
