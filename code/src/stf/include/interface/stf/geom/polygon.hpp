@@ -118,7 +118,7 @@ namespace stf::geom
                 {
                     return (type == boundary_types::CLOSED) ? true : false;
                 }
-                else if (seg.a.y > p.y != seg.b.y > p.y)           // test if the y-range is relevent
+                else if (seg.a.y > p.y != seg.b.y > p.y)           // test if the y-interval is relevent
                 {
                     if (seg.a.x == seg.b.x)     // check for a vertical line
                     {

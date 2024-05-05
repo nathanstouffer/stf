@@ -2,7 +2,7 @@
 
 #include "stf/geom/aabb.hpp"
 #include "stf/math/constants.hpp"
-#include "stf/math/range.hpp"
+#include "stf/math/interval.hpp"
 #include "stf/math/vector.hpp"
 
 namespace stf::geom
@@ -28,7 +28,7 @@ namespace stf::geom
         inline vec_t delta() const { return b - a; }
         inline vec_t direction() const { return delta().normalize(); }
 
-        inline math::range<T> range(size_t i) const { return math::range<T>(std::min(a[i], b[i]), std::max(a[i], b[i])); }
+        inline math::interval<T> interval(size_t i) const { return math::interval<T>(std::min(a[i], b[i]), std::max(a[i], b[i])); }
 
         inline aabb_t aabb() const
         {
