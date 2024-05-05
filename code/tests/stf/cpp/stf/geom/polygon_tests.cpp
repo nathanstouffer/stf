@@ -56,6 +56,10 @@ namespace stf::geom
             { stff::polygon({ stff::vec2(0), stff::vec2(1, 0), stff::vec2(1), stff::vec2(2, 1), stff::vec2(2), stff::vec2(0, 1) }), stff::vec2(0.5, 1), boundary::OPEN, true },
             { stff::polygon({ stff::vec2(0), stff::vec2(1, 0), stff::vec2(1), stff::vec2(2, 1), stff::vec2(2), stff::vec2(0, 1) }), stff::vec2(-0.5, 1), boundary::CLOSED, false },
             { stff::polygon({ stff::vec2(0), stff::vec2(1, 0), stff::vec2(1), stff::vec2(2, 1), stff::vec2(2), stff::vec2(0, 1) }), stff::vec2(-0.5, 1), boundary::OPEN, false },
+            { stff::polygon({ stff::vec2(0), stff::vec2(1), stff::vec2(2, 0) }), stff::vec2(1), boundary::CLOSED, true },
+            { stff::polygon({ stff::vec2(0), stff::vec2(1), stff::vec2(2, 0) }), stff::vec2(1), boundary::OPEN, false },
+            { stff::polygon({ stff::vec2(0), stff::vec2(1), stff::vec2(2, 0) }), stff::vec2(0, 1), boundary::CLOSED, false },
+            { stff::polygon({ stff::vec2(0), stff::vec2(1), stff::vec2(2, 0) }), stff::vec2(0, 1), boundary::OPEN, false },
         };
 
         for (scaffolding::polygon::contains<float> const& test : tests)
