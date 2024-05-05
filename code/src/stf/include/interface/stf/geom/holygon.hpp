@@ -59,13 +59,6 @@ namespace stf::geom
             return true;
         }
 
-        T signed_distance_to(vec_t const& point) const
-        {
-            // TODO (stouff) write this
-        }
-
-        inline T distance_to(vec_t const& point) const { return std::abs(signed_distance_to(point)); }
-
         holygon& translate(vec_t const& delta)
         {
             m_hull.translate(delta);
