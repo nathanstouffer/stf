@@ -5,6 +5,7 @@
 #include "stf/cam/frustum.hpp"
 #include "stf/cam/scamera.hpp"
 #include "stf/geom/aabb.hpp"
+#include "stf/geom/holygon.hpp"
 #include "stf/geom/polygon.hpp"
 #include "stf/geom/polyline.hpp"
 #include "stf/geom/segment.hpp"
@@ -54,6 +55,7 @@ namespace stf
         // planar geometry types
         using polyline2 = geom::polyline2<T>;
         using polygon = geom::polygon<T>;
+        using holygon = geom::holygon<T>;
 
         // camera-related types
         using scamera = cam::scamera<T>;
