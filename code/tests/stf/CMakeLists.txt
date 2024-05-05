@@ -19,6 +19,7 @@ set(STF_TEST_FILES
     "${CMAKE_CURRENT_SOURCE_DIR}/cpp/stf/math/vec3_tests.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/cpp/stf/math/vec4_tests.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/cpp/stf/math/vec5_tests.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/cpp/stf/spatial/interval_tree_tests.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/include/private/stf/alg/scaffolding/intersection.hpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/include/private/stf/cam/scaffolding/scamera.hpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/include/private/stf/geom/scaffolding/aabb.hpp"
@@ -32,6 +33,7 @@ set(STF_TEST_FILES
     "${CMAKE_CURRENT_SOURCE_DIR}/include/private/stf/math/scaffolding/spherical.hpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/include/private/stf/math/scaffolding/transform.hpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/include/private/stf/math/scaffolding/vector.hpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/include/private/stf/spatial/scaffolding/interval_tree.hpp"
 )
 
 add_executable(tests ${STF_TEST_FILES})
