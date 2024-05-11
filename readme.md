@@ -7,6 +7,12 @@
 
 `stf` is a math library built primarily for graphics.
 
+## Priorities
+
+1. correctness
+2. maintainability
+3. performance
+
 ## Note
 
 Unfortunately, the code coverage is a lie because the entire library is templated and an uninstantiated template (class or function) is not incoporated into coverage computations.
