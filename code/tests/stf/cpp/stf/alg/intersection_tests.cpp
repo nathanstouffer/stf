@@ -106,4 +106,30 @@ namespace stf::alg
         }
     }
 
+    TEST(intersection, polygon_with_aabb)
+    {
+        stff::aabb2 box(stff::vec2(0), stff::vec2(10));
+        std::vector<scaffolding::intersection::polygon_with_aabb<float>> tests =
+        {
+            // polygons contained in the box
+            { stff::polygon({ stff::vec2(1), stff::vec2(5), stff::vec2(4, 3) }), box, true },
+            // polygons containing the box
+            { stff::polygon({ stff::vec2(-1), stff::vec2(-1, 11), stff::vec2(12, 15), stff::vec2(15, -5) }), box, true },
+            // polygons crossing the boundary
+            { stff::polygon({ stff::vec2(-1), stff::vec2(5), stff::vec2(6, -1) }), box, true },
+            { stff::polygon({ stff::vec2(-1, 5), stff::vec2(5), stff::vec2(4, 2) }), box, true },
+            // polygons touching only the boundary
+            { stff::polygon({ stff::vec2(-1), stff::vec2(0), stff::vec2(0, -1) }), box, true },
+            { stff::polygon({ stff::vec2(0), stff::vec2(10, 0), stff::vec2(5, -5) }), box, true },
+            // polygons outside the box
+            { stff::polygon({ stff::vec2(-1), stff::vec2(-5), stff::vec2(-5, 0) }), box, false },
+            { stff::polygon({ stff::vec2(-11, 10), stff::vec2(-0.000001, 10), stff::vec2(-0.000001), stff::vec2(10, -0.000001), stff::vec2(10, -11) }), box, false},
+        };
+
+        for (scaffolding::intersection::polygon_with_aabb<float> const& test : tests)
+        {
+            scaffolding::intersection::verify(test);
+        }
+    }
+
 } // stf::alg
