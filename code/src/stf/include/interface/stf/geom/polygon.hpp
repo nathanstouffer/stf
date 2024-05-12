@@ -118,19 +118,24 @@ namespace stf::geom
                 {
                     return (type == boundary_types::CLOSED) ? true : false;
                 }
-                else if (seg.a.y > p.y != seg.b.y > p.y)           // test if the y-interval is relevent
+                else if (seg.a.y > p.y != seg.b.y > p.y)            // test if the y-range is relevent
                 {
-                    if (seg.a.x == seg.b.x)     // check for a vertical line
+                    math::interval<T> x_range = seg.interval(0);
+                    if (p.x < x_range.a) { ++crossing_count; }      // avoid floating point work if we know the segment crosses
+                    else if (p.x <= x_range.b)                      // make sure the x-range is relevant
                     {
-                        if (p.x < seg.a.x) { ++crossing_count; }
-                    }
-                    else
-                    {
-                        // we compute the x coordinate of the pair (x, p.y) that is on the line defined by seg
-                        // if the ray begins before that coordinate, then the ray crosses this segment
-                        T const slope_inv = math::constants<T>::one / seg.slope();
-                        T const x = slope_inv * (p.y - seg.a.y) + seg.a.x;
-                        if (p.x < x) { ++crossing_count; }
+                        if (seg.a.x == seg.b.x)     // check for a vertical line
+                        {
+                            if (p.x < seg.a.x) { ++crossing_count; }
+                        }
+                        else
+                        {
+                            // we compute the x coordinate of the pair (x, p.y) that is on the line defined by seg
+                            // if the ray begins before that coordinate, then the ray crosses this segment
+                            T const slope_inv = math::constants<T>::one / seg.slope();
+                            T const x = slope_inv * (p.y - seg.a.y) + seg.a.x;
+                            if (p.x < x) { ++crossing_count; }
+                        }
                     }
                 }
             }

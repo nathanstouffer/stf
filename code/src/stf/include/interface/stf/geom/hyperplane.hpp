@@ -37,6 +37,9 @@ namespace stf::geom
             return side(extremity) * side(anti_extremity) <= math::constants<T>::zero;
         }
 
+        vec_t const& point() const { return m_point; }
+        vec_t const& normal() const { return m_normal; }
+
     private:
 
         vec_t m_point;
