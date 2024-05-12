@@ -2,6 +2,7 @@ enable_testing()
 
 set(STF_TEST_FILES
     "${CMAKE_CURRENT_SOURCE_DIR}/cpp/stf/alg/intersection_tests.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/cpp/stf/cam/frustum_tests.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/cpp/stf/cam/scamera_tests.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/cpp/stf/enums_tests.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/cpp/stf/geom/aabb2_tests.cpp"
@@ -20,6 +21,7 @@ set(STF_TEST_FILES
     "${CMAKE_CURRENT_SOURCE_DIR}/cpp/stf/math/vec4_tests.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/cpp/stf/math/vec5_tests.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/include/private/stf/alg/scaffolding/intersection.hpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/include/private/stf/cam/scaffolding/frustum.hpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/include/private/stf/cam/scaffolding/scamera.hpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/include/private/stf/geom/scaffolding/aabb.hpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/include/private/stf/geom/scaffolding/polygon.hpp"
