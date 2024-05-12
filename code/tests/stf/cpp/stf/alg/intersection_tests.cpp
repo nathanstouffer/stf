@@ -51,7 +51,7 @@ namespace stf::alg
             { stff::segment2(stff::vec2(1), stff::vec2(2)), box, true },
             { stff::segment2(stff::vec2(3, 2), stff::vec2(8, 2)), box, true },
             { stff::segment2(stff::vec2(0), stff::vec2(10)), box, true },
-            // segments on the intersecting on the edge of the box
+            // segments on the edge of the box
             { stff::segment2(stff::vec2(0), stff::vec2(10, 0)), box, true },
             { stff::segment2(stff::vec2(0), stff::vec2(1, 0)), box, true },
             { stff::segment2(stff::vec2(0), stff::vec2(5, -1)), box, true },
@@ -73,6 +73,34 @@ namespace stf::alg
         };
 
         for (scaffolding::intersection::segment_with_aabb<float> const& test : tests)
+        {
+            scaffolding::intersection::verify(test);
+        }
+    }
+
+    TEST(intersection, polyline_with_aabb)
+    {
+        stff::aabb2 box(stff::vec2(0), stff::vec2(10));
+        std::vector<scaffolding::intersection::polyline_with_aabb<float>> tests =
+        {
+            // polylines contained in the box
+            { stff::polyline2({ stff::vec2(1), stff::vec2(2), stff::vec2(5, 6) }), box, true },
+            { stff::polyline2({ stff::vec2(9), stff::vec2(2), stff::vec2(3, 6) }), box, true },
+            { stff::polyline2({ stff::vec2(0), stff::vec2(1, 0), stff::vec2(10, 0) }), box, true },
+            // polylines crossing the boundary
+            { stff::polyline2({ stff::vec2(1), stff::vec2(11), stff::vec2(15, 5) }), box, true },
+            { stff::polyline2({ stff::vec2(1), stff::vec2(-1, 4), stff::vec2(5) }), box, true },
+            // polylines touching only the boundary
+            { stff::polyline2({ stff::vec2(0), stff::vec2(1, -1), stff::vec2(10, 0) }), box, true },
+            { stff::polyline2({ stff::vec2(0), stff::vec2(10, 0), stff::vec2(10) }), box, true },
+            { stff::polyline2({ stff::vec2(9, -1), stff::vec2(11, 1) }), box, true },
+            // polylines outside the box
+            { stff::polyline2({ stff::vec2(-1), stff::vec2(-1, 5), stff::vec2(-5) }), box, false },
+            { stff::polyline2({ stff::vec2(9, -1.00001), stff::vec2(11, 0.99999) }), box, false },
+            { stff::polyline2({ stff::vec2(-0.00001), stff::vec2(-0.00001, 10.00001), stff::vec2(10.00001) }), box, false},
+        };
+
+        for (scaffolding::intersection::polyline_with_aabb<float> const& test : tests)
         {
             scaffolding::intersection::verify(test);
         }
