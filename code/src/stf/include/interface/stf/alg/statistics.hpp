@@ -3,7 +3,7 @@
 #include <algorithm>
 #include <vector>
 
-#include "stf/math/constants.h"
+#include "stf/math/constants.hpp"
 
 namespace stf::alg
 {
@@ -22,7 +22,7 @@ namespace stf::alg
         }
         else
         {
-            return sorted[size / 2]
+            return sorted[size / 2];
         }
     }
 

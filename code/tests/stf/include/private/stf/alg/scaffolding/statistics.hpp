@@ -1,0 +1,24 @@
+#pragma once
+
+#include <gtest/gtest.h>
+
+#include <stf/stf.hpp>
+#include <stf/alg/statistics.hpp>
+
+namespace stf::alg::scaffolding::statistics
+{
+
+    template<typename T>
+    struct median
+    {
+        std::vector<T> const values;
+        T const expected;
+    };
+
+    template<typename T>
+    void verify(median<T> const& test)
+    {
+        ASSERT_EQ(test.expected, alg::median(test.values)) << "Failed to compute median(values)";
+    }
+
+} // stf::alg::scaffolding::statistics
