@@ -132,4 +132,52 @@ namespace stf::alg
         }
     }
 
+    TEST(intersection, polygon_with_segment)
+    {
+        std::vector<scaffolding::intersection::polygon_with_segment<float>> tests =
+        {
+            // segment inside polygon
+            { stff::polygon({ stff::vec2(0), stff::vec2(5), stff::vec2(5, 0) }), stff::segment2(stff::vec2(2, 1), stff::vec2(4, 3)), true },
+            { stff::polygon({ stff::vec2(-1), stff::vec2(-1, 11), stff::vec2(12, 15), stff::vec2(15, -5) }), stff::segment2(stff::vec2(10, 2), stff::vec2(3, 8)), true },
+            // segment crossing polygon boundary
+            { stff::polygon({ stff::vec2(-1), stff::vec2(5), stff::vec2(6, -1) }), stff::segment2(stff::vec2(0, 4), stff::vec2(3, 2)), true },
+            { stff::polygon({ stff::vec2(-1, 5), stff::vec2(5), stff::vec2(4, 2) }), stff::segment2(stff::vec2(3, 8), stff::vec2(3, 4)), true },
+            // segment touching only polygon boundary
+            { stff::polygon({ stff::vec2(-1), stff::vec2(0), stff::vec2(0, -1) }), stff::segment2(stff::vec2(-1), stff::vec2(0)), true },
+            { stff::polygon({ stff::vec2(0), stff::vec2(10, 0), stff::vec2(5, -5) }), stff::segment2(stff::vec2(5, 0), stff::vec2(8, 0)), true },
+            // segments outside polygon
+            { stff::polygon({ stff::vec2(-1), stff::vec2(-5), stff::vec2(-5, 0) }), stff::segment2(stff::vec2(2), stff::vec2(9, 0)), false },
+            { stff::polygon({ stff::vec2(-1), stff::vec2(-5), stff::vec2(-5, 0) }), stff::segment2(stff::vec2(-4, -5), stff::vec2(-2, -3)), false },
+        };
+
+        for (scaffolding::intersection::polygon_with_segment<float> const& test : tests)
+        {
+            scaffolding::intersection::verify(test);
+        }
+    }
+
+    TEST(intersection, polygon_with_polyline)
+    {
+        std::vector<scaffolding::intersection::polygon_with_polyline<float>> tests =
+        {
+            // polyline inside polygon
+            { stff::polygon({ stff::vec2(0), stff::vec2(5), stff::vec2(5, 0) }), stff::polyline2({ stff::vec2(2, 1), stff::vec2(4, 3) }), true },
+            { stff::polygon({ stff::vec2(-1), stff::vec2(-1, 11), stff::vec2(12, 15), stff::vec2(15, -5) }), stff::polyline2({ stff::vec2(10, 2), stff::vec2(3, 8) }), true },
+            // polyline crossing polygon boundary
+            { stff::polygon({ stff::vec2(-1), stff::vec2(5), stff::vec2(6, -1) }), stff::polyline2({ stff::vec2(0, 4), stff::vec2(3, 2) }), true },
+            { stff::polygon({ stff::vec2(-1, 5), stff::vec2(5), stff::vec2(4, 2) }), stff::polyline2({ stff::vec2(3, 8), stff::vec2(3, 4) }), true },
+            // polyline touching only polygon boundary
+            { stff::polygon({ stff::vec2(-1), stff::vec2(0), stff::vec2(0, -1) }), stff::polyline2({ stff::vec2(-1), stff::vec2(0) }), true },
+            { stff::polygon({ stff::vec2(0), stff::vec2(10, 0), stff::vec2(5, -5) }), stff::polyline2({ stff::vec2(5, 0), stff::vec2(8, 0) }), true },
+            // polyline outside polygon
+            { stff::polygon({ stff::vec2(-1), stff::vec2(-5), stff::vec2(-5, 0) }), stff::polyline2({ stff::vec2(2), stff::vec2(9, 0) }), false },
+            { stff::polygon({ stff::vec2(-1), stff::vec2(-5), stff::vec2(-5, 0) }), stff::polyline2({ stff::vec2(-4, -5), stff::vec2(-2, -3) }), false },
+        };
+
+        for (scaffolding::intersection::polygon_with_polyline<float> const& test : tests)
+        {
+            scaffolding::intersection::verify(test);
+        }
+    }
+
 } // stf::alg
