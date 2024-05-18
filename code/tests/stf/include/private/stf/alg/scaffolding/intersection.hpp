@@ -85,4 +85,34 @@ namespace stf::alg::scaffolding::intersection
         ASSERT_EQ(test.expected, alg::intersect(test.box, test.polygon)) << "Failed to intersect(box, polygon)";
     }
 
+    template<typename T>
+    struct polygon_with_segment
+    {
+        geom::polygon<T> const polygon;
+        geom::segment2<T> const segment;
+        bool const expected;
+    };
+
+    template<typename T>
+    void verify(polygon_with_segment<T> const& test)
+    {
+        ASSERT_EQ(test.expected, alg::intersect(test.polygon, test.segment)) << "Failed to intersect(polygon, segment)";
+        ASSERT_EQ(test.expected, alg::intersect(test.segment, test.polygon)) << "Failed to intersect(segment, polygon)";
+    }
+
+    template<typename T>
+    struct polygon_with_polyline
+    {
+        geom::polygon<T> const polygon;
+        geom::polyline2<T> const polyline;
+        bool const expected;
+    };
+
+    template<typename T>
+    void verify(polygon_with_polyline<T> const& test)
+    {
+        ASSERT_EQ(test.expected, alg::intersect(test.polygon, test.polyline)) << "Failed to intersect(polygon, polyline)";
+        ASSERT_EQ(test.expected, alg::intersect(test.polyline, test.polygon)) << "Failed to intersect(polyline, polygon)";
+    }
+
 } // stf::alg::scaffolding::intersection
