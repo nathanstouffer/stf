@@ -8,15 +8,18 @@
 #include "stf/math/raw.hpp"
 
 /**
- * \file vector.hpp
- * \brief A file containing a templated vector class along with associated functions
+ * @file vector.hpp
+ * @brief A file containing a templated vector class along with associated functions
  */
 
 namespace stf::math
 {
     
     /**
-     * \brief A vector class templated on number type and dimension
+     * @brief A vector class templated on number type and dimension
+     * 
+     * @tparam T Number type (eg float)
+     * @tparam N Dimension
      * 
      * Unfortunately there is a lot of duplication between the generic vector class and the specializations when
      * the dimension is specialized for N = 2, 3, 4. This could be avoided by pairing Curiously Recurring Template Pattern
@@ -25,7 +28,7 @@ namespace stf::math
      * directly on the underlying raw pointers
      * 
      * TODO: possibly use the CRTP to reduce verbosity -- just make sure to test performance implications
-     */
+    */
     template<typename T, size_t N>
     struct vec final
     {
@@ -83,9 +86,11 @@ namespace stf::math
 
     };
 
-    /** 
-     * \brief Specialization of vec for N=2
-     */
+    /**
+     * @brief Specialization of vec for N=2
+     * 
+     * @tparam T Number type (eg float)
+    */
     template<typename T>
     struct vec<T, 2> final
     {
@@ -133,9 +138,11 @@ namespace stf::math
 
     };
 
-     /** 
-     * \brief Specialization of vec for N=3
-     */
+    /**
+     * @brief Specialization of vec for N=3
+     * 
+     * @tparam T Number type (eg float)
+    */
     template<typename T>
     struct vec<T, 3> final
     {
@@ -185,9 +192,11 @@ namespace stf::math
 
     };
 
-     /** 
-     * \brief Specialization of vec for N=2
-     */
+    /**
+     * @brief Specialization of vec for N=4
+     * 
+     * @tparam T Number type (eg float)
+    */
     template<typename T>
     struct vec<T, 4> final
     {
@@ -241,8 +250,8 @@ namespace stf::math
 
     /// @cond DELETED
     /**
-     * \brief Delete invalid vector specialization
-     */
+     * @brief Delete invalid vector specialization
+    */
     template<typename T> struct vec<T, 0> { vec() = delete; };
     /// @endcond
 
@@ -252,8 +261,14 @@ namespace stf::math
     template<typename T> using vec4 = vec<T, 4>;
 
     /** 
-     * \brief Compute the distance between lhs and rhs
-     */
+     * @brief Compute the distance between @p lhs and @p rhs
+     *
+     * @tparam T Number type (eg float)
+     * @tparam N Dimension
+     * @param [in] lhs
+     * @param [in] rhs
+     * @return The distance between @p lhs and @p rhs
+    */
     template<typename T, size_t N>
     inline T const dist(vec<T, N> const& lhs, vec<T, N> const& rhs)
     {
@@ -261,17 +276,31 @@ namespace stf::math
     }
 
     /** 
-     * \brief Compute whether the distance between lhs and rhs is less than or equal to eps
-     */
+     * @brief Compute whether the distance between @p lhs and @p rhs is less than or equal to e@p ps
+     * 
+     * @tparam T Number type (eg float)
+     * @tparam N Dimension
+     * @param [in] lhs
+     * @param [in] rhs
+     * @param [in] eps The epsilon distance to use when computating approximate equality
+     * @return Whether or not @p lhs and @p rhs are closer than @p eps
+    */
     template<typename T, size_t N>
-    inline bool const equ(vec<T, N> const& lhs, vec<T, N> const& rhs, T eps)
+    inline bool const equ(vec<T, N> const& lhs, vec<T, N> const& rhs, T const eps)
     {
         return (dist(lhs, rhs) <= eps) ? true : false;
     }
 
-    /** 
-     * \brief Compute whether the distance between lhs and rhs is strictly greater than eps
-     */
+    /**
+     * @brief Compute whether the distance between lhs and rhs is strictly greater than eps
+     * 
+     * @tparam T Number type (eg float)
+     * @tparam N Dimension
+     * @param lhs [in]
+     * @param rhs [in]
+     * @param eps [in] The epsilon distance to use when computating approximate equality
+     * @return Whether or not @p lhs and @p rhs are further apart than @p eps
+    */
     template<typename T, size_t N>
     inline bool const neq(vec<T, N> const& lhs, vec<T, N> const& rhs, T eps)
     {
@@ -279,26 +308,43 @@ namespace stf::math
     }
 
     /** 
-     * \brief Compute whether lhs is approximately equal to rhs (uses constants<T>::tol as epsilon)
-     */
+     * @brief Compute whether @p lhs is approximately equal to @p rhs (uses constants<T>::tol as epsilon)
+     * 
+     * @tparam T Number type (eg float)
+     * @tparam N Dimension
+     * @param lhs [in]
+     * @param rhs [in]
+     * @return Whether or not @p lhs and @p rhs are approximately equal
+    */
     template<typename T, size_t N>
     inline bool const operator==(vec<T, N> const& lhs, vec<T, N> const& rhs)
     {
         return equ(lhs, rhs, constants<T>::tol);
     }
 
-    /** 
-     * \brief Compute whether lhs is approximately not equal to rhs (uses constants<T>::tol as epsilon)
-     */
+    /**
+     * @brief Compute whether @p lhs is approximately not equal to @p rhs (uses constants<T>::tol as epsilon)
+     * 
+     * @tparam T Number type (eg float)
+     * @tparam N Dimension
+     * @param lhs [in]
+     * @param rhs [in]
+     * @return Whether or not @p lhs and @p rhs are approximately not equal
+    */
     template<typename T, size_t N>
     inline bool const operator!=(vec<T, N> const& lhs, vec<T, N> const& rhs)
     {
         return !(lhs == rhs);
     }
 
-    /** 
-     * \brief Negate the input vector
-     */
+    /**
+     * @brief Compute the negative of @p lhs
+     * 
+     * @tparam T Number type (eg float)
+     * @tparam N Dimension
+     * @param lhs [in]
+     * @return The negative of @p lhs
+    */
     template<typename T, size_t N>
     inline vec<T, N> const operator-(vec<T, N> const& lhs)
     {
@@ -310,45 +356,75 @@ namespace stf::math
         return result;
     }
 
-    /** 
-     * \brief Compute the sum of lhs and rhs
-     */
+    /**
+     * @brief Compute the sum of @p lhs and @p rhs
+     * 
+     * @tparam T Number type (eg float)
+     * @tparam N Dimension
+     * @param lhs [in]
+     * @param rhs [in]
+     * @return The sum of @p lhs and @p rhs
+    */
     template<typename T, size_t N>
     inline vec<T, N> const operator+(vec<T, N> const& lhs, vec<T, N> const& rhs)
     {
         return vec<T, N>(lhs) += rhs;
     }
 
-    /** 
-     * \brief Compute the difference between lhs and rhs
-     */
+    /**
+     * @brief Compute the difference of @p lhs and @p rhs
+     *
+     * @tparam T Number type (eg float)
+     * @tparam N Dimension
+     * @param lhs [in]
+     * @param rhs [in]
+     * @return The difference of @p lhs and @p rhs
+    */
     template<typename T, size_t N>
     inline vec<T, N> const operator-(vec<T, N> const& lhs, vec<T, N> const& rhs)
     {
         return vec<T, N>(lhs) -= rhs;
     }
 
-    /** 
-     * \brief Scale lhs by scalar
-     */
+    /**
+     * @brief Scale @p lhs by @p scalar
+     *
+     * @tparam T Number type (eg float)
+     * @tparam N Dimension
+     * @param lhs [in]
+     * @param scalar [in]
+     * @return @p lhs scaled by @p scalar
+    */
     template<typename T, size_t N>
     inline vec<T, N> const operator*(vec<T, N> const& lhs, T const scalar)
     {
         return vec<T, N>(lhs) *= scalar;
     }
 
-    /** 
-     * \brief Scale rhs by scalar
-     */
+    /**
+     * @brief Scale @p rhs by by @p scalar
+     * 
+     * @tparam T Number type (eg float)
+     * @tparam N Dimension
+     * @param scalar [in]
+     * @param rhs [in]
+     * @return @p rhs scaled by @p scalar
+    */
     template<typename T, size_t N>
     inline vec<T, N> const operator*(T const scalar, vec<T, N> const& rhs)
     {
         return rhs * scalar;
     }
 
-    /** 
-     * \brief Compute the dot product between lhs and rhs
-     */
+    /**
+     * @brief Compute the dot product of @p lhs and @p rhs
+     * 
+     * @tparam T Number type (eg float)
+     * @tparam N Dimension
+     * @param lhs [in]
+     * @param rhs [in]
+     * @return The dot product of @p lhs and @p rhs
+    */
     template<typename T, size_t N>
     inline T const dot(vec<T, N> const& lhs, vec<T, N> const& rhs)
     {
@@ -356,20 +432,32 @@ namespace stf::math
     }
 
     /** 
-     * \brief Compute the 2D cross product between lhs and rhs
+     * @brief Compute the 2D cross product of @p lhs and @p rhs
      *
      * This is not truely a 2D cross product. It is the cross product of the corresponding 3D 
      * vectors with 0 in the z coordinate.
-     */
+     * 
+     * @tparam T Number type (eg float)
+     * @tparam N Dimension
+     * @param lhs [in]
+     * @param rhs [in]
+     * @return The 2D cross product of @p lhs and @p rhs 
+    */
     template<typename T>
     inline T const cross(vec2<T> const& lhs, vec2<T> const& rhs)
     {
         return lhs.x * rhs.y - lhs.y * rhs.x;
     }
 
-    /** 
-     * \brief Compute the 3D cross product between lhs and rhs
-     */
+    /**
+     * @brief Compute the 3D cross product of @p lhs and @p rhs
+     *
+     * @tparam T Number type (eg float)
+     * @tparam N Dimension
+     * @param lhs [in]
+     * @param rhs [in]
+     * @return The 3D cross product of @p lhs and @p rhs
+    */
     template<typename T>
     inline vec3<T> const cross(vec3<T> const& lhs, vec3<T> const& rhs)
     {
@@ -382,13 +470,20 @@ namespace stf::math
     }
 
     /** 
-     * \brief Compute the orientation of the three points p, q, and r
+     * @brief Compute the orientation of @p p, @p q, and @p r
      *
      * The orientation is determined based on the sign of the return value
      *    * + => counterclockwise
      *    * 0 => colinear
      *    * - => clockwise
-     */
+     * 
+     * @tparam T Number type (eg float)
+     * @tparam N Dimension
+     * @param p [in]
+     * @param q [in]
+     * @param r [in]
+     * @return The orientation of @p p, @p q, and @p r
+    */
     template<typename T>
     inline T orientation(vec2<T> const& p, vec2<T> const& q, vec2<T> const& r)
     {
@@ -396,8 +491,16 @@ namespace stf::math
     }
 
     /** 
-     * \brief Compute the hadamard product (element-wise multiplication) between lhs and rhs
-     */
+     * @brief Compute the hadamard product of @p lhs and @p rhs
+     * 
+     * The hadamard product is element-wise multiplication of vectors.
+     * 
+     * @tparam T Number type (eg float)
+     * @tparam N Dimension
+     * @param lhs [in]
+     * @param rhs [in]
+     * @return The hadamard product of @p lhs and @p rhs
+    */
     template<typename T, size_t N>
     inline vec<T, N> const hadamard(vec<T, N> const& lhs, vec<T, N> const& rhs)
     {
@@ -410,8 +513,14 @@ namespace stf::math
     }
 
     /** 
-     * \brief Write the rhs to a std::ostream
-     */
+     * @brief Write the vector @p rhs to the std::ostream @p s
+     * 
+     * @tparam T Number type (eg float)
+     * @tparam N Dimension
+     * @param s [in/out]
+     * @param rhs [in]
+     * @return A reference to @p s
+    */
     template <typename T, size_t N>
     std::ostream& operator<<(std::ostream& s, vec<T, N> const& rhs)
     {
@@ -428,19 +537,24 @@ namespace stf::math
 
 namespace std
 {
-    /** 
-     * \brief Compute the hash of a vector
-     */
+    /**
+     * @brief Compute the hash of a vector
+     * 
+     * @tparam T Number type (eg float)
+     * @tparam N Dimension
+     * @param lhs [in]
+     * @return The hash of @p lhs
+    */
     template<typename T, size_t N>
     struct hash<stf::math::vec<T, N>>
     {
-        size_t operator()(stf::math::vec<T, N> const& rhs) const
+        size_t operator()(stf::math::vec<T, N> const& lhs) const
         {
             std::hash<T> hasher;
             size_t result = 17;
             for (size_t i = 0; i < N; ++i)
             {
-                result = result * 23 + hasher(rhs[i]);
+                result = result * 23 + hasher(lhs[i]);
             }
             return result;
         }
