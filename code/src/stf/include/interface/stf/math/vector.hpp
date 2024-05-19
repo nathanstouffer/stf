@@ -7,10 +7,14 @@
 #include "stf/math/constants.hpp"
 #include "stf/math/raw.hpp"
 
+/**
+ * \file vector.hpp
+ * \brief A file containing a templated vector class along with associated functions
+ */
+
 namespace stf::math
 {
     
-
     /// A vector class templated on number type and dimension
     /**
      * Unfortunately there is a lot of duplication between the generic vector class and the specializations when
