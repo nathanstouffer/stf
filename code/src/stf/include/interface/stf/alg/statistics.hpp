@@ -14,15 +14,16 @@ namespace stf::alg
         std::vector<T> sorted = values;
         std::stable_sort(sorted.begin(), sorted.end());
         size_t size = sorted.size();
-        if (size % 2 == 0)
+        size_t mid = size / 2;
+        if (size & size_t(1))       // if the size is odd, just return the middle element
         {
-            T left = sorted[(size / 2) - 1];
-            T right = sorted[size / 2];
-            return math::constants<T>::half * (left + right);
+            return sorted[mid];
         }
-        else
+        else                        // otherwise, average the middle two elements
         {
-            return sorted[size / 2];
+            T left = sorted[mid - 1];
+            T right = sorted[mid];
+            return math::constants<T>::half * (left + right);
         }
     }
 
