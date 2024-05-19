@@ -28,7 +28,7 @@ A todo list separated out by category (typically a namespace)
 ## gfx
 
  - [x] color
- - [ ] gradient
+ - [x] gradient
  - [ ] triple buffer?
 
 ## cam
