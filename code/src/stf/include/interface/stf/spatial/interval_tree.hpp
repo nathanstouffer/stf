@@ -11,6 +11,7 @@ namespace stf::spatial
 {
 
 	// TODO make this class copyable
+	// TODO allocate nodes in chunks instead of one-by-one
 	template<typename T, typename V>
 	class interval_tree
 	{
@@ -59,7 +60,6 @@ namespace stf::spatial
 
 		};
 
-		// TODO (stouff) think about how to structure this correctly
 		struct node_t
 		{
 
@@ -315,7 +315,7 @@ namespace stf::spatial
 			return std::make_unique<node_t>(std::move(center), interval_tree::construct(left), interval_tree::construct(right));
 		}
 
-		// TODO (stouff) there is probably an STL algorithm for this
+		// TODO probably rewrite with an STL algorithm
 		static std::vector<entry_ptr_t> pointers(std::vector<entry_t> const& entries)
 		{
 			std::vector<entry_ptr_t> ptrs;
@@ -324,7 +324,7 @@ namespace stf::spatial
 			return ptrs;
 		}
 
-		// TODO (stouff) there is probably an STL algorithm for this
+		// TODO probably rewrite with an STL algorithm
 		static std::vector<sortable_t> sorted(std::vector<entry_t> const& entries)
 		{
 			std::vector<sortable_t> sortable;
