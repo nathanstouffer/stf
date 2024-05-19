@@ -10,6 +10,7 @@
 namespace stf::spatial
 {
 
+	// TODO make this class copyable
 	template<typename T, typename V>
 	class interval_tree
 	{
@@ -23,6 +24,8 @@ namespace stf::spatial
 			V value;
 
 			entry_t(interval_t const& _interval, V const& _value) : interval(_interval), value(_value) {}
+
+			inline bool operator==(entry_t const& rhs) const { return interval == rhs.interval && value == rhs.value; }
 
 		};
 
@@ -85,6 +88,8 @@ namespace stf::spatial
 				node_t const* node;
 				iterator it;
 
+				position_t(node_t const* _node, iterator _it) : node(_node), it(_it) {}
+
 				inline bool is_end() const { return !node; }
 
 				bool contains(T const query) const
@@ -123,7 +128,7 @@ namespace stf::spatial
 							//     1. this iterator is the end (checks the edge case where we constructed a position that points to an empty node)
 							//     2. the iterator points to a range that does not contain the query
 							//     3. the incremented iterator is the greater
-							if (it == center.greater.end() || query < (*it)->interval.b || ++it == center.greater.end())
+							if (it == center.greater.end() || query > (*it)->interval.b || ++it == center.greater.end())
 							{
 								jump(query);
 							}
@@ -177,11 +182,14 @@ namespace stf::spatial
 			{
 				while (!m_position.is_end() && !m_position.contains(m_query))
 				{
-					m_position.advance(query);
+					m_position.advance(m_query);
 				}
 			}
 
-			query_iterator(position_t const& position, T const query) : m_position(position), m_query(query) {}
+			query_iterator(position_t const& position, T const query) : m_position(position), m_query(query)
+			{
+				slide();
+			}
 
 			// unfortunately, we have to overload operator!= for range-based for loops to work. but this is NOT true equality
 			inline bool operator==(query_iterator const& rhs) const { return m_position.is_end() && rhs.m_position.is_end(); }
@@ -238,7 +246,7 @@ namespace stf::spatial
 			if (m_entries.empty()) { return query_range(end, end); }	// if there are no intervals, return an empty range
 			else
 			{
-				center_t const& center = m_root.center;
+				center_t const& center = m_root->center;
 				query_iterator::position_t::iterator it = (query <= center.pivot) ? center.lesser.cbegin() : center.greater.cbegin();
 				query_iterator begin(query_iterator::position_t(m_root.get(), it), query);
 				return query_range(begin, end);

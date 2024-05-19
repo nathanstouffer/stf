@@ -16,6 +16,8 @@ namespace stf::math
         interval() : a(constants<T>::zero), b(constants<T>::zero) {}
         interval(T const _a, T const _b) : a(_a), b(_b) {}
 
+        inline bool operator==(interval const& rhs) const { return a == rhs.a && b == rhs.b; }
+
         inline bool is_empty(boundary_types type)
         {
             switch (type)
