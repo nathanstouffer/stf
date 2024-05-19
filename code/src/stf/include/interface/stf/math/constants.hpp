@@ -7,6 +7,9 @@
 namespace stf::math
 {
 
+    /**
+     * A templated class that has some common mathetmatical constants.
+    */
     template<typename T>
     struct constants
     {
