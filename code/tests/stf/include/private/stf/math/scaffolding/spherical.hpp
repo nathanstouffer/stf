@@ -51,6 +51,20 @@ namespace stf::math::scaffolding::spherical
     }
 
     template<typename T>
+    struct counterclockwise_angle
+    {
+        vec2<T> const u;
+        vec2<T> const v;
+        T const theta;
+    };
+
+    template<typename T>
+    void verify(counterclockwise_angle<T> const& test)
+    {
+        ASSERT_FLOAT_EQ(test.theta, math::counterclockwise_angle(test.u, test.v)) << "Failed to compute counterclockwise angle";
+    }
+
+    template<typename T>
     struct unit_vec2
     {
         T const theta;

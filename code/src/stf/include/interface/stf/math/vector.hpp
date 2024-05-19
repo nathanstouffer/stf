@@ -326,7 +326,7 @@ namespace stf::math
         );
     }
 
-    // + => anti-clockwise
+    // + => counterclockwise
     // 0 => colinear
     // - => clockwise
     template<typename T>

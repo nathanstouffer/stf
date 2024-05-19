@@ -8,7 +8,7 @@ namespace stf::math
 {
 
     /**
-     * A templated class that has some common mathetmatical constants.
+    * A templated class that has some common mathetmatical constants.
     */
     template<typename T>
     struct constants
@@ -26,7 +26,9 @@ namespace stf::math
         static T constexpr tau = 2 * pi;
         static T constexpr two_pi = tau;
         static T constexpr half_pi = T(0.5) * pi;
+        static T constexpr pi_halves = half_pi;
         static T constexpr quarter_pi = T(0.25) * pi;
+        static T constexpr pi_fourths = quarter_pi;
 
         static T constexpr e = T(2.718281828459045235360287471352);
 

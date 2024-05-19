@@ -58,6 +58,26 @@ namespace stf::math
         for (scaffolding::spherical::closest_equiv_angle<float> const& test : tests) { scaffolding::spherical::verify(test); }
     }
 
+    TEST(spherical, counterclockwise_angle)
+    {
+        std::vector<scaffolding::spherical::counterclockwise_angle<float>> tests =
+        {
+            { stff::vec2(1, 0), stff::vec2(1, 0), 0 },
+            { stff::vec2(5, 5), stff::vec2(1, 1), 0 },
+            { stff::vec2(5, 0), stff::vec2(1, 1), stff::constants::pi_fourths },
+            { stff::vec2(1, 0), stff::vec2(-9, 9), 3.f * stff::constants::pi_fourths },
+            { stff::vec2(1, 0), stff::vec2(-5, 0), stff::constants::pi },
+            { stff::vec2(-1, 0), stff::vec2(1, 0), stff::constants::pi },
+            { stff::vec2(-1, -1), stff::vec2(1, 1), stff::constants::pi },
+            { stff::vec2(-1, -1), stff::vec2(1, 0), 3.f * stff::constants::pi_fourths },
+            { stff::vec2(-1, -1), stff::vec2(0, 1), 5.f * stff::constants::pi_fourths },
+            { stff::vec2(-1, -1), stff::vec2(-8, 0), 7.f * stff::constants::pi_fourths },
+            { stff::vec2(0, -1), stff::vec2(-1, 0), 3.f * stff::constants::pi_halves },
+        };
+
+        for (scaffolding::spherical::counterclockwise_angle<float> const& test : tests) { scaffolding::spherical::verify(test); }
+    }
+
     TEST(spherical, unit_vector)
     {
         std::vector<scaffolding::spherical::unit_vec2<float>> tests = 
