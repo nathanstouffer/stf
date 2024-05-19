@@ -323,7 +323,7 @@ namespace stf::spatial
 		static std::vector<sortable_t> sorted(std::vector<entry_t> const& entries)
 		{
 			std::vector<sortable_t> sortable;
-			sortable.reserve(entries.size());
+			sortable.reserve(2 * entries.size());
 			for (entry_t const& entry : entries)
 			{
 				sortable.push_back(sortable_t(entry.interval.a, &entry));
