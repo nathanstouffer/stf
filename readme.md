@@ -16,4 +16,4 @@
 ## Note
 
 Unfortunately, the code coverage is a lie because the entire library is templated and an uninstantiated template (class or function) is not incoporated into coverage computations.
-Any uninstantiated code is necessarily uncovered so the coverage is **vastly** over-estimated.
+Any uninstantiated code is necessarily uncovered so the coverage is over-estimated.

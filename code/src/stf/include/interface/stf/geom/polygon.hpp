@@ -55,7 +55,7 @@ namespace stf::geom
             if (m_points.size() < 3) { return false; }
 
             size_t clockwise = 0;
-            size_t anticlockwise = 0;
+            size_t counterclockwise = 0;
 
             size_t size = m_points.size();
             for (size_t i = 0; i < size; ++i)
@@ -67,11 +67,11 @@ namespace stf::geom
                 T orientation = math::orientation(a, b, c);
              
                 // update counts
-                if (orientation > math::constants<T>::zero) { ++anticlockwise; }
+                if (orientation > math::constants<T>::zero) { ++counterclockwise; }
                 if (orientation < math::constants<T>::zero) { ++clockwise; }
                 
                 // if we have different orientations, then the polygon is not convex
-                if (clockwise && anticlockwise) { return false; }
+                if (clockwise && counterclockwise) { return false; }
             }
             return true;        // fallthrough to return true
         }

@@ -37,6 +37,15 @@ namespace stf::math
         return (delta <= math::constants<T>::pi) ? theta + delta : theta + delta - math::constants<T>::tau;
     }
 
+    /**
+    * Returns (in radians) the counterclockwise angle from u to v
+    */
+    template<typename T>
+    inline T counterclockwise_angle(vec2<T> const& u, vec2<T> const& v)
+    {
+        return canonical_angle(std::atan2(cross(u, v), u * v));
+    }
+
     template<typename T>
     inline vec2<T> unit_vector(T const theta)
     {
