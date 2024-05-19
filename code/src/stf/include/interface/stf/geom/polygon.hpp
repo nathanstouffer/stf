@@ -120,7 +120,7 @@ namespace stf::geom
                 }
                 else if (seg.a.y > p.y != seg.b.y > p.y)            // test if the y-range is relevent
                 {
-                    math::range<T> x_range = seg.range(0);
+                    math::interval<T> x_range = seg.interval(0);
                     if (p.x < x_range.a) { ++crossing_count; }      // avoid floating point work if we know the segment crosses
                     else if (p.x <= x_range.b)                      // make sure the x-range is relevant
                     {

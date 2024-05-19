@@ -7,14 +7,16 @@ namespace stf::math
 {
 
     template<typename T>
-    struct range final
+    struct interval final
     {
 
         T a;
         T b;
 
-        range() : a(constants<T>::zero), b(constants<T>::zero) {}
-        range(T const _a, T const _b) : a(_a), b(_b) {}
+        interval() : a(constants<T>::zero), b(constants<T>::zero) {}
+        interval(T const _a, T const _b) : a(_a), b(_b) {}
+
+        inline bool operator==(interval const& rhs) const { return a == rhs.a && b == rhs.b; }
 
         inline bool is_empty(boundary_types type)
         {
@@ -27,8 +29,8 @@ namespace stf::math
         }
 
         inline bool contains(T const x, boundary_types const type) const { return contains(a, b, x, type); }
-        inline bool contains(range const& rhs) const { return a <= rhs.a && rhs.b <= b; }
-        inline bool intersects(range const& rhs) const { return !(rhs.b < a || b < rhs.a); }
+        inline bool contains(interval const& rhs) const { return a <= rhs.a && rhs.b <= b; }
+        inline bool intersects(interval const& rhs) const { return !(rhs.b < a || b < rhs.a); }
 
         static inline bool contains(T const a, T const b, T const x, boundary_types const type)
         {

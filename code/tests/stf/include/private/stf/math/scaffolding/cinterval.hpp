@@ -2,15 +2,15 @@
 
 #include <gtest/gtest.h>
 
-#include <stf/math/crange.hpp>
+#include <stf/math/cinterval.hpp>
 
-namespace stf::math::scaffolding::crange
+namespace stf::math::scaffolding::cinterval
 {
 
     template<typename T>
     struct contains_point
     {
-        math::crange<T> const range;
+        math::cinterval<T> const interval;
         boundary_types const type;
         T const x;
         bool contained;
@@ -19,7 +19,7 @@ namespace stf::math::scaffolding::crange
     template<typename T>
     void verify(contains_point<T> const& test)
     {
-        ASSERT_EQ(test.contained, test.range.contains(test.x, test.type)) << "failed contains point test";
+        ASSERT_EQ(test.contained, test.interval.contains(test.x, test.type)) << "failed contains point test";
     }
 
-} // stf::math::scaffolding::crange
+} // stf::math::scaffolding::cinterval

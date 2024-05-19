@@ -1,6 +1,7 @@
 set(STF_FILES
 	"${CMAKE_CURRENT_SOURCE_DIR}/include/interface/stf/alg/containment.hpp"
 	"${CMAKE_CURRENT_SOURCE_DIR}/include/interface/stf/alg/intersection.hpp"
+	"${CMAKE_CURRENT_SOURCE_DIR}/include/interface/stf/alg/statistics.hpp"
 	"${CMAKE_CURRENT_SOURCE_DIR}/include/interface/stf/cam/frustum.hpp"
 	"${CMAKE_CURRENT_SOURCE_DIR}/include/interface/stf/cam/scamera.hpp"
 	"${CMAKE_CURRENT_SOURCE_DIR}/include/interface/stf/enums.hpp"
@@ -14,15 +15,16 @@ set(STF_FILES
 	"${CMAKE_CURRENT_SOURCE_DIR}/include/interface/stf/gfx/color.hpp"
 	"${CMAKE_CURRENT_SOURCE_DIR}/include/interface/stf/gfx/gradient.hpp"
 	"${CMAKE_CURRENT_SOURCE_DIR}/include/interface/stf/math/constants.hpp"
-	"${CMAKE_CURRENT_SOURCE_DIR}/include/interface/stf/math/crange.hpp"
+	"${CMAKE_CURRENT_SOURCE_DIR}/include/interface/stf/math/cinterval.hpp"
 	"${CMAKE_CURRENT_SOURCE_DIR}/include/interface/stf/math/interpolation.hpp"
 	"${CMAKE_CURRENT_SOURCE_DIR}/include/interface/stf/math/matrix.hpp"
-	"${CMAKE_CURRENT_SOURCE_DIR}/include/interface/stf/math/range.hpp"
+	"${CMAKE_CURRENT_SOURCE_DIR}/include/interface/stf/math/interval.hpp"
 	"${CMAKE_CURRENT_SOURCE_DIR}/include/interface/stf/math/raw.hpp"
 	"${CMAKE_CURRENT_SOURCE_DIR}/include/interface/stf/math/scalar.hpp"
 	"${CMAKE_CURRENT_SOURCE_DIR}/include/interface/stf/math/spherical.hpp"
 	"${CMAKE_CURRENT_SOURCE_DIR}/include/interface/stf/math/transform.hpp"
 	"${CMAKE_CURRENT_SOURCE_DIR}/include/interface/stf/math/vector.hpp"
+	"${CMAKE_CURRENT_SOURCE_DIR}/include/interface/stf/spatial/interval_tree.hpp"
 	"${CMAKE_CURRENT_SOURCE_DIR}/include/interface/stf/stf.hpp"
 )
 

@@ -6,13 +6,13 @@
 #include "stf/geom/polyline.hpp"
 #include "stf/geom/segment.hpp"
 #include "stf/math/constants.hpp"
-#include "stf/math/range.hpp"
+#include "stf/math/interval.hpp"
 
 namespace stf::alg
 {
 
     template<typename T>
-    inline bool intersect(math::range<T> const& lhs, math::range<T> const& rhs)
+    inline bool intersect(math::interval<T> const& lhs, math::interval<T> const& rhs)
     {
         return lhs.intersects(rhs);
     }
@@ -35,8 +35,8 @@ namespace stf::alg
 
         if (c_side == math::constants<T>::zero && d_side == math::constants<T>::zero)   // if all four points are colinear
         {
-            bool const x_overlap = intersect(lhs.range(0), rhs.range(0));
-            bool const y_overlap = intersect(lhs.range(1), rhs.range(1));
+            bool const x_overlap = intersect(lhs.interval(0), rhs.interval(0));
+            bool const y_overlap = intersect(lhs.interval(1), rhs.interval(1));
             return x_overlap && y_overlap;
         }
         else    // the general case where not all four points are colinear

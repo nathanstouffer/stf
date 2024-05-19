@@ -2,21 +2,21 @@
 
 #include "stf/enums.hpp"
 #include "stf/math/constants.hpp"
-#include "stf/math/range.hpp"
+#include "stf/math/interval.hpp"
 #include "stf/math/spherical.hpp"
 
 namespace stf::math
 {
 
     template<typename T>
-    struct crange final
+    struct cinterval final
     {
 
         T a;
         T b;
 
-        crange() : a(constants<T>::zero), b(constants<T>::zero) {}
-        crange(T const _a, T const _b) : a(_a), b(_b) {}
+        cinterval() : a(constants<T>::zero), b(constants<T>::zero) {}
+        cinterval(T const _a, T const _b) : a(_a), b(_b) {}
 
         inline bool is_empty(boundary_types type)
         {
@@ -30,12 +30,12 @@ namespace stf::math
 
         inline bool contains(T const x, boundary_types type) const
         {
-            return (a <= b) ? range<T>::contains(a, b, x, type) : !range<T>::contains(b, a, x, complement(type));
+            return (a <= b) ? interval<T>::contains(a, b, x, type) : !interval<T>::contains(b, a, x, complement(type));
         }
 
         // TODO think more about these ones
-        // inline bool contains(range const& rhs) const {  }
-        // inline bool intersects(range const& rhs) const {  }
+        // inline bool contains(interval const& rhs) const {  }
+        // inline bool intersects(interval const& rhs) const {  }
 
     };
 

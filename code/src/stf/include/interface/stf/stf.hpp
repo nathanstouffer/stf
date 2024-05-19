@@ -11,9 +11,9 @@
 #include "stf/geom/ray.hpp"
 #include "stf/geom/segment.hpp"
 #include "stf/math/constants.hpp"
-#include "stf/math/crange.hpp"
+#include "stf/math/cinterval.hpp"
 #include "stf/math/matrix.hpp"
-#include "stf/math/range.hpp"
+#include "stf/math/interval.hpp"
 #include "stf/math/vector.hpp"
 
 using gpu_float_t = float;
@@ -41,9 +41,9 @@ namespace stf
         using mtx3 = math::mtx3<T>;
         using mtx4 = math::mtx4<T>;
 
-        // range types
-        using crange = math::crange<T>;
-        using range = math::range<T>;
+        // interval types
+        using cinterval = math::cinterval<T>;
+        using interval = math::interval<T>;
 
         // aabb tyes
         using aabb2 = geom::aabb2<T>;
