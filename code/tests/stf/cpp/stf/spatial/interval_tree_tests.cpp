@@ -11,7 +11,7 @@ namespace stf::spatial
 
     TEST(interval_tree, find)
     {
-        using tree_t = typename interval_tree<float, std::string>;
+        using tree_t = typename spatial::interval_tree<float, std::string>;
         using entry_t = typename tree_t::entry_t;
         
         // TODO make this an initializer list once interval_tree is copyable

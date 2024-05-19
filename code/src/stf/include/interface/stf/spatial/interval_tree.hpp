@@ -241,14 +241,18 @@ namespace stf::spatial
 
 		query_range find(T const query) const
 		{
+			using position_t = typename query_iterator::position_t;
+			using iterator_t = typename position_t::iterator;
+
 			static std::vector<entry_ptr_t> const s_flag;
-			query_iterator end(query_iterator::position_t(nullptr, s_flag.end()), query);
+			
+			query_iterator end(position_t(nullptr, s_flag.end()), query);
 			if (m_entries.empty()) { return query_range(end, end); }	// if there are no intervals, return an empty range
 			else
 			{
 				center_t const& center = m_root->center;
-				query_iterator::position_t::iterator it = (query <= center.pivot) ? center.lesser.cbegin() : center.greater.cbegin();
-				query_iterator begin(query_iterator::position_t(m_root.get(), it), query);
+				iterator_t it = (query <= center.pivot) ? center.lesser.cbegin() : center.greater.cbegin();
+				query_iterator begin(position_t(m_root.get(), it), query);
 				return query_range(begin, end);
 			}
 		}
