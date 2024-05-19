@@ -25,8 +25,11 @@ set(DOXYGEN_DOT_UML_DETAILS YES)
 set(DOXYGEN_DOT_WRAP_THRESHOLD 100)
 set(DOXYGEN_CALL_GRAPH YES)
 
-doxygen_add_docs(docs
-	"${CMAKE_SOURCE_DIR}/code/src"
-	"${CMAKE_SOURCE_DIR}/readme.md"
-	COMMENT "Generating documentation"
-)
+if (Doxygen_FOUND STREQUAL TRUE)
+	doxygen_add_docs(docs
+		"${CMAKE_SOURCE_DIR}/code/src"
+		"${CMAKE_SOURCE_DIR}/readme.md"
+		ALL # enable this when you want to add the docs target to all
+		COMMENT "Generating documentation"
+	)
+endif()
