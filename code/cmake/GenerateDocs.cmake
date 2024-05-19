@@ -28,6 +28,5 @@ set(DOXYGEN_CALL_GRAPH YES)
 doxygen_add_docs(docs
 	"${CMAKE_SOURCE_DIR}/code/src"
 	"${CMAKE_SOURCE_DIR}/readme.md"
-	# ALL
 	COMMENT "Generating documentation"
 )
