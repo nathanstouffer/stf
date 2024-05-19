@@ -15,8 +15,9 @@
 namespace stf::math
 {
     
-    /// A vector class templated on number type and dimension
     /**
+     * \brief A vector class templated on number type and dimension
+     * 
      * Unfortunately there is a lot of duplication between the generic vector class and the specializations when
      * the dimension is specialized for N = 2, 3, 4. This could be avoided by pairing Curiously Recurring Template Pattern
      * with some casting to the derived class type. But I opted for simplicity even though it involves more duplication. To
@@ -82,7 +83,9 @@ namespace stf::math
 
     };
 
-    /// Specialization of vec for N=2
+    /** 
+     * \brief Specialization of vec for N=2
+     */
     template<typename T>
     struct vec<T, 2> final
     {
@@ -130,7 +133,9 @@ namespace stf::math
 
     };
 
-    /// Specialization of vec for N=3
+     /** 
+     * \brief Specialization of vec for N=3
+     */
     template<typename T>
     struct vec<T, 3> final
     {
@@ -180,7 +185,9 @@ namespace stf::math
 
     };
 
-    /// Specialization of vec for N=4
+     /** 
+     * \brief Specialization of vec for N=2
+     */
     template<typename T>
     struct vec<T, 4> final
     {
@@ -234,7 +241,7 @@ namespace stf::math
 
     /// @cond DELETED
     /**
-     * Delete invalid vector specialization
+     * \brief Delete invalid vector specialization
      */
     template<typename T> struct vec<T, 0> { vec() = delete; };
     /// @endcond
@@ -244,42 +251,54 @@ namespace stf::math
     template<typename T> using vec3 = vec<T, 3>;
     template<typename T> using vec4 = vec<T, 4>;
 
-    /// Compute the distance between lhs and rhs
+    /** 
+     * \brief Compute the distance between lhs and rhs
+     */
     template<typename T, size_t N>
     inline T const dist(vec<T, N> const& lhs, vec<T, N> const& rhs)
     {
         return (lhs - rhs).length();
     }
 
-    /// Compute whether the distance between lhs and rhs is less than or equal to eps
+    /** 
+     * \brief Compute whether the distance between lhs and rhs is less than or equal to eps
+     */
     template<typename T, size_t N>
     inline bool const equ(vec<T, N> const& lhs, vec<T, N> const& rhs, T eps)
     {
         return (dist(lhs, rhs) <= eps) ? true : false;
     }
 
-    /// Compute whether the distance between lhs and rhs is strictly greater than eps
+    /** 
+     * \brief Compute whether the distance between lhs and rhs is strictly greater than eps
+     */
     template<typename T, size_t N>
     inline bool const neq(vec<T, N> const& lhs, vec<T, N> const& rhs, T eps)
     {
         return !equ(lhs, rhs, eps);
     }
 
-    /// Compute whether lhs is approximately equal to rhs (uses constants<T>::tol as epsilon)
+    /** 
+     * \brief Compute whether lhs is approximately equal to rhs (uses constants<T>::tol as epsilon)
+     */
     template<typename T, size_t N>
     inline bool const operator==(vec<T, N> const& lhs, vec<T, N> const& rhs)
     {
         return equ(lhs, rhs, constants<T>::tol);
     }
 
-    /// Compute whether lhs is approximately not equal to rhs (uses constants<T>::tol as epsilon)
+    /** 
+     * \brief Compute whether lhs is approximately not equal to rhs (uses constants<T>::tol as epsilon)
+     */
     template<typename T, size_t N>
     inline bool const operator!=(vec<T, N> const& lhs, vec<T, N> const& rhs)
     {
         return !(lhs == rhs);
     }
 
-    /// Negate the input vector
+    /** 
+     * \brief Negate the input vector
+     */
     template<typename T, size_t N>
     inline vec<T, N> const operator-(vec<T, N> const& lhs)
     {
@@ -291,43 +310,54 @@ namespace stf::math
         return result;
     }
 
-    /// Compute the sum of lhs and rhs
+    /** 
+     * \brief Compute the sum of lhs and rhs
+     */
     template<typename T, size_t N>
     inline vec<T, N> const operator+(vec<T, N> const& lhs, vec<T, N> const& rhs)
     {
         return vec<T, N>(lhs) += rhs;
     }
 
-    /// Compute the difference between lhs and rhs
+    /** 
+     * \brief Compute the difference between lhs and rhs
+     */
     template<typename T, size_t N>
     inline vec<T, N> const operator-(vec<T, N> const& lhs, vec<T, N> const& rhs)
     {
         return vec<T, N>(lhs) -= rhs;
     }
 
-    /// Scale lhs by scalar
+    /** 
+     * \brief Scale lhs by scalar
+     */
     template<typename T, size_t N>
     inline vec<T, N> const operator*(vec<T, N> const& lhs, T const scalar)
     {
         return vec<T, N>(lhs) *= scalar;
     }
 
-    /// Scale rhs by scalar
+    /** 
+     * \brief Scale rhs by scalar
+     */
     template<typename T, size_t N>
     inline vec<T, N> const operator*(T const scalar, vec<T, N> const& rhs)
     {
         return rhs * scalar;
     }
 
-    /// Compute the dot product between lhs and rhs
+    /** 
+     * \brief Compute the dot product between lhs and rhs
+     */
     template<typename T, size_t N>
     inline T const dot(vec<T, N> const& lhs, vec<T, N> const& rhs)
     {
         return lhs * rhs;
     }
 
-    /// Compute the 2D cross product between lhs and rhs
-    /**
+    /** 
+     * \brief Compute the 2D cross product between lhs and rhs
+     *
      * This is not truely a 2D cross product. It is the cross product of the corresponding 3D 
      * vectors with 0 in the z coordinate.
      */
@@ -337,7 +367,9 @@ namespace stf::math
         return lhs.x * rhs.y - lhs.y * rhs.x;
     }
 
-    /// Compute the 3D cross product between lhs and rhs
+    /** 
+     * \brief Compute the 3D cross product between lhs and rhs
+     */
     template<typename T>
     inline vec3<T> const cross(vec3<T> const& lhs, vec3<T> const& rhs)
     {
@@ -349,12 +381,13 @@ namespace stf::math
         );
     }
 
-    /// Compute the orientation of the three points p, q, and r
-    /**
+    /** 
+     * \brief Compute the orientation of the three points p, q, and r
+     *
      * The orientation is determined based on the sign of the return value
-     *    + => counterclockwise
-     *    0 => colinear
-     *    - => clockwise
+     *    * + => counterclockwise
+     *    * 0 => colinear
+     *    * - => clockwise
      */
     template<typename T>
     inline T orientation(vec2<T> const& p, vec2<T> const& q, vec2<T> const& r)
@@ -362,7 +395,9 @@ namespace stf::math
         return cross(q - p, r - p);
     }
 
-    /// Compute the hadamard product (element-wise multiplication) between lhs and rhs
+    /** 
+     * \brief Compute the hadamard product (element-wise multiplication) between lhs and rhs
+     */
     template<typename T, size_t N>
     inline vec<T, N> const hadamard(vec<T, N> const& lhs, vec<T, N> const& rhs)
     {
@@ -374,7 +409,9 @@ namespace stf::math
         return result;
     }
 
-    /// Write the rhs to a std::ostream
+    /** 
+     * \brief Write the rhs to a std::ostream
+     */
     template <typename T, size_t N>
     std::ostream& operator<<(std::ostream& s, vec<T, N> const& rhs)
     {
@@ -391,7 +428,9 @@ namespace stf::math
 
 namespace std
 {
-    /// Compute the hash of a vector
+    /** 
+     * \brief Compute the hash of a vector
+     */
     template<typename T, size_t N>
     struct hash<stf::math::vec<T, N>>
     {
