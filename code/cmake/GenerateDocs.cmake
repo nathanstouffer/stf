@@ -16,6 +16,5 @@ set(DOXYGEN_QUIET YES)
 
 doxygen_add_docs(docs
 	"${CMAKE_SOURCE_DIR}/code/src"
-	ALL
 	COMMENT "Generating documentation"
 )
