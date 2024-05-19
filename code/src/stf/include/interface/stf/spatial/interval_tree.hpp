@@ -277,27 +277,18 @@ namespace stf::spatial
 			factory_args(std::vector<entry_t> const& entries) : intervals(interval_tree::pointers(entries)), sorted(interval_tree::sorted(entries)) {}
 		};
 
-		static inline T median(std::vector<sortable_t> const& sorted)
-		{
-			size_t mid = sorted.size() / 2;
-			if (sorted.size() & size_t(1)) // if odd, just return the mid
-			{
-				return sorted[mid].x;
-			}
-			else						// if even, return the average of the middle two
-			{
-				return math::constants<T>::half * (sorted[mid - 1].x + sorted[mid].x);
-			}
-		}
-
 		static std::unique_ptr<node_t> construct(factory_args const& args)
 		{
 			// base case where there are no intervals
 			if (args.intervals.empty()) { return nullptr; }
 
+			// args.sorted.size() will always be even because it will have exactly 2 * args.intervals.size() elements -- two endpoints per interval
+			size_t mid = args.sorted.size() / 2;
+			T median = math::constants<T>::half * (args.sorted[mid - 1].x + args.sorted[mid].x);
+
 			factory_args left{};
 			factory_args right{};
-			center_t center(interval_tree::median(args.sorted));
+			center_t center(median);
 
 			// iterate over intervals, adding to the appropriate node
 			for (entry_ptr_t entry : args.intervals)
