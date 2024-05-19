@@ -15,7 +15,7 @@ namespace stf::alg
         std::stable_sort(sorted.begin(), sorted.end());
         size_t size = sorted.size();
         size_t mid = size / 2;
-        if (size & size_t(1))       // if the size is odd, just return the middle element
+        if (size & static_cast<size_t>(1))       // if the size is odd, just return the middle element
         {
             return sorted[mid];
         }
