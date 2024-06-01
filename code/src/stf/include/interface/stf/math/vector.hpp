@@ -21,57 +21,146 @@ namespace stf::math
      * @tparam T Number type (eg float)
      * @tparam N Dimension
      * 
+     * @todo Possibly use the CRTP to reduce verbosity -- just make sure to test performance/memory layout implications.
      * Unfortunately there is a lot of duplication between the generic vector class and the specializations when
      * the dimension is specialized for N = 2, 3, 4. This could be avoided by pairing Curiously Recurring Template Pattern
      * with some casting to the derived class type. But I opted for simplicity even though it involves more duplication. To
      * reduce some of the unwanted duplication, many of the member functions call through to templated functions that operate
      * directly on the underlying raw pointers
-     * 
-     * TODO: possibly use the CRTP to reduce verbosity -- just make sure to test performance implications
     */
     template<typename T, size_t N>
     struct vec final
     {
 
+        /**
+         * @brief A raw array to store the values making up the vector
+        */
         T values[N];
 
+        /**
+         * @brief Default constructor -- intiliazes all dimensions to 0
+        */
         constexpr vec() : vec(T(0)) {}
-        explicit constexpr vec(T value)
+
+        /**
+         * @brief Construct from a single scalar -- initializes all dimensions to @p value
+         * @param [in] value 
+        */
+        explicit constexpr vec(T const value)
         {
             for (size_t i = 0; i < N; ++i)
             {
                 values[i] = value;
             }
         }
+
+        /**
+         * @brief Construct from a N - 1 dimensional vector and a scalar
+         * @param [in] prefix 
+         * @param [in] suffix 
+         * 
+         * @p prefix is used to fill the first N - 1 dimensions and @p scalar is used as the value for the N dimension
+        */
         constexpr vec(vec<T, N - 1> const& prefix, T const suffix)
         {
             for (size_t i = 0; i < N - 1; ++i) { values[i] = prefix[i]; }
             values[N - 1] = suffix;
         }
+
+        /**
+         * @brief Construct from a raw array of scalars
+         * @param [in] elements 
+        */
         constexpr vec(T const elements[N])
         {
             for (size_t i = 0; i < N; ++i) { values[i] = elements[i]; }
         }
 
+        /**
+         * @brief Return the dimension of the vector
+         * @return The dimension of the vector 
+        */
         inline size_t size() const { return N; }
-
+        
+        /**
+         * @brief Return a scalar from the vector
+         * @param [in] i The dimension of the vector to read
+         * @return A const reference to the scalar at dimension @p i
+        */
         inline T const& operator[](size_t i) const { return values[i]; }
+
+        /**
+         * @brief Return a scalar from the vector
+         * @param [in] i The dimension of the vector to read
+         * @return A reference to the scalar at dimension @p i
+        */
         inline T& operator[](size_t i) { return values[i]; }
 
+        /**
+         * @brief Add to a vector in place
+         * @param [in] rhs 
+         * @return A reference to @p this
+        */
         inline vec& operator+=(vec const& rhs) { raw::plus_equals<T, N>(values, rhs.values); return *this; }
+
+        /**
+         * @brief Subtract from a vector in place
+         * @param [in] rhs
+         * @return A reference to @p this
+        */
         inline vec& operator-=(vec const& rhs) { raw::minus_equals<T, N>(values, rhs.values); return *this; }
 
-        inline vec& operator*=(T scalar) { raw::scale<T, N>(values, scalar); return *this; }
+        /**
+         * @brief Scale a vector in place
+         * @param [in] scalar
+         * @return A reference to @p this
+        */
+        inline vec& operator*=(T const scalar) { raw::scale<T, N>(values, scalar); return *this; }
 
+        /**
+         * @brief Compute a dot product
+         * @param [in] rhs 
+         * @return The dot product of @p this with @p rhs
+        */
         inline T const operator*(vec const& rhs) const { return raw::dot<T, N>(values, rhs.values); }
+
+        /**
+         * @brief Compute the length of a vector
+         * @return The length of @p this
+        */
         inline T length() const { return std::sqrt(*this * *this); }
 
+        /**
+         * @brief Normalize a vector in place
+         * @return A reference to @p this
+        */
         inline vec& normalize() { return *this *= (T(1.0) / length()); }
+
+        /**
+         * @brief Compute a normalized vector
+         * @return A normal vector in the direction of @p this
+        */
         inline vec normalized() const { return vec(*this).normalize(); }
 
+        /**
+         * @brief Compute the component of a vector in the direction of another vector
+         * @param [in] rhs The direction of the projection
+         * @return The component of @p this in the direction of @p rhs
+        */
         inline vec projected_on(vec const& rhs) const { T scalar = (*this * rhs) / (rhs * rhs); return scalar * rhs; }
+
+        /**
+         * @brief Compute the component of a vector orthogonal to another vector
+         * @param [in] rhs The direction orthogonal to the projection
+         * @return The component of @p this orthogonal to @p rhs
+        */
         inline vec orthogonal_to(vec const& rhs) const { return vec(*this) -= projected_on(rhs); }
 
+        /**
+         * @brief Cast a vector to a different precision
+         * @tparam U Destination number type (eg float)
+         * @return @p this casted to the precision of @p U
+        */
         template<typename U>
         vec<U, N> as() const
         {
@@ -82,6 +171,10 @@ namespace stf::math
 
     public:
 
+        /**
+         * @brief Compute the number of bytes allocated by vector
+         * @return The byte count
+        */
         static inline size_t byte_count() { return sizeof(T) * N; }
 
     };
