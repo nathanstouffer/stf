@@ -169,6 +169,7 @@ namespace stf::math
      * 
      * @note Becuase this function assumes a domain of [0, 1], the derivatives @p m0 and @p m1 must be scaled by the length of the
      * actual interval between anchor points
+     * 
      * @tparam T Number type (eg float)
      * @param [in] p0 Anchor value at the beginning of the interpolation interval
      * @param [in] m0 Derivative at the beginning of the interpolation interval
@@ -321,6 +322,7 @@ namespace stf::math
      *
      * @note Because this function assumes a domain of [0, 1], the derivatives @p m0 and @p m1 must be scaled by the length of the
      * actual interval between anchor points
+     * 
      * @tparam T Number type (eg float)
      * @tparam N Dimension
      * @param [in] p0 Anchor value at the beginning of the interpolation interval
