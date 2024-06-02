@@ -1,5 +1,7 @@
 #pragma once
 
+#include <algorithm>
+
 #include "stf/geom/aabb.hpp"
 #include "stf/math/constants.hpp"
 #include "stf/math/interval.hpp"
@@ -42,7 +44,7 @@ namespace stf::geom
         {
             vec_t diff = delta();
             T scalar = ((p - a) * diff) / (diff * diff);
-            T t = std::max(math::constants<T>::zero, std::min(math::constants<T>::one, scalar));
+            T t = std::clamp(scalar, math::constants<T>::zero, math::constants<T>::one);
             vec_t proj = a + t * diff;
             return (p - proj).length();
         }
