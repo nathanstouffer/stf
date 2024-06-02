@@ -5,7 +5,7 @@
 /**
  * @file raw.hpp
  * @brief A file containing templated functions for working with scalars stored in raw arrays
- */
+*/
 
 namespace stf::math::raw
 {

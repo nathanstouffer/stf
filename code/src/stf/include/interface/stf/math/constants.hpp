@@ -4,6 +4,11 @@
 
 #include <limits>
 
+/**
+ * @file constants.hpp
+ * @brief A file containing mathematical constants
+*/
+
 namespace stf::math
 {
 

@@ -10,7 +10,7 @@
 /**
  * @file vector.hpp
  * @brief A file containing a templated vector class along with associated functions
- */
+*/
 
 namespace stf::math
 {
