@@ -72,9 +72,7 @@ namespace stf::math
 
     /**
      * @brief Linearly interpolate scalars
-     * 
      * @note @p t is not clamped to [0, 1] (use @ref lerpstep if that is desired)
-     * 
      * @tparam T Number type (eg float)
      * @param [in] a 
      * @param [in] b 
@@ -165,13 +163,12 @@ namespace stf::math
      *      * f'(0) = m0
      *      * f'(1) = m1
      * 
-     * This can leveraged so that consecutive splines are C^1 at the boundary of interpolation intervals
+     * This can be leveraged so that consecutive splines are C^1 at the boundary of interpolation intervals
      * 
      * reference: https://en.wikipedia.org/wiki/Cubic_Hermite_spline
      * 
      * @note Becuase this function assumes a domain of [0, 1], the derivatives @p m0 and @p m1 must be scaled by the length of the
      * actual interval between anchor points
-     * 
      * @tparam T Number type (eg float)
      * @param [in] p0 Anchor value at the beginning of the interpolation interval
      * @param [in] m0 Derivative at the beginning of the interpolation interval
@@ -318,13 +315,12 @@ namespace stf::math
      *      * f'(0) = m0
      *      * f'(1) = m1
      *
-     * This can leveraged so that consecutive splines are C^1 at the boundary of interpolation intervals
+     * This can be leveraged so that consecutive splines are C^1 at the boundary of interpolation intervals
      *
      * reference: https://en.wikipedia.org/wiki/Cubic_Hermite_spline
      *
-     * @note Becuase this function assumes a domain of [0, 1], the derivatives @p m0 and @p m1 must be scaled by the length of the
+     * @note Because this function assumes a domain of [0, 1], the derivatives @p m0 and @p m1 must be scaled by the length of the
      * actual interval between anchor points
-     *
      * @tparam T Number type (eg float)
      * @tparam N Dimension
      * @param [in] p0 Anchor value at the beginning of the interpolation interval
