@@ -894,8 +894,8 @@ namespace stf::math
      * 
      * @tparam T Number type (eg float)
      * @tparam N Dimension
-     * @param s [in/out]
-     * @param rhs [in]
+     * @param [in/out] s
+     * @param [in] rhs
      * @return A reference to @p s
     */
     template <typename T, size_t N>
