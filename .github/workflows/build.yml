@@ -120,3 +120,5 @@ jobs:
       - name: Generate docs
         run: cmake --build ${{ github.workspace }}/build --target docs
 
+      # TODO: possibly host docs on github pages (helpful link: https://github.com/DenverCoder1/doxygen-github-pages-action)
+
