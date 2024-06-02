@@ -185,9 +185,13 @@ namespace stf::math
 
     };
 
-    // delete invalid matrix specialization
+    /// @cond DELETED
+    /**
+     * @brief Delete invalid matrix specializations
+    */
     template<typename T> struct mtx<T, 0> { mtx() = delete; };
     template<typename T> struct mtx<T, 1> { mtx() = delete; };
+    /// @endcond
 
     // type aliases for ease of use
     template<typename T> using mtx2 = mtx<T, 2>;
