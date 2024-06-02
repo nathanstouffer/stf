@@ -33,4 +33,6 @@ if (Doxygen_FOUND STREQUAL TRUE)
 		# ALL # enable this when you want to add the docs target to all
 		COMMENT "Generating documentation"
 	)
+else()
+	message(WARNING "Failed to find Doxygen -- skipped docs target")
 endif()

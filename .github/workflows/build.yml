@@ -103,3 +103,22 @@ jobs:
         with:
           files: ${{ steps.strings.outputs.tests-output-dir }}/coverage-lines.txt
           fail_ci_if_error: true
+
+  docs:
+    runs-on: "ubuntu-latest"
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+
+      - name: Install Doxygen
+        run: sudo apt-get install doxygen graphviz -y
+
+      - name: Configure CMake
+        run: cmake -B ${{ github.workspace }}/build -S ${{ github.workspace }}
+
+      - name: Generate docs
+        run: cmake --build ${{ github.workspace }}/build --target docs
+
+      # TODO: possibly host docs on github pages (helpful link: https://github.com/DenverCoder1/doxygen-github-pages-action)
+
