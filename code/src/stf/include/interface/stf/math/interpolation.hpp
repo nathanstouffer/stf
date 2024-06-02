@@ -167,7 +167,7 @@ namespace stf::math
      * 
      * reference: https://en.wikipedia.org/wiki/Cubic_Hermite_spline
      * 
-     * @note Becuase this function assumes a domain of [0, 1], the derivatives @p m0 and @p m1 must be scaled by the length of the
+     * @note Because this function assumes a domain of [0, 1], the derivatives @p m0 and @p m1 must be scaled by the length of the
      * actual interval between anchor points
      * 
      * @tparam T Number type (eg float)
