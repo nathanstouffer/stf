@@ -673,9 +673,9 @@ namespace stf::math
      * 
      * @tparam T Number type (eg float)
      * @tparam N Dimension
-     * @param lhs [in]
-     * @param rhs [in]
-     * @param eps [in] The epsilon distance to use when computating approximate equality
+     * @param [in] lhs
+     * @param [in] rhs
+     * @param [in] eps The epsilon distance to use when computating approximate equality
      * @return Whether or not @p lhs and @p rhs are further apart than @p eps
     */
     template<typename T, size_t N>
@@ -689,8 +689,8 @@ namespace stf::math
      * 
      * @tparam T Number type (eg float)
      * @tparam N Dimension
-     * @param lhs [in]
-     * @param rhs [in]
+     * @param [in] lhs
+     * @param [in] rhs
      * @return Whether or not @p lhs and @p rhs are approximately equal
     */
     template<typename T, size_t N>
@@ -704,8 +704,8 @@ namespace stf::math
      * 
      * @tparam T Number type (eg float)
      * @tparam N Dimension
-     * @param lhs [in]
-     * @param rhs [in]
+     * @param [in] lhs
+     * @param [in] rhs
      * @return Whether or not @p lhs and @p rhs are approximately not equal
     */
     template<typename T, size_t N>
@@ -719,7 +719,7 @@ namespace stf::math
      * 
      * @tparam T Number type (eg float)
      * @tparam N Dimension
-     * @param lhs [in]
+     * @param [in] lhs
      * @return The negative of @p lhs
     */
     template<typename T, size_t N>
@@ -738,8 +738,8 @@ namespace stf::math
      * 
      * @tparam T Number type (eg float)
      * @tparam N Dimension
-     * @param lhs [in]
-     * @param rhs [in]
+     * @param [in] lhs
+     * @param [in] rhs
      * @return The sum of @p lhs and @p rhs
     */
     template<typename T, size_t N>
@@ -753,8 +753,8 @@ namespace stf::math
      *
      * @tparam T Number type (eg float)
      * @tparam N Dimension
-     * @param lhs [in]
-     * @param rhs [in]
+     * @param [in] lhs
+     * @param [in] rhs
      * @return The difference of @p lhs and @p rhs
     */
     template<typename T, size_t N>
@@ -768,8 +768,8 @@ namespace stf::math
      *
      * @tparam T Number type (eg float)
      * @tparam N Dimension
-     * @param lhs [in]
-     * @param scalar [in]
+     * @param [in] lhs
+     * @param [in] scalar
      * @return @p lhs scaled by @p scalar
     */
     template<typename T, size_t N>
@@ -783,8 +783,8 @@ namespace stf::math
      * 
      * @tparam T Number type (eg float)
      * @tparam N Dimension
-     * @param scalar [in]
-     * @param rhs [in]
+     * @param [in] scalar
+     * @param [in] rhs
      * @return @p rhs scaled by @p scalar
     */
     template<typename T, size_t N>
@@ -798,8 +798,8 @@ namespace stf::math
      * 
      * @tparam T Number type (eg float)
      * @tparam N Dimension
-     * @param lhs [in]
-     * @param rhs [in]
+     * @param [in] lhs
+     * @param [in] rhs
      * @return The dot product of @p lhs and @p rhs
     */
     template<typename T, size_t N>
@@ -816,8 +816,8 @@ namespace stf::math
      * 
      * @tparam T Number type (eg float)
      * @tparam N Dimension
-     * @param lhs [in]
-     * @param rhs [in]
+     * @param [in] lhs
+     * @param [in] rhs
      * @return The 2D cross product of @p lhs and @p rhs 
     */
     template<typename T>
@@ -831,8 +831,8 @@ namespace stf::math
      *
      * @tparam T Number type (eg float)
      * @tparam N Dimension
-     * @param lhs [in]
-     * @param rhs [in]
+     * @param [in] lhs
+     * @param [in] rhs
      * @return The 3D cross product of @p lhs and @p rhs
     */
     template<typename T>
@@ -856,9 +856,9 @@ namespace stf::math
      * 
      * @tparam T Number type (eg float)
      * @tparam N Dimension
-     * @param p [in]
-     * @param q [in]
-     * @param r [in]
+     * @param [in] p
+     * @param [in] q
+     * @param [in] r
      * @return The orientation of @p p, @p q, and @p r
     */
     template<typename T>
@@ -874,8 +874,8 @@ namespace stf::math
      * 
      * @tparam T Number type (eg float)
      * @tparam N Dimension
-     * @param lhs [in]
-     * @param rhs [in]
+     * @param [in] lhs
+     * @param [in] rhs
      * @return The hadamard product of @p lhs and @p rhs
     */
     template<typename T, size_t N>
@@ -894,7 +894,7 @@ namespace stf::math
      * 
      * @tparam T Number type (eg float)
      * @tparam N Dimension
-     * @param [in/out] s
+     * @param [in,out] s
      * @param [in] rhs
      * @return A reference to @p s
     */
@@ -919,7 +919,7 @@ namespace std
      * 
      * @tparam T Number type (eg float)
      * @tparam N Dimension
-     * @param lhs [in]
+     * @param [in] lhs
      * @return The hash of @p lhs
     */
     template<typename T, size_t N>
