@@ -22,13 +22,13 @@ namespace stf::math
     {
 
         /**
-         * @brief A proxy class that gives access to a single column of a matrix
+         * @brief A proxy class that gives access to a single column of a @ref mtx
          */
         struct col_proxy
         {
 
             /**
-             * @brief Construct from a matrix reference and a column index
+             * @brief Construct from a @ref mtx reference and a column index
              * @param [in] _m 
              * @param [in] _c 
              */
@@ -83,13 +83,13 @@ namespace stf::math
         };
 
         /**
-         * @brief A proxy class that gives access to a single row of a matrix
+         * @brief A proxy class that gives access to a single row of a @ref mtx
          */
         struct row_proxy
         {
 
             /**
-             * @brief Construct from a matrix reference and a row index
+             * @brief Construct from a @ref mtx reference and a row index
              * @param [in] _m
              * @param [in] _r
              */
