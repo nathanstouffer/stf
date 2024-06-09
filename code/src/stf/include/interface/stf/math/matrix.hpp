@@ -574,11 +574,64 @@ namespace stf::math
         return result;
     }
 
+    /**
+     * @brief Compute a rotation matrix from euler angles about x -> y -> z
+     * @tparam T Number Type (eg float)
+     * @param [in] x 
+     * @param [in] y 
+     * @param [in] z 
+     * @return The rotation matrix
+     */
     template<typename T> inline mtx4<T> rotate_xyz(T const x, T const y, T const z) { return (rotate_x(x) *= rotate_y(y)) *= rotate_z(z); }
+
+    /**
+     * @brief Compute a rotation matrix from euler angles about x -> z -> y
+     * @tparam T Number Type (eg float)
+     * @param [in] x 
+     * @param [in] z 
+     * @param [in] y 
+     * @return The rotation matrix
+     */
     template<typename T> inline mtx4<T> rotate_xzy(T const x, T const z, T const y) { return (rotate_x(x) *= rotate_z(z)) *= rotate_y(y); }
+
+    /**
+     * @brief Compute a rotation matrix from euler angles about y -> x -> z
+     * @tparam T Number Type (eg float)
+     * @param [in] y 
+     * @param [in] x 
+     * @param [in] z 
+     * @return The rotation matrix
+     */
     template<typename T> inline mtx4<T> rotate_yxz(T const y, T const x, T const z) { return (rotate_y(y) *= rotate_x(x)) *= rotate_z(z); }
+
+    /**
+     * @brief Compute a rotation matrix from euler angles about y -> z -> x
+     * @tparam T Number Type (eg float)
+     * @param [in] y 
+     * @param [in] z 
+     * @param [in] x 
+     * @return The rotation matrix
+     */
     template<typename T> inline mtx4<T> rotate_yzx(T const y, T const z, T const x) { return (rotate_y(y) *= rotate_z(z)) *= rotate_x(x); }
+
+    /**
+     * @brief Compute a rotation matrix from euler angles about z -> x -> y
+     * @tparam T Number Type (eg float)
+     * @param [in] z 
+     * @param [in] x 
+     * @param [in] y 
+     * @return The rotation matrix
+     */
     template<typename T> inline mtx4<T> rotate_zxy(T const z, T const x, T const y) { return (rotate_z(z) *= rotate_x(x)) *= rotate_y(y); }
+
+    /**
+     * @brief Compute a rotation matrix from euler angles about z -> y -> x
+     * @tparam T Number Type (eg float)
+     * @param [in] z 
+     * @param [in] y 
+     * @param [in] x 
+     * @return The rotation matrix
+     */
     template<typename T> inline mtx4<T> rotate_zyx(T const z, T const y, T const x) { return (rotate_z(z) *= rotate_y(y)) *= rotate_x(x); }
 
     /**
