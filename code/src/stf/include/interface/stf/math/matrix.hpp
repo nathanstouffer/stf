@@ -71,7 +71,7 @@ namespace stf::math
 
             /**
              * @brief Cast a @ref col_proxy to a @ref vec
-             * @return A vector
+             * @return The column proxy as a vector
              */
             inline vec<T, N> as_vec() const { return static_cast<vec<T, N>>(*this); }
 
@@ -132,7 +132,7 @@ namespace stf::math
 
             /**
              * @brief Cast a @ref row_proxy to a @ref vec
-             * @return A vector
+             * @return The row proxy as a vector
              */
             inline vec<T, N> as_vec() const { return static_cast<vec<T, N>>(*this); }
 

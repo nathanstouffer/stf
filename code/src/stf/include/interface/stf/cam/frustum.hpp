@@ -8,7 +8,6 @@
 namespace stf::cam
 {
 
-    // TODO write this class once we have a plane and aabb class
     template<typename T>
     class frustum final
     {
