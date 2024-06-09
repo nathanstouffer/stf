@@ -16,6 +16,11 @@
 #include "stf/math/interval.hpp"
 #include "stf/math/vector.hpp"
 
+/**
+ * @file stf.hpp
+ * @brief A file containing type instantiations to reduce verbosity for users of stf
+ */
+
 using gpu_float_t = float;
 
 namespace stf
