@@ -7,7 +7,7 @@
 /**
  * @file constants.hpp
  * @brief A file containing mathematical constants
-*/
+ */
 
 namespace stf::math
 {
@@ -15,7 +15,7 @@ namespace stf::math
     /**
      * @brief A templated class that has some common mathematical constants
      * @tparam T Number type (eg float)
-    */
+     */
     template<typename T>
     struct constants
     {

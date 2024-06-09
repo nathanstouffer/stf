@@ -9,7 +9,7 @@
 /**
  * @file interpolation.hpp
  * @brief A file containing various interpolation functions
-*/
+ */
 
 namespace stf::math
 {
@@ -19,7 +19,7 @@ namespace stf::math
      * @tparam T Number type (eg float)
      * @param [in] t 
      * @return The input clamped to [0, 1]
-    */
+     */
     template<typename T>
     inline T clamp_time(T const t)
     {
@@ -34,7 +34,7 @@ namespace stf::math
      * @tparam T Number type (eg float)
      * @param [in] t 
      * @return The input time smoothed close to 0 and 1
-    */
+     */
     template<typename T>
     inline T smooth_time(T const t)
     {
@@ -49,7 +49,7 @@ namespace stf::math
      * @param [in] b 
      * @param [in] c 
      * @return @p a * @p b + @p c
-    */
+     */
     template<typename T>
     inline T mad(T const a, T const b, T const c)
     {
@@ -63,7 +63,7 @@ namespace stf::math
      * @param [in] b 
      * @param [in] c 
      * @return @p c - @p a * @p b
-    */
+     */
     template<typename T>
     inline T nms(T const a, T const b, T const c)
     {
@@ -78,7 +78,7 @@ namespace stf::math
      * @param [in] b 
      * @param [in] t 
      * @return The interpolated scalar
-    */
+     */
     template<typename T>
     inline T lerp(T const a, T const b, T const t)
     {
@@ -92,7 +92,7 @@ namespace stf::math
      * @param [in] b 
      * @param [in] x 
      * @return The inverse of @ref lerp
-    */
+     */
     template<typename T>
     inline T lerp_inv(T const a, T const b, T const x)
     {
@@ -106,7 +106,7 @@ namespace stf::math
      * @param [in] b 
      * @param [in] t 
      * @return The interpolated scalar
-    */
+     */
     template<typename T>
     inline T lerpstep(T const a, T const b, T const t)
     {
@@ -120,7 +120,7 @@ namespace stf::math
      * @param [in] b 
      * @param [in] t 
      * @return The interpolated scalar
-    */
+     */
     template<typename T>
     inline T smoothstep(T const a, T const b, T const t)
     {
@@ -136,7 +136,7 @@ namespace stf::math
      * @param [in] d 
      * @param [in] t 
      * @return The interpolated scalar
-    */
+     */
     template<typename T>
     inline T cubic_bezier(T const a, T const b, T const c, T const d, T const t)
     {
@@ -177,7 +177,7 @@ namespace stf::math
      * @param [in] m1 Derivative at the end of the interpolation interval
      * @param [in] t Time in [0, 1] used for interpolation
      * @return The interpolated scalar
-    */
+     */
     template<typename T>
     inline T cubic_hermite_spline(T const p0, T const m0, T const p1, T const m1, T const t)
     {
@@ -198,7 +198,7 @@ namespace stf::math
      * @tparam T Number type (eg float)
      * @param [in] x 
      * @return The output of the sigmoid function
-    */
+     */
     template<typename T>
     inline T sigmoid(T const x)
     {
@@ -212,7 +212,7 @@ namespace stf::math
      * @param [in] min 
      * @param [in] max 
      * @return The clamped vector
-    */
+     */
     template<class T, size_t N>
     inline math::vec<T, N> clamp(math::vec<T, N> const& vec, math::vec<T, N> const& min, math::vec<T, N> const& max)
     {
@@ -231,7 +231,7 @@ namespace stf::math
      * @param [in] min 
      * @param [in] max 
      * @return The clamped vector
-    */
+     */
     template<class T, size_t N>
     inline math::vec<T, N> clamp(math::vec<T, N> const& vec, T const min, T const max)
     {
@@ -245,7 +245,7 @@ namespace stf::math
      * @param [in] b 
      * @param [in] t 
      * @return The interpolated vector
-    */
+     */
     template<class T, size_t N>
     inline math::vec<T, N> lerp(math::vec<T, N> const& a, math::vec<T, N> const& b, T const t)
     {
@@ -265,7 +265,7 @@ namespace stf::math
      * @param [in] b 
      * @param [in] t 
      * @return The interpolated vector
-    */
+     */
     template<class T, size_t N>
     inline math::vec<T, N> lerpstep(math::vec<T, N> const& a, math::vec<T, N> const& b, T const t)
     {
@@ -279,7 +279,7 @@ namespace stf::math
      * @param [in] b
      * @param [in] t
      * @return The interpolated scalar
-    */
+     */
     template<class T, size_t N>
     inline math::vec<T, N> smoothstep(math::vec<T, N> const& a, math::vec<T, N> const& b, T const t)
     {
@@ -295,7 +295,7 @@ namespace stf::math
      * @param [in] d
      * @param [in] t
      * @return The interpolated vector
-    */
+     */
     template<typename T, size_t N>
     inline math::vec<T, N> cubic_bezier(math::vec<T, N> const a, math::vec<T, N> const b, math::vec<T, N> const c, math::vec<T, N> const d, T const t)
     {
@@ -331,7 +331,7 @@ namespace stf::math
      * @param [in] m1 Derivative at the end of the interpolation interval
      * @param [in] t Time in [0, 1] used for interpolation
      * @return The interpolated vector
-    */
+     */
     template<typename T, size_t N>
     inline math::vec<T, N> cubic_hermite_spline(math::vec<T, N> const p0, math::vec<T, N> const m0, math::vec<T, N> const p1, math::vec<T, N> const m1, T const t)
     {

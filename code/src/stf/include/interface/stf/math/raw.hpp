@@ -5,7 +5,7 @@
 /**
  * @file raw.hpp
  * @brief A file containing templated functions for working with scalars stored in raw arrays
-*/
+ */
 
 namespace stf::math::raw
 {
@@ -16,7 +16,7 @@ namespace stf::math::raw
      * @tparam N Dimension
      * @param [in,out] lhs
      * @param [in] rhs 
-    */
+     */
     template<typename T, size_t N>
     inline void plus_equals(T lhs[N], T const rhs[N])
     {
@@ -32,7 +32,7 @@ namespace stf::math::raw
      * @tparam N Dimension
      * @param [in,out] lhs
      * @param [in] rhs
-    */
+     */
     template<typename T, size_t N>
     inline void minus_equals(T lhs[N], T const rhs[N])
     {
@@ -48,7 +48,7 @@ namespace stf::math::raw
      * @tparam N Dimension
      * @param [in,out] lhs
      * @param [in] scalar
-    */
+     */
     template<typename T, size_t N>
     inline void scale(T lhs[N], T const scalar)
     {
@@ -65,7 +65,7 @@ namespace stf::math::raw
      * @param [in] lhs 
      * @param [in] rhs 
      * @return The dot product of @p lhs and @p rhs
-    */
+     */
     template<typename T, size_t N>
     inline T dot(T const lhs[N], T const rhs[N])
     {
@@ -84,7 +84,7 @@ namespace stf::math::raw
      * @tparam N Dimension
      * @param [in] src 
      * @param [in,out] dst 
-    */
+     */
     template<typename T, typename U, size_t N>
     inline void as(T const src[N], U dst[N])
     {
