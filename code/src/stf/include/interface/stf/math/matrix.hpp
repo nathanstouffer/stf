@@ -352,12 +352,28 @@ namespace stf::math
     template<typename T> using mtx3 = mtx<T, 3>;
     template<typename T> using mtx4 = mtx<T, 4>;
 
+    /**
+     * @brief Compute the product of two matrices
+     * @tparam T Number type (eg float)
+     * @tparam N Dimension
+     * @param [in] lhs 
+     * @param [in] rhs 
+     * @return The matrix result of the product between @p lhs and @p rhs
+     */
     template<typename T, size_t N>
     inline mtx<T, N> operator*(mtx<T, N> const& lhs, mtx<T, N> const& rhs)
     {
         return mtx<T, N>(lhs) *= rhs;
     }
 
+    /**
+     * @brief Compute the product of a matrix with a column vector
+     * @tparam T Number type (eg float)
+     * @tparam N Dimension
+     * @param [in] lhs 
+     * @param [in] rhs A column vector
+     * @return The column vector result of the product between @p lhs and @p rhs
+     */
     template<typename T, size_t N>
     inline vec<T, N> operator*(mtx<T, N> const& lhs, vec<T, N> const& rhs)
     {
@@ -369,6 +385,14 @@ namespace stf::math
         return result;
     }
 
+    /**
+     * @brief Compute the product of a row vector with a matrix
+     * @tparam T Number type (eg float)
+     * @tparam N Dimension
+     * @param [in] lhs A row vector
+     * @param [in] rhs
+     * @return The rwo vector result of the product between @p lhs and @p rhs
+     */
     template<typename T, size_t N>
     inline vec<T, N> operator*(vec<T, N> const& lhs, mtx<T, N> const& rhs)
     {
@@ -380,16 +404,76 @@ namespace stf::math
         return result;
     }
 
+    /**
+     * @brief Construct a matrix that scales in x, y, and z
+     * @tparam T Number type (eg float)
+     * @param [in] scalars The scalars for scaling in x, y, and z
+     * @return The scale matrix
+     */
     template<typename T> inline mtx4<T> scale(vec<T, 3> const& scalars) { return mtx4<T>::scale(scalars); }
+
+    /**
+     * @brief Construct a matrix that scales in x
+     * @tparam T Number type (eg float)
+     * @param [in] scalar 
+     * @return The scale matrix
+     */
     template<typename T> inline mtx4<T> scale_x(T const scalar) { return mtx4<T>::scale(vec<T, 3>(scalar, T(1), T(1))); }
+
+    /**
+     * @brief Construct a matrix that scales in y
+     * @tparam T Number type (eg float)
+     * @param [in] scalar
+     * @return The scale matrix
+     */
     template<typename T> inline mtx4<T> scale_y(T const scalar) { return mtx4<T>::scale(vec<T, 3>(T(1), scalar, T(1))); }
+
+    /**
+     * @brief Construct a matrix that scales in z
+     * @tparam T Number type (eg float)
+     * @param [in] scalar
+     * @return The scale matrix
+     */
     template<typename T> inline mtx4<T> scale_z(T const scalar) { return mtx4<T>::scale(vec<T, 3>(T(1), T(1)), scalar); }
 
+    /**
+     * @brief Construct a matrix that translates in x, y, and z
+     * @tparam T Number type (eg float)
+     * @param [in] scalars The scalars for translating in x, y, and z
+     * @return The translation matrix
+     */
     template<typename T> inline mtx4<T> translate(vec<T, 3> const& scalars) { return mtx4<T>::translate(scalars); }
+
+    /**
+     * @brief Construct a matrix that translates in x
+     * @tparam T Number type (eg float)
+     * @param [in] scalar
+     * @return The translation matrix
+     */
     template<typename T> inline mtx4<T> translate_x(T const scalar) { return mtx4<T>::translate(vec<T, 3>(scalar, T(0), T(0))); }
+
+    /**
+     * @brief Construct a matrix that translates in y
+     * @tparam T Number type (eg float)
+     * @param [in] scalar
+     * @return The translation matrix
+     */
     template<typename T> inline mtx4<T> translate_y(T const scalar) { return mtx4<T>::translate(vec<T, 3>(T(0), scalar, T(0))); }
+
+    /**
+     * @brief Construct a matrix that translates in z
+     * @tparam T Number type (eg float)
+     * @param [in] scalar
+     * @return The translation matrix
+     */
     template<typename T> inline mtx4<T> translate_z(T const scalar) { return mtx4<T>::translate(vec<T, 3>(T(0), T(0)), scalar); }
 
+    /**
+     * @brief Construct a matrix that rotates about the x-axis
+     * @tparam T Number type (eg float)
+     * @param [in] theta 
+     * @return The rotation matrix
+     */
     template<typename T>
     inline mtx4<T> rotate_x(T const theta)
     {
@@ -399,6 +483,12 @@ namespace stf::math
         return result;
     }
 
+    /**
+     * @brief Construct a matrix that rotates about the y-axis
+     * @tparam T Number type (eg float)
+     * @param [in] theta
+     * @return The rotation matrix
+     */
     template<typename T>
     inline mtx4<T> rotate_y(T const theta)
     {
@@ -408,6 +498,12 @@ namespace stf::math
         return result;
     }
 
+    /**
+     * @brief Construct a matrix that rotates about the z-axis
+     * @tparam T Number type (eg float)
+     * @param [in] theta
+     * @return The rotation matrix
+     */
     template<typename T>
     inline mtx4<T> rotate_z(T const theta)
     {
@@ -424,6 +520,12 @@ namespace stf::math
     template<typename T> inline mtx4<T> rotate_zxy(T const z, T const x, T const y) { return (rotate_z(z) *= rotate_x(x)) *= rotate_y(y); }
     template<typename T> inline mtx4<T> rotate_zyx(T const z, T const y, T const x) { return (rotate_z(z) *= rotate_y(y)) *= rotate_x(x); }
 
+    /**
+     * @brief Construct a matrix that rotates the plane
+     * @tparam T Number type (eg float)
+     * @param [in] theta
+     * @return The rotation matrix
+     */
     template<typename T>
     inline mtx<T, 2> rotate(T const theta)
     {
@@ -433,6 +535,17 @@ namespace stf::math
         return result;
     }
 
+    /**
+     * @brief Construct a matrix that computes an orthographic projection
+     * @tparam T Number type (eg float)
+     * @param [in] l Left plane
+     * @param [in] r Right plane
+     * @param [in] b Bottom plane
+     * @param [in] t Top plane
+     * @param [in] n Near plane
+     * @param [in] f Far plane
+     * @return The projection matrix
+     */
     template<typename T>
     inline mtx4<T> orthographic(T const l, T const r, T const b, T const t, T const n, T const f)
     {
@@ -441,28 +554,44 @@ namespace stf::math
         return mtx4<T>::scale(scalars) * mtx4<T>::translate(translators);
     }
 
+    /**
+     * @brief Construct a matrix that computes a perspective projection
+     * @tparam T Number type (eg float)
+     * @param [in] fov_y Field of view in the y axis
+     * @param [in] aspect Aspect ratio (width/height = x/y)
+     * @param [in] near_plane Near plane
+     * @param [in] far_plane Far plane
+     * @return The projection matrix
+     */
     template<typename T>
-    inline mtx4<T> perspective(T const fov, T const aspect, T const near, T const far)
+    inline mtx4<T> perspective(T const fov_y, T const aspect, T const near_plane, T const far_plane)
     {
-        T y_scale = T(1.0) / std::tan(T(0.5) * fov);
+        T y_scale = T(1.0) / std::tan(T(0.5) * fov_y);
         T x_scale = y_scale / aspect;
         mtx4<T> result;
         result[0][0] = x_scale;
         result[1][1] = y_scale;
-        result[2][2] = far / (near - far);
-        result[2][3] = near * far / (near - far);
+        result[2][2] = far_plane / (near_plane - far_plane);
+        result[2][3] = near_plane * far_plane / (near_plane - far_plane);
         result[3][2] = -1;
         return result;
     }
 
-    // NOTE: we assume axis is a unit vector
+    /**
+     * @brief Compute a matrix that rotates 3-space around @p axis by @p theta
+     * @tparam T Number type (eg float)
+     * @param [in] axis Unit vector defining the axis of rotation
+     * @param [in] theta 
+     * @note @p axis must be a unit vector
+     * @return The rotation matrix
+     */
     template<typename T>
     inline mtx4<T> rotate(vec<T, 3> const& axis, T const theta)
     {
         // perform computations once
         T const cosine = std::cos(theta);
         T const sine   = std::sin(theta);
-        T const comp   = T(1) - cosine;     // complement
+        T const comp   = T(1) - cosine;     // complement of the cosine
 
         // local variables for less verbose code
         T const x = axis.x;
@@ -482,7 +611,17 @@ namespace stf::math
         return rotation;
     }
 
-    // NOTE: we assume angles are from the perspective of the focus point and that right is a unit vector
+    /**
+     * @brief Compute a matrix that orbits 3-space around @p focus by @p delta_phi and @p delta_theta
+     * @tparam T Number type (eg float)
+     * @param [in] focus Center point of the orbit
+     * @param [in] right Direction defining what direction is to the right
+     * @param [in] delta_phi
+     * @param [in] delta_theta 
+     * @note Angles @p delta_phi and @p delta_theta are spherical coordinates measured with @p focus as the origin
+     * @note @p right must be a unit vector
+     * @return The transformation matrix
+     */
     template<typename T>
     inline mtx4<T> orbit(vec<T, 3> const& focus, vec<T, 3> const& right, T const delta_phi, T const delta_theta)
     {
@@ -493,6 +632,14 @@ namespace stf::math
         return invert_translation * yaw * pitch * translate;
     }
 
+    /**
+     * @brief Write the matrix @p rhs to the std::ostream @p s
+     * @tparam T Number type (eg float)
+     * @tparam N Dimension
+     * @param [in,out] s
+     * @param [in] rhs
+     * @return A reference to @p s
+     */
     template <typename T, size_t N>
     std::ostream& operator<<(std::ostream& s, mtx<T, N> const& rhs)
     {

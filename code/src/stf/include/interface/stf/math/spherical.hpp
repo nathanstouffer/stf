@@ -92,7 +92,7 @@ namespace stf::math
     }
 
     /**
-     * @brief The unit vector defined by @p theta and @phi
+     * @brief The unit vector defined by @p theta and @p phi
      * @tparam T Number type (eg float)
      * @param [in] theta An angle measured counterclockwise from (1, 0, 0)
      * @param [in] phi An angle measured from (0, 0, 1)

@@ -915,16 +915,21 @@ namespace stf::math
 namespace std
 {
     /**
-     * @brief Compute the hash of a vector
+     * @brief Templated class that can compute the has of a vector
      * 
      * @tparam T Number type (eg float)
      * @tparam N Dimension
-     * @param [in] lhs
-     * @return The hash of @p lhs
      */
     template<typename T, size_t N>
     struct hash<stf::math::vec<T, N>>
     {
+        
+        /**
+         * @brief Compute the hash of a vector
+         * 
+         * @param [in] lhs 
+         * @return The hash of @p lhs
+         */
         size_t operator()(stf::math::vec<T, N> const& lhs) const
         {
             std::hash<T> hasher;
