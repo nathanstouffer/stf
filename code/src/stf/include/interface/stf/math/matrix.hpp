@@ -5,9 +5,19 @@
 #include "stf/math/raw.hpp"
 #include "stf/math/vector.hpp"
 
+/**
+ * @file matrix.hpp
+ * @brief A file containing a templated matrix class along with associated functions
+ */
+
 namespace stf::math
 {
-
+    /**
+     * @brief A square matrix class templated on number type and dimension
+     *
+     * @tparam T Number type (eg float)
+     * @tparam N Dimension
+     */
     template<typename T, size_t N>
     struct mtx final
     {
@@ -72,19 +82,38 @@ namespace stf::math
 
         };
 
+        /**
+         * @brief The number of scalars stored in the matrix
+         */
         static size_t constexpr D = N * N;
 
-        // values defining this matrix (stored in column major formtx)
+        /**
+         * @brief The scalars defining this matrix
+         * @note Stored in column-major form
+         */
         T values[N * N];
 
+        /**
+         * @brief Default constructor -- intializes to the identity matrix
+         */
         mtx() { identify(); }
-        mtx(T value) 
+
+        /**
+         * @brief Construct from a single scalar -- initializes all scalars to @p value
+         * @param [in] value 
+         */
+        mtx(T const value) 
         {
             for (size_t i = 0; i < D; ++i)
             {
                 values[i] = value;
             }
         }
+
+        /**
+         * @brief Construct for a vector -- intializes the diagonal to the value of the vector
+         * @param [in] diagonal 
+         */
         mtx(vec<T, N> const& diagonal) : mtx()
         {
             for (size_t i = 0; i < N; ++i)
@@ -93,15 +122,53 @@ namespace stf::math
             }
         }
 
-        inline col_proxy const col(size_t j) const { return col_proxy(const_cast<mtx&>(*this), j); }
-        inline row_proxy const row(size_t i) const { return row_proxy(const_cast<mtx&>(*this), i); }
+        /**
+         * @brief Const access to a single column of the matrix
+         * @param [in] j The index of the column
+         * @return A proxy class that gives const access to the column
+         */
+        inline col_proxy const col(size_t const j) const { return col_proxy(const_cast<mtx&>(*this), j); }
+        
+        /**
+         * @brief Access to a single column of the matrix
+         * @param [in] j The index of the column
+         * @return A proxy class that gives access to the column
+         */
+        inline col_proxy col(size_t const j) { return col_proxy(*this, j); }
 
-        inline col_proxy col(size_t j) { return col_proxy(*this, j); }
-        inline row_proxy row(size_t i) { return row_proxy(*this, i); }
+        /**
+         * @brief Const access to a single row of the matrix
+         * @param [in] i The index of the row
+         * @return A proxy class that gives const access to the row
+         */
+        inline row_proxy const row(size_t const i) const { return row_proxy(const_cast<mtx&>(*this), i); }
 
-        inline row_proxy const operator[](size_t i) const { return row(i); }
-        inline row_proxy operator[](size_t i) { return row(i); }
+        /**
+         * @brief Access to a single row of the matrix
+         * @param [in] i The index of the row
+         * @return A proxy class that gives access to the row
+         */
+        inline row_proxy row(size_t const i) { return row_proxy(*this, i); }
 
+        /**
+         * @brief Const access to a single row of the matrix
+         * @param [in] i The index of the row
+         * @return A proxy class that gives const access to the row
+         */
+        inline row_proxy const operator[](size_t const i) const { return row(i); }
+
+        /**
+         * @brief Access to a single row of the matrix
+         * @param [in] i The index of the row
+         * @return A proxy class that gives access to the row
+         */
+        inline row_proxy operator[](size_t const i) { return row(i); }
+
+        /**
+         * @brief Multiply a matrix in place
+         * @param [in] rhs 
+         * @return A reference to @p this
+         */
         mtx& operator*=(mtx const& rhs)
         {
             mtx tmp;
@@ -117,6 +184,10 @@ namespace stf::math
             return *this;
         }
 
+        /**
+         * @brief Set a matrix to the identity matrix
+         * @return A reference to @p this 
+         */
         inline mtx& identify()
         {
             for (size_t i = 0; i < N; ++i)          // iterate over rows
@@ -129,6 +200,10 @@ namespace stf::math
             return *this;
         }
 
+        /**
+         * @brief Transpose a matrix
+         * @return A reference to @p this
+         */
         inline mtx& transpose()
         {
             // TODO write this method by swapping the values in place
@@ -148,18 +223,71 @@ namespace stf::math
             return *this;
         }
 
+        /**
+         * @brief Multiply a matrix by a scale matrix in place
+         * @param [in] scalars The scalars defining the scale matrix
+         * @return A reference to @p this
+         */
         inline mtx& scale_by(vec<T, N> const& scalars) { return (*this) *= mtx::scale(scalars); }
+
+        /**
+         * @brief Multiply a matrix by a scale matrix in place
+         * @param [in] scalars The scalars defining the scale matrix -- sets the Nth scalar to 1
+         * @return A reference to @p this
+         */
         inline mtx& scale_by(vec<T, N - 1> const& scalars) { return scale_by(vec<T, N>(scalars, T(1))); }
+
+        /**
+         * @brief Multiply a matrix by a translation matrix in place
+         * @param [in] scalars The scalars definining the translation matrix
+         * @return A reference to @p this 
+         */
         inline mtx& translate_by(vec<T, N - 1> const& scalars) { return (*this) *= mtx::translate(scalars); }
 
+        /**
+         * @brief Compute the transpose of a matrix
+         * @return The transpose of @p this
+         */
         inline mtx transposed() const { return mtx(*this).transpose(); }
+
+        /**
+         * @brief Multiply a matrix by a scale matrix
+         * @param [in] scalars The scalars defining the scale matrix
+         * @return The resulting transformation matrix
+         */
         inline mtx scaled_by(vec<T, N> const& scalars) const { return mtx(*this).scale_by(scalars); }
+
+        /**
+         * @brief Multiply a matrix by a scale matrix
+         * @param [in] scalars The scalars defining the scale matrix -- sets the Nth scalar to 1
+         * @return The resulting transformation matrix
+         */
         inline mtx scaled_by(vec<T, N - 1> const& scalars) const { return mtx(*this).scale_by(vec<T, N>(scalars, T(1))); }
+
+        /**
+         * @brief Multiply a matrix by a translation matrix
+         * @param [in] scalars The scalars definining the translation matrix
+         * @return The resulting transformation matrix
+         */
         inline mtx translated_by(vec<T, N - 1> const& scalars) const { return mtx(*this).translate_by(scalars); }
 
+        /**
+         * @brief Fill a raw array with scalars of the matrix in column-major form
+         * @param [out] fill 
+         */
         inline void col_major(T fill[N * N]) const { std::memcpy(static_cast<void*>(fill), static_cast<void*>(values), sizeof(T) * D); }
+
+        /**
+         * @brief Fill a raw array with scalars of the matrix in row-major form
+         * @param [out] fill
+         */
         inline void row_major(T fill[N * N]) const { return transposed().col_major(fill); }
 
+        /**
+         * @brief Cast a matrix to a different precision
+         * @tparam U Destination number type (eg float)
+         * @return @p this casted to the precision of @p U
+         */
         template<typename U>
         mtx<U, N * N> as() const
         {
@@ -171,9 +299,31 @@ namespace stf::math
 
     public:
 
+        /**
+         * @brief Compute the identity matrix
+         * @return The identity matrix
+         */
         inline static mtx identity() { return mtx(); }
+
+        /**
+         * @brief Compute a scale matrix
+         * @param [in] scalars The scalars defining the scale matrix
+         * @return A scale matrix
+         */
         inline static mtx scale(vec<T, N> const& scalars) { return mtx(scalars); }
+
+        /**
+         * @brief Compute a scale matrix
+         * @param [in] scalars The scalars defining the scale matrix -- sets the Nth scalar to 1
+         * @return A scale matrix
+         */
         inline static mtx scale(vec<T, N - 1> const& scalars) { return mtx(vec<T, N>(scalars, T(1))); }
+
+        /**
+         * @brief Compute a translation matrix
+         * @param [in] scalars The scalars defining the translation matrix
+         * @return A translation matrix
+         */
         inline static mtx translate(vec<T, N - 1> const& scalars)
         {
             mtx result;
@@ -181,6 +331,10 @@ namespace stf::math
             return result;
         }
 
+        /**
+         * @brief Compute the number of bytes allocated by matrix
+         * @return The byte count
+         */
         inline static size_t byte_count() { return sizeof(T) * D; }
 
     };
@@ -188,7 +342,7 @@ namespace stf::math
     /// @cond DELETED
     /**
      * @brief Delete invalid matrix specializations
-    */
+     */
     template<typename T> struct mtx<T, 0> { mtx() = delete; };
     template<typename T> struct mtx<T, 1> { mtx() = delete; };
     /// @endcond

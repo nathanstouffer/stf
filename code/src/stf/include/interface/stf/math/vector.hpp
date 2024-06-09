@@ -38,7 +38,7 @@ namespace stf::math
         T values[N];
 
         /**
-         * @brief Default constructor -- intiliazes all dimensions to 0
+         * @brief Default constructor -- intializes all dimensions to 0
         */
         constexpr vec() : vec(T(0)) {}
 
