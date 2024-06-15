@@ -12,4 +12,6 @@ if (BUILD_TESTS)
     add_subdirectory(tests)
 endif()
 
-include(GenerateDocs)
+if (BUILD_DOCS)
+    include(GenerateDocs)
+endif()
