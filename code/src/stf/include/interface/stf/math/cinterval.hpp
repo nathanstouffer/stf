@@ -44,9 +44,9 @@ namespace stf::math
         cinterval(T const _a, T const _b) : a(_a), b(_b) {}
 
         /**
-         * @brief Compute whether or not the cinterval is empty
-         * @param [in] type Specifies whether the boundary of the cinterval is open or closed
-         * @return Whether or not the cinterval is empty
+         * @brief Compute whether or not the @ref cinterval is empty
+         * @param [in] type Specifies whether the boundary of the @ref cinterval is open or closed
+         * @return Whether or not the @ref cinterval is empty
          */
         inline bool is_empty(boundary_types type)
         {
@@ -61,7 +61,7 @@ namespace stf::math
         /**
          * @brief Compute if an @ref cinterval contains a point
          * @param [in] x Query point
-         * @param [in] type Specifies whether the boundary of the cinterval is open or closed
+         * @param [in] type Specifies whether the boundary of the @ref cinterval is open or closed
          * @return Whether or not @p this contains the value @p x
          */
         inline bool contains(T const x, boundary_types type) const
