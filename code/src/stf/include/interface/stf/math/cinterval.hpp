@@ -5,19 +5,49 @@
 #include "stf/math/interval.hpp"
 #include "stf/math/spherical.hpp"
 
+/**
+ * @file cinterval.hpp
+ * @brief A file containing a templated circular interval class along with associated functions
+ */
+
 namespace stf::math
 {
-
+    /**
+     * @brief An circular interval class representing a counterclockwise connected component of the circle.
+     * @tparam T Number type (eg float)
+     * @todo Consider renaming this to angular_interval or ainterval
+     */
     template<typename T>
     struct cinterval final
     {
 
+        /**
+         * @brief The beginning of the @ref cinterval
+         */
         T a;
+
+        /**
+         * @brief The end of the @ref cinterval
+         */
         T b;
 
+        /**
+         * @brief Default constructor for an cinterval: @ref a = @ref b = 0
+         */
         cinterval() : a(constants<T>::zero), b(constants<T>::zero) {}
+
+        /**
+         * @brief Explicit constructor for a @ref cinterval
+         * @param [in] _a
+         * @param [in] _b
+         */
         cinterval(T const _a, T const _b) : a(_a), b(_b) {}
 
+        /**
+         * @brief Compute whether or not the cinterval is empty
+         * @param [in] type Specifies whether the boundary of the cinterval is open or closed
+         * @return Whether or not the cinterval is empty
+         */
         inline bool is_empty(boundary_types type)
         {
             switch (type)
@@ -28,6 +58,12 @@ namespace stf::math
             }
         }
 
+        /**
+         * @brief Compute if an @ref cinterval contains a point
+         * @param [in] x Query point
+         * @param [in] type Specifies whether the boundary of the cinterval is open or closed
+         * @return Whether or not @p this contains the value @p x
+         */
         inline bool contains(T const x, boundary_types type) const
         {
             return (a <= b) ? interval<T>::contains(a, b, x, type) : !interval<T>::contains(b, a, x, complement(type));

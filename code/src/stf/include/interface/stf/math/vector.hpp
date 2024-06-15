@@ -16,7 +16,7 @@ namespace stf::math
 {
     
     /**
-     * @brief A vector class templated on number type and dimension
+     * @brief A vector class representing elements of R^n
      * 
      * @tparam T Number type (eg float)
      * @tparam N Dimension
