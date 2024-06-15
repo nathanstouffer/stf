@@ -653,7 +653,7 @@ namespace stf::math
     }
 
     /** 
-     * @brief Compute whether the distance between @p lhs and @p rhs is less than or equal to e@p ps
+     * @brief Compute whether the distance between @p lhs and @p rhs is less than or equal to @p eps
      * 
      * @tparam T Number type (eg float)
      * @tparam N Dimension
