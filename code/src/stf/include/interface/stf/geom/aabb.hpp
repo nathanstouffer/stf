@@ -311,7 +311,7 @@ namespace stf::geom
     template<typename T> using aabb2 = aabb<T, 2>;
 
     /**
-     * @brief Type alias for a 2D @ref aabb
+     * @brief Type alias for a 3D @ref aabb
      * @tparam T Number type (eg float)
      */
     template<typename T> using aabb3 = aabb<T, 3>;
