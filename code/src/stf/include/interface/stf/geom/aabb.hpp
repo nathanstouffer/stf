@@ -134,7 +134,7 @@ namespace stf::geom
          * @brief Compute the center of an @ref aabb
          * @return The center point of @p this
          */
-        inline vec_t const center() const { return min + (math::constants<T>::half * length()); }
+        inline vec_t const center() const { return min + (math::constants<T>::half * diagonal()); }
 
         /**
          * @brief Scale an @ref aabb in place
