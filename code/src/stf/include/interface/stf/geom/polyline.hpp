@@ -16,6 +16,7 @@ namespace stf::geom
 
         using vec_t = math::vec<T, N>;
         using aabb_t = geom::aabb<T, N>;
+        using seg_t = geom::segment<T, N>
 
     public:
 
@@ -25,7 +26,7 @@ namespace stf::geom
         inline bool is_empty() const { return m_points.size() < 2; }
         inline size_t size() const { return is_empty() ? 0 : m_points.size(); } 
 
-        inline segment<T, N> edge(size_t i) const { return segment<T, N>(m_points[i], m_points[i + 1]); }
+        inline seg_t edge(size_t i) const { return seg_t(m_points[i], m_points[i + 1]); }
 
         inline void clear() { m_points.clear(); m_aabb = aabb_t::nothing(); }
         inline void reserve(size_t const size) { m_points.reserve(size); }
@@ -67,7 +68,7 @@ namespace stf::geom
                 T traveled = math::constants<T>::zero;
                 for (size_t i = 0; i + 1 < m_points.size(); ++i)
                 {
-                    segment<T, N> seg = edge(i);        // edge we are processing
+                    seg_t seg = edge(i);        // edge we are processing
                     traveled += seg.length();           // add the length
                     if (target < traveled)              // if we overshot, then we have found the correct segment
                     {
