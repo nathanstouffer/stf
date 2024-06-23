@@ -41,22 +41,22 @@ namespace stf::geom
 
         inline T area() const { return std::abs(signed_area()); }
 
-        bool contains(vec_t const& p, boundary_types const type) const
+        bool contains(vec_t const& query, boundary_types const type) const
         {
-            // early out based on the hull
-            if (!m_hull.contains(p, type)) { return false; }
+            // early out based on the aabb
+            if (!m_hull.aabb().contains(query)) { return false; }
 
             // iterate over holes, checking for containment
             for (polygon_t const& hole : m_holes)
             {
-                if (hole.contains(p, complement(type)))
+                if (hole.contains(query, complement(type)))
                 {
                     return false;
                 }
             }
 
-            // fall-through to true
-            return true;
+            // query is in the aabb, but not any holes => compute containment by the hull
+            return m_hull.contains(query, type);
         }
 
         holygon& translate(vec_t const& delta)
