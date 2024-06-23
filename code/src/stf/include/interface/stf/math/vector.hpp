@@ -16,7 +16,7 @@ namespace stf::math
 {
     
     /**
-     * @brief A vector class representing elements of R^n
+     * @brief A class representing elements of R^n
      * 
      * @tparam T Number type (eg float)
      * @tparam N Dimension
@@ -632,9 +632,22 @@ namespace stf::math
     template<typename T> struct vec<T, 0> { vec() = delete; };
     /// @endcond
 
-    // type aliases for ease of use
+    /**
+     * @brief Type alias for a 2D @ref vec
+     * @tparam T Number type (eg float)
+     */
     template<typename T> using vec2 = vec<T, 2>;
+
+    /**
+     * @brief Type alias for a 3D @ref vec
+     * @tparam T Number type (eg float)
+     */
     template<typename T> using vec3 = vec<T, 3>;
+
+    /**
+     * @brief Type alias for a 4D @ref vec
+     * @tparam T Number type (eg float)
+     */
     template<typename T> using vec4 = vec<T, 4>;
 
     /** 
