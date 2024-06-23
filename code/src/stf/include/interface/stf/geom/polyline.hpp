@@ -15,7 +15,7 @@ namespace stf::geom
 {
 
     /**
-     * @brief A class to represent polylines -- a connected sequence of straight line segments in R^n
+     * @brief A class to represent a polyline -- a connected sequence of straight line segments in R^n
      * @tparam T Number type (eg float)
      * @tparam N Dimension
      */
@@ -54,13 +54,13 @@ namespace stf::geom
 
         /**
          * @brief Report whether or not a @ref polyline is empty
-         * @note A @ref polyline must have at least two vertices to be non-empty
+         * @note Must have at least two vertices to be non-empty
          * @return Whether or not @p this is empty
          */
         inline bool is_empty() const { return m_vertices.size() < 2; }
 
         /**
-         * @brief Return the size of the @ref polyline
+         * @brief Compute the size of the @ref polyline
          * @return The number of vertices in the @ref polyline
          */
         inline size_t size() const { return is_empty() ? 0 : m_vertices.size(); } 
@@ -78,7 +78,7 @@ namespace stf::geom
         inline void clear() { m_vertices.clear(); m_aabb = aabb_t::nothing(); }
 
         /**
-         * @brief Reserver memory for a @ref polyline with @p size vertices
+         * @brief Reserve memory for a @ref polyline with @p size vertices
          * @param [in] size 
          */
         inline void reserve(size_t const size) { m_vertices.reserve(size); }
@@ -171,7 +171,7 @@ namespace stf::geom
         /**
          * @brief Translate a @ref polyline in place
          * @param [in] delta 
-         * @return A const reference to @p this
+         * @return A reference to @p this
          */
         polyline& translate(vec_t const& delta)
         {
@@ -193,7 +193,7 @@ namespace stf::geom
         /**
          * @brief Scale a @ref polyline in place
          * @param [in] scalar
-         * @return A const reference to @p this
+         * @return A reference to @p this
          */
         polyline& scale(T const scalar)
         {
