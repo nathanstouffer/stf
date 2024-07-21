@@ -224,9 +224,9 @@ namespace stf::gfx
      * @param [in] max
      * @return The clamped @ref rgba
      */
-    inline gfx::rgba clamp(gfx::rgba const& lhs, float min, float max)
+    inline rgba clamp(rgba const& lhs, float min, float max)
     {
-        return gfx::rgba(clamp(lhs.as_vec(), min, max));
+        return rgba(clamp(lhs.as_vec(), min, max));
     }
 
     /**
@@ -236,9 +236,9 @@ namespace stf::gfx
      * @param [in] t
      * @return The interpolated @ref rgba
      */
-    inline gfx::rgba lerp(gfx::rgba const& lhs, gfx::rgba const& rhs, float t)
+    inline rgba lerp(rgba const& lhs, rgba const& rhs, float t)
     {
-        return gfx::rgba(lerp(lhs.as_vec(), rhs.as_vec(), t));
+        return rgba(lerp(lhs.as_vec(), rhs.as_vec(), t));
     }
 
     /**
@@ -248,9 +248,9 @@ namespace stf::gfx
      * @param [in] t
      * @return The interpolated @ref rgba
      */
-    inline gfx::rgba lerpstep(gfx::rgba const& lhs, gfx::rgba const& rhs, float t)
+    inline rgba lerpstep(rgba const& lhs, rgba const& rhs, float t)
     {
-        return gfx::rgba(lerpstep(lhs.as_vec(), rhs.as_vec(), t));
+        return rgba(lerpstep(lhs.as_vec(), rhs.as_vec(), t));
     }
 
     /**
@@ -260,9 +260,9 @@ namespace stf::gfx
      * @param [in] t
      * @return The interpolated @ref rgba
      */
-    inline gfx::rgba smoothstep(gfx::rgba const& lhs, gfx::rgba const& rhs, float t)
+    inline rgba smoothstep(rgba const& lhs, rgba const& rhs, float t)
     {
-        return gfx::rgba(smoothstep(lhs.as_vec(), rhs.as_vec(), t));
+        return rgba(smoothstep(lhs.as_vec(), rhs.as_vec(), t));
     }
 
     /**
@@ -271,9 +271,9 @@ namespace stf::gfx
      * @param writing [in]
      * @return The blended @ref rgba
      */
-    inline gfx::rgba blend(gfx::rgba const& current, gfx::rgba const& writing)
+    inline rgba blend(rgba const& current, rgba const& writing)
     {
-        gfx::rgba blended = current;
+        rgba blended = current;
         blended.r = math::lerp(blended.r, writing.r, writing.a);
         blended.g = math::lerp(blended.g, writing.g, writing.a);
         blended.b = math::lerp(blended.b, writing.b, writing.a);
