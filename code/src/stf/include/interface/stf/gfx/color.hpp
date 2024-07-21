@@ -10,7 +10,7 @@
 
 /**
  * @file color.hpp
- * @brief A file containing a various color classes along with associated functions
+ * @brief A file containing various color classes along with associated functions
  */
 
 namespace stf::gfx

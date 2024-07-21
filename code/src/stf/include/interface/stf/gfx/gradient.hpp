@@ -5,24 +5,56 @@
 #include "stf/gfx/color.hpp"
 #include "stf/math/constants.hpp"
 
+/**
+ * @file gradient.hpp
+ * @brief A file containing a gradient class along with associated functions
+ */
+
 namespace stf::gfx
 {
 
-    // TODO possibly template the color struct
+    /**
+     * @brief A class that represents a gradient
+     * @todo Possibly template the gradient class
+     */
     class gradient final
     {
     public:
 
+        /**
+         * @brief Type alias for the input
+         */
         using time_t = float;
 
+        /**
+         * @brief Struct to represent an interpolation anchor
+         */
         struct stop
         {
+
+            /**
+             * @brief The time value associated with the anchor
+             */
             time_t x;
+
+            /**
+             * @brief The color associated with the anchor
+             */
             rgba color;
         };
 
+        /**
+         * @brief Construct a gradient from a vector of stops
+         * @param stops [in]
+         * @param period [in] The period used when sampling the color -- 0 signifies that there is no period
+         */
         gradient(std::vector<stop> const& stops, float period = math::constants<time_t>::zero) : m_stops(stops), m_period(period) {}
 
+        /**
+         * @brief Sample a color at a specified time value @p x
+         * @param x [in]
+         * @return The sampled @ref rgba value
+         */
         rgba sample(time_t const x) const
         {
             // account for edge cases
