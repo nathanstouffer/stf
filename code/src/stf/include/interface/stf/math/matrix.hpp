@@ -408,9 +408,22 @@ namespace stf::math
     template<typename T> struct mtx<T, 1> { mtx() = delete; };
     /// @endcond
 
-    // type aliases for ease of use
+    /**
+     * @brief Type alias for a 2x2 matrix
+     * @tparam T Number type (eg float)
+     */
     template<typename T> using mtx2 = mtx<T, 2>;
+
+    /**
+     * @brief Type alias for a 3x3 matrix
+     * @tparam T Number type (eg float)
+     */
     template<typename T> using mtx3 = mtx<T, 3>;
+
+    /**
+     * @brief Type alias for a 4x4 matrix
+     * @tparam T Number type (eg float)
+     */
     template<typename T> using mtx4 = mtx<T, 4>;
 
     /**

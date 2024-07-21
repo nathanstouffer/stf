@@ -157,14 +157,14 @@ namespace stf::gfx
 
         /**
          * @brief Construct a @ref rgba from a 32-bit ABGR integer
-         * @param hex_rgba [in]
+         * @param hex_abgr [in]
          * @return Constructed @ref rgba value
          */
         static inline rgba from_hex_abgr(uint32_t hex_abgr) { return rgba(from_hex(hex_abgr, 0),  from_hex(hex_abgr, 8),  from_hex(hex_abgr, 16), from_hex(hex_abgr, 24)); }
 
         /**
          * @brief Construct a @ref rgba from a 32-bit ARGB integer
-         * @param hex_rgba [in]
+         * @param hex_argb [in]
          * @return Constructed @ref rgba value
          */
         static inline rgba from_hex_argb(uint32_t hex_argb) { return rgba(from_hex(hex_argb, 16), from_hex(hex_argb, 8),  from_hex(hex_argb, 0),  from_hex(hex_argb, 24)); }
@@ -243,8 +243,8 @@ namespace stf::gfx
 
     /**
      * @brief Linearly interpolate @ref rgba (clamped to the endpoint values)
-     * @param [in] a
-     * @param [in] b
+     * @param [in] lhs
+     * @param [in] rhs
      * @param [in] t
      * @return The interpolated @ref rgba
      */
@@ -255,8 +255,8 @@ namespace stf::gfx
 
     /**
      * @brief Interpolate smoothly between the @ref rgba endpoints
-     * @param [in] a
-     * @param [in] b
+     * @param [in] lhs
+     * @param [in] rhs
      * @param [in] t
      * @return The interpolated @ref rgba
      */
