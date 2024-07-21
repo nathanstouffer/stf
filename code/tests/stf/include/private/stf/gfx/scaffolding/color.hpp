@@ -20,15 +20,15 @@ namespace stf::gfx::scaffolding::color
         {
             ASSERT_EQ(test.lhs, test.rhs) << "failed positive assertion";
             ASSERT_FALSE(test.lhs != test.rhs) << "failed negative assertion";
-            ASSERT_TRUE(equ(test.lhs, test.rhs, rgba::num_t(0))) << "failed exact positive assertion";
-            ASSERT_FALSE(neq(test.lhs, test.rhs, rgba::num_t(0))) << "failed exact negative assertion";
+            ASSERT_TRUE(equ(test.lhs, test.rhs, 0)) << "failed exact positive assertion";
+            ASSERT_FALSE(neq(test.lhs, test.rhs, 0)) << "failed exact negative assertion";
         }
         else
         {
             ASSERT_NE(test.lhs, test.rhs) << "failed positive assertion";
             ASSERT_FALSE(test.lhs == test.rhs) << "failed negative assertion";
-            ASSERT_TRUE(neq(test.lhs, test.rhs, rgba::num_t(0))) << "failed exact positive assertion";
-            ASSERT_FALSE(equ(test.lhs, test.rhs, rgba::num_t(0))) << "failed exact negative assertion";
+            ASSERT_TRUE(neq(test.lhs, test.rhs, 0)) << "failed exact positive assertion";
+            ASSERT_FALSE(equ(test.lhs, test.rhs, 0)) << "failed exact negative assertion";
         }
     }
 

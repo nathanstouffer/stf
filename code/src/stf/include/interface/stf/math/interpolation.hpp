@@ -259,7 +259,6 @@ namespace stf::math
 
     /**
      * @brief Linearly interpolate vectors (clamped to the endpoint values)
-     * @note @p t is not clamped to [0, 1] (use @ref lerpstep if that is desired)
      * @tparam T Number type (eg float)
      * @param [in] a 
      * @param [in] b 
