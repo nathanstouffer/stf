@@ -8,6 +8,12 @@
 namespace stf::alg
 {
 
+    /**
+     * @brief Compute the median of a set of scalar values
+     * @tparam T Number type (eg float)
+     * @param values [in]
+     * @return The median
+     */
     template<typename T>
     T median(std::vector<T> const& values)
     {

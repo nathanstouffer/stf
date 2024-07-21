@@ -45,14 +45,14 @@ namespace stf::gfx
 
         /**
          * @brief Construct a gradient from a vector of stops
-         * @param stops [in]
-         * @param period [in] The period used when sampling the color -- 0 signifies that there is no period
+         * @param [in] stops
+         * @param [in] period The period used when sampling the color -- 0 signifies that there is no period
          */
         gradient(std::vector<stop> const& stops, float period = math::constants<time_t>::zero) : m_stops(stops), m_period(period) {}
 
         /**
          * @brief Sample a color at a specified time value @p x
-         * @param x [in]
+         * @param [in] x
          * @return The sampled @ref rgba value
          */
         rgba sample(time_t const x) const

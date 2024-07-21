@@ -56,10 +56,11 @@ namespace stf::math
 
         /**
          * @brief Construct from a N - 1 dimensional vector and a scalar
-         * @param [in] prefix 
-         * @param [in] suffix 
          * 
          * @p prefix is used to fill the first N - 1 dimensions and @p scalar is used as the value for the N dimension
+         * 
+         * @param [in] prefix 
+         * @param [in] suffix 
          */
         constexpr vec(vec<T, N - 1> const& prefix, T const suffix)
         {
