@@ -150,21 +150,21 @@ namespace stf::gfx
 
         /**
          * @brief Construct a @ref rgba from a 32-bit RGBA integer
-         * @param hex_rgba [in]
+         * @param [in] hex_rgba
          * @return Constructed @ref rgba value
          */
         static inline rgba from_hex_rgba(uint32_t hex_rgba) { return rgba(from_hex(hex_rgba, 24), from_hex(hex_rgba, 16), from_hex(hex_rgba, 8),  from_hex(hex_rgba, 0)); }
 
         /**
          * @brief Construct a @ref rgba from a 32-bit ABGR integer
-         * @param hex_abgr [in]
+         * @param [in] hex_abgr
          * @return Constructed @ref rgba value
          */
         static inline rgba from_hex_abgr(uint32_t hex_abgr) { return rgba(from_hex(hex_abgr, 0),  from_hex(hex_abgr, 8),  from_hex(hex_abgr, 16), from_hex(hex_abgr, 24)); }
 
         /**
          * @brief Construct a @ref rgba from a 32-bit ARGB integer
-         * @param hex_argb [in]
+         * @param [in] hex_argb
          * @return Constructed @ref rgba value
          */
         static inline rgba from_hex_argb(uint32_t hex_argb) { return rgba(from_hex(hex_argb, 16), from_hex(hex_argb, 8),  from_hex(hex_argb, 0),  from_hex(hex_argb, 24)); }
@@ -173,9 +173,9 @@ namespace stf::gfx
 
     /**
      * @brief Compute whether the distance between @p lhs and @p rhs is less than or equal to @p eps
-     * @param lhs [in]
-     * @param rhs [in]
-     * @param eps [in] The epsilon distance to use when computating approximate equality
+     * @param [in] lhs
+     * @param [in] rhs
+     * @param [in] eps The epsilon distance to use when computating approximate equality
      * @return Whether or not @p lhs and @p rhs are closer than @p eps
      */
     inline bool const equ(rgba const& lhs, rgba const& rhs, float eps)
@@ -267,8 +267,8 @@ namespace stf::gfx
 
     /**
      * @brief Alpha blend @p writing into @p current
-     * @param current [in]
-     * @param writing [in]
+     * @param [in] current
+     * @param [in] writing
      * @return The blended @ref rgba
      */
     inline rgba blend(rgba const& current, rgba const& writing)
