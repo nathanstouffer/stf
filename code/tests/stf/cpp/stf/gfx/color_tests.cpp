@@ -41,7 +41,7 @@ namespace stf::gfx
     {
         struct test_t
         {
-            rgba::num_t x;
+            float x;
             uint8_t expected;
         };
 
@@ -65,7 +65,7 @@ namespace stf::gfx
         {
             uint32_t hex;
             uint32_t shift;
-            rgba::num_t expected;
+            float expected;
         };
 
         std::vector<test_t> tests =

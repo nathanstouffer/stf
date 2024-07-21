@@ -682,7 +682,7 @@ namespace stf::math
     }
 
     /**
-     * @brief Compute whether the distance between lhs and rhs is strictly greater than eps
+     * @brief Compute whether the distance between @p lhs and @p rhs is strictly greater than eps
      * 
      * @tparam T Number type (eg float)
      * @tparam N Dimension
