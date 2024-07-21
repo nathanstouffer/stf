@@ -15,7 +15,7 @@ namespace stf
     /**
      * @brief Compute the complement of the boundary type
      * @param input [in]
-     * @return The complement of @ref input
+     * @return The complement of @p input
      */
     inline boundary_types complement(boundary_types input)
     {
