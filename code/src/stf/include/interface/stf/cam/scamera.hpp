@@ -10,7 +10,7 @@
 
 /**
  * @file scamera.hpp
- * @brief A file containing class that represents a simple camera defined by a point in R^3 and a look direction in spherical coordinates
+ * @brief A file containing a class that represents a simple camera defined by a point in R^3 and a look direction in spherical coordinates
  */
 
 namespace stf::cam
