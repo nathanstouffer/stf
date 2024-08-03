@@ -7,6 +7,11 @@
 #include "stf/math/constants.hpp"
 #include "stf/math/interval.hpp"
 
+/**
+ * @file interval_tree.hpp
+ * @brief A file containing a class that implements an interval tree
+ */
+
 namespace stf::spatial
 {
 
