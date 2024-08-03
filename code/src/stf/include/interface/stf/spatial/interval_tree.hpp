@@ -10,22 +10,55 @@
 namespace stf::spatial
 {
 
-	// TODO make this class copyable
-	// TODO allocate nodes in chunks instead of one-by-one
+	/**
+	 * @brief A class that stores key-value pairs of intervals and values for querying.
+	 * 
+	 * Given a query number x, the intersecting intervals can be computed in O(log(n) + k) time where n is 
+	 * the number of intervals and k is the number of intersecting intervals. Duplicate keys are supported,
+	 * they will just be returned separately with their associated values.
+	 * 
+	 * @todo Make this class copyable
+	 * @todo Allocate nodes in chunks instead of one-by-one
+	 * @tparam T Number type (eg float)
+	 * @tparam V The value type stored in the tree
+	 */
 	template<typename T, typename V>
 	class interval_tree
 	{
 	public:
 
+		/**
+		 * @brief Type alias for an interval
+		 */
 		using interval_t = math::interval<T>;
 
+		/**
+		 * @brief A struct to store entries in the tree
+		 */
 		struct entry_t
 		{
+			/**
+			 * @brief The interval associated with this entry
+			 */
 			interval_t interval;
+
+			/**
+			 * @brief The value associated with this entry
+			 */
 			V value;
 
+			/**
+			 * @brief Construct an entry
+			 * @param [in] _interval 
+			 * @param [in] _value 
+			 */
 			entry_t(interval_t const& _interval, V const& _value) : interval(_interval), value(_value) {}
 
+			/**
+			 * @brief Compute whether or not two entries are equal
+			 * @param [in] rhs 
+			 * @return Whether or not the two entries are equal
+			 */
 			inline bool operator==(entry_t const& rhs) const { return interval == rhs.interval && value == rhs.value; }
 
 		};
@@ -76,10 +109,62 @@ namespace stf::spatial
 
 		};
 
-	private:
+	public:
 
+		/**
+		 * @brief An iterator pointing to an underlying entry that also knows how to jump to the next entry that contains a query point
+		 */
 		struct query_iterator
 		{
+		public:
+
+			/**
+			 * @brief Compute whether or not both iterators are the end
+			 * @param [in] rhs 
+			 * @note Unfortunately, we have to overload the appropriate operators for range-based for loops to work. This is NOT true equality
+			 * @return Whether or not both iterators are the end
+			 */
+			inline bool operator==(query_iterator const& rhs) const { return m_position.is_end() && rhs.m_position.is_end(); }
+
+			/**
+			 * @brief Compute whether or not both iterators are not the end
+			 * @param [in] rhs
+			 * @note Unfortunately, we have to overload the appropriate operators for range-based for loops to work. This is NOT true inequality
+			 * @return Whether or not either iterator is not the end
+			 */
+			inline bool operator!=(query_iterator const& rhs) const { return !(*this == rhs); }
+
+			/**
+			 * @brief Dereference the iterator
+			 * @return A const reference to underlying entry
+			 */
+			inline entry_t const& operator*() { return **m_position.it; }
+
+			/**
+			 * @brief Pre-increment the iterator
+			 * @return A reference to @p this after incrementing
+			 */
+			inline query_iterator& operator++()
+			{
+				m_position.advance(m_query);	// advance once immediately
+				slide();						// slide forward until we hit something that matches the query
+				return *this;
+			}
+
+			/**
+			 * @brief Post-increment the iterator
+			 * @return An incremented copy of @p this
+			 */
+			inline query_iterator operator++(int)
+			{
+				query_iterator ret = *this;
+				++(*this);
+				return ret;
+			}
+
+		private:
+
+			friend class interval_tree;
 
 			struct position_t
 			{
@@ -175,7 +260,7 @@ namespace stf::spatial
 
 			};
 
-			// iterator forward until one of the following conditions is true
+			// iterate forward until one of the following conditions is true
 			//      1. we are at the end
 			//      2. the position points to an interval that contains the query point
 			void slide()
@@ -191,26 +276,6 @@ namespace stf::spatial
 				slide();
 			}
 
-			// unfortunately, we have to overload operator!= for range-based for loops to work. but this is NOT true equality
-			inline bool operator==(query_iterator const& rhs) const { return m_position.is_end() && rhs.m_position.is_end(); }
-			inline bool operator!=(query_iterator const& rhs) const { return !(*this == rhs); }
-
-			inline entry_t const& operator*() { return **m_position.it; }
-
-			inline query_iterator& operator++()
-			{
-				m_position.advance(m_query);	// advance once immediately
-				slide();						// slide forward until we hit something that matches the query
-				return *this;
-			}
-
-			inline query_iterator operator++(int)
-			{
-				query_iterator ret = *this;
-				++(*this);
-				return ret;
-			}
-
 		private:
 
 			position_t m_position;
@@ -218,14 +283,29 @@ namespace stf::spatial
 
 		};
 
-	public:
-
+		/**
+		 * @brief A range returned from a query 
+		 */
 		struct query_range
 		{
 			
+			/**
+			 * @brief Construct a from a paair of iterators
+			 * @param [in] begin 
+			 * @param [in] end 
+			 */
 			query_range(query_iterator begin, query_iterator end) : m_begin(begin), m_end(end) {}
 
+			/**
+			 * @brief Return the beginning of the range
+			 * @return The beginning of the range
+			 */
 			inline query_iterator begin() const { return m_begin; }
+
+			/**
+			 * @brief Return the end of the range
+			 * @return The end of the range
+			 */
 			inline query_iterator end() const { return m_end; }
 
 		private:
@@ -237,8 +317,25 @@ namespace stf::spatial
 
 	public:
 
+		/**
+		 * @brief Construct an interval tree from a set of entries
+		 * @param [in] entries The entries stored in the tree
+		 */
 		explicit interval_tree(std::vector<entry_t>&& entries) : m_entries(std::move(entries)), m_root(interval_tree::construct(factory_args(m_entries))) {}
 
+		/// @cond DELETED
+		/**
+		 * @brief Delete copy constructor and assignment operator
+		 */
+		interval_tree(interval_tree<T, V> const&) = delete;
+		interval_tree& operator=(interval_tree<T, V> const&) = delete;
+		/// @endcond
+
+		/**
+		 * @brief Find a range of entries whose intervals contain a query point
+		 * @param [in] query The query value
+		 * @return The range of entries that contain @p query
+		 */
 		query_range find(T const query) const
 		{
 			using position_t = typename query_iterator::position_t;
