@@ -7,7 +7,7 @@
 
 /**
  * @file statistics.hpp
- * @brief A file containing functions that compute relevent statistics
+ * @brief A file containing functions that compute statistics
  */
 
 namespace stf::alg
