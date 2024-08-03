@@ -8,18 +8,33 @@
 #include "stf/math/transform.hpp"
 #include "stf/math/vector.hpp"
 
+/**
+ * @file scamera.hpp
+ * @brief A file containing a class that represents a simple camera defined by a point in R^3 and a look direction in spherical coordinates
+ */
+
 namespace stf::cam
 {
 
-    // Struct to represent a simple camera -- one where the right vector is always in the plane normal
-    // to (0, 0, 1). The look direction is represented by spherical coordinates with the eye as the origin
+    /**
+     * @brief Struct to represent a simple camera -- one where the right vector is always in the plane normal
+     * to (0, 0, 1). The look direction is represented by spherical coordinates with the eye as the origin
+     * @tparam T Number type (eg float)
+     * @note All angles are in radians
+     */
     template<typename T>
     struct scamera final
     {
     public:
 
-        // type aliases to reduce verbosity
+        /**
+         * @brief Type alias for a vector
+         */
         using vec_t = math::vec3<T>;
+
+        /**
+         * @brief Type alias for a matrix
+         */
         using mtx_t = math::mtx4<T>;
 
     public:
@@ -35,15 +50,44 @@ namespace stf::cam
 
     public:
 
+        /**
+         * @brief The position of the camera
+         */
         vec_t eye;
+
+        /**
+         * @brief The angle of the look direction in the xy-plane
+         */
         T theta;
+
+        /**
+         * @brief The angle of the look direction off the z-axis
+         */
         T phi;
+
+        /**
+         * @brief The near plane
+         */
         T near;
+
+        /**
+         * @brief The far plane
+         */
         T far;
+
+        /**
+         * @brief The aspect ratio (w / h)
+         */
         T aspect;
-        T fov;  // in y
+
+        /**
+         * @brief The field of view (in y)
+         */
+        T fov;
         
-        // fully qualified constructor
+        /**
+         * @brief Fully qualified scamera constructor
+         */
         scamera(vec_t const& _eye, T const _theta, T const _phi, T const _near, T const _far, T const _aspect, T const _fov) :
             eye(_eye), theta(_theta), phi(_phi), near(_near), far(_far), aspect(_aspect), fov(_fov) {}
 
@@ -57,21 +101,43 @@ namespace stf::cam
         scamera(T const _theta) : scamera(c_default_eye, _theta) {}
         scamera(T const _theta, T const _phi) : scamera(c_default_eye, _theta, _phi) {}
 
+        /**
+         * @brief Compute the look direction of the camera
+         * @return The look direction
+         */
         vec_t look() const { return math::unit_vector(theta, phi); }
+
+        /**
+         * @brief Compute the up direction of the camera
+         * @return The up direction
+         */
         vec_t up() const { return math::unit_vector(theta, phi - math::constants<T>::half_pi); }
+
+        /**
+         * @brief Compute the right direction of the camera
+         * @return The right direction
+         */
         vec_t right() const { return math::cross(look(), up()); }
 
-        // TODO write these matrix methods
+        // @todo write these matrix methods
         // mtx_t view() const;
         // mtx_t proj() const;
         // mtx_t view_proj() const;
-
         // mtx_t inv_view() const;
         // mtx_t inv_proj() const;
         // mtx_t inv_view_proj() const;
 
     };
 
+    /**
+     * @brief Compute whether the distance between @p lhs and @p rhs is less than or equal to @p eps
+     * @tparam T Number type (eg float)
+     * @tparam N Dimension
+     * @param [in] lhs
+     * @param [in] rhs
+     * @param [in] eps The epsilon distance to use when computating approximate equality
+     * @return Whether or not @p lhs and @p rhs are closer than @p eps
+     */
     template<typename T>
     inline bool const equ(scamera<T> const& lhs, scamera<T> const& rhs, T eps)
     {
@@ -84,28 +150,62 @@ namespace stf::cam
                 && math::equ(lhs.fov, rhs.fov, eps);
     }
 
+    /**
+     * @brief Compute whether the distance between @p lhs and @p rhs is strictly greater than eps
+     * @tparam T Number type (eg float)
+     * @tparam N Dimension
+     * @param [in] lhs
+     * @param [in] rhs
+     * @param [in] eps The epsilon distance to use when computating approximate equality
+     * @return Whether or not @p lhs and @p rhs are further apart than @p eps
+     */
     template<typename T>
     inline bool const neq(scamera<T> const& lhs, scamera<T> const& rhs, T eps)
     {
         return !equ(lhs, rhs, eps);
     }
 
+    /**
+     * @brief Compute whether @p lhs is approximately equal to @p rhs (uses constants<T>::tol as epsilon)
+     * @tparam T Number type (eg float)
+     * @tparam N Dimension
+     * @param [in] lhs
+     * @param [in] rhs
+     * @return Whether or not @p lhs and @p rhs are approximately equal
+     */
     template<typename T>
     inline bool const operator==(scamera<T> const& lhs, scamera<T> const& rhs)
     {
         return equ(lhs, rhs, math::constants<T>::tol);
     }
 
+    /**
+     * @brief Compute whether @p lhs is approximately not equal to @p rhs (uses constants<T>::tol as epsilon)
+     * @tparam T Number type (eg float)
+     * @tparam N Dimension
+     * @param [in] lhs
+     * @param [in] rhs
+     * @return Whether or not @p lhs and @p rhs are approximately not equal
+     */
     template<typename T>
     inline bool const operator!=(scamera<T> const& lhs, scamera<T> const& rhs)
     {
         return !(lhs == rhs);
     }
 
+    /**
+     * @brief Linearly interpolate scameras
+     * @note @p t is not clamped to [0, 1] (use @ref lerpstep if that is desired)
+     * @tparam T Number type (eg float)
+     * @param [in] lhs
+     * @param [in] rhs
+     * @param [in] t
+     * @return The interpolated scamera
+     */
     template<typename T>
-    inline cam::scamera<T> lerp(cam::scamera<T> const& lhs, cam::scamera<T> const& rhs, T const t)
+    inline scamera<T> lerp(scamera<T> const& lhs, scamera<T> const& rhs, T const t)
     {
-        cam::scamera<T> result;
+        scamera<T> result;
         result.eye    = math::lerp(lhs.eye, rhs.eye, t);
         result.theta  = math::lerp(lhs.theta, math::closest_equiv_angle(lhs.theta, rhs.theta), t);
         result.phi    = math::lerp(lhs.phi, math::closest_equiv_angle(lhs.phi, rhs.phi), t);
@@ -116,18 +216,44 @@ namespace stf::cam
         return result;
     }
 
+    /**
+     * @brief Linearly interpolate scameras (clamped to the endpoint values)
+     * @tparam T Number type (eg float)
+     * @param [in] lhs
+     * @param [in] rhs
+     * @param [in] t
+     * @return The interpolated scamera
+     */
     template<typename T>
-    inline cam::scamera<T> lerpstep(cam::scamera<T> const& lhs, cam::scamera<T> const& rhs, T const t)
+    inline scamera<T> lerpstep(scamera<T> const& lhs, scamera<T> const& rhs, T const t)
     {
-        return lerp(lhs, rhs, clamp_time(t));
+        return lerp(lhs, rhs, math::clamp_time(t));
     }
 
+    /**
+     * @brief Interpolate smoothly between the scamera endpoints
+     * @tparam T Number type (eg float)
+     * @param [in] lhs
+     * @param [in] rhs
+     * @param [in] t
+     * @return The interpolated scamera
+     */
     template<typename T>
-    inline cam::scamera<T> smoothstep(cam::scamera<T> const& lhs, cam::scamera<T> const& rhs, T const t)
+    inline scamera<T> smoothstep(scamera<T> const& lhs, scamera<T> const& rhs, T const t)
     {
-        return lerp(lhs, rhs, smooth_time(t));
+        return lerp(lhs, rhs, math::smooth_time(t));
     }
 
+    /**
+     * @brief Orbits @p camera around @p focus by @p delta_phi and @p delta_theta
+     * @tparam T Number type (eg float)
+     * @param [in] camera The camera to be orbited
+     * @param [in] focus Center point of the orbit
+     * @param [in] delta_phi
+     * @param [in] delta_theta
+     * @note Angles @p delta_phi and @p delta_theta are spherical coordinates measured with @p focus as the origin
+     * @return The orbited scamera
+     */
     template<typename T>
     inline scamera<T> orbit(scamera<T> const& camera, math::vec3<T> const& focus, T const delta_phi, T const delta_theta)
     {
@@ -143,6 +269,13 @@ namespace stf::cam
         return result;
     }
 
+    /**
+     * @brief Write the sccamera @p rhs to the std::ostream @p s
+     * @tparam T Number type (eg float)
+     * @param [in,out] s
+     * @param [in] rhs
+     * @return A reference to @p s
+     */
     template <typename T>
     std::ostream& operator<<(std::ostream& s, scamera<T> const& rhs)
     {

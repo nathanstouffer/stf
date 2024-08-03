@@ -5,22 +5,50 @@
 #include "stf/math/constants.hpp"
 #include "stf/math/vector.hpp"
 
+/**
+ * @file frustum.hpp
+ * @brief A file containing a class that represents a frustumed pyramid in R^3
+ */
+
 namespace stf::cam
 {
 
+    /**
+     * @brief Struct to represent a frustumed pyramid in R^3
+     * @tparam T Number type (eg float)
+     */
     template<typename T>
     class frustum final
     {
     public:
 
+        /**
+         * @brief Type alias for a vector
+         */
         using vec_t = math::vec3<T>;
+
+        /**
+         * @brief Type alias for an aabb
+         */
         using aabb_t = geom::aabb3<T>;
+
+        /**
+         * @brief Type alias for a plane
+         */
         using plane_t = geom::plane<T>;
 
     public:
 
+        /**
+         * @brief Construct a frustum from a scamera
+         */
         explicit frustum(scamera<T> const& camera) : frustum(vertices(camera)) {}
 
+        /**
+         * @brief Compute whether or not a point is contained in the frustum
+         * @param [in] point The query point
+         * @return Whethor or not @p point is inside in @p this
+         */
         bool contains(vec_t const& point) const
         {
             // check if any plane does not contain the point
@@ -31,6 +59,11 @@ namespace stf::cam
             return true;    // fallthrough to return true
         }
 
+        /**
+         * @brief Compute whether or not an aabb is contained in the frustum
+         * @param [in] aabb The query aabb
+         * @return Whether or not @p aabb is contained in @p this
+         */
         bool contains(aabb_t const& aabb) const
         {
             for (size_t i = 0; i < c_num_planes; ++i)
@@ -44,7 +77,12 @@ namespace stf::cam
             return true;    // fallthrough to return true
         }
 
-        // NOTE: this algorithm identifies false positives (returns true for some frustum/aabb that don't actually intersect)
+        /**
+         * @brief Compute whether or not an aabb intersects a frustum
+         * @param [in] aabb The query aabb
+         * @note This algorithm identifies false positives (returns true for some frustum/aabb that don't actually intersect)
+         * @return Whether or not @p aabb intersect @p this
+         */
         bool intersects_fast(aabb_t const& aabb) const
         {
             for (size_t i = 0; i < c_num_planes; ++i)
