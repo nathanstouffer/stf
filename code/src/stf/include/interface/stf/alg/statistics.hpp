@@ -5,6 +5,11 @@
 
 #include "stf/math/constants.hpp"
 
+/**
+ * @file statistics.hpp
+ * @brief A file containing functions that compute relevent statistics
+ */
+
 namespace stf::alg
 {
 
