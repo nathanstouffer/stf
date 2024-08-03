@@ -328,14 +328,6 @@ namespace stf::spatial
 		 */
 		explicit interval_tree(std::vector<entry_t>&& entries) : m_entries(std::move(entries)), m_root(interval_tree::construct(factory_args(m_entries))) {}
 
-		/// @cond DELETED
-		/**
-		 * @brief Delete copy constructor and assignment operator
-		 */
-		interval_tree(interval_tree<T, V> const&) = delete;
-		interval_tree& operator=(interval_tree<T, V> const&) = delete;
-		/// @endcond
-
 		/**
 		 * @brief Find a range of entries whose intervals contain a query point
 		 * @param [in] query The query value
