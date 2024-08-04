@@ -22,16 +22,17 @@ namespace stf::alg
      * @return A std::vector of the tessellated vertices
      */
     template<typename T>
-    std::vector<math::vec2<T>> tessellate_via_length(geom::polyline2<T> const& polyline, T const max_len)
+    std::vector<math::vec2<T>> tessellate_via_length(geom::polyline2<T> const& polyline, T const max_len, bool const loop)
     {
         std::vector<math::vec2<T>> vertices;
         if (polyline.is_empty()) { return vertices; }
         
         vertices.reserve(static_cast<size_t>(polyline.length() / max_len));
-        vertices.push_back(polyline.vertices().front());    // immediately push the first vertex
         for (size_t i = 0; i + 1 < polyline.size(); ++i)    // iterate over all polyline edges, adding vertices
         {
             geom::segment2<T> edge = polyline.edge(i);
+            vertices.push_back(edge.a);    // immediately push the first vertex in the segment
+
             T const length = edge.length();
             if (length > max_len)    // if necessary, add tessellated vertices
             {
@@ -42,8 +43,15 @@ namespace stf::alg
                     vertices.push_back(edge.interpolate(static_cast<T>(j) * delta_t));
                 }
             }
+        }
 
-            vertices.push_back(edge.b); // always add the end of the segment
+        if (loop)
+        {
+
+        }
+        else
+        {
+            vertices.push_back(polyline.vertices().back());
         }
 
         return vertices;
