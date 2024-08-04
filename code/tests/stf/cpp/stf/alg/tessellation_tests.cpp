@@ -13,8 +13,8 @@ namespace stf::alg
     {
         std::vector<scaffolding::tessellation::polyline_via_length<float>> tests =
         {
-            { stff::polyline2({}), 0.f, false, {} },
-            { stff::polyline2({}), 1.f, false, {} },
+            { stff::polyline2(std::vector<stff::vec2>{}), 0.f, false, {} },
+            { stff::polyline2(std::vector<stff::vec2>{}), 1.f, false, {} },
             { stff::polyline2({ stff::vec2(0), stff::vec2(1,0) }), 1.f, false, { stff::vec2(0), stff::vec2(1,0) } },
             { stff::polyline2({ stff::vec2(0), stff::vec2(1,0) }), 0.5f, false, { stff::vec2(0), stff::vec2(0.5,0), stff::vec2(1,0) } },
             { stff::polyline2({ stff::vec2(0), stff::vec2(0.8,0) }), 0.5f, false, { stff::vec2(0), stff::vec2(0.4,0), stff::vec2(0.8,0) } },
