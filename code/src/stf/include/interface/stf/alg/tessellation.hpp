@@ -14,8 +14,16 @@
 namespace stf::alg
 {
 
+    /**
+     * @brief Tessellate a line segment by adding vertices so that each portion is longer than a specified length
+     * @tparam T Number type (eg float)
+     * @param [in,out] vertices A reference to the existing vertices -- this is written to
+     * @param [in] segment The segment that is to be tessellated
+     * @param [in] max_len The maximum segment length allowed in the returned sequence of vertices
+     * @param [in] add_end Whether or not the end of the segment should be added in the tessellation
+     */
     template<typename T>
-    void tessellate_via_length(std::vector<math::vec2<T>>& vertices, geom::segment2<T> const& segment, T const max_len)
+    void tessellate_via_length(std::vector<math::vec2<T>>& vertices, geom::segment2<T> const& segment, T const max_len, bool const add_end)
     {
         vertices.push_back(segment.a);    // immediately push the first vertex in the segment
         T const length = segment.length();
@@ -28,10 +36,14 @@ namespace stf::alg
                 vertices.push_back(segment.interpolate(static_cast<T>(j) * delta_t));
             }
         }
+        if (add_end)
+        {
+            vertices.push_back(segment.b);
+        }
     }
 
     /**
-     * @brief Tessellate a polyline adding vertices so that no segment is longer than a specified length
+     * @brief Tessellate a polyline by adding vertices so that no segment is longer than a specified length
      * @tparam T Number type (eg float)
      * @param [in] polyline The polyline to be tessellated
      * @param [in] max_len The maximum segment length allowed in the returned sequence of vertices
@@ -48,13 +60,13 @@ namespace stf::alg
         for (size_t i = 0; i + 1 < polyline.size(); ++i)    // iterate over all polyline edges, adding vertices
         {
             geom::segment2<T> edge = polyline.edge(i);
-            tessellate_via_length(vertices, edge, max_len);
+            tessellate_via_length(vertices, edge, max_len, false);
         }
 
         if (loop)
         {
             geom::segment2<T> edge(polyline.vertices().back(), polyline.vertices().front());
-            tessellate_via_length(vertices, edge, max_len);
+            tessellate_via_length(vertices, edge, max_len, false);
         }
         else
         {
