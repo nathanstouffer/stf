@@ -69,7 +69,7 @@ namespace stf::geom
         inline T side(vec_t const& p) const { return signed_distance(p); }
 
         /**
-         * @brief Compute whether a @ref hyperplane divides an @ref aabb
+         * @brief Compute whether a @ref hyperplane divides an aabb
          * @param [in] aabb 
          * @return Whether or not @p this divides @p aabb
          */

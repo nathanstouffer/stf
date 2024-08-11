@@ -194,8 +194,10 @@ namespace stf::math
          */
         union
         {
+            /// @cond DELETED
             T values[2];
             struct { T x, y; };
+            /// @endcond
         };
 
         /**
@@ -332,9 +334,11 @@ namespace stf::math
          */
         union
         {
+            /// @cond DELETED
             T values[3];
             struct { T x, y, z; };
             struct { vec<T, 2> xy; };
+            /// @endcond
         };
 
         /**
@@ -479,10 +483,12 @@ namespace stf::math
          */
         union
         {
+            /// @cond DELETED
             T values[4];
             struct { T x, y, z, w; };
             struct { vec<T, 2> xy, zw; };
             struct { vec<T, 3> xyz; };
+            /// @endcond
         };
 
         /**
