@@ -21,6 +21,9 @@
  * @brief A file containing type instantiations to reduce verbosity for users of stf
  */
 
+/**
+ * @brief Type alias for floats on the gpu
+ */
 using gpu_float_t = float;
 
 namespace stf
@@ -143,12 +146,29 @@ namespace stf
 
     };
 
+    /**
+     * @brief Type alias to instantiate structs for gpu floats
+     */
     using gpu = instantiate_types<gpu_float_t>;
 
 } // stf
 
-// default instantiated types for projects that don't have to worry about precision
+/**
+ * @brief Type alias to instantiate structs for floats
+ */
 using stff = stf::instantiate_types<float>;
+
+/**
+ * @brief Type alias to instantiate structs for doubles
+ */
 using stfd = stf::instantiate_types<double>;
+
+/**
+ * @brief Type alias to instantiate structs for ints
+ */
 using stfi = stf::instantiate_types<int>;
+
+/**
+ * @brief Type alias to instantiate structs for unsigned integers
+ */
 using stfu = stf::instantiate_types<uint32_t>;
