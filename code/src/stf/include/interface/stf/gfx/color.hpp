@@ -80,13 +80,13 @@ namespace stf::gfx
         rgba(float const _r, float const _g, float const _b, float const _a) : r(_r), g(_g), b(_b), a(_a) {}
 
         /**
-         * @brief Construct from a @ref vec3 -- used to initialize r, g, and b
+         * @brief Construct from a  vec3 -- used to initialize r, g, and b
          * @param [in] vec 
          */
         explicit rgba(math::vec3<float> vec) : rgba(math::vec4<float>(vec, 1)) {}
 
         /**
-         * @brief Cosntruct from a @ref vec4 -- used to initialize each component
+         * @brief Cosntruct from a  vec4 -- used to initialize each component
          * @param vec 
          */
         explicit rgba(math::vec4<float> vec) : rgba(vec.x, vec.y, vec.z, vec.w) {}
@@ -120,13 +120,13 @@ namespace stf::gfx
     public:
 
         /**
-         * @brief Compute the color as a @ref vec4
-         * @return The color as a @ref vec4
+         * @brief Compute the color as a vec4
+         * @return The color as a vec4
          */
         inline math::vec4<float> as_vec() const { return math::vec4<float>(r, g, b, a); }
 
         /**
-         * @brief Conversion operator to a @ref vec4
+         * @brief Conversion operator to a vec4
          */
         inline explicit operator math::vec4<float>() const { return as_vec(); }
 

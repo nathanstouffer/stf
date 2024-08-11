@@ -39,14 +39,15 @@ namespace stf::cam
 
     public:
 
+        /// @cond DELETED
         static vec_t constexpr c_default_eye = vec_t(0);
-
         static T constexpr c_default_theta = math::constants<T>::half_pi;
         static T constexpr c_default_phi = math::constants<T>::pi;
         static T constexpr c_default_near = T(0.1);
         static T constexpr c_default_far = T(1000);
         static T constexpr c_default_fov = T(45) * math::constants<T>::pi / T(180);
         static T constexpr c_default_aspect = T(16) / T(9);
+        /// @endcond
 
     public:
 
