@@ -17,7 +17,6 @@ namespace stf::math
     
     /**
      * @brief A class representing elements of R^n
-     * 
      * @tparam T Number type (eg float)
      * @tparam N Dimension
      * 
@@ -182,7 +181,6 @@ namespace stf::math
 
     /**
      * @brief Specialization of @ref vec for N=2
-     * 
      * @tparam T Number type (eg float)
      */
     template<typename T>
@@ -196,8 +194,10 @@ namespace stf::math
          */
         union
         {
+            /// @cond DELETED
             T values[2];
             struct { T x, y; };
+            /// @endcond
         };
 
         /**
@@ -323,7 +323,6 @@ namespace stf::math
 
     /**
      * @brief Specialization of @ref vec for N=3
-     * 
      * @tparam T Number type (eg float)
      */
     template<typename T>
@@ -335,9 +334,11 @@ namespace stf::math
          */
         union
         {
+            /// @cond DELETED
             T values[3];
             struct { T x, y, z; };
             struct { vec<T, 2> xy; };
+            /// @endcond
         };
 
         /**
@@ -471,7 +472,6 @@ namespace stf::math
 
     /**
      * @brief Specialization of @ref vec for N=4
-     * 
      * @tparam T Number type (eg float)
      */
     template<typename T>
@@ -483,10 +483,12 @@ namespace stf::math
          */
         union
         {
+            /// @cond DELETED
             T values[4];
             struct { T x, y, z, w; };
             struct { vec<T, 2> xy, zw; };
             struct { vec<T, 3> xyz; };
+            /// @endcond
         };
 
         /**
@@ -653,7 +655,6 @@ namespace stf::math
 
     /** 
      * @brief Compute the distance between @p lhs and @p rhs
-     *
      * @tparam T Number type (eg float)
      * @tparam N Dimension
      * @param [in] lhs
@@ -668,7 +669,6 @@ namespace stf::math
 
     /** 
      * @brief Compute whether the distance between @p lhs and @p rhs is less than or equal to @p eps
-     * 
      * @tparam T Number type (eg float)
      * @tparam N Dimension
      * @param [in] lhs
@@ -684,7 +684,6 @@ namespace stf::math
 
     /**
      * @brief Compute whether the distance between @p lhs and @p rhs is strictly greater than eps
-     * 
      * @tparam T Number type (eg float)
      * @tparam N Dimension
      * @param [in] lhs
@@ -700,7 +699,6 @@ namespace stf::math
 
     /** 
      * @brief Compute whether @p lhs is approximately equal to @p rhs (uses constants<T>::tol as epsilon)
-     * 
      * @tparam T Number type (eg float)
      * @tparam N Dimension
      * @param [in] lhs
@@ -715,7 +713,6 @@ namespace stf::math
 
     /**
      * @brief Compute whether @p lhs is approximately not equal to @p rhs (uses constants<T>::tol as epsilon)
-     * 
      * @tparam T Number type (eg float)
      * @tparam N Dimension
      * @param [in] lhs
@@ -730,7 +727,6 @@ namespace stf::math
 
     /**
      * @brief Compute the negative of @p lhs
-     * 
      * @tparam T Number type (eg float)
      * @tparam N Dimension
      * @param [in] lhs
@@ -749,7 +745,6 @@ namespace stf::math
 
     /**
      * @brief Compute the sum of @p lhs and @p rhs
-     * 
      * @tparam T Number type (eg float)
      * @tparam N Dimension
      * @param [in] lhs
@@ -764,7 +759,6 @@ namespace stf::math
 
     /**
      * @brief Compute the difference of @p lhs and @p rhs
-     *
      * @tparam T Number type (eg float)
      * @tparam N Dimension
      * @param [in] lhs
@@ -779,7 +773,6 @@ namespace stf::math
 
     /**
      * @brief Scale @p lhs by @p scalar
-     *
      * @tparam T Number type (eg float)
      * @tparam N Dimension
      * @param [in] lhs
@@ -794,7 +787,6 @@ namespace stf::math
 
     /**
      * @brief Scale @p rhs by by @p scalar
-     * 
      * @tparam T Number type (eg float)
      * @tparam N Dimension
      * @param [in] scalar
@@ -809,7 +801,6 @@ namespace stf::math
 
     /**
      * @brief Compute the dot product of @p lhs and @p rhs
-     * 
      * @tparam T Number type (eg float)
      * @tparam N Dimension
      * @param [in] lhs
@@ -842,7 +833,6 @@ namespace stf::math
 
     /**
      * @brief Compute the 3D cross product of @p lhs and @p rhs
-     *
      * @tparam T Number type (eg float)
      * @tparam N Dimension
      * @param [in] lhs
@@ -905,7 +895,6 @@ namespace stf::math
 
     /** 
      * @brief Write the vector @p rhs to the std::ostream @p s
-     * 
      * @tparam T Number type (eg float)
      * @tparam N Dimension
      * @param [in,out] s
@@ -930,7 +919,6 @@ namespace std
 {
     /**
      * @brief Templated class that can compute the has of a vector
-     * 
      * @tparam T Number type (eg float)
      * @tparam N Dimension
      */
@@ -940,7 +928,6 @@ namespace std
         
         /**
          * @brief Compute the hash of a vector
-         * 
          * @param [in] lhs 
          * @return The hash of @p lhs
          */

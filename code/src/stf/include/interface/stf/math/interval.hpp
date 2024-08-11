@@ -42,7 +42,7 @@ namespace stf::math
         interval(T const _a, T const _b) : a(_a), b(_b) {}
 
         /**
-         * @brief Compute whether two @ref intervals are equal
+         * @brief Compute whether two intervals are equal
          * @param [in] rhs 
          * @return Returns whether @p this equals @p rhs
          */
@@ -79,7 +79,7 @@ namespace stf::math
         inline bool contains(interval const& rhs) const { return a <= rhs.a && rhs.b <= b; }
 
         /**
-         * @brief Compute if two @ref intervals intersect
+         * @brief Compute if two intervals intersect
          * @param [in] rhs 
          * @return Whether or not @p this and @p rhs intersect
          */

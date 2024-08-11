@@ -39,14 +39,15 @@ namespace stf::cam
 
     public:
 
+        /// @cond DELETED
         static vec_t constexpr c_default_eye = vec_t(0);
-
         static T constexpr c_default_theta = math::constants<T>::half_pi;
         static T constexpr c_default_phi = math::constants<T>::pi;
         static T constexpr c_default_near = T(0.1);
         static T constexpr c_default_far = T(1000);
         static T constexpr c_default_fov = T(45) * math::constants<T>::pi / T(180);
         static T constexpr c_default_aspect = T(16) / T(9);
+        /// @endcond
 
     public:
 
@@ -91,14 +92,64 @@ namespace stf::cam
         scamera(vec_t const& _eye, T const _theta, T const _phi, T const _near, T const _far, T const _aspect, T const _fov) :
             eye(_eye), theta(_theta), phi(_phi), near(_near), far(_far), aspect(_aspect), fov(_fov) {}
 
-        // call through constrctors
+        /**
+         * @brief Default constructor
+         */
         scamera() : scamera(c_default_eye) {}
+
+        /**
+         * @brief Construct from a position
+         * @param [in] _eye 
+         */
         scamera(vec_t const& _eye) : scamera(_eye, c_default_theta) {}
+
+        /**
+         * @brief Construct from a position and theta
+         * @param [in] _eye 
+         * @param [in] _theta 
+         */
         scamera(vec_t const& _eye, T const _theta) : scamera(_eye, _theta, c_default_phi) {}
+
+        /**
+         * @brief Construct from a position and orientation
+         * @param [in] _eye 
+         * @param [in] _theta 
+         * @param [in] _phi 
+         */
         scamera(vec_t const& _eye, T const _theta, T const _phi) : scamera(_eye, _theta, _phi, c_default_near, c_default_far) {}
+
+        /**
+         * @brief Construct from a position, orientation, and near/far plane
+         * @param [in] _eye 
+         * @param [in] _theta 
+         * @param [in] _phi 
+         * @param [in] _near 
+         * @param [in] _far 
+         */
         scamera(vec_t const& _eye, T const _theta, T const _phi, T const _near, T const _far) : scamera(_eye, _theta, _phi, _near, _far, c_default_aspect) {}
+
+        /**
+         * @brief Construct from a position, orientation, near/far plane, and aspect ratio
+         * @param [in] _eye 
+         * @param [in] _theta 
+         * @param [in] _phi 
+         * @param [in] _near 
+         * @param [in] _far 
+         * @param [in] _aspect 
+         */
         scamera(vec_t const& _eye, T const _theta, T const _phi, T const _near, T const _far, T const _aspect) : scamera(_eye, _theta, _phi, _near, _far, _aspect, c_default_fov) {}
+        
+        /**
+         * @brief Construct from a theta
+         * @param [in] _theta 
+         */
         scamera(T const _theta) : scamera(c_default_eye, _theta) {}
+        
+        /**
+         * @brief Construct from an orientation
+         * @param [in] _theta 
+         * @param [in] _phi 
+         */
         scamera(T const _theta, T const _phi) : scamera(c_default_eye, _theta, _phi) {}
 
         /**
