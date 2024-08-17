@@ -17,6 +17,7 @@ namespace stf::cam
         std::vector<scaffolding::frustum::intersects_fast<float>> tests =
         {
             { frustum, stff::aabb3(stff::vec3(-1, 1, -1), stff::vec3(1, 1, 1)), true, false },
+            // TODO (stouff) add more tests
         };
 
         for (scaffolding::frustum::intersects_fast<float> const& test : tests) { scaffolding::frustum::verify(test); }
