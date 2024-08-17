@@ -31,6 +31,11 @@ namespace stf::geom
     public:
 
         /**
+         * @brief Default constructor for a hyperplane
+         */
+        hyperplane() : hyperplane(vec_t(0), vec_t(math::vec<T, N - 1>(0), 1)) {}
+
+        /**
          * @brief Construct from a point and normal vector
          * @param [in] point 
          * @param [in] normal 
@@ -152,7 +157,7 @@ namespace stf::geom
     {
         math::vec3<T> const& point = p;
         math::vec3<T> normal = math::cross(q - p, r - p);
-        return line<T>(point, normal);
+        return plane<T>(point, normal);
     }
 
 } // stf::geom

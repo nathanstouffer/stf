@@ -1,5 +1,7 @@
 #pragma once
 
+#include <array>
+
 #include "stf/cam/scamera.hpp"
 #include "stf/geom/hyperplane.hpp"
 #include "stf/math/constants.hpp"
@@ -36,6 +38,11 @@ namespace stf::cam
          * @brief Type alias for a plane
          */
         using plane_t = geom::plane<T>;
+
+        /**
+         * @brief The number of planes that define a frustum
+         */
+        static constexpr size_t c_num_planes = 6;
 
     public:
 
@@ -98,9 +105,12 @@ namespace stf::cam
             return true;    // fallthrough to return true
         }
 
-    private:
+        /**
+         * @brief Provide const access to the planes that define the frustum
+         */
+        std::array<plane_t, c_num_planes> const& planes() const { return m_planes; }
 
-        static constexpr size_t c_num_planes = 6;
+    private:
 
         struct vertices final
         {
@@ -166,11 +176,11 @@ namespace stf::cam
             m_planes[NEAR]   = geom::plane<T>(verts.ntl, -m_planes[FAR].normal());     // define near plane as a function of the far plane to avoid precision issues
             m_planes[LEFT]   = geom::fit_plane(verts.ftl, verts.ntl, verts.fbl);
             m_planes[RIGHT]  = geom::fit_plane(verts.ftr, verts.fbr, verts.ntr);
-            m_planes[TOP]    = geom::fit_plane(verts.ftr, verts.ftl, verts.ntr);
+            m_planes[TOP]    = geom::fit_plane(verts.ftl, verts.ftr, verts.ntl);
             m_planes[BOTTOM] = geom::fit_plane(verts.fbr, verts.fbl, verts.nbr);
         }
 
-        plane_t m_planes[c_num_planes];
+        std::array<plane_t, c_num_planes> m_planes;
 
     };
 
