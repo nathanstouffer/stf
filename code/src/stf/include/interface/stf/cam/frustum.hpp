@@ -85,6 +85,7 @@ namespace stf::cam
          */
         bool intersects_fast(aabb_t const& aabb) const
         {
+            // TODO (stouff) make an aabb intersection query
             for (size_t i = 0; i < c_num_planes; ++i)
             {
                 // check if the extremity in the direction of the normal is contained in the halfspace
@@ -93,6 +94,7 @@ namespace stf::cam
                 bool contained = plane.side(extremity) >= math::constants<T>::zero;
                 if (!contained) { return false; }
             }
+            // TODO (stouff) make a test for box containing no frustum vertices
             return true;    // fallthrough to return true
         }
 
