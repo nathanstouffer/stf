@@ -62,15 +62,6 @@ namespace stf::geom
          */
         aabb(vec_t const& _min, T const length) : aabb(_min, min + vec_t(length)) {}
 
-        //  
-        //  
-        //  
-        //  
-        //  
-        //  
-        // 0 is the min
-        // 3 is the max in 2D and 7 is the max in 3D
-
         /**
          * @brief Compute the @p i vertex of an @ref aabb
          * 
@@ -253,6 +244,30 @@ namespace stf::geom
             }
             return measure;
         }
+
+        /**
+         * @brief Compute the square of the distance from an aabb to a point
+         * @param [in] point
+         * @return The square of the distance from @p this to @p point
+         */
+        T dist_squared_to(vec_t const& point) const
+        {
+            if (contains(point))
+            {
+                return math::constants<T>::zero;
+            }
+            else
+            {
+                return math::dist_squared(point, math::clamp(point, min, max));
+            }
+        }
+
+        /**
+         * @brief Compute the distance from an aabb to a point
+         * @param [in] point
+         * @return The distance from @p this to @p point
+         */
+        T dist_to(vec_t const& point) const { return std::sqrt(dist_squared_to(point)); }
 
     public:
 

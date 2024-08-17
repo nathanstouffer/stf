@@ -125,10 +125,16 @@ namespace stf::math
         inline T const operator*(vec const& rhs) const { return raw::dot<T, N>(values, rhs.values); }
 
         /**
+         * @brief Compute the square of the length of a vector
+         * @return The length squared of @p this
+         */
+        inline T length_squared() const { return *this * *this;  }
+
+        /**
          * @brief Compute the length of a vector
          * @return The length of @p this
          */
-        inline T length() const { return std::sqrt(*this * *this); }
+        inline T length() const { return std::sqrt(length_squared()); }
 
         /**
          * @brief Normalize a vector in place
@@ -267,10 +273,16 @@ namespace stf::math
         inline T const operator*(vec const& rhs) const { return raw::dot<T, 2>(values, rhs.values); }
 
         /**
+         * @brief Compute the square of the length of a vector
+         * @return The length squared of @p this
+         */
+        inline T length_squared() const { return *this * *this; }
+
+        /**
          * @brief Compute the length of a vector
          * @return The length of @p this
          */
-        inline T length() const { return std::sqrt(*this * *this); }
+        inline T length() const { return std::sqrt(length_squared()); }
 
         /**
          * @brief Normalize a vector in place
@@ -416,10 +428,16 @@ namespace stf::math
         inline T const operator*(vec const& rhs) const { return raw::dot<T, 3>(values, rhs.values); }
 
         /**
+         * @brief Compute the square of the length of a vector
+         * @return The length squared of @p this
+         */
+        inline T length_squared() const { return *this * *this; }
+
+        /**
          * @brief Compute the length of a vector
          * @return The length of @p this
          */
-        inline T length() const { return std::sqrt(*this * *this); }
+        inline T length() const { return std::sqrt(length_squared()); }
 
         /**
          * @brief Normalize a vector in place
@@ -574,10 +592,16 @@ namespace stf::math
         inline T const operator*(vec const& rhs) const { return raw::dot<T, 4>(values, rhs.values); }
 
         /**
+         * @brief Compute the square of the length of a vector
+         * @return The length squared of @p this
+         */
+        inline T length_squared() const { return *this * *this; }
+
+        /**
          * @brief Compute the length of a vector
          * @return The length of @p this
          */
-        inline T length() const { return std::sqrt(*this * *this); }
+        inline T length() const { return std::sqrt(length_squared()); }
 
         /**
          * @brief Normalize a vector in place
@@ -652,6 +676,20 @@ namespace stf::math
      * @tparam T Number type (eg float)
      */
     template<typename T> using vec4 = vec<T, 4>;
+
+    /**
+     * @brief Compute the squareof the distance between @p lhs and @p rhs
+     * @tparam T Number type (eg float)
+     * @tparam N Dimension
+     * @param [in] lhs
+     * @param [in] rhs
+     * @return The square of the distance between @p lhs and @p rhs
+     */
+    template<typename T, size_t N>
+    inline T const dist_squared(vec<T, N> const& lhs, vec<T, N> const& rhs)
+    {
+        return (lhs - rhs).length_squared();
+    }
 
     /** 
      * @brief Compute the distance between @p lhs and @p rhs

@@ -48,4 +48,26 @@ namespace stf::geom
         }
     }
 
+    TEST(aabb2, dist_squared_to)
+    {
+        std::vector<scaffolding::aabb::dist_squared_to<float, 2>> tests =
+        {
+            { stff::aabb2(stff::vec2(0), stff::vec2(2)), stff::vec2(1), 0 },
+            { stff::aabb2(stff::vec2(0), stff::vec2(4)), stff::vec2(0), 0 },
+            { stff::aabb2(stff::vec2(1), stff::vec2(3)), stff::vec2(3), 0 },
+            { stff::aabb2(stff::vec2(5), stff::vec2(7)), stff::vec2(5, 7), 0 },
+            { stff::aabb2(stff::vec2(4), stff::vec2(6)), stff::vec2(6, 4), 0 },
+            { stff::aabb2(stff::vec2(4), stff::vec2(6)), stff::vec2(7, 5), 1 },
+            { stff::aabb2(stff::vec2(4), stff::vec2(6)), stff::vec2(6, 8), 4 },
+            { stff::aabb2(stff::vec2(4), stff::vec2(6)), stff::vec2(4, 2), 4 },
+            { stff::aabb2(stff::vec2(0), stff::vec2(2)), stff::vec2(3), 2 },
+            { stff::aabb2(stff::vec2(0), stff::vec2(2)), stff::vec2(-1), 2 },
+        };
+
+        for (scaffolding::aabb::dist_squared_to<float, 2> const& test : tests)
+        {
+            scaffolding::aabb::verify(test);
+        }
+    }
+
 } // stf::geom
