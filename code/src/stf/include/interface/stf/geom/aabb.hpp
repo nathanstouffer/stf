@@ -62,15 +62,6 @@ namespace stf::geom
          */
         aabb(vec_t const& _min, T const length) : aabb(_min, min + vec_t(length)) {}
 
-        //  
-        //  
-        //  
-        //  
-        //  
-        //  
-        // 0 is the min
-        // 3 is the max in 2D and 7 is the max in 3D
-
         /**
          * @brief Compute the @p i vertex of an @ref aabb
          * 
