@@ -60,7 +60,7 @@ namespace stf::geom
          * @param [in] _min 
          * @param [in] length 
          */
-        aabb(vec_t const& _min, T const length) : aabb(_min, min + vec_t(length)) {}
+        aabb(vec_t const& _min, T const length) : aabb(_min, _min + vec_t(length)) {}
 
         /**
          * @brief Compute the @p i vertex of an @ref aabb

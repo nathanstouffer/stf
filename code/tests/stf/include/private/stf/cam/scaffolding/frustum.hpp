@@ -11,6 +11,20 @@ namespace stf::cam::scaffolding::frustum
 {
 
     template<typename T>
+    struct contains
+    {
+        cam::frustum<T> const frustum;
+        geom::aabb3<T> const box;
+        bool const contains;
+    };
+
+    template<typename T>
+    void verify(contains<T> const& test)
+    {
+        ASSERT_EQ(test.contains, test.frustum.contains(test.box)) << "Failed to compute frustum::contains";
+    }
+
+    template<typename T>
     struct intersects_fast
     {
         cam::frustum<T> const frustum;

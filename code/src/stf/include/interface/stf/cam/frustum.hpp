@@ -130,7 +130,7 @@ namespace stf::cam
 
                 // compute points on the near plane
                 {
-                    T half_height = camera.near * std::tan(camera.aspect);
+                    T half_height = camera.near * std::tan(math::constants<T>::half * camera.fov);
                     T half_width = half_height * camera.aspect;
 
                     vec_t center = camera.eye + look * camera.near;
@@ -143,7 +143,7 @@ namespace stf::cam
 
                 // compute points on the far plane
                 {
-                    T half_height = camera.far * std::tan(camera.aspect);
+                    T half_height = camera.far * std::tan(math::constants<T>::half * camera.fov);
                     T half_width = half_height * camera.aspect;
 
                     vec_t center = camera.eye + look * camera.far;
