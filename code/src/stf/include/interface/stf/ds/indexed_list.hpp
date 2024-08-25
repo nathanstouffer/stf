@@ -128,7 +128,7 @@ namespace stf::ds
 			}
 		}
 
-		iterator touch(iterator it)
+		iterator touch_to_front(iterator it)
 		{
 			if (it != m_list.end())
 			{
@@ -136,7 +136,17 @@ namespace stf::ds
 			}
 		}
 
-		inline iterator touch(key_t const& key) { return touch(find(key)); }
+		inline iterator touch_to_front(key_t const& key) { return touch_to_front(find(key)); }
+
+		iterator touch_to_back(iterator it)
+		{
+			if (it != m_list.end())
+			{
+				splice(end(), it);
+			}
+		}
+
+		inline iterator touch_to_back(key_t const& key) { return touch_to_back(find(key)); }
 
 		inline void push_front(key_t const& key, entry_t entry)
 		{
