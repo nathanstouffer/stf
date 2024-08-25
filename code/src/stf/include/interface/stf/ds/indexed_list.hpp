@@ -8,7 +8,7 @@
  * @brief A file containing a class that implements a list with an index overlaid on top for access via a key
  */
 
-namespace onyx::ds
+namespace stf::ds
 {
 
 	template <typename key_t, typename entry_t>
