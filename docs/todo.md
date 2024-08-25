@@ -57,9 +57,8 @@ A todo list separated out by category (typically a namespace)
 
 ## ds
 
- - [x] indexed list (make sure to include splice!)
+ - [x] indexed list
  - [ ] indexed vector
- - [ ] lru
 
 ## misc
 
