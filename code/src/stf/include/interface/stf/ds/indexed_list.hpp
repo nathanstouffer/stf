@@ -11,7 +11,7 @@
 namespace stf::ds
 {
 
-	template <typename key_t, typename entry_t>
+	template<typename key_t, typename entry_t>
 	class indexed_list final
 	{
 	public:
@@ -112,11 +112,31 @@ namespace stf::ds
 
 		inline iterator insert(const_iterator pos, key_t const& key, entry_t entry)
 		{
-			erase(key);
-			list_iterator inserted = m_list.insert(pos, { key, std::move(entry) });
-			m_index[key] = inserted;
-			return inserted;
+			map_iterator found = m_index.find(key);
+			if (found != m_index.end())
+			{
+				m_list.erase(found->second);
+				list_iterator inserted = m_list.insert(pos, { key, std::move(entry) });
+				found->second = inserted;
+				return inserted;
+			}
+			else
+			{
+				list_iterator inserted = m_list.insert(pos, { key, std::move(entry) });
+				m_index[key] = inserted;
+				return inserted;
+			}
 		}
+
+		iterator touch(iterator it)
+		{
+			if (it != m_list.end())
+			{
+				splice(begin(), it);
+			}
+		}
+
+		inline iterator touch(key_t const& key) { return touch(find(key)); }
 
 		inline void push_front(key_t const& key, entry_t entry)
 		{
