@@ -19,13 +19,13 @@ namespace stf::cam
         {
             { frustum, stfd::aabb3(stfd::vec3(-1, 1, -1), 2), true },
             { frustum, stfd::aabb3(stfd::vec3(-10, 50, -10), 20), true },
-            { frustum, stfd::aabb3(stfd::vec3(110, 90, -50), 100), false },     // entirely outside the frustum
             { frustum, stfd::aabb3(stfd::vec3(-10, 90, -10), 20), false },      // crosses the far plane
             { frustum, stfd::aabb3(stfd::vec3(-1, 0, -1), 2), false },          // crosses the near plane
             { frustum, stfd::aabb3(stfd::vec3(-10, 5, -10), 20), false },       // crosses the left plane
             { frustum, stfd::aabb3(stfd::vec3(0, 5, -10), 20), false },         // crosses the right plane
             { frustum, stfd::aabb3(stfd::vec3(-10, 5, 0), 20), false },         // crosses the top plane
             { frustum, stfd::aabb3(stfd::vec3(-10, 5, -10), 20), false },       // crosses the bottom plane
+            { frustum, stfd::aabb3(stfd::vec3(110, 90, -50), 100), false },     // entirely outside the frustum
         };
 
         for (scaffolding::frustum::contains<double> const& test : tests) { scaffolding::frustum::verify(test); }
@@ -49,6 +49,7 @@ namespace stf::cam
                 { frustum, stfd::aabb3(stfd::vec3(0, 5, -10), 20), true },          // crosses the right plane
                 { frustum, stfd::aabb3(stfd::vec3(-10, 5, 0), 20), true },          // crosses the top plane
                 { frustum, stfd::aabb3(stfd::vec3(-10, 5, -10), 20), true },        // crosses the bottom plane
+                { frustum, stfd::aabb3(stfd::vec3(110, 90, -50), 100), false },     // entirely outside the frustum
                 { frustum, stfd::aabb3(stfd::vec3(-610, 90, -10), stfd::vec3(-110, 590, 10)), false },
             };
 
