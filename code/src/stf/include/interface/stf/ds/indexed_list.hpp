@@ -57,7 +57,7 @@ namespace stf::ds
 			return (it != m_index.end()) ? it->second : m_list.end();
 		}
 
-		iterator find(key_t const& key) const
+		iterator find(key_t const& key)
 		{
 			map_iterator it = m_index.find(key);
 			return (it != m_index.end()) ? it->second : m_list.end();
@@ -179,8 +179,8 @@ namespace stf::ds
 		const_iterator begin() const { return m_list.begin(); }
 		const_iterator end()   const { return m_list.end(); }
 
-		iterator begin() const { return m_list.begin(); }
-		iterator end()   const { return m_list.end(); }
+		iterator begin() { return m_list.begin(); }
+		iterator end()   { return m_list.end(); }
 
 	};
 
