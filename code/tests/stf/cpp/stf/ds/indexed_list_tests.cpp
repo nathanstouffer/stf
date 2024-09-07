@@ -59,6 +59,40 @@ namespace stf::ds
         }
     }
 
+    TEST(indexed_list, insert_or_assign)
+    {
+        scaffolding::indexed_list::list_t list = scaffolding::indexed_list::construct();
+
+        std::vector<scaffolding::indexed_list::element_t> elements = scaffolding::indexed_list::elements();
+
+        // insert some elements
+        list.insert_or_assign(list.end(), "five", 5);       elements.push_back({ "five", 5 });
+        list.insert_or_assign(list.end(), "six", 6);        elements.push_back({ "six", 6 });
+
+        // assign some elements
+        list.insert_or_assign(list.find("five"), "one", -1);
+        list.insert_or_assign(list.find("two"), "four", -4);
+        elements[1].entry = -1;
+        elements[4].entry = -4;
+        std::swap(elements[1], elements[4]);
+
+        scaffolding::indexed_list::verify(elements, list);
+    }
+
+    TEST(indexed_list, splice)
+    {
+        scaffolding::indexed_list::list_t list = scaffolding::indexed_list::construct();
+
+        std::vector<scaffolding::indexed_list::element_t> elements = scaffolding::indexed_list::elements();
+
+        // splice some elements
+        list.splice(list.end(), "one");
+        list.splice(list.find("two"), list.find("four"));
+        std::swap(elements[1], elements[4]);
+
+        scaffolding::indexed_list::verify(elements, list);
+    }
+
     TEST(indexed_list, replace)
     {
         scaffolding::indexed_list::list_t list = scaffolding::indexed_list::construct();
