@@ -55,13 +55,10 @@ A todo list separated out by category (typically a namespace)
  - [ ] tessellation
  - [ ] linear programming?
 
-## gen
+## ds
 
-(maybe think of a different namespace name)
-
- - [ ] indexed list (make sure to include splice!)
+ - [x] indexed list
  - [ ] indexed vector
- - [ ] lru
 
 ## misc
 
