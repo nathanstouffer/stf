@@ -119,7 +119,7 @@ namespace stf::cam
 
                     for (size_t d = 0; d < 3; ++d)  // iterate over each dimension (x, y, and z)
                     {
-                        // check the plane at the minimum of the box with a normal in the +d direction
+                        // check the plane at the minimum of the box that has a normal in the +d direction
                         {
                             // count the number of frustum vertices outside the box
                             size_t outside = 0;
@@ -130,7 +130,7 @@ namespace stf::cam
                             if (outside == 8) { return false; }
                         }
 
-                        // check the plane at the maximum of the box with a normal in the -d direction
+                        // check the plane at the maximum of the box that has a normal in the -d direction
                         {
                             // count the number of frustum vertices outside the box
                             size_t outside = 0;
