@@ -274,7 +274,7 @@ namespace stf::ds
 		 */
 		inline void push_front(key_t const& key, entry_t entry)
 		{
-			insert(m_list.begin(), key, std::move(entry));
+			insert_or_assign(m_list.begin(), key, std::move(entry));
 		}
 
 		/**
@@ -284,7 +284,7 @@ namespace stf::ds
 		 */
 		inline void push_back(key_t const& key, entry_t entry)
 		{
-			insert(m_list.end(), key, std::move(entry));
+			insert_or_assign(m_list.end(), key, std::move(entry));
 		}
 
 		/**
