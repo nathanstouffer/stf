@@ -178,9 +178,13 @@ namespace stf::cam
             m_planes[RIGHT]  = geom::fit_plane(verts.ftr, verts.fbr, verts.ntr);
             m_planes[TOP]    = geom::fit_plane(verts.ftl, verts.ftr, verts.ntl);
             m_planes[BOTTOM] = geom::fit_plane(verts.fbr, verts.fbl, verts.nbr);
+
+            std::vector<vec_t> points = { verts.ntl, verts.ntr, verts.nbl, verts.nbr, verts.ftl, verts.ftr, verts.fbl, verts.fbr };
+            m_aabb = aabb_t::fit(points);
         }
 
         std::array<plane_t, c_num_planes> m_planes;
+        aabb_t m_aabb;
 
     };
 
