@@ -49,6 +49,7 @@ namespace stf::cam
                 { frustum, stfd::aabb3(stfd::vec3(0, 5, -10), 20), true },          // crosses the right plane
                 { frustum, stfd::aabb3(stfd::vec3(-10, 5, 0), 20), true },          // crosses the top plane
                 { frustum, stfd::aabb3(stfd::vec3(-10, 5, -10), 20), true },        // crosses the bottom plane
+                { frustum, stfd::aabb3(stfd::vec3(-610, 90, -10), stfd::vec3(-110, 590, 10)), false },
             };
 
             for (scaffolding::frustum::intersects_fast<double> const& test : tests) { scaffolding::frustum::verify(test); }
@@ -60,14 +61,8 @@ namespace stf::cam
             stfd::scamera camera(stfd::vec3(0), stfd::constants::pi_fourths, stfd::constants::pi, 1.0, 100.0, 1.0, stfd::constants::pi_halves);
             stfd::frustum frustum(camera);
 
-            // TODO (stouff) remove this once we improve the test
-            // camera with the eye at the origin that looks along the +y axis with the +z axis is the up vector
-            stfd::scamera old_camera(stfd::vec3(0), stfd::constants::pi_halves, stfd::constants::pi_halves, 1.0, 100.0, 1.0, stfd::constants::pi_halves);
-            stfd::frustum old_frustum(old_camera);
-
             std::vector<scaffolding::frustum::intersects_fast<double>> tests =
             {
-                { old_frustum, stfd::aabb3(stfd::vec3(-610, 90, -10), stfd::vec3(-110, 590, 10)), true },   // TODO (stouff) move this above once we improve the intersection alg
                 { frustum, stfd::aabb3(stfd::vec3(-500, 50, -10), stfd::vec3(500, 550, 10)), true },
             };
 

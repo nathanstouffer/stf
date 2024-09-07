@@ -1,6 +1,7 @@
 #pragma once
 
 #include <array>
+#include <vector>
 
 #include "stf/cam/scamera.hpp"
 #include "stf/geom/hyperplane.hpp"
@@ -92,17 +93,64 @@ namespace stf::cam
          */
         bool intersects_fast(aabb_t const& aabb) const
         {
-            // TODO (stouff) make an aabb intersection query
-            for (size_t i = 0; i < c_num_planes; ++i)
+            if (m_aabb.intersects(aabb))
             {
-                // check if the extremity in the direction of the normal is contained in the halfspace
-                plane_t const& plane = m_planes[i];
-                vec_t extremity = aabb.extremity(plane.normal());
-                bool contained = plane.side(extremity) >= math::constants<T>::zero;
-                if (!contained) { return false; }
+                // check if any frustum plane entirely excludes the box
+                for (size_t i = 0; i < c_num_planes; ++i)
+                {
+                    // check if the extremity in the direction of the normal is contained in the halfspace
+                    plane_t const& plane = m_planes[i];
+                    vec_t extremity = aabb.extremity(plane.normal());
+                    bool contained = plane.side(extremity) >= math::constants<T>::zero;
+                    if (!contained) { return false; }
+                }
+
+                // check if any box plane entirely excludes the frustum
+                {
+                    std::array<vec_t, 8> verts =
+                    {
+                        // near points
+                        m_vertices.ntl, m_vertices.ntr,
+                        m_vertices.nbl, m_vertices.nbr,
+                        // far points
+                        m_vertices.ftl, m_vertices.ftr,
+                        m_vertices.fbl, m_vertices.fbr
+                    };
+
+                    for (size_t d = 0; d < 3; ++d)  // iterate over each dimension (x, y, and z)
+                    {
+                        // check the plane at the minimum of the box with a normal in the +d direction
+                        {
+                            // count the number of frustum vertices outside the box
+                            size_t outside = 0;
+                            for (vec_t const& vert : verts)
+                            {
+                                outside += vert[d] < aabb.min[d] ? 1 : 0;
+                            }
+                            if (outside == 8) { return false; }
+                        }
+
+                        // check the plane at the maximum of the box with a normal in the -d direction
+                        {
+                            // count the number of frustum vertices outside the box
+                            size_t outside = 0;
+                            for (vec_t const& vert : verts)
+                            {
+                                outside += aabb.max[d] < vert[d] ? 1 : 0;
+                            }
+                            if (outside == 8) { return false; }
+                        }
+                    }
+                }
+
+                // if we arrive here, we were not able to prove that the frustum/aabb do not intersect. so we must assume that
+                // they do intersect, though this maybe be incorrect (resulting in a false positive)
+                return true;    // fallthrough to return true
             }
-            // TODO (stouff) make a test for box containing no frustum vertices
-            return true;    // fallthrough to return true
+            else
+            {
+                return false;
+            }
         }
 
         /**
@@ -170,7 +218,7 @@ namespace stf::cam
 
     private:
 
-        explicit frustum(vertices const& verts)
+        explicit frustum(vertices const& verts) : m_vertices(verts)
         {
             m_planes[FAR]    = geom::fit_plane(verts.ftl, verts.fbl, verts.ftr);
             m_planes[NEAR]   = geom::plane<T>(verts.ntl, -m_planes[FAR].normal());     // define near plane as a function of the far plane to avoid precision issues
@@ -179,11 +227,20 @@ namespace stf::cam
             m_planes[TOP]    = geom::fit_plane(verts.ftl, verts.ftr, verts.ntl);
             m_planes[BOTTOM] = geom::fit_plane(verts.fbr, verts.fbl, verts.nbr);
 
-            std::vector<vec_t> points = { verts.ntl, verts.ntr, verts.nbl, verts.nbr, verts.ftl, verts.ftr, verts.fbl, verts.fbr };
+            std::vector<vec_t> points =
+            {
+                // near points
+                verts.ntl, verts.ntr,
+                verts.nbl, verts.nbr,
+                // far points
+                verts.ftl, verts.ftr,
+                verts.fbl, verts.fbr
+            };
             m_aabb = aabb_t::fit(points);
         }
 
         std::array<plane_t, c_num_planes> m_planes;
+        vertices m_vertices;
         aabb_t m_aabb;
 
     };
