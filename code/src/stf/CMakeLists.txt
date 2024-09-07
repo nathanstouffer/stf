@@ -5,6 +5,7 @@ set(STF_FILES
 	"${CMAKE_CURRENT_SOURCE_DIR}/include/interface/stf/alg/tessellation.hpp"
 	"${CMAKE_CURRENT_SOURCE_DIR}/include/interface/stf/cam/frustum.hpp"
 	"${CMAKE_CURRENT_SOURCE_DIR}/include/interface/stf/cam/scamera.hpp"
+	"${CMAKE_CURRENT_SOURCE_DIR}/include/interface/stf/ds/indexed_list.hpp"
 	"${CMAKE_CURRENT_SOURCE_DIR}/include/interface/stf/enums.hpp"
 	"${CMAKE_CURRENT_SOURCE_DIR}/include/interface/stf/geom/aabb.hpp"
 	"${CMAKE_CURRENT_SOURCE_DIR}/include/interface/stf/geom/holygon.hpp"

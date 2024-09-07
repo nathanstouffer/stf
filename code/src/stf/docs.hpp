@@ -8,8 +8,18 @@
  */
 
 /**
- * @namespace stf::math
- * @brief Namespace for mathematical functionality
+ * @namespace stf::alg
+ * @brief Namespace for algorithms
+ */
+
+/**
+ * @namespace stf::ds
+ * @brief Namespace for generic data structures
+ */
+
+/**
+ * @namespace stf::cam
+ * @brief Namespace for camera-related functionality
  */
 
 /**
@@ -23,16 +33,11 @@
  */
 
 /**
- * @namespace stf::cam
- * @brief Namespace for camera-related functionality
+ * @namespace stf::math
+ * @brief Namespace for mathematical functionality
  */
 
 /**
  * @namespace stf::spatial
  * @brief Namespace for spatial data structures
- */
-
-/**
- * @namespace stf::alg
- * @brief Namespace for algorithms
  */
