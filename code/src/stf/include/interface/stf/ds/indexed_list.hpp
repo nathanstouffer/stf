@@ -24,24 +24,24 @@ namespace stf::ds
 	public:
 
 		/**
-		 * @brief A struct to represent the pair of items stored in indexed_list
+		 * @brief A struct to represent the items stored in indexed_list
 		 */
-		struct pair_t
+		struct element_t
 		{
 			/**
-			 * @brief The key of the pair
+			 * @brief The key of the element
 			 */
 			key_t key;
 
 			/**
-			 * @brief The entry stored in the pair
+			 * @brief The entry stored in the element
 			 */
 			entry_t entry;
 		};
 
 	private:
 
-		using list_t = std::list<pair_t>;
+		using list_t = std::list<element_t>;
 		using list_iterator = typename list_t::iterator;
 		using list_const_iterator = typename list_t::const_iterator;
 
@@ -124,14 +124,14 @@ namespace stf::ds
 		 * @param [in] key The search key
 		 * @return A const reference to the element
 		 */
-		inline pair_t const& at(key_t const& key) const { return *m_index.at(key); }
+		inline element_t const& at(key_t const& key) const { return *m_index.at(key); }
 
 		/**
 		 * @brief Access the element at a particular key
 		 * @param [in] key The search key
 		 * @return A reference to the element
 		 */
-		inline pair_t& at(key_t const& key) { return *m_index.at(key); }
+		inline element_t& at(key_t const& key) { return *m_index.at(key); }
 
 		/**
 		 * @brief Erase an element of the list
@@ -165,8 +165,8 @@ namespace stf::ds
 		inline const_iterator replace(key_t const& key, entry_t entry)
 		{
 			iterator it = m_index.at(key);
-			pair_t& pair = *it;
-			pair.entry = std::move(entry);
+			element_t& element = *it;
+			element.entry = std::move(entry);
 			return it;
 		}
 
@@ -309,25 +309,25 @@ namespace stf::ds
 		 * @brief Access to the front of the list
 		 * @return A const reference to the front of the list
 		 */
-		inline pair_t const& front() const { return m_list.front(); }
+		inline element_t const& front() const { return m_list.front(); }
 
 		/**
 		 * @brief Access to the front of the list
 		 * @return A reference to the front of the list
 		 */
-		inline pair_t& front() { return m_list.front(); }
+		inline element_t& front() { return m_list.front(); }
 		
 		/**
 		 * @brief Access to the back of the list
 		 * @return A const reference to the back of the list
 		 */
-		inline pair_t const& back() const { return m_list.back(); }
+		inline element_t const& back() const { return m_list.back(); }
 
 		/**
 		 * @brief Access to the back of the list
 		 * @return A reference to the back of the list
 		 */
-		inline pair_t& back() { return m_list.back(); }
+		inline element_t& back() { return m_list.back(); }
 
 		/**
 		 * @brief Access to the front of the list

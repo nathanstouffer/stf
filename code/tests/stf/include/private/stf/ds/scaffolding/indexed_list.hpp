@@ -12,9 +12,9 @@ namespace stf::ds::scaffolding::indexed_list
 
 	using list_t = stf::ds::indexed_list<std::string, int>;
 
-	using pair_t = list_t::pair_t;
+	using element_t = list_t::element_t;
 
-	inline std::vector<pair_t> pairs()
+	inline std::vector<element_t> elements()
 	{
 		return
 		{
@@ -29,21 +29,21 @@ namespace stf::ds::scaffolding::indexed_list
 	inline list_t construct()
 	{
 		list_t list;
-		for (pair_t const& pair : pairs())
+		for (element_t const& element : elements())
 		{
-			list.push_back(pair.key, pair.entry);
+			list.push_back(element.key, element.entry);
 		}
 		return list;
 	}
 
-	inline void verify(std::vector<pair_t> const& pairs, list_t const& list)
+	inline void verify(std::vector<element_t> const& elements, list_t const& list)
 	{
-		ASSERT_EQ(pairs.size(), list.size()) << "Failed size check";
+		ASSERT_EQ(elements.size(), list.size()) << "Failed size check";
 		size_t i = 0;
-		for (pair_t const& pair : list)
+		for (element_t const& element : list)
 		{
-			ASSERT_EQ(pairs[i].key, pair.key) << "Failed key comparison for pair with index '" << i << "'";
-			ASSERT_EQ(pairs[i].entry, pair.entry) << "Failed entry comparison for pair with index '" << i << "'";
+			ASSERT_EQ(elements[i].key, element.key) << "Failed key comparison for element with index '" << i << "'";
+			ASSERT_EQ(elements[i].entry, element.entry) << "Failed entry comparison for element with index '" << i << "'";
 			++i;
 		}
 	}

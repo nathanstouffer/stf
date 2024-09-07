@@ -14,16 +14,16 @@ namespace stf::ds
     TEST(indexed_list, contains)
     {
 
-        std::vector<scaffolding::indexed_list::pair_t> pairs = scaffolding::indexed_list::pairs();
+        std::vector<scaffolding::indexed_list::element_t> elements = scaffolding::indexed_list::elements();
         std::vector<std::string> missing = { "five", "six", "seven" };
 
         scaffolding::indexed_list::list_t list = scaffolding::indexed_list::construct();
 
         // verify list size and key presence
-        ASSERT_EQ(pairs.size(), list.size()) << "Failed size check";
-        for (scaffolding::indexed_list::pair_t const& pair : pairs)
+        ASSERT_EQ(elements.size(), list.size()) << "Failed size check";
+        for (scaffolding::indexed_list::element_t const& element : elements)
         {
-            ASSERT_TRUE(list.contains(pair.key)) << "Failed to contain expected key '" << pair.key << "'";
+            ASSERT_TRUE(list.contains(element.key)) << "Failed to contain expected key '" << element.key << "'";
         }
 
         // verify missing keys
@@ -37,25 +37,25 @@ namespace stf::ds
     {
         scaffolding::indexed_list::list_t list = scaffolding::indexed_list::construct();
 
-        std::vector<scaffolding::indexed_list::pair_t> pairs = scaffolding::indexed_list::pairs();
+        std::vector<scaffolding::indexed_list::element_t> elements = scaffolding::indexed_list::elements();
 
-        // erase some pairs
-        list.erase("three");    pairs.erase(pairs.begin() + 3);
-        list.erase("zero");     pairs.erase(pairs.begin());
+        // erase some elements
+        list.erase("three");    elements.erase(elements.begin() + 3);
+        list.erase("zero");     elements.erase(elements.begin());
 
-        scaffolding::indexed_list::verify(pairs, list);
+        scaffolding::indexed_list::verify(elements, list);
     }
 
     TEST(indexed_list, find)
     {
         scaffolding::indexed_list::list_t list = scaffolding::indexed_list::construct();
 
-        for (scaffolding::indexed_list::pair_t const& pair : scaffolding::indexed_list::pairs())
+        for (scaffolding::indexed_list::element_t const& element : scaffolding::indexed_list::elements())
         {
-            scaffolding::indexed_list::list_t::iterator found = list.find(pair.key);
-            ASSERT_NE(list.end(), found) << "Failed to find entry for key '" << pair.key << "'";
-            ASSERT_EQ(pair.key, found->key) << "Failed key comparison for key '" << pair.key << "'";
-            ASSERT_EQ(pair.entry, found->entry) << "Failed entry comparison for key '" << pair.key << "'";
+            scaffolding::indexed_list::list_t::iterator found = list.find(element.key);
+            ASSERT_NE(list.end(), found) << "Failed to find entry for key '" << element.key << "'";
+            ASSERT_EQ(element.key, found->key) << "Failed key comparison for key '" << element.key << "'";
+            ASSERT_EQ(element.entry, found->entry) << "Failed entry comparison for key '" << element.key << "'";
         }
     }
 
@@ -63,13 +63,13 @@ namespace stf::ds
     {
         scaffolding::indexed_list::list_t list = scaffolding::indexed_list::construct();
 
-        std::vector<scaffolding::indexed_list::pair_t> pairs = scaffolding::indexed_list::pairs();
+        std::vector<scaffolding::indexed_list::element_t> elements = scaffolding::indexed_list::elements();
 
-        // erase some pairs
-        list.replace("one", -1);        pairs[1].entry = -1;
-        list.replace("three", -3);      pairs[3].entry = -3;
+        // erase some elements
+        list.replace("one", -1);        elements[1].entry = -1;
+        list.replace("three", -3);      elements[3].entry = -3;
 
-        scaffolding::indexed_list::verify(pairs, list);
+        scaffolding::indexed_list::verify(elements, list);
     }
 
 } // stf::ds
