@@ -245,30 +245,6 @@ namespace stf::geom
             return measure;
         }
 
-        /**
-         * @brief Compute the square of the distance from an aabb to a point
-         * @param [in] point
-         * @return The square of the distance from @p this to @p point
-         */
-        T dist_squared_to(vec_t const& point) const
-        {
-            if (contains(point))
-            {
-                return math::constants<T>::zero;
-            }
-            else
-            {
-                return math::dist_squared(point, math::clamp(point, min, max));
-            }
-        }
-
-        /**
-         * @brief Compute the distance from an aabb to a point
-         * @param [in] point
-         * @return The distance from @p this to @p point
-         */
-        T dist_to(vec_t const& point) const { return std::sqrt(dist_squared_to(point)); }
-
     public:
 
         /**
@@ -343,6 +319,69 @@ namespace stf::geom
     aabb<T, N> const fit(aabb<T, N> const& lhs, aabb<T, N> const& rhs)
     {
         return aabb<T, N>(lhs).fit(rhs);
+    }
+
+    /**
+     * @brief Compute the square of the distance between an aabb and a point
+     * @tparam T Number type (eg float)
+     * @tparam N Dimension
+     * @param [in] box 
+     * @param [in] point 
+     * @return The square of the distance between @p box and @p point
+     */
+    template<typename T, size_t N>
+    inline T const dist_squared(aabb<T, N> const& box, math::vec<T, N> const& point)
+    {
+        if (box.contains(point))
+        {
+            return math::constants<T>::zero;
+        }
+        else
+        {
+            return math::dist_squared(point, math::clamp(point, box.min, box.max));
+        }
+    }
+
+    /**
+     * @brief Compute the square of the distance between a point and an aabb
+     * @tparam T Number type (eg float)
+     * @tparam N Dimension
+     * @param [in] point
+     * @param [in] box
+     * @return The square of the distance between @p point and @p box
+     */
+    template<typename T, size_t N>
+    inline T const dist_squared(math::vec<T, N> const& point, aabb<T, N> const& box)
+    {
+        return dist_squared(box, point);
+    }
+
+    /**
+     * @brief Compute the distance between an aabb and a point
+     * @tparam T Number type (eg float)
+     * @tparam N Dimension
+     * @param [in] point
+     * @param [in] box
+     * @return The distance between @p box and @p point
+     */
+    template<typename T, size_t N>
+    inline T const dist(aabb<T, N> const& box, math::vec<T, N> const& point)
+    {
+        return std::sqrt(dist_squared(box, point));
+    }
+
+    /**
+     * @brief Compute the distance between a point and an aabb
+     * @tparam T Number type (eg float)
+     * @tparam N Dimension
+     * @param [in] point
+     * @param [in] box
+     * @return The distance between @p point and @p box
+     */
+    template<typename T, size_t N>
+    inline T const dist(math::vec<T, N> const& point, aabb<T, N> const& box)
+    {
+        return std::sqrt(dist_squared(point, box));
     }
 
     /**

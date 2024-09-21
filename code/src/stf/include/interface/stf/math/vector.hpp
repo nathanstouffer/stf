@@ -678,7 +678,7 @@ namespace stf::math
     template<typename T> using vec4 = vec<T, 4>;
 
     /**
-     * @brief Compute the squareof the distance between @p lhs and @p rhs
+     * @brief Compute the square of the distance between @p lhs and @p rhs
      * @tparam T Number type (eg float)
      * @tparam N Dimension
      * @param [in] lhs
