@@ -102,20 +102,6 @@ namespace stf::geom
         }
 
         /**
-         * @brief Compute the distance from the segment to a query point
-         * @param [in] p 
-         * @return The distance from @p this to @p p
-         */
-        inline T distance_to(vec_t const& p) const
-        {
-            vec_t diff = delta();
-            T scalar = ((p - a) * diff) / (diff * diff);
-            T t = std::clamp(scalar, math::constants<T>::zero, math::constants<T>::one);
-            vec_t proj = a + t * diff;
-            return (p - proj).length();
-        }
-
-        /**
          * @brief Interpolate along the semgent
          * @param [in] t 
          * @note Clamped to the endpoints outside of [0, 1]
@@ -151,5 +137,65 @@ namespace stf::geom
      * @tparam T Number type (eg float)
      */
     template<typename T> using segment3 = segment<T, 3>;
+
+    /**
+     * @brief Compute the square of the distance between a segment and a point
+     * @tparam T Number type (eg float)
+     * @tparam N Dimension
+     * @param [in] seg
+     * @param [in] point
+     * @return The square of the distance between @p seg and @p point
+     */
+    template<typename T, size_t N>
+    inline T const dist_squared(segment<T, N> const& seg, math::vec<T, N> const& point)
+    {
+        math::vec<T, N> diff = seg.delta();
+        T scalar = ((point - seg.a) * diff) / (diff * diff);
+        T t = std::clamp(scalar, math::constants<T>::zero, math::constants<T>::one);
+        math::vec<T, N> proj = seg.a + t * diff;
+        return (point - proj).length_squared();
+    }
+
+    /**
+     * @brief Compute the square of the distance between a point and a segment
+     * @tparam T Number type (eg float)
+     * @tparam N Dimension
+     * @param [in] seg
+     * @param [in] point
+     * @return The square of the distance between @p point and @p seg
+     */
+    template<typename T, size_t N>
+    inline T const dist_squared(math::vec<T, N> const& point, segment<T, N> const& seg)
+    {
+        return dist_squared(seg, point);
+    }
+
+    /**
+     * @brief Compute the distance between a segment and a point
+     * @tparam T Number type (eg float)
+     * @tparam N Dimension
+     * @param [in] seg 
+     * @param [in] point 
+     * @return The distance between @p seg and @p point
+     */
+    template<typename T, size_t N>
+    inline T const dist(segment<T, N> const& seg, math::vec<T, N> const& point)
+    {
+        return std::sqrt(dist_squared(seg, point));
+    }
+
+    /**
+     * @brief Compute the distance between a point and a segment
+     * @tparam T Number type (eg float)
+     * @tparam N Dimension
+     * @param [in] seg
+     * @param [in] point
+     * @return The distance between @p point and @p seg
+     */
+    template<typename T, size_t N>
+    inline T const dist(math::vec<T, N> const& point, segment<T, N> const& seg)
+    {
+        return std::sqrt(dist_squared(point, seg));
+    }
 
 } // stf::geom

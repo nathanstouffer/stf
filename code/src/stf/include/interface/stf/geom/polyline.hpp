@@ -131,7 +131,7 @@ namespace stf::geom
             T dist = math::constants<T>::pos_inf;
             for (size_t i = 0; i + 1 < m_vertices.size(); ++i)
             {
-                dist = std::min(dist, edge(i).distance_to(x));
+                dist = std::min(dist, geom::dist(edge(i), x));
             }
             return dist;
         }

@@ -8,7 +8,7 @@ namespace stf::geom::scaffolding::segment
 {
 
     template<typename T, size_t N>
-    struct distance_to
+    struct distance
     {
         geom::segment<T, N> const seg;
         math::vec<T, N> const point;
@@ -16,9 +16,10 @@ namespace stf::geom::scaffolding::segment
     };
 
     template<typename T, size_t N>
-    void verify(distance_to<T, N> const& test)
+    void verify(distance<T, N> const& test)
     {
-        ASSERT_EQ(test.dist, test.seg.distance_to(test.point)) << "failed distance_to test";
+        ASSERT_EQ(test.dist, geom::dist(test.seg, test.point)) << "failed distance between segment and point";
+        ASSERT_EQ(test.dist, geom::dist(test.point, test.seg)) << "failed distance between point and segment";
     }
 
     template<typename T, size_t N>

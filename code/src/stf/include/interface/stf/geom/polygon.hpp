@@ -198,7 +198,7 @@ namespace stf::geom
             for (size_t i = 0; i < m_vertices.size(); ++i)
             {
                 geom::segment2<T> seg = edge(i);
-                if (seg.distance_to(query) == math::constants<T>::zero)     // early out if the point is on the boundary
+                if (geom::dist_squared(seg, query) == math::constants<T>::zero)     // early out if the point is on the boundary
                 {
                     return type == boundary_types::CLOSED;
                 }
@@ -239,7 +239,7 @@ namespace stf::geom
             T dist = math::constants<T>::pos_inf;
             for (size_t i = 0; i < m_vertices.size(); ++i)
             {
-                dist = std::min(dist, edge(i).distance_to(query));
+                dist = std::min(dist, geom::dist(edge(i), query));
             }
             if (dist == math::constants<T>::zero) { return dist; }
             return (contains(query, boundary_types::OPEN)) ? -dist : dist;
