@@ -48,9 +48,9 @@ namespace stf::geom
         }
     }
 
-    TEST(aabb2, dist_squared)
+    TEST(aabb2, dist_and_dist_squared)
     {
-        std::vector<scaffolding::aabb::dist_squared<float, 2>> tests =
+        std::vector<scaffolding::aabb::dist_and_dist_squared<float, 2>> tests =
         {
             { stff::aabb2(stff::vec2(0), stff::vec2(2)), stff::vec2(1), 0 },
             { stff::aabb2(stff::vec2(0), stff::vec2(4)), stff::vec2(0), 0 },
@@ -64,7 +64,7 @@ namespace stf::geom
             { stff::aabb2(stff::vec2(0), stff::vec2(2)), stff::vec2(-1), 2 },
         };
 
-        for (scaffolding::aabb::dist_squared<float, 2> const& test : tests)
+        for (scaffolding::aabb::dist_and_dist_squared<float, 2> const& test : tests)
         {
             scaffolding::aabb::verify(test);
         }
