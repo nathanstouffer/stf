@@ -50,6 +50,12 @@ namespace stf::geom
         inline ray& normalize() { direction.normalize(); return *this; }
 
         /**
+         * @brief Compute a normalized ray
+         * @return A normalized ray in the direction of @p this
+         */
+        inline ray const normalized() const { return ray(*this).normalize(); }
+
+        /**
          * @brief Compute the square of the distance between a ray and a vector
          * @param [in] query
          * @return The square of the distance between @p this and @p point

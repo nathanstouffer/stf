@@ -144,7 +144,7 @@ namespace stf::math
 
         /**
          * @brief Compute a normalized vector
-         * @return A normal vector in the direction of @p this
+         * @return A normalized vector in the direction of @p this
          */
         inline vec normalized() const { return vec(*this).normalize(); }
 
@@ -292,7 +292,7 @@ namespace stf::math
 
         /**
          * @brief Compute a normalized vector
-         * @return A normal vector in the direction of @p this
+         * @return A normalized vector in the direction of @p this
          */
         inline vec normalized() const { return vec(*this).normalize(); }
 
@@ -447,7 +447,7 @@ namespace stf::math
 
         /**
          * @brief Compute a normalized vector
-         * @return A normal vector in the direction of @p this
+         * @return A normalized vector in the direction of @p this
          */
         inline vec normalized() const { return vec(*this).normalize(); }
 
@@ -611,7 +611,7 @@ namespace stf::math
 
         /**
          * @brief Compute a normalized vector
-         * @return A normal vector in the direction of @p this
+         * @return A normalized vector in the direction of @p this
          */
         inline vec normalized() const { return vec(*this).normalize(); }
 
