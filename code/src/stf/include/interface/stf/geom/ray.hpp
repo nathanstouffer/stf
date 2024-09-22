@@ -117,7 +117,7 @@ namespace stf::geom
      * @tparam N Dimension
      * @param [in] point
      * @param [in] beam
-     * @return The square of the distance between @p point and @p seg
+     * @return The square of the distance between @p point and @p beam
      */
     template<typename T, size_t N>
     inline T const dist_squared(math::vec<T, N> const& point, ray<T, N> const& beam)
