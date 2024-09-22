@@ -70,4 +70,64 @@ namespace stf::geom
      */
     template<typename T> using ray3 = ray<T, 3>;
 
+    /**
+     * @brief Compute the square of the distance between a ray and a vector
+     * @tparam T Number type (eg float)
+     * @tparam N Dimension
+     * @param [in] beam
+     * @param [in] point
+     * @return The square of the distance between @p beam and @p point
+     */
+    template<typename T, size_t N>
+    inline T const dist_squared(ray<T, N> const& beam, math::vec<T, N> const& point)
+    {
+        math::vec<T, N> unit_dir = beam.direction.normalized();
+        T scalar = (point - beam.point) * unit_dir;
+        T t = std::max(scalar, math::constants<T>::zero);
+        math::vec<T, N> proj = beam.point + t * unit_dir;
+        return (point - proj).length_squared();
+    }
+
+    /**
+     * @brief Compute the square of the distance between a vector and a ray
+     * @tparam T Number type (eg float)
+     * @tparam N Dimension
+     * @param [in] point
+     * @param [in] beam
+     * @return The square of the distance between @p point and @p seg
+     */
+    template<typename T, size_t N>
+    inline T const dist_squared(math::vec<T, N> const& point, ray<T, N> const& beam)
+    {
+        return dist_squared(beam, point);
+    }
+
+    /**
+     * @brief Compute the distance between a ray and a vector
+     * @tparam T Number type (eg float)
+     * @tparam N Dimension
+     * @param [in] beam
+     * @param [in] point
+     * @return The distance between @p beam and @p point
+     */
+    template<typename T, size_t N>
+    inline T const dist(ray<T, N> const& beam, math::vec<T, N> const& point)
+    {
+        return std::sqrt(dist_squared(beam, point));
+    }
+
+    /**
+     * @brief Compute the distance between a vector and a ray
+     * @tparam T Number type (eg float)
+     * @tparam N Dimension
+     * @param [in] beam
+     * @param [in] point
+     * @return The distance between @p point and @p beam
+     */
+    template<typename T, size_t N>
+    inline T const dist(math::vec<T, N> const& point, ray<T, N> const& beam)
+    {
+        return std::sqrt(dist_squared(point, beam));
+    }
+
 } // stf::geom

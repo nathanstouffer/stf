@@ -139,7 +139,7 @@ namespace stf::geom
     template<typename T> using segment3 = segment<T, 3>;
 
     /**
-     * @brief Compute the square of the distance between a segment and a point
+     * @brief Compute the square of the distance between a segment and a vector
      * @tparam T Number type (eg float)
      * @tparam N Dimension
      * @param [in] seg
@@ -157,11 +157,11 @@ namespace stf::geom
     }
 
     /**
-     * @brief Compute the square of the distance between a point and a segment
+     * @brief Compute the square of the distance between a vector and a segment
      * @tparam T Number type (eg float)
      * @tparam N Dimension
-     * @param [in] seg
      * @param [in] point
+     * @param [in] seg
      * @return The square of the distance between @p point and @p seg
      */
     template<typename T, size_t N>
@@ -171,7 +171,7 @@ namespace stf::geom
     }
 
     /**
-     * @brief Compute the distance between a segment and a point
+     * @brief Compute the distance between a segment and a vector
      * @tparam T Number type (eg float)
      * @tparam N Dimension
      * @param [in] seg 
@@ -185,7 +185,7 @@ namespace stf::geom
     }
 
     /**
-     * @brief Compute the distance between a point and a segment
+     * @brief Compute the distance between a vector and a segment
      * @tparam T Number type (eg float)
      * @tparam N Dimension
      * @param [in] seg

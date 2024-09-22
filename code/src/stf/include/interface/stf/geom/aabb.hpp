@@ -322,7 +322,7 @@ namespace stf::geom
     }
 
     /**
-     * @brief Compute the square of the distance between an aabb and a point
+     * @brief Compute the square of the distance between an aabb and a vector
      * @tparam T Number type (eg float)
      * @tparam N Dimension
      * @param [in] box 
@@ -343,7 +343,7 @@ namespace stf::geom
     }
 
     /**
-     * @brief Compute the square of the distance between a point and an aabb
+     * @brief Compute the square of the distance between a vector and an aabb
      * @tparam T Number type (eg float)
      * @tparam N Dimension
      * @param [in] point
@@ -357,7 +357,7 @@ namespace stf::geom
     }
 
     /**
-     * @brief Compute the distance between an aabb and a point
+     * @brief Compute the distance between an aabb and a vector
      * @tparam T Number type (eg float)
      * @tparam N Dimension
      * @param [in] point
@@ -371,7 +371,7 @@ namespace stf::geom
     }
 
     /**
-     * @brief Compute the distance between a point and an aabb
+     * @brief Compute the distance between a vector and an aabb
      * @tparam T Number type (eg float)
      * @tparam N Dimension
      * @param [in] point
