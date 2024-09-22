@@ -190,7 +190,7 @@ namespace stf::geom
          * @param [in] x 
          * @return Whether or not @p x is contained in @p this
          */
-        bool contains(vec_t const& x) const
+        bool const contains(vec_t const& x) const
         {
             for (size_t i = 0; i < N; ++i)
             {
@@ -205,7 +205,7 @@ namespace stf::geom
          * @param [in] rhs
          * @return Whether or not @p rhs is contained in @p this
          */
-        bool contains(aabb const& rhs) const
+        bool const contains(aabb const& rhs) const
         {
             for (size_t i = 0; i < N; ++i)
             {
@@ -220,7 +220,7 @@ namespace stf::geom
          * @param [in] rhs 
          * @return Whether or not @p this and @p rhs intersect
          */
-        bool intersects(aabb const& rhs) const
+        bool const intersects(aabb const& rhs) const
         {
             for (size_t i = 0; i < N; ++i)
             {
@@ -234,7 +234,7 @@ namespace stf::geom
          * @brief Compute the volume of a @ref aabb
          * @return The volume of @p this
          */
-        T volume() const
+        T const volume() const
         {
             T const delta = diagonal();
             T measure = math::constants<T>::one;
@@ -244,6 +244,30 @@ namespace stf::geom
             }
             return measure;
         }
+
+        /**
+         * @brief Compute the square of the distance between an aabb and a vector
+         * @param [in] point 
+         * @return The square of the distance between @p this and @p point
+         */
+        T const dist_squared(vec_t const& point) const
+        {
+            if (contains(point))
+            {
+                return math::constants<T>::zero;
+            }
+            else
+            {
+                return math::dist_squared(point, math::clamp(point, min, max));
+            }
+        }
+
+        /**
+         * @brief Compute the distance between an aabb and a vector
+         * @param [in] point
+         * @return The distance between @p this and @p point
+         */
+        inline T const dist(vec_t const& point) const { return std::sqrt(dist_squared(point)); }
 
     public:
 
@@ -332,14 +356,7 @@ namespace stf::geom
     template<typename T, size_t N>
     inline T const dist_squared(aabb<T, N> const& box, math::vec<T, N> const& point)
     {
-        if (box.contains(point))
-        {
-            return math::constants<T>::zero;
-        }
-        else
-        {
-            return math::dist_squared(point, math::clamp(point, box.min, box.max));
-        }
+        return box.dist_squared(point);
     }
 
     /**
@@ -367,7 +384,7 @@ namespace stf::geom
     template<typename T, size_t N>
     inline T const dist(aabb<T, N> const& box, math::vec<T, N> const& point)
     {
-        return std::sqrt(dist_squared(box, point));
+        return box.dist(point);
     }
 
     /**

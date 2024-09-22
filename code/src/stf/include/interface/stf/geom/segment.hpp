@@ -102,6 +102,27 @@ namespace stf::geom
         }
 
         /**
+         * @brief Compute the square of the distance between a segment and a vector
+         * @param [in] point
+         * @return The square of the distance between @p this and @p point
+         */
+        T const dist_squared(vec_t const& point) const
+        {
+            vec_t diff = delta();
+            T scalar = ((point - a) * diff) / (diff * diff);
+            T t = std::clamp(scalar, math::constants<T>::zero, math::constants<T>::one);
+            vec_t proj = a + t * diff;
+            return (point - proj).length_squared();
+        }
+
+        /**
+         * @brief Compute the distance between a segment and a vector
+         * @param [in] point
+         * @return The distance between @p this and @p point
+         */
+        inline T const dist(vec_t const& point) const { return std::sqrt(dist_squared(point)); }
+
+        /**
          * @brief Interpolate along the semgent
          * @param [in] t 
          * @note Clamped to the endpoints outside of [0, 1]
@@ -149,11 +170,7 @@ namespace stf::geom
     template<typename T, size_t N>
     inline T const dist_squared(segment<T, N> const& seg, math::vec<T, N> const& point)
     {
-        math::vec<T, N> diff = seg.delta();
-        T scalar = ((point - seg.a) * diff) / (diff * diff);
-        T t = std::clamp(scalar, math::constants<T>::zero, math::constants<T>::one);
-        math::vec<T, N> proj = seg.a + t * diff;
-        return (point - proj).length_squared();
+        return seg.dist_squared(point);
     }
 
     /**
@@ -181,7 +198,7 @@ namespace stf::geom
     template<typename T, size_t N>
     inline T const dist(segment<T, N> const& seg, math::vec<T, N> const& point)
     {
-        return std::sqrt(dist_squared(seg, point));
+        return seg.dist(point);
     }
 
     /**

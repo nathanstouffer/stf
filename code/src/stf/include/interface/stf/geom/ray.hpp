@@ -49,6 +49,27 @@ namespace stf::geom
          */
         inline ray& normalize() { direction.normalize(); return *this; }
 
+        /**
+         * @brief Compute the square of the distance between a ray and a vector
+         * @param [in] query
+         * @return The square of the distance between @p this and @p point
+         */
+        T const dist_squared(vec_t const& query) const
+        {
+            vec_t unit_dir = direction.normalized();
+            T scalar = (query - point) * unit_dir;
+            T t = std::max(scalar, math::constants<T>::zero);
+            vec_t proj = point + t * unit_dir;
+            return (query - proj).length_squared();
+        }
+
+        /**
+         * @brief Compute the distance between a ray and a vector
+         * @param [in] point
+         * @return The distance between @p this and @p point
+         */
+        inline T const dist(vec_t const& point) const { return std::sqrt(dist_squared(point)); }
+
     };
 
     /// @cond DELETED
@@ -81,11 +102,7 @@ namespace stf::geom
     template<typename T, size_t N>
     inline T const dist_squared(ray<T, N> const& beam, math::vec<T, N> const& point)
     {
-        math::vec<T, N> unit_dir = beam.direction.normalized();
-        T scalar = (point - beam.point) * unit_dir;
-        T t = std::max(scalar, math::constants<T>::zero);
-        math::vec<T, N> proj = beam.point + t * unit_dir;
-        return (point - proj).length_squared();
+        return beam.dist_squared(point);
     }
 
     /**
@@ -113,7 +130,7 @@ namespace stf::geom
     template<typename T, size_t N>
     inline T const dist(ray<T, N> const& beam, math::vec<T, N> const& point)
     {
-        return std::sqrt(dist_squared(beam, point));
+        return beam.dist(point);
     }
 
     /**
