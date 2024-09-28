@@ -10,6 +10,7 @@ set(STF_FILES
 	"${CMAKE_CURRENT_SOURCE_DIR}/include/interface/stf/geom/aabb.hpp"
 	"${CMAKE_CURRENT_SOURCE_DIR}/include/interface/stf/geom/holygon.hpp"
 	"${CMAKE_CURRENT_SOURCE_DIR}/include/interface/stf/geom/hyperplane.hpp"
+	"${CMAKE_CURRENT_SOURCE_DIR}/include/interface/stf/geom/obb.hpp"
 	"${CMAKE_CURRENT_SOURCE_DIR}/include/interface/stf/geom/polygon.hpp"
 	"${CMAKE_CURRENT_SOURCE_DIR}/include/interface/stf/geom/polyline.hpp"
 	"${CMAKE_CURRENT_SOURCE_DIR}/include/interface/stf/geom/ray.hpp"
