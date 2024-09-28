@@ -53,7 +53,7 @@ namespace stf::geom::scaffolding::obb
         geom::obb<T, N> constructed(math::vec<T, N>(0), test.rotation, math::vec<T, N>(test.half_extent));
 
         geom::obb<T, N> fitted(test.rotation);
-        for (math::vec<T, N> const& direction : geom::obb<T, N>::canonical_basis())
+        for (math::vec<T, N> const& direction : math::canonical_basis<T, N>())
         {
             fitted.fit( test.half_extent * (test.rotation * direction));
             fitted.fit(-test.half_extent * (test.rotation * direction));

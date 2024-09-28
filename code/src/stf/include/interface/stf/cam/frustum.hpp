@@ -237,6 +237,8 @@ namespace stf::cam
                 verts.fbl, verts.fbr
             };
             m_aabb = aabb_t::fit(points);
+
+
         }
 
         std::array<plane_t, c_num_planes> m_planes;

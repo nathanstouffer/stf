@@ -7,6 +7,7 @@
 #include <vector>
 
 #include "stf/geom/aabb.hpp"
+#include "stf/math/basis.hpp"
 #include "stf/math/constants.hpp"
 #include "stf/math/interval.hpp"
 #include "stf/math/matrix.hpp"
@@ -36,51 +37,16 @@ namespace stf::geom
         using vec_t = math::vec<T, N>;
 
         /**
-         * @brief Type alias for the basis of the box
-         * @note The basis is assumed to be orthonormal
+         * @brief Type alias for basis type
          */
-        using basis_t = std::array<vec_t, N>;
-
-    public:
-
-        /**
-         * @brief Compute the canonical basis for the dimension of the obb
-         * @return The canonical basis of R^n
-         */
-        static basis_t const canonical_basis()
-        {
-            basis_t basis;
-            for (size_t d = 0; d < N; ++d)
-            {
-                vec_t dir = vec_t(math::constants<T>::zero);
-                dir[d] = math::constants<T>::one;
-                basis[d] = dir;
-            }
-            return basis;
-        }
-
-        /**
-         * @brief Convert a rotation matrix to a basis
-         * @param [in] rotation 
-         * @return The basis corresponding to @p rotation
-         * @note @p rotation is assumed to be orthonormal
-         */
-        static basis_t const to_basis(math::mtx<T, N> const& rotation)
-        {
-            basis_t basis;
-            for (size_t d = 0; d < N; ++d)
-            {
-                basis[d] = rotation.col(d);
-            }
-            return basis;
-        }
+        using basis_t = math::basis<T, N>;
 
     public:
 
         /**
          * @brief Default constructor -- encompasses all of R^n
          */
-        obb() : obb(canonical_basis()) {}
+        obb() : obb(math::canonical_basis<T, N>()) {}
 
         /**
          * @brief Construct from a basis -- encompasses all of R^n
@@ -92,13 +58,13 @@ namespace stf::geom
          * @brief Construct from a rotation -- encompasses all of R^n
          * @param [in] rotation 
          */
-        explicit obb(math::mtx<T, N> const& rotation) : obb(vec_t(math::constants<T>::zero), to_basis(rotation), vec_t(math::constants<T>::neg_inf)) {}
+        explicit obb(math::mtx<T, N> const& rotation) : obb(vec_t(math::constants<T>::zero), math::to_basis(rotation), vec_t(math::constants<T>::neg_inf)) {}
 
         /**
          * @brief Construct from an @ref aabb
          * @param [in] aabb
          */
-        explicit obb(aabb<T, N> const& aabb) : obb(aabb.center(), canonical_basis(), math::constants<T>::half * aabb.diagonal()) {}
+        explicit obb(aabb<T, N> const& aabb) : obb(aabb.center(), math::canonical_basis<T, N>(), math::constants<T>::half * aabb.diagonal()) {}
 
         /**
          * @brief Construct from a center, a rotation matrix, and half-extents
@@ -107,7 +73,7 @@ namespace stf::geom
          * @param [in] half_extents
          * @note @p rotation is assumed to be orthonormal
          */
-        obb(vec_t const& center, math::mtx<T, N> const& rotation, vec_t const& half_extents) : obb(center, to_basis(rotation), half_extents) {}
+        obb(vec_t const& center, math::mtx<T, N> const& rotation, vec_t const& half_extents) : obb(center, math::to_basis(rotation), half_extents) {}
 
         /**
          * @brief Construct from a center, basis, and half-extents
