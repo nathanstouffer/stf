@@ -236,12 +236,19 @@ namespace stf::geom
          */
         T dist_squared(vec_t const& point) const
         {
-            T d = math::constants<T>::pos_inf;
-            for (size_t i = 0; i < m_vertices.size(); ++i)
+            if (contains(point, boundary_types::CLOSED))
             {
-                d = std::min(d, edge(i).dist_squared(point));
+                return math::constants<T>::zero;
             }
-            return d;
+            else
+            {
+                T d = math::constants<T>::pos_inf;
+                for (size_t i = 0; i < m_vertices.size(); ++i)
+                {
+                    d = std::min(d, edge(i).dist_squared(point));
+                }
+                return d;
+            }
         }
 
         /**
@@ -258,9 +265,13 @@ namespace stf::geom
          */
         T signed_dist(vec_t const& point) const
         {
-            T d = dist(point);
+            T d = math::constants<T>::pos_inf;
+            for (size_t i = 0; i < m_vertices.size(); ++i)
+            {
+                d = std::min(d, edge(i).dist_squared(point));
+            }
             if (d == math::constants<T>::zero) { return d; }
-            return (contains(point, boundary_types::OPEN)) ? -d : d;
+            return (contains(point, boundary_types::OPEN)) ? -std::sqrt(d) : std::sqrt(d);
         }
 
         /**

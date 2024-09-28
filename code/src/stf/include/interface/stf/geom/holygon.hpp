@@ -112,6 +112,28 @@ namespace stf::geom
         }
 
         /**
+         * @brief Compute the distance from a @ref holygon to a point
+         * @param [in] x
+         * @return The distance from @p this to @p x
+         */
+        T dist_squared(vec_t const& point) const
+        {
+            T d = m_hull.dist_squared(point);
+            for (polygon_t const& hole : m_holes)
+            {
+                d = std::min(d, hole.dist_squared(point));
+            }
+            return d;
+        }
+
+        /**
+         * @brief Compute the distance between a holygon and a vector
+         * @param [in] point
+         * @return The distance between @p this and @p point
+         */
+        inline T const dist(vec_t const& point) const { return std::sqrt(dist_squared(point)); }
+
+        /**
          * @brief Translate a @ref holygon in place
          * @param [in] delta
          * @return A reference to @p this

@@ -64,13 +64,15 @@ namespace stf::geom::scaffolding::polygon
         ASSERT_EQ(test.signed_distance, geom::signed_dist(test.polygon, test.query)) << "failed geom::signed_dist";
         ASSERT_EQ(test.signed_distance, geom::signed_dist(test.query, test.polygon)) << "failed geom::signed_dist";
         
-        ASSERT_EQ(std::abs(test.signed_distance), test.polygon.dist(test.query)) << "failed polygon::dist";
-        ASSERT_EQ(std::abs(test.signed_distance), geom::dist(test.polygon, test.query)) << "failed geom::dist";
-        ASSERT_EQ(std::abs(test.signed_distance), geom::dist(test.query, test.polygon)) << "failed geom::dist";
+        T dist = std::max(math::constants<T>::zero, test.signed_distance);
+
+        ASSERT_EQ(dist, test.polygon.dist(test.query)) << "failed polygon::dist";
+        ASSERT_EQ(dist, geom::dist(test.polygon, test.query)) << "failed geom::dist";
+        ASSERT_EQ(dist, geom::dist(test.query, test.polygon)) << "failed geom::dist";
         
-        ASSERT_NEAR(test.signed_distance * test.signed_distance, test.polygon.dist_squared(test.query), math::constants<T>::tol) << "failed polygon::dist_squared";
-        ASSERT_NEAR(test.signed_distance * test.signed_distance, geom::dist_squared(test.polygon, test.query), math::constants<T>::tol) << "failed geom::dist_squared";
-        ASSERT_NEAR(test.signed_distance * test.signed_distance, geom::dist_squared(test.query, test.polygon), math::constants<T>::tol) << "failed geom::dist_squared";
+        ASSERT_NEAR(dist * dist, test.polygon.dist_squared(test.query), math::constants<T>::tol) << "failed polygon::dist_squared";
+        ASSERT_NEAR(dist * dist, geom::dist_squared(test.polygon, test.query), math::constants<T>::tol) << "failed geom::dist_squared";
+        ASSERT_NEAR(dist * dist, geom::dist_squared(test.query, test.polygon), math::constants<T>::tol) << "failed geom::dist_squared";
     }
 
 }
