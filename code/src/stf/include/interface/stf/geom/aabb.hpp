@@ -6,6 +6,7 @@
 #include <vector>
 
 #include "stf/math/constants.hpp"
+#include "stf/math/interval.hpp"
 #include "stf/math/vector.hpp"
 
 /**
@@ -188,6 +189,24 @@ namespace stf::geom
         }
 
         /**
+         * @brief Compute the projection of an @ref aabb onto an axis
+         * @param [in] axis
+         * @return The interval of projection onto the axis
+         * @note @p axis is assumed to be a unit vector
+         */
+        math::interval<T> projection(vec_t const& axis) const
+        {
+            math::interval<T> interval(math::constants<T>::pos_inf, math::constants<T>::neg_inf);
+            for (size_t v = 0; v < aabb::vertex_count(); ++d)
+            {
+                T const l = math::dot(vertex(i), axis);
+                interval.a = std::min(interval.a, l);
+                interval.b = std::max(interval.b, l);
+            }
+            return interval;
+        }
+
+        /**
          * @brief Compute the square of the distance between an aabb and a vector
          * @param [in] point
          * @return The square of the distance between @p this and @p point
@@ -317,6 +336,12 @@ namespace stf::geom
             }
             return box;
         }
+
+        /**
+         * @brief Compute the number of vertices of the aabb
+         * @return The number of vertices
+         */
+        inline static size_t const vertex_count() { return 1 << N; }
 
         /**
          * @brief Compute the number of bytes allocated by @ref aabb

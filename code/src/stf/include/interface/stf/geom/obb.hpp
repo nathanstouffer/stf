@@ -43,6 +43,10 @@ namespace stf::geom
 
     public:
 
+        /**
+         * @brief Compute the canonical basis for the dimension of the obb
+         * @return The canonical basis of R^n
+         */
         static basis_t const canonical_basis()
         {
             basis_t basis;
@@ -128,7 +132,7 @@ namespace stf::geom
          * @param [in] point
          * @return Whether or not @p point is contained in @p this
          */
-        bool const contains(vec_t const& x) const
+        bool const contains(vec_t const& point) const
         {
             for (size_t d = 0; d < N; ++d)
             {
@@ -207,14 +211,29 @@ namespace stf::geom
 
     public:
 
+        /**
+         * @brief Getter for the center of the obb
+         * @return A const ref to the center
+         */
         vec_t const& center() const { return m_center; }
+
+        /**
+         * @brief Getter for the basis of the obb
+         * @return A const ref to the basis
+         */
         basis_t const& basis() const { return m_basis; }
+
+        /**
+         * @brief Getter for the half extent of the obb
+         * @return A const ref to the half extent
+         */
         vec_t const& half_extents() const { return m_half_extents; }
 
     public:
 
         /**
          * @brief Construct an @ref obb that minimally encompasses a set of points
+         * @param [in] basis
          * @param [in] points
          * @return An @ref obb that minimally encompasses @p points
          */
@@ -228,6 +247,10 @@ namespace stf::geom
             return box;
         }
 
+        /**
+         * @brief Compute the number of vertices of the obb
+         * @return The number of vertices
+         */
         inline static size_t const vertex_count() { return 1 << N; }
 
         /**
