@@ -9,9 +9,9 @@
 namespace stf::geom
 {
 
-    TEST(segment2, distance_to)
+    TEST(segment2, dist_and_dist_squared)
     {
-        std::vector<scaffolding::segment::distance_to<float, 2>> tests =
+        std::vector<scaffolding::segment::dist_and_dist_squared<float, 2>> tests =
         {
             { stff::segment2(stff::vec2(0), stff::vec2(1)), stff::vec2(0), 0 },
             { stff::segment2(stff::vec2(0), stff::vec2(1)), stff::vec2(0.5), 0 },
@@ -24,10 +24,10 @@ namespace stf::geom
             { stff::segment2(stff::vec2(0), stff::vec2(1, 0)), stff::vec2(1, 1), 1 },
             { stff::segment2(stff::vec2(0), stff::vec2(1, 0)), stff::vec2(1, -1), 1 },
             { stff::segment2(stff::vec2(0), stff::vec2(1, 0)), stff::vec2(2, 0), 1 },
-            { stff::segment2(stff::vec2(0), stff::vec2(1)), stff::vec2(0, 1), math::constants<float>::sqrt_two_inv },
+            { stff::segment2(stff::vec2(0), stff::vec2(1)), stff::vec2(0, 1), 0.5 },
         };
 
-        for (scaffolding::segment::distance_to<float, 2> const& test : tests)
+        for (scaffolding::segment::dist_and_dist_squared<float, 2> const& test : tests)
         {
             scaffolding::segment::verify(test);
         }

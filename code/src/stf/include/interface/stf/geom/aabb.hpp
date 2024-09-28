@@ -76,8 +76,8 @@ namespace stf::geom
          * @verbatim
            6----7
           /|   /|
-         2----3 |
-         | 4--|-5
+         4----5 |
+         | 2--|-3
          |/   |/
          0----1 @endverbatim
          * 
@@ -171,6 +171,13 @@ namespace stf::geom
         }
 
         /**
+         * @brief Fit an @ref aabb
+         * @param [in] x
+         * @return A fitted copy of @p this
+         */
+        aabb fitted(vec_t const& x) const { return aabb(*this).fit(x); }
+
+        /**
          * @brief Fit an @ref aabb to an @ref aabb in place
          * @param [in] rhs 
          * @return A reference to @p this
@@ -186,11 +193,18 @@ namespace stf::geom
         }
 
         /**
+         * @brief Fit an @ref aabb
+         * @param [in] rhs
+         * @return A fitted copy of @p this
+         */
+        aabb fitted(aabb const& rhs) const { return aabb(*this).fit(rhs); }
+
+        /**
          * @brief Compute whether a point is contained in an @ref aabb
          * @param [in] x 
          * @return Whether or not @p x is contained in @p this
          */
-        bool contains(vec_t const& x) const
+        bool const contains(vec_t const& x) const
         {
             for (size_t i = 0; i < N; ++i)
             {
@@ -205,7 +219,7 @@ namespace stf::geom
          * @param [in] rhs
          * @return Whether or not @p rhs is contained in @p this
          */
-        bool contains(aabb const& rhs) const
+        bool const contains(aabb const& rhs) const
         {
             for (size_t i = 0; i < N; ++i)
             {
@@ -220,7 +234,7 @@ namespace stf::geom
          * @param [in] rhs 
          * @return Whether or not @p this and @p rhs intersect
          */
-        bool intersects(aabb const& rhs) const
+        bool const intersects(aabb const& rhs) const
         {
             for (size_t i = 0; i < N; ++i)
             {
@@ -234,7 +248,7 @@ namespace stf::geom
          * @brief Compute the volume of a @ref aabb
          * @return The volume of @p this
          */
-        T volume() const
+        T const volume() const
         {
             T const delta = diagonal();
             T measure = math::constants<T>::one;
@@ -246,11 +260,11 @@ namespace stf::geom
         }
 
         /**
-         * @brief Compute the square of the distance from an aabb to a point
-         * @param [in] point
-         * @return The square of the distance from @p this to @p point
+         * @brief Compute the square of the distance between an aabb and a vector
+         * @param [in] point 
+         * @return The square of the distance between @p this and @p point
          */
-        T dist_squared_to(vec_t const& point) const
+        T const dist_squared(vec_t const& point) const
         {
             if (contains(point))
             {
@@ -263,11 +277,11 @@ namespace stf::geom
         }
 
         /**
-         * @brief Compute the distance from an aabb to a point
+         * @brief Compute the distance between an aabb and a vector
          * @param [in] point
-         * @return The distance from @p this to @p point
+         * @return The distance between @p this and @p point
          */
-        T dist_to(vec_t const& point) const { return std::sqrt(dist_squared_to(point)); }
+        inline T const dist(vec_t const& point) const { return std::sqrt(dist_squared(point)); }
 
     public:
 
@@ -343,6 +357,62 @@ namespace stf::geom
     aabb<T, N> const fit(aabb<T, N> const& lhs, aabb<T, N> const& rhs)
     {
         return aabb<T, N>(lhs).fit(rhs);
+    }
+
+    /**
+     * @brief Compute the square of the distance between an aabb and a vector
+     * @tparam T Number type (eg float)
+     * @tparam N Dimension
+     * @param [in] box 
+     * @param [in] point 
+     * @return The square of the distance between @p box and @p point
+     */
+    template<typename T, size_t N>
+    inline T const dist_squared(aabb<T, N> const& box, math::vec<T, N> const& point)
+    {
+        return box.dist_squared(point);
+    }
+
+    /**
+     * @brief Compute the square of the distance between a vector and an aabb
+     * @tparam T Number type (eg float)
+     * @tparam N Dimension
+     * @param [in] point
+     * @param [in] box
+     * @return The square of the distance between @p point and @p box
+     */
+    template<typename T, size_t N>
+    inline T const dist_squared(math::vec<T, N> const& point, aabb<T, N> const& box)
+    {
+        return dist_squared(box, point);
+    }
+
+    /**
+     * @brief Compute the distance between an aabb and a vector
+     * @tparam T Number type (eg float)
+     * @tparam N Dimension
+     * @param [in] point
+     * @param [in] box
+     * @return The distance between @p box and @p point
+     */
+    template<typename T, size_t N>
+    inline T const dist(aabb<T, N> const& box, math::vec<T, N> const& point)
+    {
+        return box.dist(point);
+    }
+
+    /**
+     * @brief Compute the distance between a vector and an aabb
+     * @tparam T Number type (eg float)
+     * @tparam N Dimension
+     * @param [in] point
+     * @param [in] box
+     * @return The distance between @p point and @p box
+     */
+    template<typename T, size_t N>
+    inline T const dist(math::vec<T, N> const& point, aabb<T, N> const& box)
+    {
+        return dist(box, point);
     }
 
     /**

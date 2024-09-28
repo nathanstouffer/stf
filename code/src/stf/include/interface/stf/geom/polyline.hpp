@@ -123,18 +123,25 @@ namespace stf::geom
 
         /**
          * @brief Compute the distance from a @ref polyline to a point
-         * @param [in] x 
-         * @return The distance from @p this to @p x
+         * @param [in] point
+         * @return The distance from @p this to @p point
          */
-        T distance_to(vec_t const& x) const
+        T dist_squared(vec_t const& point) const
         {
-            T dist = math::constants<T>::pos_inf;
+            T d = math::constants<T>::pos_inf;
             for (size_t i = 0; i + 1 < m_vertices.size(); ++i)
             {
-                dist = std::min(dist, edge(i).distance_to(x));
+                d = std::min(d, edge(i).dist_squared(point));
             }
-            return dist;
+            return d;
         }
+
+        /**
+         * @brief Compute the distance between a polyline and a vector
+         * @param [in] point
+         * @return The distance between @p this and @p point
+         */
+        inline T const dist(vec_t const& point) const { return std::sqrt(dist_squared(point)); }
 
         /**
          * @brief Interpolate along a @ref polyline
@@ -253,12 +260,68 @@ namespace stf::geom
      * @tparam T Number type (eg float)
      */
     template<typename T> using polyline2 = polyline<T, 2>;
+
     /**
      * @brief Type alias for a 3D @ref polyline
      * @tparam T Number type (eg float)
      */
-
     template<typename T> using polyline3 = polyline<T, 3>;
+
+    /**
+     * @brief Compute the square of the distance between a polyline and a vector
+     * @tparam T Number type (eg float)
+     * @tparam N Dimension
+     * @param [in] linestring
+     * @param [in] point
+     * @return The square of the distance between @p linestring and @p point
+     */
+    template<typename T, size_t N>
+    inline T const dist_squared(polyline<T, N> const& linestring, math::vec<T, N> const& point)
+    {
+        return linestring.dist_squared(point);
+    }
+
+    /**
+     * @brief Compute the square of the distance between a vector and a polyline
+     * @tparam T Number type (eg float)
+     * @tparam N Dimension
+     * @param [in] point
+     * @param [in] linestring
+     * @return The square of the distance between @p point and @p linestring
+     */
+    template<typename T, size_t N>
+    inline T const dist_squared(math::vec<T, N> const& point, polyline<T, N> const& linestring)
+    {
+        return dist_squared(linestring, point);
+    }
+
+    /**
+     * @brief Compute the distance between a polyline and a vector
+     * @tparam T Number type (eg float)
+     * @tparam N Dimension
+     * @param [in] linestring
+     * @param [in] point
+     * @return The distance between @p linestring and @p point
+     */
+    template<typename T, size_t N>
+    inline T const dist(polyline<T, N> const& linestring, math::vec<T, N> const& point)
+    {
+        return linestring.dist(point);
+    }
+
+    /**
+     * @brief Compute the distance between a vector and a polyline
+     * @tparam T Number type (eg float)
+     * @tparam N Dimension
+     * @param [in] linestring
+     * @param [in] point
+     * @return The distance between @p point and @p linestring
+     */
+    template<typename T, size_t N>
+    inline T const dist(math::vec<T, N> const& point, polyline<T, N> const& linestring)
+    {
+        return dist(linestring, point);
+    }
 
 
 } // stf::geom

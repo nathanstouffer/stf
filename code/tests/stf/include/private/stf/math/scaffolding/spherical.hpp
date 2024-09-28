@@ -47,7 +47,7 @@ namespace stf::math::scaffolding::spherical
     void verify(closest_equiv_angle<T> const& test)
     {
         // NOTE: unfortunately, we had to relax floating point equality on this on a bit
-        ASSERT_NEAR(test.expected, math::closest_equiv_angle(test.phi, test.theta), stff::constants::tol) << "Failed to compute closest equivalent angle";
+        ASSERT_NEAR(test.expected, math::closest_equiv_angle(test.phi, test.theta), math::constants<T>::tol) << "Failed to compute closest equivalent angle";
     }
 
     template<typename T>

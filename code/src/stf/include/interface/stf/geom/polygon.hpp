@@ -198,7 +198,7 @@ namespace stf::geom
             for (size_t i = 0; i < m_vertices.size(); ++i)
             {
                 geom::segment2<T> seg = edge(i);
-                if (seg.distance_to(query) == math::constants<T>::zero)     // early out if the point is on the boundary
+                if (geom::dist_squared(seg, query) == math::constants<T>::zero)     // early out if the point is on the boundary
                 {
                     return type == boundary_types::CLOSED;
                 }
@@ -230,27 +230,49 @@ namespace stf::geom
         }
 
         /**
-         * @brief Compute the signed distance from a query point to the boundary of a @ref polygon
-         * @param [in] query 
-         * @return The signed distance from @p query to the boundary of @p this
+         * @brief Compute the distance from a @ref polygon to a point
+         * @param [in] point
+         * @return The distance from @p this to @p point
          */
-        T signed_distance_to(vec_t const& query) const
+        T dist_squared(vec_t const& point) const
         {
-            T dist = math::constants<T>::pos_inf;
-            for (size_t i = 0; i < m_vertices.size(); ++i)
+            if (contains(point, boundary_types::CLOSED))
             {
-                dist = std::min(dist, edge(i).distance_to(query));
+                return math::constants<T>::zero;
             }
-            if (dist == math::constants<T>::zero) { return dist; }
-            return (contains(query, boundary_types::OPEN)) ? -dist : dist;
+            else
+            {
+                T d = math::constants<T>::pos_inf;
+                for (size_t i = 0; i < m_vertices.size(); ++i)
+                {
+                    d = std::min(d, edge(i).dist_squared(point));
+                }
+                return d;
+            }
         }
 
         /**
-         * @brief Compute the distance from a query point to the boundary of a @ref polygon
-         * @param [in] query 
-         * @return The distance form @p query to the boundary of @p this
+         * @brief Compute the distance between a polygon and a vector
+         * @param [in] point
+         * @return The distance between @p this and @p point
          */
-        inline T distance_to(vec_t const& query) const { return std::abs(signed_distance_to(query)); }
+        inline T const dist(vec_t const& point) const { return std::sqrt(dist_squared(point)); }
+
+        /**
+         * @brief Compute the signed distance from a query point to the boundary of a @ref polygon
+         * @param [in] point 
+         * @return The signed distance from @p point to the boundary of @p this
+         */
+        T signed_dist(vec_t const& point) const
+        {
+            T d = math::constants<T>::pos_inf;
+            for (size_t i = 0; i < m_vertices.size(); ++i)
+            {
+                d = std::min(d, edge(i).dist_squared(point));
+            }
+            if (d == math::constants<T>::zero) { return d; }
+            return (contains(point, boundary_types::OPEN)) ? -std::sqrt(d) : std::sqrt(d);
+        }
 
         /**
          * @brief Translate a @ref polygon in place
@@ -320,5 +342,89 @@ namespace stf::geom
         aabb_t m_aabb;
 
     };
+
+    /**
+     * @brief Compute the square of the distance between a polygon and a vector
+     * @tparam T Number type (eg float)
+     * @tparam N Dimension
+     * @param [in] ring
+     * @param [in] point
+     * @return The square of the distance between @p ring and @p point
+     */
+    template<typename T>
+    inline T const dist_squared(polygon<T> const& ring, math::vec2<T> const& point)
+    {
+        return ring.dist_squared(point);
+    }
+
+    /**
+     * @brief Compute the square of the distance between a vector and a polygon
+     * @tparam T Number type (eg float)
+     * @tparam N Dimension
+     * @param [in] point
+     * @param [in] ring
+     * @return The square of the distance between @p point and @p ring
+     */
+    template<typename T>
+    inline T const dist_squared(math::vec2<T> const& point, polygon<T> const& ring)
+    {
+        return dist_squared(ring, point);
+    }
+
+    /**
+     * @brief Compute the distance between a polygon and a vector
+     * @tparam T Number type (eg float)
+     * @tparam N Dimension
+     * @param [in] ring
+     * @param [in] point
+     * @return The distance between @p ring and @p point
+     */
+    template<typename T>
+    inline T const dist(polygon<T> const& ring, math::vec2<T> const& point)
+    {
+        return ring.dist(point);
+    }
+
+    /**
+     * @brief Compute the distance between a vector and a polygon
+     * @tparam T Number type (eg float)
+     * @tparam N Dimension
+     * @param [in] ring
+     * @param [in] point
+     * @return The distance between @p point and @p ring
+     */
+    template<typename T>
+    inline T const dist(math::vec2<T> const& point, polygon<T> const& ring)
+    {
+        return dist(ring, point);
+    }
+
+    /**
+     * @brief Compute the signed distance between a polygon and a vector
+     * @tparam T Number type (eg float)
+     * @tparam N Dimension
+     * @param [in] ring
+     * @param [in] point
+     * @return The distance between @p ring and @p point
+     */
+    template<typename T>
+    inline T const signed_dist(polygon<T> const& ring, math::vec2<T> const& point)
+    {
+        return ring.signed_dist(point);
+    }
+
+    /**
+     * @brief Compute the signed distance between a vector and a polygon
+     * @tparam T Number type (eg float)
+     * @tparam N Dimension
+     * @param [in] ring
+     * @param [in] point
+     * @return The distance between @p point and @p ring
+     */
+    template<typename T>
+    inline T const signed_dist(math::vec2<T> const& point, polygon<T> const& ring)
+    {
+        return signed_dist(ring, point);
+    }
 
 } // stf::geom

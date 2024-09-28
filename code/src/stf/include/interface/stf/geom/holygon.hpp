@@ -112,6 +112,34 @@ namespace stf::geom
         }
 
         /**
+         * @brief Compute the distance from a @ref holygon to a point
+         * @param [in] point
+         * @return The distance from @p this to @p point
+         */
+        T dist_squared(vec_t const& point) const
+        {
+            // check for containment in holes. if in hole, compute dist squared to boundary
+            for (polygon_t const& hole : m_holes)
+            {
+                T d = hole.signed_dist(point);
+                if (d <= math::constants<T>::zero)
+                {
+                    return d * d;
+                }
+            }
+
+            // point is not in a hole => compute distance to hull
+            return m_hull.dist_squared(point);
+        }
+
+        /**
+         * @brief Compute the distance between a holygon and a vector
+         * @param [in] point
+         * @return The distance between @p this and @p point
+         */
+        inline T const dist(vec_t const& point) const { return std::sqrt(dist_squared(point)); }
+
+        /**
          * @brief Translate a @ref holygon in place
          * @param [in] delta
          * @return A reference to @p this
@@ -184,5 +212,61 @@ namespace stf::geom
         std::vector<polygon_t> m_holes;
 
     };
+
+    /**
+     * @brief Compute the square of the distance between a holygon and a vector
+     * @tparam T Number type (eg float)
+     * @tparam N Dimension
+     * @param [in] shape
+     * @param [in] point
+     * @return The square of the distance between @p shape and @p point
+     */
+    template<typename T>
+    inline T const dist_squared(holygon<T> const& shape, math::vec2<T> const& point)
+    {
+        return shape.dist_squared(point);
+    }
+
+    /**
+     * @brief Compute the square of the distance between a vector and a holygon
+     * @tparam T Number type (eg float)
+     * @tparam N Dimension
+     * @param [in] point
+     * @param [in] shape
+     * @return The square of the distance between @p point and @p shape
+     */
+    template<typename T>
+    inline T const dist_squared(math::vec2<T> const& point, holygon<T> const& shape)
+    {
+        return dist_squared(shape, point);
+    }
+
+    /**
+     * @brief Compute the distance between a holygon and a vector
+     * @tparam T Number type (eg float)
+     * @tparam N Dimension
+     * @param [in] shape
+     * @param [in] point
+     * @return The distance between @p shape and @p point
+     */
+    template<typename T>
+    inline T const dist(holygon<T> const& shape, math::vec2<T> const& point)
+    {
+        return shape.dist(point);
+    }
+
+    /**
+     * @brief Compute the distance between a vector and a holygon
+     * @tparam T Number type (eg float)
+     * @tparam N Dimension
+     * @param [in] shape
+     * @param [in] point
+     * @return The distance between @p point and @p shape
+     */
+    template<typename T>
+    inline T const dist(math::vec2<T> const& point, holygon<T> const& shape)
+    {
+        return dist(shape, point);
+    }
 
 } // stf::geom

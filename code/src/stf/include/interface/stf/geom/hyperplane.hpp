@@ -47,21 +47,21 @@ namespace stf::geom
          * @param [in] p 
          * @return The signed distance from @p this to @p p
          */
-        T signed_distance(vec_t const& p) const { return m_normal * (p - m_point); }
+        T signed_dist(vec_t const& p) const { return m_normal * (p - m_point); }
 
         /**
          * @brief Compute the distance from a hyperplane to a point
          * @param [in] p
          * @return The distance from @p this to @p p
          */
-        inline T distance(vec_t const& p) const { return std::abs(signed_distance(p)); }
+        inline T dist(vec_t const& p) const { return std::abs(signed_dist(p)); }
 
         /**
          * @brief Compute whether a point is contained in R^{n-1} subspace that is the hyperplane
          * @param [in] p 
          * @return Whether or not @p this contains @p p
          */
-        inline bool contains(vec_t const& p) const { return signed_distance(p) == math::constants<T>::zero; }
+        inline bool contains(vec_t const& p) const { return signed_dist(p) == math::constants<T>::zero; }
         
         /**
          * @brief Compute the side of the hyperplane that a point lies on
@@ -71,7 +71,7 @@ namespace stf::geom
          * @param [in] p 
          * @return The side of @p this that @p p lies on
          */
-        inline T side(vec_t const& p) const { return signed_distance(p); }
+        inline T side(vec_t const& p) const { return signed_dist(p); }
 
         /**
          * @brief Compute whether a @ref hyperplane divides an aabb
@@ -125,8 +125,62 @@ namespace stf::geom
      */
     template<typename T> using plane = hyperplane<T, 3>;
 
-    // we use the first point to define the plane
-    
+    /**
+     * @brief Compute the distance between a hyperplane and a vector
+     * @tparam T Number type (eg float)
+     * @tparam N Dimension
+     * @param [in] plane
+     * @param [in] point
+     * @return The distance between @p plane and @p point
+     */
+    template<typename T, size_t N>
+    inline T const dist(hyperplane<T, N> const& plane, math::vec<T, N> const& point)
+    {
+        return plane.dist(point);
+    }
+
+    /**
+     * @brief Compute the distance between a vector and a hyperplane
+     * @tparam T Number type (eg float)
+     * @tparam N Dimension
+     * @param [in] plane
+     * @param [in] point
+     * @return The distance between @p point and @p plane
+     */
+    template<typename T, size_t N>
+    inline T const dist(math::vec<T, N> const& point, hyperplane<T, N> const& plane)
+    {
+        return dist(plane, point);
+    }
+
+    /**
+     * @brief Compute the signed distance between a hyperplane and a vector
+     * @tparam T Number type (eg float)
+     * @tparam N Dimension
+     * @param [in] plane
+     * @param [in] point
+     * @return The distance between @p ring and @p point
+     */
+    template<typename T, size_t N>
+    inline T const signed_dist(hyperplane<T, N> const& plane, math::vec<T, N> const& point)
+    {
+        return plane.signed_dist(point);
+    }
+
+    /**
+     * @brief Compute the signed distance between a vector and a hyperplane
+     * @tparam T Number type (eg float)
+     * @tparam N Dimension
+     * @param [in] plane
+     * @param [in] point
+     * @return The distance between @p point and @p plane
+     */
+    template<typename T, size_t N>
+    inline T const signed_dist(math::vec<T, N> const& point, hyperplane<T, N> const& plane)
+    {
+        return signed_dist(plane, point);
+    }
+
     /**
      * @brief Construct a line passing through two points
      * @tparam T Number type (eg float)

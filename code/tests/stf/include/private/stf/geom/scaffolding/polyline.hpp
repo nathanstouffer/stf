@@ -21,17 +21,23 @@ namespace stf::geom::scaffolding::polyline
     }
 
     template<typename T, size_t N>
-    struct distance_to
+    struct dist_and_dist_squared
     {
         geom::polyline<T, N> const polyline;
         math::vec<T, N> const point;
-        T const dist;
+        T const dist_squared;
     };
 
     template<typename T, size_t N>
-    void verify(distance_to<T, N> const& test)
+    void verify(dist_and_dist_squared<T, N> const& test)
     {
-        ASSERT_EQ(test.dist, test.polyline.distance_to(test.point)) << "failed to compute distance to polyline";
+        ASSERT_EQ(std::sqrt(test.dist_squared), test.polyline.dist(test.point)) << "failed to compute distance to polyline";
+        ASSERT_EQ(std::sqrt(test.dist_squared), geom::dist(test.polyline, test.point)) << "failed distance from polyline to vec";
+        ASSERT_EQ(std::sqrt(test.dist_squared), geom::dist(test.point, test.polyline)) << "failed distance from vec to polyline";
+        
+        ASSERT_EQ(test.dist_squared, test.polyline.dist_squared(test.point)) << "failed to compute the squared distance to polyline";
+        ASSERT_EQ(test.dist_squared, geom::dist_squared(test.polyline, test.point)) << "failed distance squared from polyline to vec";
+        ASSERT_EQ(test.dist_squared, geom::dist_squared(test.point, test.polyline)) << "failed distance squared from vec to polyline";
     }
 
     template<typename T, size_t N>

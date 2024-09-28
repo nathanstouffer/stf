@@ -43,7 +43,7 @@ namespace stf::geom::scaffolding::aabb
     }
 
     template<typename T, size_t N>
-    struct dist_squared_to
+    struct dist_and_dist_squared
     {
         geom::aabb<T, N> const box;
         math::vec<T, N> const point;
@@ -51,10 +51,14 @@ namespace stf::geom::scaffolding::aabb
     };
 
     template<typename T, size_t N>
-    void verify(dist_squared_to<T, N> const& test)
+    void verify(dist_and_dist_squared<T, N> const& test)
     {
-        ASSERT_EQ(std::sqrt(test.dist_squared), test.box.dist_to(test.point)) << "failed distance from aabb to vec";
-        ASSERT_EQ(test.dist_squared, test.box.dist_squared_to(test.point)) << "failed distance squared from aabb to vec";
+        ASSERT_EQ(std::sqrt(test.dist_squared), test.box.dist(test.point)) << "failed distance from aabb to vec";
+        ASSERT_EQ(std::sqrt(test.dist_squared), geom::dist(test.box, test.point)) << "failed distance from aabb to vec";
+        ASSERT_EQ(std::sqrt(test.dist_squared), geom::dist(test.point, test.box)) << "failed distance from vec to aabb";
+        ASSERT_EQ(test.dist_squared, test.box.dist_squared(test.point)) << "failed distance squared from aabb to vec";
+        ASSERT_EQ(test.dist_squared, geom::dist_squared(test.box, test.point)) << "failed distance squared from aabb to vec";
+        ASSERT_EQ(test.dist_squared, geom::dist_squared(test.point, test.box)) << "failed distance squared from vec to aabb";
     }
 
-} // stf::math::scaffolding::geom
+} // stf::geom::scaffolding::aabb

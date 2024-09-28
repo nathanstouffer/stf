@@ -50,18 +50,29 @@ namespace stf::geom::scaffolding::polygon
     }
 
     template<typename T>
-    struct signed_distance_to
+    struct distances
     {
         geom::polygon<T> const polygon;
         math::vec2<T> const query;
-        T const distance;
+        T const signed_distance;
     };
 
     template<typename T>
-    void verify(signed_distance_to<T> const& test)
+    void verify(distances<T> const& test)
     {
-        ASSERT_EQ(test.distance, test.polygon.signed_distance_to(test.query)) << "failed polygon::signed_distance_to";
-        ASSERT_EQ(std::abs(test.distance), test.polygon.distance_to(test.query)) << "failed polygon::distance_to";
+        ASSERT_EQ(test.signed_distance, test.polygon.signed_dist(test.query)) << "failed polygon::signed_dist";
+        ASSERT_EQ(test.signed_distance, geom::signed_dist(test.polygon, test.query)) << "failed geom::signed_dist";
+        ASSERT_EQ(test.signed_distance, geom::signed_dist(test.query, test.polygon)) << "failed geom::signed_dist";
+        
+        T dist = std::max(math::constants<T>::zero, test.signed_distance);
+
+        ASSERT_EQ(dist, test.polygon.dist(test.query)) << "failed polygon::dist";
+        ASSERT_EQ(dist, geom::dist(test.polygon, test.query)) << "failed geom::dist";
+        ASSERT_EQ(dist, geom::dist(test.query, test.polygon)) << "failed geom::dist";
+        
+        ASSERT_NEAR(dist * dist, test.polygon.dist_squared(test.query), math::constants<T>::tol) << "failed polygon::dist_squared";
+        ASSERT_NEAR(dist * dist, geom::dist_squared(test.polygon, test.query), math::constants<T>::tol) << "failed geom::dist_squared";
+        ASSERT_NEAR(dist * dist, geom::dist_squared(test.query, test.polygon), math::constants<T>::tol) << "failed geom::dist_squared";
     }
 
 }
