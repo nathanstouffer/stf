@@ -76,8 +76,8 @@ namespace stf::geom
          * @verbatim
            6----7
           /|   /|
-         2----3 |
-         | 4--|-5
+         4----5 |
+         | 2--|-3
          |/   |/
          0----1 @endverbatim
          * 
