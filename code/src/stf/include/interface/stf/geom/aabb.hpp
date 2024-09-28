@@ -172,7 +172,7 @@ namespace stf::geom
 
         /**
          * @brief Fit an @ref aabb
-         * @param [in] rhs
+         * @param [in] x
          * @return A fitted copy of @p this
          */
         aabb fitted(vec_t const& x) const { return aabb(*this).fit(x); }

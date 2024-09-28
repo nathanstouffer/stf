@@ -157,7 +157,7 @@ namespace stf::geom
      * @brief Compute the signed distance between a hyperplane and a vector
      * @tparam T Number type (eg float)
      * @tparam N Dimension
-     * @param [in] ring
+     * @param [in] plane
      * @param [in] point
      * @return The distance between @p ring and @p point
      */

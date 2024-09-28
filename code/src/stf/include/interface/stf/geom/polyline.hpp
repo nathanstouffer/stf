@@ -123,8 +123,8 @@ namespace stf::geom
 
         /**
          * @brief Compute the distance from a @ref polyline to a point
-         * @param [in] x 
-         * @return The distance from @p this to @p x
+         * @param [in] point
+         * @return The distance from @p this to @p point
          */
         T dist_squared(vec_t const& point) const
         {
