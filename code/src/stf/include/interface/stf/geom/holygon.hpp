@@ -221,8 +221,8 @@ namespace stf::geom
      * @param [in] point
      * @return The square of the distance between @p shape and @p point
      */
-    template<typename T, size_t N>
-    inline T const dist_squared(holygon<T> const& shape, math::vec<T, N> const& point)
+    template<typename T>
+    inline T const dist_squared(holygon<T> const& shape, math::vec2<T> const& point)
     {
         return shape.dist_squared(point);
     }
@@ -235,8 +235,8 @@ namespace stf::geom
      * @param [in] shape
      * @return The square of the distance between @p point and @p shape
      */
-    template<typename T, size_t N>
-    inline T const dist_squared(math::vec<T, N> const& point, holygon<T> const& shape)
+    template<typename T>
+    inline T const dist_squared(math::vec2<T> const& point, holygon<T> const& shape)
     {
         return dist_squared(shape, point);
     }
@@ -249,8 +249,8 @@ namespace stf::geom
      * @param [in] point
      * @return The distance between @p shape and @p point
      */
-    template<typename T, size_t N>
-    inline T const dist(holygon<T> const& shape, math::vec<T, N> const& point)
+    template<typename T>
+    inline T const dist(holygon<T> const& shape, math::vec2<T> const& point)
     {
         return shape.dist(point);
     }
@@ -263,8 +263,8 @@ namespace stf::geom
      * @param [in] point
      * @return The distance between @p point and @p shape
      */
-    template<typename T, size_t N>
-    inline T const dist(math::vec<T, N> const& point, holygon<T> const& shape)
+    template<typename T>
+    inline T const dist(math::vec2<T> const& point, holygon<T> const& shape)
     {
         return dist(shape, point);
     }
