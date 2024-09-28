@@ -6,6 +6,7 @@
 #include <vector>
 
 #include "stf/math/constants.hpp"
+#include "stf/math/interval.hpp"
 #include "stf/math/vector.hpp"
 
 /**
@@ -17,7 +18,7 @@ namespace stf::geom
 {
 
     /**
-     * @brief An aabb class representing subsets of R^n
+     * @brief An aabb class representing axis aligned boxes in R^n
      * @tparam T Number type (eg float)
      * @tparam N Dimension
      */
@@ -56,7 +57,7 @@ namespace stf::geom
         aabb(vec_t const& _min, vec_t const& _max) : min(_min), max(_max) {}
         
         /**
-         * @brief Construct from a minimum and a side length that is applied in all dimensinos
+         * @brief Construct from a minimum and a side length that is applied in all dimensions
          * @param [in] _min 
          * @param [in] length 
          */
@@ -85,7 +86,7 @@ namespace stf::geom
          * @note @p index = 0 is the minimum
          * @note In 2D, @p index = 3 is the maximum
          * @note In 3D, @p index = 7 is the maximum
-         * @return The 
+         * @return The position of the @p i vertex
          */
         vec_t vertex(size_t const i) const
         {
@@ -126,6 +127,108 @@ namespace stf::geom
          * @return The center point of @p this
          */
         inline vec_t const center() const { return min + (math::constants<T>::half * diagonal()); }
+
+        /**
+         * @brief Compute whether a point is contained in an @ref aabb
+         * @param [in] x
+         * @return Whether or not @p x is contained in @p this
+         */
+        bool const contains(vec_t const& x) const
+        {
+            for (size_t i = 0; i < N; ++i)
+            {
+                bool contained = min[i] <= x[i] && x[i] <= max[i];
+                if (!contained) { return false; }
+            }
+            return true;    // fallthrough to true
+        }
+
+        /**
+         * @brief Compute whether one @ref aabb contains another
+         * @param [in] rhs
+         * @return Whether or not @p rhs is contained in @p this
+         */
+        bool const contains(aabb const& rhs) const
+        {
+            for (size_t i = 0; i < N; ++i)
+            {
+                bool contained = min[i] <= rhs.min[i] && rhs.max[i] <= max[i];
+                if (!contained) { return false; }
+            }
+            return true;    // fallthrough to true
+        }
+
+        /**
+         * @brief Compute if two @ref aabb intersect
+         * @param [in] rhs
+         * @return Whether or not @p this and @p rhs intersect
+         */
+        bool const intersects(aabb const& rhs) const
+        {
+            for (size_t i = 0; i < N; ++i)
+            {
+                bool empty = rhs.max[i] < min[i] || max[i] < rhs.min[i];
+                if (empty) { return false; }
+            }
+            return true;    // fallthrough to true
+        }
+
+        /**
+         * @brief Compute the volume of a @ref aabb
+         * @return The volume of @p this
+         */
+        T const volume() const
+        {
+            T const delta = diagonal();
+            T measure = math::constants<T>::one;
+            for (size_t i = 0; i < N; ++i)
+            {
+                measure *= (delta[i] < math::constants<T>::zero) ? delta[i] : math::constants<T>::zero;
+            }
+            return measure;
+        }
+
+        /**
+         * @brief Compute the projection of an @ref aabb onto an axis
+         * @param [in] axis
+         * @return The interval of projection onto the axis
+         * @note @p axis is assumed to be a unit vector
+         */
+        math::interval<T> projection(vec_t const& axis) const
+        {
+            math::interval<T> interval(math::constants<T>::pos_inf, math::constants<T>::neg_inf);
+            for (size_t v = 0; v < aabb::vertex_count(); ++v)
+            {
+                T const l = math::dot(vertex(v), axis);
+                interval.a = std::min(interval.a, l);
+                interval.b = std::max(interval.b, l);
+            }
+            return interval;
+        }
+
+        /**
+         * @brief Compute the square of the distance between an aabb and a vector
+         * @param [in] point
+         * @return The square of the distance between @p this and @p point
+         */
+        T const dist_squared(vec_t const& point) const
+        {
+            if (contains(point))
+            {
+                return math::constants<T>::zero;
+            }
+            else
+            {
+                return math::dist_squared(point, math::clamp(point, min, max));
+            }
+        }
+
+        /**
+         * @brief Compute the distance between an aabb and a vector
+         * @param [in] point
+         * @return The distance between @p this and @p point
+         */
+        inline T const dist(vec_t const& point) const { return std::sqrt(dist_squared(point)); }
 
         /**
          * @brief Scale an @ref aabb in place
@@ -199,90 +302,6 @@ namespace stf::geom
          */
         aabb fitted(aabb const& rhs) const { return aabb(*this).fit(rhs); }
 
-        /**
-         * @brief Compute whether a point is contained in an @ref aabb
-         * @param [in] x 
-         * @return Whether or not @p x is contained in @p this
-         */
-        bool const contains(vec_t const& x) const
-        {
-            for (size_t i = 0; i < N; ++i)
-            {
-                bool contained = min[i] <= x[i] && x[i] <= max[i];
-                if (!contained) { return false; }
-            }
-            return true;    // fallthrough to true
-        }
-
-        /**
-         * @brief Compute whether one @ref aabb contains another
-         * @param [in] rhs
-         * @return Whether or not @p rhs is contained in @p this
-         */
-        bool const contains(aabb const& rhs) const
-        {
-            for (size_t i = 0; i < N; ++i)
-            {
-                bool contained = min[i] <= rhs.min[i] && rhs.max[i] <= max[i];
-                if (!contained) { return false; }
-            }
-            return true;    // fallthrough to true
-        }
-
-        /**
-         * @brief Compute if two @ref aabb intersect
-         * @param [in] rhs 
-         * @return Whether or not @p this and @p rhs intersect
-         */
-        bool const intersects(aabb const& rhs) const
-        {
-            for (size_t i = 0; i < N; ++i)
-            {
-                bool empty = rhs.max[i] < min[i] || max[i] < rhs.min[i];
-                if (empty) { return false; }
-            }
-            return true;    // fallthrough to true
-        }
-
-        /**
-         * @brief Compute the volume of a @ref aabb
-         * @return The volume of @p this
-         */
-        T const volume() const
-        {
-            T const delta = diagonal();
-            T measure = math::constants<T>::one;
-            for (size_t i = 0; i < N; ++i)
-            {
-                measure *= (delta[i] < math::constants<T>::zero) ? delta[i] : math::constants<T>::zero;
-            }
-            return measure;
-        }
-
-        /**
-         * @brief Compute the square of the distance between an aabb and a vector
-         * @param [in] point 
-         * @return The square of the distance between @p this and @p point
-         */
-        T const dist_squared(vec_t const& point) const
-        {
-            if (contains(point))
-            {
-                return math::constants<T>::zero;
-            }
-            else
-            {
-                return math::dist_squared(point, math::clamp(point, min, max));
-            }
-        }
-
-        /**
-         * @brief Compute the distance between an aabb and a vector
-         * @param [in] point
-         * @return The distance between @p this and @p point
-         */
-        inline T const dist(vec_t const& point) const { return std::sqrt(dist_squared(point)); }
-
     public:
 
         /**
@@ -317,6 +336,12 @@ namespace stf::geom
             }
             return box;
         }
+
+        /**
+         * @brief Compute the number of vertices of the aabb
+         * @return The number of vertices
+         */
+        inline static size_t const vertex_count() { return 1 << N; }
 
         /**
          * @brief Compute the number of bytes allocated by @ref aabb

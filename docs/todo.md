@@ -15,6 +15,7 @@ A todo list separated out by category (typically a namespace)
 ## geom
 
  - [x] aabb
+ - [x] obb
  - [x] segment
  - [x] polyline
  - [x] polygon

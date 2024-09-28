@@ -2,6 +2,7 @@
 
 #include "stf/cam/frustum.hpp"
 #include "stf/geom/aabb.hpp"
+#include "stf/geom/obb.hpp"
 #include "stf/geom/polygon.hpp"
 #include "stf/geom/polyline.hpp"
 #include "stf/geom/segment.hpp"
@@ -40,6 +41,32 @@ namespace stf::alg
     inline bool intersect(geom::aabb<T, N> const& lhs, geom::aabb<T, N> const& rhs)
     {
         return lhs.intersects(rhs);
+    }
+
+    /**
+     * @brief Compute whether or not two 2D obbs intersect
+     * @tparam T Number type (eg float)
+     * @param [in] lhs
+     * @param [in] rhs
+     * @return Whether or not @p lhs intersects @p rhs
+     */
+    template<typename T>
+    inline bool const intersect(geom::obb2<T> const& lhs, geom::obb2<T> const& rhs)
+    {
+        return geom::intersect(lhs, rhs);
+    }
+
+    /**
+     * @brief Compute whether or not two 3D obbs intersect
+     * @tparam T Number type (eg float)
+     * @param [in] lhs
+     * @param [in] rhs
+     * @return Whether or not @p lhs intersects @p rhs
+     */
+    template<typename T>
+    inline bool const intersect(geom::obb3<T> const& lhs, geom::obb3<T> const& rhs)
+    {
+        return geom::intersect(lhs, rhs);
     }
 
     /**

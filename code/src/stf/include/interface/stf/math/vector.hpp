@@ -56,7 +56,7 @@ namespace stf::math
         /**
          * @brief Construct from a N - 1 dimensional vector and a scalar
          * 
-         * @p prefix is used to fill the first N - 1 dimensions and @p scalar is used as the value for the N dimension
+         * @p prefix is used to fill the first N - 1 dimensions and @p suffix is used as the value for the N dimension
          * 
          * @param [in] prefix 
          * @param [in] suffix 
@@ -161,6 +161,12 @@ namespace stf::math
          * @return The component of @p this orthogonal to @p rhs
          */
         inline vec orthogonal_to(vec const& rhs) const { return vec(*this) -= projected_on(rhs); }
+
+        /**
+         * @brief Compute the prefix of a vector
+         * @return The prefix of @p this
+         */
+        vec<T, N - 1> prefix() const { vec<T, N - 1> ret; raw::prefix<T, N>(ret.values, values); return ret; }
 
         /**
          * @brief Cast a vector to a different precision
@@ -309,6 +315,12 @@ namespace stf::math
          * @return The component of @p this orthogonal to @p rhs
          */
         inline vec orthogonal_to(vec const& rhs) const { return vec(*this) -= projected_on(rhs); }
+
+        /**
+         * @brief Compute the prefix of a vector
+         * @return The prefix of @p this
+         */
+        vec<T, 1> prefix() const { vec<T, 1> ret; raw::prefix<T, 2>(ret.values, values); return ret; }
 
         /**
          * @brief Cast a vector to a different precision
@@ -464,6 +476,12 @@ namespace stf::math
          * @return The component of @p this orthogonal to @p rhs
          */
         inline vec orthogonal_to(vec const& rhs) const { return vec(*this) -= projected_on(rhs); }
+
+        /**
+         * @brief Compute the prefix of a vector
+         * @return The prefix of @p this
+         */
+        vec<T, 2> prefix() const { vec<T, 2> ret; raw::prefix<T, 3>(ret.values, values); return ret; }
 
         /**
          * @brief Cast a vector to a different precision
@@ -628,6 +646,12 @@ namespace stf::math
          * @return The component of @p this orthogonal to @p rhs
          */
         inline vec orthogonal_to(vec const& rhs) const { return vec(*this) -= projected_on(rhs); }
+
+        /**
+         * @brief Compute the prefix of a vector
+         * @return The prefix of @p this
+         */
+        vec<T, 3> prefix() const { vec<T, 3> ret; raw::prefix<T, 4>(ret.values, values); return ret; }
 
         /**
          * @brief Cast a vector to a different precision

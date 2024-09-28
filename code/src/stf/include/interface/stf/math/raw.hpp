@@ -43,7 +43,7 @@ namespace stf::math::raw
     }
 
     /**
-     * @brief Scale aa vector (stored as an array) in place
+     * @brief Scale a vector (stored as an array) in place
      * @tparam T Number type (eg float)
      * @tparam N Dimension
      * @param [in,out] lhs
@@ -75,6 +75,22 @@ namespace stf::math::raw
             d += lhs[i] * rhs[i];
         }
         return d;
+    }
+
+    /**
+     * @brief Write the prefix of one array into another
+     * @tparam T Number type (eg float)
+     * @tparam N Dimension
+     * @param [out] lhs
+     * @param [in] rhs
+     */
+    template<typename T, size_t N>
+    inline void prefix(T lhs[N - 1], T const rhs[N])
+    {
+        for (size_t i = 0; i < N - 1; ++i)
+        {
+            lhs[i] = rhs[i];
+        }
     }
 
     /**

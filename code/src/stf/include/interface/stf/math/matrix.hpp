@@ -333,6 +333,20 @@ namespace stf::math
         inline mtx translated_by(vec<T, N - 1> const& scalars) const { return mtx(*this).translate_by(scalars); }
 
         /**
+         * @brief Compute a mtx that is the top left section of a matrix
+         * @return The top left section of @p this
+         */
+        mtx<T, N - 1> prefix() const
+        {
+            mtx<T, N - 1> matrix = mtx<T, N - 1>();
+            for (size_t i = 0; i < N - 1; ++i)
+            {
+                matrix[i] = row(i).as_vec().prefix();
+            }
+            return matrix;
+        }
+
+        /**
          * @brief Fill a raw array with scalars of the matrix in column-major form
          * @param [out] fill 
          */
@@ -552,8 +566,8 @@ namespace stf::math
     inline mtx4<T> rotate_x(T const theta)
     {
         mtx4<T> result;
-        result.row(1) = vec<T, 3>(T(0), std::cos(theta), -std::sin(theta));
-        result.row(2) = vec<T, 3>(T(0), std::sin(theta),  std::cos(theta));
+        result.row(1) = vec<T, 4>(T(0), std::cos(theta), -std::sin(theta), T(0));
+        result.row(2) = vec<T, 4>(T(0), std::sin(theta),  std::cos(theta), T(0));
         return result;
     }
 
@@ -567,8 +581,8 @@ namespace stf::math
     inline mtx4<T> rotate_y(T const theta)
     {
         mtx4<T> result;
-        result.row(0) = vec<T, 3>( std::cos(theta), T(0), std::sin(theta));
-        result.row(2) = vec<T, 3>(-std::sin(theta), T(0), std::cos(theta));
+        result.row(0) = vec<T, 4>( std::cos(theta), T(0), std::sin(theta), T(0));
+        result.row(2) = vec<T, 4>(-std::sin(theta), T(0), std::cos(theta), T(0));
         return result;
     }
 
@@ -582,8 +596,8 @@ namespace stf::math
     inline mtx4<T> rotate_z(T const theta)
     {
         mtx4<T> result;
-        result.row(0) = vec<T, 3>(std::cos(theta), -std::sin(theta), T(0));
-        result.row(1) = vec<T, 3>(std::sin(theta),  std::cos(theta), T(0));
+        result.row(0) = vec<T, 4>(std::cos(theta), -std::sin(theta), T(0), T(0));
+        result.row(1) = vec<T, 4>(std::sin(theta),  std::cos(theta), T(0), T(0));
         return result;
     }
 

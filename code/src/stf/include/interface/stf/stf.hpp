@@ -6,6 +6,7 @@
 #include "stf/cam/scamera.hpp"
 #include "stf/geom/aabb.hpp"
 #include "stf/geom/holygon.hpp"
+#include "stf/geom/obb.hpp"
 #include "stf/geom/polygon.hpp"
 #include "stf/geom/polyline.hpp"
 #include "stf/geom/ray.hpp"
@@ -98,6 +99,16 @@ namespace stf
          * @brief Type alias for aabb3
          */
         using aabb3 = geom::aabb3<T>;
+
+        /**
+         * @brief Type alias for obb2
+         */
+        using obb2 = geom::obb2<T>;
+
+        /**
+         * @brief Type alias for obb3
+         */
+        using obb3 = geom::obb3<T>;
 
         /**
          * @brief Type alias for segment2
