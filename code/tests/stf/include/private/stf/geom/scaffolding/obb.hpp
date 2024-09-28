@@ -41,6 +41,31 @@ namespace stf::geom::scaffolding::obb
     }
 
     template<typename T, size_t N>
+    struct fit
+    {
+        math::mtx<T, N> const rotation;
+        T const half_extent;
+    };
+
+    template<typename T, size_t N>
+    void verify(fit<T, N> const& test)
+    {
+        geom::obb<T, N> constructed(math::vec<T, N>(0), test.rotation, math::vec<T, N>(test.half_extent));
+
+        geom::obb<T, N> fitted(test.rotation);
+        for (math::vec<T, N> const& direction : geom::obb<T, N>::canonical_basis())
+        {
+            fitted.fit( test.half_extent * (test.rotation * direction));
+            fitted.fit(-test.half_extent * (test.rotation * direction));
+        }
+
+        for (size_t v = 0; v < geom::obb<T, N>::vertex_count(); ++v)
+        {
+            ASSERT_EQ(constructed.vertex(v), fitted.vertex(v)) << "failed vertex equality for v = " << v;
+        }
+    }
+
+    template<typename T, size_t N>
     struct intersect
     {
         geom::obb<T, N> const lhs;

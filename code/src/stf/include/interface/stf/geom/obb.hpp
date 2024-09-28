@@ -89,6 +89,12 @@ namespace stf::geom
         explicit obb(basis_t const& basis) : obb(vec_t(math::constants<T>::zero), basis, vec_t(math::constants<T>::neg_inf)) {}
 
         /**
+         * @brief Construct from a rotation -- encompasses all of R^n
+         * @param [in] rotation 
+         */
+        explicit obb(math::mtx<T, N> const& rotation) : obb(vec_t(math::constants<T>::zero), to_basis(rotation), vec_t(math::constants<T>::neg_inf)) {}
+
+        /**
          * @brief Construct from an @ref aabb
          * @param [in] aabb
          */

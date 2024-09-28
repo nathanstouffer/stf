@@ -23,6 +23,19 @@ namespace stf::geom
         }
     }
 
+    TEST(obb3, fit)
+    {
+        std::vector<scaffolding::obb::fit<float, 3>> tests =
+        {
+            { stf::math::rotate_z(stff::constants::quarter_pi).prefix() * stf::math::rotate_y(-stff::constants::quarter_pi).prefix(), stff::constants::sqrt_two },
+        };
+
+        for (scaffolding::obb::fit<float, 3> const& test : tests)
+        {
+            scaffolding::obb::verify(test);
+        }
+    }
+
     TEST(obb3, contains)
     {
         std::vector<scaffolding::obb::contains<float, 3>> tests =
