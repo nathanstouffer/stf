@@ -50,18 +50,19 @@ namespace stf::geom::scaffolding::polygon
     }
 
     template<typename T>
-    struct signed_distance_to
+    struct distances
     {
         geom::polygon<T> const polygon;
         math::vec2<T> const query;
-        T const distance;
+        T const signed_distance;
     };
 
     template<typename T>
-    void verify(signed_distance_to<T> const& test)
+    void verify(distances<T> const& test)
     {
-        ASSERT_EQ(test.distance, test.polygon.signed_distance_to(test.query)) << "failed polygon::signed_distance_to";
-        ASSERT_EQ(std::abs(test.distance), test.polygon.distance_to(test.query)) << "failed polygon::distance_to";
+        ASSERT_EQ(test.signed_distance, test.polygon.signed_dist(test.query)) << "failed polygon::signed_dist";
+        ASSERT_EQ(std::abs(test.signed_distance), test.polygon.dist(test.query)) << "failed polygon::dist";
+        ASSERT_NEAR(test.signed_distance * test.signed_distance, test.polygon.dist_squared(test.query), math::constants<T>::tol) << "failed polygon::dist_squared";
     }
 
 }

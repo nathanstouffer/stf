@@ -230,27 +230,38 @@ namespace stf::geom
         }
 
         /**
-         * @brief Compute the signed distance from a query point to the boundary of a @ref polygon
-         * @param [in] query 
-         * @return The signed distance from @p query to the boundary of @p this
+         * @brief Compute the distance from a @ref polygon to a point
+         * @param [in] x
+         * @return The distance from @p this to @p x
          */
-        T signed_distance_to(vec_t const& query) const
+        T dist_squared(vec_t const& point) const
         {
-            T dist = math::constants<T>::pos_inf;
+            T d = math::constants<T>::pos_inf;
             for (size_t i = 0; i < m_vertices.size(); ++i)
             {
-                dist = std::min(dist, geom::dist(edge(i), query));
+                d = std::min(d, edge(i).dist_squared(point));
             }
-            if (dist == math::constants<T>::zero) { return dist; }
-            return (contains(query, boundary_types::OPEN)) ? -dist : dist;
+            return d;
         }
 
         /**
-         * @brief Compute the distance from a query point to the boundary of a @ref polygon
-         * @param [in] query 
-         * @return The distance form @p query to the boundary of @p this
+         * @brief Compute the distance between a polygon and a vector
+         * @param [in] point
+         * @return The distance between @p this and @p point
          */
-        inline T distance_to(vec_t const& query) const { return std::abs(signed_distance_to(query)); }
+        inline T const dist(vec_t const& point) const { return std::sqrt(dist_squared(point)); }
+
+        /**
+         * @brief Compute the signed distance from a query point to the boundary of a @ref polygon
+         * @param [in] point 
+         * @return The signed distance from @p point to the boundary of @p this
+         */
+        T signed_dist(vec_t const& point) const
+        {
+            T d = dist(point);
+            if (d == math::constants<T>::zero) { return d; }
+            return (contains(point, boundary_types::OPEN)) ? -d : d;
+        }
 
         /**
          * @brief Translate a @ref polygon in place
