@@ -34,6 +34,7 @@ namespace stf::geom::scaffolding::polyline
         ASSERT_EQ(std::sqrt(test.dist_squared), test.polyline.dist(test.point)) << "failed to compute distance to polyline";
         ASSERT_EQ(std::sqrt(test.dist_squared), geom::dist(test.polyline, test.point)) << "failed distance from polyline to vec";
         ASSERT_EQ(std::sqrt(test.dist_squared), geom::dist(test.point, test.polyline)) << "failed distance from vec to polyline";
+        
         ASSERT_EQ(test.dist_squared, test.polyline.dist_squared(test.point)) << "failed to compute the squared distance to polyline";
         ASSERT_EQ(test.dist_squared, geom::dist_squared(test.polyline, test.point)) << "failed distance squared from polyline to vec";
         ASSERT_EQ(test.dist_squared, geom::dist_squared(test.point, test.polyline)) << "failed distance squared from vec to polyline";

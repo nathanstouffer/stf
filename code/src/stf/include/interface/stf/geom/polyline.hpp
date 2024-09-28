@@ -320,7 +320,7 @@ namespace stf::geom
     template<typename T, size_t N>
     inline T const dist(math::vec<T, N> const& point, polyline<T, N> const& linestring)
     {
-        return std::sqrt(dist_squared(point, linestring));
+        return dist(linestring, point);
     }
 
 

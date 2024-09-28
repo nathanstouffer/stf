@@ -332,4 +332,88 @@ namespace stf::geom
 
     };
 
+    /**
+     * @brief Compute the square of the distance between a polygon and a vector
+     * @tparam T Number type (eg float)
+     * @tparam N Dimension
+     * @param [in] ring
+     * @param [in] point
+     * @return The square of the distance between @p ring and @p point
+     */
+    template<typename T, size_t N>
+    inline T const dist_squared(polygon<T> const& ring, math::vec<T, N> const& point)
+    {
+        return ring.dist_squared(point);
+    }
+
+    /**
+     * @brief Compute the square of the distance between a vector and a polygon
+     * @tparam T Number type (eg float)
+     * @tparam N Dimension
+     * @param [in] point
+     * @param [in] ring
+     * @return The square of the distance between @p point and @p ring
+     */
+    template<typename T, size_t N>
+    inline T const dist_squared(math::vec<T, N> const& point, polygon<T> const& ring)
+    {
+        return dist_squared(ring, point);
+    }
+
+    /**
+     * @brief Compute the distance between a polygon and a vector
+     * @tparam T Number type (eg float)
+     * @tparam N Dimension
+     * @param [in] ring
+     * @param [in] point
+     * @return The distance between @p ring and @p point
+     */
+    template<typename T, size_t N>
+    inline T const dist(polygon<T> const& ring, math::vec<T, N> const& point)
+    {
+        return ring.dist(point);
+    }
+
+    /**
+     * @brief Compute the distance between a vector and a polygon
+     * @tparam T Number type (eg float)
+     * @tparam N Dimension
+     * @param [in] ring
+     * @param [in] point
+     * @return The distance between @p point and @p ring
+     */
+    template<typename T, size_t N>
+    inline T const dist(math::vec<T, N> const& point, polygon<T> const& ring)
+    {
+        return dist(ring, point);
+    }
+
+    /**
+     * @brief Compute the signed distance between a polygon and a vector
+     * @tparam T Number type (eg float)
+     * @tparam N Dimension
+     * @param [in] ring
+     * @param [in] point
+     * @return The distance between @p ring and @p point
+     */
+    template<typename T, size_t N>
+    inline T const signed_dist(polygon<T> const& ring, math::vec<T, N> const& point)
+    {
+        return ring.signed_dist(point);
+    }
+
+    /**
+     * @brief Compute the signed distance between a vector and a polygon
+     * @tparam T Number type (eg float)
+     * @tparam N Dimension
+     * @param [in] ring
+     * @param [in] point
+     * @return The distance between @p point and @p ring
+     */
+    template<typename T, size_t N>
+    inline T const signed_dist(math::vec<T, N> const& point, polygon<T> const& ring)
+    {
+        return signed_dist(ring, point);
+    }
+
 } // stf::geom

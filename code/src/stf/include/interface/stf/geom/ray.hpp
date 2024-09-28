@@ -150,7 +150,7 @@ namespace stf::geom
     template<typename T, size_t N>
     inline T const dist(math::vec<T, N> const& point, ray<T, N> const& beam)
     {
-        return std::sqrt(dist_squared(point, beam));
+        return dist(beam, point);
     }
 
 } // stf::geom

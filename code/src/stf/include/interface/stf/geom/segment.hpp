@@ -212,7 +212,7 @@ namespace stf::geom
     template<typename T, size_t N>
     inline T const dist(math::vec<T, N> const& point, segment<T, N> const& seg)
     {
-        return std::sqrt(dist_squared(point, seg));
+        return dist(seg, point);
     }
 
 } // stf::geom
