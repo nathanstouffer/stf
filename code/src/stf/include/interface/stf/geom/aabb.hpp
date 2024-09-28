@@ -171,6 +171,13 @@ namespace stf::geom
         }
 
         /**
+         * @brief Fit an @ref aabb
+         * @param [in] rhs
+         * @return A fitted copy of @p this
+         */
+        aabb fitted(vec_t const& x) const { return aabb(*this).fit(x); }
+
+        /**
          * @brief Fit an @ref aabb to an @ref aabb in place
          * @param [in] rhs 
          * @return A reference to @p this
@@ -184,6 +191,13 @@ namespace stf::geom
             }
             return *this;
         }
+
+        /**
+         * @brief Fit an @ref aabb
+         * @param [in] rhs
+         * @return A fitted copy of @p this
+         */
+        aabb fitted(aabb const& rhs) const { return aabb(*this).fit(rhs); }
 
         /**
          * @brief Compute whether a point is contained in an @ref aabb
