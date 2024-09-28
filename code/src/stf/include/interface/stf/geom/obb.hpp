@@ -170,9 +170,9 @@ namespace stf::geom
         math::interval<T> projection(vec_t const& axis) const
         {
             math::interval<T> interval(math::constants<T>::pos_inf, math::constants<T>::neg_inf);
-            for (size_t v = 0; v < obb::vertex_count(); ++d)
+            for (size_t v = 0; v < obb::vertex_count(); ++v)
             {
-                T const l = math::dot(vertex(i), axis);
+                T const l = math::dot(vertex(v), axis);
                 interval.a = std::min(interval.a, l);
                 interval.b = std::max(interval.b, l);
             }
@@ -374,21 +374,6 @@ namespace stf::geom
             }
         }
         return true;    // fallthrough to true
-    }
-
-    /**
-     * @brief Write the @ref obb @p rhs to the std::ostream @p s
-     * @tparam T Number type (eg float)
-     * @tparam N Dimension
-     * @param [in,out] s
-     * @param [in] rhs
-     * @return A reference to @p s
-     */
-    template <typename T, size_t N>
-    inline std::ostream& operator<<(std::ostream& s, obb<T, N> const& rhs)
-    {
-        s << "{ center: " << rhs.center() << ", extents: " << rhs.extents() << " }";
-        return s;
     }
 
 } // stf::geom

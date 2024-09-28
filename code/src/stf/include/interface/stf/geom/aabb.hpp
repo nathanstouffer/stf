@@ -197,9 +197,9 @@ namespace stf::geom
         math::interval<T> projection(vec_t const& axis) const
         {
             math::interval<T> interval(math::constants<T>::pos_inf, math::constants<T>::neg_inf);
-            for (size_t v = 0; v < aabb::vertex_count(); ++d)
+            for (size_t v = 0; v < aabb::vertex_count(); ++v)
             {
-                T const l = math::dot(vertex(i), axis);
+                T const l = math::dot(vertex(v), axis);
                 interval.a = std::min(interval.a, l);
                 interval.b = std::max(interval.b, l);
             }
