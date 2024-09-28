@@ -47,21 +47,21 @@ namespace stf::geom
          * @param [in] p 
          * @return The signed distance from @p this to @p p
          */
-        T signed_distance(vec_t const& p) const { return m_normal * (p - m_point); }
+        T signed_dist(vec_t const& p) const { return m_normal * (p - m_point); }
 
         /**
          * @brief Compute the distance from a hyperplane to a point
          * @param [in] p
          * @return The distance from @p this to @p p
          */
-        inline T distance(vec_t const& p) const { return std::abs(signed_distance(p)); }
+        inline T dist(vec_t const& p) const { return std::abs(signed_dist(p)); }
 
         /**
          * @brief Compute whether a point is contained in R^{n-1} subspace that is the hyperplane
          * @param [in] p 
          * @return Whether or not @p this contains @p p
          */
-        inline bool contains(vec_t const& p) const { return signed_distance(p) == math::constants<T>::zero; }
+        inline bool contains(vec_t const& p) const { return signed_dist(p) == math::constants<T>::zero; }
         
         /**
          * @brief Compute the side of the hyperplane that a point lies on
@@ -71,7 +71,7 @@ namespace stf::geom
          * @param [in] p 
          * @return The side of @p this that @p p lies on
          */
-        inline T side(vec_t const& p) const { return signed_distance(p); }
+        inline T side(vec_t const& p) const { return signed_dist(p); }
 
         /**
          * @brief Compute whether a @ref hyperplane divides an aabb
