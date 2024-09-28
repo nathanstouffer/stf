@@ -9,6 +9,20 @@
 namespace stf::geom
 {
 
+    TEST(obb2, from_aabb)
+    {
+        std::vector<scaffolding::obb::from_aabb<float, 2>> tests =
+        {
+            { stff::aabb2(stff::vec2(0), stff::vec2(1)) },
+            { stff::aabb2(stff::vec2(1, 4), stff::vec2(2, 8)) },
+        };
+
+        for (scaffolding::obb::from_aabb<float, 2> const& test : tests)
+        {
+            scaffolding::obb::verify(test);
+        }
+    }
+
     TEST(obb2, intersect)
     {
         // simple tests

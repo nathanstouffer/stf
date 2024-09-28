@@ -10,6 +10,37 @@ namespace stf::geom::scaffolding::obb
 {
 
     template<typename T, size_t N>
+    struct from_aabb
+    {
+        geom::aabb<T, N> const aabb;
+    };
+
+    template<typename T, size_t N>
+    void verify(from_aabb<T, N> const& test)
+    {
+        geom::obb<T, N> obb(test.aabb);
+
+        for (size_t v = 0; v < geom::obb<T, N>::vertex_count(); ++v)
+        {
+            ASSERT_EQ(test.aabb.vertex(v), obb.vertex(v)) << "failed vertex equality for v = " << v;
+        }
+    }
+
+    template<typename T, size_t N>
+    struct contains
+    {
+        geom::obb<T, N> const obb;
+        math::vec<T, N> const point;
+        bool const contains;
+    };
+
+    template<typename T, size_t N>
+    void verify(contains<T, N> const& test)
+    {
+        ASSERT_EQ(test.contains, test.obb.contains(test.point)) << "failed point in obb test";
+    }
+
+    template<typename T, size_t N>
     struct intersect
     {
         geom::obb<T, N> const lhs;

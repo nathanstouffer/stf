@@ -138,8 +138,7 @@ namespace stf::geom
             {
                 vec_t const& basis = m_basis[d];
                 T const l = math::dot(point - m_center, basis);
-                T& half_extent = m_half_extents[d];
-                if (std::abs(l) > half_extent)
+                if (std::abs(l) > m_half_extents[d])
                 {
                     return false;
                 }

@@ -9,6 +9,39 @@
 namespace stf::geom
 {
 
+    TEST(obb3, from_aabb)
+    {
+        std::vector<scaffolding::obb::from_aabb<float, 3>> tests =
+        {
+            { stff::aabb3(stff::vec3(0), stff::vec3(1)) },
+            { stff::aabb3(stff::vec3(1, 4, -5), stff::vec3(2, 8, -1)) },
+        };
+
+        for (scaffolding::obb::from_aabb<float, 3> const& test : tests)
+        {
+            scaffolding::obb::verify(test);
+        }
+    }
+
+    TEST(obb3, contains)
+    {
+        std::vector<scaffolding::obb::contains<float, 3>> tests =
+        {
+            { stff::obb3(stff::aabb3(stff::vec3(0), stff::vec3(10))), stff::vec3(0), true },
+            { stff::obb3(stff::aabb3(stff::vec3(0), stff::vec3(10))), stff::vec3(5), true },
+            { stff::obb3(stff::aabb3(stff::vec3(0), stff::vec3(10))), stff::vec3(10), true },
+            { stff::obb3(stff::aabb3(stff::vec3(0), stff::vec3(10))), stff::vec3(-1), false },
+            { stff::obb3(stff::aabb3(stff::vec3(0), stff::vec3(10))), stff::vec3(11, 5, 5), false },
+            { stff::obb3(stff::aabb3(stff::vec3(0), stff::vec3(10))), stff::vec3(5, 11, 5), false },
+            { stff::obb3(stff::aabb3(stff::vec3(0), stff::vec3(10))), stff::vec3(5, 5, 11), false },
+        };
+
+        for (scaffolding::obb::contains<float, 3> const& test : tests)
+        {
+            scaffolding::obb::verify(test);
+        }
+    }
+
     TEST(obb3, intersect)
     {
         // simple tests
