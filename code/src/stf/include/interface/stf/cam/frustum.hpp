@@ -201,9 +201,9 @@ namespace stf::cam
         }
 
         /**
-         * @brief Compute whether or not an aabb intersects a frustum
-         * @param [in] aabb The query aabb
-         * @return Whether or not @p aabb intersect @p this
+         * @brief Compute whether or not an obb intersects a frustum
+         * @param [in] obb The query obb
+         * @return Whether or not @p obb intersect @p this
          */
         bool const intersects(obb_t const& obb) const
         {
