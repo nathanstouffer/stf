@@ -334,7 +334,7 @@ namespace stf::cam
         std::array<plane_t, c_num_planes> m_planes;
         vertices m_vertices;
         aabb_t m_aabb;
-        std::array<vec_t, 26> m_canonical_separation_axes;
+        std::array<vec_t, 26> m_canonical_separation_axes;      // separation axes to test when intersecting with an aabb
 
     };
 
