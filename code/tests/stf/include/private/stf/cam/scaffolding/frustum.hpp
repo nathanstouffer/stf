@@ -40,4 +40,20 @@ namespace stf::cam::scaffolding::frustum
         ASSERT_EQ(test.intersects, alg::intersect_fast(test.box, test.frustum)) << "Failed to compute intersect_fast for box -> frustum";
     }
 
+    template<typename T>
+    struct intersects
+    {
+        cam::frustum<T> const frustum;
+        geom::aabb3<T> const box;
+        bool const intersects;
+    };
+
+    template<typename T>
+    void verify(intersects<T> const& test)
+    {
+        ASSERT_EQ(test.intersects, test.frustum.intersects(test.box)) << "Failed to compute frustum::intersects";
+        ASSERT_EQ(test.intersects, alg::intersect(test.frustum, test.box)) << "Failed to compute intersects for frustum -> box";
+        ASSERT_EQ(test.intersects, alg::intersect(test.box, test.frustum)) << "Failed to compute intersects for box -> frustum";
+    }
+
 } // stf::cam::scaffolding::frustum

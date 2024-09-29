@@ -5,7 +5,9 @@
 
 #include "stf/cam/scamera.hpp"
 #include "stf/geom/hyperplane.hpp"
+#include "stf/math/basis.hpp"
 #include "stf/math/constants.hpp"
+#include "stf/math/interval.hpp"
 #include "stf/math/vector.hpp"
 
 /**
@@ -39,6 +41,16 @@ namespace stf::cam
          * @brief Type alias for a plane
          */
         using plane_t = geom::plane<T>;
+
+        /**
+         * @brief Type alias for a basis
+         */
+        using basis_t = math::basis<T, 3>;
+
+        /**
+         * @brief Type alias for an interval
+         */
+        using interval_t = math::interval<T>;
 
         /**
          * @brief The number of planes that define a frustum
@@ -154,6 +166,58 @@ namespace stf::cam
         }
 
         /**
+         * @brief Compute whether or not an aabb intersects a frustum
+         * @param [in] aabb The query aabb
+         * @return Whether or not @p aabb intersect @p this
+         */
+        bool const intersects(aabb_t const& aabb) const
+        {
+            if (intersects_fast(aabb))  // if the fast check returns true, do a more thorough check to avoid false positives
+            {
+                for (vec_t const& axis : m_canonical_separation_axes)
+                {
+                    if (axis.length_squared() > math::constants<T>::zero)
+                    {
+                        bool separates = !projection(axis).intersects(aabb.projection(axis));
+                        if (separates)
+                        {
+                            return false;
+                        }
+                    }
+                }
+                return true;    // fallthrough to true
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        /**
+         * @brief Compute the projection of a @ref frustum onto an axis
+         * @param [in] axis
+         * @return The interval of projection onto the axis
+         * @note @p axis is assumed to be a unit vector
+         */
+        interval_t const projection(vec_t const& axis) const
+        {
+            interval_t interval(math::constants<T>::pos_inf, math::constants<T>::neg_inf);
+            std::array<vec_t, 8> points =
+            {
+                // near points                      // far points
+                m_vertices.ntl, m_vertices.ntr,     m_vertices.ftl, m_vertices.ftr,
+                m_vertices.nbl, m_vertices.nbr,     m_vertices.fbl, m_vertices.fbr,
+            };
+            for (vec_t const& point : points)
+            {
+                T const l = math::dot(point, axis);
+                interval.a = std::min(interval.a, l);
+                interval.b = std::max(interval.b, l);
+            }
+            return interval;
+        }
+
+        /**
          * @brief Provide const access to the planes that define the frustum
          */
         std::array<plane_t, c_num_planes> const& planes() const { return m_planes; }
@@ -215,6 +279,35 @@ namespace stf::cam
             TOP    = 4,
             BOTTOM = 5
         };
+        
+        static std::array<vec_t, 26> possible_axes(basis_t const& basis, std::array<plane_t, c_num_planes> const& planes, vertices const& verts)
+        {
+            std::array<vec_t, 26> axes =
+            {
+                // box normals
+                basis[0],
+                basis[1],
+                basis[2],
+                // frustum normals
+                planes[side::FAR].normal(),
+                planes[side::LEFT].normal(),
+                planes[side::RIGHT].normal(),
+                planes[side::TOP].normal(),
+                planes[side::BOTTOM].normal(),
+            };
+            // add axes for cross products between pairs of edges from each polyhedra (the box normals and edge directions are the same)
+            for (size_t d = 0; d < 3; ++d)
+            {
+                size_t offset = 8 + d * 6;  // offset by how many axes have been written to the array
+                axes[offset + 0] = math::cross(basis[d], math::normalized(verts.ftr - verts.ftl));
+                axes[offset + 1] = math::cross(basis[d], math::normalized(verts.ftr - verts.fbr));
+                axes[offset + 2] = math::cross(basis[d], math::normalized(verts.ftl - verts.ntl));
+                axes[offset + 3] = math::cross(basis[d], math::normalized(verts.ftr - verts.ntr));
+                axes[offset + 4] = math::cross(basis[d], math::normalized(verts.fbl - verts.nbl));
+                axes[offset + 5] = math::cross(basis[d], math::normalized(verts.fbr - verts.nbr));
+            }
+            return axes;
+        }
 
     private:
 
@@ -229,21 +322,19 @@ namespace stf::cam
 
             std::vector<vec_t> points =
             {
-                // near points
-                verts.ntl, verts.ntr,
-                verts.nbl, verts.nbr,
-                // far points
-                verts.ftl, verts.ftr,
-                verts.fbl, verts.fbr
+                // near points          // far points
+                verts.ntl, verts.ntr,   verts.ftl, verts.ftr,
+                verts.nbl, verts.nbr,   verts.fbl, verts.fbr,
             };
             m_aabb = aabb_t::fit(points);
 
-
+            m_canonical_separation_axes = frustum::possible_axes(math::canonical_basis<T, 3>(), m_planes, m_vertices);
         }
 
         std::array<plane_t, c_num_planes> m_planes;
         vertices m_vertices;
         aabb_t m_aabb;
+        std::array<vec_t, 26> m_canonical_separation_axes;
 
     };
 

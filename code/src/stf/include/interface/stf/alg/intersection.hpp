@@ -316,4 +316,30 @@ namespace stf::alg
         return frustum.intersects_fast(aabb);
     }
 
+    /**
+     * @brief Compute whether or not a frustum and an aabb intersect
+     * @tparam T Number type (eg float)
+     * @param [in] frustum
+     * @param [in] aabb
+     * @return Whether or not a frustum and an aabb intersect
+     */
+    template<typename T>
+    inline bool intersect(cam::frustum<T> const& frustum, geom::aabb3<T> const& aabb)
+    {
+        return frustum.intersects(aabb);
+    }
+
+    /**
+     * @brief Compute whether or not an aabb and a frustum intersect
+     * @tparam T Number type (eg float)
+     * @param [in] aabb
+     * @param [in] frustum
+     * @return Whether or not an aabb and a frustum intersect
+     */
+    template<typename T>
+    inline bool intersect(geom::aabb3<T> const& aabb, cam::frustum<T> const& frustum)
+    {
+        return frustum.intersects(aabb);
+    }
+
 } // stf::alg
