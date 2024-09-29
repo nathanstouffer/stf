@@ -3,7 +3,7 @@
 #include <gtest/gtest.h>
 
 #include <stf/geom/obb.hpp>
-#include <stf/alg/intersection.hpp>
+#include <stf/alg/intersect.hpp>
 #include <stf/alg/containment.hpp>
 
 namespace stf::geom::scaffolding::obb
