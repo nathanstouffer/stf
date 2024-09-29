@@ -17,6 +17,7 @@ set(STF_FILES
 	"${CMAKE_CURRENT_SOURCE_DIR}/include/interface/stf/geom/segment.hpp"
 	"${CMAKE_CURRENT_SOURCE_DIR}/include/interface/stf/gfx/color.hpp"
 	"${CMAKE_CURRENT_SOURCE_DIR}/include/interface/stf/gfx/gradient.hpp"
+	"${CMAKE_CURRENT_SOURCE_DIR}/include/interface/stf/math/basis.hpp"
 	"${CMAKE_CURRENT_SOURCE_DIR}/include/interface/stf/math/constants.hpp"
 	"${CMAKE_CURRENT_SOURCE_DIR}/include/interface/stf/math/cinterval.hpp"
 	"${CMAKE_CURRENT_SOURCE_DIR}/include/interface/stf/math/interpolation.hpp"

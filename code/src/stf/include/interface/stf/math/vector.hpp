@@ -702,6 +702,19 @@ namespace stf::math
     template<typename T> using vec4 = vec<T, 4>;
 
     /**
+     * @brief Compute a normalized vector
+     * @tparam T Number type (eg float)
+     * @tparam N Dimension
+     * @param [in] rhs
+     * @return A normalized vector in the direction of @p rhs
+     */
+    template<typename T, size_t N>
+    inline vec<T, N> const normalized(vec<T, N> const& rhs)
+    {
+        return rhs.normalized();
+    }
+
+    /**
      * @brief Compute the square of the distance between @p lhs and @p rhs
      * @tparam T Number type (eg float)
      * @tparam N Dimension
@@ -928,7 +941,7 @@ namespace stf::math
      * @return The orientation of @p p, @p q, and @p r
      */
     template<typename T>
-    inline T orientation(vec2<T> const& p, vec2<T> const& q, vec2<T> const& r)
+    inline T const orientation(vec2<T> const& p, vec2<T> const& q, vec2<T> const& r)
     {
         return cross(q - p, r - p);
     }
