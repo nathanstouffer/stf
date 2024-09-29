@@ -4,6 +4,8 @@
 #include <vector>
 
 #include "stf/cam/scamera.hpp"
+#include "stf/geom/aabb.hpp"
+#include "stf/geom/obb.hpp"
 #include "stf/geom/hyperplane.hpp"
 #include "stf/math/basis.hpp"
 #include "stf/math/constants.hpp"
@@ -36,6 +38,11 @@ namespace stf::cam
          * @brief Type alias for an aabb
          */
         using aabb_t = geom::aabb3<T>;
+
+        /**
+         * @brief Type alias for an obb
+         */
+        using obb_t = geom::obb3<T>;
 
         /**
          * @brief Type alias for a plane
@@ -191,6 +198,27 @@ namespace stf::cam
             {
                 return false;
             }
+        }
+
+        /**
+         * @brief Compute whether or not an aabb intersects a frustum
+         * @param [in] aabb The query aabb
+         * @return Whether or not @p aabb intersect @p this
+         */
+        bool const intersects(obb_t const& obb) const
+        {
+            for (vec_t const& axis : frustum::possible_axes(obb.basis(), m_planes, m_vertices))
+            {
+                if (axis.length_squared() > math::constants<T>::zero)
+                {
+                    bool separates = !projection(axis).intersects(obb.projection(axis));
+                    if (separates)
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;    // fallthrough to true
         }
 
         /**
