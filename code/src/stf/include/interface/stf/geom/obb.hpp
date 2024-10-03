@@ -100,6 +100,22 @@ namespace stf::geom
         }
 
         /**
+         * @brief Compute an extremity of an @ref obb in a given direction
+         * @param [in] direction
+         * @return A vertex of @p this that is maximally extreme in @p direction
+         */
+        vec_t extremity(vec_t const& direction) const
+        {
+            vec_t extremity = m_center;
+            for (size_t i = 0; i < N; ++i)
+            {
+                T sign = (math::dot(direction, m_basis[i]) > math::constants<T>::zero) ? math::constants<T>::one : -math::constants<T>::one;
+                extremity += sign * m_half_extents[i] * m_basis[i];
+            }
+            return extremity;
+        }
+
+        /**
          * @brief Compute whether a point is contained in an @ref obb
          * @param [in] point
          * @return Whether or not @p point is contained in @p this
@@ -140,14 +156,9 @@ namespace stf::geom
          */
         math::interval<T> projection(vec_t const& axis) const
         {
-            math::interval<T> interval(math::constants<T>::pos_inf, math::constants<T>::neg_inf);
-            for (size_t v = 0; v < obb::vertex_count(); ++v)
-            {
-                T const l = math::dot(vertex(v), axis);
-                interval.a = std::min(interval.a, l);
-                interval.b = std::max(interval.b, l);
-            }
-            return interval;
+            T const a = math::dot(extremity(-axis), axis);
+            T const b = math::dot(extremity( axis), axis);
+            return math::interval<T>(a, b);
         }
 
         /**
