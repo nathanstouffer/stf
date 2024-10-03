@@ -27,6 +27,20 @@ namespace stf::geom::scaffolding::obb
     }
 
     template<typename T, size_t N>
+    struct extremity
+    {
+        geom::obb<T, N> const obb;
+        math::vec<T, N> const axis;
+        math::vec<T, N> const extreme;
+    };
+
+    template<typename T, size_t N>
+    void verify(extremity<T, N> const& test)
+    {
+        ASSERT_EQ(test.extreme, test.obb.extremity(test.axis)) << "failed to compute extremity";
+    }
+
+    template<typename T, size_t N>
     struct contains
     {
         geom::obb<T, N> const obb;

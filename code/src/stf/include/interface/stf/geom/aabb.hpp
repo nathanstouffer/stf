@@ -111,7 +111,7 @@ namespace stf::geom
             vec_t extremity;
             for (size_t i = 0; i < N; ++i)
             {
-                extremity[i] = (direction[i] > 0) ? max[i] : min[i];
+                extremity[i] = (direction[i] > math::constants<T>::zero) ? max[i] : min[i];
             }
             return extremity;
         }
@@ -196,14 +196,9 @@ namespace stf::geom
          */
         math::interval<T> projection(vec_t const& axis) const
         {
-            math::interval<T> interval(math::constants<T>::pos_inf, math::constants<T>::neg_inf);
-            for (size_t v = 0; v < aabb::vertex_count(); ++v)
-            {
-                T const l = math::dot(vertex(v), axis);
-                interval.a = std::min(interval.a, l);
-                interval.b = std::max(interval.b, l);
-            }
-            return interval;
+            T const a = math::dot(extremity(-axis), axis);
+            T const b = math::dot(extremity( axis), axis);
+            return math::interval<T>(a, b);
         }
 
         /**

@@ -105,6 +105,24 @@ namespace stf::cam
         }
 
         /**
+         * @brief Compute whether or not an obb is contained in the frustum
+         * @param [in] obb The query obb
+         * @return Whether or not @p aabb is contained in @p this
+         */
+        bool contains(obb_t const& obb) const
+        {
+            for (size_t i = 0; i < c_num_planes; ++i)
+            {
+                // check if the extremity in the direction of the anti-normal is contained in the halfspace
+                plane_t const& plane = m_planes[i];
+                vec_t extremity = obb.extremity(-plane.normal());
+                bool contained = plane.side(extremity) >= math::constants<T>::zero;
+                if (!contained) { return false; }
+            }
+            return true;    // fallthrough to return true
+        }
+
+        /**
          * @brief Compute whether or not an aabb intersects a frustum
          * @param [in] aabb The query aabb
          * @note This algorithm identifies false positives (returns true for some frustum/aabb that don't actually intersect)
@@ -181,7 +199,8 @@ namespace stf::cam
         {
             if (intersects_fast(aabb))  // if the fast check returns true, do a more thorough check to avoid false positives
             {
-                for (vec_t const& axis : m_canonical_separation_axes)
+                // m_canonical_edge_axes contains only the axes defined the cross product of pairs of edges -- the face normals are covered by intersects_fast
+                for (vec_t const& axis : m_canonical_edge_axes)
                 {
                     if (axis.length_squared() > math::constants<T>::zero)
                     {
@@ -207,7 +226,7 @@ namespace stf::cam
          */
         bool const intersects(obb_t const& obb) const
         {
-            for (vec_t const& axis : frustum::possible_axes(obb.basis(), m_planes, m_vertices))
+            for (vec_t const& axis : frustum::all_axes(obb.basis(), m_planes, m_vertices))
             {
                 if (axis.length_squared() > math::constants<T>::zero)
                 {
@@ -307,8 +326,27 @@ namespace stf::cam
             TOP    = 4,
             BOTTOM = 5
         };
+
+    private:
         
-        static std::array<vec_t, 26> possible_axes(basis_t const& basis, std::array<plane_t, c_num_planes> const& planes, vertices const& verts)
+        static std::array<vec_t, 18> edge_axes(basis_t const& basis, vertices const& verts)
+        {
+            std::array<vec_t, 18> axes = {};
+            // add axes for cross products between pairs of edges from each polyhedra (the box normals and edge directions are the same)
+            for (size_t d = 0; d < 3; ++d)
+            {
+                size_t offset = d * 6;  // offset by how many axes have been written to the array
+                axes[offset + 0] = math::cross(basis[d], math::normalized(verts.ftr - verts.ftl));
+                axes[offset + 1] = math::cross(basis[d], math::normalized(verts.ftr - verts.fbr));
+                axes[offset + 2] = math::cross(basis[d], math::normalized(verts.ftl - verts.ntl));
+                axes[offset + 3] = math::cross(basis[d], math::normalized(verts.ftr - verts.ntr));
+                axes[offset + 4] = math::cross(basis[d], math::normalized(verts.fbl - verts.nbl));
+                axes[offset + 5] = math::cross(basis[d], math::normalized(verts.fbr - verts.nbr));
+            }
+            return axes;
+        }
+
+        static std::array<vec_t, 26> all_axes(basis_t const& basis, std::array<plane_t, c_num_planes> const& planes, vertices const& verts)
         {
             std::array<vec_t, 26> axes =
             {
@@ -323,16 +361,10 @@ namespace stf::cam
                 planes[side::TOP].normal(),
                 planes[side::BOTTOM].normal(),
             };
-            // add axes for cross products between pairs of edges from each polyhedra (the box normals and edge directions are the same)
-            for (size_t d = 0; d < 3; ++d)
+            size_t i = 8;
+            for (vec_t const& axis : frustum::edge_axes(basis, verts))
             {
-                size_t offset = 8 + d * 6;  // offset by how many axes have been written to the array
-                axes[offset + 0] = math::cross(basis[d], math::normalized(verts.ftr - verts.ftl));
-                axes[offset + 1] = math::cross(basis[d], math::normalized(verts.ftr - verts.fbr));
-                axes[offset + 2] = math::cross(basis[d], math::normalized(verts.ftl - verts.ntl));
-                axes[offset + 3] = math::cross(basis[d], math::normalized(verts.ftr - verts.ntr));
-                axes[offset + 4] = math::cross(basis[d], math::normalized(verts.fbl - verts.nbl));
-                axes[offset + 5] = math::cross(basis[d], math::normalized(verts.fbr - verts.nbr));
+                axes[i++] = axis;
             }
             return axes;
         }
@@ -356,13 +388,15 @@ namespace stf::cam
             };
             m_aabb = aabb_t::fit(points);
 
-            m_canonical_separation_axes = frustum::possible_axes(math::canonical_basis<T, 3>(), m_planes, m_vertices);
+            m_canonical_edge_axes = frustum::edge_axes(math::canonical_basis<T, 3>(), m_vertices);
         }
+
+    private:
 
         std::array<plane_t, c_num_planes> m_planes;
         vertices m_vertices;
         aabb_t m_aabb;
-        std::array<vec_t, 26> m_canonical_separation_axes;      // separation axes to test when intersecting with an aabb
+        std::array<vec_t, 18> m_canonical_edge_axes;      // additional separation axes to test when intersecting with an aabb
 
     };
 
