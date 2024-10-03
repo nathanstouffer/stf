@@ -207,7 +207,7 @@ namespace stf::cam
          */
         bool const intersects(obb_t const& obb) const
         {
-            for (vec_t const& axis : frustum::possible_axes(obb.basis(), m_planes, m_vertices))
+            for (vec_t const& axis : frustum::all_possible_axes(obb.basis(), m_planes, m_vertices))
             {
                 if (axis.length_squared() > math::constants<T>::zero)
                 {
@@ -308,7 +308,7 @@ namespace stf::cam
             BOTTOM = 5
         };
         
-        static std::array<vec_t, 26> possible_axes(basis_t const& basis, std::array<plane_t, c_num_planes> const& planes, vertices const& verts)
+        static std::array<vec_t, 26> all_possible_axes(basis_t const& basis, std::array<plane_t, c_num_planes> const& planes, vertices const& verts)
         {
             std::array<vec_t, 26> axes =
             {
@@ -356,7 +356,7 @@ namespace stf::cam
             };
             m_aabb = aabb_t::fit(points);
 
-            m_canonical_separation_axes = frustum::possible_axes(math::canonical_basis<T, 3>(), m_planes, m_vertices);
+            m_canonical_separation_axes = frustum::all_possible_axes(math::canonical_basis<T, 3>(), m_planes, m_vertices);
         }
 
         std::array<plane_t, c_num_planes> m_planes;
