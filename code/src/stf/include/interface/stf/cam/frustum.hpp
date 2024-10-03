@@ -105,6 +105,24 @@ namespace stf::cam
         }
 
         /**
+         * @brief Compute whether or not an obb is contained in the frustum
+         * @param [in] obb The query obb
+         * @return Whether or not @p aabb is contained in @p this
+         */
+        bool contains(obb_t const& obb) const
+        {
+            for (size_t i = 0; i < c_num_planes; ++i)
+            {
+                // check if the extremity in the direction of the anti-normal is contained in the halfspace
+                plane_t const& plane = m_planes[i];
+                vec_t extremity = obb.extremity(-plane.normal());
+                bool contained = plane.side(extremity) >= math::constants<T>::zero;
+                if (!contained) { return false; }
+            }
+            return true;    // fallthrough to return true
+        }
+
+        /**
          * @brief Compute whether or not an aabb intersects a frustum
          * @param [in] aabb The query aabb
          * @note This algorithm identifies false positives (returns true for some frustum/aabb that don't actually intersect)

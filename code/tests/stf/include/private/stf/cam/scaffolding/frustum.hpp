@@ -21,7 +21,8 @@ namespace stf::cam::scaffolding::frustum
     template<typename T>
     void verify(contains<T> const& test)
     {
-        ASSERT_EQ(test.contains, test.frustum.contains(test.box)) << "Failed to compute frustum::contains";
+        ASSERT_EQ(test.contains, test.frustum.contains(test.box)) << "Failed to compute frustum::contains(aabb)";
+        ASSERT_EQ(test.contains, test.frustum.contains(geom::obb3<T>(test.box))) << "Failed to compute frustum::contains(obb)";
     }
 
     template<typename T>
