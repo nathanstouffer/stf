@@ -157,7 +157,7 @@ namespace stf::geom
         math::interval<T> projection(vec_t const& axis) const
         {
             T const a = math::dot(extremity(-axis), axis);
-            T const b = math::dot( extremity(axis), axis);
+            T const b = math::dot(extremity( axis), axis);
             return math::interval<T>(a, b);
         }
 
