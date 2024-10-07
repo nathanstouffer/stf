@@ -341,7 +341,7 @@ namespace stf::math
             mtx<T, N - 1> matrix = mtx<T, N - 1>();
             for (size_t i = 0; i < N - 1; ++i)
             {
-                matrix[i] = row(i).as_vec().prefix();
+                matrix[i] = math::prefix(row(i).as_vec());
             }
             return matrix;
         }
