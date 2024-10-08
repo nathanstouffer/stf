@@ -31,7 +31,7 @@ namespace stf::alg::guts
 
 		region_code y = region_code::INSIDE;
 		if      (point.y < box.min.y) { y = region_code::BOTTOM; }
-		else if (box.max.y < point.y) { y = region_code::RIGHT;  }
+		else if (box.max.y < point.y) { y = region_code::TOP;  }
 
 		return static_cast<region_code>(x | y);
 	}
@@ -42,14 +42,14 @@ namespace stf::alg::guts
 namespace stf::alg
 {
 
+	// TODO (stouff) possibly rename this to include the cohen-sutherland naming
 	template<typename T>
 	bool clip(geom::aabb2<T> const& box, geom::segment2<T>& seg)
 	{
 		guts::region_code code0 = guts::code(box, seg.a);
 		guts::region_code code1 = guts::code(box, seg.b);
-		bool accept = false;
 
-		while (true)
+		while (true)	// TODO (stouff) avoid infinite loop. I think we can place a finite bound on the number of time the loop should run
 		{
 			bool outside = code0 | code1;
 			if (!outside)			// if both points are inside the box, accept the segment
@@ -64,6 +64,7 @@ namespace stf::alg
 			{
 				math::vec2<T> point;
 				guts::region_code code = code1 > code0 ? code1 : code0;
+				// TODO (stouff) write comment about how we avoid dividing by 0
 				if (code & guts::region_code::TOP)
 				{
 					point.x = seg.a.x + (box.max.y - seg.a.y) * seg.slope_inv();
@@ -99,5 +100,7 @@ namespace stf::alg
 			}
 		}
 	}
+
+	// TODO (stouff) possibly write the liang-barsky alg?
 
 } // stf::alg
