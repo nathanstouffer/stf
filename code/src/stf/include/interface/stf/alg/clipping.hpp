@@ -42,14 +42,24 @@ namespace stf::alg::guts
 namespace stf::alg
 {
 
-	// TODO (stouff) possibly rename this to include the cohen-sutherland naming
+	/**
+	 * @brief Clip a line segment to a bounding box
+	 * @tparam T Number type (float) 
+	 * @param [in] box
+	 * @param [in,out] seg 
+	 * @return Whether or not the segment should be accepted
+	 * @todo possibly rename this to include the name of the algorithm (cohen-sutherland)
+	 * @todo possibly add the liang-barsky clipping algorithm as well
+	 */
 	template<typename T>
 	bool clip(geom::aabb2<T> const& box, geom::segment2<T>& seg)
 	{
 		guts::region_code code0 = guts::code(box, seg.a);
 		guts::region_code code1 = guts::code(box, seg.b);
 
-		while (true)	// TODO (stouff) avoid infinite loop. I think we can place a finite bound on the number of time the loop should run
+		// the official algorithm uses an infinite loop here, but there are certain inputs with floating-point precision issues that cause
+		// the loop to never terminate in practice. 4 is the maximum number of iterations that should ever occur
+		for (size_t i = 0; i < 4; ++i)
 		{
 			bool outside = code0 | code1;
 			if (!outside)			// if both points are inside the box, accept the segment
@@ -99,8 +109,7 @@ namespace stf::alg
 				}
 			}
 		}
+		return false;
 	}
-
-	// TODO (stouff) possibly write the liang-barsky alg?
 
 } // stf::alg
