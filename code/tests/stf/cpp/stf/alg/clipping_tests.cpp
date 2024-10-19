@@ -36,4 +36,25 @@ namespace stf::alg
         }
     }
 
+    TEST(clipping, polyline)
+    {
+        stff::aabb2 box(stff::vec2(10), stff::vec2(20));
+        std::vector<scaffolding::clipping::polyline<float>> tests =
+        {
+            // polylines entirely in the box
+            { box, stff::polyline2({ stff::vec2(10), stff::vec2(20) }), { stff::polyline2({ stff::vec2(10), stff::vec2(20) }) } },
+            { box, stff::polyline2({ stff::vec2(10), stff::vec2(10, 20), stff::vec2(20) }), { stff::polyline2({ stff::vec2(10), stff::vec2(10, 20), stff::vec2(20) }) } },
+            // polylines that partially intersect the box
+            { box, stff::polyline2({ stff::vec2(9), stff::vec2(21) }), { stff::polyline2({ stff::vec2(10), stff::vec2(20) }) } },
+            { box, stff::polyline2({ stff::vec2(9), stff::vec2(21), stff::vec2(21, 11), stff::vec2(15, 11) }), { stff::polyline2({stff::vec2(10), stff::vec2(20) }), stff::polyline2({ stff::vec2(20, 11), stff::vec2(15, 11) }) } },
+            // polylines entirely outside the box
+            { box, stff::polyline2({ stff::vec2(9), stff::vec2(21, 9), stff::vec2(21) }), {} },
+        };
+
+        for (scaffolding::clipping::polyline<float> const& test : tests)
+        {
+            scaffolding::clipping::verify(test);
+        }
+    }
+
 } // stf::alg
