@@ -66,6 +66,13 @@ namespace stf::geom
         inline size_t size() const { return is_empty() ? 0 : m_vertices.size(); } 
 
         /**
+         * @brief Compute whether or not two polylines are equal
+         * @param [in] rhs 
+         * @return Whethor not @p this equals @p rhs
+         */
+        inline bool operator==(polyline const& rhs) const { return m_vertices == rhs.m_vertices; }
+
+        /**
          * @brief Access an edge of a @ref polyline
          * @param [in] i The index of the edge to return 
          * @return The edge at @p i
@@ -88,6 +95,18 @@ namespace stf::geom
          * @param [in] vertex
          */
         inline void push_back(vec_t const& vertex) { m_vertices.push_back(vertex); m_aabb.fit(vertex); }
+
+        /**
+         * @brief Const access to the first vertex of a @ref polyline
+         * @return A const reference to the first vertex
+         */
+        inline vec_t const& front() const { return m_vertices.front(); }
+
+        /**
+         * @brief Const access to the last vertex of a @ref polyline
+         * @return A const reference to the last vertex
+         */
+        inline vec_t const& back() const { return m_vertices.back(); }
 
         /**
          * @brief Const access to a vertex of a @ref polyline

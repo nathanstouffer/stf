@@ -1,5 +1,6 @@
 #pragma once
 
+#include "stf/geom/segment.hpp"
 #include "stf/geom/polyline.hpp"
 
 /**
@@ -110,6 +111,51 @@ namespace stf::alg
 			}
 		}
 		return false;
+	}
+
+	template<typename T>
+	std::vector<geom::polyline2<T>> clip(geom::aabb2<T> const& box, geom::polyline2<T> const& polyline)
+	{
+		std::vector<geom::polyline2<T>> clipped;
+
+		geom::polyline2<T> sub_polyline;
+		for (size_t i = 0; i + 1 < polyline.size(); ++i)
+		{
+			geom::segment2<T> edge = polyline.edge(i);
+			if (clip(box, edge))							// segment intersects the box => test how to add the segment to the clipped result
+			{
+				if (sub_polyline.is_empty())				// this is the a fresh polyline => add both points
+				{
+					sub_polyline.push_back(edge.a);
+					sub_polyline.push_back(edge.b);
+				}
+				else if (sub_polyline.back() == edge.a)		// this segment should be added on to the existing polyline => only add the second point
+				{
+					sub_polyline.push_back(edge.b);
+				}
+				else										// this segment is part of a new polyline => store the old polyline and start a new one
+				{
+					clipped.push_back(sub_polyline);
+
+					sub_polyline.clear();
+					sub_polyline.push_back(edge.a);
+					sub_polyline.push_back(edge.b);
+				}
+			}
+			else if (!sub_polyline.is_empty())				// segment does not intersect the box => immediately add the current sub_polyline to the result
+			{
+				clipped.push_back(sub_polyline);
+				sub_polyline.clear();
+			}
+		}
+
+		// edge case to check if the final sub_polyline was not added to the result
+		if (!sub_polyline.is_empty())
+		{
+			clipped.push_back(sub_polyline);
+		}
+
+		return clipped;
 	}
 
 } // stf::alg
