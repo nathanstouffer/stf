@@ -113,6 +113,13 @@ namespace stf::alg
 		return false;
 	}
 
+	/**
+	 * @brief Clip a polyline to a bounding box
+	 * @tparam T Number type (float)
+	 * @param [in] box 
+	 * @param [in] polyline 
+	 * @return A (possibly empty) std::vector of polylines clipped to @p box
+	 */
 	template<typename T>
 	std::vector<geom::polyline2<T>> clip(geom::aabb2<T> const& box, geom::polyline2<T> const& polyline)
 	{
