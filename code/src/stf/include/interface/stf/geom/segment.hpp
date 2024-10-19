@@ -71,6 +71,12 @@ namespace stf::geom
         inline T slope() const { vec_t diff = delta(); return diff.y / diff.x; }
 
         /**
+         * @brief Compute the inverse slope of a @ref segment
+         * @return The inverse slope of @p this
+         */
+        inline T slope_inv() const { vec_t diff = delta(); return diff.x / diff.y; }
+
+        /**
          * @brief Compute the delta between the second and first point of the segment
          * @return The delta between @p b and @p a
          */
@@ -158,6 +164,34 @@ namespace stf::geom
      * @tparam T Number type (eg float)
      */
     template<typename T> using segment3 = segment<T, 3>;
+
+    /**
+     * @brief Compute whether @p lhs is approximately equal to @p rhs (uses constants<T>::tol as epsilon)
+     * @tparam T Number type (eg float)
+     * @tparam N Dimension
+     * @param [in] lhs
+     * @param [in] rhs
+     * @return Whether or not @p lhs and @p rhs are approximately equal
+     */
+    template<typename T, size_t N>
+    inline bool const operator==(segment<T, N> const& lhs, segment<T, N> const& rhs)
+    {
+        return lhs.a == rhs.a && lhs.b == rhs.b;
+    }
+
+    /**
+     * @brief Compute whether @p lhs is approximately not equal to @p rhs (uses constants<T>::tol as epsilon)
+     * @tparam T Number type (eg float)
+     * @tparam N Dimension
+     * @param [in] lhs
+     * @param [in] rhs
+     * @return Whether or not @p lhs and @p rhs are approximately not equal
+     */
+    template<typename T, size_t N>
+    inline bool const operator!=(segment<T, N> const& lhs, segment<T, N> const& rhs)
+    {
+        return !(lhs == rhs);
+    }
 
     /**
      * @brief Compute the square of the distance between a segment and a vector

@@ -4,7 +4,7 @@
 
 #include <stf/stf.hpp>
 
-#include <stf/alg/intersection.hpp>
+#include <stf/alg/intersect.hpp>
 #include <stf/cam/frustum.hpp>
 
 namespace stf::cam::scaffolding::frustum

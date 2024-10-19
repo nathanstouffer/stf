@@ -163,12 +163,6 @@ namespace stf::math
         inline vec orthogonal_to(vec const& rhs) const { return vec(*this) -= projected_on(rhs); }
 
         /**
-         * @brief Compute the prefix of a vector
-         * @return The prefix of @p this
-         */
-        vec<T, N - 1> prefix() const { vec<T, N - 1> ret; raw::prefix<T, N>(ret.values, values); return ret; }
-
-        /**
          * @brief Cast a vector to a different precision
          * @tparam U Destination number type (eg float)
          * @return @p this casted to the precision of @p U
@@ -315,12 +309,6 @@ namespace stf::math
          * @return The component of @p this orthogonal to @p rhs
          */
         inline vec orthogonal_to(vec const& rhs) const { return vec(*this) -= projected_on(rhs); }
-
-        /**
-         * @brief Compute the prefix of a vector
-         * @return The prefix of @p this
-         */
-        vec<T, 1> prefix() const { vec<T, 1> ret; raw::prefix<T, 2>(ret.values, values); return ret; }
 
         /**
          * @brief Cast a vector to a different precision
@@ -476,12 +464,6 @@ namespace stf::math
          * @return The component of @p this orthogonal to @p rhs
          */
         inline vec orthogonal_to(vec const& rhs) const { return vec(*this) -= projected_on(rhs); }
-
-        /**
-         * @brief Compute the prefix of a vector
-         * @return The prefix of @p this
-         */
-        vec<T, 2> prefix() const { vec<T, 2> ret; raw::prefix<T, 3>(ret.values, values); return ret; }
 
         /**
          * @brief Cast a vector to a different precision
@@ -646,12 +628,6 @@ namespace stf::math
          * @return The component of @p this orthogonal to @p rhs
          */
         inline vec orthogonal_to(vec const& rhs) const { return vec(*this) -= projected_on(rhs); }
-
-        /**
-         * @brief Compute the prefix of a vector
-         * @return The prefix of @p this
-         */
-        vec<T, 3> prefix() const { vec<T, 3> ret; raw::prefix<T, 4>(ret.values, values); return ret; }
 
         /**
          * @brief Cast a vector to a different precision
@@ -966,6 +942,21 @@ namespace stf::math
             result[i] = lhs[i] * rhs[i];
         }
         return result;
+    }
+
+    /**
+     * @brief Compute the prefix of a vector
+     * @tparam T Number type (eg float)
+     * @tparam N Dimension
+     * @param [in] rhs
+     * @return The prefix of @p rhs
+     */
+    template<typename T, size_t N>
+    vec<T, N - 1> prefix(vec<T, N> const& rhs)
+    {
+        vec<T, N - 1> ret;
+        raw::prefix<T, N>(ret.values, rhs.values);
+        return ret;
     }
 
     /** 

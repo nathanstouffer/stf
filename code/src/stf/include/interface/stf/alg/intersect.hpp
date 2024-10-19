@@ -10,7 +10,7 @@
 #include "stf/math/interval.hpp"
 
 /**
- * @file intersection.hpp
+ * @file intersect.hpp
  * @brief A file containing functions that report whether or not two geometric objects intersect
  */
 

@@ -3,9 +3,9 @@
 #include <gtest/gtest.h>
 
 #include <stf/stf.hpp>
-#include <stf/alg/intersection.hpp>
+#include <stf/alg/intersect.hpp>
 
-namespace stf::alg::scaffolding::intersection
+namespace stf::alg::scaffolding::intersect
 {
 
     template<typename T>
