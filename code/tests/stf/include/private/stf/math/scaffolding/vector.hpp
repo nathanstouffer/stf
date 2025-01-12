@@ -160,8 +160,10 @@ namespace stf::math::scaffolding::vec
     template<typename T, size_t N>
     void verify(dot<T, N> const& test)
     {
-        ASSERT_EQ(test.expected, test.lhs * test.rhs) << "Failed lhs * rhs";
-        ASSERT_EQ(test.expected, test.rhs * test.lhs) << "Failed rhs * lhs";
+        ASSERT_EQ(test.expected, math::dot(test.lhs, test.rhs)) << "Failed dot(lhs, rhs)";
+        ASSERT_EQ(test.expected, math::dot(test.rhs, test.lhs)) << "Failed dot(rhs, lhs)";
+        ASSERT_EQ(test.expected, test.lhs.dot(test.rhs)) << "Failed lhs.dot(rhs)";
+        ASSERT_EQ(test.expected, test.rhs.dot(test.lhs)) << "Failed rhs.dot(lhs)";
     }
 
     template<typename T, size_t N>

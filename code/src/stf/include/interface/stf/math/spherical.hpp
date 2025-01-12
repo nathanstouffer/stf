@@ -76,7 +76,7 @@ namespace stf::math
     template<typename T>
     inline T counterclockwise_angle(vec2<T> const& u, vec2<T> const& v)
     {
-        return canonical_angle(std::atan2(cross(u, v), u * v));
+        return canonical_angle(std::atan2(cross(u, v), dot(u, v)));
     }
 
     /**

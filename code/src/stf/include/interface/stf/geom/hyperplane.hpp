@@ -47,7 +47,7 @@ namespace stf::geom
          * @param [in] p 
          * @return The signed distance from @p this to @p p
          */
-        T signed_dist(vec_t const& p) const { return m_normal * (p - m_point); }
+        T signed_dist(vec_t const& p) const { return math::dot(m_normal, p - m_point); }
 
         /**
          * @brief Compute the distance from a hyperplane to a point

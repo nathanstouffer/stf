@@ -63,7 +63,7 @@ namespace stf::geom
         T const dist_squared(vec_t const& query) const
         {
             vec_t unit_dir = direction.normalized();
-            T scalar = (query - point) * unit_dir;
+            T scalar = math::dot(query - point, unit_dir);
             T t = std::max(scalar, math::constants<T>::zero);
             vec_t proj = point + t * unit_dir;
             return (query - proj).length_squared();
