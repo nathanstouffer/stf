@@ -78,6 +78,22 @@ namespace stf::math::raw
     }
 
     /**
+     * @brief Compute the hadamard product of two vectors (stored as arrays) in place
+     * @tparam T Number type (eg float)
+     * @tparam N Dimension
+     * @param [in,out] lhs
+     * @param [in] rhs
+     */
+    template<typename T, size_t N>
+    inline void hadamard_equals(T lhs[N], T const rhs[N])
+    {
+        for (size_t i = 0; i < N; ++i)
+        {
+            lhs[i] *= rhs[i];
+        }
+    }
+
+    /**
      * @brief Write the prefix of one array into another
      * @tparam T Number type (eg float)
      * @tparam N Dimension

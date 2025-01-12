@@ -118,17 +118,24 @@ namespace stf::math
         inline vec& operator*=(T const scalar) { raw::scale<T, N>(values, scalar); return *this; }
 
         /**
-         * @brief Compute a dot product
+         * @brief Compute a hadamard product in place 
          * @param [in] rhs 
+         * @return A reference to @p this
+         */
+        inline vec& operator*=(vec const& rhs) { raw::hadamard_equals<T, N>(values, rhs.values); return *this; }
+
+        /**
+         * @brief Compute a dot product
+         * @param [in] rhs
          * @return The dot product of @p this with @p rhs
          */
-        inline T const operator*(vec const& rhs) const { return raw::dot<T, N>(values, rhs.values); }
+        inline T const dot(vec const& rhs) const { return raw::dot<T, N>(values, rhs.values); }
 
         /**
          * @brief Compute the square of the length of a vector
          * @return The length squared of @p this
          */
-        inline T length_squared() const { return *this * *this;  }
+        inline T length_squared() const { return dot(*this); }
 
         /**
          * @brief Compute the length of a vector
@@ -153,7 +160,7 @@ namespace stf::math
          * @param [in] rhs The direction of the projection
          * @return The component of @p this in the direction of @p rhs
          */
-        inline vec projected_on(vec const& rhs) const { T scalar = (*this * rhs) / (rhs * rhs); return scalar * rhs; }
+        inline vec projected_on(vec const& rhs) const { T scalar = dot(rhs) / rhs.dot(rhs); return scalar * rhs; }
 
         /**
          * @brief Compute the component of a vector orthogonal to another vector
@@ -266,17 +273,24 @@ namespace stf::math
         inline vec& operator*=(T const scalar) { raw::scale<T, 2>(values, scalar); return *this; }
 
         /**
+         * @brief Compute a hadamard product in place
+         * @param [in] rhs
+         * @return A reference to @p this
+         */
+        inline vec& operator*=(vec const& rhs) { raw::hadamard_equals<T, 2>(values, rhs.values); return *this; }
+
+        /**
          * @brief Compute a dot product
          * @param [in] rhs
          * @return The dot product of @p this with @p rhs
          */
-        inline T const operator*(vec const& rhs) const { return raw::dot<T, 2>(values, rhs.values); }
+        inline T const dot(vec const& rhs) const { return raw::dot<T, 2>(values, rhs.values); }
 
         /**
          * @brief Compute the square of the length of a vector
          * @return The length squared of @p this
          */
-        inline T length_squared() const { return *this * *this; }
+        inline T length_squared() const { return dot(*this); }
 
         /**
          * @brief Compute the length of a vector
@@ -301,7 +315,7 @@ namespace stf::math
          * @param [in] rhs The direction of the projection
          * @return The component of @p this in the direction of @p rhs
          */
-        inline vec projected_on(vec const& rhs) const { T scalar = (*this * rhs) / (rhs * rhs); return scalar * rhs; }
+        inline vec projected_on(vec const& rhs) const { T scalar = dot(rhs) / rhs.dot(rhs); return scalar * rhs; }
 
         /**
          * @brief Compute the component of a vector orthogonal to another vector
@@ -421,17 +435,24 @@ namespace stf::math
         inline vec& operator*=(T const scalar) { raw::scale<T, 3>(values, scalar); return *this; }
 
         /**
+         * @brief Compute a hadamard product in place
+         * @param [in] rhs
+         * @return A reference to @p this
+         */
+        inline vec& operator*=(vec const& rhs) { raw::hadamard_equals<T, 3>(values, rhs.values); return *this; }
+
+        /**
          * @brief Compute a dot product
          * @param [in] rhs
          * @return The dot product of @p this with @p rhs
          */
-        inline T const operator*(vec const& rhs) const { return raw::dot<T, 3>(values, rhs.values); }
+        inline T const dot(vec const& rhs) const { return raw::dot<T, 3>(values, rhs.values); }
 
         /**
          * @brief Compute the square of the length of a vector
          * @return The length squared of @p this
          */
-        inline T length_squared() const { return *this * *this; }
+        inline T length_squared() const { return dot(*this); }
 
         /**
          * @brief Compute the length of a vector
@@ -456,7 +477,7 @@ namespace stf::math
          * @param [in] rhs The direction of the projection
          * @return The component of @p this in the direction of @p rhs
          */
-        inline vec projected_on(vec const& rhs) const { T scalar = (*this * rhs) / (rhs * rhs); return scalar * rhs; }
+        inline vec projected_on(vec const& rhs) const { T scalar = dot(rhs) / rhs.dot(rhs); return scalar * rhs; }
         
         /**
          * @brief Compute the component of a vector orthogonal to another vector
@@ -585,17 +606,24 @@ namespace stf::math
         inline vec& operator*=(T const scalar) { raw::scale<T, 4>(values, scalar); return *this; }
 
         /**
+         * @brief Compute a hadamard product in place
+         * @param [in] rhs
+         * @return A reference to @p this
+         */
+        inline vec& operator*=(vec const& rhs) { raw::hadamard_equals<T, 4>(values, rhs.values); return *this; }
+
+        /**
          * @brief Compute a dot product
          * @param [in] rhs
          * @return The dot product of @p this with @p rhs
          */
-        inline T const operator*(vec const& rhs) const { return raw::dot<T, 4>(values, rhs.values); }
+        inline T const dot(vec const& rhs) const { return raw::dot<T, 4>(values, rhs.values); }
 
         /**
          * @brief Compute the square of the length of a vector
          * @return The length squared of @p this
          */
-        inline T length_squared() const { return *this * *this; }
+        inline T length_squared() const { return dot(*this); }
 
         /**
          * @brief Compute the length of a vector
@@ -620,7 +648,7 @@ namespace stf::math
          * @param [in] rhs The direction of the projection
          * @return The component of @p this in the direction of @p rhs
          */
-        inline vec projected_on(vec const& rhs) const { T scalar = (*this * rhs) / (rhs * rhs); return scalar * rhs; }
+        inline vec projected_on(vec const& rhs) const { T scalar = dot(rhs) / rhs.dot(rhs); return scalar * rhs; }
 
         /**
          * @brief Compute the component of a vector orthogonal to another vector
@@ -861,7 +889,7 @@ namespace stf::math
     template<typename T, size_t N>
     inline T const dot(vec<T, N> const& lhs, vec<T, N> const& rhs)
     {
-        return lhs * rhs;
+        return raw::dot<T, N>(lhs.values, rhs.values);
     }
 
     /** 
@@ -936,13 +964,29 @@ namespace stf::math
     template<typename T, size_t N>
     inline vec<T, N> const hadamard(vec<T, N> const& lhs, vec<T, N> const& rhs)
     {
-        vec<T, N> result;
-        for (size_t i = 0; i < N; ++i)
-        {
-            result[i] = lhs[i] * rhs[i];
-        }
-        return result;
+        return vec<T, N>(lhs) *= (rhs);
+
+        //vec<T, N> result;
+        //for (size_t i = 0; i < N; ++i)
+        //{
+        //    result[i] = lhs[i] * rhs[i];
+        //}
+        //return result;
     }
+
+    /**
+     * @brief Compute the hadamard product of @p lhs and @p rhs
+     *
+     * The hadamard product is element-wise multiplication of vectors.
+     *
+     * @tparam T Number type (eg float)
+     * @tparam N Dimension
+     * @param [in] lhs
+     * @param [in] rhs
+     * @return The hadamard product of @p lhs and @p rhs
+     */
+    template<typename T, size_t N>
+    inline vec<T, N> const operator*(vec<T, N> const& lhs, vec<T, N> const& rhs) { return hadamard(lhs, rhs); }
 
     /**
      * @brief Compute the prefix of a vector

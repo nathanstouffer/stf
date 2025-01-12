@@ -115,7 +115,7 @@ namespace stf::geom
         T const dist_squared(vec_t const& point) const
         {
             vec_t diff = delta();
-            T scalar = ((point - a) * diff) / (diff * diff);
+            T scalar = math::dot(point - a, diff) / math::dot(diff, diff);
             T t = std::clamp(scalar, math::constants<T>::zero, math::constants<T>::one);
             vec_t proj = a + t * diff;
             return (point - proj).length_squared();
