@@ -84,9 +84,9 @@ jobs:
         ## Execute test coverage
         run: |
           ./tests
-          llvm-profdata-14 merge default.profraw -o tests.profdata
-          llvm-cov-14 show tests -instr-profile=tests.profdata -show-instantiation-summary ${{ steps.strings.outputs.src-dir }} > coverage-lines.txt
-          llvm-cov-14 report tests -instr-profile=tests.profdata -show-instantiation-summary ${{ steps.strings.outputs.src-dir }} > coverage-files.txt
+          llvm-profdata-17 merge default.profraw -o tests.profdata
+          llvm-cov-17 show tests -instr-profile=tests.profdata -show-instantiation-summary ${{ steps.strings.outputs.src-dir }} > coverage-lines.txt
+          llvm-cov-17 report tests -instr-profile=tests.profdata -show-instantiation-summary ${{ steps.strings.outputs.src-dir }} > coverage-files.txt
 
       - name: Upload coverage to github
         if: ${{ matrix.build_type == 'Coverage' }}
