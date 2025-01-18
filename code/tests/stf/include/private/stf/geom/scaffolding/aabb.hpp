@@ -9,6 +9,20 @@
 namespace stf::geom::scaffolding::aabb
 {
 
+    template<typename T, typename U, size_t N>
+    struct cast
+    {
+        geom::aabb<T, N> const initial;
+    };
+
+    template<typename T, typename U, size_t N>
+    void verify(cast<T, U, N> const& test)
+    {
+        geom::aabb<U, N> result = test.initial.template as<U>();
+        ASSERT_EQ(test.initial.min.template as<U>(), result.min) << "Failed to cast properly";
+        ASSERT_EQ(test.initial.max.template as<U>(), result.max) << "Failed to cast properly";
+    }
+
     template<typename T, size_t N>
     struct intersects
     {
