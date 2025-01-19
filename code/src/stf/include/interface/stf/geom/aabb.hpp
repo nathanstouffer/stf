@@ -297,6 +297,17 @@ namespace stf::geom
          */
         aabb fitted(aabb const& rhs) const { return aabb(*this).fit(rhs); }
 
+        /**
+         * @brief Cast an aabb to a different precision
+         * @tparam U Destination number type (eg float)
+         * @return @p this casted to the precision of @p U
+         */
+        template<typename U>
+        aabb<U, N> as() const
+        {
+            return aabb<U, N>(min.template as<U>(), max.template as<U>());
+        }
+
     public:
 
         /**

@@ -9,6 +9,19 @@
 namespace stf::geom
 {
 
+    TEST(aabb2, cast)
+    {
+        std::vector<scaffolding::aabb::cast<float, double, 2>> tests =
+        {
+            { stff::aabb2(stff::vec2(0), stff::vec2(1)) },
+            { stff::aabb2(stff::vec2(1.f, 2.f), stff::vec2(2.f, 5.f)) },
+            { stff::aabb2(stff::vec2(1.f), stff::vec2(2.f)) },
+            { stff::aabb2(stff::vec2(4.f), stff::vec2(10.f)) },
+        };
+
+        for (scaffolding::aabb::cast<float, double, 2> const& test : tests) { scaffolding::aabb::verify(test); }
+    }
+
     TEST(aabb2, intersects)
     {
         std::vector<scaffolding::aabb::intersects<float, 2>> tests =
