@@ -677,16 +677,16 @@ namespace stf::math
     }
 
     /**
-     * @brief Construct a matrix that transforms space to look towards
+     * @brief Construct a view matrix
      * @tparam T Number type (eg float)
      * @param [in] eye The camera eye
      * @param [in] look The look direction
      * @param [in] right The right direction
      * @param [in] up The up direction
-     * @return The took towards matrix
+     * @return The view matrix
      */
     template<typename T>
-    inline mtx4<T> look_towards(vec3<T> const& eye, vec3<T> const& look, vec3<T> const& right, vec3<T> const& up)
+    inline mtx4<T> view(vec3<T> const& eye, vec3<T> const& look, vec3<T> const& right, vec3<T> const& up)
     {
         vec3<T> v = -look;
         vec3<T> r = right;

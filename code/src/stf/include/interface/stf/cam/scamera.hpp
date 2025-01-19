@@ -171,10 +171,10 @@ namespace stf::cam
         vec_t right() const { return math::cross(look(), up()); }
 
         /**
-         * @brief Compute the look towards matrix for the scamera
-         * @return The look towards matrix for @p this
+         * @brief Compute the view matrix for the scamera
+         * @return The view matrix for @p this
          */
-        mtx_t look_towards() const { return math::look_towards<T>(eye, look(), right(), up()); }
+        mtx_t view() const { return math::view<T>(eye, look(), right(), up()); }
 
         /**
          * @brief Compute the perspective projection matrix for the scamera
