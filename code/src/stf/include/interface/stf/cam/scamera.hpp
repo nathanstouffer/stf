@@ -170,6 +170,10 @@ namespace stf::cam
          */
         vec_t right() const { return math::cross(look(), up()); }
 
+        /**
+         * @brief Compute the view matrix for the scamera
+         * @return The view matrix for @p this
+         */
         mtx_t view() const
         {
             vec_t v = -look();
@@ -184,14 +188,15 @@ namespace stf::cam
             return transform;
         }
 
-        mtx_t proj() const { return math::perspective<T>(fov, aspect, near, far); }
-
-        mtx_t view_proj() const { return proj() * view(); }
+        /**
+         * @brief Compute the perspective projection matrix for the scamera
+         * @return The perspective projection matrix for @p this
+         */
+        mtx_t perspective() const { return math::perspective<T>(fov, aspect, near, far); }
         
         // @todo write these matrix methods
         // mtx_t inv_view() const;
         // mtx_t inv_proj() const;
-        // mtx_t inv_view_proj() const;
 
     };
 
