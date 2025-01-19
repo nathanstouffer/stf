@@ -677,6 +677,30 @@ namespace stf::math
     }
 
     /**
+     * @brief Construct a view matrix
+     * @tparam T Number type (eg float)
+     * @param [in] eye The camera eye
+     * @param [in] look The look direction
+     * @param [in] right The right direction
+     * @param [in] up The up direction
+     * @return The view matrix
+     */
+    template<typename T>
+    inline mtx4<T> view(vec3<T> const& eye, vec3<T> const& look, vec3<T> const& right, vec3<T> const& up)
+    {
+        vec3<T> v = -look;
+        vec3<T> r = right;
+        vec3<T> u = up;
+
+        mtx4<T> transform;
+        transform[0] = vec4<T>(r, -dot(r, eye));
+        transform[1] = vec4<T>(u, -dot(u, eye));
+        transform[2] = vec4<T>(v, -dot(v, eye));
+        transform[3] = vec4<T>(vec3<T>(), constants<T>::one);
+        return transform;
+    }
+
+    /**
      * @brief Construct a matrix that computes an orthographic projection
      * @tparam T Number type (eg float)
      * @param [in] l Left plane
