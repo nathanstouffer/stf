@@ -305,7 +305,7 @@ namespace stf::geom
         template<typename U>
         aabb<U, N> as() const
         {
-            return aabb<U, N>(min.as<U>(), max.as<U>());
+            return aabb<U, N>(min.template as<U>(), max.template as<U>());
         }
 
     public:
