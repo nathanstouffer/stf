@@ -90,7 +90,7 @@ jobs:
 
       - name: Upload coverage to github
         if: ${{ matrix.build_type == 'Coverage' }}
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: coverage
           path: ${{ steps.strings.outputs.tests-output-dir }}/coverage-*.txt
