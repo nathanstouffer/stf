@@ -714,7 +714,8 @@ namespace stf::math
     template<typename T>
     inline mtx4<T> orthographic(T const l, T const r, T const b, T const t, T const n, T const f)
     {
-        vec<T, 3> scalars(T(2) / (r - l), T(2) / (t - b), -T(2) / (f - n));
+        T constexpr two = constants<T>::two;
+        vec<T, 3> scalars(two / (r - l), two / (t - b), -two / (f - n));
         vec<T, 3> translators(-(r + l) / (r - l), -(t + b) / (t - b), -(f + n) / (f - n));
         return mtx4<T>::scale(scalars) * mtx4<T>::translate(translators);
     }
