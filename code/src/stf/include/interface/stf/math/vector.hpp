@@ -551,6 +551,14 @@ namespace stf::math
         explicit constexpr vec(T _x, T _y, T _z, T _w) : x(_x), y(_y), z(_z), w(_w) {}
 
         /**
+         * @brief Construct from a vec2 and 2 scalars
+         * @param [in] _xy
+         * @param [in] _z
+         * @param [in] _w
+         */
+        constexpr vec(vec<T, 2> const& _xy, T _z, T _w) : vec(_xy.x, _xy.y, _z, _w) {}
+
+        /**
          * @brief Construct from two vec2s
          * @param [in] _xy 
          * @param [in] _zw 
@@ -879,6 +887,40 @@ namespace stf::math
     }
 
     /**
+     * @brief Divide @p lhs by @p scalar
+     * @tparam T Number type (eg float)
+     * @tparam N Dimension
+     * @param [in] lhs
+     * @param [in] scalar
+     * @return @p lhs divided by @p scalar
+     */
+    template<typename T, size_t N>
+    inline vec<T, N> const operator/(vec<T, N> const& lhs, T const scalar)
+    {
+        T factor = constants<T>::one / scalar;
+        return factor * lhs;
+    }
+
+    /**
+     * @brief Divide @p scalar by @p rhs
+     * @tparam T Number type (eg float)
+     * @tparam N Dimension
+     * @param [in] scalar
+     * @param [in] rhs
+     * @return @p scalar divided by @p rhs
+     */
+    template<typename T, size_t N>
+    inline vec<T, N> const operator/(T const scalar, vec<T, N> const& rhs)
+    {
+        vec<T, N> result;
+        for (size_t i = 0; i < N; ++i)
+        {
+            result[i] = scalar / rhs[i];
+        }
+        return result;
+    }
+
+    /**
      * @brief Compute the dot product of @p lhs and @p rhs
      * @tparam T Number type (eg float)
      * @tparam N Dimension
@@ -965,13 +1007,6 @@ namespace stf::math
     inline vec<T, N> const hadamard(vec<T, N> const& lhs, vec<T, N> const& rhs)
     {
         return vec<T, N>(lhs) *= (rhs);
-
-        //vec<T, N> result;
-        //for (size_t i = 0; i < N; ++i)
-        //{
-        //    result[i] = lhs[i] * rhs[i];
-        //}
-        //return result;
     }
 
     /**

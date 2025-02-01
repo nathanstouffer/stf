@@ -90,14 +90,14 @@ jobs:
 
       - name: Upload coverage to github
         if: ${{ matrix.build_type == 'Coverage' }}
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: coverage
           path: ${{ steps.strings.outputs.tests-output-dir }}/coverage-*.txt
 
       - name: Upload coverage to codecov
         if: ${{ matrix.build_type == 'Coverage' }}
-        uses: codecov/codecov-action@v3
+        uses: codecov/codecov-action@v4
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
         with:
