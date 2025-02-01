@@ -965,13 +965,6 @@ namespace stf::math
     inline vec<T, N> const hadamard(vec<T, N> const& lhs, vec<T, N> const& rhs)
     {
         return vec<T, N>(lhs) *= (rhs);
-
-        //vec<T, N> result;
-        //for (size_t i = 0; i < N; ++i)
-        //{
-        //    result[i] = lhs[i] * rhs[i];
-        //}
-        //return result;
     }
 
     /**
