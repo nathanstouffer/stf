@@ -887,6 +887,40 @@ namespace stf::math
     }
 
     /**
+     * @brief Divide @p lhs by @p scalar
+     * @tparam T Number type (eg float)
+     * @tparam N Dimension
+     * @param [in] lhs
+     * @param [in] scalar
+     * @return @p lhs divided by @p scalar
+     */
+    template<typename T, size_t N>
+    inline vec<T, N> const operator/(vec<T, N> const& lhs, T const scalar)
+    {
+        T factor = constants<T>::one / scalar;
+        return factor * lhs;
+    }
+
+    /**
+     * @brief Divide @p scalar by @p rhs
+     * @tparam T Number type (eg float)
+     * @tparam N Dimension
+     * @param [in] scalar
+     * @param [in] rhs
+     * @return @p scalar divided by @p rhs
+     */
+    template<typename T, size_t N>
+    inline vec<T, N> const operator/(T const scalar, vec<T, N> const& rhs)
+    {
+        vec<T, N> result;
+        for (size_t i = 0; i < N; ++i)
+        {
+            result[i] = scalar / rhs[i];
+        }
+        return result;
+    }
+
+    /**
      * @brief Compute the dot product of @p lhs and @p rhs
      * @tparam T Number type (eg float)
      * @tparam N Dimension
