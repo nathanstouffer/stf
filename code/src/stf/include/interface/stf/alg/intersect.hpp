@@ -113,17 +113,15 @@ namespace stf::alg
         // if either point is in the box, there is certainly an intersection
         if (aabb.contains(segment.a) || aabb.contains(segment.b)) { return true; }
 
-        // iterate over each edge of the box and test if the segment intersects it
-        for (size_t i = 0; i < 3; ++i)
-        {
-            // compute an edge of the bounding box
-            math::vec2<T> const& a = aabb.vertex(i);
-            math::vec2<T> const& b = aabb.vertex((i + 1) % 4);
-            geom::segment2<T> edge(a, b);
+        // both points are outside the box => an intersection can only occur if the segment crosses a diagonal
+        geom::segment2<T> const diagonal_0(aabb.min, aabb.max);
+        if (intersect(segment, diagonal_0)) { return true; }
 
-            // if the segment intersects the edge then return true
-            if (intersect(segment, edge)) { return true; }
-        }
+        math::vec2<T> const a(aabb.min.x, aabb.max.y);
+        math::vec2<T> const b(aabb.max.x, aabb.min.y);
+        geom::segment2<T> const diagonal_1(a, b);
+        if (intersect(segment, diagonal_1)) { return true; }
+        
         return false;       // fallthrough to return false
     }
 
