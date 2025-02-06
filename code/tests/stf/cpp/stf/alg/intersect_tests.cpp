@@ -57,6 +57,7 @@ namespace stf::alg
             { stff::segment2(stff::vec2(0), stff::vec2(5, -1)), box, true },
             { stff::segment2(stff::vec2(10, 10), stff::vec2(11, 9)), box, true },
             { stff::segment2(stff::vec2(9, 11), stff::vec2(11, 9)), box, true },
+            { stff::segment2(stff::vec2(10, 9), stff::vec2(11, 9)), box, true },
             // segments crossing the boundary of the box
             { stff::segment2(stff::vec2(5, 5), stff::vec2(11, 5)), box, true },
             { stff::segment2(stff::vec2(5, 5), stff::vec2(5, 11)), box, true },
