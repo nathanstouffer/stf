@@ -3,20 +3,20 @@
 #include "stf/math/vector.hpp"
 
 /**
- * @file sphere.hpp
- * @brief A file containing a templated sphere class along with associated functions
+ * @file hypersphere.hpp
+ * @brief A file containing a templated hypersphere class along with associated functions
  */
 
 namespace stf::geom
 {
 
     /**
-     * @brief A class representing a sphere in R^n
+     * @brief A class representing a hypersphere in R^n
      * @tparam T Number type (eg float)
      * @tparam N Dimension
      */
     template<typename T, size_t N>
-    struct sphere final
+    struct hypersphere final
     {
 
         /**
@@ -27,12 +27,12 @@ namespace stf::geom
     public:
 
         /**
-         * @brief The center of the sphere
+         * @brief The center of the hypersphere
          */
         vec_t center;
 
         /**
-         * @brief The radius of the sphere
+         * @brief The radius of the hypersphere
          */
         T radius;
 
@@ -41,10 +41,10 @@ namespace stf::geom
          * @param [in] _center
          * @param [in] _radius
          */
-        sphere(vec_t const& _center, T const _radius) : center(_center), radius(_radius) {}
+        hypersphere(vec_t const& _center, T const _radius) : center(_center), radius(_radius) {}
 
         /**
-         * @brief Compute whether or not the sphere encloses a point
+         * @brief Compute whether or not the hypersphere encloses a point
          * @param [in] query
          * @return Whether or not @p this encloses @p query
          */
@@ -60,25 +60,19 @@ namespace stf::geom
     /**
      * @brief Delete invalid sphere specialization
      */
-    template<typename T> struct sphere<T, 0> { sphere() = delete; };
+    template<typename T> struct hypersphere<T, 0> { hypersphere() = delete; };
     /// @endcond
 
     /**
-     * @brief Type alias for a @ref sphere in 2 dimensions -- a circle
+     * @brief Type alias for a @ref hypersphere in 2 dimensions -- a circle
      * @tparam T Number type (eg float)
      */
-    template<typename T> using circle = sphere<T, 2>;
+    template<typename T> using circle = hypersphere<T, 2>;
 
     /**
-     * @brief Type alias for a 2D @ref sphere
+     * @brief Type alias for a @ref hypersphere in 3 dimensions -- a sphere
      * @tparam T Number type (eg float)
      */
-    template<typename T> using sphere2 = sphere<T, 2>;
-
-    /**
-     * @brief Type alias for a 3D @ref ray
-     * @tparam T Number type (eg float)
-     */
-    template<typename T> using sphere3 = sphere<T, 3>;
+    template<typename T> using sphere = hypersphere<T, 3>;
 
 } // stf::geom

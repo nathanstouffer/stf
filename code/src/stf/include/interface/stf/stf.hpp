@@ -11,7 +11,7 @@
 #include "stf/geom/polyline.hpp"
 #include "stf/geom/ray.hpp"
 #include "stf/geom/segment.hpp"
-#include "stf/geom/sphere.hpp"
+#include "stf/geom/hypersphere.hpp"
 #include "stf/math/constants.hpp"
 #include "stf/math/cinterval.hpp"
 #include "stf/math/matrix.hpp"
@@ -137,14 +137,9 @@ namespace stf
         using circle = geom::circle<T>;
 
         /**
-         * @brief Type alias for sphere2
+         * @brief Type alias for sphere
          */
-        using sphere2 = geom::sphere2<T>;
-
-        /**
-         * @brief Type alias for sphere3
-         */
-        using sphere3 = geom::sphere3<T>;
+        using sphere = geom::sphere<T>;
 
         /**
          * @brief Type alias for polyline2

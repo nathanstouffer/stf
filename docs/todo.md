@@ -23,7 +23,7 @@ A todo list separated out by category (typically a namespace)
  - [x] ray
  - [x] plane/hyperplane
  - [ ] halfplane/halfspace
- - [ ] sphere/hypersphere
+ - [x] sphere/hypersphere
  - [ ] triangle
 
 ## gfx
