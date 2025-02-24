@@ -16,6 +16,7 @@ set(STF_FILES
 	"${CMAKE_CURRENT_SOURCE_DIR}/include/interface/stf/geom/polyline.hpp"
 	"${CMAKE_CURRENT_SOURCE_DIR}/include/interface/stf/geom/ray.hpp"
 	"${CMAKE_CURRENT_SOURCE_DIR}/include/interface/stf/geom/segment.hpp"
+	"${CMAKE_CURRENT_SOURCE_DIR}/include/interface/stf/geom/sphere.hpp"
 	"${CMAKE_CURRENT_SOURCE_DIR}/include/interface/stf/gfx/color.hpp"
 	"${CMAKE_CURRENT_SOURCE_DIR}/include/interface/stf/gfx/gradient.hpp"
 	"${CMAKE_CURRENT_SOURCE_DIR}/include/interface/stf/math/basis.hpp"

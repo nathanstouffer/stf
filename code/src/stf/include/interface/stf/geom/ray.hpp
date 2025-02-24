@@ -11,7 +11,7 @@ namespace stf::geom
 {
 
     /**
-     * @brief A ray class representing rays R^n
+     * @brief A class representing a ray in R^n
      * @tparam T Number type (eg float)
      * @tparam N Dimension
      */
