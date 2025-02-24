@@ -79,6 +79,6 @@ namespace stf::geom
      * @brief Type alias for a 3D @ref ray
      * @tparam T Number type (eg float)
      */
-    template<typename T> using sphere3 = ray<T, 3>;
+    template<typename T> using sphere3 = sphere<T, 3>;
 
 } // stf::geom
