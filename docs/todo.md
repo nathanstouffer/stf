@@ -50,7 +50,8 @@ A todo list separated out by category (typically a namespace)
 
 ## alg
 
- - [x] intersection
+ - [x] intersect
+ - [ ] intersection
  - [ ] containment
  - [ ] clipping
  - [ ] tessellation
