@@ -175,8 +175,8 @@ namespace stf::geom
                 T& half_extent = m_half_extents[d];
                 if (std::abs(l) > half_extent)
                 {
-                    vec_t min = (l < -half_extent) ? m_center + l * basis : m_center - half_extent * basis;
-                    vec_t max = (l >  half_extent) ? m_center + l * basis : m_center + half_extent * basis;
+                    vec_t min = m_center + std::min(l, -half_extent) * basis;
+                    vec_t max = m_center + std::max(l,  half_extent) * basis;
                     m_center = math::constants<T>::half * (min + max);
                     half_extent = std::abs(math::dot(point - m_center, basis));
                 }
