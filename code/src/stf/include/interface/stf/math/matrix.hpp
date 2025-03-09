@@ -163,7 +163,7 @@ namespace stf::math
          * @brief Construct from a single scalar -- initializes all scalars to @p value
          * @param [in] value 
          */
-        mtx(T const value) 
+        explicit mtx(T const value) 
         {
             for (size_t i = 0; i < D; ++i)
             {
@@ -175,7 +175,7 @@ namespace stf::math
          * @brief Construct from an N-dimensional vector -- intializes the diagonal to the value of the vector
          * @param [in] diagonal 
          */
-        mtx(vec<T, N> const& diagonal) : mtx()
+        explicit mtx(vec<T, N> const& diagonal) : mtx()
         {
             for (size_t i = 0; i < N; ++i)
             {
@@ -187,7 +187,7 @@ namespace stf::math
          * @brief Construct from an NxN-dimensional vector -- an explicit row-major initialization of every entry in the matrix
          * @param [in] values
          */
-        mtx(vec<T, D> const& values) : mtx()
+        explicit mtx(vec<T, D> const& values) : mtx()
         {
             for (size_t i = 0; i < D; ++i)
             {
@@ -451,6 +451,36 @@ namespace stf::math
      * @tparam T Number type (eg float)
      */
     template<typename T> using mtx4 = mtx<T, 4>;
+
+    /**
+     * @brief Compute whether @p lhs is approximately equal to @p rhs (uses constants<T>::tol as epsilon)
+     * @tparam T Number type (eg float)
+     * @tparam N Dimension
+     * @param [in] lhs
+     * @param [in] rhs
+     * @return Whether or not @p lhs and @p rhs are approximately equal
+     */
+    template<typename T, size_t N>
+    inline bool const operator==(mtx<T, N> const& lhs, mtx<T, N> const& rhs)
+    {
+        vec<T, N * N> lhs_as_vec = vec<T, N * N>(lhs.values);
+        vec<T, N * N> rhs_as_vec = vec<T, N * N>(rhs.values);
+        return equ(lhs_as_vec, rhs_as_vec, constants<T>::tol);
+    }
+
+    /**
+     * @brief Compute whether @p lhs is approximately not equal to @p rhs (uses constants<T>::tol as epsilon)
+     * @tparam T Number type (eg float)
+     * @tparam N Dimension
+     * @param [in] lhs
+     * @param [in] rhs
+     * @return Whether or not @p lhs and @p rhs are approximately not equal
+     */
+    template<typename T, size_t N>
+    inline bool const operator!=(mtx<T, N> const& lhs, mtx<T, N> const& rhs)
+    {
+        return !(lhs == rhs);
+    }
 
     /**
      * @brief Compute the product of two matrices
