@@ -29,8 +29,8 @@ namespace stf::math
 
             /**
              * @brief Construct from a @ref mtx reference and a column index
-             * @param [in] _m 
-             * @param [in] _c 
+             * @param [in] _m
+             * @param [in] _c
              */
             col_proxy(mtx& _m, size_t _c) : m(_m), c(_c) {}
 
@@ -50,7 +50,7 @@ namespace stf::math
 
             /**
              * @brief Assignment operator
-             * @param [in] rhs 
+             * @param [in] rhs
              * @return A reference to @p this
              */
             inline col_proxy& operator=(vec<T, N> const& rhs)
@@ -58,7 +58,7 @@ namespace stf::math
                 for (size_t i = 0; i < N; ++i) { (*this)[i] = rhs[i]; }
                 return *this;
             }
-        
+
             /**
              * @brief Cast a @ref col_proxy to a @ref vec
              */
@@ -108,7 +108,7 @@ namespace stf::math
              * @return A reference to the scalar
              */
             inline T& operator[](size_t j) { return m.values[r + j * N]; }
-        
+
             /**
              * @brief Assignment operator
              * @param [in] rhs
@@ -161,9 +161,9 @@ namespace stf::math
 
         /**
          * @brief Construct from a single scalar -- initializes all scalars to @p value
-         * @param [in] value 
+         * @param [in] value
          */
-        explicit mtx(T const value) 
+        explicit mtx(T const value)
         {
             for (size_t i = 0; i < D; ++i)
             {
@@ -173,7 +173,7 @@ namespace stf::math
 
         /**
          * @brief Construct from an N-dimensional vector -- intializes the diagonal to the value of the vector
-         * @param [in] diagonal 
+         * @param [in] diagonal
          */
         explicit mtx(vec<T, N> const& diagonal) : mtx()
         {
@@ -201,7 +201,7 @@ namespace stf::math
          * @return A proxy class that gives const access to the column
          */
         inline col_proxy const col(size_t const j) const { return col_proxy(const_cast<mtx&>(*this), j); }
-        
+
         /**
          * @brief Access to a single column of the matrix
          * @param [in] j The index of the column
@@ -253,7 +253,7 @@ namespace stf::math
 
         /**
          * @brief Multiply a matrix by a matrix in place
-         * @param [in] rhs 
+         * @param [in] rhs
          * @return A reference to @p this
          */
         mtx& operator*=(mtx const& rhs)
@@ -273,7 +273,7 @@ namespace stf::math
 
         /**
          * @brief Set a matrix to the identity matrix
-         * @return A reference to @p this 
+         * @return A reference to @p this
          */
         inline mtx& identify()
         {
@@ -287,6 +287,47 @@ namespace stf::math
             return *this;
         }
 
+        inline mtx<T, N - 1> minor(size_t const i, size_t const j) const
+        {
+            vec<T, (N - 1) * (N - 1)> values;
+            size_t d = 0;
+            for (size_t y = 0; y < N; ++y)
+            {
+                for (size_t x = 0; x < N; ++x)
+                {
+                    if (y != i && x != j)
+                    {
+                        values[d++] = (*this)[y][x];
+                    }
+                }
+            }
+            return mtx<T, N - 1>(values);
+        }
+
+        inline T determinant() const
+        {
+            if constexpr (N == 2)
+            {
+                T const a = (*this)[0][0]; T const b = (*this)[0][1];
+                T const c = (*this)[1][0]; T const d = (*this)[1][1];
+                return a * d - c * b;
+            }
+            else
+            {
+                T det = constants<T>::zero;
+                for (size_t i = 0; i < N; ++i)
+                {
+                    mtx<T, N - 1> const submatrix = minor(i, 0);
+                    T const subdet = submatrix.determinant();
+                    bool const even = (i & 1) == 0;
+                    det += (even) ? subdet : -subdet;   // even i => sign is positve; odd i => sign is negative
+                }
+                return det;
+            }
+        }
+
+        inline bool invertible() const { return determinant() != constants<T>::zero; }
+
         /**
          * @brief Transpose a matrix
          * @return A reference to @p this
@@ -294,19 +335,17 @@ namespace stf::math
         inline mtx& transpose()
         {
             // TODO write this method by swapping the values in place
-            mtx transposed;
+            mtx trans;
             for (size_t i = 0; i < N; ++i)          // iterate over rows
             {
                 for (size_t j = 0; j < N; ++j)      // iterate over columns
                 {
-                    transposed[j][i] = (*this)[i][j];
+                    trans[j][i] = (*this)[i][j];
                 }
             }
 
-            // copy to values
-            *this = transposed;
-
-            // return reference
+            // copy matrix and return reference
+            *this = trans;
             return *this;
         }
 
@@ -315,6 +354,38 @@ namespace stf::math
          * @return The transpose of @p this
          */
         inline mtx transposed() const { return mtx(*this).transpose(); }
+
+        mtx cofactored() const
+        {
+            if constexpr (N == 2)
+            {
+                T const a = (*this)[0][0]; T const b = (*this)[0][1];
+                T const c = (*this)[1][0]; T const d = (*this)[1][1];
+                return mtx(vec<T, 4>(d, -b, -c, a));
+            }
+            else
+            {
+                mtx cof;
+                for (size_t i = 0; i < N; ++i)
+                {
+                    for (size_t j = 0; j < N; ++j)
+                    {
+                        T const subdet = minor(i, j).determinant();
+                        bool even = ((i + j) & 1) == 0;
+                        cof[i][j] = (even) ? subdet : -subdet;
+                    }
+                }
+                return cof;
+            }
+        }
+
+        mtx inverted() const
+        {
+            T const scalar = constants<T>::one / determinant();
+            mtx inv = cofactored().transpose();
+            inv *= scalar;
+            return inv;
+        }
 
         /**
          * @brief Multiply a matrix by a scale matrix in place
