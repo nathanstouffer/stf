@@ -465,9 +465,9 @@ namespace stf::math
          * @return @p this casted to the precision of @p U
          */
         template<typename U>
-        mtx<U, N * N> as() const
+        mtx<U, N> as() const
         {
-            mtx<U, D> result;
+            mtx<U, N> result;
             raw::as<T, U, N * N>(values, result.values);
             return result;
         }

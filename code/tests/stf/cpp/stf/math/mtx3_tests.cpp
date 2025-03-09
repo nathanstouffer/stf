@@ -43,7 +43,8 @@ namespace stf::math
             { stff::mtx3() },
             { stff::mtx3(stff::vec3(2)) },
             { stff::mtx3(stff::vec3(-2)) },
-            // TODO (stouff) write more tests
+            { stf::math::rotate(stff::vec3(1), stff::constants::quarter_pi).prefix() },
+            { (stf::math::rotate(stff::vec3(1), stff::constants::quarter_pi) * stf::math::scale(stff::vec3(1, 3, 2))).prefix() },
         };
 
         for (scaffolding::mtx::inverse<float, 3> const& test : tests) { scaffolding::mtx::verify(test); }
