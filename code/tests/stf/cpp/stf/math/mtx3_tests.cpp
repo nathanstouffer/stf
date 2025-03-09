@@ -25,12 +25,12 @@ namespace stf::math
     {
         std::vector<scaffolding::mtx::determinant<float, 3>> tests =
         {
-            //{ stff::mtx3(), 1 },
+            { stff::mtx3(), 1 },
             { stff::mtx3(stff::vec3(2)), 8 },
-            //{ stff::mtx3(stff::vec3(-2)), 8 },
-            //{ stff::mtx3(stff::vec3(-2, 2, 2)), -8 },
-            //{ stff::mtx3(stff::vec<9>(2)), 0 },
-            //{ stff::mtx3(stff::vec<9>(2, 1, -3, 5)), 13 },
+            { stff::mtx3(stff::vec3(-2)), -8 },
+            { stff::mtx3(stff::vec3(-2, 2, 2)), -8 },
+            { stff::mtx3(stff::vec<9>(2)), 0 },
+            { stff::mtx3({ 2, 1, 0, -3, 5, 1, 1, -1, -2 }), -23 },
         };
 
         for (scaffolding::mtx::determinant<float, 3> const& test : tests) { scaffolding::mtx::verify(test); }

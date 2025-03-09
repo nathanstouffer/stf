@@ -2,6 +2,7 @@
 
 #include <cmath>
 
+#include <array>
 #include <iostream>
 
 #include "stf/math/constants.hpp"
@@ -75,11 +76,20 @@ namespace stf::math
 
         /**
          * @brief Construct from a raw array of scalars
-         * @param [in] elements 
+         * @param [in] _values 
          */
-        explicit constexpr vec(const_array_t<T, N> const& elements)
+        explicit constexpr vec(const_array_t<T, N> const& _values)
         {
-            for (size_t i = 0; i < N; ++i) { values[i] = elements[i]; }
+            for (size_t i = 0; i < N; ++i) { values[i] = _values[i]; }
+        }
+
+        /**
+         * @brief Construct from a std::array of scalars
+         * @param [in] _values
+         */
+        explicit constexpr vec(std::array<T, N> const& _values)
+        {
+            for (size_t i = 0; i < N; ++i) { values[i] = _values[i]; }
         }
 
         /**
