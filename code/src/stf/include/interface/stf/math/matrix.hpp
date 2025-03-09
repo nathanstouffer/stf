@@ -541,7 +541,7 @@ namespace stf::math
         T const c = transform[1][0]; T const d = transform[1][1];
         T const determinant = a * d - c * b;
         T const scalar = constants::one / determinant;
-        return mtx2<T>(scalar * vec4<T>(d, -b, -c, a));
+        return mtx2<T>(scalar * vec4<T>(d, -c, -b, a));
     }
 
     /**
