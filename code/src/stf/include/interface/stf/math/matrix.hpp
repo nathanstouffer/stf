@@ -172,7 +172,7 @@ namespace stf::math
         }
 
         /**
-         * @brief Construct for a vector -- intializes the diagonal to the value of the vector
+         * @brief Construct from an N-dimensional vector -- intializes the diagonal to the value of the vector
          * @param [in] diagonal 
          */
         mtx(vec<T, N> const& diagonal) : mtx()
@@ -180,6 +180,18 @@ namespace stf::math
             for (size_t i = 0; i < N; ++i)
             {
                 (*this)[i][i] = diagonal[i];
+            }
+        }
+
+        /**
+         * @brief Construct from an NxN-dimensional vector -- an explicit row-major initialization of every entry in the matrix
+         * @param [in] values
+         */
+        mtx(vec<T, D> const& values) : mtx()
+        {
+            for (size_t i = 0; i < D; ++i)
+            {
+                values[i] = values[i];
             }
         }
 
@@ -490,6 +502,16 @@ namespace stf::math
             result[i] = dot(lhs, rhs.col(i).as_vec());
         }
         return result;
+    }
+
+    template<typename T>
+    inline mtx2<T> inverse(mtx2<T> const& transform)
+    {
+        T const a = transform[0][0]; T const b = transform[0][1];
+        T const c = transform[1][0]; T const d = transform[1][1];
+        T const determinant = a * d - c * b;
+        T const scalar = constants::one / determinant;
+        return mtx2<T>(scalar * vec4<T>(d, -b, -c, a));
     }
 
     /**
