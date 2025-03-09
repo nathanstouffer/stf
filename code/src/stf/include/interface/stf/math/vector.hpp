@@ -35,7 +35,6 @@ namespace stf::math
         /**
          * @brief A type alias for the array that stores the underlying values
          */
-        template<typename T, size_t N>
         using const_array_t = T const [N];
 
         /**
@@ -78,7 +77,7 @@ namespace stf::math
          * @brief Construct from a raw array of scalars
          * @param [in] _values 
          */
-        explicit constexpr vec(const_array_t<T, N> const& _values)
+        explicit constexpr vec(const_array_t const& _values)
         {
             for (size_t i = 0; i < N; ++i) { values[i] = _values[i]; }
         }
@@ -219,7 +218,6 @@ namespace stf::math
         /**
          * @brief A type alias for the array that stores the underlying values
          */
-        template<typename T>
         using const_array_t = T const [2];
 
         /**
@@ -257,7 +255,7 @@ namespace stf::math
          * @brief Construct from a raw array of scalars
          * @param [in] xy
          */
-        explicit constexpr vec(const_array_t<T> const& xy) : x(xy[0]), y(xy[1]) {}
+        explicit constexpr vec(const_array_t const& xy) : x(xy[0]), y(xy[1]) {}
 
         /**
          * @brief Return the dimension of the vector
@@ -386,7 +384,6 @@ namespace stf::math
         /**
          * @brief A type alias for the array that stores the underlying values
          */
-        template<typename T>
         using const_array_t = T const [3];
 
         /**
@@ -431,7 +428,7 @@ namespace stf::math
          * @brief Construct from a raw array of scalars
          * @param [in] elements
          */
-        explicit constexpr vec(const_array_t<T> const& xyz) : x(xyz[0]), y(xyz[1]), z(xyz[2]) {}
+        explicit constexpr vec(const_array_t const& xyz) : x(xyz[0]), y(xyz[1]), z(xyz[2]) {}
 
         /**
          * @brief Return the dimension of the vector
@@ -560,7 +557,6 @@ namespace stf::math
         /**
          * @brief A type alias for the array that stores the underlying values
          */
-        template<typename T>
         using const_array_t = T const [4];
 
         /**
@@ -622,7 +618,7 @@ namespace stf::math
          * @brief Construct from a raw array of scalars
          * @param [in] elements
          */
-        explicit constexpr vec(const_array_t<T> const& xyzw) : x(xyzw[0]), y(xyzw[1]), z(xyzw[2]), w(xyzw[3]) {}
+        explicit constexpr vec(const_array_t const& xyzw) : x(xyzw[0]), y(xyzw[1]), z(xyzw[2]), w(xyzw[3]) {}
 
         /**
          * @brief Return the dimension of the vector
