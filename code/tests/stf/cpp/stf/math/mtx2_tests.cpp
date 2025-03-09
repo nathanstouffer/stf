@@ -23,4 +23,18 @@ namespace stf::math
         for (scaffolding::mtx::equality<float, 2> const& test : tests) { scaffolding::mtx::verify(test); }
     }
 
+    TEST(mtx2, inverse)
+    {
+        std::vector<scaffolding::mtx::inverse<float, 2>> tests =
+        {
+            { stff::mtx2() },
+            { stff::mtx2(stff::vec2(2)) },
+            { stff::mtx2(stff::vec2(-2)) },
+            { stf::math::rotate<float>(stff::constants::quarter_pi) },
+            { stf::math::rotate<float>(stff::constants::half_pi) },
+        };
+
+        for (scaffolding::mtx::inverse<float, 2> const& test : tests) { scaffolding::mtx::verify(test); }
+    }
+
 } // stf::math
