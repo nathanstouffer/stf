@@ -23,6 +23,21 @@ namespace stf::math
         for (scaffolding::mtx::equality<float, 2> const& test : tests) { scaffolding::mtx::verify(test); }
     }
 
+    TEST(mtx2, determinant)
+    {
+        std::vector<scaffolding::mtx::determinant<float, 2>> tests =
+        {
+            { stff::mtx2(), 1 },
+            { stff::mtx2(stff::vec2(2)), 4 },
+            { stff::mtx2(stff::vec2(-2)), 4 },
+            { stff::mtx2(stff::vec2(-2, 2)), -4 },
+            { stff::mtx2(stff::vec4(2)), 0 },
+            { stff::mtx2(stff::vec4(2, 1, -3, 5)), 13 },
+        };
+
+        for (scaffolding::mtx::determinant<float, 2> const& test : tests) { scaffolding::mtx::verify(test); }
+    }
+
     TEST(mtx2, inverse)
     {
         std::vector<scaffolding::mtx::inverse<float, 2>> tests =
