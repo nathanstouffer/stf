@@ -304,7 +304,7 @@ namespace stf::math
             return mtx<T, N - 1>(values);
         }
 
-        inline T determinant() const
+        T determinant() const
         {
             if constexpr (N == 2)
             {
@@ -317,10 +317,10 @@ namespace stf::math
                 T det = constants<T>::zero;
                 for (size_t i = 0; i < N; ++i)
                 {
-                    mtx<T, N - 1> const submatrix = minor(i, 0);
-                    T const subdet = submatrix.determinant();
+                    mtx<T, N - 1> const submatrix = minor(0, i);
+                    T const expansion = (*this)[0][i] * submatrix.determinant();
                     bool const even = (i & 1) == 0;
-                    det += (even) ? subdet : -subdet;   // even i => sign is positve; odd i => sign is negative
+                    det += (even) ? expansion : -expansion;   // even i => sign is positve; odd i => sign is negative
                 }
                 return det;
             }
