@@ -445,15 +445,7 @@ namespace stf::math
          * @brief Compute a mtx that is the top left section of a matrix
          * @return The top left section of @p this
          */
-        mtx<T, N - 1> prefix() const
-        {
-            mtx<T, N - 1> matrix = mtx<T, N - 1>();
-            for (size_t i = 0; i < N - 1; ++i)
-            {
-                matrix[i] = math::prefix(row(i).as_vec());
-            }
-            return matrix;
-        }
+        inline mtx<T, N - 1> prefix() const { return minor(N - 1, N - 1); }
 
         /**
          * @brief Fill a raw array with scalars of the matrix in column-major form
