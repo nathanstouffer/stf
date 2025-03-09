@@ -238,7 +238,21 @@ namespace stf::math
         inline row_proxy operator[](size_t const i) { return row(i); }
 
         /**
-         * @brief Multiply a matrix in place
+         * @brief Multiply a matrix by a scalar in place
+         * @param [in] scalar
+         * @return A reference to @p this
+         */
+        inline mtx& operator*=(T const scalar)
+        {
+            for (size_t d = 0; d < D; ++d)
+            {
+                values[d] *= scalar;
+            }
+            return *this;
+        }
+
+        /**
+         * @brief Multiply a matrix by a matrix in place
          * @param [in] rhs 
          * @return A reference to @p this
          */
@@ -491,7 +505,7 @@ namespace stf::math
      * @return The matrix result of the product between @p lhs and @p rhs
      */
     template<typename T, size_t N>
-    inline mtx<T, N> operator*(mtx<T, N> const& lhs, mtx<T, N> const& rhs)
+    inline mtx<T, N> const operator*(mtx<T, N> const& lhs, mtx<T, N> const& rhs)
     {
         return mtx<T, N>(lhs) *= rhs;
     }
@@ -500,12 +514,12 @@ namespace stf::math
      * @brief Compute the product of a matrix with a column vector
      * @tparam T Number type (eg float)
      * @tparam N Dimension
-     * @param [in] lhs 
+     * @param [in] lhs A matrix
      * @param [in] rhs A column vector
      * @return The column vector result of the product between @p lhs and @p rhs
      */
     template<typename T, size_t N>
-    inline vec<T, N> operator*(mtx<T, N> const& lhs, vec<T, N> const& rhs)
+    inline vec<T, N> const operator*(mtx<T, N> const& lhs, vec<T, N> const& rhs)
     {
         vec<T, N> result;
         for (size_t j = 0; j < N; ++j)
@@ -520,11 +534,11 @@ namespace stf::math
      * @tparam T Number type (eg float)
      * @tparam N Dimension
      * @param [in] lhs A row vector
-     * @param [in] rhs
+     * @param [in] rhs A matrix
      * @return The rwo vector result of the product between @p lhs and @p rhs
      */
     template<typename T, size_t N>
-    inline vec<T, N> operator*(vec<T, N> const& lhs, mtx<T, N> const& rhs)
+    inline vec<T, N> const operator*(vec<T, N> const& lhs, mtx<T, N> const& rhs)
     {
         vec<T, N> result;
         for (size_t i = 0; i < N; ++i)
@@ -534,14 +548,101 @@ namespace stf::math
         return result;
     }
 
-    template<typename T>
-    inline mtx2<T> inverse(mtx2<T> const& transform)
+    /**
+     * @brief Compute the product of a matrix with a scalar
+     * @tparam T Number type (eg float)
+     * @tparam N Dimension
+     * @param [in] lhs A scalar
+     * @param [in] rhs A matrix
+     * @return The matrix @p rhs scaled by @p lhs
+     */
+    template<typename T, size_t N>
+    inline mtx<T, N> const operator*(T const lhs, mtx<T, N> const& rhs)
     {
-        T const a = transform[0][0]; T const b = transform[0][1];
-        T const c = transform[1][0]; T const d = transform[1][1];
-        T const determinant = a * d - c * b;
-        T const scalar = constants<T>::one / determinant;
+        return mtx<T, N>(rhs) *= lhs;
+    }
+
+    /**
+     * @brief Compute the product of a matrix with a scalar
+     * @tparam T Number type (eg float)
+     * @tparam N Dimension
+     * @param [in] lhs A matrix
+     * @param [in] rhs A scalar
+     * @return The matrix @p lhs scaled by @p rhs
+     */
+    template<typename T, size_t N>
+    inline mtx<T, N> const operator*(mtx<T, N> const& lhs, T const rhs)
+    {
+        return rhs * lhs;
+    }
+
+    /**
+     * @brief Compute the determinant of a 2x2 matrix
+     * @tparam T Number type (eg float)
+     * @param [in] matrix
+     * @return The determinant of @p matrix
+     */
+    template<typename T>
+    inline T const determinant(mtx2<T> const& matrix)
+    {
+        T const a = matrix[0][0]; T const b = matrix[0][1];
+        T const c = matrix[1][0]; T const d = matrix[1][1];
+        return a * d - c * b;
+    }
+
+    /**
+     * @brief Compute the determinant of a 3x3 matrix
+     * @tparam T Number type (eg float)
+     * @param [in] matrix
+     * @return The determinant of @p matrix
+     */
+    template<typename T>
+    inline T const determinant(mtx3<T> const& matrix)
+    {
+        T const a = matrix[0][0]; T const b = matrix[0][1]; T const c = matrix[0][2];
+        T const d = matrix[1][0]; T const e = matrix[1][1]; T const f = matrix[1][2];
+        T const g = matrix[2][0]; T const h = matrix[2][1]; T const i = matrix[2][2];
+
+        // compute top row diagonals (walking down and to the right from the first row)
+        T const a_diag = a * e * i;
+        T const b_diag = b * f * g;
+        T const c_diag = c * d * h;
+        // compute bottomw row diagonals (walking up and to the right from the second row)
+        T const g_diag = g * e * c;
+        T const h_diag = h * f * a;
+        T const i_diag = i * d * b;
+        return a_diag + b_diag + c_diag - g_diag - h_diag - i_diag;
+    }
+
+    /**
+     * @brief Compute the inverse of a 2x2 matrix
+     * @tparam T Number type (eg float)
+     * @param [in] matrix 
+     * @return The inverse of @p matrix
+     */
+    template<typename T>
+    inline mtx2<T> const inverse(mtx2<T> const& matrix)
+    {
+        T const a = matrix[0][0]; T const b = matrix[0][1];
+        T const c = matrix[1][0]; T const d = matrix[1][1];
+        T const scalar = constants<T>::one / determinant(matrix);
         return mtx2<T>(scalar * vec4<T>(d, -c, -b, a));
+    }
+
+    /**
+     * @brief Compute the inverse of a 3x3 matrix
+     * @tparam T Number type (eg float)
+     * @param [in] matrix
+     * @return The inverse of @p matrix
+     */
+    template<typename T>
+    inline mtx3<T> const inverse(mtx3<T> const& matrix)
+    {
+        mtx3<T> adjunct = mtx3<T>();
+        // TODO (stouff) compute adjunct
+
+        T const scalar = constants<T>::one / determinant(matrix);
+        return scalar * adjunct;
     }
 
     /**
