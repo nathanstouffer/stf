@@ -311,31 +311,17 @@ namespace stf::math
         }
 
         /**
+         * @brief Compute the transpose of a matrix
+         * @return The transpose of @p this
+         */
+        inline mtx transposed() const { return mtx(*this).transpose(); }
+
+        /**
          * @brief Multiply a matrix by a scale matrix in place
          * @param [in] scalars The scalars defining the scale matrix
          * @return A reference to @p this
          */
         inline mtx& scale_by(vec<T, N> const& scalars) { return (*this) *= mtx::scale(scalars); }
-
-        /**
-         * @brief Multiply a matrix by a scale matrix in place
-         * @param [in] scalars The scalars defining the scale matrix -- sets the Nth scalar to 1
-         * @return A reference to @p this
-         */
-        inline mtx& scale_by(vec<T, N - 1> const& scalars) { return scale_by(vec<T, N>(scalars, T(1))); }
-
-        /**
-         * @brief Multiply a matrix by a translation matrix in place
-         * @param [in] scalars The scalars definining the translation matrix
-         * @return A reference to @p this 
-         */
-        inline mtx& translate_by(vec<T, N - 1> const& scalars) { return (*this) *= mtx::translate(scalars); }
-
-        /**
-         * @brief Compute the transpose of a matrix
-         * @return The transpose of @p this
-         */
-        inline mtx transposed() const { return mtx(*this).transpose(); }
 
         /**
          * @brief Multiply a matrix by a scale matrix
@@ -345,11 +331,25 @@ namespace stf::math
         inline mtx scaled_by(vec<T, N> const& scalars) const { return mtx(*this).scale_by(scalars); }
 
         /**
+         * @brief Multiply a matrix by a scale matrix in place
+         * @param [in] scalars The scalars defining the scale matrix -- sets the Nth scalar to 1
+         * @return A reference to @p this
+         */
+        inline mtx& scale_by(vec<T, N - 1> const& scalars) { return scale_by(vec<T, N>(scalars, T(1))); }
+
+        /**
          * @brief Multiply a matrix by a scale matrix
          * @param [in] scalars The scalars defining the scale matrix -- sets the Nth scalar to 1
          * @return The resulting transformation matrix
          */
         inline mtx scaled_by(vec<T, N - 1> const& scalars) const { return mtx(*this).scale_by(vec<T, N>(scalars, T(1))); }
+
+        /**
+         * @brief Multiply a matrix by a translation matrix in place
+         * @param [in] scalars The scalars definining the translation matrix
+         * @return A reference to @p this 
+         */
+        inline mtx& translate_by(vec<T, N - 1> const& scalars) { return (*this) *= mtx::translate(scalars); }
 
         /**
          * @brief Multiply a matrix by a translation matrix
