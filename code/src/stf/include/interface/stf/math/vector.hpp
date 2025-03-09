@@ -77,7 +77,7 @@ namespace stf::math
          * @brief Construct from a raw array of scalars
          * @param [in] elements 
          */
-        explicit constexpr vec(T const elements[N])
+        explicit constexpr vec(const_array_t<T, N> const& elements)
         {
             for (size_t i = 0; i < N; ++i) { values[i] = elements[i]; }
         }
