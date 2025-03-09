@@ -184,14 +184,14 @@ namespace stf::math
         }
 
         /**
-         * @brief Construct from an NxN-dimensional vector -- an explicit row-major initialization of every entry in the matrix
+         * @brief Construct from an NxN-dimensional vector -- an explicit column-major initialization of every entry in the matrix
          * @param [in] values
          */
-        explicit mtx(vec<T, D> const& values) : mtx()
+        explicit mtx(vec<T, D> const& _values) : mtx()
         {
             for (size_t i = 0; i < D; ++i)
             {
-                values[i] = values[i];
+                values[i] = _values[i];
             }
         }
 
