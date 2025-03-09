@@ -40,8 +40,8 @@ namespace stf::math::scaffolding::mtx
     void verify(inverse<T, N> const& test)
     {
         math::mtx<T, N> identity = math::mtx<T, N>();
-        ASSERT_EQ(identity, math::inverse(test.transform) * test.transform) << "failed " << N << "x" << N << " left inverse test";
-        ASSERT_EQ(identity, test.transform * math::inverse(test.transform)) << "failed " << N << "x" << N << " right inverse test";
+        ASSERT_EQ(identity, test.transform.inverted() * test.transform) << "failed " << N << "x" << N << " left inverse test";
+        ASSERT_EQ(identity, test.transform * test.transform.inverted()) << "failed " << N << "x" << N << " right inverse test";
     }
 
 } // stf::math::scaffolding::interval
