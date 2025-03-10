@@ -297,9 +297,9 @@ namespace stf::math
         {
             vec<T, (N - 1) * (N - 1)> values;
             size_t d = 0;
-            for (size_t y = 0; y < N; ++y)
+            for (size_t x = 0; x < N; ++x)
             {
-                for (size_t x = 0; x < N; ++x)
+                for (size_t y = 0; y < N; ++y)
                 {
                     if (y != i && x != j)
                     {
