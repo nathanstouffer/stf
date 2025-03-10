@@ -185,7 +185,7 @@ namespace stf::math
 
         /**
          * @brief Construct from an NxN-dimensional vector -- an explicit column-major initialization of every entry in the matrix
-         * @param [in] values
+         * @param [in] _values
          */
         explicit mtx(vec<T, D> const& _values) : mtx()
         {
@@ -299,6 +299,12 @@ namespace stf::math
             return *this;
         }
 
+        /**
+         * @brief Compute the minor a matrix for a particular index
+         * @param [in] i The row index for the minor
+         * @param [in] j The column index for the minor
+         * @return The minor matrix @p M(i,j)
+         */
         inline mtx<T, N - 1> minor(size_t const i, size_t const j) const
         {
             vec<T, (N - 1) * (N - 1)> values;
@@ -316,6 +322,10 @@ namespace stf::math
             return mtx<T, N - 1>(values);
         }
 
+        /**
+         * @brief Compute the determinant of a matrix
+         * @return The determinant of @p this
+         */
         T determinant() const
         {
             if constexpr (N == 2)
@@ -338,10 +348,14 @@ namespace stf::math
             }
         }
 
+        /**
+         * @brief Compute whether or not a matrix is invertible
+         * @return Whether or not @p this is invertible
+         */
         inline bool invertible() const { return determinant() != constants<T>::zero; }
 
         /**
-         * @brief Transpose a matrix
+         * @brief Transpose a matrix in-place
          * @return A reference to @p this
          */
         inline mtx& transpose()
@@ -367,6 +381,10 @@ namespace stf::math
          */
         inline mtx transposed() const { return mtx(*this).transpose(); }
 
+        /**
+         * @brief Compute the cofactor matrix
+         * @return The cofactor matrix of @p this
+         */
         mtx cofactored() const
         {
             if constexpr (N == 2)
@@ -391,6 +409,10 @@ namespace stf::math
             }
         }
 
+        /**
+         * @brief Compute the inverse of a matrix
+         * @return The inverse of @p this
+         */
         mtx inverted() const
         {
             T const scalar = constants<T>::one / determinant();

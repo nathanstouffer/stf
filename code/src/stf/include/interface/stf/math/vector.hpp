@@ -426,7 +426,7 @@ namespace stf::math
 
         /**
          * @brief Construct from a raw array of scalars
-         * @param [in] elements
+         * @param [in] xyz
          */
         explicit constexpr vec(const_array_t const& xyz) : x(xyz[0]), y(xyz[1]), z(xyz[2]) {}
 
@@ -616,7 +616,7 @@ namespace stf::math
 
         /**
          * @brief Construct from a raw array of scalars
-         * @param [in] elements
+         * @param [in] xyzw
          */
         explicit constexpr vec(const_array_t const& xyzw) : x(xyzw[0]), y(xyzw[1]), z(xyzw[2]), w(xyzw[3]) {}
 
