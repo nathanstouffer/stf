@@ -2,6 +2,7 @@
 
 #include <cmath>
 
+#include <array>
 #include <iostream>
 
 #include "stf/math/constants.hpp"
@@ -14,7 +15,7 @@
 
 namespace stf::math
 {
-    
+
     /**
      * @brief A class representing elements of R^n
      * @tparam T Number type (eg float)
@@ -30,6 +31,11 @@ namespace stf::math
     template<typename T, size_t N>
     struct vec final
     {
+
+        /**
+         * @brief A type alias for the array that stores the underlying values
+         */
+        using const_array_t = T const [N];
 
         /**
          * @brief A raw array to store the values making up the vector
@@ -69,11 +75,20 @@ namespace stf::math
 
         /**
          * @brief Construct from a raw array of scalars
-         * @param [in] elements 
+         * @param [in] _values 
          */
-        constexpr vec(T const elements[N])
+        explicit constexpr vec(const_array_t const& _values)
         {
-            for (size_t i = 0; i < N; ++i) { values[i] = elements[i]; }
+            for (size_t i = 0; i < N; ++i) { values[i] = _values[i]; }
+        }
+
+        /**
+         * @brief Construct from a std::array of scalars
+         * @param [in] _values
+         */
+        explicit constexpr vec(std::array<T, N> const& _values)
+        {
+            for (size_t i = 0; i < N; ++i) { values[i] = _values[i]; }
         }
 
         /**
@@ -201,6 +216,11 @@ namespace stf::math
     {
 
         /**
+         * @brief A type alias for the array that stores the underlying values
+         */
+        using const_array_t = T const [2];
+
+        /**
          * @brief A union of a raw scalar array of size 2 and a struct containing scalar members x/y
          * 
          * This enables access to the x/y components directly
@@ -230,6 +250,12 @@ namespace stf::math
          * @param [in] _y 
          */
         explicit constexpr vec(T const _x, T const _y) : x(_x), y(_y) {}
+
+        /**
+         * @brief Construct from a raw array of scalars
+         * @param [in] xy
+         */
+        explicit constexpr vec(const_array_t const& xy) : x(xy[0]), y(xy[1]) {}
 
         /**
          * @brief Return the dimension of the vector
@@ -356,6 +382,11 @@ namespace stf::math
     {
 
         /**
+         * @brief A type alias for the array that stores the underlying values
+         */
+        using const_array_t = T const [3];
+
+        /**
          * @brief A union of a raw scalar array of size 3 and various structs allowing granular member access
          */
         union
@@ -392,6 +423,12 @@ namespace stf::math
          * @param [in] _z 
          */
         constexpr vec(vec<T, 2> const& _xy, T const _z) : vec(_xy.x, _xy.y, _z) {}
+
+        /**
+         * @brief Construct from a raw array of scalars
+         * @param [in] xyz
+         */
+        explicit constexpr vec(const_array_t const& xyz) : x(xyz[0]), y(xyz[1]), z(xyz[2]) {}
 
         /**
          * @brief Return the dimension of the vector
@@ -518,6 +555,11 @@ namespace stf::math
     {
 
         /**
+         * @brief A type alias for the array that stores the underlying values
+         */
+        using const_array_t = T const [4];
+
+        /**
          * @brief A union of a raw scalar array of size 4 and various structs allowing granular member access
          */
         union
@@ -571,6 +613,12 @@ namespace stf::math
          * @param [in] _w 
          */
         constexpr vec(vec<T, 3> const& _xyz, T _w) : vec(_xyz.x, _xyz.y, _xyz.z, _w) {}
+
+        /**
+         * @brief Construct from a raw array of scalars
+         * @param [in] xyzw
+         */
+        explicit constexpr vec(const_array_t const& xyzw) : x(xyzw[0]), y(xyzw[1]), z(xyzw[2]), w(xyzw[3]) {}
 
         /**
          * @brief Return the dimension of the vector

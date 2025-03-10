@@ -29,8 +29,8 @@ namespace stf::math
 
             /**
              * @brief Construct from a @ref mtx reference and a column index
-             * @param [in] _m 
-             * @param [in] _c 
+             * @param [in] _m
+             * @param [in] _c
              */
             col_proxy(mtx& _m, size_t _c) : m(_m), c(_c) {}
 
@@ -50,7 +50,7 @@ namespace stf::math
 
             /**
              * @brief Assignment operator
-             * @param [in] rhs 
+             * @param [in] rhs
              * @return A reference to @p this
              */
             inline col_proxy& operator=(vec<T, N> const& rhs)
@@ -58,7 +58,7 @@ namespace stf::math
                 for (size_t i = 0; i < N; ++i) { (*this)[i] = rhs[i]; }
                 return *this;
             }
-        
+
             /**
              * @brief Cast a @ref col_proxy to a @ref vec
              */
@@ -108,7 +108,7 @@ namespace stf::math
              * @return A reference to the scalar
              */
             inline T& operator[](size_t j) { return m.values[r + j * N]; }
-        
+
             /**
              * @brief Assignment operator
              * @param [in] rhs
@@ -161,9 +161,9 @@ namespace stf::math
 
         /**
          * @brief Construct from a single scalar -- initializes all scalars to @p value
-         * @param [in] value 
+         * @param [in] value
          */
-        mtx(T const value) 
+        explicit mtx(T const value)
         {
             for (size_t i = 0; i < D; ++i)
             {
@@ -172,14 +172,26 @@ namespace stf::math
         }
 
         /**
-         * @brief Construct for a vector -- intializes the diagonal to the value of the vector
-         * @param [in] diagonal 
+         * @brief Construct from an N-dimensional vector -- intializes the diagonal to the value of the vector
+         * @param [in] diagonal
          */
-        mtx(vec<T, N> const& diagonal) : mtx()
+        explicit mtx(vec<T, N> const& diagonal) : mtx()
         {
             for (size_t i = 0; i < N; ++i)
             {
                 (*this)[i][i] = diagonal[i];
+            }
+        }
+
+        /**
+         * @brief Construct from an NxN-dimensional vector -- an explicit column-major initialization of every entry in the matrix
+         * @param [in] _values
+         */
+        explicit mtx(vec<T, D> const& _values) : mtx()
+        {
+            for (size_t i = 0; i < D; ++i)
+            {
+                values[i] = _values[i];
             }
         }
 
@@ -189,7 +201,7 @@ namespace stf::math
          * @return A proxy class that gives const access to the column
          */
         inline col_proxy const col(size_t const j) const { return col_proxy(const_cast<mtx&>(*this), j); }
-        
+
         /**
          * @brief Access to a single column of the matrix
          * @param [in] j The index of the column
@@ -226,8 +238,22 @@ namespace stf::math
         inline row_proxy operator[](size_t const i) { return row(i); }
 
         /**
-         * @brief Multiply a matrix in place
-         * @param [in] rhs 
+         * @brief Multiply a matrix by a scalar in place
+         * @param [in] scalar
+         * @return A reference to @p this
+         */
+        inline mtx& operator*=(T const scalar)
+        {
+            for (size_t d = 0; d < D; ++d)
+            {
+                values[d] *= scalar;
+            }
+            return *this;
+        }
+
+        /**
+         * @brief Multiply a matrix by a matrix in place
+         * @param [in] rhs
          * @return A reference to @p this
          */
         mtx& operator*=(mtx const& rhs)
@@ -247,7 +273,7 @@ namespace stf::math
 
         /**
          * @brief Set a matrix to the identity matrix
-         * @return A reference to @p this 
+         * @return A reference to @p this
          */
         inline mtx& identify()
         {
@@ -262,26 +288,125 @@ namespace stf::math
         }
 
         /**
-         * @brief Transpose a matrix
+         * @brief Compute the minor a matrix for a particular index
+         * @param [in] i The row index for the minor
+         * @param [in] j The column index for the minor
+         * @return The minor matrix @p M(i,j)
+         */
+        inline mtx<T, N - 1> minor(size_t const i, size_t const j) const
+        {
+            vec<T, (N - 1) * (N - 1)> values;
+            size_t d = 0;
+            for (size_t x = 0; x < N; ++x)
+            {
+                for (size_t y = 0; y < N; ++y)
+                {
+                    if (y != i && x != j)
+                    {
+                        values[d++] = (*this)[y][x];
+                    }
+                }
+            }
+            return mtx<T, N - 1>(values);
+        }
+
+        /**
+         * @brief Compute the determinant of a matrix
+         * @return The determinant of @p this
+         */
+        T determinant() const
+        {
+            if constexpr (N == 2)
+            {
+                T const a = (*this)[0][0]; T const b = (*this)[0][1];
+                T const c = (*this)[1][0]; T const d = (*this)[1][1];
+                return a * d - c * b;
+            }
+            else
+            {
+                T det = constants<T>::zero;
+                for (size_t i = 0; i < N; ++i)
+                {
+                    mtx<T, N - 1> const submatrix = minor(0, i);
+                    T const expansion = (*this)[0][i] * submatrix.determinant();
+                    bool const even = (i & 1) == 0;
+                    det += (even) ? expansion : -expansion;   // even i => sign is positve; odd i => sign is negative
+                }
+                return det;
+            }
+        }
+
+        /**
+         * @brief Compute whether or not a matrix is invertible
+         * @return Whether or not @p this is invertible
+         */
+        inline bool invertible() const { return determinant() != constants<T>::zero; }
+
+        /**
+         * @brief Transpose a matrix in-place
          * @return A reference to @p this
          */
         inline mtx& transpose()
         {
             // TODO write this method by swapping the values in place
-            mtx transposed;
+            mtx trans;
             for (size_t i = 0; i < N; ++i)          // iterate over rows
             {
                 for (size_t j = 0; j < N; ++j)      // iterate over columns
                 {
-                    transposed[j][i] = (*this)[i][j];
+                    trans[j][i] = (*this)[i][j];
                 }
             }
 
-            // copy to values
-            *this = transposed;
-
-            // return reference
+            // copy matrix and return reference
+            *this = trans;
             return *this;
+        }
+
+        /**
+         * @brief Compute the transpose of a matrix
+         * @return The transpose of @p this
+         */
+        inline mtx transposed() const { return mtx(*this).transpose(); }
+
+        /**
+         * @brief Compute the cofactor matrix
+         * @return The cofactor matrix of @p this
+         */
+        mtx cofactored() const
+        {
+            if constexpr (N == 2)
+            {
+                T const a = (*this)[0][0]; T const b = (*this)[0][1];
+                T const c = (*this)[1][0]; T const d = (*this)[1][1];
+                return mtx(vec<T, 4>(d, -b, -c, a));
+            }
+            else
+            {
+                mtx cof;
+                for (size_t i = 0; i < N; ++i)
+                {
+                    for (size_t j = 0; j < N; ++j)
+                    {
+                        T const subdet = minor(i, j).determinant();
+                        bool even = ((i + j) & 1) == 0;
+                        cof[i][j] = (even) ? subdet : -subdet;
+                    }
+                }
+                return cof;
+            }
+        }
+
+        /**
+         * @brief Compute the inverse of a matrix
+         * @return The inverse of @p this
+         */
+        mtx inverted() const
+        {
+            T const scalar = constants<T>::one / determinant();
+            mtx inv = cofactored().transpose();
+            inv *= scalar;
+            return inv;
         }
 
         /**
@@ -292,26 +417,6 @@ namespace stf::math
         inline mtx& scale_by(vec<T, N> const& scalars) { return (*this) *= mtx::scale(scalars); }
 
         /**
-         * @brief Multiply a matrix by a scale matrix in place
-         * @param [in] scalars The scalars defining the scale matrix -- sets the Nth scalar to 1
-         * @return A reference to @p this
-         */
-        inline mtx& scale_by(vec<T, N - 1> const& scalars) { return scale_by(vec<T, N>(scalars, T(1))); }
-
-        /**
-         * @brief Multiply a matrix by a translation matrix in place
-         * @param [in] scalars The scalars definining the translation matrix
-         * @return A reference to @p this 
-         */
-        inline mtx& translate_by(vec<T, N - 1> const& scalars) { return (*this) *= mtx::translate(scalars); }
-
-        /**
-         * @brief Compute the transpose of a matrix
-         * @return The transpose of @p this
-         */
-        inline mtx transposed() const { return mtx(*this).transpose(); }
-
-        /**
          * @brief Multiply a matrix by a scale matrix
          * @param [in] scalars The scalars defining the scale matrix
          * @return The resulting transformation matrix
@@ -319,11 +424,25 @@ namespace stf::math
         inline mtx scaled_by(vec<T, N> const& scalars) const { return mtx(*this).scale_by(scalars); }
 
         /**
+         * @brief Multiply a matrix by a scale matrix in place
+         * @param [in] scalars The scalars defining the scale matrix -- sets the Nth scalar to 1
+         * @return A reference to @p this
+         */
+        inline mtx& scale_by(vec<T, N - 1> const& scalars) { return scale_by(vec<T, N>(scalars, T(1))); }
+
+        /**
          * @brief Multiply a matrix by a scale matrix
          * @param [in] scalars The scalars defining the scale matrix -- sets the Nth scalar to 1
          * @return The resulting transformation matrix
          */
         inline mtx scaled_by(vec<T, N - 1> const& scalars) const { return mtx(*this).scale_by(vec<T, N>(scalars, T(1))); }
+
+        /**
+         * @brief Multiply a matrix by a translation matrix in place
+         * @param [in] scalars The scalars definining the translation matrix
+         * @return A reference to @p this 
+         */
+        inline mtx& translate_by(vec<T, N - 1> const& scalars) { return (*this) *= mtx::translate(scalars); }
 
         /**
          * @brief Multiply a matrix by a translation matrix
@@ -336,15 +455,7 @@ namespace stf::math
          * @brief Compute a mtx that is the top left section of a matrix
          * @return The top left section of @p this
          */
-        mtx<T, N - 1> prefix() const
-        {
-            mtx<T, N - 1> matrix = mtx<T, N - 1>();
-            for (size_t i = 0; i < N - 1; ++i)
-            {
-                matrix[i] = math::prefix(row(i).as_vec());
-            }
-            return matrix;
-        }
+        inline mtx<T, N - 1> prefix() const { return minor(N - 1, N - 1); }
 
         /**
          * @brief Fill a raw array with scalars of the matrix in column-major form
@@ -364,9 +475,9 @@ namespace stf::math
          * @return @p this casted to the precision of @p U
          */
         template<typename U>
-        mtx<U, N * N> as() const
+        mtx<U, N> as() const
         {
-            mtx<U, D> result;
+            mtx<U, N> result;
             raw::as<T, U, N * N>(values, result.values);
             return result;
         }
@@ -441,6 +552,36 @@ namespace stf::math
     template<typename T> using mtx4 = mtx<T, 4>;
 
     /**
+     * @brief Compute whether @p lhs is approximately equal to @p rhs (uses constants<T>::tol as epsilon)
+     * @tparam T Number type (eg float)
+     * @tparam N Dimension
+     * @param [in] lhs
+     * @param [in] rhs
+     * @return Whether or not @p lhs and @p rhs are approximately equal
+     */
+    template<typename T, size_t N>
+    inline bool const operator==(mtx<T, N> const& lhs, mtx<T, N> const& rhs)
+    {
+        vec<T, N * N> lhs_as_vec = vec<T, N * N>(lhs.values);
+        vec<T, N * N> rhs_as_vec = vec<T, N * N>(rhs.values);
+        return equ(lhs_as_vec, rhs_as_vec, constants<T>::tol);
+    }
+
+    /**
+     * @brief Compute whether @p lhs is approximately not equal to @p rhs (uses constants<T>::tol as epsilon)
+     * @tparam T Number type (eg float)
+     * @tparam N Dimension
+     * @param [in] lhs
+     * @param [in] rhs
+     * @return Whether or not @p lhs and @p rhs are approximately not equal
+     */
+    template<typename T, size_t N>
+    inline bool const operator!=(mtx<T, N> const& lhs, mtx<T, N> const& rhs)
+    {
+        return !(lhs == rhs);
+    }
+
+    /**
      * @brief Compute the product of two matrices
      * @tparam T Number type (eg float)
      * @tparam N Dimension
@@ -449,7 +590,7 @@ namespace stf::math
      * @return The matrix result of the product between @p lhs and @p rhs
      */
     template<typename T, size_t N>
-    inline mtx<T, N> operator*(mtx<T, N> const& lhs, mtx<T, N> const& rhs)
+    inline mtx<T, N> const operator*(mtx<T, N> const& lhs, mtx<T, N> const& rhs)
     {
         return mtx<T, N>(lhs) *= rhs;
     }
@@ -458,12 +599,12 @@ namespace stf::math
      * @brief Compute the product of a matrix with a column vector
      * @tparam T Number type (eg float)
      * @tparam N Dimension
-     * @param [in] lhs 
+     * @param [in] lhs A matrix
      * @param [in] rhs A column vector
      * @return The column vector result of the product between @p lhs and @p rhs
      */
     template<typename T, size_t N>
-    inline vec<T, N> operator*(mtx<T, N> const& lhs, vec<T, N> const& rhs)
+    inline vec<T, N> const operator*(mtx<T, N> const& lhs, vec<T, N> const& rhs)
     {
         vec<T, N> result;
         for (size_t j = 0; j < N; ++j)
@@ -478,11 +619,11 @@ namespace stf::math
      * @tparam T Number type (eg float)
      * @tparam N Dimension
      * @param [in] lhs A row vector
-     * @param [in] rhs
+     * @param [in] rhs A matrix
      * @return The rwo vector result of the product between @p lhs and @p rhs
      */
     template<typename T, size_t N>
-    inline vec<T, N> operator*(vec<T, N> const& lhs, mtx<T, N> const& rhs)
+    inline vec<T, N> const operator*(vec<T, N> const& lhs, mtx<T, N> const& rhs)
     {
         vec<T, N> result;
         for (size_t i = 0; i < N; ++i)
@@ -490,6 +631,34 @@ namespace stf::math
             result[i] = dot(lhs, rhs.col(i).as_vec());
         }
         return result;
+    }
+
+    /**
+     * @brief Compute the product of a matrix with a scalar
+     * @tparam T Number type (eg float)
+     * @tparam N Dimension
+     * @param [in] lhs A scalar
+     * @param [in] rhs A matrix
+     * @return The matrix @p rhs scaled by @p lhs
+     */
+    template<typename T, size_t N>
+    inline mtx<T, N> const operator*(T const lhs, mtx<T, N> const& rhs)
+    {
+        return mtx<T, N>(rhs) *= lhs;
+    }
+
+    /**
+     * @brief Compute the product of a matrix with a scalar
+     * @tparam T Number type (eg float)
+     * @tparam N Dimension
+     * @param [in] lhs A matrix
+     * @param [in] rhs A scalar
+     * @return The matrix @p lhs scaled by @p rhs
+     */
+    template<typename T, size_t N>
+    inline mtx<T, N> const operator*(mtx<T, N> const& lhs, T const rhs)
+    {
+        return rhs * lhs;
     }
 
     /**
