@@ -32,7 +32,7 @@ namespace stf::math
             { stff::mtx2(stff::vec2(-2)), 4 },
             { stff::mtx2(stff::vec2(-2, 2)), -4 },
             { stff::mtx2(stff::vec4(2)), 0 },
-            { stff::mtx2({ 2, 1, -3, 5 }), 13 },
+            { stff::mtx2(stff::vec4({ 2, 1, -3, 5 })), 13 },
         };
 
         for (scaffolding::mtx::determinant<float, 2> const& test : tests) { scaffolding::mtx::verify(test); }

@@ -196,18 +196,6 @@ namespace stf::math
         }
 
         /**
-         * @brief Construct from an NxN-dimensional std::array -- an explicit column-major initialization of every entry in the matrix
-         * @param [in] _values
-         */
-        explicit mtx(std::array<T, D> const& _values)
-        {
-            for (size_t i = 0; i < D; ++i)
-            {
-                values[i] = _values[i];
-            }
-        }
-
-        /**
          * @brief Const access to a single column of the matrix
          * @param [in] j The index of the column
          * @return A proxy class that gives const access to the column

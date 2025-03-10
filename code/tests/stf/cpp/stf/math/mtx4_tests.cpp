@@ -16,7 +16,7 @@ namespace stf::math
             { stff::mtx4(), stff::mtx4(), true },
             { stff::mtx4(1), stff::mtx4(1), true },
             { stff::mtx4(1), stff::mtx4(2), false },
-            { stff::mtx4(), stff::mtx4({ 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1.1 }), false },
+            { stff::mtx4(), stff::mtx4(stff::vec<16>({ 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1.1 })), false },
         };
 
         for (scaffolding::mtx::equality<float, 4> const& test : tests) { scaffolding::mtx::verify(test); }
@@ -31,7 +31,7 @@ namespace stf::math
             { stff::mtx4(stff::vec4(-2)), 16 },
             { stff::mtx4(stff::vec4(-2, 2, 2, 2)), -16 },
             { stff::mtx4(stff::vec<16>(2)), 0 },
-            { stff::mtx4({ 2, 1, 0, 0, -3, 5, 1, -1, 1, -1, -2, 2, -3, 2, -1, -1 }), 46 },
+            { stff::mtx4(stff::vec<16>({ 2, 1, 0, 0, -3, 5, 1, -1, 1, -1, -2, 2, -3, 2, -1, -1 })), 46 },
         };
 
         for (scaffolding::mtx::determinant<float, 4> const& test : tests) { scaffolding::mtx::verify(test); }
