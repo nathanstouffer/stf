@@ -36,9 +36,9 @@ namespace stf::math
         for (scaffolding::mtx::determinant<float, 3> const& test : tests) { scaffolding::mtx::verify(test); }
     }
 
-    TEST(mtx3, inverse)
+    TEST(mtx3, inverted)
     {
-        std::vector<scaffolding::mtx::inverse<float, 3>> tests =
+        std::vector<scaffolding::mtx::inverted<float, 3>> tests =
         {
             { stff::mtx3() },
             { stff::mtx3(stff::vec3(2)) },
@@ -47,7 +47,7 @@ namespace stf::math
             { (stf::math::rotate(stff::vec3(1), stff::constants::quarter_pi) * stf::math::scale(stff::vec3(1, 3, 2))).prefix() },
         };
 
-        for (scaffolding::mtx::inverse<float, 3> const& test : tests) { scaffolding::mtx::verify(test); }
+        for (scaffolding::mtx::inverted<float, 3> const& test : tests) { scaffolding::mtx::verify(test); }
     }
 
 } // stf::math

@@ -44,13 +44,13 @@ namespace stf::math::scaffolding::mtx
     }
 
     template<typename T, size_t N>
-    struct inverse
+    struct inverted
     {
         math::mtx<T, N> matrix;
     };
 
     template<typename T, size_t N>
-    void verify(inverse<T, N> const& test)
+    void verify(inverted<T, N> const& test)
     {
         math::mtx<T, N> identity = math::mtx<T, N>();
         ASSERT_EQ(identity, test.matrix.inverted() * test.matrix) << "failed " << N << "x" << N << " left inverse test";
