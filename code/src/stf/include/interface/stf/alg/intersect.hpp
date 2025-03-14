@@ -51,7 +51,7 @@ namespace stf::alg
      * @return Whether or not @p lhs intersects @p rhs
      */
     template<typename T>
-    inline bool const intersect(geom::obb2<T> const& lhs, geom::obb2<T> const& rhs)
+    inline bool intersect(geom::obb2<T> const& lhs, geom::obb2<T> const& rhs)
     {
         return geom::intersect(lhs, rhs);
     }
@@ -64,7 +64,7 @@ namespace stf::alg
      * @return Whether or not @p lhs intersects @p rhs
      */
     template<typename T>
-    inline bool const intersect(geom::obb3<T> const& lhs, geom::obb3<T> const& rhs)
+    inline bool intersect(geom::obb3<T> const& lhs, geom::obb3<T> const& rhs)
     {
         return geom::intersect(lhs, rhs);
     }
