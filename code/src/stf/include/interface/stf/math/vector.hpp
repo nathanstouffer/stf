@@ -144,7 +144,7 @@ namespace stf::math
          * @param [in] rhs
          * @return The dot product of @p this with @p rhs
          */
-        inline T const dot(vec const& rhs) const { return raw::dot<T, N>(values, rhs.values); }
+        inline T dot(vec const& rhs) const { return raw::dot<T, N>(values, rhs.values); }
 
         /**
          * @brief Compute the square of the length of a vector
@@ -310,7 +310,7 @@ namespace stf::math
          * @param [in] rhs
          * @return The dot product of @p this with @p rhs
          */
-        inline T const dot(vec const& rhs) const { return raw::dot<T, 2>(values, rhs.values); }
+        inline T dot(vec const& rhs) const { return raw::dot<T, 2>(values, rhs.values); }
 
         /**
          * @brief Compute the square of the length of a vector
@@ -483,7 +483,7 @@ namespace stf::math
          * @param [in] rhs
          * @return The dot product of @p this with @p rhs
          */
-        inline T const dot(vec const& rhs) const { return raw::dot<T, 3>(values, rhs.values); }
+        inline T dot(vec const& rhs) const { return raw::dot<T, 3>(values, rhs.values); }
 
         /**
          * @brief Compute the square of the length of a vector
@@ -673,7 +673,7 @@ namespace stf::math
          * @param [in] rhs
          * @return The dot product of @p this with @p rhs
          */
-        inline T const dot(vec const& rhs) const { return raw::dot<T, 4>(values, rhs.values); }
+        inline T dot(vec const& rhs) const { return raw::dot<T, 4>(values, rhs.values); }
 
         /**
          * @brief Compute the square of the length of a vector
@@ -769,7 +769,7 @@ namespace stf::math
      * @return A normalized vector in the direction of @p rhs
      */
     template<typename T, size_t N>
-    inline vec<T, N> const normalized(vec<T, N> const& rhs)
+    inline vec<T, N> normalized(vec<T, N> const& rhs)
     {
         return rhs.normalized();
     }
@@ -812,7 +812,7 @@ namespace stf::math
      * @return Whether or not @p lhs and @p rhs are closer than @p eps
      */
     template<typename T, size_t N>
-    inline bool const equ(vec<T, N> const& lhs, vec<T, N> const& rhs, T const eps)
+    inline bool equ(vec<T, N> const& lhs, vec<T, N> const& rhs, T const eps)
     {
         return (dist(lhs, rhs) <= eps) ? true : false;
     }
@@ -827,7 +827,7 @@ namespace stf::math
      * @return Whether or not @p lhs and @p rhs are further apart than @p eps
      */
     template<typename T, size_t N>
-    inline bool const neq(vec<T, N> const& lhs, vec<T, N> const& rhs, T eps)
+    inline bool neq(vec<T, N> const& lhs, vec<T, N> const& rhs, T eps)
     {
         return !equ(lhs, rhs, eps);
     }
@@ -841,7 +841,7 @@ namespace stf::math
      * @return Whether or not @p lhs and @p rhs are approximately equal
      */
     template<typename T, size_t N>
-    inline bool const operator==(vec<T, N> const& lhs, vec<T, N> const& rhs)
+    inline bool operator==(vec<T, N> const& lhs, vec<T, N> const& rhs)
     {
         return equ(lhs, rhs, constants<T>::tol);
     }
@@ -855,7 +855,7 @@ namespace stf::math
      * @return Whether or not @p lhs and @p rhs are approximately not equal
      */
     template<typename T, size_t N>
-    inline bool const operator!=(vec<T, N> const& lhs, vec<T, N> const& rhs)
+    inline bool operator!=(vec<T, N> const& lhs, vec<T, N> const& rhs)
     {
         return !(lhs == rhs);
     }
@@ -868,7 +868,7 @@ namespace stf::math
      * @return The negative of @p lhs
      */
     template<typename T, size_t N>
-    inline vec<T, N> const operator-(vec<T, N> const& lhs)
+    inline vec<T, N> operator-(vec<T, N> const& lhs)
     {
         vec<T, N> result;
         for (size_t i = 0; i < N; ++i)
@@ -887,7 +887,7 @@ namespace stf::math
      * @return The sum of @p lhs and @p rhs
      */
     template<typename T, size_t N>
-    inline vec<T, N> const operator+(vec<T, N> const& lhs, vec<T, N> const& rhs)
+    inline vec<T, N> operator+(vec<T, N> const& lhs, vec<T, N> const& rhs)
     {
         return vec<T, N>(lhs) += rhs;
     }
@@ -901,7 +901,7 @@ namespace stf::math
      * @return The difference of @p lhs and @p rhs
      */
     template<typename T, size_t N>
-    inline vec<T, N> const operator-(vec<T, N> const& lhs, vec<T, N> const& rhs)
+    inline vec<T, N> operator-(vec<T, N> const& lhs, vec<T, N> const& rhs)
     {
         return vec<T, N>(lhs) -= rhs;
     }
@@ -915,7 +915,7 @@ namespace stf::math
      * @return @p lhs scaled by @p scalar
      */
     template<typename T, size_t N>
-    inline vec<T, N> const operator*(vec<T, N> const& lhs, T const scalar)
+    inline vec<T, N> operator*(vec<T, N> const& lhs, T const scalar)
     {
         return vec<T, N>(lhs) *= scalar;
     }
@@ -929,7 +929,7 @@ namespace stf::math
      * @return @p rhs scaled by @p scalar
      */
     template<typename T, size_t N>
-    inline vec<T, N> const operator*(T const scalar, vec<T, N> const& rhs)
+    inline vec<T, N> operator*(T const scalar, vec<T, N> const& rhs)
     {
         return rhs * scalar;
     }
@@ -943,7 +943,7 @@ namespace stf::math
      * @return @p lhs divided by @p scalar
      */
     template<typename T, size_t N>
-    inline vec<T, N> const operator/(vec<T, N> const& lhs, T const scalar)
+    inline vec<T, N> operator/(vec<T, N> const& lhs, T const scalar)
     {
         T factor = constants<T>::one / scalar;
         return factor * lhs;
@@ -958,7 +958,7 @@ namespace stf::math
      * @return @p scalar divided by @p rhs
      */
     template<typename T, size_t N>
-    inline vec<T, N> const operator/(T const scalar, vec<T, N> const& rhs)
+    inline vec<T, N> operator/(T const scalar, vec<T, N> const& rhs)
     {
         vec<T, N> result;
         for (size_t i = 0; i < N; ++i)
@@ -977,7 +977,7 @@ namespace stf::math
      * @return The dot product of @p lhs and @p rhs
      */
     template<typename T, size_t N>
-    inline T const dot(vec<T, N> const& lhs, vec<T, N> const& rhs)
+    inline T dot(vec<T, N> const& lhs, vec<T, N> const& rhs)
     {
         return raw::dot<T, N>(lhs.values, rhs.values);
     }
@@ -995,7 +995,7 @@ namespace stf::math
      * @return The 2D cross product of @p lhs and @p rhs 
      */
     template<typename T>
-    inline T const cross(vec2<T> const& lhs, vec2<T> const& rhs)
+    inline T cross(vec2<T> const& lhs, vec2<T> const& rhs)
     {
         return lhs.x * rhs.y - lhs.y * rhs.x;
     }
@@ -1009,7 +1009,7 @@ namespace stf::math
      * @return The 3D cross product of @p lhs and @p rhs
      */
     template<typename T>
-    inline vec3<T> const cross(vec3<T> const& lhs, vec3<T> const& rhs)
+    inline vec3<T> cross(vec3<T> const& lhs, vec3<T> const& rhs)
     {
         return vec3<T>
         (
@@ -1035,7 +1035,7 @@ namespace stf::math
      * @return The orientation of @p p, @p q, and @p r
      */
     template<typename T>
-    inline T const orientation(vec2<T> const& p, vec2<T> const& q, vec2<T> const& r)
+    inline T orientation(vec2<T> const& p, vec2<T> const& q, vec2<T> const& r)
     {
         return cross(q - p, r - p);
     }
@@ -1052,7 +1052,7 @@ namespace stf::math
      * @return The hadamard product of @p lhs and @p rhs
      */
     template<typename T, size_t N>
-    inline vec<T, N> const hadamard(vec<T, N> const& lhs, vec<T, N> const& rhs)
+    inline vec<T, N> hadamard(vec<T, N> const& lhs, vec<T, N> const& rhs)
     {
         return vec<T, N>(lhs) *= (rhs);
     }
@@ -1069,7 +1069,7 @@ namespace stf::math
      * @return The hadamard product of @p lhs and @p rhs
      */
     template<typename T, size_t N>
-    inline vec<T, N> const operator*(vec<T, N> const& lhs, vec<T, N> const& rhs) { return hadamard(lhs, rhs); }
+    inline vec<T, N> operator*(vec<T, N> const& lhs, vec<T, N> const& rhs) { return hadamard(lhs, rhs); }
 
     /**
      * @brief Compute the prefix of a vector

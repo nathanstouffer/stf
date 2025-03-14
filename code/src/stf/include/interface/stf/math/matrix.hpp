@@ -22,7 +22,8 @@ namespace stf::math
     {
 
         /**
-         * @brief A proxy class that gives access to a single column of a @ref mtx
+         * @brief A proxy struct that gives access to a single column of a @ref mtx
+         * @todo make this struct non-copyable when const?
          */
         struct col_proxy
         {
@@ -83,7 +84,8 @@ namespace stf::math
         };
 
         /**
-         * @brief A proxy class that gives access to a single row of a @ref mtx
+         * @brief A proxy struct that gives access to a single row of a @ref mtx
+         * @todo make this struct non-copyable when const?
          */
         struct row_proxy
         {
@@ -560,7 +562,7 @@ namespace stf::math
      * @return Whether or not @p lhs and @p rhs are approximately equal
      */
     template<typename T, size_t N>
-    inline bool const operator==(mtx<T, N> const& lhs, mtx<T, N> const& rhs)
+    inline bool operator==(mtx<T, N> const& lhs, mtx<T, N> const& rhs)
     {
         vec<T, N * N> lhs_as_vec = vec<T, N * N>(lhs.values);
         vec<T, N * N> rhs_as_vec = vec<T, N * N>(rhs.values);
@@ -576,7 +578,7 @@ namespace stf::math
      * @return Whether or not @p lhs and @p rhs are approximately not equal
      */
     template<typename T, size_t N>
-    inline bool const operator!=(mtx<T, N> const& lhs, mtx<T, N> const& rhs)
+    inline bool operator!=(mtx<T, N> const& lhs, mtx<T, N> const& rhs)
     {
         return !(lhs == rhs);
     }
@@ -590,7 +592,7 @@ namespace stf::math
      * @return The matrix result of the product between @p lhs and @p rhs
      */
     template<typename T, size_t N>
-    inline mtx<T, N> const operator*(mtx<T, N> const& lhs, mtx<T, N> const& rhs)
+    inline mtx<T, N> operator*(mtx<T, N> const& lhs, mtx<T, N> const& rhs)
     {
         return mtx<T, N>(lhs) *= rhs;
     }
@@ -604,7 +606,7 @@ namespace stf::math
      * @return The column vector result of the product between @p lhs and @p rhs
      */
     template<typename T, size_t N>
-    inline vec<T, N> const operator*(mtx<T, N> const& lhs, vec<T, N> const& rhs)
+    inline vec<T, N> operator*(mtx<T, N> const& lhs, vec<T, N> const& rhs)
     {
         vec<T, N> result;
         for (size_t j = 0; j < N; ++j)
@@ -623,7 +625,7 @@ namespace stf::math
      * @return The rwo vector result of the product between @p lhs and @p rhs
      */
     template<typename T, size_t N>
-    inline vec<T, N> const operator*(vec<T, N> const& lhs, mtx<T, N> const& rhs)
+    inline vec<T, N> operator*(vec<T, N> const& lhs, mtx<T, N> const& rhs)
     {
         vec<T, N> result;
         for (size_t i = 0; i < N; ++i)
@@ -642,7 +644,7 @@ namespace stf::math
      * @return The matrix @p rhs scaled by @p lhs
      */
     template<typename T, size_t N>
-    inline mtx<T, N> const operator*(T const lhs, mtx<T, N> const& rhs)
+    inline mtx<T, N> operator*(T const lhs, mtx<T, N> const& rhs)
     {
         return mtx<T, N>(rhs) *= lhs;
     }
@@ -656,7 +658,7 @@ namespace stf::math
      * @return The matrix @p lhs scaled by @p rhs
      */
     template<typename T, size_t N>
-    inline mtx<T, N> const operator*(mtx<T, N> const& lhs, T const rhs)
+    inline mtx<T, N> operator*(mtx<T, N> const& lhs, T const rhs)
     {
         return rhs * lhs;
     }
