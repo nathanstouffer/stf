@@ -11,10 +11,10 @@ namespace stf::math::scaffolding::interpolation
     template<typename T>
     struct lerp
     {
-        T const a;
-        T const b;
-        T const t;
-        T const expected;
+        T a;
+        T b;
+        T t;
+        T expected;
     };
 
     template<typename T>
@@ -26,10 +26,10 @@ namespace stf::math::scaffolding::interpolation
     template<typename T>
     struct lerp_inv
     {
-        T const a;
-        T const b;
-        T const x;
-        T const expected;
+        T a;
+        T b;
+        T x;
+        T expected;
     };
 
     template<typename T>
@@ -41,10 +41,10 @@ namespace stf::math::scaffolding::interpolation
     template<typename T>
     struct lerpstep
     {
-        T const a;
-        T const b;
-        T const t;
-        T const expected;
+        T a;
+        T b;
+        T t;
+        T expected;
     };
 
     template<typename T>

@@ -12,7 +12,7 @@ namespace stf::geom::scaffolding::obb
     template<typename T, size_t N>
     struct from_aabb
     {
-        geom::aabb<T, N> const aabb;
+        geom::aabb<T, N> aabb;
     };
 
     template<typename T, size_t N>
@@ -29,9 +29,9 @@ namespace stf::geom::scaffolding::obb
     template<typename T, size_t N>
     struct extremity
     {
-        geom::obb<T, N> const obb;
-        math::vec<T, N> const axis;
-        math::vec<T, N> const extreme;
+        geom::obb<T, N> obb;
+        math::vec<T, N> axis;
+        math::vec<T, N> extreme;
     };
 
     template<typename T, size_t N>
@@ -43,9 +43,9 @@ namespace stf::geom::scaffolding::obb
     template<typename T, size_t N>
     struct contains
     {
-        geom::obb<T, N> const obb;
-        math::vec<T, N> const point;
-        bool const contains;
+        geom::obb<T, N> obb;
+        math::vec<T, N> point;
+        bool contains;
     };
 
     template<typename T, size_t N>
@@ -57,8 +57,8 @@ namespace stf::geom::scaffolding::obb
     template<typename T, size_t N>
     struct fit
     {
-        math::mtx<T, N> const rotation;
-        T const half_extent;
+        math::mtx<T, N> rotation;
+        T half_extent;
     };
 
     template<typename T, size_t N>
@@ -82,8 +82,8 @@ namespace stf::geom::scaffolding::obb
     template<typename T, size_t N>
     struct intersect
     {
-        geom::obb<T, N> const lhs;
-        geom::obb<T, N> const rhs;
+        geom::obb<T, N> lhs;
+        geom::obb<T, N> rhs;
         bool intersect;
     };
 

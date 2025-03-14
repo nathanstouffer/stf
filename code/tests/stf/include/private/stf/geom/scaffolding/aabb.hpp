@@ -12,7 +12,7 @@ namespace stf::geom::scaffolding::aabb
     template<typename T, typename U, size_t N>
     struct cast
     {
-        geom::aabb<T, N> const initial;
+        geom::aabb<T, N> initial;
     };
 
     template<typename T, typename U, size_t N>
@@ -26,8 +26,8 @@ namespace stf::geom::scaffolding::aabb
     template<typename T, size_t N>
     struct intersects
     {
-        geom::aabb<T, N> const lhs;
-        geom::aabb<T, N> const rhs;
+        geom::aabb<T, N> lhs;
+        geom::aabb<T, N> rhs;
         bool intersect;
     };
 
@@ -44,8 +44,8 @@ namespace stf::geom::scaffolding::aabb
     template<typename T, size_t N>
     struct contains
     {
-        geom::aabb<T, N> const lhs;
-        geom::aabb<T, N> const rhs;
+        geom::aabb<T, N> lhs;
+        geom::aabb<T, N> rhs;
         bool contained;
     };
 
@@ -59,8 +59,8 @@ namespace stf::geom::scaffolding::aabb
     template<typename T, size_t N>
     struct dist_and_dist_squared
     {
-        geom::aabb<T, N> const box;
-        math::vec<T, N> const point;
+        geom::aabb<T, N> box;
+        math::vec<T, N> point;
         T dist_squared;
     };
 

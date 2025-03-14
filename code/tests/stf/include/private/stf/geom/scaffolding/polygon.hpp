@@ -10,8 +10,8 @@ namespace stf::geom::scaffolding::polygon
     template<typename T>
     struct is_convex
     {
-        geom::polygon<T> const polygon;
-        bool const convex;
+        geom::polygon<T> polygon;
+        bool convex;
     };
 
     template<typename T>
@@ -23,8 +23,8 @@ namespace stf::geom::scaffolding::polygon
     template<typename T>
     struct signed_area
     {
-        geom::polygon<T> const polygon;
-        T const area;
+        geom::polygon<T> polygon;
+        T area;
     };
 
     template<typename T>
@@ -37,10 +37,10 @@ namespace stf::geom::scaffolding::polygon
     template<typename T>
     struct contains
     {
-        geom::polygon<T> const polygon;
-        math::vec2<T> const query;
-        boundary_types const boundary_type;
-        bool const contained;
+        geom::polygon<T> polygon;
+        math::vec2<T> query;
+        boundary_types boundary_type;
+        bool contained;
     };
 
     template<typename T>
@@ -52,8 +52,8 @@ namespace stf::geom::scaffolding::polygon
     template<typename T>
     struct distances
     {
-        geom::polygon<T> const polygon;
-        math::vec2<T> const query;
+        geom::polygon<T> polygon;
+        math::vec2<T> query;
         T signed_distance;
     };
 

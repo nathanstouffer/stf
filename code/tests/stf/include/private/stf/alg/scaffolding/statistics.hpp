@@ -11,8 +11,8 @@ namespace stf::alg::scaffolding::statistics
     template<typename T>
     struct median
     {
-        std::vector<T> const values;
-        T const expected;
+        std::vector<T> values;
+        T expected;
     };
 
     template<typename T>

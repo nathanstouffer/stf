@@ -13,9 +13,9 @@ namespace stf::cam::scaffolding::frustum
     template<typename T>
     struct contains
     {
-        cam::frustum<T> const frustum;
-        geom::aabb3<T> const box;
-        bool const contains;
+        cam::frustum<T> frustum;
+        geom::aabb3<T> box;
+        bool contains;
     };
 
     template<typename T>
@@ -28,9 +28,9 @@ namespace stf::cam::scaffolding::frustum
     template<typename T>
     struct intersects_fast
     {
-        cam::frustum<T> const frustum;
-        geom::aabb3<T> const box;
-        bool const intersects;
+        cam::frustum<T> frustum;
+        geom::aabb3<T> box;
+        bool intersects;
     };
 
     template<typename T>
@@ -44,9 +44,9 @@ namespace stf::cam::scaffolding::frustum
     template<typename T>
     struct intersects
     {
-        cam::frustum<T> const frustum;
-        geom::aabb3<T> const box;
-        bool const intersects;
+        cam::frustum<T> frustum;
+        geom::aabb3<T> box;
+        bool intersects;
     };
 
     template<typename T>

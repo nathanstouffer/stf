@@ -10,9 +10,9 @@ namespace stf::math::scaffolding::cinterval
     template<typename T>
     struct contains_point
     {
-        math::cinterval<T> const interval;
-        boundary_types const type;
-        T const x;
+        math::cinterval<T> interval;
+        boundary_types type;
+        T x;
         bool contained;
     };
 
