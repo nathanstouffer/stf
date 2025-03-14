@@ -22,8 +22,50 @@ namespace stf::math
     {
 
         /**
+         * @brief A proxy struct that gives const access to a single column of a @ref mtx
+         */
+        struct const_col_proxy
+        {
+
+            /**
+             * @brief Construct from a @ref mtx const reference and a column index
+             * @param [in] _m
+             * @param [in] _c
+             */
+            col_proxy(mtx const& _m, size_t _c) : m(_m), c(_c) {}
+
+            /**
+             * @brief Const access to a single scalar in the column
+             * @param [in] i The index of the row
+             * @return A const reference to the scalar
+             */
+            inline T const& operator[](size_t i) const { return m.values[c * N + i]; }
+
+            /**
+             * @brief Conversion operator from a @ref col_proxy to a @ref vec
+             */
+            inline operator vec<T, N>() const
+            {
+                vec<T, N> vec;
+                for (size_t i = 0; i < N; ++i) { vec[i] = (*this)[i]; }
+                return vec;
+            }
+
+            /**
+             * @brief Convert a @ref col_proxy to a @ref vec
+             * @return The column proxy as a vector
+             */
+            inline vec<T, N> as_vec() const { return static_cast<vec<T, N>>(*this); }
+
+        private:
+
+            mtx const& m;
+            size_t c;
+
+        };
+
+        /**
          * @brief A proxy struct that gives access to a single column of a @ref mtx
-         * @todo make this struct non-copyable when const?
          */
         struct col_proxy
         {
@@ -61,7 +103,12 @@ namespace stf::math
             }
 
             /**
-             * @brief Cast a @ref col_proxy to a @ref vec
+             * @brief Conversion operator from a @ref col_proxy to a @ref const_col_proxy
+             */
+            inline operator vec<T, N>() const { return const_col_proxy(m, c); }
+
+            /**
+             * @brief Conversion operator from a @ref col_proxy to a @ref vec
              */
             inline operator vec<T, N>() const
             {
@@ -71,7 +118,7 @@ namespace stf::math
             }
 
             /**
-             * @brief Cast a @ref col_proxy to a @ref vec
+             * @brief Convert a @ref col_proxy to a @ref vec
              * @return The column proxy as a vector
              */
             inline vec<T, N> as_vec() const { return static_cast<vec<T, N>>(*this); }
@@ -104,7 +151,7 @@ namespace stf::math
             inline T const& operator[](size_t j) const { return m.values[r + j * N]; }
 
             /**
-             * @brief Cast a @ref const_row_proxy to a @ref vec
+             * @brief Conversion operator from a @ref const_row_proxy to a @ref vec
              */
             inline operator vec<T, N>() const
             {
@@ -114,7 +161,7 @@ namespace stf::math
             }
 
             /**
-             * @brief Cast a @ref const_row_proxy to a @ref vec
+             * @brief Convert a @ref const_row_proxy to a @ref vec
              * @return The row proxy as a vector
              */
             inline vec<T, N> as_vec() const { return static_cast<vec<T, N>>(*this); }
@@ -165,12 +212,12 @@ namespace stf::math
             }
 
             /**
-             * @brief Conversion from @ref row_proxy to a @ref const_row_proxy
+             * @brief Conversion operator from a @ref row_proxy to a @ref const_row_proxy
              */
             inline operator const_row_proxy() const { return const_row_proxy(m, r); }
 
             /**
-             * @brief Conversion from @ref row_proxy to a @ref vec
+             * @brief Conversion operator from a @ref row_proxy to a @ref vec
              */
             inline operator vec<T, N>() const
             {
@@ -180,7 +227,7 @@ namespace stf::math
             }
 
             /**
-             * @brief Cast a @ref row_proxy to a @ref vec
+             * @brief Convert a @ref row_proxy to a @ref vec
              * @return The row proxy as a vector
              */
             inline vec<T, N> as_vec() const { return static_cast<vec<T, N>>(*this); }
@@ -249,7 +296,7 @@ namespace stf::math
          * @param [in] j The index of the column
          * @return A proxy class that gives const access to the column
          */
-        inline col_proxy const col(size_t const j) const { return col_proxy(const_cast<mtx&>(*this), j); }
+        inline const_col_proxy col(size_t const j) const { return const_col_proxy(*this, j); }
 
         /**
          * @brief Access to a single column of the matrix
