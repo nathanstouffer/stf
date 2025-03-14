@@ -19,7 +19,7 @@ namespace stf::math
      * @return Whether or not @p lhs and @p rhs are less than or equal to @p eps apart
      */
     template<typename T>
-    inline bool const equ(T const lhs, T const rhs, T const eps)
+    inline bool equ(T const lhs, T const rhs, T const eps)
     {
         return (std::abs(lhs - rhs) <= eps) ? true : false;
     }
@@ -33,7 +33,7 @@ namespace stf::math
      * @return Whether or not @p lhs and @p rhs are greater than @p eps apart
      */
     template<typename T>
-    inline bool const neq(T const lhs, T const rhs, T const eps)
+    inline bool neq(T const lhs, T const rhs, T const eps)
     {
         return !equ(lhs, rhs, eps);
     }

@@ -195,7 +195,7 @@ namespace stf::cam
          * @param [in] aabb The query aabb
          * @return Whether or not @p aabb intersect @p this
          */
-        bool const intersects(aabb_t const& aabb) const
+        bool intersects(aabb_t const& aabb) const
         {
             if (intersects_fast(aabb))  // if the fast check returns true, do a more thorough check to avoid false positives
             {
@@ -224,7 +224,7 @@ namespace stf::cam
          * @param [in] obb The query obb
          * @return Whether or not @p obb intersect @p this
          */
-        bool const intersects(obb_t const& obb) const
+        bool intersects(obb_t const& obb) const
         {
             for (vec_t const& axis : frustum::all_axes(obb.basis(), m_planes, m_vertices))
             {
@@ -246,7 +246,7 @@ namespace stf::cam
          * @return The interval of projection onto the axis
          * @note @p axis is assumed to be a unit vector
          */
-        interval_t const projection(vec_t const& axis) const
+        interval_t projection(vec_t const& axis) const
         {
             interval_t interval(math::constants<T>::pos_inf, math::constants<T>::neg_inf);
             std::array<vec_t, 8> points =

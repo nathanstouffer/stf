@@ -11,9 +11,9 @@ namespace stf::alg::scaffolding::intersect
     template<typename T>
     struct segment_with_segment
     {
-        geom::segment2<T> const lhs;
-        geom::segment2<T> const rhs;
-        bool const expected;
+        geom::segment2<T> lhs;
+        geom::segment2<T> rhs;
+        bool expected;
     };
 
     template<typename T>
@@ -38,9 +38,9 @@ namespace stf::alg::scaffolding::intersect
     template<typename T>
     struct segment_with_aabb
     {
-        geom::segment2<T> const seg;
-        geom::aabb2<T> const box;
-        bool const expected;
+        geom::segment2<T> seg;
+        geom::aabb2<T> box;
+        bool expected;
     };
 
     template<typename T>
@@ -58,9 +58,9 @@ namespace stf::alg::scaffolding::intersect
     template<typename T>
     struct polyline_with_aabb
     {
-        geom::polyline2<T> const polyline;
-        geom::aabb2<T> const box;
-        bool const expected;
+        geom::polyline2<T> polyline;
+        geom::aabb2<T> box;
+        bool expected;
     };
 
     template<typename T>
@@ -73,9 +73,9 @@ namespace stf::alg::scaffolding::intersect
     template<typename T>
     struct polygon_with_aabb
     {
-        geom::polygon<T> const polygon;
-        geom::aabb2<T> const box;
-        bool const expected;
+        geom::polygon<T> polygon;
+        geom::aabb2<T> box;
+        bool expected;
     };
 
     template<typename T>
@@ -88,9 +88,9 @@ namespace stf::alg::scaffolding::intersect
     template<typename T>
     struct polygon_with_segment
     {
-        geom::polygon<T> const polygon;
-        geom::segment2<T> const segment;
-        bool const expected;
+        geom::polygon<T> polygon;
+        geom::segment2<T> segment;
+        bool expected;
     };
 
     template<typename T>
@@ -103,9 +103,9 @@ namespace stf::alg::scaffolding::intersect
     template<typename T>
     struct polygon_with_polyline
     {
-        geom::polygon<T> const polygon;
-        geom::polyline2<T> const polyline;
-        bool const expected;
+        geom::polygon<T> polygon;
+        geom::polyline2<T> polyline;
+        bool expected;
     };
 
     template<typename T>

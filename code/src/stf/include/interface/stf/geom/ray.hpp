@@ -53,14 +53,14 @@ namespace stf::geom
          * @brief Compute a normalized ray
          * @return A normalized ray in the direction of @p this
          */
-        inline ray const normalized() const { return ray(*this).normalize(); }
+        inline ray normalized() const { return ray(*this).normalize(); }
 
         /**
          * @brief Compute the square of the distance between a ray and a vector
          * @param [in] query
          * @return The square of the distance between @p this and @p point
          */
-        T const dist_squared(vec_t const& query) const
+        T dist_squared(vec_t const& query) const
         {
             vec_t unit_dir = direction.normalized();
             T scalar = math::dot(query - point, unit_dir);
@@ -74,7 +74,7 @@ namespace stf::geom
          * @param [in] point
          * @return The distance between @p this and @p point
          */
-        inline T const dist(vec_t const& point) const { return std::sqrt(dist_squared(point)); }
+        inline T dist(vec_t const& point) const { return std::sqrt(dist_squared(point)); }
 
     };
 
@@ -106,7 +106,7 @@ namespace stf::geom
      * @return The square of the distance between @p beam and @p point
      */
     template<typename T, size_t N>
-    inline T const dist_squared(ray<T, N> const& beam, math::vec<T, N> const& point)
+    inline T dist_squared(ray<T, N> const& beam, math::vec<T, N> const& point)
     {
         return beam.dist_squared(point);
     }
@@ -120,7 +120,7 @@ namespace stf::geom
      * @return The square of the distance between @p point and @p beam
      */
     template<typename T, size_t N>
-    inline T const dist_squared(math::vec<T, N> const& point, ray<T, N> const& beam)
+    inline T dist_squared(math::vec<T, N> const& point, ray<T, N> const& beam)
     {
         return dist_squared(beam, point);
     }
@@ -134,7 +134,7 @@ namespace stf::geom
      * @return The distance between @p beam and @p point
      */
     template<typename T, size_t N>
-    inline T const dist(ray<T, N> const& beam, math::vec<T, N> const& point)
+    inline T dist(ray<T, N> const& beam, math::vec<T, N> const& point)
     {
         return beam.dist(point);
     }
@@ -148,7 +148,7 @@ namespace stf::geom
      * @return The distance between @p point and @p beam
      */
     template<typename T, size_t N>
-    inline T const dist(math::vec<T, N> const& point, ray<T, N> const& beam)
+    inline T dist(math::vec<T, N> const& point, ray<T, N> const& beam)
     {
         return dist(beam, point);
     }

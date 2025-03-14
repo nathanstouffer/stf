@@ -11,10 +11,10 @@ namespace stf::alg::scaffolding::clipping
     template<typename T>
     struct segment
     {
-        geom::aabb2<T> const box;
-        geom::segment2<T> const input;
-        bool const accept;
-        geom::segment2<T> const clipped;
+        geom::aabb2<T> box;
+        geom::segment2<T> input;
+        bool accept;
+        geom::segment2<T> clipped;
     };
 
     template<typename T>
@@ -33,9 +33,9 @@ namespace stf::alg::scaffolding::clipping
     template<typename T>
     struct polyline
     {
-        geom::aabb2<T> const box;
-        geom::polyline2<T> const input;
-        std::vector<geom::polyline2<T>> const clipped;
+        geom::aabb2<T> box;
+        geom::polyline2<T> input;
+        std::vector<geom::polyline2<T>> clipped;
     };
 
     template<typename T>

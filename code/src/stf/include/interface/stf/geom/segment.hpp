@@ -112,7 +112,7 @@ namespace stf::geom
          * @param [in] point
          * @return The square of the distance between @p this and @p point
          */
-        T const dist_squared(vec_t const& point) const
+        T dist_squared(vec_t const& point) const
         {
             vec_t diff = delta();
             T scalar = math::dot(point - a, diff) / math::dot(diff, diff);
@@ -126,7 +126,7 @@ namespace stf::geom
          * @param [in] point
          * @return The distance between @p this and @p point
          */
-        inline T const dist(vec_t const& point) const { return std::sqrt(dist_squared(point)); }
+        inline T dist(vec_t const& point) const { return std::sqrt(dist_squared(point)); }
 
         /**
          * @brief Interpolate along the semgent
@@ -174,7 +174,7 @@ namespace stf::geom
      * @return Whether or not @p lhs and @p rhs are approximately equal
      */
     template<typename T, size_t N>
-    inline bool const operator==(segment<T, N> const& lhs, segment<T, N> const& rhs)
+    inline bool operator==(segment<T, N> const& lhs, segment<T, N> const& rhs)
     {
         return lhs.a == rhs.a && lhs.b == rhs.b;
     }
@@ -188,7 +188,7 @@ namespace stf::geom
      * @return Whether or not @p lhs and @p rhs are approximately not equal
      */
     template<typename T, size_t N>
-    inline bool const operator!=(segment<T, N> const& lhs, segment<T, N> const& rhs)
+    inline bool operator!=(segment<T, N> const& lhs, segment<T, N> const& rhs)
     {
         return !(lhs == rhs);
     }
@@ -202,7 +202,7 @@ namespace stf::geom
      * @return The square of the distance between @p seg and @p point
      */
     template<typename T, size_t N>
-    inline T const dist_squared(segment<T, N> const& seg, math::vec<T, N> const& point)
+    inline T dist_squared(segment<T, N> const& seg, math::vec<T, N> const& point)
     {
         return seg.dist_squared(point);
     }
@@ -216,7 +216,7 @@ namespace stf::geom
      * @return The square of the distance between @p point and @p seg
      */
     template<typename T, size_t N>
-    inline T const dist_squared(math::vec<T, N> const& point, segment<T, N> const& seg)
+    inline T dist_squared(math::vec<T, N> const& point, segment<T, N> const& seg)
     {
         return dist_squared(seg, point);
     }
@@ -230,7 +230,7 @@ namespace stf::geom
      * @return The distance between @p seg and @p point
      */
     template<typename T, size_t N>
-    inline T const dist(segment<T, N> const& seg, math::vec<T, N> const& point)
+    inline T dist(segment<T, N> const& seg, math::vec<T, N> const& point)
     {
         return seg.dist(point);
     }
@@ -244,7 +244,7 @@ namespace stf::geom
      * @return The distance between @p point and @p seg
      */
     template<typename T, size_t N>
-    inline T const dist(math::vec<T, N> const& point, segment<T, N> const& seg)
+    inline T dist(math::vec<T, N> const& point, segment<T, N> const& seg)
     {
         return dist(seg, point);
     }

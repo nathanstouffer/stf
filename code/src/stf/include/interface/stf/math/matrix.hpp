@@ -22,7 +22,50 @@ namespace stf::math
     {
 
         /**
-         * @brief A proxy class that gives access to a single column of a @ref mtx
+         * @brief A proxy struct that gives const access to a single column of a @ref mtx
+         */
+        struct const_col_proxy
+        {
+
+            /**
+             * @brief Construct from a @ref mtx const reference and a column index
+             * @param [in] _m
+             * @param [in] _c
+             */
+            const_col_proxy(mtx const& _m, size_t _c) : m(_m), c(_c) {}
+
+            /**
+             * @brief Const access to a single scalar in the column
+             * @param [in] i The index of the row
+             * @return A const reference to the scalar
+             */
+            inline T const& operator[](size_t i) const { return m.values[c * N + i]; }
+
+            /**
+             * @brief Conversion operator from a @ref col_proxy to a @ref vec
+             */
+            inline operator vec<T, N>() const
+            {
+                vec<T, N> vec;
+                for (size_t i = 0; i < N; ++i) { vec[i] = (*this)[i]; }
+                return vec;
+            }
+
+            /**
+             * @brief Convert a @ref col_proxy to a @ref vec
+             * @return The column proxy as a vector
+             */
+            inline vec<T, N> as_vec() const { return static_cast<vec<T, N>>(*this); }
+
+        private:
+
+            mtx const& m;
+            size_t c;
+
+        };
+
+        /**
+         * @brief A proxy struct that gives access to a single column of a @ref mtx
          */
         struct col_proxy
         {
@@ -60,7 +103,12 @@ namespace stf::math
             }
 
             /**
-             * @brief Cast a @ref col_proxy to a @ref vec
+             * @brief Conversion operator from a @ref col_proxy to a @ref const_col_proxy
+             */
+            inline operator const_col_proxy() const { return const_col_proxy(m, c); }
+
+            /**
+             * @brief Conversion operator from a @ref col_proxy to a @ref vec
              */
             inline operator vec<T, N>() const
             {
@@ -70,7 +118,7 @@ namespace stf::math
             }
 
             /**
-             * @brief Cast a @ref col_proxy to a @ref vec
+             * @brief Convert a @ref col_proxy to a @ref vec
              * @return The column proxy as a vector
              */
             inline vec<T, N> as_vec() const { return static_cast<vec<T, N>>(*this); }
@@ -83,7 +131,50 @@ namespace stf::math
         };
 
         /**
-         * @brief A proxy class that gives access to a single row of a @ref mtx
+         * @brief A proxy struct that gives const access to a single row of a @ref mtx
+         */
+        struct const_row_proxy
+        {
+
+            /**
+             * @brief Construct from a @ref mtx const reference and a row index
+             * @param [in] _m
+             * @param [in] _r
+             */
+            const_row_proxy(mtx const& _m, size_t _r) : m(_m), r(_r) {}
+
+            /**
+             * @brief Const access to a single scalar in the row
+             * @param [in] j The index of the column
+             * @return A const reference to the scalar
+             */
+            inline T const& operator[](size_t j) const { return m.values[r + j * N]; }
+
+            /**
+             * @brief Conversion operator from a @ref const_row_proxy to a @ref vec
+             */
+            inline operator vec<T, N>() const
+            {
+                vec<T, N> vec;
+                for (size_t j = 0; j < N; ++j) { vec[j] = (*this)[j]; }
+                return vec;
+            }
+
+            /**
+             * @brief Convert a @ref const_row_proxy to a @ref vec
+             * @return The row proxy as a vector
+             */
+            inline vec<T, N> as_vec() const { return static_cast<vec<T, N>>(*this); }
+
+        private:
+
+            mtx const& m;
+            size_t r;
+
+        };
+
+        /**
+         * @brief A proxy struct that gives access to a single row of a @ref mtx
          */
         struct row_proxy
         {
@@ -121,7 +212,12 @@ namespace stf::math
             }
 
             /**
-             * @brief Cast a @ref row_proxy to a @ref vec
+             * @brief Conversion operator from a @ref row_proxy to a @ref const_row_proxy
+             */
+            inline operator const_row_proxy() const { return const_row_proxy(m, r); }
+
+            /**
+             * @brief Conversion operator from a @ref row_proxy to a @ref vec
              */
             inline operator vec<T, N>() const
             {
@@ -131,7 +227,7 @@ namespace stf::math
             }
 
             /**
-             * @brief Cast a @ref row_proxy to a @ref vec
+             * @brief Convert a @ref row_proxy to a @ref vec
              * @return The row proxy as a vector
              */
             inline vec<T, N> as_vec() const { return static_cast<vec<T, N>>(*this); }
@@ -200,7 +296,7 @@ namespace stf::math
          * @param [in] j The index of the column
          * @return A proxy class that gives const access to the column
          */
-        inline col_proxy const col(size_t const j) const { return col_proxy(const_cast<mtx&>(*this), j); }
+        inline const_col_proxy col(size_t const j) const { return const_col_proxy(*this, j); }
 
         /**
          * @brief Access to a single column of the matrix
@@ -214,7 +310,7 @@ namespace stf::math
          * @param [in] i The index of the row
          * @return A proxy class that gives const access to the row
          */
-        inline row_proxy const row(size_t const i) const { return row_proxy(const_cast<mtx&>(*this), i); }
+        inline const_row_proxy row(size_t const i) const { return const_row_proxy(*this, i); }
 
         /**
          * @brief Access to a single row of the matrix
@@ -228,7 +324,7 @@ namespace stf::math
          * @param [in] i The index of the row
          * @return A proxy class that gives const access to the row
          */
-        inline row_proxy const operator[](size_t const i) const { return row(i); }
+        inline const_row_proxy operator[](size_t const i) const { return row(i); }
 
         /**
          * @brief Access to a single row of the matrix
@@ -560,7 +656,7 @@ namespace stf::math
      * @return Whether or not @p lhs and @p rhs are approximately equal
      */
     template<typename T, size_t N>
-    inline bool const operator==(mtx<T, N> const& lhs, mtx<T, N> const& rhs)
+    inline bool operator==(mtx<T, N> const& lhs, mtx<T, N> const& rhs)
     {
         vec<T, N * N> lhs_as_vec = vec<T, N * N>(lhs.values);
         vec<T, N * N> rhs_as_vec = vec<T, N * N>(rhs.values);
@@ -576,7 +672,7 @@ namespace stf::math
      * @return Whether or not @p lhs and @p rhs are approximately not equal
      */
     template<typename T, size_t N>
-    inline bool const operator!=(mtx<T, N> const& lhs, mtx<T, N> const& rhs)
+    inline bool operator!=(mtx<T, N> const& lhs, mtx<T, N> const& rhs)
     {
         return !(lhs == rhs);
     }
@@ -590,7 +686,7 @@ namespace stf::math
      * @return The matrix result of the product between @p lhs and @p rhs
      */
     template<typename T, size_t N>
-    inline mtx<T, N> const operator*(mtx<T, N> const& lhs, mtx<T, N> const& rhs)
+    inline mtx<T, N> operator*(mtx<T, N> const& lhs, mtx<T, N> const& rhs)
     {
         return mtx<T, N>(lhs) *= rhs;
     }
@@ -604,7 +700,7 @@ namespace stf::math
      * @return The column vector result of the product between @p lhs and @p rhs
      */
     template<typename T, size_t N>
-    inline vec<T, N> const operator*(mtx<T, N> const& lhs, vec<T, N> const& rhs)
+    inline vec<T, N> operator*(mtx<T, N> const& lhs, vec<T, N> const& rhs)
     {
         vec<T, N> result;
         for (size_t j = 0; j < N; ++j)
@@ -623,7 +719,7 @@ namespace stf::math
      * @return The rwo vector result of the product between @p lhs and @p rhs
      */
     template<typename T, size_t N>
-    inline vec<T, N> const operator*(vec<T, N> const& lhs, mtx<T, N> const& rhs)
+    inline vec<T, N> operator*(vec<T, N> const& lhs, mtx<T, N> const& rhs)
     {
         vec<T, N> result;
         for (size_t i = 0; i < N; ++i)
@@ -642,7 +738,7 @@ namespace stf::math
      * @return The matrix @p rhs scaled by @p lhs
      */
     template<typename T, size_t N>
-    inline mtx<T, N> const operator*(T const lhs, mtx<T, N> const& rhs)
+    inline mtx<T, N> operator*(T const lhs, mtx<T, N> const& rhs)
     {
         return mtx<T, N>(rhs) *= lhs;
     }
@@ -656,7 +752,7 @@ namespace stf::math
      * @return The matrix @p lhs scaled by @p rhs
      */
     template<typename T, size_t N>
-    inline mtx<T, N> const operator*(mtx<T, N> const& lhs, T const rhs)
+    inline mtx<T, N> operator*(mtx<T, N> const& lhs, T const rhs)
     {
         return rhs * lhs;
     }

@@ -11,8 +11,8 @@ namespace stf::math::scaffolding::spherical
     template<typename T>
     struct conversion
     {
-        T const radians;
-        T const degrees;
+        T radians;
+        T degrees;
     };
 
     template<typename T>
@@ -25,8 +25,8 @@ namespace stf::math::scaffolding::spherical
     template<typename T>
     struct canonical_angle
     {
-        T const radians;
-        T const expected;
+        T radians;
+        T expected;
     };
 
     template<typename T>
@@ -38,9 +38,9 @@ namespace stf::math::scaffolding::spherical
     template<typename T>
     struct closest_equiv_angle
     {
-        T const phi;
-        T const theta;
-        T const expected;
+        T phi;
+        T theta;
+        T expected;
     };
 
     template<typename T>
@@ -53,9 +53,9 @@ namespace stf::math::scaffolding::spherical
     template<typename T>
     struct counterclockwise_angle
     {
-        vec2<T> const u;
-        vec2<T> const v;
-        T const theta;
+        vec2<T> u;
+        vec2<T> v;
+        T theta;
     };
 
     template<typename T>
@@ -67,8 +67,8 @@ namespace stf::math::scaffolding::spherical
     template<typename T>
     struct unit_vec2
     {
-        T const theta;
-        math::vec<T, 2> const expected;
+        T theta;
+        math::vec<T, 2> expected;
     };
 
     template<typename T>
@@ -80,10 +80,10 @@ namespace stf::math::scaffolding::spherical
     template<typename T>
     struct to_euclidean
     {
-        T const radius;
-        T const theta;
-        T const phi;
-        math::vec<T, 3> const expected;
+        T radius;
+        T theta;
+        T phi;
+        math::vec<T, 3> expected;
     };
 
     template<typename T>

@@ -206,7 +206,7 @@ namespace stf::cam
      * @return Whether or not @p lhs and @p rhs are closer than @p eps
      */
     template<typename T>
-    inline bool const equ(scamera<T> const& lhs, scamera<T> const& rhs, T eps)
+    inline bool equ(scamera<T> const& lhs, scamera<T> const& rhs, T eps)
     {
         return equ(lhs.eye, rhs.eye, eps)
                 && math::equ(lhs.theta, rhs.theta, eps)
@@ -227,7 +227,7 @@ namespace stf::cam
      * @return Whether or not @p lhs and @p rhs are further apart than @p eps
      */
     template<typename T>
-    inline bool const neq(scamera<T> const& lhs, scamera<T> const& rhs, T eps)
+    inline bool neq(scamera<T> const& lhs, scamera<T> const& rhs, T eps)
     {
         return !equ(lhs, rhs, eps);
     }
@@ -241,7 +241,7 @@ namespace stf::cam
      * @return Whether or not @p lhs and @p rhs are approximately equal
      */
     template<typename T>
-    inline bool const operator==(scamera<T> const& lhs, scamera<T> const& rhs)
+    inline bool operator==(scamera<T> const& lhs, scamera<T> const& rhs)
     {
         return equ(lhs, rhs, math::constants<T>::tol);
     }
@@ -255,7 +255,7 @@ namespace stf::cam
      * @return Whether or not @p lhs and @p rhs are approximately not equal
      */
     template<typename T>
-    inline bool const operator!=(scamera<T> const& lhs, scamera<T> const& rhs)
+    inline bool operator!=(scamera<T> const& lhs, scamera<T> const& rhs)
     {
         return !(lhs == rhs);
     }

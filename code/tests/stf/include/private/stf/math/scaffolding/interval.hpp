@@ -10,9 +10,9 @@ namespace stf::math::scaffolding::interval
     template<typename T>
     struct contains_point
     {
-        math::interval<T> const interval;
-        boundary_types const type;
-        T const x;
+        math::interval<T> interval;
+        boundary_types type;
+        T x;
         bool contained;
     };
 

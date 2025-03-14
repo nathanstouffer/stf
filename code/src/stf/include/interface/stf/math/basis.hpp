@@ -29,7 +29,7 @@ namespace stf::math
      * @return The canonical basis of R^n
      */
     template<typename T, size_t N>
-    basis<T, N> const canonical_basis()
+    basis<T, N> canonical_basis()
     {
         basis<T, N> ret;
         for (size_t d = 0; d < N; ++d)
@@ -48,7 +48,7 @@ namespace stf::math
      * @note @p rotation is assumed to be orthonormal
      */
     template<typename T, size_t N>
-    basis<T, N> const to_basis(mtx<T, N> const& rotation)
+    basis<T, N> to_basis(mtx<T, N> const& rotation)
     {
         basis<T, N> ret;
         for (size_t d = 0; d < N; ++d)

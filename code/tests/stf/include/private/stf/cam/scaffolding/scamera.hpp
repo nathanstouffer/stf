@@ -11,10 +11,10 @@ namespace stf::cam::scaffolding::scamera
     template<typename T>
     struct direction_vectors
     {
-        cam::scamera<T> const camera;
-        math::vec3<T> const look;
-        math::vec3<T> const up;
-        math::vec3<T> const right;
+        cam::scamera<T> camera;
+        math::vec3<T> look;
+        math::vec3<T> up;
+        math::vec3<T> right;
     };
 
     template<typename T>
@@ -28,11 +28,11 @@ namespace stf::cam::scaffolding::scamera
     template<typename T>
     struct orbit
     {
-        cam::scamera<T> const initial;
-        math::vec3<T> const focus;
-        T const delta_phi;
-        T const delta_theta;
-        cam::scamera<T> const expected;
+        cam::scamera<T> initial;
+        math::vec3<T> focus;
+        T delta_phi;
+        T delta_theta;
+        cam::scamera<T> expected;
     };
 
     template<typename T>
