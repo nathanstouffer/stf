@@ -32,7 +32,7 @@ namespace stf::math
              * @param [in] _m
              * @param [in] _c
              */
-            col_proxy(mtx const& _m, size_t _c) : m(_m), c(_c) {}
+            const_col_proxy(mtx const& _m, size_t _c) : m(_m), c(_c) {}
 
             /**
              * @brief Const access to a single scalar in the column
@@ -105,7 +105,7 @@ namespace stf::math
             /**
              * @brief Conversion operator from a @ref col_proxy to a @ref const_col_proxy
              */
-            inline operator vec<T, N>() const { return const_col_proxy(m, c); }
+            inline operator const_col_proxy() const { return const_col_proxy(m, c); }
 
             /**
              * @brief Conversion operator from a @ref col_proxy to a @ref vec
