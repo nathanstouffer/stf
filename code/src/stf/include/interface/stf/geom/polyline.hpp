@@ -160,7 +160,7 @@ namespace stf::geom
          * @param [in] point
          * @return The distance between @p this and @p point
          */
-        inline T const dist(vec_t const& point) const { return std::sqrt(dist_squared(point)); }
+        inline T dist(vec_t const& point) const { return std::sqrt(dist_squared(point)); }
 
         /**
          * @brief Interpolate along a @ref polyline
@@ -295,7 +295,7 @@ namespace stf::geom
      * @return The square of the distance between @p linestring and @p point
      */
     template<typename T, size_t N>
-    inline T const dist_squared(polyline<T, N> const& linestring, math::vec<T, N> const& point)
+    inline T dist_squared(polyline<T, N> const& linestring, math::vec<T, N> const& point)
     {
         return linestring.dist_squared(point);
     }
@@ -309,7 +309,7 @@ namespace stf::geom
      * @return The square of the distance between @p point and @p linestring
      */
     template<typename T, size_t N>
-    inline T const dist_squared(math::vec<T, N> const& point, polyline<T, N> const& linestring)
+    inline T dist_squared(math::vec<T, N> const& point, polyline<T, N> const& linestring)
     {
         return dist_squared(linestring, point);
     }
@@ -323,7 +323,7 @@ namespace stf::geom
      * @return The distance between @p linestring and @p point
      */
     template<typename T, size_t N>
-    inline T const dist(polyline<T, N> const& linestring, math::vec<T, N> const& point)
+    inline T dist(polyline<T, N> const& linestring, math::vec<T, N> const& point)
     {
         return linestring.dist(point);
     }
@@ -337,7 +337,7 @@ namespace stf::geom
      * @return The distance between @p point and @p linestring
      */
     template<typename T, size_t N>
-    inline T const dist(math::vec<T, N> const& point, polyline<T, N> const& linestring)
+    inline T dist(math::vec<T, N> const& point, polyline<T, N> const& linestring)
     {
         return dist(linestring, point);
     }

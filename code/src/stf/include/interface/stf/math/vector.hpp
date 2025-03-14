@@ -783,7 +783,7 @@ namespace stf::math
      * @return The square of the distance between @p lhs and @p rhs
      */
     template<typename T, size_t N>
-    inline T const dist_squared(vec<T, N> const& lhs, vec<T, N> const& rhs)
+    inline T dist_squared(vec<T, N> const& lhs, vec<T, N> const& rhs)
     {
         return (lhs - rhs).length_squared();
     }
@@ -797,7 +797,7 @@ namespace stf::math
      * @return The distance between @p lhs and @p rhs
      */
     template<typename T, size_t N>
-    inline T const dist(vec<T, N> const& lhs, vec<T, N> const& rhs)
+    inline T dist(vec<T, N> const& lhs, vec<T, N> const& rhs)
     {
         return (lhs - rhs).length();
     }

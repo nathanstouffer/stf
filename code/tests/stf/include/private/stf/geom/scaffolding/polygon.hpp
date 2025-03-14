@@ -54,7 +54,7 @@ namespace stf::geom::scaffolding::polygon
     {
         geom::polygon<T> const polygon;
         math::vec2<T> const query;
-        T const signed_distance;
+        T signed_distance;
     };
 
     template<typename T>

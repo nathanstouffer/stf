@@ -25,7 +25,7 @@ namespace stf::geom::scaffolding::polyline
     {
         geom::polyline<T, N> const polyline;
         math::vec<T, N> const point;
-        T const dist_squared;
+        T dist_squared;
     };
 
     template<typename T, size_t N>

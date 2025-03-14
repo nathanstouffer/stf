@@ -12,7 +12,7 @@ namespace stf::geom::scaffolding::segment
     {
         geom::segment<T, N> const seg;
         math::vec<T, N> const point;
-        T const dist_squared;
+        T dist_squared;
     };
 
     template<typename T, size_t N>

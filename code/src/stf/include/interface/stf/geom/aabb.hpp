@@ -120,20 +120,20 @@ namespace stf::geom
          * @brief Compute the diagonal of an @ref aabb
          * @return The diagonal vector of @p this
          */
-        inline vec_t const diagonal() const { return max - min; }
+        inline vec_t diagonal() const { return max - min; }
 
         /**
          * @brief Compute the center of an @ref aabb
          * @return The center point of @p this
          */
-        inline vec_t const center() const { return min + (math::constants<T>::half * diagonal()); }
+        inline vec_t center() const { return min + (math::constants<T>::half * diagonal()); }
 
         /**
          * @brief Compute whether a point is contained in an @ref aabb
          * @param [in] x
          * @return Whether or not @p x is contained in @p this
          */
-        bool const contains(vec_t const& x) const
+        bool contains(vec_t const& x) const
         {
             for (size_t i = 0; i < N; ++i)
             {
@@ -148,7 +148,7 @@ namespace stf::geom
          * @param [in] rhs
          * @return Whether or not @p rhs is contained in @p this
          */
-        bool const contains(aabb const& rhs) const
+        bool contains(aabb const& rhs) const
         {
             for (size_t i = 0; i < N; ++i)
             {
@@ -163,7 +163,7 @@ namespace stf::geom
          * @param [in] rhs
          * @return Whether or not @p this and @p rhs intersect
          */
-        bool const intersects(aabb const& rhs) const
+        bool intersects(aabb const& rhs) const
         {
             for (size_t i = 0; i < N; ++i)
             {
@@ -177,7 +177,7 @@ namespace stf::geom
          * @brief Compute the volume of a @ref aabb
          * @return The volume of @p this
          */
-        T const volume() const
+        T volume() const
         {
             T const delta = diagonal();
             T measure = math::constants<T>::one;
@@ -206,7 +206,7 @@ namespace stf::geom
          * @param [in] point
          * @return The square of the distance between @p this and @p point
          */
-        T const dist_squared(vec_t const& point) const
+        T dist_squared(vec_t const& point) const
         {
             if (contains(point))
             {
@@ -223,7 +223,7 @@ namespace stf::geom
          * @param [in] point
          * @return The distance between @p this and @p point
          */
-        inline T const dist(vec_t const& point) const { return std::sqrt(dist_squared(point)); }
+        inline T dist(vec_t const& point) const { return std::sqrt(dist_squared(point)); }
 
         /**
          * @brief Scale an @ref aabb in place
@@ -347,7 +347,7 @@ namespace stf::geom
          * @brief Compute the number of vertices of the aabb
          * @return The number of vertices
          */
-        inline static size_t const vertex_count() { return 1 << N; }
+        inline static size_t vertex_count() { return 1 << N; }
 
         /**
          * @brief Compute the number of bytes allocated by @ref aabb
@@ -385,7 +385,7 @@ namespace stf::geom
      * @return A new bounding box that minimally encompasses @p lhs and @p rhs
      */
     template<typename T, size_t N>
-    aabb<T, N> const fit(aabb<T, N> const& lhs, aabb<T, N> const& rhs)
+    aabb<T, N> fit(aabb<T, N> const& lhs, aabb<T, N> const& rhs)
     {
         return aabb<T, N>(lhs).fit(rhs);
     }
@@ -399,7 +399,7 @@ namespace stf::geom
      * @return The square of the distance between @p box and @p point
      */
     template<typename T, size_t N>
-    inline T const dist_squared(aabb<T, N> const& box, math::vec<T, N> const& point)
+    inline T dist_squared(aabb<T, N> const& box, math::vec<T, N> const& point)
     {
         return box.dist_squared(point);
     }
@@ -413,7 +413,7 @@ namespace stf::geom
      * @return The square of the distance between @p point and @p box
      */
     template<typename T, size_t N>
-    inline T const dist_squared(math::vec<T, N> const& point, aabb<T, N> const& box)
+    inline T dist_squared(math::vec<T, N> const& point, aabb<T, N> const& box)
     {
         return dist_squared(box, point);
     }
@@ -427,7 +427,7 @@ namespace stf::geom
      * @return The distance between @p box and @p point
      */
     template<typename T, size_t N>
-    inline T const dist(aabb<T, N> const& box, math::vec<T, N> const& point)
+    inline T dist(aabb<T, N> const& box, math::vec<T, N> const& point)
     {
         return box.dist(point);
     }
@@ -441,7 +441,7 @@ namespace stf::geom
      * @return The distance between @p point and @p box
      */
     template<typename T, size_t N>
-    inline T const dist(math::vec<T, N> const& point, aabb<T, N> const& box)
+    inline T dist(math::vec<T, N> const& point, aabb<T, N> const& box)
     {
         return dist(box, point);
     }

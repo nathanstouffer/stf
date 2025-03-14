@@ -13,7 +13,7 @@ namespace stf::geom::scaffolding::ray
     {
         geom::ray<T, N> const beam;
         math::vec<T, N> const point;
-        T const dist_squared;
+        T dist_squared;
     };
 
     template<typename T, size_t N>
