@@ -10,9 +10,9 @@ namespace stf::geom::scaffolding::segment
     template<typename T, size_t N>
     struct dist_and_dist_squared
     {
-        geom::segment<T, N> const seg;
-        math::vec<T, N> const point;
-        T const dist_squared;
+        geom::segment<T, N> seg;
+        math::vec<T, N> point;
+        T dist_squared;
     };
 
     template<typename T, size_t N>
@@ -29,9 +29,9 @@ namespace stf::geom::scaffolding::segment
     template<typename T, size_t N>
     struct interpolate
     {
-        geom::segment<T, N> const seg;
-        T const t;
-        math::vec<T, N> const point;
+        geom::segment<T, N> seg;
+        T t;
+        math::vec<T, N> point;
     };
 
     template<typename T, size_t N>

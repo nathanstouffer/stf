@@ -134,7 +134,7 @@ namespace stf::geom
      * @return The distance between @p plane and @p point
      */
     template<typename T, size_t N>
-    inline T const dist(hyperplane<T, N> const& plane, math::vec<T, N> const& point)
+    inline T dist(hyperplane<T, N> const& plane, math::vec<T, N> const& point)
     {
         return plane.dist(point);
     }
@@ -148,7 +148,7 @@ namespace stf::geom
      * @return The distance between @p point and @p plane
      */
     template<typename T, size_t N>
-    inline T const dist(math::vec<T, N> const& point, hyperplane<T, N> const& plane)
+    inline T dist(math::vec<T, N> const& point, hyperplane<T, N> const& plane)
     {
         return dist(plane, point);
     }
@@ -162,7 +162,7 @@ namespace stf::geom
      * @return The distance between @p ring and @p point
      */
     template<typename T, size_t N>
-    inline T const signed_dist(hyperplane<T, N> const& plane, math::vec<T, N> const& point)
+    inline T signed_dist(hyperplane<T, N> const& plane, math::vec<T, N> const& point)
     {
         return plane.signed_dist(point);
     }
@@ -176,7 +176,7 @@ namespace stf::geom
      * @return The distance between @p point and @p plane
      */
     template<typename T, size_t N>
-    inline T const signed_dist(math::vec<T, N> const& point, hyperplane<T, N> const& plane)
+    inline T signed_dist(math::vec<T, N> const& point, hyperplane<T, N> const& plane)
     {
         return signed_dist(plane, point);
     }

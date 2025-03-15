@@ -11,10 +11,10 @@ namespace stf::alg::scaffolding::tessellation
     template<typename T>
     struct polyline_via_length
     {
-        geom::polyline2<T> const polyline;
-        T const max_len;
-        bool const loop;
-        std::vector<math::vec2<T>> const expected;
+        geom::polyline2<T> polyline;
+        T max_len;
+        bool loop;
+        std::vector<math::vec2<T>> expected;
     };
 
     template<typename T>

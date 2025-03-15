@@ -178,7 +178,7 @@ namespace stf::gfx
      * @param [in] eps The epsilon distance to use when computating approximate equality
      * @return Whether or not @p lhs and @p rhs are closer than @p eps
      */
-    inline bool const equ(rgba const& lhs, rgba const& rhs, float eps)
+    inline bool equ(rgba const& lhs, rgba const& rhs, float eps)
     {
         return equ(static_cast<math::vec4<float>>(lhs), static_cast<math::vec4<float>>(rhs), eps);
     }
@@ -190,7 +190,7 @@ namespace stf::gfx
      * @param [in] eps The epsilon distance to use when computating approximate equality
      * @return Whether or not @p lhs and @p rhs are further apart than @p eps
      */
-    inline bool const neq(rgba const& lhs, rgba const& rhs, float eps)
+    inline bool neq(rgba const& lhs, rgba const& rhs, float eps)
     {
         return !equ(lhs, rhs, eps);
     }
@@ -201,7 +201,7 @@ namespace stf::gfx
      * @param [in] rhs
      * @return Whether or not @p lhs and @p rhs are approximately equal
      */
-    inline bool const operator==(rgba const& lhs, rgba const& rhs)
+    inline bool operator==(rgba const& lhs, rgba const& rhs)
     {
         return equ(lhs, rhs, math::constants<float>::tol);
     }
@@ -212,7 +212,7 @@ namespace stf::gfx
      * @param [in] rhs
      * @return Whether or not @p lhs and @p rhs are approximately not equal
      */
-    inline bool const operator!=(rgba const& lhs, rgba const& rhs)
+    inline bool operator!=(rgba const& lhs, rgba const& rhs)
     {
         return !(lhs == rhs);
     }

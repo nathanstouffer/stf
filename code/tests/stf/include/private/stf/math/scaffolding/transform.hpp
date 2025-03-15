@@ -11,9 +11,9 @@ namespace stf::math::scaffolding::transform
     template<typename T>
     struct rotate2
     {
-        math::vec<T, 2> const initial;
-        T const delta_theta;
-        math::vec<T, 2> const expected;
+        math::vec<T, 2> initial;
+        T delta_theta;
+        math::vec<T, 2> expected;
     };
 
     template<typename T>
@@ -26,10 +26,10 @@ namespace stf::math::scaffolding::transform
     template<typename T>
     struct orbit2
     {
-        math::vec<T, 2> const initial;
-        math::vec<T, 2> const focus;
-        T const delta_theta;
-        math::vec<T, 2> const expected;
+        math::vec<T, 2> initial;
+        math::vec<T, 2> focus;
+        T delta_theta;
+        math::vec<T, 2> expected;
     };
 
     template<typename T>
@@ -41,10 +41,10 @@ namespace stf::math::scaffolding::transform
     template<typename T>
     struct rotate3
     {
-        math::vec<T, 3> const initial;
-        math::vec<T, 3> const axis;
-        T const delta_theta;
-        math::vec<T, 3> const expected;
+        math::vec<T, 3> initial;
+        math::vec<T, 3> axis;
+        T delta_theta;
+        math::vec<T, 3> expected;
     };
 
     template<typename T>
@@ -58,12 +58,12 @@ namespace stf::math::scaffolding::transform
     template<typename T>
     struct orbit3
     {
-        math::vec<T, 3> const initial;
-        math::vec<T, 3> const focus;
-        math::vec<T, 3> const right;
-        T const delta_phi;
-        T const delta_theta;
-        math::vec<T, 3> const expected;
+        math::vec<T, 3> initial;
+        math::vec<T, 3> focus;
+        math::vec<T, 3> right;
+        T delta_phi;
+        T delta_theta;
+        math::vec<T, 3> expected;
     };
 
     template<typename T>

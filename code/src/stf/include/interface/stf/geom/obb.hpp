@@ -120,7 +120,7 @@ namespace stf::geom
          * @param [in] point
          * @return Whether or not @p point is contained in @p this
          */
-        bool const contains(vec_t const& point) const
+        bool contains(vec_t const& point) const
         {
             for (size_t d = 0; d < N; ++d)
             {
@@ -139,7 +139,7 @@ namespace stf::geom
          * @param [in] rhs
          * @return Whether or not @p rhs is contained in @p this
          */
-        bool const contains(obb const& rhs) const
+        bool contains(obb const& rhs) const
         {
             for (size_t v = 0; v < obb::vertex_count(); ++v)
             {
@@ -175,8 +175,8 @@ namespace stf::geom
                 T& half_extent = m_half_extents[d];
                 if (std::abs(l) > half_extent)
                 {
-                    vec_t min = (l < -half_extent) ? m_center + l * basis : m_center - half_extent * basis;
-                    vec_t max = (l >  half_extent) ? m_center + l * basis : m_center + half_extent * basis;
+                    vec_t min = m_center + std::min(l, -half_extent) * basis;
+                    vec_t max = m_center + std::max(l,  half_extent) * basis;
                     m_center = math::constants<T>::half * (min + max);
                     half_extent = std::abs(math::dot(point - m_center, basis));
                 }
@@ -219,7 +219,7 @@ namespace stf::geom
          * @param [in] points
          * @return An @ref obb that minimally encompasses @p points
          */
-        static obb const fit(basis_t const& basis, std::vector<vec_t> const& points)
+        static obb fit(basis_t const& basis, std::vector<vec_t> const& points)
         {
             obb box = obb(basis);
             for (vec_t const& point : points)
@@ -233,13 +233,13 @@ namespace stf::geom
          * @brief Compute the number of vertices of the obb
          * @return The number of vertices
          */
-        inline static size_t const vertex_count() { return 1 << N; }
+        inline static size_t vertex_count() { return 1 << N; }
 
         /**
          * @brief Compute the number of bytes allocated by @ref obb
          * @return The byte count
          */
-        inline static size_t const byte_count() { return (2 + N) * vec_t::byte_count(); }
+        inline static size_t byte_count() { return (2 + N) * vec_t::byte_count(); }
 
     private:
 
@@ -279,7 +279,7 @@ namespace stf::geom
      * @note @p axis is assumed to be a unit vector
      */
     template<typename T, size_t N>
-    bool const separates(math::vec<T, N> const& axis, obb<T, N> const& lhs, obb<T, N> const& rhs)
+    bool separates(math::vec<T, N> const& axis, obb<T, N> const& lhs, obb<T, N> const& rhs)
     {
         math::interval<T> l = lhs.projection(axis);
         math::interval<T> r = rhs.projection(axis);
@@ -294,7 +294,7 @@ namespace stf::geom
      * @return Whether or not @p lhs intersects @p rhs
      */
     template<typename T>
-    bool const intersect(obb2<T> const& lhs, obb2<T> const& rhs)
+    bool intersect(obb2<T> const& lhs, obb2<T> const& rhs)
     {
         // intersection is computed using the separating axis test. if two 2d obbs do not intersect, then the set of edge
         // normals will contain a separating axis
@@ -323,7 +323,7 @@ namespace stf::geom
      * @return Whether or not @p lhs intersects @p rhs
      */
     template<typename T>
-    bool const intersect(obb3<T> const& lhs, obb3<T> const& rhs)
+    bool intersect(obb3<T> const& lhs, obb3<T> const& rhs)
     {
         // intersection is computed using the separating axis test. if two 3d obbs do not intersect, then the union of the
         // following two sets will contain a separating axis

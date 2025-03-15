@@ -10,8 +10,8 @@ namespace stf::geom::scaffolding::polyline
     template<typename T, size_t N>
     struct length
     {
-        geom::polyline<T, N> const polyline;
-        T const len;
+        geom::polyline<T, N> polyline;
+        T len;
     };
 
     template<typename T, size_t N>
@@ -23,9 +23,9 @@ namespace stf::geom::scaffolding::polyline
     template<typename T, size_t N>
     struct dist_and_dist_squared
     {
-        geom::polyline<T, N> const polyline;
-        math::vec<T, N> const point;
-        T const dist_squared;
+        geom::polyline<T, N> polyline;
+        math::vec<T, N> point;
+        T dist_squared;
     };
 
     template<typename T, size_t N>
@@ -43,9 +43,9 @@ namespace stf::geom::scaffolding::polyline
     template<typename T, size_t N>
     struct interpolate
     {
-        geom::polyline<T, N> const polyline;
-        T const t;
-        math::vec<T, N> const point;
+        geom::polyline<T, N> polyline;
+        T t;
+        math::vec<T, N> point;
     };
 
     template<typename T, size_t N>

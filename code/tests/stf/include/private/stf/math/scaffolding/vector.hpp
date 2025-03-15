@@ -10,8 +10,8 @@ namespace stf::math::scaffolding::vec
     template<typename T, size_t N>
     struct equality
     {
-        math::vec<T, N> const lhs;
-        math::vec<T, N> const rhs;
+        math::vec<T, N> lhs;
+        math::vec<T, N> rhs;
         bool equal;
     };
 
@@ -37,8 +37,8 @@ namespace stf::math::scaffolding::vec
     template<typename T, size_t N>
     struct read
     {
-        math::vec<T, N> const lhs;
-        T const expected[N];
+        math::vec<T, N> lhs;
+        T expected[N];
     };
 
     template<typename T, size_t N>
@@ -83,9 +83,9 @@ namespace stf::math::scaffolding::vec
     template<typename T, size_t N>
     struct write
     {
-        math::vec<T, N> const initial;
-        size_t const index;
-        T const value;
+        math::vec<T, N> initial;
+        size_t index;
+        T value;
     };
 
     template<typename T, size_t N>
@@ -99,9 +99,9 @@ namespace stf::math::scaffolding::vec
     template<typename T, size_t N>
     struct add
     {
-        math::vec<T, N> const lhs;
-        math::vec<T, N> const rhs;
-        math::vec<T, N> const expected;
+        math::vec<T, N> lhs;
+        math::vec<T, N> rhs;
+        math::vec<T, N> expected;
     };
 
     template<typename T, size_t N>
@@ -117,9 +117,9 @@ namespace stf::math::scaffolding::vec
     template<typename T, size_t N>
     struct subtract
     {
-        math::vec<T, N> const lhs;
-        math::vec<T, N> const rhs;
-        math::vec<T, N> const expected;
+        math::vec<T, N> lhs;
+        math::vec<T, N> rhs;
+        math::vec<T, N> expected;
     };
 
     template<typename T, size_t N>
@@ -135,9 +135,9 @@ namespace stf::math::scaffolding::vec
     template<typename T, size_t N>
     struct scale
     {
-        math::vec<T, N> const initial;
-        T const scalar;
-        math::vec<T, N> const expected;
+        math::vec<T, N> initial;
+        T scalar;
+        math::vec<T, N> expected;
     };
 
     template<typename T, size_t N>
@@ -152,9 +152,9 @@ namespace stf::math::scaffolding::vec
     template<typename T, size_t N>
     struct dot
     {
-        math::vec<T, N> const lhs;
-        math::vec<T, N> const rhs;
-        T const expected;
+        math::vec<T, N> lhs;
+        math::vec<T, N> rhs;
+        T expected;
     };
 
     template<typename T, size_t N>
@@ -169,8 +169,8 @@ namespace stf::math::scaffolding::vec
     template<typename T, size_t N>
     struct length
     {
-        math::vec<T, N> const initial;
-        T const expected;
+        math::vec<T, N> initial;
+        T expected;
     };
 
     template<typename T, size_t N>
@@ -182,8 +182,8 @@ namespace stf::math::scaffolding::vec
     template<typename T, size_t N>
     struct normalize
     {
-        math::vec<T, N> const initial;
-        math::vec<T, N> const expected;
+        math::vec<T, N> initial;
+        math::vec<T, N> expected;
     };
 
     template<typename T, size_t N>
@@ -197,7 +197,7 @@ namespace stf::math::scaffolding::vec
     template<typename T, typename U, size_t N>
     struct cast
     {
-        math::vec<T, N> const initial;
+        math::vec<T, N> initial;
     };
 
     template<typename T, typename U, size_t N>
@@ -213,7 +213,7 @@ namespace stf::math::scaffolding::vec
     template<typename T, size_t N>
     struct negate
     {
-        math::vec<T, N> const initial;
+        math::vec<T, N> initial;
     };
 
     template<typename T, size_t N>
@@ -229,9 +229,9 @@ namespace stf::math::scaffolding::vec
     template<typename T, size_t N>
     struct binary_op
     {
-        math::vec<T, N> const lhs;
-        math::vec<T, N> const rhs;
-        math::vec<T, N> const expected;
+        math::vec<T, N> lhs;
+        math::vec<T, N> rhs;
+        math::vec<T, N> expected;
     };
 
 } // stf::math::scaffolding::vec

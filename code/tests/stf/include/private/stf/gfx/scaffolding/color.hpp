@@ -9,8 +9,8 @@ namespace stf::gfx::scaffolding::color
 
     struct rgba_equality
     {
-        rgba const lhs;
-        rgba const rhs;
+        rgba lhs;
+        rgba rhs;
         bool equal;
     };
 
@@ -34,10 +34,10 @@ namespace stf::gfx::scaffolding::color
 
     struct rgba_hex_conversion
     {
-        uint32_t const hex_rgba;
-        uint32_t const hex_abgr;
-        uint32_t const hex_argb;
-        rgba const color;
+        uint32_t hex_rgba;
+        uint32_t hex_abgr;
+        uint32_t hex_argb;
+        rgba color;
     };
 
     void verify(rgba_hex_conversion const& test)

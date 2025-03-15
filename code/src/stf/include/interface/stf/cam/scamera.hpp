@@ -181,10 +181,18 @@ namespace stf::cam
          * @return The perspective projection matrix for @p this
          */
         mtx_t perspective() const { return math::perspective<T>(fov, aspect, near, far); }
-        
-        // @todo write these matrix methods
-        // mtx_t inv_view() const;
-        // mtx_t inv_proj() const;
+
+        /**
+         * @brief Compute the inverse of the view matrix for the scamera
+         * @return The inverse of the view matrix for @p this
+         */
+        mtx_t inv_view() const { return view().inverted(); }
+
+        /**
+         * @brief Compute the inverse of the perspective projection matrix for the scamera
+         * @return The inverse of the perspective projection matrix for @p this
+         */
+        mtx_t inv_perspective() const { perspective().inverted(); }
 
     };
 
@@ -198,7 +206,7 @@ namespace stf::cam
      * @return Whether or not @p lhs and @p rhs are closer than @p eps
      */
     template<typename T>
-    inline bool const equ(scamera<T> const& lhs, scamera<T> const& rhs, T eps)
+    inline bool equ(scamera<T> const& lhs, scamera<T> const& rhs, T eps)
     {
         return equ(lhs.eye, rhs.eye, eps)
                 && math::equ(lhs.theta, rhs.theta, eps)
@@ -219,7 +227,7 @@ namespace stf::cam
      * @return Whether or not @p lhs and @p rhs are further apart than @p eps
      */
     template<typename T>
-    inline bool const neq(scamera<T> const& lhs, scamera<T> const& rhs, T eps)
+    inline bool neq(scamera<T> const& lhs, scamera<T> const& rhs, T eps)
     {
         return !equ(lhs, rhs, eps);
     }
@@ -233,7 +241,7 @@ namespace stf::cam
      * @return Whether or not @p lhs and @p rhs are approximately equal
      */
     template<typename T>
-    inline bool const operator==(scamera<T> const& lhs, scamera<T> const& rhs)
+    inline bool operator==(scamera<T> const& lhs, scamera<T> const& rhs)
     {
         return equ(lhs, rhs, math::constants<T>::tol);
     }
@@ -247,7 +255,7 @@ namespace stf::cam
      * @return Whether or not @p lhs and @p rhs are approximately not equal
      */
     template<typename T>
-    inline bool const operator!=(scamera<T> const& lhs, scamera<T> const& rhs)
+    inline bool operator!=(scamera<T> const& lhs, scamera<T> const& rhs)
     {
         return !(lhs == rhs);
     }

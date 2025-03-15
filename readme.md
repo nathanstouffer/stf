@@ -17,3 +17,12 @@
 
 Unfortunately, the code coverage is a lie because the entire library is templated and an uninstantiated template (class or function) is not incoporated into coverage computations.
 Any uninstantiated code is necessarily uncovered so the coverage is over-estimated.
+
+## Attribution
+
+Many thanks to the open-source software that enables this project.
+
+* [cmake](https://cmake.org/)
+* [googletest](https://github.com/google/googletest.git)
+* [doxygen](https://www.doxygen.nl/)
+* [doxygen-awesome-css](https://github.com/jothepro/doxygen-awesome-css)
