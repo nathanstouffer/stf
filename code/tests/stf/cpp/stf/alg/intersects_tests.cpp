@@ -185,6 +185,17 @@ namespace stf::alg
     {
         std::vector<scaffolding::intersects::ray_with_plane<float>> tests =
         {
+            // ray that is a subset of plane
+            { stff::ray3(stff::vec3(), stff::vec3(1, 0, 0)), stff::plane(stff::vec3(), stff::vec3(0, 0, 1)), true },
+            { stff::ray3(stff::vec3(), stff::vec3(1, 1, 0)), stff::plane(stff::vec3(), stff::vec3(0, 0, 1)), true },
+            { stff::ray3(stff::vec3(), stff::vec3(0, 0, 1)), stff::plane(stff::vec3(), stff::vec3(1, 0, 0)), true },
+            // ray that is parallel to plane
+            { stff::ray3(stff::vec3(0, 0, 1), stff::vec3(1, 0, 0)), stff::plane(stff::vec3(), stff::vec3(0, 0, 1)), false },
+            { stff::ray3(stff::vec3(-1, 0, 0), stff::vec3(0, 0, 1)), stff::plane(stff::vec3(), stff::vec3(1, 0, 0)), false },
+            // ray is pointing towards plane, normal is pointing towards ray origin
+            // ray is pointing towards plane, normal is pointing away from ray origin
+            // ray is pointing away from plane, normal is pointing towards ray origin
+            // ray is pointing away from plane, normal is pointing towards ray origin
         };
 
         for (scaffolding::intersects::ray_with_plane<float> const& test : tests)
