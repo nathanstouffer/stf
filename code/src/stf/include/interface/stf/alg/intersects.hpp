@@ -310,6 +310,7 @@ namespace stf::alg
         {
             // we now know that the origin of the ray is not on plane and the ray is not parallel to the
             // plane. this means that both of the following values are non-zero
+            // TODO (stouff) make this block cleaner
             T const signed_dist = plane.signed_dist(ray.point);
             T const dot = ray.direction.dot(plane.normal());
 
