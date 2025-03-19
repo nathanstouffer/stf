@@ -3,7 +3,7 @@
 #include <optional>
 
 #include "stf/geom/ray.hpp"
-#include "stf/geom/sphere.hpp"
+#include "stf/geom/hyperplane.hpp"
 
 /**
  * @file intersection.hpp
@@ -21,7 +21,7 @@ namespace stf::alg
      * @return 
      */
     template<typename T>
-    inline bool intersection(geom::ray3<T> const& beam, geom::sphere<T> const& sphere)
+    inline std::optional<math::vec3<T>> intersection(geom::ray3<T> const& beam, geom::plane<T> const& plane)
     {
         
     }
