@@ -2,7 +2,7 @@ enable_testing()
 
 set(STF_TEST_FILES
     "${CMAKE_CURRENT_SOURCE_DIR}/cpp/stf/alg/clipping_tests.cpp"
-    "${CMAKE_CURRENT_SOURCE_DIR}/cpp/stf/alg/intersect_tests.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/cpp/stf/alg/intersects_tests.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/cpp/stf/alg/statistics_tests.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/cpp/stf/alg/tessellation_tests.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/cpp/stf/ds/indexed_list_tests.cpp"
@@ -32,7 +32,7 @@ set(STF_TEST_FILES
     "${CMAKE_CURRENT_SOURCE_DIR}/cpp/stf/math/vec5_tests.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/cpp/stf/spatial/interval_tree_tests.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/include/private/stf/alg/scaffolding/clipping.hpp"
-    "${CMAKE_CURRENT_SOURCE_DIR}/include/private/stf/alg/scaffolding/intersect.hpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/include/private/stf/alg/scaffolding/intersects.hpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/include/private/stf/alg/scaffolding/statistics.hpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/include/private/stf/alg/scaffolding/tessellation.hpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/include/private/stf/ds/scaffolding/indexed_list.hpp"

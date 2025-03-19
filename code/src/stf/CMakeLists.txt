@@ -2,7 +2,7 @@ set(STF_FILES
 	"${CMAKE_CURRENT_SOURCE_DIR}/include/interface/stf/alg/clipping.hpp"
 	"${CMAKE_CURRENT_SOURCE_DIR}/include/interface/stf/alg/containment.hpp"
 	"${CMAKE_CURRENT_SOURCE_DIR}/include/interface/stf/alg/intersect.hpp"
-	"${CMAKE_CURRENT_SOURCE_DIR}/include/interface/stf/alg/intersection.hpp"
+	"${CMAKE_CURRENT_SOURCE_DIR}/include/interface/stf/alg/intersects.hpp"
 	"${CMAKE_CURRENT_SOURCE_DIR}/include/interface/stf/alg/statistics.hpp"
 	"${CMAKE_CURRENT_SOURCE_DIR}/include/interface/stf/alg/tessellation.hpp"
 	"${CMAKE_CURRENT_SOURCE_DIR}/include/interface/stf/cam/frustum.hpp"
