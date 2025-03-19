@@ -195,6 +195,7 @@ namespace stf::alg
             // ray is pointing towards plane
             { stff::ray3(stff::vec3(0, 0, 10), stff::vec3(1, 1, -1)), stff::plane(stff::vec3(), stff::vec3(0, 0, 1)), true },
             // ray is pointing away from plane
+            { stff::ray3(stff::vec3(0, 0, 10), stff::vec3(1, 1, 1)), stff::plane(stff::vec3(), stff::vec3(0, 0, 1)), false },
         };
 
         for (scaffolding::intersects::ray_with_plane<float> const& test : tests)

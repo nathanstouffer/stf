@@ -308,9 +308,14 @@ namespace stf::alg
         }
         else
         {
-            // we now know that the ray is not a subset of the plane and it is not parallel to the plane
-            // TODO (stouff) finish this function
-            return false;
+            // we now know that the origin of the ray is not on plane and the ray is not parallel to the
+            // plane. this means that both of the following values are non-zero
+            T const signed_dist = plane.signed_dist(ray.point);
+            T const dot = ray.direction.dot(plane.normal());
+
+            bool const positive_signed_dist = signed_dist > math::constants<T>::zero;
+            bool const positive_dot = dot > math::constants<T>::zero;
+            return positive_signed_dist ^ positive_dot;
         }
     }
 
