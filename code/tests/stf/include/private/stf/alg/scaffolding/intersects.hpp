@@ -126,8 +126,13 @@ namespace stf::alg::scaffolding::intersects
     template<typename T>
     void verify(ray_with_plane<T> const& test)
     {
+        geom::plane<T> flipped = geom::plane<T>(test.plane.point(), -test.plane.normal());
+
         ASSERT_EQ(test.expected, alg::intersects(test.ray, test.plane)) << "Failed intersects(ray, plane)";
         ASSERT_EQ(test.expected, alg::intersects(test.plane, test.ray)) << "Failed intersects(plane, ray)";
+
+        ASSERT_EQ(test.expected, alg::intersects(test.ray, flipped)) << "Failed intersects(ray, flipped)";
+        ASSERT_EQ(test.expected, alg::intersects(flipped, test.ray)) << "Failed intersects(flipped, ray)";
     }
 
 } // stf::alg::scaffolding::intersection

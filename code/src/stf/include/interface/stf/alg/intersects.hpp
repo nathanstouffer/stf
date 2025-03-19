@@ -310,7 +310,7 @@ namespace stf::alg
         {
             // we now know that the ray is not a subset of the plane and it is not parallel to the plane
             // TODO (stouff) finish this function
-            return true;
+            return false;
         }
     }
 
