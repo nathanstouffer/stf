@@ -181,4 +181,16 @@ namespace stf::alg
         }
     }
 
+    TEST(intersects, ray_with_plane)
+    {
+        std::vector<scaffolding::intersects::ray_with_plane<float>> tests =
+        {
+        };
+
+        for (scaffolding::intersects::ray_with_plane<float> const& test : tests)
+        {
+            scaffolding::intersects::verify(test);
+        }
+    }
+
 } // stf::alg

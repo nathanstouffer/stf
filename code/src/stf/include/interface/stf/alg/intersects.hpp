@@ -2,9 +2,11 @@
 
 #include "stf/cam/frustum.hpp"
 #include "stf/geom/aabb.hpp"
+#include "stf/geom/hyperplane.hpp"
 #include "stf/geom/obb.hpp"
 #include "stf/geom/polygon.hpp"
 #include "stf/geom/polyline.hpp"
+#include "stf/geom/ray.hpp"
 #include "stf/geom/segment.hpp"
 #include "stf/math/constants.hpp"
 #include "stf/math/interval.hpp"
@@ -284,6 +286,45 @@ namespace stf::alg
     inline bool intersects(geom::polyline2<T> const& polyline, geom::polygon<T> const& polygon)
     {
         return intersects(polygon, polyline);
+    }
+
+    /**
+     * @brief Compute whether or not a ray and a plane intersect
+     * @tparam T Number type (eg float)
+     * @param [in] ray
+     * @param [in] plane
+     * @return Whether or not @p ray intersects @p plane
+     */
+    template<typename T>
+    bool intersects(geom::ray3<T> const& ray, geom::plane<T> const& plane)
+    {
+        if (plane.contains(ray.point))      // if the origin of the ray is in the plane, then they certainly intersect
+        {
+            return true;
+        }
+        else if (math::orthogonal(plane.normal(), ray.direction))   // if the normal and the ray are orthogonal, they do not intersect
+        {
+            return false;
+        }
+        else
+        {
+            // we now know that the ray is not a subset of the plane and it is not parallel to the plane
+            // TODO (stouff) finish this function
+            return true;
+        }
+    }
+
+    /**
+     * @brief Compute whether or not a plane and a ray intersect
+     * @tparam T Number type (eg float)
+     * @param [in] plane
+     * @param [in] ray
+     * @return Whether or not @p plane intersects @p ray
+     */
+    template<typename T>
+    inline bool intersects(geom::plane<T> const& plane, geom::ray3<T> const& ray)
+    {
+        return intersects(ray, plane);
     }
 
     /**

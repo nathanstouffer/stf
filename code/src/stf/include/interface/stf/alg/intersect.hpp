@@ -6,7 +6,7 @@
 #include "stf/geom/hyperplane.hpp"
 
 /**
- * @file intersection.hpp
+ * @file intersect.hpp
  * @brief A file containing functions that report the (possibly empty) intersection of two geometric objects
  */
 
@@ -14,16 +14,18 @@ namespace stf::alg
 {
 
     /**
-     * @brief 
+     * @brief Compute the intersection of a ray and a plane
      * @tparam T Number type (eg float)
-     * @param [in] 
-     * @param [in] 
-     * @return 
+     * @param [in] ray
+     * @param [in] plane
+     * @note If @p ray is a subset of @p plane, the origin of @p ray will be returned
+     * @return The (possibly empty) intersection of @p ray and @p plane
      */
     template<typename T>
-    inline std::optional<math::vec3<T>> intersect(geom::ray3<T> const& beam, geom::plane<T> const& plane)
+    std::optional<math::vec3<T>> intersect(geom::ray3<T> const& ray, geom::plane<T> const& plane)
     {
-        
+        // TODO (stouff) write this function
+        return std::nullopt_t;
     }
 
 } // stf::alg

@@ -115,4 +115,19 @@ namespace stf::alg::scaffolding::intersects
         ASSERT_EQ(test.expected, alg::intersects(test.polyline, test.polygon)) << "Failed intersects(polyline, polygon)";
     }
 
+    template<typename T>
+    struct ray_with_plane
+    {
+        geom::ray3<T> ray;
+        geom::plane<T> plane;
+        bool expected;
+    };
+
+    template<typename T>
+    void verify(ray_with_plane<T> const& test)
+    {
+        ASSERT_EQ(test.expected, alg::intersects(test.ray, test.plane)) << "Failed intersects(ray, plane)";
+        ASSERT_EQ(test.expected, alg::intersects(test.plane, test.ray)) << "Failed intersects(plane, ray)";
+    }
+
 } // stf::alg::scaffolding::intersection
