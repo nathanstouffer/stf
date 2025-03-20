@@ -351,7 +351,7 @@ namespace stf::cam
         scamera<T> result = camera;
 
         // rotate the eye and adjust heading and pitch appropriately
-        result.eye = math::orbit(result.eye, focus, camera.right(), -delta_phi, delta_theta);
+        result.eye = math::orbit(camera.eye, focus, camera.right(), -delta_phi, delta_theta);
         result.theta += delta_theta;
         result.phi += delta_phi;
 
