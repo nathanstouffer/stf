@@ -298,25 +298,22 @@ namespace stf::alg
     template<typename T>
     bool intersects(geom::ray3<T> const& ray, geom::plane<T> const& plane)
     {
-        if (plane.contains(ray.point))      // if the origin of the ray is in the plane, then they certainly intersect
+        T const signed_dist = plane.signed_dist(ray.point);
+        T const dot = ray.direction.dot(plane.normal());
+        if (signed_dist == math::constants<T>::zero)        // if the origin of the ray is on the plane, then they certainly intersect
         {
             return true;
         }
-        else if (math::orthogonal(plane.normal(), ray.direction))   // if the normal and the ray are orthogonal, they do not intersect
+        else if (dot == math::constants<T>::zero)           // if the normal and the ray are orthogonal, they do not intersect
         {
             return false;
         }
         else
         {
             // we now know that the origin of the ray is not on plane and the ray is not parallel to the
-            // plane. this means that both of the following values are non-zero
-            // TODO (stouff) make this block cleaner
-            T const signed_dist = plane.signed_dist(ray.point);
-            T const dot = ray.direction.dot(plane.normal());
-
-            bool const positive_signed_dist = signed_dist > math::constants<T>::zero;
-            bool const positive_dot = dot > math::constants<T>::zero;
-            return positive_signed_dist ^ positive_dot;
+            // plane. this means that both signed_dist and dot are non-zero. if the signs of those values
+            // are opposite, then the ray and the plane intersect
+            return std::signbit(signed_dist) != std::signbit(dot);
         }
     }
 
