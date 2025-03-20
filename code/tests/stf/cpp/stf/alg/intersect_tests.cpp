@@ -17,15 +17,15 @@ namespace stf::alg
             { stff::ray3(stff::vec3(), stff::vec3(1, 0, 0)), stff::plane(stff::vec3(), stff::vec3(0, 0, 1)), stff::vec3() },
             { stff::ray3(stff::vec3(), stff::vec3(1, 1, 0)), stff::plane(stff::vec3(), stff::vec3(0, 0, 1)), stff::vec3() },
             { stff::ray3(stff::vec3(), stff::vec3(0, 0, 1)), stff::plane(stff::vec3(), stff::vec3(1, 0, 0)), stff::vec3() },
-            //// ray that is parallel to plane
-            //{ stff::ray3(stff::vec3(0, 0, 1), stff::vec3(1, 0, 0)), stff::plane(stff::vec3(), stff::vec3(0, 0, 1)), false },
-            //{ stff::ray3(stff::vec3(-1, 0, 0), stff::vec3(0, 0, 1)), stff::plane(stff::vec3(), stff::vec3(1, 0, 0)), false },
-            //// ray is pointing towards plane
-            //{ stff::ray3(stff::vec3(0, 0, 10), stff::vec3(1, 1, -1)), stff::plane(stff::vec3(), stff::vec3(0, 0, 1)), true },
-            //{ stff::ray3(stff::vec3(0, 0, 100), stff::vec3(0, 0, -1)), stff::plane(stff::vec3(), stff::vec3(0, 0, 1)), true },
-            //// ray is pointing away from plane
-            //{ stff::ray3(stff::vec3(0, 0, 10), stff::vec3(1, 1, 1)), stff::plane(stff::vec3(), stff::vec3(0, 0, 1)), false },
-            //{ stff::ray3(stff::vec3(0, 0, 100), stff::vec3(0, 0, 1)), stff::plane(stff::vec3(), stff::vec3(0, 0, 1)), false },
+            // ray that is parallel to plane
+            { stff::ray3(stff::vec3(0, 0, 1), stff::vec3(1, 0, 0)), stff::plane(stff::vec3(), stff::vec3(0, 0, 1)), std::nullopt },
+            { stff::ray3(stff::vec3(-1, 0, 0), stff::vec3(0, 0, 1)), stff::plane(stff::vec3(), stff::vec3(1, 0, 0)), std::nullopt },
+            // ray is pointing towards plane
+            { stff::ray3(stff::vec3(0, 0, 10), stff::vec3(1, 1, -1)), stff::plane(stff::vec3(), stff::vec3(0, 0, 1)), stff::vec3(10, 10, 0) },
+            { stff::ray3(stff::vec3(0, 0, 100), stff::vec3(0, 0, -1)), stff::plane(stff::vec3(), stff::vec3(0, 0, 1)), stff::vec3() },
+            // ray is pointing away from plane
+            { stff::ray3(stff::vec3(0, 0, 10), stff::vec3(1, 1, 1)), stff::plane(stff::vec3(), stff::vec3(0, 0, 1)), std::nullopt },
+            { stff::ray3(stff::vec3(0, 0, 100), stff::vec3(0, 0, 1)), stff::plane(stff::vec3(), stff::vec3(0, 0, 1)), std::nullopt },
         };
 
         for (scaffolding::intersect::ray_with_plane<float> const& test : tests)
