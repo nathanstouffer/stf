@@ -135,4 +135,4 @@ namespace stf::alg::scaffolding::intersects
         ASSERT_EQ(test.expected, alg::intersects(flipped, test.ray)) << "Failed intersects(flipped, ray)";
     }
 
-} // stf::alg::scaffolding::intersection
+} // stf::alg::scaffolding::intersects
