@@ -1,5 +1,6 @@
 #pragma once
 
+#include "stf/geom/ray.hpp"
 #include "stf/math/constants.hpp"
 #include "stf/math/interpolation.hpp"
 #include "stf/math/matrix.hpp"
@@ -169,6 +170,25 @@ namespace stf::cam
          * @return The right direction
          */
         vec_t right() const { return math::cross(look(), up()); }
+
+        /**
+         * @brief Compute the ray from the eye passing through a specified point on the screen
+         * @param [in] uv The UV coordinates of the screen point that the ray passes through
+         * @note When @p uv is (0, 0), the ray passes through the bottom left corner
+         * @note When @p uv is (1, 1), the ray passes through the top right corner
+         * @return The ray from @p eye passing through @p uv
+         */
+        geom::ray3<T> ray(math::vec2<T> const& uv) const
+        {
+            math::vec2<T> ndc = math::constants<T>::two * uv - math::vec2<T>(math::constants<T>::one);
+            T const half_height = std::tan(fov * math::constants<T>::half);
+            T const half_width = aspect * half_height;
+
+            vec_t f = look();
+            vec_t r = half_width  * ndc.x * right();
+            vec_t u = half_height * ndc.y * up();
+            return math::normalized(f + r + u);
+        }
 
         /**
          * @brief Compute the view matrix for the scamera
