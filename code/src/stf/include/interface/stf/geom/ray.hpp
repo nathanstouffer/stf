@@ -11,7 +11,7 @@ namespace stf::geom
 {
 
     /**
-     * @brief A ray class representing rays R^n
+     * @brief A class representing a ray in R^n
      * @tparam T Number type (eg float)
      * @tparam N Dimension
      */
@@ -29,7 +29,7 @@ namespace stf::geom
         /**
          * @brief The origin point of the ray
          */
-        vec_t point;
+        vec_t origin;
 
         /**
          * @brief The direction of the ray
@@ -37,11 +37,11 @@ namespace stf::geom
         vec_t direction;
 
         /**
-         * @brief Construct from a point and direction
-         * @param [in] _point 
+         * @brief Construct from an origin and direction
+         * @param [in] _origin 
          * @param [in] _direction 
          */
-        ray(vec_t const& _point, vec_t const& _direction) : point(_point), direction(_direction) {}
+        ray(vec_t const& _origin, vec_t const& _direction) : origin(_origin), direction(_direction) {}
 
         /**
          * @brief Normalize the direction of a @ref ray
@@ -58,14 +58,14 @@ namespace stf::geom
         /**
          * @brief Compute the square of the distance between a ray and a vector
          * @param [in] query
-         * @return The square of the distance between @p this and @p point
+         * @return The square of the distance between @p this and @p query
          */
         T dist_squared(vec_t const& query) const
         {
             vec_t unit_dir = direction.normalized();
-            T scalar = math::dot(query - point, unit_dir);
+            T scalar = math::dot(query - origin, unit_dir);
             T t = std::max(scalar, math::constants<T>::zero);
-            vec_t proj = point + t * unit_dir;
+            vec_t proj = origin + t * unit_dir;
             return (query - proj).length_squared();
         }
 

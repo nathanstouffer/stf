@@ -294,7 +294,7 @@ namespace stf::geom
      * @return Whether or not @p lhs intersects @p rhs
      */
     template<typename T>
-    bool intersect(obb2<T> const& lhs, obb2<T> const& rhs)
+    bool intersects(obb2<T> const& lhs, obb2<T> const& rhs)
     {
         // intersection is computed using the separating axis test. if two 2d obbs do not intersect, then the set of edge
         // normals will contain a separating axis
@@ -323,7 +323,7 @@ namespace stf::geom
      * @return Whether or not @p lhs intersects @p rhs
      */
     template<typename T>
-    bool intersect(obb3<T> const& lhs, obb3<T> const& rhs)
+    bool intersects(obb3<T> const& lhs, obb3<T> const& rhs)
     {
         // intersection is computed using the separating axis test. if two 3d obbs do not intersect, then the union of the
         // following two sets will contain a separating axis

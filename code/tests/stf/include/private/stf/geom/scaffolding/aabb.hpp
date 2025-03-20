@@ -3,7 +3,7 @@
 #include <gtest/gtest.h>
 
 #include <stf/geom/aabb.hpp>
-#include <stf/alg/intersect.hpp>
+#include <stf/alg/intersects.hpp>
 #include <stf/alg/containment.hpp>
 
 namespace stf::geom::scaffolding::aabb
@@ -37,8 +37,8 @@ namespace stf::geom::scaffolding::aabb
         ASSERT_EQ(test.intersect, test.lhs.intersects(test.rhs)) << "failed lhs -> rhs intersection test (member)";
         ASSERT_EQ(test.intersect, test.rhs.intersects(test.lhs)) << "failed rhs -> lhs intersection test (member)";
 
-        ASSERT_EQ(test.intersect, alg::intersect(test.lhs, test.rhs)) << "failed lhs -> rhs intersection test (free)";
-        ASSERT_EQ(test.intersect, alg::intersect(test.rhs, test.lhs)) << "failed rhs -> lhs intersection test (free)";
+        ASSERT_EQ(test.intersect, alg::intersects(test.lhs, test.rhs)) << "failed lhs -> rhs intersection test (free)";
+        ASSERT_EQ(test.intersect, alg::intersects(test.rhs, test.lhs)) << "failed rhs -> lhs intersection test (free)";
     }
 
     template<typename T, size_t N>

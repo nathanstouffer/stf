@@ -969,7 +969,7 @@ namespace stf::math
     }
 
     /**
-     * @brief Compute the dot product of @p lhs and @p rhs
+     * @brief Compute the dot product of two vectors
      * @tparam T Number type (eg float)
      * @tparam N Dimension
      * @param [in] lhs
@@ -980,6 +980,20 @@ namespace stf::math
     inline T dot(vec<T, N> const& lhs, vec<T, N> const& rhs)
     {
         return raw::dot<T, N>(lhs.values, rhs.values);
+    }
+
+    /**
+     * @brief Compute whethor or not two vectors are orthogonal
+     * @tparam T Number type (eg float)
+     * @tparam N Dimension
+     * @param [in] lhs
+     * @param [in] rhs
+     * @return Whether or not @p lhs and @p rhs are orthogonal
+     */
+    template<typename T, size_t N>
+    inline bool orthogonal(vec<T, N> const& lhs, vec<T, N> const& rhs)
+    {
+        return math::dot(lhs, rhs) == math::constants<T>::zero;
     }
 
     /** 

@@ -4,7 +4,7 @@
 
 #include <stf/stf.hpp>
 
-#include <stf/alg/intersect.hpp>
+#include <stf/alg/intersects.hpp>
 #include <stf/cam/frustum.hpp>
 
 namespace stf::cam::scaffolding::frustum
@@ -37,8 +37,8 @@ namespace stf::cam::scaffolding::frustum
     void verify(intersects_fast<T> const& test)
     {
         ASSERT_EQ(test.intersects, test.frustum.intersects_fast(test.box)) << "Failed to compute frustum::intersects_fast";
-        ASSERT_EQ(test.intersects, alg::intersect_fast(test.frustum, test.box)) << "Failed to compute intersect_fast for frustum -> aabb";
-        ASSERT_EQ(test.intersects, alg::intersect_fast(test.box, test.frustum)) << "Failed to compute intersect_fast for aabb -> frustum";
+        ASSERT_EQ(test.intersects, alg::intersects_fast(test.frustum, test.box)) << "Failed to compute intersects_fast for frustum -> aabb";
+        ASSERT_EQ(test.intersects, alg::intersects_fast(test.box, test.frustum)) << "Failed to compute intersects_fast for aabb -> frustum";
     }
 
     template<typename T>
@@ -53,14 +53,14 @@ namespace stf::cam::scaffolding::frustum
     void verify(intersects<T> const& test)
     {
         ASSERT_EQ(test.intersects, test.frustum.intersects(test.box)) << "Failed to compute frustum::intersects aabb";
-        ASSERT_EQ(test.intersects, alg::intersect(test.frustum, test.box)) << "Failed to compute intersects for frustum -> aabb";
-        ASSERT_EQ(test.intersects, alg::intersect(test.box, test.frustum)) << "Failed to compute intersects for aabb -> frustum";
+        ASSERT_EQ(test.intersects, alg::intersects(test.frustum, test.box)) << "Failed to compute intersects for frustum -> aabb";
+        ASSERT_EQ(test.intersects, alg::intersects(test.box, test.frustum)) << "Failed to compute intersects for aabb -> frustum";
 
         geom::obb3<T> obb(test.box);
 
         ASSERT_EQ(test.intersects, test.frustum.intersects(obb)) << "Failed to compute frustum::intersects obb";
-        ASSERT_EQ(test.intersects, alg::intersect(test.frustum, obb)) << "Failed to compute intersects for frustum -> obb";
-        ASSERT_EQ(test.intersects, alg::intersect(obb, test.frustum)) << "Failed to compute intersects for obb -> frustum";
+        ASSERT_EQ(test.intersects, alg::intersects(test.frustum, obb)) << "Failed to compute intersects for frustum -> obb";
+        ASSERT_EQ(test.intersects, alg::intersects(obb, test.frustum)) << "Failed to compute intersects for obb -> frustum";
     }
 
 } // stf::cam::scaffolding::frustum
