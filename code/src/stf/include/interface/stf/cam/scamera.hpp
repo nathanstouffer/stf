@@ -187,7 +187,7 @@ namespace stf::cam
             vec_t f = look();
             vec_t r = half_width  * ndc.x * right();
             vec_t u = half_height * ndc.y * up();
-            return math::normalized(f + r + u);
+            return geom::ray3<T>(eye, math::normalized(f + r + u));
         }
 
         /**
