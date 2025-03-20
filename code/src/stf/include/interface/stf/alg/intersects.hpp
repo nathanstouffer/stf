@@ -298,7 +298,7 @@ namespace stf::alg
     template<typename T>
     bool intersects(geom::ray3<T> const& ray, geom::plane<T> const& plane)
     {
-        T const signed_dist = plane.signed_dist(ray.point);
+        T const signed_dist = plane.signed_dist(ray.origin);
         T const dot = ray.direction.dot(plane.normal());
         if (signed_dist == math::constants<T>::zero)        // if the origin of the ray is on the plane, then they certainly intersect
         {

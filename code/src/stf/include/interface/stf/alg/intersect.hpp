@@ -27,16 +27,16 @@ namespace stf::alg
     {
         if (intersects(ray, plane))
         {
-            if (plane.contains(ray.point))
+            if (plane.contains(ray.origin))
             {
-                return ray.point;
+                return ray.origin;
             }
             else
             {
-                T const dist = plane.dist(ray.point);
+                T const dist = plane.dist(ray.origin);
                 T const dot = math::dot(plane.normal(), ray.direction);
                 T const scalar = dist / std::abs(dot);
-                return ray.point + scalar * ray.direction;
+                return ray.origin + scalar * ray.direction;
             }
         }
         else
