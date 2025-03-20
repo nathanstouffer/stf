@@ -28,6 +28,9 @@ namespace stf::math
         std::vector<scaffolding::transform::orbit2<float>> tests = 
         {
             // initial              focus               rotation                    expected
+            { stff::vec2(1, 0),     stff::vec2(0),      stff::constants::zero,      stff::vec2(1, 0) },
+            { stff::vec2(1, 1),     stff::vec2(0),      stff::constants::zero,      stff::vec2(1, 1) },
+            { stff::vec2(-1, 0),     stff::vec2(0),      stff::constants::zero,      stff::vec2(-1, 0) },
             { stff::vec2(1, 0),     stff::vec2(0),      stff::constants::pi,        stff::vec2(-1, 0) },
             { stff::vec2(1, 0),     stff::vec2(0),      stff::constants::half_pi,   stff::vec2(0, 1) },
             { stff::vec2(1, 0),     stff::vec2(0),      -stff::constants::half_pi,  stff::vec2(0, -1) },
@@ -42,6 +45,7 @@ namespace stf::math
         std::vector<scaffolding::transform::rotate3<float>> tests = 
         {
             // initial              axis                    rotation                    expected
+            { stff::vec3(0, -1, 0), stff::vec3(0, 0, 1),    stff::constants::zero,      stff::vec3(0, -1, 0) },
             { stff::vec3(1, 0, 0),  stff::vec3(0, 0, 1),    stff::constants::half_pi,   stff::vec3(0, 1, 0) },
         };
 
@@ -53,6 +57,7 @@ namespace stf::math
         std::vector<scaffolding::transform::orbit3<float>> tests = 
         {
             // initial              focus           right                   delta phi                       delta theta                 expected
+            { stff::vec3(0, -1, 0), stff::vec3(),   stff::vec3(1, 0, 0),    stff::constants::zero,          stff::constants::zero,      stff::vec3(0, -1, 0) },
             { stff::vec3(0, -1, 0), stff::vec3(),   stff::vec3(1, 0, 0),    -stff::constants::quarter_pi,   stff::constants::half_pi,   stff::vec3(0.707107, 0, 0.707107) },
         };
 
