@@ -174,13 +174,16 @@ namespace stf::cam
         /**
          * @brief Compute the ray from the eye passing through a specified point on the screen
          * @param [in] uv The UV coordinates of the screen point that the ray passes through
-         * @note When @p uv is (0, 0), the ray passes through the bottom left corner
-         * @note When @p uv is (1, 1), the ray passes through the top right corner
+         * @note When @p uv is (0, 0), the ray passes through the top left corner
+         * @note When @p uv is (1, 1), the ray passes through the bottom right corner
          * @return The ray from @p eye passing through @p uv
          */
         geom::ray3<T> ray(math::vec2<T> const& uv) const
         {
+            // compute the ndc coords (the y-direction must be flipped
             math::vec2<T> ndc = math::constants<T>::two * uv - math::vec2<T>(math::constants<T>::one);
+            ndc.y *= -math::constants<T>::one;
+
             T const half_height = std::tan(fov * math::constants<T>::half);
             T const half_width = aspect * half_height;
 
