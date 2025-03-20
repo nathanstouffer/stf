@@ -96,13 +96,13 @@ namespace stf::cam
         /**
          * @brief Default constructor
          */
-        scamera() : scamera(c_default_eye) {}
+        explicit scamera() : scamera(c_default_eye) {}
 
         /**
          * @brief Construct from a position
          * @param [in] _eye 
          */
-        scamera(vec_t const& _eye) : scamera(_eye, c_default_theta) {}
+        explicit scamera(vec_t const& _eye) : scamera(_eye, c_default_theta) {}
 
         /**
          * @brief Construct from a position and theta
@@ -144,7 +144,7 @@ namespace stf::cam
          * @brief Construct from a theta
          * @param [in] _theta 
          */
-        scamera(T const _theta) : scamera(c_default_eye, _theta) {}
+        explicit scamera(T const _theta) : scamera(c_default_eye, _theta) {}
         
         /**
          * @brief Construct from an orientation
