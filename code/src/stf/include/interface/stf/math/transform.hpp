@@ -51,7 +51,10 @@ namespace stf::math
     template<typename T>
     inline math::vec3<T> rotate(math::vec3<T> const& point, math::vec3<T> const& axis, T const theta)
     {
-        return dot(axis, point) * axis + std::cos(theta) * cross(cross(axis, point), axis) + std::sin(theta) * cross(axis, point);
+        math::vec3<T> const c = dot(axis, point) * axis;            // the center of our circle about the rotation axis
+        math::vec3<T> const x = cross(cross(axis, point), axis);    // the x direction of the circle
+        math::vec3<T> const y = cross(axis, point);                 // the y direction of the circle
+        return c + x * std::cos(theta) + y * std::sin(theta);
     }
 
     /**
