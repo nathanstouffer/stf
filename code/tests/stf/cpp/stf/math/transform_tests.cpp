@@ -45,8 +45,15 @@ namespace stf::math
         std::vector<scaffolding::transform::rotate3<float>> tests = 
         {
             // initial              axis                    rotation                    expected
+            // idempotent rotations
             { stff::vec3(0, -1, 0), stff::vec3(0, 0, 1),    stff::constants::zero,      stff::vec3(0, -1, 0) },
+            { stff::vec3(0, -1, 0), stff::vec3(0, 0, 1),    -stff::constants::zero,     stff::vec3(0, -1, 0) },
+            { stff::vec3(2, 2, 2),  stff::vec3(1, 1, 1).normalized(),    stff::constants::half_pi,   stff::vec3(2, 2, 2)},
+            { stff::vec3(1, 0, 0),  stff::vec3(1, 0, 1).normalized(),    stff::constants::zero,      stff::vec3(1, 0, 0) },
+            { stff::vec3(1, 0, 0),  stff::vec3(1, 0, 1).normalized(),    stff::constants::two_pi,    stff::vec3(1, 0, 0) },
+            // actual rotations
             { stff::vec3(1, 0, 0),  stff::vec3(0, 0, 1),    stff::constants::half_pi,   stff::vec3(0, 1, 0) },
+            { stff::vec3(1, 0, 0),  stff::vec3(1, 0, 1).normalized(),    stff::constants::pi,        stff::vec3(0, 0, 1) },
         };
 
         for (scaffolding::transform::rotate3<float> const& test : tests) { scaffolding::transform::verify(test); }
