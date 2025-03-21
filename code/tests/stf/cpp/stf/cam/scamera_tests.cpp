@@ -36,6 +36,7 @@ namespace stf::cam
         std::vector<scaffolding::scamera::orbit<float>> tests = 
         {
             // initial                                          focus           delta phi                   delta theta             expected
+            { stff::scamera(stff::vec3(0, 0, 10), half_pi, pi), stff::vec3(0),  stff::constants::zero,      stff::constants::zero,  stff::scamera(stff::vec3(0, 0, 10), half_pi, pi) },
             { stff::scamera(stff::vec3(0, 0, 10), half_pi, pi), stff::vec3(0),  -stff::constants::half_pi,  stff::constants::pi,    stff::scamera(stff::vec3(0, 10, 0), pi + half_pi, half_pi) },
         };
 

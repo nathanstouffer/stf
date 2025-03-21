@@ -1030,9 +1030,9 @@ namespace stf::math
         T const z = axis.z;
 
         // compute row vectors
-        vec<T, 4> row_0(cosine + x * x * comp, x * y * comp - z * sine, x * z * comp + y * sine, T(0));
-        vec<T, 4> row_1(y * x * comp + z * sine, cosine + y * y * comp, y * z * comp - x * sine, T(0));
-        vec<T, 4> row_2(z * x * comp - y * sine, z * y * comp + x * sine, cosine + z * z * comp, T(0));
+        vec<T, 4> row_0(x * x * comp + cosine,   x * y * comp - z * sine, x * z * comp + y * sine, T(0));
+        vec<T, 4> row_1(y * x * comp + z * sine, y * y * comp + cosine,   y * z * comp - x * sine, T(0));
+        vec<T, 4> row_2(x * z * comp - y * sine, y * z * comp + x * sine, z * z * comp + cosine,   T(0));
 
         // construct return matrix
         mtx4<T> rotation;

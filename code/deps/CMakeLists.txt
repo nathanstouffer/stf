@@ -10,7 +10,7 @@ if (BUILD_TESTS)
 endif()
 
 if (BUILD_DOCS)
-    # declare and populate googletest dependency
+    # declare and populate doxygen-awesome-css dependency
     FetchContent_Declare(
         doxygen-awesome-css
         GIT_REPOSITORY https://github.com/jothepro/doxygen-awesome-css.git
