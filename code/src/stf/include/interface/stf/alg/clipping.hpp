@@ -75,7 +75,6 @@ namespace stf::alg
             {
                 math::vec2<T> point;
                 guts::region_code code = code1 > code0 ? code1 : code0;
-                // TODO (stouff) write comment about how we avoid dividing by 0
                 if (code & guts::region_code::TOP)
                 {
                     point.x = seg.a.x + (box.max.y - seg.a.y) * seg.slope_inv();
