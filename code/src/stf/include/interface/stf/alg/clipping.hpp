@@ -49,6 +49,7 @@ namespace stf::alg
      * @param [in] box
      * @param [in,out] seg 
      * @return Whether or not the segment should be accepted
+     * @todo possibly refactor this to return a std::optional<geom::segment2<T>>
      * @todo possibly rename this to include the name of the algorithm (cohen-sutherland)
      * @todo possibly add the liang-barsky clipping algorithm as well
      */
