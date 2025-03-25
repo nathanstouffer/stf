@@ -21,14 +21,11 @@ jobs:
         c_compiler: [gcc, clang, cl]
         include:
           # for a particular c compiler, specify the cpp compiler
-          - os: windows-latest
-            c_compiler: cl
+          - c_compiler: cl
             cpp_compiler: cl
-          - os: ubuntu-latest
-            c_compiler: gcc
+          - c_compiler: gcc
             cpp_compiler: g++
-          - os: ubuntu-latest
-            c_compiler: clang
+          - c_compiler: clang
             cpp_compiler: clang++
           # add the coverage build type
           - os: ubuntu-latest
