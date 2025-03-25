@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    runs-on: ${{ matrix.os }}
+    runs-on: ${{ matrix.system.os }}
 
     strategy:
       # Cancel all in-progress and queued jobs in the matrix if any job in the matrix fails
