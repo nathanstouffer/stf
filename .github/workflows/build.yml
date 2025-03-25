@@ -34,18 +34,12 @@ jobs:
             compiler:
               c: clang
         include:
-          # for a particular c compiler, specify the cpp compiler
-          - c_compiler: cl
-            cpp_compiler: cl
-          - c_compiler: gcc
-            cpp_compiler: g++
-          - c_compiler: clang
-            cpp_compiler: clang++
           # add the coverage build type
           - os: ubuntu-latest
             build_type: Coverage
-            c_compiler: clang
-            cpp_compiler: clang++
+            compiler:
+              - c: clang
+              - cpp: clang++
 
     steps:
       - name: checkout
