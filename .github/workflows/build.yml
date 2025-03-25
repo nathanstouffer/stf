@@ -18,13 +18,18 @@ jobs:
       matrix:
         build_type: [Debug, RelWithDebInfo, Release, MinSizeRel]
         cpp_compiler: [cl, g++, clang++]
-        os: [windows-latest, ubuntu-latest]
-        generator: [ default ]
+        system:
+          - os: windows-latest
+            generator: [Visual Studio 17 2022, MinGW Makefiles]
+          - os: ubuntu-latest
+            generator: Unix Makefiles
         exclude:
           # exclude incompatible operating systems and compilers
-          - os: windows-latest
+          - system:
+              os: windows-latest
             cpp_compiler: clang++
-          - os: ubuntu-latest
+          - system:
+              os: ubuntu-latest
             cpp_compiler: cl
         include:
           # for a particular cpp compiler, specify the c compiler
@@ -34,10 +39,6 @@ jobs:
             c_compiler: gcc
           - cpp_compiler: clang++
             c_compiler: clang
-          # add the MinGW generator to windows
-          - os: windows-latest
-            cpp_compiler: g++
-            generator: MinGW Makefiles
           # add the coverage build type
           - os: ubuntu-latest
             build_type: Coverage
@@ -69,7 +70,7 @@ jobs:
           -DCMAKE_CXX_COMPILER=${{ matrix.cpp_compiler }}
           -DCMAKE_C_COMPILER=${{ matrix.c_compiler }}
           -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}
-          -G "${{ matrix.generator }}"
+          -G "${{ matrix.system.generator }}"
           -S ${{ github.workspace }}
 
       - name: Build
