@@ -19,7 +19,7 @@ jobs:
         build_type: [Debug, RelWithDebInfo, Release, MinSizeRel]
         cpp_compiler: [cl, g++, clang++]
         os: [windows-latest, ubuntu-latest]
-        generator: []
+        generator: [ default ]
         exclude:
           # exclude incompatible operating systems and compilers
           - os: windows-latest
