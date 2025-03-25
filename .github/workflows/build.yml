@@ -26,7 +26,7 @@ jobs:
           - os: ubuntu-latest
             cpp_compiler: cl
         include:
-         # for a particular cpp compiler, specify the c compiler
+          # for a particular cpp compiler, specify the c compiler
           - cpp_compiler: cl
             c_compiler: cl
           - cpp_compiler: g++
@@ -55,10 +55,6 @@ jobs:
           echo "src-dir=${{ github.workspace }}/code/src" >> "$GITHUB_OUTPUT"
           echo "build-output-dir=${{ github.workspace }}/build" >> "$GITHUB_OUTPUT"
           echo "tests-output-dir=${{ github.workspace }}/build/code/tests/stf" >> "$GITHUB_OUTPUT"
-
-      - name: gcc version
-        if: ${{ matrix.os == 'windows-latest' }}
-        run: gcc --version
 
       - name: Configure CMake
         # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only required if you are using a single-configuration generator such as make.
