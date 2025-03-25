@@ -28,9 +28,11 @@ jobs:
         exclude:
           # exclude incompatible operating systems and compilers
           - os: ubuntu-latest
-            compiler.c: cl
+            compiler:
+              c: cl
           - os: windows-latest
-            compiler.c: clang
+            compiler:
+              c: clang
         include:
           # for a particular c compiler, specify the cpp compiler
           - c_compiler: cl
