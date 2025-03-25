@@ -18,25 +18,19 @@ jobs:
       matrix:
         os: [ubuntu-latest, windows-latest]
         build_type: [Debug, RelWithDebInfo, Release, MinSizeRel, Coverage]
-        c_compiler: [gcc, clang, cl]
-        include:    # specifies the cpp compiler for a particular c compiler
-          - c_compiler: cl
-            cpp_compiler: cl
-          - c_compiler: gcc
-            cpp_compiler: g++
-          - c_compiler: clang
-            cpp_compiler: clang++
-        exclude:
+        include:
           - os: windows-latest
-            c_compiler: gcc
-          - os: windows-latest
-            c_compiler: clang
-          - os: ubuntu-latest
             c_compiler: cl
-          - c_compiler: gcc
-            build_type: Coverage
-          - c_compiler: cl
-            build_type: Coverage
+            cpp_compiler: cl
+          - os: ubuntu-latest
+            c_compiler: gcc
+            cpp_compiler: g++
+          - os: ubuntu-latest
+            c_compiler: clang
+            cpp_compiler: clang++
+          - build_type: Coverage
+            c_compiler: clang
+            cpp_compiler: clang++
 
     steps:
       - name: checkout
