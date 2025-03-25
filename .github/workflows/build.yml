@@ -36,6 +36,7 @@ jobs:
             c_compiler: clang
             cpp_compiler: clang++
         exclude:
+          # exclude incompatible operating systems and compilers
           - os: ubuntu-latest
             c_compiler: cl
           - os: windows-latest
