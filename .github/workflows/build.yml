@@ -18,12 +18,14 @@ jobs:
       matrix:
         build_type: [Debug, RelWithDebInfo, Release, MinSizeRel]
         cpp_compiler: [cl, g++, clang++]
-        os: [windows-latest, ubuntu-latest]
+        os: [windows-latest, ubuntu-latest, macos-latest]
         exclude:
           # exclude incompatible operating systems and compilers
           - os: windows-latest
             cpp_compiler: clang++
           - os: ubuntu-latest
+            cpp_compiler: cl
+          - os: macos-latest
             cpp_compiler: cl
         include:
           # for a particular cpp compiler, specify the c compiler
@@ -41,6 +43,8 @@ jobs:
             cpp_compiler: g++
             generator: MinGW Makefiles
           - os: ubuntu-latest
+            generator: Unix Makefiles
+          - os: macos-latest
             generator: Unix Makefiles
           # add the coverage build type
           - build_type: Coverage
