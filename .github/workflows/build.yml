@@ -21,10 +21,10 @@ jobs:
         os: [windows-latest, ubuntu-latest]
         exclude:
           # exclude incompatible operating systems and compilers
-          - os: ubuntu-latest
-            cpp_compiler: cl
           - os: windows-latest
             cpp_compiler: clang
+          - os: ubuntu-latest
+            cpp_compiler: cl
         include:
          # for a particular cp compiler, specify the c compiler
           - cpp_compiler: cl
