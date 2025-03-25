@@ -26,7 +26,7 @@ jobs:
           - os: ubuntu-latest
             cpp_compiler: cl
         include:
-         # for a particular cp compiler, specify the c compiler
+         # for a particular cpp compiler, specify the c compiler
           - cpp_compiler: cl
             c_compiler: cl
           - cpp_compiler: g++
