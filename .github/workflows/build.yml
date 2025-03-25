@@ -27,6 +27,8 @@ jobs:
             cpp_compiler: cl
           - os: macos-latest
             cpp_compiler: cl
+          - os: macos-latest
+            cpp_compiler: g++
         include:
           # for a particular cpp compiler, specify the c compiler
           - cpp_compiler: cl
