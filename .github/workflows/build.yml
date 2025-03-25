@@ -33,7 +33,8 @@ jobs:
           - os: windows-latest
             compiler:
               c: clang
-        #include:
+        # TODO (stouff) uncomment this
+        # include:
           # add the coverage build type
           # - os: ubuntu-latest
           #   build_type: Coverage
