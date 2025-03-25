@@ -18,12 +18,12 @@ jobs:
       matrix:
         build_type: [Debug, RelWithDebInfo, Release, MinSizeRel]
         compiler:
-          - c: cl
-            cpp: cl
-          - c: gcc
-            cpp: g++
-          - c: clang
-            cpp: clang++
+          - cpp: cl
+            c: cl
+          - cpp: g++
+            c: gcc
+          - cpp: clang++
+            c: clang
         os: [windows-latest, ubuntu-latest]
         exclude:
           # exclude incompatible operating systems and compilers
@@ -33,13 +33,13 @@ jobs:
           - os: windows-latest
             compiler:
               c: clang
-        include:
+        #include:
           # add the coverage build type
-          - os: ubuntu-latest
-            build_type: Coverage
-            compiler:
-              - c: clang
-              - cpp: clang++
+          # - os: ubuntu-latest
+          #   build_type: Coverage
+          #   compiler:
+          #     - c: clang
+          #     - cpp: clang++
 
     steps:
       - name: checkout
