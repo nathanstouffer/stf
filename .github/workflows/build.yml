@@ -17,13 +17,7 @@ jobs:
       # Set up a matrix to run the different configurations:
       matrix:
         build_type: [Debug, RelWithDebInfo, Release, MinSizeRel]
-        compiler:
-          - cpp: cl
-            c: cl
-          - cpp: g++
-            c: gcc
-          - cpp: clang++
-            c: clang
+        cpp_compiler: [cl, g++, clang++]
         os: [windows-latest, ubuntu-latest]
         exclude:
           # exclude incompatible operating systems and compilers
@@ -34,12 +28,18 @@ jobs:
             compiler:
               c: clang
         include:
+         # for a particular cp compiler, specify the c compiler
+          - cpp_compiler: cl
+            c_compiler: cl
+          - cpp_compiler: g++
+            c_compiler: gcc
+          - cpp_compiler: clang++
+            c_compiler: clang
           # add the coverage build type
           - os: ubuntu-latest
             build_type: Coverage
-            compiler:
-              - cpp: clang++
-                c: clang
+            cpp_compiler: clang++
+            c_compiler: clang
 
     steps:
       - name: checkout
@@ -67,8 +67,8 @@ jobs:
         # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
         run: >
           cmake -B ${{ steps.strings.outputs.build-output-dir }}
-          -DCMAKE_CXX_COMPILER=${{ matrix.compiler.cpp }}
-          -DCMAKE_C_COMPILER=${{ matrix.compiler.c }}
+          -DCMAKE_CXX_COMPILER=${{ matrix.cpp_compiler }}
+          -DCMAKE_C_COMPILER=${{ matrix.c_compiler }}
           -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}
           -S ${{ github.workspace }}
 
