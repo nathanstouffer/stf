@@ -19,6 +19,7 @@ jobs:
         build_type: [Debug, RelWithDebInfo, Release, MinSizeRel]
         cpp_compiler: [cl, g++, clang++]
         os: [windows-latest, ubuntu-latest]
+        generator: [""]
         exclude:
           # exclude incompatible operating systems and compilers
           - os: windows-latest
@@ -33,6 +34,10 @@ jobs:
             c_compiler: gcc
           - cpp_compiler: clang++
             c_compiler: clang
+          # add the MinGW generator to windows
+          - os: windows-latest
+            cpp_compiler: g++
+            generator: MinGW Makefiles
           # add the coverage build type
           - os: ubuntu-latest
             build_type: Coverage
@@ -64,6 +69,7 @@ jobs:
           -DCMAKE_CXX_COMPILER=${{ matrix.cpp_compiler }}
           -DCMAKE_C_COMPILER=${{ matrix.c_compiler }}
           -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}
+          -G "${{ matrix.generator }}""
           -S ${{ github.workspace }}
 
       - name: Build
