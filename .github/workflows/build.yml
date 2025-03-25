@@ -42,10 +42,11 @@ jobs:
           - cpp_compiler: clang++
             c_compiler: clang
           # add the coverage build type
-          - os: ubuntu-latest
-            build_type: Coverage
+          - build_type: Coverage
             cpp_compiler: clang++
             c_compiler: clang
+            os: ubuntu-latest
+            generator: Unix Makefiles
 
     steps:
       - name: checkout
