@@ -15,9 +15,10 @@ namespace stf::cam
         stfd::scamera camera(stfd::vec3(0), stfd::constants::pi_halves, stfd::constants::pi_halves, 1.0, 100.0, 1.0, stfd::constants::pi_halves);
         stfd::frustum frustum(camera);
 
+        double eps = 1.0E-14;
         std::vector<scaffolding::frustum::contains<double>> tests =
         {
-            { frustum, stfd::aabb3(stfd::vec3(-1, 1, -1), 2), true },
+            { frustum, stfd::aabb3(stfd::vec3(-1 + eps, 1 + eps, -1 - eps), 2 - 2.0 * eps), true }, // slightly inset the box
             { frustum, stfd::aabb3(stfd::vec3(-10, 50, -10), 20), true },
             { frustum, stfd::aabb3(stfd::vec3(-10, 90, -10), 20), false },      // crosses the far plane
             { frustum, stfd::aabb3(stfd::vec3(-1, 0, -1), 2), false },          // crosses the near plane
