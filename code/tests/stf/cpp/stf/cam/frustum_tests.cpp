@@ -15,7 +15,7 @@ namespace stf::cam
         stfd::scamera camera(stfd::vec3(0), stfd::constants::pi_halves, stfd::constants::pi_halves, 1.0, 100.0, 1.0, stfd::constants::pi_halves);
         stfd::frustum frustum(camera);
 
-        double eps = 1.0E-14;
+        double eps = 1.0E-14;   // slightly inset the box because some compilers have slight differences in floating point precision
         std::vector<scaffolding::frustum::contains<double>> tests =
         {
             { frustum, stfd::aabb3(stfd::vec3(-1 + eps, 1 + eps, -1 - eps), 2 - 2.0 * eps), true }, // slightly inset the box
