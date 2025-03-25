@@ -18,19 +18,21 @@ jobs:
       matrix:
         build_type: [Debug, RelWithDebInfo, Release, MinSizeRel]
         cpp_compiler: [cl, g++, clang++]
-        system:
-          - os: windows-latest
-            generator: [Visual Studio 17 2022, MinGW Makefiles]
-          - os: ubuntu-latest
-            generator: Unix Makefiles
+        os: [windows-latest, ubuntu-latest]
+        generator: [Visual Studio 17 2022, MinGW Makefiles, Unix Makefiles]
         exclude:
           # exclude incompatible operating systems and compilers
-          - system:
-              os: windows-latest
+          - os: windows-latest
             cpp_compiler: clang++
-          - system:
-              os: ubuntu-latest
+          - os: ubuntu-latest
             cpp_compiler: cl
+          # exclude incompatible operating systems and generators
+          - os: windows-latest
+            generator: Unix Makefiles
+          - os: ubuntu-latest
+            generator: Visual Studio 17 2022
+          - os: ubuntu-latest
+            generator: MinGW Makefiles
         include:
           # for a particular cpp compiler, specify the c compiler
           - cpp_compiler: cl
