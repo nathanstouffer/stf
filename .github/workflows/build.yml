@@ -12,8 +12,7 @@ jobs:
 
     strategy:
       # Cancel all in-progress and queued jobs in the matrix if any job in the matrix fails
-      # TODO (stouff) revert this
-      fail-fast: false
+      fail-fast: true
 
       # Set up a matrix to run the different configurations:
       matrix:
