@@ -17,8 +17,10 @@ jobs:
       # Set up a matrix to run the different configurations:
       matrix:
         os: [ubuntu-latest, windows-latest]
-        build_type: [Debug, RelWithDebInfo, Release, MinSizeRel, Coverage]
+        build_type: [Debug, RelWithDebInfo, Release, MinSizeRel]
+        c_compiler: [gcc, clang, cl]
         include:
+          # for a particular c compiler, specify the cpp compiler
           - os: windows-latest
             c_compiler: cl
             cpp_compiler: cl
@@ -28,9 +30,18 @@ jobs:
           - os: ubuntu-latest
             c_compiler: clang
             cpp_compiler: clang++
-          - build_type: Coverage
+          # add the coverage build type
+          - os: ubuntu-latest
+            build_type: Coverage
             c_compiler: clang
             cpp_compiler: clang++
+        exclude:
+          - os: ubuntu-latest
+            c_compiler: cl
+          - os: windows-latest
+            c_compiler: gcc
+          - os: windows-latest
+            c_compiler: clang
 
     steps:
       - name: checkout
