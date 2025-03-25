@@ -16,30 +16,44 @@ jobs:
 
       # Set up a matrix to run the different configurations:
       matrix:
-        os: [ubuntu-latest, windows-latest]
-        build_type: [Debug, RelWithDebInfo, Release, MinSizeRel, Coverage]
-        c_compiler: [gcc, clang, cl]
-        include:
-          - os: windows-latest
-            c_compiler: cl
-            cpp_compiler: cl
-          - os: ubuntu-latest
-            c_compiler: gcc
-            cpp_compiler: g++
-          - os: ubuntu-latest
-            c_compiler: clang
-            cpp_compiler: clang++
+        build_type: [Debug, RelWithDebInfo, Release, MinSizeRel]
+        cpp_compiler: [cl, g++, clang++]
+        os: [windows-latest, ubuntu-latest, macos-latest]
         exclude:
+          # exclude incompatible operating systems and compilers
           - os: windows-latest
-            c_compiler: gcc
-          - os: windows-latest
-            c_compiler: clang
+            cpp_compiler: clang++
           - os: ubuntu-latest
+            cpp_compiler: cl
+          - os: macos-latest
+            cpp_compiler: cl
+          - os: macos-latest
+            cpp_compiler: g++
+        include:
+          # for a particular cpp compiler, specify the c compiler
+          - cpp_compiler: cl
             c_compiler: cl
-          - c_compiler: gcc
-            build_type: Coverage
-          - c_compiler: cl
-            build_type: Coverage
+          - cpp_compiler: g++
+            c_compiler: gcc
+          - cpp_compiler: clang++
+            c_compiler: clang
+          # for a particular operating system and compiler, specify the generator
+          - os: windows-latest
+            cpp_compiler: cl
+            generator: Visual Studio 17 2022
+          - os: windows-latest
+            cpp_compiler: g++
+            generator: MinGW Makefiles
+          - os: ubuntu-latest
+            generator: Unix Makefiles
+          - os: macos-latest
+            generator: Unix Makefiles
+          # add the coverage build type
+          - build_type: Coverage
+            cpp_compiler: clang++
+            c_compiler: clang
+            os: ubuntu-latest
+            generator: Unix Makefiles
 
     steps:
       - name: checkout
@@ -66,6 +80,7 @@ jobs:
           -DCMAKE_CXX_COMPILER=${{ matrix.cpp_compiler }}
           -DCMAKE_C_COMPILER=${{ matrix.c_compiler }}
           -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}
+          -G "${{ matrix.generator }}"
           -S ${{ github.workspace }}
 
       - name: Build

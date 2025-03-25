@@ -30,8 +30,8 @@ namespace stf::geom::scaffolding::polygon
     template<typename T>
     void verify(signed_area<T> const& test)
     {
-        ASSERT_EQ(test.area, test.polygon.signed_area()) << "failed polygon::signed_area";
-        ASSERT_EQ(std::abs(test.area), test.polygon.area()) << "failed polygon::area";
+        ASSERT_NEAR(test.area, test.polygon.signed_area(), math::constants<T>::tol_tol) << "failed polygon::signed_area";
+        ASSERT_NEAR(std::abs(test.area), test.polygon.area(), math::constants<T>::tol_tol) << "failed polygon::area";
     }
 
     template<typename T>

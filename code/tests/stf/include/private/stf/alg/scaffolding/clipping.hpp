@@ -21,12 +21,20 @@ namespace stf::alg::scaffolding::clipping
     void verify(segment<T> const& test)
     {
         geom::segment2<T> clipped = test.input;
-
         ASSERT_EQ(test.accept, alg::clip(test.box, clipped)) << "Failed to accept/reject segment";
-        
+
         if (test.accept)
         {
             ASSERT_EQ(test.clipped, clipped) << "Failed to clip segment";
+        }
+
+        geom::segment2<T> flipped = geom::segment2<T>(test.input.b, test.input.a);
+        ASSERT_EQ(test.accept, alg::clip(test.box, flipped)) << "Failed to accept/reject flipped segment";
+
+        if (test.accept)
+        {
+            geom::segment2<T> flipped_clipped = geom::segment2<T>(test.clipped.b, test.clipped.a);
+            ASSERT_EQ(flipped_clipped, flipped) << "Failed to clip flipped segment";
         }
     }
 
