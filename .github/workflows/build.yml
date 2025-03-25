@@ -19,6 +19,12 @@ jobs:
         os: [ubuntu-latest, windows-latest]
         build_type: [Debug, RelWithDebInfo, Release, MinSizeRel]
         c_compiler: [gcc, clang, cl]
+        exclude:
+          # exclude incompatible operating systems and compilers
+          - os: ubuntu-latest
+            c_compiler: cl
+          - os: windows-latest
+            c_compiler: clang
         include:
           # for a particular c compiler, specify the cpp compiler
           - c_compiler: cl
@@ -32,12 +38,6 @@ jobs:
             build_type: Coverage
             c_compiler: clang
             cpp_compiler: clang++
-        exclude:
-          # exclude incompatible operating systems and compilers
-          - os: ubuntu-latest
-            c_compiler: cl
-          - os: windows-latest
-            c_compiler: clang
 
     steps:
       - name: checkout
