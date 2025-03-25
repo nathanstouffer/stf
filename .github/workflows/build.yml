@@ -39,8 +39,8 @@ jobs:
           # - os: ubuntu-latest
           #   build_type: Coverage
           #   compiler:
-          #     - c: clang
           #     - cpp: clang++
+          #       c: clang
 
     steps:
       - name: checkout
