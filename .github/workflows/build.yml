@@ -40,6 +40,26 @@ jobs:
             os: macos-14
             generator: Unix Makefiles
           # g++ configurations
+          - cpp_compiler: g++-12
+            c_compiler: gcc-12
+            os: windows-2022
+            generator: MinGW Makefiles
+          - cpp_compiler: g++-12
+            c_compiler: gcc-12
+            os: ubuntu-24.04
+            generator: Unix Makefiles
+          - cpp_compiler: g++-13
+            c_compiler: gcc-13
+            os: ubuntu-24.04
+            generator: Unix Makefiles
+          - cpp_compiler: g++-14
+            c_compiler: gcc-14
+            os: ubuntu-24.04
+            generator: Unix Makefiles
+          - cpp_compiler: g++
+            c_compiler: gcc
+            os: macos-14
+            generator: Unix Makefiles
       # Set up a matrix to run the different configurations:
       # matrix:
       #   build_type: [Debug, RelWithDebInfo, Release, MinSizeRel]
