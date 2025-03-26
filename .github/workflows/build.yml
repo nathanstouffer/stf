@@ -84,8 +84,8 @@ jobs:
         # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
         run: >
           cmake -B ${{ steps.strings.outputs.build-output-dir }}
-          -DCMAKE_CXX_COMPILER=${{ matrix.host.compiler.cpp }}
-          -DCMAKE_C_COMPILER=${{ matrix.host.compiler.c }}
+          -DCMAKE_CXX_COMPILER=${{ matrix.host.cpp_compiler }}
+          -DCMAKE_C_COMPILER=${{ matrix.host.c_compiler }}
           -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}
           -G "${{ matrix.host.generator }}"
           -S ${{ github.workspace }}
