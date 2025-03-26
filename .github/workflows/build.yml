@@ -12,7 +12,7 @@ jobs:
 
     strategy:
       # Cancel all in-progress and queued jobs in the matrix if any job in the matrix fails
-      fail-fast: false
+      fail-fast: true
 
       matrix:
         build_type: [Debug, RelWithDebInfo, Release, MinSizeRel]
