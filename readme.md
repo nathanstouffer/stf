@@ -13,6 +13,13 @@
 2. maintainability
 3. performance
 
+## Documentation
+
+* [architecture](./docs/architecture.md)
+* [contributing](./docs/contributing.md)
+* [support](.docs/support.md)
+* [todo](./docs/todo.md)
+
 ## Note
 
 Unfortunately, the code coverage is a lie because the entire library is templated and an uninstantiated template (class or function) is not incoporated into coverage computations.
