@@ -17,35 +17,34 @@ jobs:
       matrix:
         build_type: [Debug, RelWithDebInfo, Release, MinSizeRel]
         host:
-          # ubuntu-24.04 hosts
-          # - os: ubuntu-24.04
-          #   cpp_compiler: clang++-16
-          #   c_compiler: clang-16
-          #   generator: Unix Makefiles
-          # - os: ubuntu-24.04
-          #   cpp_compiler: clang++-17
-          #   c_compiler: clang-17
-          #   generator: Unix Makefiles
-          # - os: ubuntu-24.04
-          #   cpp_compiler: clang++-18
-          #   c_compiler: clang-18
-          #   generator: Unix Makefiles
-          - os: ubuntu-24.04
-            cpp_compiler: [clang++-16, clang++-17, clang++-18]
-            generator: Unix Makefiles
-        include:
+          # clang configurations
           - cpp_compiler: clang++-16
-            c_compiler: clang-16
+            os: ubuntu-24.04
+            generator: Unix Makefiles
           - cpp_compiler: clang++-17
-            c_compiler: clang-17
+            os: ubuntu-24.04
+            generator: Unix Makefiles
           - cpp_compiler: clang++-18
-            c_compiler: clang-18
+            os: ubuntu-24.04
+            generator: Unix Makefiles
           # windows-2022 hosts
           # - os: windows-2022
           #   cpp_compiler: cl
           #   c_compiler: cl
           #   generator: Visual Studio 17 2022
           # macos-14 hosts
+        include:
+          # for a particular cpp compiler, specify the c compiler
+          # - cpp_compiler: cl
+          #   c_compiler: cl
+          - cpp_compiler: clang++-16
+            c_compiler: clang-16
+          - cpp_compiler: clang++-17
+            c_compiler: clang-17
+          - cpp_compiler: clang++-18
+            c_compiler: clang-18
+          # - cpp_compiler: g++-12
+          #   c_compiler: gcc-12
       # Set up a matrix to run the different configurations:
       # matrix:
       #   build_type: [Debug, RelWithDebInfo, Release, MinSizeRel]
