@@ -14,12 +14,13 @@ jobs:
       # Cancel all in-progress and queued jobs in the matrix if any job in the matrix fails
       fail-fast: true
 
-      # image states
-      # windows-2022: https://github.com/actions/runner-images/blob/main/images/macos/macos-14-Readme.md
-      # ubuntu-24.04: https://github.com/actions/runner-images/blob/main/images/ubuntu/Ubuntu2404-Readme.md
-      # macos-14: https://github.com/actions/runner-images/blob/main/images/macos/macos-14-Readme.md
+      # matrix docs: https://docs.github.com/en/actions/writing-workflows/workflow-syntax-for-github-actions#jobsjob_idstrategymatrix
       matrix:
         build_type: [Debug, RelWithDebInfo, Release, MinSizeRel]
+        # image states
+        # windows-2022: https://github.com/actions/runner-images/blob/main/images/macos/macos-14-Readme.md
+        # ubuntu-24.04: https://github.com/actions/runner-images/blob/main/images/ubuntu/Ubuntu2404-Readme.md
+        # macos-14: https://github.com/actions/runner-images/blob/main/images/macos/macos-14-Readme.md
         host:
           # cl configurations
           - cpp_compiler: cl
