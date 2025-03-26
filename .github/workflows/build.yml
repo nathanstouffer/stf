@@ -137,7 +137,7 @@ jobs:
           fail_ci_if_error: true
 
   docs:
-    runs-on: "ubuntu-24.04"
+    runs-on: ubuntu-24.04
 
     steps:
       - name: checkout
