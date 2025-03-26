@@ -35,13 +35,13 @@ jobs:
             c_compiler: clang-18
             os: ubuntu-24.04
             generator: Unix Makefiles
-          - cpp_compiler: clang++
+          - cpp_compiler: clang++   # GHA docs say this is version 15.0.0 https://github.com/actions/runner-images/blob/main/images/macos/macos-14-Readme.md
             c_compiler: clang
             os: macos-14
             generator: Unix Makefiles
           # g++ configurations
-          - cpp_compiler: g++-12
-            c_compiler: gcc-12
+          - cpp_compiler: g++   # GHA docs say this is version 12.2.0 https://github.com/actions/runner-images/blob/main/images/windows/Windows2022-Readme.md
+            c_compiler: gcc
             os: windows-2022
             generator: MinGW Makefiles
           - cpp_compiler: g++-12
