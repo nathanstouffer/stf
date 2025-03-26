@@ -19,36 +19,23 @@ jobs:
         host:
           # cl configurations
           # - cpp_compiler: cl
+          #   c_compiler: cl
           #   os: windows-2022
           #   generator: Visual Studio 17 2022
           # clang++ configurations
           - cpp_compiler: clang++-16
+            c_compiler: clang-16
             os: ubuntu-24.04
             generator: Unix Makefiles
           - cpp_compiler: clang++-17
+            c_compiler: clang-17
             os: ubuntu-24.04
             generator: Unix Makefiles
           - cpp_compiler: clang++-18
+            c_compiler: clang-18
             os: ubuntu-24.04
             generator: Unix Makefiles
           # g++ configurations
-        include:
-          # for a particular cpp compiler, specify the c compiler
-          # - host:
-          #   - cpp_compiler: cl
-          #     c_compiler: cl
-          - host:
-            - cpp_compiler: clang++-16
-              c_compiler: clang-16
-          - host:
-            - cpp_compiler: clang++-17
-              c_compiler: clang-17
-          - host:
-            - cpp_compiler: clang++-18
-              c_compiler: clang-18
-          # - host:
-          #   - cpp_compiler: g++-12
-          #     c_compiler: gcc-12
       # Set up a matrix to run the different configurations:
       # matrix:
       #   build_type: [Debug, RelWithDebInfo, Release, MinSizeRel]
