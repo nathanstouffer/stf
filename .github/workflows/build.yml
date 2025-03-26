@@ -17,7 +17,7 @@ jobs:
       matrix:
         build_type: [Debug, RelWithDebInfo, Release, MinSizeRel]
         host:
-          - os: ubuntu-24.04
+          - os: macos-14
             cpp_compiler: g++
             c_compiler: gcc
             generator: Unix Makefiles
