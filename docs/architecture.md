@@ -11,8 +11,8 @@
 `stf` is a header-only template math library built primarily for graphics.
 The library is split into a couple namespaces.
 
-| | |
-|-|-|
+| namespace | description |
+|-----------|-------------|
 | `math` | contains basic math structures and operations (eg `vector`, `matrix`, spherical coordinates) |
 | `geom` | contains geometric primitives (eg `segment`, `polyline`, and `polygon`) |
 | `gfx` | contains graphics-related structures (eg `rgba`) |
@@ -34,7 +34,7 @@ stfu::vec2 point(0, 0);     // unsigned integers
 ## building
 
 `stf` uses [cmake](https://cmake.org/) to generate a build system of your choice.
-CI builds `stf` with msvc/gcc/clang.
+GHA builds `stf` with a number of compilers on various operating systems.
 
 ## tests
 

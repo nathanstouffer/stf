@@ -8,52 +8,37 @@ on:
 
 jobs:
   build:
-    runs-on: ${{ matrix.os }}
+    runs-on: ${{ matrix.host.image }}
 
     strategy:
       # Cancel all in-progress and queued jobs in the matrix if any job in the matrix fails
       fail-fast: true
 
-      # Set up a matrix to run the different configurations:
+      # matrix docs: https://docs.github.com/en/actions/writing-workflows/workflow-syntax-for-github-actions#jobsjob_idstrategymatrix
       matrix:
         build_type: [Debug, RelWithDebInfo, Release, MinSizeRel]
-        cpp_compiler: [cl, g++, clang++]
-        os: [windows-latest, ubuntu-latest, macos-latest]
-        exclude:
-          # exclude incompatible operating systems and compilers
-          - os: windows-latest
-            cpp_compiler: clang++
-          - os: ubuntu-latest
-            cpp_compiler: cl
-          - os: macos-latest
-            cpp_compiler: cl
-          - os: macos-latest
-            cpp_compiler: g++
+        # image states
+        # windows-2022: https://github.com/actions/runner-images/blob/main/images/macos/macos-14-Readme.md
+        # ubuntu-24.04: https://github.com/actions/runner-images/blob/main/images/ubuntu/Ubuntu2404-Readme.md
+        # macos-14:     https://github.com/actions/runner-images/blob/main/images/macos/macos-14-Readme.md
+        host:
+          # cl configurations
+          - { cpp_compiler: cl,         c_compiler: cl,       image: windows-2019, generator: Visual Studio 16 2019 }
+          - { cpp_compiler: cl,         c_compiler: cl,       image: windows-2022, generator: Visual Studio 17 2022 }
+          # clang++ configurations
+          - { cpp_compiler: clang++-16, c_compiler: clang-16, image: ubuntu-24.04, generator: Unix Makefiles        }
+          - { cpp_compiler: clang++-17, c_compiler: clang-17, image: ubuntu-24.04, generator: Unix Makefiles        }
+          - { cpp_compiler: clang++-18, c_compiler: clang-18, image: ubuntu-24.04, generator: Unix Makefiles        }
+          - { cpp_compiler: clang++,    c_compiler: clang,    image: macos-14,     generator: Unix Makefiles        } # GHA docs say this is version 15.0.0
+          # g++ configurations
+          - { cpp_compiler: g++,        c_compiler: gcc,      image: windows-2022, generator: MinGW Makefiles       } # GHA docs say this is version 12.2.0
+          - { cpp_compiler: g++-12,     c_compiler: gcc-12,   image: ubuntu-24.04, generator: Unix Makefiles        }
+          - { cpp_compiler: g++-13,     c_compiler: gcc-13,   image: ubuntu-24.04, generator: Unix Makefiles        }
+          - { cpp_compiler: g++-14,     c_compiler: gcc-14,   image: ubuntu-24.04, generator: Unix Makefiles        }
+          - { cpp_compiler: g++,        c_compiler: gcc,      image: macos-14,     generator: Unix Makefiles        }
         include:
-          # for a particular cpp compiler, specify the c compiler
-          - cpp_compiler: cl
-            c_compiler: cl
-          - cpp_compiler: g++
-            c_compiler: gcc
-          - cpp_compiler: clang++
-            c_compiler: clang
-          # for a particular operating system and compiler, specify the generator
-          - os: windows-latest
-            cpp_compiler: cl
-            generator: Visual Studio 17 2022
-          - os: windows-latest
-            cpp_compiler: g++
-            generator: MinGW Makefiles
-          - os: ubuntu-latest
-            generator: Unix Makefiles
-          - os: macos-latest
-            generator: Unix Makefiles
-          # add the coverage build type
           - build_type: Coverage
-            cpp_compiler: clang++
-            c_compiler: clang
-            os: ubuntu-latest
-            generator: Unix Makefiles
+            host: { cpp_compiler: clang++-18, c_compiler: clang-18, image: ubuntu-24.04, generator: Unix Makefiles }
 
     steps:
       - name: checkout
@@ -77,10 +62,10 @@ jobs:
         # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
         run: >
           cmake -B ${{ steps.strings.outputs.build-output-dir }}
-          -DCMAKE_CXX_COMPILER=${{ matrix.cpp_compiler }}
-          -DCMAKE_C_COMPILER=${{ matrix.c_compiler }}
+          -DCMAKE_CXX_COMPILER=${{ matrix.host.cpp_compiler }}
+          -DCMAKE_C_COMPILER=${{ matrix.host.c_compiler }}
           -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}
-          -G "${{ matrix.generator }}"
+          -G "${{ matrix.host.generator }}"
           -S ${{ github.workspace }}
 
       - name: Build
@@ -120,7 +105,7 @@ jobs:
           fail_ci_if_error: true
 
   docs:
-    runs-on: "ubuntu-latest"
+    runs-on: ubuntu-24.04
 
     steps:
       - name: checkout
