@@ -18,11 +18,8 @@ jobs:
         build_type: [Debug, RelWithDebInfo, Release, MinSizeRel]
         host:
           - os: ubuntu-24.04
-            compiler:
-              - cpp: g++
-                c: gcc
-              - cpp: clang++
-                c: clang
+            cpp_compiler: g++
+            c_compiler: g
             generator: Unix Makefiles
       # Set up a matrix to run the different configurations:
       # matrix:
