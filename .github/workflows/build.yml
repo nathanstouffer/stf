@@ -67,46 +67,6 @@ jobs:
                 c_compiler: clang
                 os: ubuntu-24.04
                 generator: Unix Makefiles
-      # Set up a matrix to run the different configurations:
-      # matrix:
-      #   build_type: [Debug, RelWithDebInfo, Release, MinSizeRel]
-      #   cpp_compiler: [cl, g++, clang++]
-      #   os: [windows-2022, ubuntu-24.04, macos-14]
-      #   exclude:
-      #     # exclude incompatible operating systems and compilers
-      #     - os: windows-2022
-      #       cpp_compiler: clang++
-      #     - os: ubuntu-24.04
-      #       cpp_compiler: cl
-      #     - os: macos-14
-      #       cpp_compiler: cl
-      #     - os: macos-14
-      #       cpp_compiler: g++
-      #   include:
-      #     # for a particular cpp compiler, specify the c compiler
-      #     - cpp_compiler: cl
-      #       c_compiler: cl
-      #     - cpp_compiler: g++
-      #       c_compiler: gcc
-      #     - cpp_compiler: clang++
-      #       c_compiler: clang
-      #     # for a particular operating system and compiler, specify the generator
-      #     - os: windows-2022
-      #       cpp_compiler: cl
-      #       generator: Visual Studio 17 2022
-      #     - os: windows-2022
-      #       cpp_compiler: g++
-      #       generator: MinGW Makefiles
-      #     - os: ubuntu-24.04
-      #       generator: Unix Makefiles
-      #     - os: macos-14
-      #       generator: Unix Makefiles
-      #     # add the coverage build type
-      #     - build_type: Coverage
-      #       cpp_compiler: clang++
-      #       c_compiler: clang
-      #       os: ubuntu-24.04
-      #       generator: Unix Makefiles
 
     steps:
       - name: checkout
