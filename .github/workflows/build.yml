@@ -38,7 +38,7 @@ jobs:
           - { cpp_compiler: g++,        c_compiler: gcc,      image: macos-14,     generator: Unix Makefiles        }
         include:
           - build_type: Coverage
-            host: { cpp_compiler: clang++, c_compiler: clang, image: ubuntu-24.04, generator: Unix Makefiles        }
+            host: { cpp_compiler: clang++-18, c_compiler: clang-18, image: ubuntu-24.04, generator: Unix Makefiles }
 
     steps:
       - name: checkout
