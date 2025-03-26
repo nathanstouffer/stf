@@ -18,16 +18,16 @@ jobs:
       matrix:
         build_type: [Debug, RelWithDebInfo, Release, MinSizeRel]
         cpp_compiler: [cl, g++, clang++]
-        os: [windows-latest, ubuntu-latest, macos-latest]
+        os: [windows-2022, ubuntu-24.04, macos-14]
         exclude:
           # exclude incompatible operating systems and compilers
-          - os: windows-latest
+          - os: windows-2022
             cpp_compiler: clang++
-          - os: ubuntu-latest
+          - os: ubuntu-24.04
             cpp_compiler: cl
-          - os: macos-latest
+          - os: macos-14
             cpp_compiler: cl
-          - os: macos-latest
+          - os: macos-14
             cpp_compiler: g++
         include:
           # for a particular cpp compiler, specify the c compiler
@@ -38,21 +38,21 @@ jobs:
           - cpp_compiler: clang++
             c_compiler: clang
           # for a particular operating system and compiler, specify the generator
-          - os: windows-latest
+          - os: windows-2022
             cpp_compiler: cl
             generator: Visual Studio 17 2022
-          - os: windows-latest
+          - os: windows-2022
             cpp_compiler: g++
             generator: MinGW Makefiles
-          - os: ubuntu-latest
+          - os: ubuntu-24.04
             generator: Unix Makefiles
-          - os: macos-latest
+          - os: macos-14
             generator: Unix Makefiles
           # add the coverage build type
           - build_type: Coverage
             cpp_compiler: clang++
             c_compiler: clang
-            os: ubuntu-latest
+            os: ubuntu-24.04
             generator: Unix Makefiles
 
     steps:
@@ -120,7 +120,7 @@ jobs:
           fail_ci_if_error: true
 
   docs:
-    runs-on: "ubuntu-latest"
+    runs-on: "ubuntu-24.04"
 
     steps:
       - name: checkout
