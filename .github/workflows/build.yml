@@ -24,6 +24,7 @@ jobs:
         host:
           # cl configurations
           - { cpp_compiler: cl,         c_compiler: cl,       image: windows-2022, generator: Visual Studio 17 2022 }
+          - { cpp_compiler: cl,         c_compiler: cl,       image: windows-2022, generator: Visual Studio 17 2019 }
           # clang++ configurations
           - { cpp_compiler: clang++-16, c_compiler: clang-16, image: ubuntu-24.04, generator: Unix Makefiles        }
           - { cpp_compiler: clang++-17, c_compiler: clang-17, image: ubuntu-24.04, generator: Unix Makefiles        }
