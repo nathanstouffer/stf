@@ -8,52 +8,62 @@ on:
 
 jobs:
   build:
-    runs-on: ${{ matrix.os }}
+    runs-on: ${{ matrix.host.os }}
 
     strategy:
       # Cancel all in-progress and queued jobs in the matrix if any job in the matrix fails
       fail-fast: false
 
-      # Set up a matrix to run the different configurations:
       matrix:
         build_type: [Debug, RelWithDebInfo, Release, MinSizeRel]
-        cpp_compiler: [cl, g++, clang++]
-        os: [windows-2022, ubuntu-24.04, macos-14]
-        exclude:
-          # exclude incompatible operating systems and compilers
-          - os: windows-2022
-            cpp_compiler: clang++
+        host:
           - os: ubuntu-24.04
-            cpp_compiler: cl
-          - os: macos-14
-            cpp_compiler: cl
-          - os: macos-14
-            cpp_compiler: g++
-        include:
-          # for a particular cpp compiler, specify the c compiler
-          - cpp_compiler: cl
-            c_compiler: cl
-          - cpp_compiler: g++
-            c_compiler: gcc
-          - cpp_compiler: clang++
-            c_compiler: clang
-          # for a particular operating system and compiler, specify the generator
-          - os: windows-2022
-            cpp_compiler: cl
-            generator: Visual Studio 17 2022
-          - os: windows-2022
-            cpp_compiler: g++
-            generator: MinGW Makefiles
-          - os: ubuntu-24.04
+            compiler:
+              - cpp: g++
+                c: gcc
+              - cpp: clang++
+                c: clang
             generator: Unix Makefiles
-          - os: macos-14
-            generator: Unix Makefiles
-          # add the coverage build type
-          # - build_type: Coverage
-          #   cpp_compiler: clang++
-          #   c_compiler: clang
-          #   os: ubuntu-24.04
-          #   generator: Unix Makefiles
+      # Set up a matrix to run the different configurations:
+      # matrix:
+      #   build_type: [Debug, RelWithDebInfo, Release, MinSizeRel]
+      #   cpp_compiler: [cl, g++, clang++]
+      #   os: [windows-2022, ubuntu-24.04, macos-14]
+      #   exclude:
+      #     # exclude incompatible operating systems and compilers
+      #     - os: windows-2022
+      #       cpp_compiler: clang++
+      #     - os: ubuntu-24.04
+      #       cpp_compiler: cl
+      #     - os: macos-14
+      #       cpp_compiler: cl
+      #     - os: macos-14
+      #       cpp_compiler: g++
+      #   include:
+      #     # for a particular cpp compiler, specify the c compiler
+      #     - cpp_compiler: cl
+      #       c_compiler: cl
+      #     - cpp_compiler: g++
+      #       c_compiler: gcc
+      #     - cpp_compiler: clang++
+      #       c_compiler: clang
+      #     # for a particular operating system and compiler, specify the generator
+      #     - os: windows-2022
+      #       cpp_compiler: cl
+      #       generator: Visual Studio 17 2022
+      #     - os: windows-2022
+      #       cpp_compiler: g++
+      #       generator: MinGW Makefiles
+      #     - os: ubuntu-24.04
+      #       generator: Unix Makefiles
+      #     - os: macos-14
+      #       generator: Unix Makefiles
+      #     # add the coverage build type
+      #     - build_type: Coverage
+      #       cpp_compiler: clang++
+      #       c_compiler: clang
+      #       os: ubuntu-24.04
+      #       generator: Unix Makefiles
 
     steps:
       - name: checkout
@@ -77,10 +87,10 @@ jobs:
         # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
         run: >
           cmake -B ${{ steps.strings.outputs.build-output-dir }}
-          -DCMAKE_CXX_COMPILER=${{ matrix.cpp_compiler }}
-          -DCMAKE_C_COMPILER=${{ matrix.c_compiler }}
+          -DCMAKE_CXX_COMPILER=${{ matrix.host.compiler.cpp }}
+          -DCMAKE_C_COMPILER=${{ matrix.host.compiler.c }}
           -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}
-          -G "${{ matrix.generator }}"
+          -G "${{ matrix.host.generator }}"
           -S ${{ github.workspace }}
 
       - name: Build
