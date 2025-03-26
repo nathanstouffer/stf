@@ -60,6 +60,13 @@ jobs:
             c_compiler: gcc
             os: macos-14
             generator: Unix Makefiles
+        include:
+          - build_type: Coverage
+            host:
+              - cpp_compiler: clang++
+                c_compiler: clang
+                os: ubuntu-24.04
+                generator: Unix Makefiles
       # Set up a matrix to run the different configurations:
       # matrix:
       #   build_type: [Debug, RelWithDebInfo, Release, MinSizeRel]
