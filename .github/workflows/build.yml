@@ -18,10 +18,10 @@ jobs:
         build_type: [Debug, RelWithDebInfo, Release, MinSizeRel]
         host:
           # cl configurations
-          # - cpp_compiler: cl
-          #   c_compiler: cl
-          #   os: windows-2022
-          #   generator: Visual Studio 17 2022
+          - cpp_compiler: cl
+            c_compiler: cl
+            os: windows-2022
+            generator: Visual Studio 17 2022
           # clang++ configurations
           - cpp_compiler: clang++-16
             c_compiler: clang-16
@@ -34,6 +34,10 @@ jobs:
           - cpp_compiler: clang++-18
             c_compiler: clang-18
             os: ubuntu-24.04
+            generator: Unix Makefiles
+          - cpp_compiler: clang++
+            c_compiler: clang
+            os: macos-14
             generator: Unix Makefiles
           # g++ configurations
       # Set up a matrix to run the different configurations:
