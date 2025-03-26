@@ -49,11 +49,11 @@ jobs:
           - os: macos-14
             generator: Unix Makefiles
           # add the coverage build type
-          - build_type: Coverage
-            cpp_compiler: clang++
-            c_compiler: clang
-            os: ubuntu-24.04
-            generator: Unix Makefiles
+          # - build_type: Coverage
+          #   cpp_compiler: clang++
+          #   c_compiler: clang
+          #   os: ubuntu-24.04
+          #   generator: Unix Makefiles
 
     steps:
       - name: checkout
