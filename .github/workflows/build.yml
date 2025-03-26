@@ -30,11 +30,21 @@ jobs:
           #   cpp_compiler: clang++-18
           #   c_compiler: clang-18
           #   generator: Unix Makefiles
+          - os: ubuntu-24.04
+            cpp_compiler: [clang++-16, clang++-17, clang++-18]
+            generator: Unix Makefiles
+        include:
+          - cpp_compiler: clang++-16
+            c_compiler: clang-16
+          - cpp_compiler: clang++-17
+            c_compiler: clang-17
+          - cpp_compiler: clang++-18
+            c_compiler: clang-18
           # windows-2022 hosts
-          - os: windows-2022
-            cpp_compiler: cl
-            c_compiler: cl
-            generator: Visual Studio 17 2022
+          # - os: windows-2022
+          #   cpp_compiler: cl
+          #   c_compiler: cl
+          #   generator: Visual Studio 17 2022
           # macos-14 hosts
       # Set up a matrix to run the different configurations:
       # matrix:
@@ -82,8 +92,8 @@ jobs:
         uses: actions/checkout@v3
 
       # Use this to set up an open ssh debugging session with CI
-      - name: Setup ssh session
-        uses: lhotari/action-upterm@v1
+      # - name: Setup ssh session
+      #   uses: lhotari/action-upterm@v1
 
       - name: Set reusable strings
         # Turn repeated input strings (such as the build output directory) into step outputs. These step outputs can be used throughout the workflow file.
