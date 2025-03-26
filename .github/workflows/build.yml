@@ -19,7 +19,7 @@ jobs:
         host:
           - os: ubuntu-24.04
             cpp_compiler: g++
-            c_compiler: g
+            c_compiler: gcc
             generator: Unix Makefiles
       # Set up a matrix to run the different configurations:
       # matrix:
