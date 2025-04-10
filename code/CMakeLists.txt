@@ -1,6 +1,8 @@
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 
-include(AddressSanitizer)
+if (ENABLE_ASAN)
+    include(AddressSanitizer)
+endif()
 
 if (BUILD_TESTS)
     include(CTest)
