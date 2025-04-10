@@ -2,7 +2,7 @@ if (ENABLE_ASAN)
     # set up the address sanitizer -- this is clang/gcc only
     set(ASAN_FLAGS "-fsanitize=address")
 
-    message("HERE")
+    message("Setting ASan flags")
 
     set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} ${ASAN_FLAGS}")
     set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} ${ASAN_FLAGS}")
