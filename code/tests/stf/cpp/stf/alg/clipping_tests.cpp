@@ -11,7 +11,7 @@ namespace stf::alg
 
     TEST(clipping, segment)
     {
-        int i = 10;
+        int i = 50;
         int arr[10];
         arr[i] = 0;
 
