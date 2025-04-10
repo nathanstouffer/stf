@@ -12,7 +12,7 @@ jobs:
 
     strategy:
       # Cancel all in-progress and queued jobs in the matrix if any job in the matrix fails
-      fail-fast: true
+      fail-fast: false
 
       # matrix docs: https://docs.github.com/en/actions/writing-workflows/workflow-syntax-for-github-actions#jobsjob_idstrategymatrix
       matrix:
