@@ -14,7 +14,7 @@ if (${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_CURRENT_SOURCE_DIR})
     set(BUILD_DOCS TRUE)
     message("System Name: ${CMAKE_SYSTEM_NAME}")
     if (${CMAKE_SYSTEM_NAME} STREQUAL "Linux" OR ${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
-        set(ENABLE_ASAN TRUE)
+        set(ENABLE_ASAN FALSE)
     endif()
 endif()
 
