@@ -64,17 +64,24 @@ add_executable(tests ${STF_TEST_FILES})
 source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}/" FILES ${STF_TEST_FILES})
 
 if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU" OR CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
-  target_compile_options(tests PRIVATE
-    "-Wall"
-    "-Wextra"
-    "-Wpedantic"
-    # "-Werror"
-  )
+    # increase warning level
+    target_compile_options(tests PRIVATE
+        "-Wall"
+        "-Wextra"
+        "-Wpedantic"
+        # "-Werror"
+    )
+    # turn off specific warnings
+    target_compile_options(tests PRIVATE
+        "-Wno-gnu-anonymous-struct"
+        "-Wno-nested-anon-types"
+    )
 elseif(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
-  target_compile_options(tests PRIVATE
-    "/W4"
-    # "/WX" #Treat warnings as errors
-  )
+    # increase warning level
+    target_compile_options(tests PRIVATE
+        "/W4"
+        # "/WX" #Treat warnings as errors
+    )
 endif()
 
 target_include_directories(tests PRIVATE "include/private")
