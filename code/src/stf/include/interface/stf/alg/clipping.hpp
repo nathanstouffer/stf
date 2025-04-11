@@ -24,8 +24,6 @@ namespace stf::alg::guts
     template<typename T>
     region_code code(geom::aabb2<T> const& box, math::vec2<T> const& point)
     {
-        region_code region = region_code::INSIDE;
-
         region_code x = region_code::INSIDE;
         if      (point.x < box.min.x) { x = region_code::LEFT;  }
         else if (box.max.x < point.x) { x = region_code::RIGHT; }
