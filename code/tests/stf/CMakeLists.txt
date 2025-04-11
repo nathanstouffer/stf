@@ -69,7 +69,7 @@ if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU" OR CMAKE_CXX_COMPILER_ID STREQUAL "Clang
         "-Wall"
         "-Wextra"
         "-Wpedantic"
-        # "-Werror"
+        "-Werror"
     )
     # turn off specific warnings
     target_compile_options(tests PRIVATE
