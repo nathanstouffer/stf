@@ -71,7 +71,7 @@ if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU" OR CMAKE_CXX_COMPILER_ID STREQUAL "Clang
         "-Wpedantic"
         "-Werror"
     )
-    # turn off specific warnings
+    # ignore specific warnings
     target_compile_options(tests PRIVATE
         "-Wno-gnu-anonymous-struct"
         "-Wno-nested-anon-types"
@@ -81,6 +81,10 @@ elseif(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
     target_compile_options(tests PRIVATE
         "/W4"
         # "/WX" #Treat warnings as errors
+    )
+    # ignore specific warnings
+    target_compile_options(tests PRIVATE
+        "/wd4201"   # nonstandard extension used: nameless struct/union
     )
 endif()
 
