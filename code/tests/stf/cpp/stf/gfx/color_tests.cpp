@@ -29,12 +29,12 @@ namespace stf::gfx
     TEST(rgba, construct)
     {
         ASSERT_EQ(rgba(), rgba(0, 0, 0, 1)) << "Failed to construct default color";
-        ASSERT_EQ(rgba(0.5), rgba(0.5, 0.5, 0.5, 0.5)) << "Failed to construct from single float";
-        ASSERT_EQ(rgba(0.5, 0.75), rgba(0.5, 0.5, 0.5, 0.75)) << "Failed to construct from two floats";
-        ASSERT_EQ(rgba(0.5, 0.75, 1.0), rgba(0.5, 0.75, 1.0, 1.0)) << "Failed to construct three floats";
-        ASSERT_EQ(rgba(0.5, 0.75, 1.0, 0.25), rgba(0.5, 0.75, 1.0, 0.25)) << "Failed to construct four floats";
-        ASSERT_EQ(rgba(math::vec<float, 3>(0.5, 0.75, 1.0)), rgba(0.5, 0.75, 1.0, 1.0)) << "Failed to construct from float vec3";
-        ASSERT_EQ(rgba(math::vec<float, 4>(0.5, 0.75, 1.0, 0.25)), rgba(0.5, 0.75, 1.0, 0.25)) << "Failed to construct from float vec4";
+        ASSERT_EQ(rgba(0.5f), rgba(0.5f, 0.5f, 0.5f, 0.5f)) << "Failed to construct from single float";
+        ASSERT_EQ(rgba(0.5f, 0.75f), rgba(0.5f, 0.5f, 0.5f, 0.75f)) << "Failed to construct from two floats";
+        ASSERT_EQ(rgba(0.5f, 0.75f, 1.0f), rgba(0.5f, 0.75f, 1.0f, 1.0f)) << "Failed to construct three floats";
+        ASSERT_EQ(rgba(0.5f, 0.75f, 1.0f, 0.25f), rgba(0.5f, 0.75f, 1.0f, 0.25f)) << "Failed to construct four floats";
+        ASSERT_EQ(rgba(math::vec<float, 3>(0.5f, 0.75f, 1.0f)), rgba(0.5f, 0.75f, 1.0f, 1.0f)) << "Failed to construct from float vec3";
+        ASSERT_EQ(rgba(math::vec<float, 4>(0.5f, 0.75f, 1.0f, 0.25f)), rgba(0.5f, 0.75f, 1.0f, 0.25f)) << "Failed to construct from float vec4";
     }
     
     TEST(rgba, component_to_hex)
@@ -49,11 +49,11 @@ namespace stf::gfx
         {
             { 0, 0 },
             { 1, 255 },
-            { -0.1, 0 },
+            { -0.1f, 0 },
             { -1, 0 },
-            { 1.1, 255 },
+            { 1.1f, 255 },
             { 2, 255 },
-            { 0.5, 128 },
+            { 0.5f, 128 },
         };
 
         for (test_t const& test : tests) { ASSERT_EQ(test.expected, rgba::to_hex(test.x)) << "Failed to compute hex correctly"; }
@@ -79,9 +79,9 @@ namespace stf::gfx
             { 0xFFFFFFFF, 16, 1 },
             { 0xFFFFFFFF, 24, 1 },
             { 0xC0804000, 0, 0 },
-            { 0xC0804000, 8, 0.25098039215 },
-            { 0xC0804000, 16, 0.50196078431 },
-            { 0xC0804000, 24, 0.75294117647 },
+            { 0xC0804000, 8, 0.25098039215f },
+            { 0xC0804000, 16, 0.50196078431f },
+            { 0xC0804000, 24, 0.75294117647f },
         };
 
         for (test_t const& test : tests) { ASSERT_EQ(test.expected, rgba::from_hex(test.hex, test.shift)) << "Failed to compute value correctly"; }
@@ -94,8 +94,8 @@ namespace stf::gfx
             // rgba         abgr            argb            color
             { 0x00000000,   0x00000000,     0x00000000,     rgba(0, 0, 0, 0) },
             { 0xFFFFFFFF,   0xFFFFFFFF,     0xFFFFFFFF,     rgba(1, 1, 1, 1) },
-            { 0x00112233,   0x33221100,     0x33001122,     rgba(0, 0.06666666666, 0.13333333333, 0.2) },
-            { 0xAABBCCDD,   0xDDCCBBAA,     0xDDAABBCC,     rgba(0.66666666666, 0.73333333333, 0.8, 0.86666666666) },
+            { 0x00112233,   0x33221100,     0x33001122,     rgba(0, 0.06666666666f, 0.13333333333f, 0.2f) },
+            { 0xAABBCCDD,   0xDDCCBBAA,     0xDDAABBCC,     rgba(0.66666666666f, 0.73333333333f, 0.8f, 0.86666666666f) },
         };
 
         for (scaffolding::color::rgba_hex_conversion const& test : tests) { scaffolding::color::verify(test); }

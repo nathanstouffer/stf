@@ -32,8 +32,8 @@ namespace stf::geom
             { stff::aabb2(stff::vec2(0), stff::vec2(2)), stff::aabb2(stff::vec2(2), stff::vec2(4)), true },
             { stff::aabb2(stff::vec2(0), stff::vec2(2)), stff::aabb2(stff::vec2(3), stff::vec2(4)), false },
             { stff::aabb2(stff::vec2(0), stff::vec2(2)), stff::aabb2(stff::vec2(3), stff::vec2(4)), false },
-            { stff::aabb2(stff::vec2(0), stff::vec2(2)), stff::aabb2(stff::vec2(2.000001), stff::vec2(4)), false },
-            { stff::aabb2(stff::vec2(0), stff::vec2(2)), stff::aabb2(stff::vec2(-2), stff::vec2(-0.0000001)), false },
+            { stff::aabb2(stff::vec2(0), stff::vec2(2)), stff::aabb2(stff::vec2(2.000001f), stff::vec2(4)), false },
+            { stff::aabb2(stff::vec2(0), stff::vec2(2)), stff::aabb2(stff::vec2(-2), stff::vec2(-0.0000001f)), false },
         };
 
         for (scaffolding::aabb::intersects<float, 2> const& test : tests)

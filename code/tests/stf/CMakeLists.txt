@@ -63,6 +63,7 @@ add_executable(tests ${STF_TEST_FILES})
 # add directory structure to IDEs
 source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}/" FILES ${STF_TEST_FILES})
 
+# TODO (stouff) set up warn-as-error to be a conditional based on configuration
 if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU" OR CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
     # increase warning level
     target_compile_options(tests PRIVATE
@@ -80,7 +81,7 @@ elseif(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
     # increase warning level
     target_compile_options(tests PRIVATE
         "/W4"
-        # "/WX" #Treat warnings as errors
+        "/WX" #Treat warnings as errors
     )
     # ignore specific warnings
     target_compile_options(tests PRIVATE
