@@ -94,7 +94,7 @@ namespace stf::geom
             for (size_t d = 0; d < N; ++d)
             {
                 vec_t offset = m_half_extents[d] * m_basis[d];
-                position += ((i & (1 << d)) != 0) ? offset : -offset;
+                position += ((i & (static_cast<size_t>(1) << d)) != 0) ? offset : -offset;
             }
             return position;
         }

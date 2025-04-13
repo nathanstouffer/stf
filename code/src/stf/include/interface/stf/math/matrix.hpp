@@ -391,7 +391,7 @@ namespace stf::math
          */
         inline mtx<T, N - 1> minor(size_t const i, size_t const j) const
         {
-            vec<T, (N - 1) * (N - 1)> values;
+            vec<T, (N - 1) * (N - 1)> entries;
             size_t d = 0;
             for (size_t x = 0; x < N; ++x)
             {
@@ -399,11 +399,11 @@ namespace stf::math
                 {
                     if (y != i && x != j)
                     {
-                        values[d++] = (*this)[y][x];
+                        entries[d++] = (*this)[y][x];
                     }
                 }
             }
-            return mtx<T, N - 1>(values);
+            return mtx<T, N - 1>(entries);
         }
 
         /**
