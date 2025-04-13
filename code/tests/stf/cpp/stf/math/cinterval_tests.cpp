@@ -11,7 +11,6 @@ namespace stf::math
 
     TEST(cinterval, contains_point)
     {
-        int a = 0;
         std::vector<scaffolding::cinterval::contains_point<float>> tests =
         {
             // closed cintervals
