@@ -57,8 +57,8 @@ namespace stf::math
         {
             switch (type)
             {
-                case boundary_types::CLOSED: return a > b; break;
-                case boundary_types::OPEN: return a >= b; break;
+                case boundary_types::closed: return a > b; break;
+                case boundary_types::open: return a >= b; break;
                 default: return false;
             }
         }
@@ -97,8 +97,8 @@ namespace stf::math
         {
             switch (type)
             {
-                case boundary_types::CLOSED: return a <= x && x <= b; break;
-                case boundary_types::OPEN: return a < x && x < b; break;
+                case boundary_types::closed: return a <= x && x <= b; break;
+                case boundary_types::open: return a < x && x < b; break;
                 default: return false;
             };
         }

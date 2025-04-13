@@ -189,7 +189,7 @@ namespace stf::spatial
                         center_t const& center = node->center;
                         if (!center.is_empty())
                         {
-                            return (*it)->interval.contains(query, boundary_types::CLOSED);
+                            return (*it)->interval.contains(query, boundary_types::closed);
                         }
                     }
                     return false;	// fall-through to false

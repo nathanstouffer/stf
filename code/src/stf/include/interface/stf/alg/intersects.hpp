@@ -186,7 +186,7 @@ namespace stf::alg
         if (!polygon.is_empty() && aabb.intersects(polygon.aabb()))
         {
             // if a point from either is contained in the other, they certainly intersect
-            if (aabb.contains(polygon[0]) || polygon.contains(aabb.vertex(0), boundary_types::CLOSED))
+            if (aabb.contains(polygon[0]) || polygon.contains(aabb.vertex(0), boundary_types::closed))
             {
                 return true;
             }
@@ -227,7 +227,7 @@ namespace stf::alg
         if (!polygon.is_empty() && polygon.aabb().intersects(segment.aabb()))
         {
             // if the polygon contains either point, they certainly intersect
-            if (polygon.contains(segment.a, boundary_types::CLOSED) || polygon.contains(segment.b, boundary_types::CLOSED))
+            if (polygon.contains(segment.a, boundary_types::closed) || polygon.contains(segment.b, boundary_types::closed))
             {
                 return true;
             }

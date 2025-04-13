@@ -8,8 +8,8 @@ namespace stf
      */
     enum class boundary_types : uint32_t
     {
-        CLOSED = 0x00000000,
-        OPEN   = 0xFFFFFFFF
+        closed = 0x00000000,
+        open   = 0xFFFFFFFF
     };
 
     /**
