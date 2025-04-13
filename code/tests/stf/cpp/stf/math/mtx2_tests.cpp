@@ -17,7 +17,7 @@ namespace stf::math
             { stff::mtx2(1), stff::mtx2(1), true },
             { stff::mtx2(1), stff::mtx2(2), false },
             { stff::mtx2(stff::vec4(1, 0, 0, 1)), stff::mtx2(stff::vec4(1, 0, 0, 1)), true },
-            { stff::mtx2(stff::vec4(1, 0, 0, 1)), stff::mtx2(stff::vec4(1, 0, 0, 1.1)), false },
+            { stff::mtx2(stff::vec4(1, 0, 0, 1)), stff::mtx2(stff::vec4(1, 0, 0, 1.1f)), false },
         };
 
         for (scaffolding::mtx::equality<float, 2> const& test : tests) { scaffolding::mtx::verify(test); }

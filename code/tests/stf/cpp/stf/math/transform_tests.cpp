@@ -65,7 +65,7 @@ namespace stf::math
         {
             // initial              focus           right                   delta phi                       delta theta                 expected
             { stff::vec3(0, -1, 0), stff::vec3(),   stff::vec3(1, 0, 0),    stff::constants::zero,          stff::constants::zero,      stff::vec3(0, -1, 0) },
-            { stff::vec3(0, -1, 0), stff::vec3(),   stff::vec3(1, 0, 0),    -stff::constants::quarter_pi,   stff::constants::half_pi,   stff::vec3(0.707107, 0, 0.707107) },
+            { stff::vec3(0, -1, 0), stff::vec3(),   stff::vec3(1, 0, 0),    -stff::constants::quarter_pi,   stff::constants::half_pi,   stff::vec3(0.707107f, 0, 0.707107f) },
         };
 
         for (scaffolding::transform::orbit3<float> const& test : tests) { scaffolding::transform::verify(test); }

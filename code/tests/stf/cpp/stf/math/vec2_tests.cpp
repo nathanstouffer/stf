@@ -120,10 +120,10 @@ namespace stf::math
             { stff::vec2(1, 0), stff::vec2(1, 0) },
             { stff::vec2(4, 0), stff::vec2(1, 0) },
             { stff::vec2(80, 0), stff::vec2(1, 0) },
-            { stff::vec2(3, 4), stff::vec2(0.6, 0.8) },
-            { stff::vec2(-3, 4), stff::vec2(-0.6, 0.8) },
-            { stff::vec2(3, -4), stff::vec2(0.6, -0.8) },
-            { stff::vec2(-3, -4), stff::vec2(-0.6, -0.8) },
+            { stff::vec2(3, 4), stff::vec2(0.6f, 0.8f) },
+            { stff::vec2(-3, 4), stff::vec2(-0.6f, 0.8f) },
+            { stff::vec2(3, -4), stff::vec2(0.6f, -0.8f) },
+            { stff::vec2(-3, -4), stff::vec2(-0.6f, -0.8f) },
         };
 
         for (scaffolding::vec::normalize<float, 2> const& test : tests) { scaffolding::vec::verify(test); }

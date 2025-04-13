@@ -93,7 +93,7 @@ namespace stf::geom
             vec_t vert = min;
             for (size_t j = 0; j < N; ++j)
             {
-                if ((i & (1 << j)) != 0)
+                if ((i & (static_cast<size_t>(1) << j)) != 0)
                 {
                     vert[j] = max[j];
                 }

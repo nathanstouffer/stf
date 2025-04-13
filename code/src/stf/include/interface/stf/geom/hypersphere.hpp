@@ -48,7 +48,7 @@ namespace stf::geom
          * @param [in] query
          * @return Whether or not @p this encloses @p query
          */
-        bool const encloses(vec_t const& query) const
+        bool encloses(vec_t const& query) const
         {
             vec_t delta = query - center;
             return delta.length_squared() <= radius * radius;

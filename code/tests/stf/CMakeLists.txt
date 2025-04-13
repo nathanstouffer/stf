@@ -63,6 +63,33 @@ add_executable(tests ${STF_TEST_FILES})
 # add directory structure to IDEs
 source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}/" FILES ${STF_TEST_FILES})
 
+if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU" OR CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
+    # increase warning level
+    target_compile_options(tests PRIVATE
+        "-Wall"
+        "-Wextra"
+        "-Wpedantic"
+    )
+elseif(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
+    # increase warning level
+    target_compile_options(tests PRIVATE
+        "/W4"
+    )
+endif()
+
+option(STF_TESTS_WARNINGS_AS_ERRORS "Enable warnings as errors in tests" FALSE)
+if(STF_TESTS_WARNINGS_AS_ERRORS)
+    if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU" OR CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
+        target_compile_options(tests PRIVATE
+            "-Werror"
+        )
+    elseif(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
+        target_compile_options(tests PRIVATE
+            "/WX"
+        )
+    endif()
+endif()
+
 target_include_directories(tests PRIVATE "include/private")
 
 target_link_libraries(tests PRIVATE stf GTest::gtest_main)

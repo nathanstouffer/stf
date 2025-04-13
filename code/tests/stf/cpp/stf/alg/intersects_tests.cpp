@@ -16,11 +16,11 @@ namespace stf::alg
             // colinear segments that intersect
             { stff::segment2(stff::vec2(0), stff::vec2(1)), stff::segment2(stff::vec2(0), stff::vec2(1)), true },
             { stff::segment2(stff::vec2(0), stff::vec2(1)), stff::segment2(stff::vec2(0.5), stff::vec2(1)), true },
-            { stff::segment2(stff::vec2(0), stff::vec2(1)), stff::segment2(stff::vec2(0), stff::vec2(0.5)), true },
-            { stff::segment2(stff::vec2(0), stff::vec2(1)), stff::segment2(stff::vec2(0.25), stff::vec2(0.75)), true },
+            { stff::segment2(stff::vec2(0), stff::vec2(1)), stff::segment2(stff::vec2(0), stff::vec2(0.5f)), true },
+            { stff::segment2(stff::vec2(0), stff::vec2(1)), stff::segment2(stff::vec2(0.25f), stff::vec2(0.75f)), true },
             { stff::segment2(stff::vec2(0), stff::vec2(1)), stff::segment2(stff::vec2(-1), stff::vec2(2)), true },
-            { stff::segment2(stff::vec2(0), stff::vec2(1)), stff::segment2(stff::vec2(0.5), stff::vec2(2)), true },
-            { stff::segment2(stff::vec2(0), stff::vec2(1)), stff::segment2(stff::vec2(-2), stff::vec2(0.5)), true },
+            { stff::segment2(stff::vec2(0), stff::vec2(1)), stff::segment2(stff::vec2(0.5f), stff::vec2(2)), true },
+            { stff::segment2(stff::vec2(0), stff::vec2(1)), stff::segment2(stff::vec2(-2), stff::vec2(0.5f)), true },
             // colinear segments that do not intersect
             { stff::segment2(stff::vec2(0), stff::vec2(1)), stff::segment2(stff::vec2(2), stff::vec2(4)), false },
             { stff::segment2(stff::vec2(0), stff::vec2(1)), stff::segment2(stff::vec2(-2), stff::vec2(-4)), false },
@@ -31,9 +31,9 @@ namespace stf::alg
             { stff::segment2(stff::vec2(0), stff::vec2(5)), stff::segment2(stff::vec2(0, -2), stff::vec2(0, 2)), true },
             // non colinear segments that do not intersect
             { stff::segment2(stff::vec2(0), stff::vec2(1)), stff::segment2(stff::vec2(0, -1), stff::vec2(1, 0)), false },
-            { stff::segment2(stff::vec2(4), stff::vec2(8, 0)), stff::segment2(stff::vec2(5.99999, 2), stff::vec2(1, 0)), false },
+            { stff::segment2(stff::vec2(4), stff::vec2(8, 0)), stff::segment2(stff::vec2(5.99999f, 2), stff::vec2(1, 0)), false },
             { stff::segment2(stff::vec2(0), stff::vec2(5)), stff::segment2(stff::vec2(-2, 0), stff::vec2(2, -2)), false },
-            { stff::segment2(stff::vec2(0), stff::vec2(5)), stff::segment2(stff::vec2(-0.00001, -2), stff::vec2(0, 2)), false },
+            { stff::segment2(stff::vec2(0), stff::vec2(5)), stff::segment2(stff::vec2(-0.00001f, -2), stff::vec2(0, 2)), false },
         };
 
         for (scaffolding::intersects::segment_with_segment<float> const& test : tests)
@@ -68,9 +68,9 @@ namespace stf::alg
             // segments outside the box
             { stff::segment2(stff::vec2(0, -5), stff::vec2(10, -5)), box, false },
             { stff::segment2(stff::vec2(0, 15), stff::vec2(10, 15)), box, false },
-            { stff::segment2(stff::vec2(0, -0.000001), stff::vec2(10, -0.000001)), box, false },
-            { stff::segment2(stff::vec2(-0.000001, 0), stff::vec2(-0.000001, 10)), box, false },
-            { stff::segment2(stff::vec2(9, 11.00001), stff::vec2(11.00001, 9)), box, false },
+            { stff::segment2(stff::vec2(0, -0.000001f), stff::vec2(10, -0.000001f)), box, false },
+            { stff::segment2(stff::vec2(-0.000001f, 0), stff::vec2(-0.000001f, 10)), box, false },
+            { stff::segment2(stff::vec2(9, 11.00001f), stff::vec2(11.00001f, 9)), box, false },
         };
 
         for (scaffolding::intersects::segment_with_aabb<float> const& test : tests)
@@ -97,8 +97,8 @@ namespace stf::alg
             { stff::polyline2({ stff::vec2(9, -1), stff::vec2(11, 1) }), box, true },
             // polylines outside the box
             { stff::polyline2({ stff::vec2(-1), stff::vec2(-1, 5), stff::vec2(-5) }), box, false },
-            { stff::polyline2({ stff::vec2(9, -1.00001), stff::vec2(11, 0.99999) }), box, false },
-            { stff::polyline2({ stff::vec2(-0.00001), stff::vec2(-0.00001, 10.00001), stff::vec2(10.00001) }), box, false},
+            { stff::polyline2({ stff::vec2(9, -1.00001f), stff::vec2(11, 0.99999f) }), box, false },
+            { stff::polyline2({ stff::vec2(-0.00001f), stff::vec2(-0.00001f, 10.00001f), stff::vec2(10.00001f) }), box, false},
         };
 
         for (scaffolding::intersects::polyline_with_aabb<float> const& test : tests)
@@ -124,7 +124,7 @@ namespace stf::alg
             { stff::polygon({ stff::vec2(0), stff::vec2(10, 0), stff::vec2(5, -5) }), box, true },
             // polygons outside the box
             { stff::polygon({ stff::vec2(-1), stff::vec2(-5), stff::vec2(-5, 0) }), box, false },
-            { stff::polygon({ stff::vec2(-11, 10), stff::vec2(-0.000001, 10), stff::vec2(-0.000001), stff::vec2(10, -0.000001), stff::vec2(10, -11) }), box, false},
+            { stff::polygon({ stff::vec2(-11, 10), stff::vec2(-0.000001f, 10), stff::vec2(-0.000001f), stff::vec2(10, -0.000001f), stff::vec2(10, -11) }), box, false},
         };
 
         for (scaffolding::intersects::polygon_with_aabb<float> const& test : tests)
