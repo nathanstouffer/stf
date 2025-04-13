@@ -202,7 +202,7 @@ namespace stf::geom
                 {
                     return type == boundary_types::CLOSED;
                 }
-                else if (seg.a.y > query.y != seg.b.y > query.y)            // test if the y-range is relevent
+                else if ((seg.a.y > query.y) != (seg.b.y > query.y))            // test if the y-range is relevent
                 {
                     math::interval<T> x_range = seg.interval(0);
                     if (query.x < x_range.a) { ++crossing_count; }      // avoid floating point work if we know the segment crosses
