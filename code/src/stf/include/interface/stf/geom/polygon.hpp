@@ -200,7 +200,7 @@ namespace stf::geom
                 geom::segment2<T> seg = edge(i);
                 if (geom::dist_squared(seg, query) == math::constants<T>::zero)     // early out if the point is on the boundary
                 {
-                    return type == boundary_types::CLOSED;
+                    return type == boundary_types::closed;
                 }
                 else if ((seg.a.y > query.y) != (seg.b.y > query.y))            // test if the y-range is relevent
                 {
@@ -236,7 +236,7 @@ namespace stf::geom
          */
         T dist_squared(vec_t const& point) const
         {
-            if (contains(point, boundary_types::CLOSED))
+            if (contains(point, boundary_types::closed))
             {
                 return math::constants<T>::zero;
             }
@@ -271,7 +271,7 @@ namespace stf::geom
                 d = std::min(d, edge(i).dist_squared(point));
             }
             if (d == math::constants<T>::zero) { return d; }
-            return (contains(point, boundary_types::OPEN)) ? -std::sqrt(d) : std::sqrt(d);
+            return (contains(point, boundary_types::open)) ? -std::sqrt(d) : std::sqrt(d);
         }
 
         /**
