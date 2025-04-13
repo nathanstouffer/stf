@@ -13,7 +13,7 @@ option(STF_SUPPRESS_ANONYMOUS_STRUCT_WARNINGS "Suppress warnings related to anon
 if (${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_CURRENT_SOURCE_DIR})
     set(BUILD_TESTS TRUE)
     enable_testing()
-    option(STF_TESTS_WARNINGS_AS_ERROR "Enable warnings as errors in tests" FALSE)
+    option(STF_TESTS_WARNINGS_AS_ERRORS "Enable warnings as errors in tests" FALSE)
 
     set(BUILD_DOCS TRUE)
 endif()

@@ -77,7 +77,7 @@ elseif(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
     )
 endif()
 
-if(STF_TESTS_WARNINGS_AS_ERROR)
+if(STF_TESTS_WARNINGS_AS_ERRORS)
     if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU" OR CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
         target_compile_options(tests PRIVATE
             "-Werror"
