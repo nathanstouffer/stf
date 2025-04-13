@@ -14,23 +14,23 @@ namespace stf::alg::guts
 
     enum region_code : int
     {
-        INSIDE = 0x0,
-        LEFT   = 0x1,
-        RIGHT  = 0x2,
-        BOTTOM = 0x4,
-        TOP    = 0x8,
+        inside = 0x0,
+        left   = 0x1,
+        right  = 0x2,
+        bottom = 0x4,
+        top    = 0x8,
     };
 
     template<typename T>
     region_code code(geom::aabb2<T> const& box, math::vec2<T> const& point)
     {
-        region_code x = region_code::INSIDE;
-        if      (point.x < box.min.x) { x = region_code::LEFT;  }
-        else if (box.max.x < point.x) { x = region_code::RIGHT; }
+        region_code x = region_code::inside;
+        if      (point.x < box.min.x) { x = region_code::left;  }
+        else if (box.max.x < point.x) { x = region_code::right; }
 
-        region_code y = region_code::INSIDE;
-        if      (point.y < box.min.y) { y = region_code::BOTTOM; }
-        else if (box.max.y < point.y) { y = region_code::TOP;  }
+        region_code y = region_code::inside;
+        if      (point.y < box.min.y) { y = region_code::bottom; }
+        else if (box.max.y < point.y) { y = region_code::top;  }
 
         return static_cast<region_code>(x | y);
     }
@@ -74,22 +74,22 @@ namespace stf::alg
             {
                 math::vec2<T> point;
                 guts::region_code code = code1 > code0 ? code1 : code0;
-                if (code & guts::region_code::TOP)
+                if (code & guts::region_code::top)
                 {
                     point.x = seg.a.x + (box.max.y - seg.a.y) * seg.slope_inv();
                     point.y = box.max.y;
                 }
-                else if (code & guts::region_code::BOTTOM)
+                else if (code & guts::region_code::bottom)
                 {
                     point.x = seg.a.x + (box.min.y - seg.a.y) * seg.slope_inv();
                     point.y = box.min.y;
                 }
-                else if (code & guts::region_code::RIGHT)
+                else if (code & guts::region_code::right)
                 {
                     point.x = box.max.x;
                     point.y = seg.a.y + (box.max.x - seg.a.x) * seg.slope();
                 }
-                else if (code & guts::region_code::LEFT)
+                else if (code & guts::region_code::left)
                 {
                     point.x = box.min.x;
                     point.y = seg.a.y + (box.min.x - seg.a.x) * seg.slope();
