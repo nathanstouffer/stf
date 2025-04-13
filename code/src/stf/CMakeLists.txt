@@ -43,6 +43,7 @@ target_compile_definitions(stf INTERFACE
     STF_DISABLED=0
 )
 
+option(STF_SUPPRESS_ANONYMOUS_STRUCT_WARNINGS "Suppress warnings related to anonymous structs" TRUE)
 if (STF_SUPPRESS_ANONYMOUS_STRUCT_WARNINGS)
     target_compile_definitions(stf INTERFACE STF_SUPPRESS_ANONYMOUS_STRUCT_WARNINGS=1)
 else()
