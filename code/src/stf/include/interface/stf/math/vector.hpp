@@ -14,20 +14,6 @@
  * @brief A file containing a templated vector class along with associated functions
  */
 
-#       if STF_SUPPRESS_ANONYMOUS_STRUCT_WARNINGS == STF_ENABLED
-#           if STF_COMPILER & STF_COMPILER_GCC
-#               pragma GCC diagnostic push
-#               pragma GCC diagnostic ignored "-Wpedantic"
-#           elif STF_COMPILER & STF_COMPILER_CLANG
-#               pragma clang diagnostic push
-#               pragma clang diagnostic ignored "-Wgnu-anonymous-struct"
-#               pragma clang diagnostic ignored "-Wnested-anon-types"
-#           elif STF_COMPILER & STF_COMPILER_MSVC
-#               pragma warning(push)
-#               pragma warning(disable: 4201)  // nonstandard extension used : nameless struct/union
-#           endif
-#       endif
-
 namespace stf::math
 {
 
@@ -235,7 +221,19 @@ namespace stf::math
          */
         using const_array_t = T const [2];
 
-
+#       if STF_SUPPRESS_ANONYMOUS_STRUCT_WARNINGS == STF_ENABLED
+#           if STF_COMPILER & STF_COMPILER_GCC
+#               pragma GCC diagnostic push
+#               pragma GCC diagnostic ignored "-Wpedantic"
+#           elif STF_COMPILER & STF_COMPILER_CLANG
+#               pragma clang diagnostic push
+#               pragma clang diagnostic ignored "-Wgnu-anonymous-struct"
+#               pragma clang diagnostic ignored "-Wnested-anon-types"
+#           elif STF_COMPILER & STF_COMPILER_MSVC
+#               pragma warning(push)
+#               pragma warning(disable: 4201)  // nonstandard extension used : nameless struct/union
+#           endif
+#       endif
 
         /**
          * @brief A union of a raw scalar array of size 2 and a struct containing scalar members x/y
@@ -249,6 +247,16 @@ namespace stf::math
             struct { T x, y; };
             /// @endcond
         };
+
+#       if STF_SUPPRESS_ANONYMOUS_STRUCT_WARNINGS == STF_ENABLED
+#           if STF_COMPILER & STF_COMPILER_CLANG
+#               pragma clang diagnostic pop
+#           elif STF_COMPILER & STF_COMPILER_GCC
+#               pragma GCC diagnostic pop
+#           elif STF_COMPILER & STF_COMPILER_MSVC
+#               pragma warning(pop)
+#           endif
+#       endif
 
         /**
          * @brief Default constructor -- intiliazes all dimensions to 0
@@ -403,6 +411,20 @@ namespace stf::math
          */
         using const_array_t = T const [3];
 
+#       if STF_SUPPRESS_ANONYMOUS_STRUCT_WARNINGS == STF_ENABLED
+#           if STF_COMPILER & STF_COMPILER_GCC
+#               pragma GCC diagnostic push
+#               pragma GCC diagnostic ignored "-Wpedantic"
+#           elif STF_COMPILER & STF_COMPILER_CLANG
+#               pragma clang diagnostic push
+#               pragma clang diagnostic ignored "-Wgnu-anonymous-struct"
+#               pragma clang diagnostic ignored "-Wnested-anon-types"
+#           elif STF_COMPILER & STF_COMPILER_MSVC
+#               pragma warning(push)
+#               pragma warning(disable: 4201)  // nonstandard extension used : nameless struct/union
+#           endif
+#       endif
+
         /**
          * @brief A union of a raw scalar array of size 3 and various structs allowing granular member access
          */
@@ -414,6 +436,16 @@ namespace stf::math
             struct { vec<T, 2> xy; };
             /// @endcond
         };
+
+#       if STF_SUPPRESS_ANONYMOUS_STRUCT_WARNINGS == STF_ENABLED
+#           if STF_COMPILER & STF_COMPILER_CLANG
+#               pragma clang diagnostic pop
+#           elif STF_COMPILER & STF_COMPILER_GCC
+#               pragma GCC diagnostic pop
+#           elif STF_COMPILER & STF_COMPILER_MSVC
+#               pragma warning(pop)
+#           endif
+#       endif
 
         /**
          * @brief Default constructor -- intiliazes all dimensions to 0
@@ -576,6 +608,20 @@ namespace stf::math
          */
         using const_array_t = T const [4];
 
+#       if STF_SUPPRESS_ANONYMOUS_STRUCT_WARNINGS == STF_ENABLED
+#           if STF_COMPILER & STF_COMPILER_GCC
+#               pragma GCC diagnostic push
+#               pragma GCC diagnostic ignored "-Wpedantic"
+#           elif STF_COMPILER & STF_COMPILER_CLANG
+#               pragma clang diagnostic push
+#               pragma clang diagnostic ignored "-Wgnu-anonymous-struct"
+#               pragma clang diagnostic ignored "-Wnested-anon-types"
+#           elif STF_COMPILER & STF_COMPILER_MSVC
+#               pragma warning(push)
+#               pragma warning(disable: 4201)  // nonstandard extension used : nameless struct/union
+#           endif
+#       endif
+
         /**
          * @brief A union of a raw scalar array of size 4 and various structs allowing granular member access
          */
@@ -588,6 +634,16 @@ namespace stf::math
             struct { vec<T, 3> xyz; };
             /// @endcond
         };
+
+#       if STF_SUPPRESS_ANONYMOUS_STRUCT_WARNINGS == STF_ENABLED
+#           if STF_COMPILER & STF_COMPILER_CLANG
+#               pragma clang diagnostic pop
+#           elif STF_COMPILER & STF_COMPILER_GCC
+#               pragma GCC diagnostic pop
+#           elif STF_COMPILER & STF_COMPILER_MSVC
+#               pragma warning(pop)
+#           endif
+#       endif
 
         /**
          * @brief Default constructor -- intiliazes all dimensions to 0
@@ -1168,13 +1224,3 @@ namespace std
     };
 
 } // std
-
-#       if STF_SUPPRESS_ANONYMOUS_STRUCT_WARNINGS == STF_ENABLED
-#           if STF_COMPILER & STF_COMPILER_CLANG
-#               pragma clang diagnostic pop
-#           elif STF_COMPILER & STF_COMPILER_GCC
-#               pragma GCC diagnostic pop
-#           elif STF_COMPILER & STF_COMPILER_MSVC
-#               pragma warning(pop)
-#           endif
-#       endif
