@@ -7,11 +7,26 @@
 
 #include "stf/math/constants.hpp"
 #include "stf/math/raw.hpp"
+#include "stf/platform.hpp"
 
 /**
  * @file vector.hpp
  * @brief A file containing a templated vector class along with associated functions
  */
+
+#       if STF_SUPPRESS_ANONYMOUS_STRUCT_WARNINGS == STF_ENABLED
+#           if STF_COMPILER & STF_COMPILER_GCC
+#               pragma GCC diagnostic push
+#               pragma GCC diagnostic ignored "-Wpedantic"
+#           elif STF_COMPILER & STF_COMPILER_CLANG
+#               pragma clang diagnostic push
+#               pragma clang diagnostic ignored "-Wgnu-anonymous-struct"
+#               pragma clang diagnostic ignored "-Wnested-anon-types"
+#           elif STF_COMPILER & STF_COMPILER_MSVC
+#               pragma warning(push)
+#               pragma warning(disable: 4201)  // nonstandard extension used : nameless struct/union
+#           endif
+#       endif
 
 namespace stf::math
 {
@@ -219,6 +234,8 @@ namespace stf::math
          * @brief A type alias for the array that stores the underlying values
          */
         using const_array_t = T const [2];
+
+
 
         /**
          * @brief A union of a raw scalar array of size 2 and a struct containing scalar members x/y
@@ -1151,3 +1168,13 @@ namespace std
     };
 
 } // std
+
+#       if STF_SUPPRESS_ANONYMOUS_STRUCT_WARNINGS == STF_ENABLED
+#           if STF_COMPILER & STF_COMPILER_CLANG
+#               pragma clang diagnostic pop
+#           elif STF_COMPILER & STF_COMPILER_GCC
+#               pragma GCC diagnostic pop
+#           elif STF_COMPILER & STF_COMPILER_MSVC
+#               pragma warning(pop)
+#           endif
+#       endif
