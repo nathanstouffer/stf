@@ -4,7 +4,7 @@
 
 #include <stf/stf.hpp>
 
-#include "stf/geom/scaffolding/polygon.hpp"
+#include "stf/scaffolding/geom/polygon.hpp"
 
 namespace stf::geom
 {

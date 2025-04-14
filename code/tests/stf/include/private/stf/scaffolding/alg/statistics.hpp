@@ -5,7 +5,7 @@
 #include <stf/stf.hpp>
 #include <stf/alg/statistics.hpp>
 
-namespace stf::alg::scaffolding::statistics
+namespace stf::scaffolding::alg::statistics
 {
 
     template<typename T>
@@ -21,4 +21,4 @@ namespace stf::alg::scaffolding::statistics
         ASSERT_EQ(test.expected, alg::median(test.values)) << "Failed to compute median(values)";
     }
 
-} // stf::alg::scaffolding::statistics
+} // stf::scaffolding::alg::statistics

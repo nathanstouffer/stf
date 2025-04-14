@@ -5,7 +5,7 @@
 #include <stf/stf.hpp>
 #include <stf/alg/intersects.hpp>
 
-namespace stf::alg::scaffolding::intersects
+namespace stf::scaffolding::alg::intersects
 {
 
     template<typename T>
@@ -135,4 +135,4 @@ namespace stf::alg::scaffolding::intersects
         ASSERT_EQ(test.expected, alg::intersects(flipped, test.ray)) << "Failed intersects(flipped, ray)";
     }
 
-} // stf::alg::scaffolding::intersects
+} // stf::scaffolding::alg::intersects

@@ -4,40 +4,40 @@
 
 #include <stf/math/vector.hpp>
 
-namespace stf::math::scaffolding::vec
+namespace stf::scaffolding::math::vec
 {
 
     template<typename T, size_t N>
     struct equality
     {
-        math::vec<T, N> lhs;
-        math::vec<T, N> rhs;
+        stf::math::vec<T, N> lhs;
+        stf::math::vec<T, N> rhs;
         bool equal;
-    };
 
-    template<typename T, size_t N>
-    void verify(equality<T, N> const& test)
-    {
-        if (test.equal)
+        void verify(size_t const i) const
         {
-            ASSERT_EQ(test.lhs, test.rhs) << "failed positive assertion";
-            ASSERT_FALSE(test.lhs != test.rhs) << "failed negative assertion";
-            ASSERT_TRUE(math::equ(test.lhs, test.rhs, math::constants<T>::zero)) << "failed exact positive assertion";
-            ASSERT_FALSE(math::neq(test.lhs, test.rhs, math::constants<T>::zero)) << "failed exact negative assertion";
+            if (equal)
+            {
+                ASSERT_EQ(lhs, rhs) << "failed positive assertion (test index: " << i << ")";
+                ASSERT_FALSE(lhs != rhs) << "failed negative assertion (test index: " << i << ")";
+                ASSERT_TRUE(stf::math::equ(lhs, rhs, stf::math::constants<T>::zero)) << "failed exact positive assertion (test index: " << i << ")";
+                ASSERT_FALSE(stf::math::neq(lhs, rhs, stf::math::constants<T>::zero)) << "failed exact negative assertion (test index: " << i << ")";
+            }
+            else
+            {
+                ASSERT_NE(lhs, rhs) << "failed positive assertion (test index: " << i << ")";
+                ASSERT_FALSE(lhs == rhs) << "failed negative assertion (test index: " << i << ")";
+                ASSERT_TRUE(stf::math::neq(lhs, rhs, stf::math::constants<T>::zero)) << "failed exact positive assertion (test index: " << i << ")";
+                ASSERT_FALSE(stf::math::equ(lhs, rhs, stf::math::constants<T>::zero)) << "failed exact negative assertion (test index: " << i << ")";
+            }
         }
-        else
-        {
-            ASSERT_NE(test.lhs, test.rhs) << "failed positive assertion";
-            ASSERT_FALSE(test.lhs == test.rhs) << "failed negative assertion";
-            ASSERT_TRUE(math::neq(test.lhs, test.rhs, math::constants<T>::zero)) << "failed exact positive assertion";
-            ASSERT_FALSE(math::equ(test.lhs, test.rhs, math::constants<T>::zero)) << "failed exact negative assertion";
-        }
-    }
+
+    };
 
     template<typename T, size_t N>
     struct read
     {
-        math::vec<T, N> lhs;
+        stf::math::vec<T, N> lhs;
         T expected[N];
     };
 
@@ -83,7 +83,7 @@ namespace stf::math::scaffolding::vec
     template<typename T, size_t N>
     struct write
     {
-        math::vec<T, N> initial;
+        stf::math::vec<T, N> initial;
         size_t index;
         T value;
     };
@@ -91,7 +91,7 @@ namespace stf::math::scaffolding::vec
     template<typename T, size_t N>
     void verify(write<T, N> const& test)
     {
-        math::vec<T, N> result = test.initial;
+        stf::math::vec<T, N> result = test.initial;
         result[test.index] = test.value;
         ASSERT_EQ(result[test.index], test.value);
     }
@@ -99,15 +99,15 @@ namespace stf::math::scaffolding::vec
     template<typename T, size_t N>
     struct add
     {
-        math::vec<T, N> lhs;
-        math::vec<T, N> rhs;
-        math::vec<T, N> expected;
+        stf::math::vec<T, N> lhs;
+        stf::math::vec<T, N> rhs;
+        stf::math::vec<T, N> expected;
     };
 
     template<typename T, size_t N>
     void verify(add<T, N> const& test)
     {
-        using vec_t = math::vec<T, N>;
+        using vec_t = stf::math::vec<T, N>;
         ASSERT_EQ(test.expected, test.lhs + test.rhs) << "Failed lhs + rhs";
         ASSERT_EQ(test.expected, test.rhs + test.lhs) << "Failed rhs + lhs";
         ASSERT_EQ(test.expected, vec_t(test.lhs) += test.rhs) << "Failed lhs += rhs";
@@ -117,15 +117,15 @@ namespace stf::math::scaffolding::vec
     template<typename T, size_t N>
     struct subtract
     {
-        math::vec<T, N> lhs;
-        math::vec<T, N> rhs;
-        math::vec<T, N> expected;
+        stf::math::vec<T, N> lhs;
+        stf::math::vec<T, N> rhs;
+        stf::math::vec<T, N> expected;
     };
 
     template<typename T, size_t N>
     void verify(subtract<T, N> const& test)
     {
-        using vec_t = math::vec<T, N>;
+        using vec_t = stf::math::vec<T, N>;
         ASSERT_EQ(test.expected, test.lhs - test.rhs) << "Failed lhs - rhs";
         ASSERT_EQ(-test.expected, test.rhs - test.lhs) << "Failed rhs - lhs";
         ASSERT_EQ(test.expected, vec_t(test.lhs) -= test.rhs) << "Failed lhs -= rhs";
@@ -135,15 +135,15 @@ namespace stf::math::scaffolding::vec
     template<typename T, size_t N>
     struct scale
     {
-        math::vec<T, N> initial;
+        stf::math::vec<T, N> initial;
         T scalar;
-        math::vec<T, N> expected;
+        stf::math::vec<T, N> expected;
     };
 
     template<typename T, size_t N>
     void verify(scale<T, N> const& test)
     {
-        using vec_t = math::vec<T, N>;
+        using vec_t = stf::math::vec<T, N>;
         ASSERT_EQ(test.expected, test.scalar * test.initial) << "Failed scalar * initial";
         ASSERT_EQ(test.expected, test.initial * test.scalar) << "Failed initial * scalar";
         ASSERT_EQ(test.expected, vec_t(test.initial) *= test.scalar) << "Failed initial *= scalar";
@@ -152,16 +152,16 @@ namespace stf::math::scaffolding::vec
     template<typename T, size_t N>
     struct dot
     {
-        math::vec<T, N> lhs;
-        math::vec<T, N> rhs;
+        stf::math::vec<T, N> lhs;
+        stf::math::vec<T, N> rhs;
         T expected;
     };
 
     template<typename T, size_t N>
     void verify(dot<T, N> const& test)
     {
-        ASSERT_EQ(test.expected, math::dot(test.lhs, test.rhs)) << "Failed dot(lhs, rhs)";
-        ASSERT_EQ(test.expected, math::dot(test.rhs, test.lhs)) << "Failed dot(rhs, lhs)";
+        ASSERT_EQ(test.expected, stf::math::dot(test.lhs, test.rhs)) << "Failed dot(lhs, rhs)";
+        ASSERT_EQ(test.expected, stf::math::dot(test.rhs, test.lhs)) << "Failed dot(rhs, lhs)";
         ASSERT_EQ(test.expected, test.lhs.dot(test.rhs)) << "Failed lhs.dot(rhs)";
         ASSERT_EQ(test.expected, test.rhs.dot(test.lhs)) << "Failed rhs.dot(lhs)";
     }
@@ -169,7 +169,7 @@ namespace stf::math::scaffolding::vec
     template<typename T, size_t N>
     struct length
     {
-        math::vec<T, N> initial;
+        stf::math::vec<T, N> initial;
         T expected;
     };
 
@@ -182,14 +182,14 @@ namespace stf::math::scaffolding::vec
     template<typename T, size_t N>
     struct normalize
     {
-        math::vec<T, N> initial;
-        math::vec<T, N> expected;
+        stf::math::vec<T, N> initial;
+        stf::math::vec<T, N> expected;
     };
 
     template<typename T, size_t N>
     void verify(normalize<T, N> const& test)
     {
-        using vec_t = math::vec<T, N>;
+        using vec_t = stf::math::vec<T, N>;
         ASSERT_EQ(test.expected, vec_t(test.initial).normalize()) << "Failed initial.normalize()";
         ASSERT_EQ(test.expected, test.initial.normalized()) << "Failed initial.normalized()";
     }
@@ -197,13 +197,13 @@ namespace stf::math::scaffolding::vec
     template<typename T, typename U, size_t N>
     struct cast
     {
-        math::vec<T, N> initial;
+        stf::math::vec<T, N> initial;
     };
 
     template<typename T, typename U, size_t N>
     void verify(cast<T, U, N> const& test)
     {
-        math::vec<U, N> result = test.initial.template as<U>();
+        stf::math::vec<U, N> result = test.initial.template as<U>();
         for (size_t i = 0; i < N; ++i)
         {
             ASSERT_EQ(static_cast<U>(test.initial[i]), result[i]) << "Failed to cast properly";
@@ -213,13 +213,13 @@ namespace stf::math::scaffolding::vec
     template<typename T, size_t N>
     struct negate
     {
-        math::vec<T, N> initial;
+        stf::math::vec<T, N> initial;
     };
 
     template<typename T, size_t N>
     void verify(negate<T, N> const& test)
     {
-        math::vec<T, N> result = -test.initial;
+        stf::math::vec<T, N> result = -test.initial;
         for (size_t i = 0; i < N; ++i)
         {
             ASSERT_EQ(-test.initial[i], result[i]);
@@ -229,9 +229,9 @@ namespace stf::math::scaffolding::vec
     template<typename T, size_t N>
     struct binary_op
     {
-        math::vec<T, N> lhs;
-        math::vec<T, N> rhs;
-        math::vec<T, N> expected;
+        stf::math::vec<T, N> lhs;
+        stf::math::vec<T, N> rhs;
+        stf::math::vec<T, N> expected;
     };
 
-} // stf::math::scaffolding::vec
+} // stf::scaffolding::math::vec

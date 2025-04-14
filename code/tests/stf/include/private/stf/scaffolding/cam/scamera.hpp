@@ -5,7 +5,7 @@
 #include <stf/stf.hpp>
 #include <stf/cam/scamera.hpp>
 
-namespace stf::cam::scaffolding::scamera
+namespace stf::scaffolding::cam::scamera
 {
 
     template<typename T>
@@ -41,4 +41,4 @@ namespace stf::cam::scaffolding::scamera
         ASSERT_EQ(test.expected, cam::orbit(test.initial, test.focus, test.delta_phi, test.delta_theta)) << "Failed scamera orbit function";
     }
 
-} // stf::cam::scaffolding::scamera
+} // stf::scaffolding::cam::scamera

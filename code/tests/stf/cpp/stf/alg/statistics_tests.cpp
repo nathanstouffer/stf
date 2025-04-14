@@ -4,7 +4,7 @@
 
 #include <stf/stf.hpp>
 
-#include "stf/alg/scaffolding/statistics.hpp"
+#include "stf/scaffolding/alg/statistics.hpp"
 
 namespace stf::alg
 {

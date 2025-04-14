@@ -4,7 +4,7 @@
 
 #include <stf/stf.hpp>
 
-#include "stf/geom/scaffolding/obb.hpp"
+#include "stf/scaffolding/geom/obb.hpp"
 
 namespace stf::geom
 {

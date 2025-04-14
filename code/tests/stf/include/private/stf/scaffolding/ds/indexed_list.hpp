@@ -7,7 +7,7 @@
 
 #include <stf/ds/indexed_list.hpp>
 
-namespace stf::ds::scaffolding::indexed_list
+namespace stf::scaffolding::ds::indexed_list
 {
 
 	using list_t = stf::ds::indexed_list<std::string, int>;
@@ -48,4 +48,4 @@ namespace stf::ds::scaffolding::indexed_list
 		}
 	}
 
-} // stf::ds::scaffolding::indexed_list
+} // stf::scaffolding::ds::indexed_list

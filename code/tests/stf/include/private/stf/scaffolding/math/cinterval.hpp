@@ -4,7 +4,7 @@
 
 #include <stf/math/cinterval.hpp>
 
-namespace stf::math::scaffolding::cinterval
+namespace stf::scaffolding::math::cinterval
 {
 
     template<typename T>
@@ -22,4 +22,4 @@ namespace stf::math::scaffolding::cinterval
         ASSERT_EQ(test.contained, test.interval.contains(test.x, test.type)) << "failed contains point test";
     }
 
-} // stf::math::scaffolding::cinterval
+} // stf::scaffolding::math::cinterval

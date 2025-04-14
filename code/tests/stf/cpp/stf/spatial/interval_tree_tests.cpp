@@ -4,7 +4,7 @@
 
 #include <stf/spatial/interval_tree.hpp>
 
-#include "stf/spatial/scaffolding/interval_tree.hpp"
+#include "stf/scaffolding/spatial/interval_tree.hpp"
 
 namespace stf::spatial
 {

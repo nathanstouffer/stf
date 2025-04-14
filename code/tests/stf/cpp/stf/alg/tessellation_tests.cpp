@@ -4,7 +4,7 @@
 
 #include <stf/stf.hpp>
 
-#include "stf/alg/scaffolding/tessellation.hpp"
+#include "stf/scaffolding/alg/tessellation.hpp"
 
 namespace stf::alg
 {

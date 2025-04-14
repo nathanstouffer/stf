@@ -4,7 +4,7 @@
 
 #include <stf/stf.hpp>
 
-#include "stf/cam/scaffolding/scamera.hpp"
+#include "stf/scaffolding/cam/scamera.hpp"
 
 namespace stf::cam
 {

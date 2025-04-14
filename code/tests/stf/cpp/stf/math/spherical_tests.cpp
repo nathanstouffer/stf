@@ -4,7 +4,7 @@
 
 #include <stf/stf.hpp>
 
-#include "stf/math/scaffolding/spherical.hpp"
+#include "stf/scaffolding/math/spherical.hpp"
 
 namespace stf::math
 {

@@ -4,7 +4,7 @@
 
 #include <stf/stf.hpp>
 
-#include "stf/alg/scaffolding/clipping.hpp"
+#include "stf/scaffolding/alg/clipping.hpp"
 
 namespace stf::alg
 {

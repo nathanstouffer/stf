@@ -4,7 +4,7 @@
 
 #include <stf/stf.hpp>
 
-#include "stf/geom/scaffolding/ray.hpp"
+#include "stf/scaffolding/geom/ray.hpp"
 
 namespace stf::geom
 {

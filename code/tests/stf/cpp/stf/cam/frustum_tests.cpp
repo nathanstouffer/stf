@@ -4,7 +4,7 @@
 
 #include <stf/stf.hpp>
 
-#include "stf/cam/scaffolding/frustum.hpp"
+#include "stf/scaffolding/cam/frustum.hpp"
 
 namespace stf::cam
 {

@@ -7,7 +7,7 @@
 #include <stf/alg/intersects.hpp>
 #include <stf/cam/frustum.hpp>
 
-namespace stf::cam::scaffolding::frustum
+namespace stf::scaffolding::cam::frustum
 {
 
     template<typename T>
@@ -63,4 +63,4 @@ namespace stf::cam::scaffolding::frustum
         ASSERT_EQ(test.intersects, alg::intersects(obb, test.frustum)) << "Failed to compute intersects for obb -> frustum";
     }
 
-} // stf::cam::scaffolding::frustum
+} // stf::scaffolding::cam::frustum

@@ -5,7 +5,7 @@
 #include <stf/stf.hpp>
 #include <stf/math/transform.hpp>
 
-namespace stf::math::scaffolding::transform
+namespace stf::scaffolding::math::transform
 {
 
     template<typename T>
@@ -74,4 +74,4 @@ namespace stf::math::scaffolding::transform
         ASSERT_EQ(test.expected, (math::orbit(test.focus, test.right, test.delta_phi, test.delta_theta) * homogenized_t(test.initial, 1)).xyz) << "Failed orbit matrix";
     }
 
-} // stf::math::scaffolding::transform
+} // stf::scaffolding::math::transform

@@ -6,7 +6,7 @@
 
 #include <stf/ds/indexed_list.hpp>
 
-#include "stf/ds/scaffolding/indexed_list.hpp"
+#include "stf/scaffolding/ds/indexed_list.hpp"
 
 namespace stf::ds
 {

@@ -4,7 +4,7 @@
 
 #include <stf/stf.hpp>
 
-#include "stf/math/scaffolding/interpolation.hpp"
+#include "stf/scaffolding/math/interpolation.hpp"
 
 namespace stf::math
 {

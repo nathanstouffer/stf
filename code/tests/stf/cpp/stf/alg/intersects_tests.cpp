@@ -4,7 +4,7 @@
 
 #include <stf/stf.hpp>
 
-#include "stf/alg/scaffolding/intersects.hpp"
+#include "stf/scaffolding/alg/intersects.hpp"
 
 namespace stf::alg
 {

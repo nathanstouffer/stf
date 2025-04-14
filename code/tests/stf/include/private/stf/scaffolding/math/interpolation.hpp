@@ -5,7 +5,7 @@
 #include <stf/stf.hpp>
 #include <stf/math/interpolation.hpp>
 
-namespace stf::math::scaffolding::interpolation
+namespace stf::scaffolding::math::interpolation
 {
 
     template<typename T>
@@ -53,4 +53,4 @@ namespace stf::math::scaffolding::interpolation
         ASSERT_EQ(test.expected, math::lerpstep(test.a, test.b, test.t)) << "Failed to compute lerp_step";
     }
 
-} // stf::math::scaffolding::interpolation
+} // stf::scaffolding::math::interpolation

@@ -4,7 +4,7 @@
 
 #include <stf/stf.hpp>
 
-#include "stf/geom/scaffolding/polyline.hpp"
+#include "stf/scaffolding/geom/polyline.hpp"
 
 namespace stf::geom
 {

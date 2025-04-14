@@ -5,7 +5,7 @@
 #include <stf/math/spherical.hpp>
 #include <stf/stf.hpp>
 
-namespace stf::math::scaffolding::spherical
+namespace stf::scaffolding::math::spherical
 {
 
     template<typename T>
@@ -92,4 +92,4 @@ namespace stf::math::scaffolding::spherical
         ASSERT_EQ(test.expected, math::to_euclidean(test.radius, test.theta, test.phi)) << "Failed to compute euclidean coordinates";
     }
 
-} // stf::math::scaffolding::spherical
+} // stf::scaffolding::math::spherical

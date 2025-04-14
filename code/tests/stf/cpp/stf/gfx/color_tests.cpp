@@ -4,7 +4,7 @@
 
 #include <stf/gfx/color.hpp>
 
-#include <stf/gfx/scaffolding/color.hpp>
+#include <stf/scaffolding/gfx/color.hpp>
 
 namespace stf::gfx
 {

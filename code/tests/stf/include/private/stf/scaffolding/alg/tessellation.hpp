@@ -5,7 +5,7 @@
 #include <stf/stf.hpp>
 #include <stf/alg/tessellation.hpp>
 
-namespace stf::alg::scaffolding::tessellation
+namespace stf::scaffolding::alg::tessellation
 {
 
     template<typename T>
@@ -23,4 +23,4 @@ namespace stf::alg::scaffolding::tessellation
         ASSERT_EQ(test.expected, alg::tessellate_via_length(test.polyline, test.max_len, test.loop)) << "Failed to tessellate polyline";
     }
 
-} // stf::alg::scaffolding::tessellation
+} // stf::scaffolding::alg::tessellation

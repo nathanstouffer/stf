@@ -5,7 +5,7 @@
 #include <stf/stf.hpp>
 #include <stf/math/transform.hpp>
 
-#include "stf/math/scaffolding/transform.hpp"
+#include "stf/scaffolding/math/transform.hpp"
 
 namespace stf::math
 {

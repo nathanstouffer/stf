@@ -5,7 +5,7 @@
 #include <stf/stf.hpp>
 #include <stf/alg/clipping.hpp>
 
-namespace stf::alg::scaffolding::clipping
+namespace stf::scaffolding::alg::clipping
 {
 
     template<typename T>
@@ -58,4 +58,4 @@ namespace stf::alg::scaffolding::clipping
         }
     }
 
-} // stf::alg::scaffolding::clipping
+} // stf::scaffolding::alg::clipping

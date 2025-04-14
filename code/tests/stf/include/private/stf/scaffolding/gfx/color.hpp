@@ -4,7 +4,7 @@
 
 #include <stf/gfx/color.hpp>
 
-namespace stf::gfx::scaffolding::color
+namespace stf::scaffolding::gfx::color
 {
 
     struct rgba_equality
@@ -51,4 +51,4 @@ namespace stf::gfx::scaffolding::color
         ASSERT_EQ(test.color, rgba::from_hex_argb(test.hex_argb)) << "failed conversion from argb";
     }
 
-} // stf::gfx::scaffolding::color
+} // stf::scaffolding::gfx::color

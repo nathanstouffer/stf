@@ -4,7 +4,7 @@
 
 #include <stf/math/interval.hpp>
 
-namespace stf::math::scaffolding::interval
+namespace stf::scaffolding::math::interval
 {
 
     template<typename T>
@@ -22,4 +22,4 @@ namespace stf::math::scaffolding::interval
         ASSERT_EQ(test.contained, test.interval.contains(test.x, test.type)) << "failed contains point test";
     }
 
-} // stf::math::scaffolding::interval
+} // stf::scaffolding::math::interval

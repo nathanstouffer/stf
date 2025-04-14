@@ -4,7 +4,7 @@
 
 #include <stf/stf.hpp>
 
-#include "stf/geom/scaffolding/segment.hpp"
+#include "stf/scaffolding/geom/segment.hpp"
 
 namespace stf::geom
 {

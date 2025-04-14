@@ -4,7 +4,7 @@
 
 #include <stf/stf.hpp>
 
-#include "stf/geom/scaffolding/hypersphere.hpp"
+#include "stf/scaffolding/geom/hypersphere.hpp"
 
 namespace stf::geom
 {

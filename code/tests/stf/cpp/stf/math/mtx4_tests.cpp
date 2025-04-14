@@ -4,7 +4,7 @@
 
 #include <stf/stf.hpp>
 
-#include "stf/math/scaffolding/matrix.hpp"
+#include "stf/scaffolding/math/matrix.hpp"
 
 namespace stf::math
 {

@@ -4,7 +4,7 @@
 
 #include <stf/math/matrix.hpp>
 
-namespace stf::math::scaffolding::mtx
+namespace stf::scaffolding::math::mtx
 {
 
     template<typename T, size_t N>
@@ -57,4 +57,4 @@ namespace stf::math::scaffolding::mtx
         ASSERT_EQ(identity, test.matrix * test.matrix.inverted()) << "failed " << N << "x" << N << " right inverse test";
     }
 
-} // stf::math::scaffolding::interval
+} // stf::scaffolding::math::interval

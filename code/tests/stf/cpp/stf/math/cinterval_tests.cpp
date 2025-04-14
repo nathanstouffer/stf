@@ -4,7 +4,7 @@
 
 #include <stf/stf.hpp>
 
-#include "stf/math/scaffolding/cinterval.hpp"
+#include "stf/scaffolding/math/cinterval.hpp"
 
 namespace stf::math
 {

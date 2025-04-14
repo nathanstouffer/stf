@@ -8,7 +8,7 @@
 #include <stf/stf.hpp>
 #include <stf/cam/scamera.hpp>
 
-namespace stf::spatial::scaffolding::interval_tree
+namespace stf::scaffolding::spatial::interval_tree
 {
 
     template<typename T>
@@ -48,4 +48,4 @@ namespace stf::spatial::scaffolding::interval_tree
         ASSERT_EQ(test.expected.size(), count) << "interval_tree::find returned an incorrect number of values";
     }
 
-} // stf::spatial::scaffolding::interval_tree
+} // stf::scaffolding::spatial::interval_tree
