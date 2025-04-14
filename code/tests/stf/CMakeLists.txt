@@ -1,6 +1,7 @@
 enable_testing()
 
 set(STF_TEST_FILES
+    # TODO (stouff) reenable all these tests
     # "${CMAKE_CURRENT_SOURCE_DIR}/cpp/stf/alg/clipping_tests.cpp"
     # "${CMAKE_CURRENT_SOURCE_DIR}/cpp/stf/alg/intersect_tests.cpp"
     # "${CMAKE_CURRENT_SOURCE_DIR}/cpp/stf/alg/intersects_tests.cpp"
