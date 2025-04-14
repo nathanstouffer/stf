@@ -1,5 +1,6 @@
 #pragma once
 
+#include <string>
 #include <vector>
 
 namespace stf::scaffolding
@@ -13,6 +14,13 @@ namespace stf::scaffolding
         {
             test.verify(i++);
         }
+    }
+
+    inline std::string info(size_t const i)
+    {
+        std::ostringstream msg;
+        msg << " (test index: " << i << ")";
+        return msg.str();
     }
 
 }
