@@ -127,7 +127,7 @@ namespace stf::math
             { stff::vec2(-3, -4), stff::vec2(-0.6f, -0.8f) },
         };
 
-        for (scaffolding::math::vec::normalize<float, 2> const& test : tests) { scaffolding::math::vec::verify(test); }
+        scaffolding::verify(tests);
     }
 
     TEST(vec2, cast)

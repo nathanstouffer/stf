@@ -164,15 +164,14 @@ namespace stf::scaffolding::math::vec
     {
         stf::math::vec<T, N> initial;
         stf::math::vec<T, N> expected;
-    };
 
-    template<typename T, size_t N>
-    void verify(normalize<T, N> const& test)
-    {
-        using vec_t = stf::math::vec<T, N>;
-        ASSERT_EQ(test.expected, vec_t(test.initial).normalize()) << "Failed initial.normalize()";
-        ASSERT_EQ(test.expected, test.initial.normalized()) << "Failed initial.normalized()";
-    }
+        void verify(size_t const i) const
+        {
+            using vec_t = stf::math::vec<T, N>;
+            ASSERT_EQ(expected, vec_t(initial).normalize()) << info(i) << "Failed initial.normalize()";
+            ASSERT_EQ(expected, initial.normalized()) << info(i) << "Failed initial.normalized()";
+        }
+    };
 
     template<typename T, typename U, size_t N>
     struct cast
