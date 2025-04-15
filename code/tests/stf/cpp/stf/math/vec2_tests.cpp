@@ -72,7 +72,7 @@ namespace stf::math
             { stff::vec2(2, -3), -2, stff::vec2(-4, 6) },
         };
 
-        for (scaffolding::math::vec::scale<float, 2> const& test : tests) { scaffolding::math::vec::verify(test); }
+        scaffolding::verify(tests);
     }
 
     TEST(vec2, dot)

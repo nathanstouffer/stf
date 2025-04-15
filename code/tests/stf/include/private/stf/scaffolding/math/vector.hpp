@@ -123,23 +123,22 @@ namespace stf::scaffolding::math::vec
 
     };
 
-
     template<typename T, size_t N>
     struct scale
     {
         stf::math::vec<T, N> initial;
         T scalar;
         stf::math::vec<T, N> expected;
-    };
 
-    template<typename T, size_t N>
-    void verify(scale<T, N> const& test)
-    {
-        using vec_t = stf::math::vec<T, N>;
-        ASSERT_EQ(test.expected, test.scalar * test.initial) << "Failed scalar * initial";
-        ASSERT_EQ(test.expected, test.initial * test.scalar) << "Failed initial * scalar";
-        ASSERT_EQ(test.expected, vec_t(test.initial) *= test.scalar) << "Failed initial *= scalar";
-    }
+        void verify(size_t i) const
+        {
+            using vec_t = stf::math::vec<T, N>;
+            ASSERT_EQ(expected, scalar * initial) << info(i) << "Failed scalar * initial";
+            ASSERT_EQ(expected, initial * scalar) << info(i) << "Failed initial * scalar";
+            ASSERT_EQ(expected, vec_t(initial) *= scalar) << info(i) << "Failed initial *= scalar";
+        }
+
+    };
 
     template<typename T, size_t N>
     struct dot
