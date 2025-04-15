@@ -103,7 +103,7 @@ namespace stf::math
             { stff::vec2(-3, -4), 5 },
         };
 
-        for (scaffolding::math::vec::length<float, 2> const& test : tests) { scaffolding::math::vec::verify(test); }
+        scaffolding::verify(tests);
     }
 
     TEST(vec2, normalize)

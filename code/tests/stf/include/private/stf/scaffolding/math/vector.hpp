@@ -31,7 +31,6 @@ namespace stf::scaffolding::math::vec
                 ASSERT_FALSE(stf::math::equ(lhs, rhs, stf::math::constants<T>::zero)) << info(i) << "failed exact negative assertion";
             }
         }
-
     };
 
     template<typename T, size_t N>
@@ -46,20 +45,17 @@ namespace stf::scaffolding::math::vec
             {
                 ASSERT_EQ(expected[i], lhs[i]) << info(index);
             }
-
             if constexpr (N == 2)
             {
                 ASSERT_EQ(expected[0], lhs.x) << info(index);
                 ASSERT_EQ(expected[1], lhs.y) << info(index);
             }
-
             if constexpr (N == 3)
             {
                 ASSERT_EQ(expected[0], lhs.x) << info(index);
                 ASSERT_EQ(expected[1], lhs.y) << info(index);
                 ASSERT_EQ(expected[2], lhs.z) << info(index);
             }
-
             if constexpr (N == 4)
             {
                 ASSERT_EQ(expected[0], lhs.x) << info(index);
@@ -68,7 +64,6 @@ namespace stf::scaffolding::math::vec
                 ASSERT_EQ(expected[3], lhs.w) << info(index);
             }
         }
-
     };
 
     template<typename T, size_t N>
@@ -84,7 +79,6 @@ namespace stf::scaffolding::math::vec
             result[index] = value;
             ASSERT_EQ(value, result[index]) << info(i);
         }
-
     };
 
     template<typename T, size_t N>
@@ -102,7 +96,6 @@ namespace stf::scaffolding::math::vec
             ASSERT_EQ(expected, vec_t(lhs) += rhs) << info(i) << "Failed lhs += rhs";
             ASSERT_EQ(expected, vec_t(rhs) += lhs) << info(i) << "Failed lhs += rhs";
         }
-
     };
 
     template<typename T, size_t N>
@@ -120,7 +113,6 @@ namespace stf::scaffolding::math::vec
             ASSERT_EQ(expected, vec_t(lhs) -= rhs) << info(i) << "Failed lhs -= rhs";
             ASSERT_EQ(-expected, vec_t(rhs) -= lhs) << info(i) << "Failed rhs -= lhs";
         }
-
     };
 
     template<typename T, size_t N>
@@ -137,7 +129,6 @@ namespace stf::scaffolding::math::vec
             ASSERT_EQ(expected, initial * scalar) << info(i) << "Failed initial * scalar";
             ASSERT_EQ(expected, vec_t(initial) *= scalar) << info(i) << "Failed initial *= scalar";
         }
-
     };
 
     template<typename T, size_t N>
@@ -161,13 +152,12 @@ namespace stf::scaffolding::math::vec
     {
         stf::math::vec<T, N> initial;
         T expected;
-    };
 
-    template<typename T, size_t N>
-    void verify(length<T, N> const& test)
-    {
-        ASSERT_EQ(test.expected, test.initial.length()) << "Failed initial.length()";
-    }
+        void verify(size_t const i) const
+        {
+            ASSERT_EQ(expected, initial.length()) << info(i) << "Failed initial.length()";
+        }
+    };
 
     template<typename T, size_t N>
     struct normalize
