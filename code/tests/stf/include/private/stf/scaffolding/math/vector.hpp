@@ -39,46 +39,38 @@ namespace stf::scaffolding::math::vec
     {
         stf::math::vec<T, N> lhs;
         T expected[N];
+
+        void verify(size_t const index) const
+        {
+            for (size_t i = 0; i < N; ++i)
+            {
+                ASSERT_EQ(expected[i], lhs[i]) << info(index);
+            }
+
+            if constexpr (N == 2)
+            {
+                ASSERT_EQ(expected[0], lhs.x);
+                ASSERT_EQ(expected[1], lhs.y);
+            }
+
+            if constexpr (N == 3)
+            {
+                ASSERT_EQ(expected[0], lhs.x);
+                ASSERT_EQ(expected[1], lhs.y);
+                ASSERT_EQ(expected[2], lhs.z);
+            }
+
+            if constexpr (N == 4)
+            {
+                ASSERT_EQ(expected[0], lhs.x);
+                ASSERT_EQ(expected[1], lhs.y);
+                ASSERT_EQ(expected[2], lhs.z);
+                ASSERT_EQ(expected[3], lhs.w);
+            }
+        }
+
     };
 
-    template<typename T, size_t N>
-    void verify(read<T, N> const& test)
-    {
-        for (size_t i = 0; i < N; ++i)
-        {
-            ASSERT_EQ(test.lhs[i], test.expected[i]);
-        }
-    }
-
-    template<typename T>
-    void verify(read<T, 2> const& test)
-    {
-        // call generalized template
-        verify<T, 2>(test);
-        ASSERT_EQ(test.lhs.x, test.expected[0]);
-        ASSERT_EQ(test.lhs.y, test.expected[1]);
-    }
-
-    template<typename T>
-    void verify(read<T, 3> const& test)
-    {
-        // call generalized template
-        verify<T, 3>(test);
-        ASSERT_EQ(test.lhs.x, test.expected[0]);
-        ASSERT_EQ(test.lhs.y, test.expected[1]);
-        ASSERT_EQ(test.lhs.z, test.expected[2]);
-    }
-
-    template<typename T>
-    void verify(read<T, 4> const& test)
-    {
-        // call generalized template
-        verify<T, 4>(test);
-        ASSERT_EQ(test.lhs.x, test.expected[0]);
-        ASSERT_EQ(test.lhs.y, test.expected[1]);
-        ASSERT_EQ(test.lhs.z, test.expected[2]);
-        ASSERT_EQ(test.lhs.w, test.expected[3]);
-    }
 
     template<typename T, size_t N>
     struct write

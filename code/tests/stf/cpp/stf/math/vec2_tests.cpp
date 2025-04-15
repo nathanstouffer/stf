@@ -10,7 +10,7 @@
 namespace stf::math
 {
 
-    TEST(vec2, index)
+    TEST(vec2, read)
     {
         std::vector<scaffolding::math::vec::read<float, 2>> tests =
         {
@@ -19,7 +19,7 @@ namespace stf::math
             { stff::vec2(1.f, 2.f), { 1.f, 2.f } },
         };
 
-        for (scaffolding::math::vec::read<float, 2> const& test : tests) { scaffolding::math::vec::verify(test); }
+        scaffolding::verify(tests);
     }
 
     TEST(vec2, write)
@@ -147,7 +147,7 @@ namespace stf::math
     {
         std::vector<scaffolding::math::vec::equality<float, 2>> tests =
         {
-            { stff::vec2(), stff::vec2(1), true },
+            { stff::vec2(), stff::vec2(), true },
             { stff::vec2(0), stff::vec2(0), true },
             { stff::vec2(1), stff::vec2(1), true },
             { stff::vec2(2), stff::vec2(2), true },
