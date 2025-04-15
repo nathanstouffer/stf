@@ -18,7 +18,6 @@ namespace stf::math
             { stff::vec2(1.f), { 1.f, 1.f } },
             { stff::vec2(1.f, 2.f), { 1.f, 2.f } },
         };
-
         scaffolding::verify(tests);
     }
 
@@ -30,7 +29,6 @@ namespace stf::math
             { stff::vec2(1.f, 2.f), 0, 10.f },
             { stff::vec2(1.f), 1, -5.f },
         };
-
         scaffolding::verify(tests);
     }
 
@@ -43,7 +41,6 @@ namespace stf::math
             { stff::vec2(4, 3), stff::vec2(1, 6), stff::vec2(5, 9) },
             { stff::vec2(-5, -3), stff::vec2(1, 2), stff::vec2(-4, -1) },
         };
-
         scaffolding::verify(tests);
     }
 
@@ -56,7 +53,6 @@ namespace stf::math
             { stff::vec2(4, 3), stff::vec2(1, 6), stff::vec2(3, -3) },
             { stff::vec2(-5, -3), stff::vec2(1, 2), stff::vec2(-6, -5) },
         };
-
         scaffolding::verify(tests);
     }
 
@@ -71,7 +67,6 @@ namespace stf::math
             { stff::vec2(1, -1), -2, stff::vec2(-2, 2) },
             { stff::vec2(2, -3), -2, stff::vec2(-4, 6) },
         };
-
         scaffolding::verify(tests);
     }
 
@@ -86,7 +81,6 @@ namespace stf::math
             { stff::vec2(1, -4), stff::vec2(-4, 1), -8 },
             { stff::vec2(13, 8), stff::vec2(-2, -3), -50 },
         };
-
         scaffolding::verify(tests);
     }
 
@@ -102,7 +96,6 @@ namespace stf::math
             { stff::vec2(3, -4), 5 },
             { stff::vec2(-3, -4), 5 },
         };
-
         scaffolding::verify(tests);
     }
 
@@ -126,7 +119,6 @@ namespace stf::math
             { stff::vec2(3, -4), stff::vec2(0.6f, -0.8f) },
             { stff::vec2(-3, -4), stff::vec2(-0.6f, -0.8f) },
         };
-
         scaffolding::verify(tests);
     }
 
@@ -139,7 +131,6 @@ namespace stf::math
             { stff::vec2(1.f) },
             { stff::vec2(4.f) },
         };
-
         scaffolding::verify(tests);
     }
 
@@ -156,7 +147,6 @@ namespace stf::math
             { stff::vec2(2), stff::vec2(3), false },
             { stff::vec2(3), stff::vec2(4), false },
         };
-
         scaffolding::verify(tests);
     }
 
@@ -168,8 +158,7 @@ namespace stf::math
             { stff::vec2(1.f, 2.f) },
             { stff::vec2(1.f) },
         };
-
-        for (scaffolding::math::vec::negate<float, 2> const& test : tests) { scaffolding::math::vec::verify(test); }
+        scaffolding::verify(tests);
     }
 
 } // stf::math

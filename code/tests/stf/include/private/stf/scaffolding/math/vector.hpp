@@ -192,17 +192,16 @@ namespace stf::scaffolding::math::vec
     struct negate
     {
         stf::math::vec<T, N> initial;
-    };
 
-    template<typename T, size_t N>
-    void verify(negate<T, N> const& test)
-    {
-        stf::math::vec<T, N> result = -test.initial;
-        for (size_t i = 0; i < N; ++i)
+        void verify(size_t const index) const
         {
-            ASSERT_EQ(-test.initial[i], result[i]);
+            stf::math::vec<T, N> result = -initial;
+            for (size_t i = 0; i < N; ++i)
+            {
+                ASSERT_EQ(-initial[i], result[i]) << info(index);
+            }
         }
-    }
+    };
 
     template<typename T, size_t N>
     struct binary_op
