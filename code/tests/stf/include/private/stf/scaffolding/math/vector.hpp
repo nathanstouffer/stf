@@ -177,17 +177,16 @@ namespace stf::scaffolding::math::vec
     struct cast
     {
         stf::math::vec<T, N> initial;
-    };
 
-    template<typename T, typename U, size_t N>
-    void verify(cast<T, U, N> const& test)
-    {
-        stf::math::vec<U, N> result = test.initial.template as<U>();
-        for (size_t i = 0; i < N; ++i)
+        void verify(size_t const index) const
         {
-            ASSERT_EQ(static_cast<U>(test.initial[i]), result[i]) << "Failed to cast properly";
+            stf::math::vec<U, N> result = initial.template as<U>();
+            for (size_t i = 0; i < N; ++i)
+            {
+                ASSERT_EQ(static_cast<U>(initial[i]), result[i]) << info(index) << "Failed to cast properly";
+            }
         }
-    }
+    };
 
     template<typename T, size_t N>
     struct negate

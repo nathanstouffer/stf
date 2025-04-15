@@ -140,7 +140,7 @@ namespace stf::math
             { stff::vec2(4.f) },
         };
 
-        for (scaffolding::math::vec::cast<float, double, 2> const& test : tests) { scaffolding::math::vec::verify(test); }
+        scaffolding::verify(tests);
     }
 
     TEST(vec2, equality)
