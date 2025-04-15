@@ -111,17 +111,18 @@ namespace stf::scaffolding::math::vec
         stf::math::vec<T, N> lhs;
         stf::math::vec<T, N> rhs;
         stf::math::vec<T, N> expected;
+
+        void verify(size_t const i) const
+        {
+            using vec_t = stf::math::vec<T, N>;
+            ASSERT_EQ(expected, lhs - rhs) << info(i) << "Failed lhs - rhs";
+            ASSERT_EQ(-expected, rhs - lhs) << info(i) << "Failed rhs - lhs";
+            ASSERT_EQ(expected, vec_t(lhs) -= rhs) << info(i) << "Failed lhs -= rhs";
+            ASSERT_EQ(-expected, vec_t(rhs) -= lhs) << info(i) << "Failed rhs -= lhs";
+        }
+
     };
 
-    template<typename T, size_t N>
-    void verify(subtract<T, N> const& test)
-    {
-        using vec_t = stf::math::vec<T, N>;
-        ASSERT_EQ(test.expected, test.lhs - test.rhs) << "Failed lhs - rhs";
-        ASSERT_EQ(-test.expected, test.rhs - test.lhs) << "Failed rhs - lhs";
-        ASSERT_EQ(test.expected, vec_t(test.lhs) -= test.rhs) << "Failed lhs -= rhs";
-        ASSERT_EQ(-test.expected, vec_t(test.rhs) -= test.lhs) << "Failed rhs -= lhs";
-    }
 
     template<typename T, size_t N>
     struct scale

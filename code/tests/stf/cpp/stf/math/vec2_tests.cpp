@@ -57,7 +57,7 @@ namespace stf::math
             { stff::vec2(-5, -3), stff::vec2(1, 2), stff::vec2(-6, -5) },
         };
 
-        for (scaffolding::math::vec::subtract<float, 2> const& test : tests) { scaffolding::math::vec::verify(test); }
+        scaffolding::verify(tests);
     }
 
     TEST(vec2, scale)
