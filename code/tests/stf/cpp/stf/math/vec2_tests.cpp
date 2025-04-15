@@ -87,7 +87,7 @@ namespace stf::math
             { stff::vec2(13, 8), stff::vec2(-2, -3), -50 },
         };
 
-        for (scaffolding::math::vec::dot<float, 2> const& test : tests) { scaffolding::math::vec::verify(test); }
+        scaffolding::verify(tests);
     }
 
     TEST(vec2, length)

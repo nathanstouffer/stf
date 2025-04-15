@@ -146,16 +146,15 @@ namespace stf::scaffolding::math::vec
         stf::math::vec<T, N> lhs;
         stf::math::vec<T, N> rhs;
         T expected;
-    };
 
-    template<typename T, size_t N>
-    void verify(dot<T, N> const& test)
-    {
-        ASSERT_EQ(test.expected, stf::math::dot(test.lhs, test.rhs)) << "Failed dot(lhs, rhs)";
-        ASSERT_EQ(test.expected, stf::math::dot(test.rhs, test.lhs)) << "Failed dot(rhs, lhs)";
-        ASSERT_EQ(test.expected, test.lhs.dot(test.rhs)) << "Failed lhs.dot(rhs)";
-        ASSERT_EQ(test.expected, test.rhs.dot(test.lhs)) << "Failed rhs.dot(lhs)";
-    }
+        void verify(size_t const i) const
+        {
+            ASSERT_EQ(expected, stf::math::dot(lhs, rhs)) << info(i) << "Failed dot(lhs, rhs)";
+            ASSERT_EQ(expected, stf::math::dot(rhs, lhs)) << info(i) << "Failed dot(rhs, lhs)";
+            ASSERT_EQ(expected, lhs.dot(rhs)) << info(i) << "Failed lhs.dot(rhs)";
+            ASSERT_EQ(expected, rhs.dot(lhs)) << info(i) << "Failed rhs.dot(lhs)";
+        }
+    };
 
     template<typename T, size_t N>
     struct length
