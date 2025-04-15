@@ -18,17 +18,17 @@ namespace stf::scaffolding::math::vec
         {
             if (equal)
             {
-                ASSERT_EQ(lhs, rhs) << "failed positive assertion" << info(i);
-                ASSERT_FALSE(lhs != rhs) << "failed negative assertion" << info(i);
-                ASSERT_TRUE(stf::math::equ(lhs, rhs, stf::math::constants<T>::zero)) << "failed exact positive assertion" << info(i);
-                ASSERT_FALSE(stf::math::neq(lhs, rhs, stf::math::constants<T>::zero)) << "failed exact negative assertion" << info(i);
+                ASSERT_EQ(lhs, rhs) << info(i) << "failed positive assertion";
+                ASSERT_FALSE(lhs != rhs) << info(i) << "failed negative assertion";
+                ASSERT_TRUE(stf::math::equ(lhs, rhs, stf::math::constants<T>::zero)) << info(i) << "failed exact positive assertion";
+                ASSERT_FALSE(stf::math::neq(lhs, rhs, stf::math::constants<T>::zero)) << info(i) << "failed exact negative assertion";
             }
             else
             {
-                ASSERT_NE(lhs, rhs) << "failed positive assertion" << info(i);
-                ASSERT_FALSE(lhs == rhs) << "failed negative assertion" << info(i);
-                ASSERT_TRUE(stf::math::neq(lhs, rhs, stf::math::constants<T>::zero)) << "failed exact positive assertion" << info(i);
-                ASSERT_FALSE(stf::math::equ(lhs, rhs, stf::math::constants<T>::zero)) << "failed exact negative assertion" << info(i);
+                ASSERT_NE(lhs, rhs) << info(i) << "failed positive assertion";
+                ASSERT_FALSE(lhs == rhs) << info(i) << "failed negative assertion";
+                ASSERT_TRUE(stf::math::neq(lhs, rhs, stf::math::constants<T>::zero)) << info(i) << "failed exact positive assertion";
+                ASSERT_FALSE(stf::math::equ(lhs, rhs, stf::math::constants<T>::zero)) << info(i) << "failed exact negative assertion";
             }
         }
 

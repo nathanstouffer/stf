@@ -19,7 +19,7 @@ namespace stf::scaffolding
     inline std::string info(size_t const i)
     {
         std::ostringstream msg;
-        msg << " (test index: " << i << ")";
+        msg << "(test index: " << i << ") ";
         return msg.str();
     }
 
