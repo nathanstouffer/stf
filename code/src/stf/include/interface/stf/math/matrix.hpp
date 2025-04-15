@@ -1077,7 +1077,7 @@ namespace stf::math
         s << rhs.row(0).as_vec();
         for (size_t i = 1; i < N; ++i)
         {
-            s << std::endl << rhs.row(i).as_vec();
+            s << ", " << rhs.row(i).as_vec();
         }
         return s;
     }
