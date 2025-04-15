@@ -44,7 +44,7 @@ namespace stf::math
             { stff::vec2(-5, -3), stff::vec2(1, 2), stff::vec2(-4, -1) },
         };
 
-        for (scaffolding::math::vec::add<float, 2> const& test : tests) { scaffolding::math::vec::verify(test); }
+        scaffolding::verify(tests);
     }
 
     TEST(vec2, subtract)
