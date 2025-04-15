@@ -31,7 +31,7 @@ namespace stf::math
             { stff::vec2(1.f), 1, -5.f },
         };
 
-        for (scaffolding::math::vec::write<float, 2> const& test : tests) { scaffolding::math::vec::verify(test); }
+        scaffolding::verify(tests);
     }
 
     TEST(vec2, add)

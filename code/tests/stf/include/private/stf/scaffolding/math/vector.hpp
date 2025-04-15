@@ -49,28 +49,27 @@ namespace stf::scaffolding::math::vec
 
             if constexpr (N == 2)
             {
-                ASSERT_EQ(expected[0], lhs.x);
-                ASSERT_EQ(expected[1], lhs.y);
+                ASSERT_EQ(expected[0], lhs.x) << info(index);
+                ASSERT_EQ(expected[1], lhs.y) << info(index);
             }
 
             if constexpr (N == 3)
             {
-                ASSERT_EQ(expected[0], lhs.x);
-                ASSERT_EQ(expected[1], lhs.y);
-                ASSERT_EQ(expected[2], lhs.z);
+                ASSERT_EQ(expected[0], lhs.x) << info(index);
+                ASSERT_EQ(expected[1], lhs.y) << info(index);
+                ASSERT_EQ(expected[2], lhs.z) << info(index);
             }
 
             if constexpr (N == 4)
             {
-                ASSERT_EQ(expected[0], lhs.x);
-                ASSERT_EQ(expected[1], lhs.y);
-                ASSERT_EQ(expected[2], lhs.z);
-                ASSERT_EQ(expected[3], lhs.w);
+                ASSERT_EQ(expected[0], lhs.x) << info(index);
+                ASSERT_EQ(expected[1], lhs.y) << info(index);
+                ASSERT_EQ(expected[2], lhs.z) << info(index);
+                ASSERT_EQ(expected[3], lhs.w) << info(index);
             }
         }
 
     };
-
 
     template<typename T, size_t N>
     struct write
@@ -78,15 +77,15 @@ namespace stf::scaffolding::math::vec
         stf::math::vec<T, N> initial;
         size_t index;
         T value;
-    };
 
-    template<typename T, size_t N>
-    void verify(write<T, N> const& test)
-    {
-        stf::math::vec<T, N> result = test.initial;
-        result[test.index] = test.value;
-        ASSERT_EQ(result[test.index], test.value);
-    }
+        void verify(size_t const i) const
+        {
+            stf::math::vec<T, N> result = initial;
+            result[index] = value;
+            ASSERT_EQ(value, result[index]) << info(i);
+        }
+
+    };
 
     template<typename T, size_t N>
     struct add
