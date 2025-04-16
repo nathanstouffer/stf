@@ -9,46 +9,69 @@ namespace stf::scaffolding::gfx::color
 
     struct rgba_equality
     {
-        rgba lhs;
-        rgba rhs;
+        stf::gfx::rgba lhs;
+        stf::gfx::rgba rhs;
         bool equal;
+
+        void verify(size_t const i) const
+        {
+            if (equal)
+            {
+                ASSERT_EQ(lhs, rhs) << info(i) << "failed positive assertion";
+                ASSERT_FALSE(lhs != rhs) << info(i) << "failed negative assertion";
+                ASSERT_TRUE(equ(lhs, rhs, 0)) << info(i) << "failed exact positive assertion";
+                ASSERT_FALSE(neq(lhs, rhs, 0)) << info(i) << "failed exact negative assertion";
+            }
+            else
+            {
+                ASSERT_NE(lhs, rhs) << info(i) << "failed positive assertion";
+                ASSERT_FALSE(lhs == rhs) << info(i) << "failed negative assertion";
+                ASSERT_TRUE(neq(lhs, rhs, 0)) << info(i) << "failed exact positive assertion";
+                ASSERT_FALSE(equ(lhs, rhs, 0)) << info(i) << "failed exact negative assertion";
+            }
+        }
     };
 
-    void verify(rgba_equality const& test)
+    struct component_to_hex
     {
-        if (test.equal)
+        float x;
+        uint8_t expected;
+
+        void verify(size_t const i) const
         {
-            ASSERT_EQ(test.lhs, test.rhs) << "failed positive assertion";
-            ASSERT_FALSE(test.lhs != test.rhs) << "failed negative assertion";
-            ASSERT_TRUE(equ(test.lhs, test.rhs, 0)) << "failed exact positive assertion";
-            ASSERT_FALSE(neq(test.lhs, test.rhs, 0)) << "failed exact negative assertion";
+            ASSERT_EQ(expected, stf::gfx::rgba::to_hex(x)) << info(i) << "Failed to compute hex correctly";
         }
-        else
+    };
+
+    struct component_from_hex
+    {
+        uint32_t hex;
+        uint32_t shift;
+        float expected;
+
+        void verify(size_t const i) const
         {
-            ASSERT_NE(test.lhs, test.rhs) << "failed positive assertion";
-            ASSERT_FALSE(test.lhs == test.rhs) << "failed negative assertion";
-            ASSERT_TRUE(neq(test.lhs, test.rhs, 0)) << "failed exact positive assertion";
-            ASSERT_FALSE(equ(test.lhs, test.rhs, 0)) << "failed exact negative assertion";
+            ASSERT_EQ(expected, stf::gfx::rgba::from_hex(hex, shift)) << info(i) << "Failed to compute value correctly";
         }
-    }
+    };
 
     struct rgba_hex_conversion
     {
         uint32_t hex_rgba;
         uint32_t hex_abgr;
         uint32_t hex_argb;
-        rgba color;
+        stf::gfx::rgba color;
+
+        void verify(size_t const i) const
+        {
+            ASSERT_EQ(hex_rgba, color.to_hex_rgba()) << info(i) << "failed conversion to rgba";
+            ASSERT_EQ(hex_abgr, color.to_hex_abgr()) << info(i) << "failed conversion to abgr";
+            ASSERT_EQ(hex_argb, color.to_hex_argb()) << info(i) << "failed conversion to argb";
+
+            ASSERT_EQ(color, stf::gfx::rgba::from_hex_rgba(hex_rgba)) << info(i) << "failed conversion from rgba";
+            ASSERT_EQ(color, stf::gfx::rgba::from_hex_abgr(hex_abgr)) << info(i) << "failed conversion from abgr";
+            ASSERT_EQ(color, stf::gfx::rgba::from_hex_argb(hex_argb)) << info(i) << "failed conversion from argb";
+        }
     };
-
-    void verify(rgba_hex_conversion const& test)
-    {
-        ASSERT_EQ(test.hex_rgba, test.color.to_hex_rgba()) << "failed conversion to rgba";
-        ASSERT_EQ(test.hex_abgr, test.color.to_hex_abgr()) << "failed conversion to abgr";
-        ASSERT_EQ(test.hex_argb, test.color.to_hex_argb()) << "failed conversion to argb";
-
-        ASSERT_EQ(test.color, rgba::from_hex_rgba(test.hex_rgba)) << "failed conversion from rgba";
-        ASSERT_EQ(test.color, rgba::from_hex_abgr(test.hex_abgr)) << "failed conversion from abgr";
-        ASSERT_EQ(test.color, rgba::from_hex_argb(test.hex_argb)) << "failed conversion from argb";
-    }
 
 } // stf::scaffolding::gfx::color
