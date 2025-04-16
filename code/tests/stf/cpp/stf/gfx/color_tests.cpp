@@ -28,13 +28,17 @@ namespace stf::gfx
 
     TEST(rgba, construct)
     {
-        ASSERT_EQ(rgba(), rgba(0, 0, 0, 1)) << "Failed to construct default color";
-        ASSERT_EQ(rgba(0.5f), rgba(0.5f, 0.5f, 0.5f, 0.5f)) << "Failed to construct from single float";
-        ASSERT_EQ(rgba(0.5f, 0.75f), rgba(0.5f, 0.5f, 0.5f, 0.75f)) << "Failed to construct from two floats";
-        ASSERT_EQ(rgba(0.5f, 0.75f, 1.0f), rgba(0.5f, 0.75f, 1.0f, 1.0f)) << "Failed to construct three floats";
-        ASSERT_EQ(rgba(0.5f, 0.75f, 1.0f, 0.25f), rgba(0.5f, 0.75f, 1.0f, 0.25f)) << "Failed to construct four floats";
-        ASSERT_EQ(rgba(math::vec<float, 3>(0.5f, 0.75f, 1.0f)), rgba(0.5f, 0.75f, 1.0f, 1.0f)) << "Failed to construct from float vec3";
-        ASSERT_EQ(rgba(math::vec<float, 4>(0.5f, 0.75f, 1.0f, 0.25f)), rgba(0.5f, 0.75f, 1.0f, 0.25f)) << "Failed to construct from float vec4";
+        std::vector<scaffolding::gfx::color::rgba_construct> tests =
+        {
+            { rgba(), rgba(0, 0, 0, 1) },
+            { rgba(0.5f), rgba(0.5f, 0.5f, 0.5f, 0.5f) },
+            { rgba(0.5f, 0.75f), rgba(0.5f, 0.5f, 0.5f, 0.75f) },
+            { rgba(0.5f, 0.75f, 1.0f), rgba(0.5f, 0.75f, 1.0f, 1.0f) },
+            { rgba(0.5f, 0.75f, 1.0f, 0.25f), rgba(0.5f, 0.75f, 1.0f, 0.25f) },
+            { rgba(math::vec<float, 3>(0.5f, 0.75f, 1.0f)), rgba(0.5f, 0.75f, 1.0f, 1.0f) },
+            { rgba(math::vec<float, 4>(0.5f, 0.75f, 1.0f, 0.25f)), rgba(0.5f, 0.75f, 1.0f, 0.25f) },
+        };
+        scaffolding::verify(tests);
     }
     
     TEST(rgba, component_to_hex)

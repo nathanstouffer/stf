@@ -32,6 +32,17 @@ namespace stf::scaffolding::gfx::color
         }
     };
 
+    struct rgba_construct
+    {
+        stf::gfx::rgba value;
+        stf::gfx::rgba expected;
+
+        void verify(size_t const i) const
+        {
+            ASSERT_EQ(expected, value) << info(i) << "failed to construct value";
+        }
+    };
+
     struct component_to_hex
     {
         float x;
