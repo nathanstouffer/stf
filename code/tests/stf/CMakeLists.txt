@@ -32,7 +32,7 @@ set(STF_TEST_FILES
     "${CMAKE_CURRENT_SOURCE_DIR}/cpp/stf/math/vec3_tests.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/cpp/stf/math/vec4_tests.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/cpp/stf/math/vec5_tests.cpp"
-    # "${CMAKE_CURRENT_SOURCE_DIR}/cpp/stf/spatial/interval_tree_tests.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/cpp/stf/spatial/interval_tree_tests.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/include/private/stf/scaffolding/alg/clipping.hpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/include/private/stf/scaffolding/alg/intersect.hpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/include/private/stf/scaffolding/alg/intersects.hpp"
@@ -98,7 +98,7 @@ target_link_libraries(tests PRIVATE stf GTest::gtest_main)
 
 # set up cpp files with precompiled headers
 # TODO consider adding <stf/stf.hpp> to this list
-target_precompile_headers(tests PRIVATE <vector> <gtest/gtest.h>)
+target_precompile_headers(tests PRIVATE <vector> <gtest/gtest.h> "include/private/stf/scaffolding/verify.hpp")
 
 include(GoogleTest)
 # finds all the tests associated with the executable
