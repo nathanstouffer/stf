@@ -15,13 +15,12 @@ namespace stf::scaffolding::math::interpolation
         T b;
         T t;
         T expected;
-    };
 
-    template<typename T>
-    void verify(lerp<T> const& test)
-    {
-        ASSERT_EQ(test.expected, math::lerp(test.a, test.b, test.t)) << "Failed to compute lerp";
-    }
+        void verify(size_t const i) const
+        {
+            ASSERT_EQ(expected, stf::math::lerp(a, b, t)) << info(i) << "Failed to compute lerp";
+        }
+    };
 
     template<typename T>
     struct lerp_inv
@@ -30,13 +29,12 @@ namespace stf::scaffolding::math::interpolation
         T b;
         T x;
         T expected;
-    };
 
-    template<typename T>
-    void verify(lerp_inv<T> const& test)
-    {
-        ASSERT_EQ(test.expected, math::lerp_inv(test.a, test.b, test.x)) << "Failed to compute lerp_inv";
-    }
+        void verify(size_t const i) const
+        {
+            ASSERT_EQ(expected, stf::math::lerp_inv(a, b, x)) << info(i) << "Failed to compute lerp_inv";
+        }
+    };
 
     template<typename T>
     struct lerpstep
@@ -45,12 +43,11 @@ namespace stf::scaffolding::math::interpolation
         T b;
         T t;
         T expected;
-    };
 
-    template<typename T>
-    void verify(lerpstep<T> const& test)
-    {
-        ASSERT_EQ(test.expected, math::lerpstep(test.a, test.b, test.t)) << "Failed to compute lerp_step";
-    }
+        void verify(size_t const i) const
+        {
+            ASSERT_EQ(expected, stf::math::lerpstep(a, b, t)) << info(i) << "Failed to compute lerp_step";
+        }
+    };
 
 } // stf::scaffolding::math::interpolation

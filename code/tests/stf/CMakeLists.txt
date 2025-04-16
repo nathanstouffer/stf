@@ -24,7 +24,7 @@ set(STF_TEST_FILES
     "${CMAKE_CURRENT_SOURCE_DIR}/cpp/stf/math/mtx3_tests.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/cpp/stf/math/mtx4_tests.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/cpp/stf/math/cinterval_tests.cpp"
-    # "${CMAKE_CURRENT_SOURCE_DIR}/cpp/stf/math/interpolation_tests.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/cpp/stf/math/interpolation_tests.cpp"
     # "${CMAKE_CURRENT_SOURCE_DIR}/cpp/stf/math/interval_tests.cpp"
     # "${CMAKE_CURRENT_SOURCE_DIR}/cpp/stf/math/spherical_tests.cpp"
     # "${CMAKE_CURRENT_SOURCE_DIR}/cpp/stf/math/transform_tests.cpp"
