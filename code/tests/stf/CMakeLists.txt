@@ -20,7 +20,7 @@ set(STF_TEST_FILES
     # "${CMAKE_CURRENT_SOURCE_DIR}/cpp/stf/geom/ray2_tests.cpp"
     # "${CMAKE_CURRENT_SOURCE_DIR}/cpp/stf/geom/sphere_tests.cpp"
     # "${CMAKE_CURRENT_SOURCE_DIR}/cpp/stf/gfx/color_tests.cpp"
-    # "${CMAKE_CURRENT_SOURCE_DIR}/cpp/stf/math/mtx2_tests.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/cpp/stf/math/mtx2_tests.cpp"
     # "${CMAKE_CURRENT_SOURCE_DIR}/cpp/stf/math/mtx3_tests.cpp"
     # "${CMAKE_CURRENT_SOURCE_DIR}/cpp/stf/math/mtx4_tests.cpp"
     # "${CMAKE_CURRENT_SOURCE_DIR}/cpp/stf/math/cinterval_tests.cpp"
