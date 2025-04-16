@@ -10,7 +10,7 @@ set(STF_TEST_FILES
     # "${CMAKE_CURRENT_SOURCE_DIR}/cpp/stf/ds/indexed_list_tests.cpp"
     # "${CMAKE_CURRENT_SOURCE_DIR}/cpp/stf/cam/frustum_tests.cpp"
     # "${CMAKE_CURRENT_SOURCE_DIR}/cpp/stf/cam/scamera_tests.cpp"
-    # "${CMAKE_CURRENT_SOURCE_DIR}/cpp/stf/enums_tests.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/cpp/stf/enums_tests.cpp"
     # "${CMAKE_CURRENT_SOURCE_DIR}/cpp/stf/geom/aabb2_tests.cpp"
     # "${CMAKE_CURRENT_SOURCE_DIR}/cpp/stf/geom/segment2_tests.cpp"
     # "${CMAKE_CURRENT_SOURCE_DIR}/cpp/stf/geom/obb2_tests.cpp"
