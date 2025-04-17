@@ -141,6 +141,13 @@ namespace stf::math
         inline vec& operator*=(vec const& rhs) { raw::hadamard_equals<T, N>(values, rhs.values); return *this; }
 
         /**
+         * @brief Divide a vector in place
+         * @param [in] divisor
+         * @return A reference to @p this
+         */
+        inline vec& operator/=(T const divisor) { raw::divide<T, N>(values, divisor); return *this; }
+
+        /**
          * @brief Compute a dot product
          * @param [in] rhs
          * @return The dot product of @p this with @p rhs
@@ -157,7 +164,7 @@ namespace stf::math
          * @brief Compute the length of a vector
          * @return The length of @p this
          */
-        inline T length() const { return std::sqrt(length_squared()); }
+        inline T length() const { return static_cast<T>(std::sqrt(length_squared())); }
 
         /**
          * @brief Normalize a vector in place
@@ -331,6 +338,13 @@ namespace stf::math
         inline vec& operator*=(vec const& rhs) { raw::hadamard_equals<T, 2>(values, rhs.values); return *this; }
 
         /**
+         * @brief Divide a vector in place
+         * @param [in] divisor
+         * @return A reference to @p this
+         */
+        inline vec& operator/=(T const divisor) { raw::divide<T, 2>(values, divisor); return *this; }
+
+        /**
          * @brief Compute a dot product
          * @param [in] rhs
          * @return The dot product of @p this with @p rhs
@@ -347,7 +361,7 @@ namespace stf::math
          * @brief Compute the length of a vector
          * @return The length of @p this
          */
-        inline T length() const { return std::sqrt(length_squared()); }
+        inline T length() const { return static_cast<T>(std::sqrt(length_squared())); }
 
         /**
          * @brief Normalize a vector in place
@@ -528,6 +542,13 @@ namespace stf::math
         inline vec& operator*=(vec const& rhs) { raw::hadamard_equals<T, 3>(values, rhs.values); return *this; }
 
         /**
+         * @brief Divide a vector in place
+         * @param [in] divisor
+         * @return A reference to @p this
+         */
+        inline vec& operator/=(T const divisor) { raw::divide<T, 3>(values, divisor); return *this; }
+
+        /**
          * @brief Compute a dot product
          * @param [in] rhs
          * @return The dot product of @p this with @p rhs
@@ -544,7 +565,7 @@ namespace stf::math
          * @brief Compute the length of a vector
          * @return The length of @p this
          */
-        inline T length() const { return std::sqrt(length_squared()); }
+        inline T length() const { return static_cast<T>(std::sqrt(length_squared())); }
 
         /**
          * @brief Normalize a vector in place
@@ -742,6 +763,13 @@ namespace stf::math
         inline vec& operator*=(vec const& rhs) { raw::hadamard_equals<T, 4>(values, rhs.values); return *this; }
 
         /**
+         * @brief Divide a vector in place
+         * @param [in] divisor
+         * @return A reference to @p this
+         */
+        inline vec& operator/=(T const divisor) { raw::divide<T, 4>(values, divisor); return *this; }
+
+        /**
          * @brief Compute a dot product
          * @param [in] rhs
          * @return The dot product of @p this with @p rhs
@@ -758,7 +786,7 @@ namespace stf::math
          * @brief Compute the length of a vector
          * @return The length of @p this
          */
-        inline T length() const { return std::sqrt(length_squared()); }
+        inline T length() const { return static_cast<T>(std::sqrt(length_squared())); }
 
         /**
          * @brief Normalize a vector in place
@@ -1018,8 +1046,7 @@ namespace stf::math
     template<typename T, size_t N>
     inline vec<T, N> operator/(vec<T, N> const& lhs, T const scalar)
     {
-        T factor = constants<T>::one / scalar;
-        return factor * lhs;
+        return vec<T, N>(lhs) /= scalar;
     }
 
     /**
