@@ -4,14 +4,15 @@
 
 #include <stf/stf.hpp>
 
-#include "stf/alg/scaffolding/tessellation.hpp"
+#include "stf/scaffolding/alg/tessellation.hpp"
+#include "stf/scaffolding/verify.hpp"
 
 namespace stf::alg
 {
 
     TEST(tessellation, polyline_via_length)
     {
-        std::vector<scaffolding::tessellation::polyline_via_length<float>> tests =
+        std::vector<scaffolding::alg::tessellation::polyline_via_length<float>> tests =
         {
             { stff::polyline2(std::vector<stff::vec2>{}), 0.f, false, {} },
             { stff::polyline2(std::vector<stff::vec2>{}), 1.f, false, {} },
@@ -23,11 +24,7 @@ namespace stf::alg
             { stff::polyline2({ stff::vec2(0), stff::vec2(1,0), stff::vec2(1) }), 1.f, false, { stff::vec2(0), stff::vec2(1,0), stff::vec2(1), } },
             { stff::polyline2({ stff::vec2(0), stff::vec2(1,0), stff::vec2(1) }), 1.f, true, { stff::vec2(0), stff::vec2(1,0), stff::vec2(1), stff::vec2(0.5) }},
         };
-        
-        for (scaffolding::tessellation::polyline_via_length<float> const& test : tests)
-        {
-            scaffolding::tessellation::verify(test);
-        }
+        scaffolding::verify(tests);
     }
 
 } // stf::alg

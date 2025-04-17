@@ -4,7 +4,8 @@
 
 #include <stf/spatial/interval_tree.hpp>
 
-#include "stf/spatial/scaffolding/interval_tree.hpp"
+#include "stf/scaffolding/spatial/interval_tree.hpp"
+#include "stf/scaffolding/verify.hpp"
 
 namespace stf::spatial
 {
@@ -15,7 +16,7 @@ namespace stf::spatial
         using entry_t = typename tree_t::entry_t;
         
         // TODO make this an initializer list once interval_tree is copyable
-        std::vector<scaffolding::interval_tree::find<float>> tests;
+        std::vector<scaffolding::spatial::interval_tree::find<float>> tests;
         tests.push_back({ tree_t({}), 0, {} });
         tests.push_back({ tree_t({}), 5, {} });
         tests.push_back({ tree_t({ entry_t(stff::interval(0, 1), "first") }), 0, { entry_t(stff::interval(0, 1), "first") } });
@@ -36,7 +37,7 @@ namespace stf::spatial
         tests.push_back({ tree_t({ entry_t(stff::interval(0, 1), "first"), entry_t(stff::interval(2, 3), "second"), entry_t(stff::interval(4, 5), "third"), entry_t(stff::interval(6, 7), "fourth") }), 3.5, {} });
         tests.push_back({ tree_t({ entry_t(stff::interval(0, 1), "first"), entry_t(stff::interval(2, 3), "second"), entry_t(stff::interval(4, 5), "third"), entry_t(stff::interval(6, 7), "fourth") }), 2, { entry_t(stff::interval(2, 3), "second") } });
 
-        for (scaffolding::interval_tree::find<float> const& test : tests) { scaffolding::interval_tree::verify(test); }
+        scaffolding::verify(tests);
     }
 
 } // stf::spatial

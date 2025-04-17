@@ -4,13 +4,14 @@
 
 #include <stf/stf.hpp>
 
-#include "stf/math/scaffolding/interpolation.hpp"
+#include "stf/scaffolding/math/interpolation.hpp"
+#include "stf/scaffolding/verify.hpp"
 
 namespace stf::math
 {
     TEST(interpolation, lerp)
     {
-        std::vector<scaffolding::interpolation::lerp<float>> tests =
+        std::vector<scaffolding::math::interpolation::lerp<float>> tests =
         {
             { 0, 1, -1, -1 },
             { 0, 1, 0, 0 },
@@ -34,13 +35,12 @@ namespace stf::math
             { -10, 10, 1, 10 },
             { -10, 10, 2, 30 },
         };
-
-        for (scaffolding::interpolation::lerp<float> const& test : tests) { scaffolding::interpolation::verify(test); }
+        scaffolding::verify(tests);
     }
 
     TEST(interpolation, lerp_inv)
     {
-        std::vector<scaffolding::interpolation::lerp_inv<float>> tests =
+        std::vector<scaffolding::math::interpolation::lerp_inv<float>> tests =
         {
             { 0, 1, -1, -1 },
             { 0, 1, 0, 0 },
@@ -64,13 +64,12 @@ namespace stf::math
             { -10, 10, 10, 1 },
             { -10, 10, 30, 2 },
         };
-
-        for (scaffolding::interpolation::lerp_inv<float> const& test : tests) { scaffolding::interpolation::verify(test); }
+        scaffolding::verify(tests);
     }
 
     TEST(interpolation, lerpstep)
     {
-        std::vector<scaffolding::interpolation::lerpstep<float>> tests =
+        std::vector<scaffolding::math::interpolation::lerpstep<float>> tests =
         {
             { 0, 1, -1, 0 },
             { 0, 1, 0, 0 },
@@ -94,8 +93,7 @@ namespace stf::math
             { -10, 10, 1, 10 },
             { -10, 10, 2, 10 },
         };
-
-        for (scaffolding::interpolation::lerpstep<float> const& test : tests) { scaffolding::interpolation::verify(test); }
+        scaffolding::verify(tests);
     }
 
 } // stf::math

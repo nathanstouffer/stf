@@ -4,14 +4,15 @@
 
 #include <stf/stf.hpp>
 
-#include "stf/math/scaffolding/vector.hpp"
+#include "stf/scaffolding/math/vector.hpp"
+#include "stf/scaffolding/verify.hpp"
 
 namespace stf::math
 {
 
     TEST(vec3, equality)
     {
-        std::vector<scaffolding::vec::equality<float, 3>> tests =
+        std::vector<scaffolding::math::vec::equality<float, 3>> tests =
         {
             { stff::vec3(), stff::vec3(), true },
             { stff::vec3(0), stff::vec3(0), true },
@@ -22,11 +23,7 @@ namespace stf::math
             { stff::vec3(2), stff::vec3(3), false },
             { stff::vec3(3), stff::vec3(4), false },
         };
-
-        for (scaffolding::vec::equality<float, 3> const& test : tests)
-        {
-            scaffolding::vec::verify(test);
-        }
+        scaffolding::verify(tests);
     }
 
 } // stf::math

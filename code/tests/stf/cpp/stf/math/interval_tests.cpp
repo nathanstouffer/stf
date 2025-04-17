@@ -4,14 +4,15 @@
 
 #include <stf/stf.hpp>
 
-#include "stf/math/scaffolding/interval.hpp"
+#include "stf/scaffolding/math/interval.hpp"
+#include "stf/scaffolding/verify.hpp"
 
 namespace stf::math
 {
 
     TEST(interval, contains_point)
     {
-        std::vector<scaffolding::interval::contains_point<float>> tests =
+        std::vector<scaffolding::math::interval::contains_point<float>> tests =
         {
             // closed intervals
             { stff::interval(0, 6), boundary_types::closed, 0, true },
@@ -30,11 +31,7 @@ namespace stf::math
             { stff::interval(2, 6), boundary_types::open, 6.000001f, false },
             { stff::interval(2, 6), boundary_types::open, 8, false },
         };
-
-        for (scaffolding::interval::contains_point<float> const& test : tests)
-        {
-            scaffolding::interval::verify(test);
-        }
+        scaffolding::verify(tests);
     }
 
 } // stf::math

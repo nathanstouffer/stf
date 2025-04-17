@@ -4,14 +4,15 @@
 
 #include <stf/stf.hpp>
 
-#include "stf/math/scaffolding/cinterval.hpp"
+#include "stf/scaffolding/math/cinterval.hpp"
+#include "stf/scaffolding/verify.hpp"
 
 namespace stf::math
 {
 
     TEST(cinterval, contains_point)
     {
-        std::vector<scaffolding::cinterval::contains_point<float>> tests =
+        std::vector<scaffolding::math::cinterval::contains_point<float>> tests =
         {
             // closed cintervals
             { stff::cinterval(0, 6), boundary_types::closed, 0, true },
@@ -44,11 +45,7 @@ namespace stf::math
             { stff::cinterval(5, 2), boundary_types::open, 4, false },
             { stff::cinterval(5, 2), boundary_types::open, 3, false },
         };
-
-        for (scaffolding::cinterval::contains_point<float> const& test : tests)
-        {
-            scaffolding::cinterval::verify(test);
-        }
+        scaffolding::verify(tests);
     }
 
 } // stf::math

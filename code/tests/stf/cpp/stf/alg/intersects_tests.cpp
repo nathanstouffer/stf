@@ -4,14 +4,15 @@
 
 #include <stf/stf.hpp>
 
-#include "stf/alg/scaffolding/intersects.hpp"
+#include "stf/scaffolding/alg/intersects.hpp"
+#include "stf/scaffolding/verify.hpp"
 
 namespace stf::alg
 {
 
     TEST(intersects, segment_with_segment)
     {
-        std::vector<scaffolding::intersects::segment_with_segment<float>> tests =
+        std::vector<scaffolding::alg::intersects::segment_with_segment<float>> tests =
         {
             // colinear segments that intersect
             { stff::segment2(stff::vec2(0), stff::vec2(1)), stff::segment2(stff::vec2(0), stff::vec2(1)), true },
@@ -35,17 +36,13 @@ namespace stf::alg
             { stff::segment2(stff::vec2(0), stff::vec2(5)), stff::segment2(stff::vec2(-2, 0), stff::vec2(2, -2)), false },
             { stff::segment2(stff::vec2(0), stff::vec2(5)), stff::segment2(stff::vec2(-0.00001f, -2), stff::vec2(0, 2)), false },
         };
-
-        for (scaffolding::intersects::segment_with_segment<float> const& test : tests)
-        {
-            scaffolding::intersects::verify(test);
-        }
+        scaffolding::verify(tests);
     }
 
     TEST(intersects, segment_with_aabb)
     {
         stff::aabb2 box(stff::vec2(0), stff::vec2(10));
-        std::vector<scaffolding::intersects::segment_with_aabb<float>> tests =
+        std::vector<scaffolding::alg::intersects::segment_with_aabb<float>> tests =
         {
             // segments inside the box
             { stff::segment2(stff::vec2(1), stff::vec2(2)), box, true },
@@ -72,17 +69,13 @@ namespace stf::alg
             { stff::segment2(stff::vec2(-0.000001f, 0), stff::vec2(-0.000001f, 10)), box, false },
             { stff::segment2(stff::vec2(9, 11.00001f), stff::vec2(11.00001f, 9)), box, false },
         };
-
-        for (scaffolding::intersects::segment_with_aabb<float> const& test : tests)
-        {
-            scaffolding::intersects::verify(test);
-        }
+        scaffolding::verify(tests);
     }
 
     TEST(intersects, polyline_with_aabb)
     {
         stff::aabb2 box(stff::vec2(0), stff::vec2(10));
-        std::vector<scaffolding::intersects::polyline_with_aabb<float>> tests =
+        std::vector<scaffolding::alg::intersects::polyline_with_aabb<float>> tests =
         {
             // polylines contained in the box
             { stff::polyline2({ stff::vec2(1), stff::vec2(2), stff::vec2(5, 6) }), box, true },
@@ -100,17 +93,13 @@ namespace stf::alg
             { stff::polyline2({ stff::vec2(9, -1.00001f), stff::vec2(11, 0.99999f) }), box, false },
             { stff::polyline2({ stff::vec2(-0.00001f), stff::vec2(-0.00001f, 10.00001f), stff::vec2(10.00001f) }), box, false},
         };
-
-        for (scaffolding::intersects::polyline_with_aabb<float> const& test : tests)
-        {
-            scaffolding::intersects::verify(test);
-        }
+        scaffolding::verify(tests);
     }
 
     TEST(intersects, polygon_with_aabb)
     {
         stff::aabb2 box(stff::vec2(0), stff::vec2(10));
-        std::vector<scaffolding::intersects::polygon_with_aabb<float>> tests =
+        std::vector<scaffolding::alg::intersects::polygon_with_aabb<float>> tests =
         {
             // polygons contained in the box
             { stff::polygon({ stff::vec2(1), stff::vec2(5), stff::vec2(4, 3) }), box, true },
@@ -126,16 +115,12 @@ namespace stf::alg
             { stff::polygon({ stff::vec2(-1), stff::vec2(-5), stff::vec2(-5, 0) }), box, false },
             { stff::polygon({ stff::vec2(-11, 10), stff::vec2(-0.000001f, 10), stff::vec2(-0.000001f), stff::vec2(10, -0.000001f), stff::vec2(10, -11) }), box, false},
         };
-
-        for (scaffolding::intersects::polygon_with_aabb<float> const& test : tests)
-        {
-            scaffolding::intersects::verify(test);
-        }
+        scaffolding::verify(tests);
     }
 
     TEST(intersects, polygon_with_segment)
     {
-        std::vector<scaffolding::intersects::polygon_with_segment<float>> tests =
+        std::vector<scaffolding::alg::intersects::polygon_with_segment<float>> tests =
         {
             // segment inside polygon
             { stff::polygon({ stff::vec2(0), stff::vec2(5), stff::vec2(5, 0) }), stff::segment2(stff::vec2(2, 1), stff::vec2(4, 3)), true },
@@ -150,16 +135,12 @@ namespace stf::alg
             { stff::polygon({ stff::vec2(-1), stff::vec2(-5), stff::vec2(-5, 0) }), stff::segment2(stff::vec2(2), stff::vec2(9, 0)), false },
             { stff::polygon({ stff::vec2(-1), stff::vec2(-5), stff::vec2(-5, 0) }), stff::segment2(stff::vec2(-4, -5), stff::vec2(-2, -3)), false },
         };
-
-        for (scaffolding::intersects::polygon_with_segment<float> const& test : tests)
-        {
-            scaffolding::intersects::verify(test);
-        }
+        scaffolding::verify(tests);
     }
 
     TEST(intersects, polygon_with_polyline)
     {
-        std::vector<scaffolding::intersects::polygon_with_polyline<float>> tests =
+        std::vector<scaffolding::alg::intersects::polygon_with_polyline<float>> tests =
         {
             // polyline inside polygon
             { stff::polygon({ stff::vec2(0), stff::vec2(5), stff::vec2(5, 0) }), stff::polyline2({ stff::vec2(2, 1), stff::vec2(4, 3) }), true },
@@ -174,16 +155,12 @@ namespace stf::alg
             { stff::polygon({ stff::vec2(-1), stff::vec2(-5), stff::vec2(-5, 0) }), stff::polyline2({ stff::vec2(2), stff::vec2(9, 0) }), false },
             { stff::polygon({ stff::vec2(-1), stff::vec2(-5), stff::vec2(-5, 0) }), stff::polyline2({ stff::vec2(-4, -5), stff::vec2(-2, -3) }), false },
         };
-
-        for (scaffolding::intersects::polygon_with_polyline<float> const& test : tests)
-        {
-            scaffolding::intersects::verify(test);
-        }
+        scaffolding::verify(tests);
     }
 
     TEST(intersects, ray_with_plane)
     {
-        std::vector<scaffolding::intersects::ray_with_plane<float>> tests =
+        std::vector<scaffolding::alg::intersects::ray_with_plane<float>> tests =
         {
             // ray that is a subset of plane
             { stff::ray3(stff::vec3(), stff::vec3(1, 0, 0)), stff::plane(stff::vec3(), stff::vec3(0, 0, 1)), true },
@@ -199,11 +176,7 @@ namespace stf::alg
             { stff::ray3(stff::vec3(0, 0, 10), stff::vec3(1, 1, 1)), stff::plane(stff::vec3(), stff::vec3(0, 0, 1)), false },
             { stff::ray3(stff::vec3(0, 0, 100), stff::vec3(0, 0, 1)), stff::plane(stff::vec3(), stff::vec3(0, 0, 1)), false },
         };
-
-        for (scaffolding::intersects::ray_with_plane<float> const& test : tests)
-        {
-            scaffolding::intersects::verify(test);
-        }
+        scaffolding::verify(tests);
     }
 
 } // stf::alg
