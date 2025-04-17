@@ -132,6 +132,21 @@ namespace stf::scaffolding::math::vec
     };
 
     template<typename T, size_t N>
+    struct divide
+    {
+        stf::math::vec<T, N> initial;
+        T divisor;
+        stf::math::vec<T, N> expected;
+
+        void verify(size_t i) const
+        {
+            using vec_t = stf::math::vec<T, N>;
+            ASSERT_EQ(expected, initial / divisor) << info(i) << "Failed initial / divisor";
+            ASSERT_EQ(expected, vec_t(initial) /= divisor) << info(i) << "Failed initial /= divisor";
+        }
+    };
+
+    template<typename T, size_t N>
     struct dot
     {
         stf::math::vec<T, N> lhs;
