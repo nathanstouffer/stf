@@ -59,6 +59,22 @@ namespace stf::math::raw
     }
 
     /**
+     * @brief Divide a vector (stored as an array) in place
+     * @tparam T Number type (eg float)
+     * @tparam N Dimension
+     * @param [in,out] lhs
+     * @param [in] divisor
+     */
+    template<typename T, size_t N>
+    inline void divide(T lhs[N], T const divisor)
+    {
+        for (size_t i = 0; i < N; ++i)
+        {
+            lhs[i] /= divisor;
+        }
+    }
+
+    /**
      * @brief Compute the dot product of two vectors (stored as arrays)
      * @tparam T Number type (eg float)
      * @tparam N Dimension
