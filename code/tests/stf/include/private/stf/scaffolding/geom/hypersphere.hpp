@@ -4,21 +4,20 @@
 
 #include <stf/geom/hypersphere.hpp>
 
-namespace stf::geom::scaffolding::hypersphere
+namespace stf::scaffolding::geom::hypersphere
 {
 
     template<typename T, size_t N>
     struct encloses
     {
-        geom::hypersphere<T, N> const hypersphere;
-        math::vec<T, N> const point;
+        stf::geom::hypersphere<T, N> const hypersphere;
+        stf::math::vec<T, N> const point;
         bool const enclosed;
+
+        void verify(size_t const i) const
+        {
+            ASSERT_EQ(enclosed, hypersphere.encloses(point)) << info(i) << "failed enclosed test";
+        }
     };
 
-    template<typename T, size_t N>
-    void verify(encloses<T, N> const& test)
-    {
-        ASSERT_EQ(test.enclosed, test.hypersphere.encloses(test.point)) << "failed enclosed test";
-    }
-
-} // stf::geom::scaffolding::sphere
+} // stf::scaffolding::geom::sphere

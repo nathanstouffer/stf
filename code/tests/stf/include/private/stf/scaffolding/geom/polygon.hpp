@@ -4,75 +4,71 @@
 
 #include <stf/geom/polygon.hpp>
 
-namespace stf::geom::scaffolding::polygon
+namespace stf::scaffolding::geom::polygon
 {
 
     template<typename T>
     struct is_convex
     {
-        geom::polygon<T> polygon;
+        stf::geom::polygon<T> polygon;
         bool convex;
-    };
 
-    template<typename T>
-    void verify(is_convex<T> const& test)
-    {
-        ASSERT_EQ(test.convex, test.polygon.is_convex()) << "failed polygon::is_convex";
-    }
+        void verify(size_t const i) const
+        {
+            ASSERT_EQ(convex, polygon.is_convex()) << info(i) << "failed polygon::is_convex";
+        }
+    };
 
     template<typename T>
     struct signed_area
     {
-        geom::polygon<T> polygon;
+        stf::geom::polygon<T> polygon;
         T area;
-    };
 
-    template<typename T>
-    void verify(signed_area<T> const& test)
-    {
-        ASSERT_NEAR(test.area, test.polygon.signed_area(), math::constants<T>::tol_tol) << "failed polygon::signed_area";
-        ASSERT_NEAR(std::abs(test.area), test.polygon.area(), math::constants<T>::tol_tol) << "failed polygon::area";
-    }
+        void verify(size_t const i) const
+        {
+            ASSERT_NEAR(area, polygon.signed_area(), stf::math::constants<T>::tol_tol) << info(i) << "failed polygon::signed_area";
+            ASSERT_NEAR(std::abs(area), polygon.area(), stf::math::constants<T>::tol_tol) << info(i) << "failed polygon::area";
+        }
+    };
 
     template<typename T>
     struct contains
     {
-        geom::polygon<T> polygon;
-        math::vec2<T> query;
-        boundary_types boundary_type;
+        stf::geom::polygon<T> polygon;
+        stf::math::vec2<T> query;
+        stf::boundary_types boundary_type;
         bool contained;
-    };
 
-    template<typename T>
-    void verify(contains<T> const& test)
-    {
-        ASSERT_EQ(test.contained, test.polygon.contains(test.query, test.boundary_type)) << "failed polygon::contains";
-    }
+        void verify(size_t const i) const
+        {
+            ASSERT_EQ(contained, polygon.contains(query, boundary_type)) << info(i) << "failed polygon::contains";
+        }
+    };
 
     template<typename T>
     struct distances
     {
-        geom::polygon<T> polygon;
-        math::vec2<T> query;
+        stf::geom::polygon<T> polygon;
+        stf::math::vec2<T> query;
         T signed_distance;
+
+        void verify(size_t const i) const
+        {
+            ASSERT_EQ(signed_distance, polygon.signed_dist(query)) << info(i) << "failed polygon::signed_dist";
+            ASSERT_EQ(signed_distance, stf::geom::signed_dist(polygon, query)) << info(i) << "failed geom::signed_dist";
+            ASSERT_EQ(signed_distance, stf::geom::signed_dist(query, polygon)) << info(i) << "failed geom::signed_dist";
+        
+            T dist = std::max(stf::math::constants<T>::zero, signed_distance);
+
+            ASSERT_EQ(dist, polygon.dist(query)) << info(i) << "failed polygon::dist";
+            ASSERT_EQ(dist, stf::geom::dist(polygon, query)) << info(i) << "failed geom::dist";
+            ASSERT_EQ(dist, stf::geom::dist(query, polygon)) << info(i) << "failed geom::dist";
+        
+            ASSERT_NEAR(dist * dist, polygon.dist_squared(query), stf::math::constants<T>::tol) << info(i) << "failed polygon::dist_squared";
+            ASSERT_NEAR(dist * dist, stf::geom::dist_squared(polygon, query), stf::math::constants<T>::tol) << info(i) << "failed geom::dist_squared";
+            ASSERT_NEAR(dist * dist, stf::geom::dist_squared(query, polygon), stf::math::constants<T>::tol) << info(i) << "failed geom::dist_squared";
+        }
     };
-
-    template<typename T>
-    void verify(distances<T> const& test)
-    {
-        ASSERT_EQ(test.signed_distance, test.polygon.signed_dist(test.query)) << "failed polygon::signed_dist";
-        ASSERT_EQ(test.signed_distance, geom::signed_dist(test.polygon, test.query)) << "failed geom::signed_dist";
-        ASSERT_EQ(test.signed_distance, geom::signed_dist(test.query, test.polygon)) << "failed geom::signed_dist";
-        
-        T dist = std::max(math::constants<T>::zero, test.signed_distance);
-
-        ASSERT_EQ(dist, test.polygon.dist(test.query)) << "failed polygon::dist";
-        ASSERT_EQ(dist, geom::dist(test.polygon, test.query)) << "failed geom::dist";
-        ASSERT_EQ(dist, geom::dist(test.query, test.polygon)) << "failed geom::dist";
-        
-        ASSERT_NEAR(dist * dist, test.polygon.dist_squared(test.query), math::constants<T>::tol) << "failed polygon::dist_squared";
-        ASSERT_NEAR(dist * dist, geom::dist_squared(test.polygon, test.query), math::constants<T>::tol) << "failed geom::dist_squared";
-        ASSERT_NEAR(dist * dist, geom::dist_squared(test.query, test.polygon), math::constants<T>::tol) << "failed geom::dist_squared";
-    }
 
 }

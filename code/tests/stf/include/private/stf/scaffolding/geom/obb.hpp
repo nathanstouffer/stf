@@ -6,95 +6,90 @@
 #include <stf/alg/intersects.hpp>
 #include <stf/alg/containment.hpp>
 
-namespace stf::geom::scaffolding::obb
+namespace stf::scaffolding::geom::obb
 {
 
     template<typename T, size_t N>
     struct from_aabb
     {
-        geom::aabb<T, N> aabb;
-    };
+        stf::geom::aabb<T, N> aabb;
 
-    template<typename T, size_t N>
-    void verify(from_aabb<T, N> const& test)
-    {
-        geom::obb<T, N> obb(test.aabb);
-
-        for (size_t v = 0; v < geom::obb<T, N>::vertex_count(); ++v)
+        void verify(size_t const i) const
         {
-            ASSERT_EQ(test.aabb.vertex(v), obb.vertex(v)) << "failed vertex equality for v = " << v;
+            stf::geom::obb<T, N> obb(aabb);
+
+            for (size_t v = 0; v < stf::geom::obb<T, N>::vertex_count(); ++v)
+            {
+                ASSERT_EQ(aabb.vertex(v), obb.vertex(v)) << info(i) << "failed vertex equality for v = " << v;
+            }
         }
-    }
+    };
 
     template<typename T, size_t N>
     struct extremity
     {
-        geom::obb<T, N> obb;
-        math::vec<T, N> axis;
-        math::vec<T, N> extreme;
-    };
+        stf::geom::obb<T, N> obb;
+        stf::math::vec<T, N> axis;
+        stf::math::vec<T, N> extreme;
 
-    template<typename T, size_t N>
-    void verify(extremity<T, N> const& test)
-    {
-        ASSERT_EQ(test.extreme, test.obb.extremity(test.axis)) << "failed to compute extremity";
-    }
+        void verify(size_t const i) const
+        {
+            ASSERT_EQ(extreme, obb.extremity(axis)) << info(i) << "failed to compute extremity";
+        }
+    };
 
     template<typename T, size_t N>
     struct contains
     {
-        geom::obb<T, N> obb;
-        math::vec<T, N> point;
+        stf::geom::obb<T, N> obb;
+        stf::math::vec<T, N> point;
         bool contains;
-    };
 
-    template<typename T, size_t N>
-    void verify(contains<T, N> const& test)
-    {
-        ASSERT_EQ(test.contains, test.obb.contains(test.point)) << "failed point in obb test";
-    }
+        void verify(size_t const i) const
+        {
+            ASSERT_EQ(contains, obb.contains(point)) << info(i) << "failed point in obb test";
+        }
+    };
 
     template<typename T, size_t N>
     struct fit
     {
-        math::mtx<T, N> rotation;
+        stf::math::mtx<T, N> rotation;
         T half_extent;
+
+        void verify(size_t const i) const
+        {
+            stf::geom::obb<T, N> constructed(stf::math::vec<T, N>(0), rotation, stf::math::vec<T, N>(half_extent));
+
+            stf::geom::obb<T, N> fitted(rotation);
+            for (math::vec<T, N> const& direction : math::canonical_basis<T, N>())
+            {
+                fitted.fit( half_extent * (rotation * direction));
+                fitted.fit(-half_extent * (rotation * direction));
+            }
+
+            for (size_t v = 0; v < stf::geom::obb<T, N>::vertex_count(); ++v)
+            {
+                ASSERT_EQ(constructed.vertex(v), fitted.vertex(v)) << info(i) << "failed vertex equality for v = " << v;
+            }
+        }
     };
-
-    template<typename T, size_t N>
-    void verify(fit<T, N> const& test)
-    {
-        geom::obb<T, N> constructed(math::vec<T, N>(0), test.rotation, math::vec<T, N>(test.half_extent));
-
-        geom::obb<T, N> fitted(test.rotation);
-        for (math::vec<T, N> const& direction : math::canonical_basis<T, N>())
-        {
-            fitted.fit( test.half_extent * (test.rotation * direction));
-            fitted.fit(-test.half_extent * (test.rotation * direction));
-        }
-
-        for (size_t v = 0; v < geom::obb<T, N>::vertex_count(); ++v)
-        {
-            ASSERT_EQ(constructed.vertex(v), fitted.vertex(v)) << "failed vertex equality for v = " << v;
-        }
-    }
 
     template<typename T, size_t N>
     struct intersect
     {
-        geom::obb<T, N> lhs;
-        geom::obb<T, N> rhs;
+        stf::geom::obb<T, N> lhs;
+        stf::geom::obb<T, N> rhs;
         bool intersect;
+
+        void verify(size_t const i) const
+        {
+            ASSERT_EQ(intersect, stf::geom::intersects(lhs, rhs)) << info(i) << "failed lhs -> rhs geom::intersect test";
+            ASSERT_EQ(intersect, stf::geom::intersects(rhs, lhs)) << info(i) << "failed rhs -> lhs geom::intersect test";
+
+            ASSERT_EQ(intersect, stf::alg::intersects(lhs, rhs)) << info(i) << "failed lhs -> rhs alg::intersect test";
+            ASSERT_EQ(intersect, stf::alg::intersects(rhs, lhs)) << info(i) << "failed rhs -> lhs alg::intersect test";
+        }
     };
 
-    template<typename T, size_t N>
-    void verify(intersect<T, N> const& test)
-    {
-        ASSERT_EQ(test.intersect, geom::intersects(test.lhs, test.rhs)) << "failed lhs -> rhs geom::intersect test";
-        ASSERT_EQ(test.intersect, geom::intersects(test.rhs, test.lhs)) << "failed rhs -> lhs geom::intersect test";
-
-        ASSERT_EQ(test.intersect, alg::intersects(test.lhs, test.rhs)) << "failed lhs -> rhs alg::intersect test";
-        ASSERT_EQ(test.intersect, alg::intersects(test.rhs, test.lhs)) << "failed rhs -> lhs alg::intersect test";
-    }
-
-} // stf::geom::scaffolding::aabb
+} // stf::scaffolding::geom::aabb

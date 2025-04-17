@@ -9,9 +9,9 @@
 namespace stf::geom
 {
 
-    TEST(sphere, encloses)
+    TEST(hypersphere3, encloses)
     {
-        std::vector<scaffolding::hypersphere::encloses<float, 3>> tests =
+        std::vector<scaffolding::geom::hypersphere::encloses<float, 3>> tests =
         {
             { stff::sphere(stff::vec3(0), 1), stff::vec3(0), true },
             { stff::sphere(stff::vec3(0), 1), stff::vec3(1, 0, 0), true },
@@ -22,11 +22,7 @@ namespace stf::geom
             { stff::sphere(stff::vec3(10), 5), stff::vec3(10), true },
             { stff::sphere(stff::vec3(10), 5), stff::vec3(11), true },
         };
-
-        for (scaffolding::hypersphere::encloses<float, 3> const& test : tests)
-        {
-            scaffolding::hypersphere::verify(test);
-        }
+        scaffolding::verify(tests);
     }
 
 } // stf::geom

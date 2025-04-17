@@ -4,40 +4,38 @@
 
 #include <stf/geom/segment.hpp>
 
-namespace stf::geom::scaffolding::segment
+namespace stf::scaffolding::geom::segment
 {
 
     template<typename T, size_t N>
     struct dist_and_dist_squared
     {
-        geom::segment<T, N> seg;
-        math::vec<T, N> point;
+        stf::geom::segment<T, N> seg;
+        stf::math::vec<T, N> point;
         T dist_squared;
-    };
 
-    template<typename T, size_t N>
-    void verify(dist_and_dist_squared<T, N> const& test)
-    {
-        ASSERT_EQ(std::sqrt(test.dist_squared),test.seg.dist(test.point)) << "failed distance between segment and point";
-        ASSERT_EQ(std::sqrt(test.dist_squared), geom::dist(test.seg, test.point)) << "failed distance between segment and point";
-        ASSERT_EQ(std::sqrt(test.dist_squared), geom::dist(test.point, test.seg)) << "failed distance between point and segment";
-        ASSERT_EQ(test.dist_squared, test.seg.dist_squared(test.point)) << "failed distance squared from segment to vec";
-        ASSERT_EQ(test.dist_squared, geom::dist_squared(test.seg, test.point)) << "failed distance squared from segment to vec";
-        ASSERT_EQ(test.dist_squared, geom::dist_squared(test.point, test.seg)) << "failed distance squared from vec to segment";
-    }
+        void verify(size_t const i) const
+        {
+            ASSERT_EQ(std::sqrt(dist_squared),seg.dist(point)) << info(i) << "failed distance between segment and point";
+            ASSERT_EQ(std::sqrt(dist_squared), stf::geom::dist(seg, point)) << info(i) << "failed distance between segment and point";
+            ASSERT_EQ(std::sqrt(dist_squared), stf::geom::dist(point, seg)) << info(i) << "failed distance between point and segment";
+            ASSERT_EQ(dist_squared, seg.dist_squared(point)) << info(i) << "failed distance squared from segment to vec";
+            ASSERT_EQ(dist_squared, stf::geom::dist_squared(seg, point)) << info(i) << "failed distance squared from segment to vec";
+            ASSERT_EQ(dist_squared, stf::geom::dist_squared(point, seg)) << info(i) << "failed distance squared from vec to segment";
+        }
+    };
 
     template<typename T, size_t N>
     struct interpolate
     {
-        geom::segment<T, N> seg;
+        stf::geom::segment<T, N> seg;
         T t;
-        math::vec<T, N> point;
+        stf::math::vec<T, N> point;
+
+        void verify(size_t const i) const
+        {
+            ASSERT_EQ(point, seg.interpolate(t)) << info(i) << "failed interpolation test";
+        }
     };
 
-    template<typename T, size_t N>
-    void verify(interpolate<T, N> const& test)
-    {
-        ASSERT_EQ(test.point, test.seg.interpolate(test.t)) << "failed interpolation test";
-    }
-
-} // stf::geom::scaffolding::segment
+} // stf::scaffolding::geom::segment
