@@ -164,7 +164,7 @@ namespace stf::math
          * @brief Compute the length of a vector
          * @return The length of @p this
          */
-        inline T length() const { return std::sqrt(length_squared()); }
+        inline T length() const { return static_cast<T>(std::sqrt(length_squared())); }
 
         /**
          * @brief Normalize a vector in place
@@ -361,7 +361,7 @@ namespace stf::math
          * @brief Compute the length of a vector
          * @return The length of @p this
          */
-        inline T length() const { return std::sqrt(length_squared()); }
+        inline T length() const { return static_cast<T>(std::sqrt(length_squared())); }
 
         /**
          * @brief Normalize a vector in place
@@ -565,7 +565,7 @@ namespace stf::math
          * @brief Compute the length of a vector
          * @return The length of @p this
          */
-        inline T length() const { return std::sqrt(length_squared()); }
+        inline T length() const { return static_cast<T>(std::sqrt(length_squared())); }
 
         /**
          * @brief Normalize a vector in place
@@ -786,7 +786,7 @@ namespace stf::math
          * @brief Compute the length of a vector
          * @return The length of @p this
          */
-        inline T length() const { return std::sqrt(length_squared()); }
+        inline T length() const { return static_cast<T>(std::sqrt(length_squared())); }
 
         /**
          * @brief Normalize a vector in place
