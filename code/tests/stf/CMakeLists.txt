@@ -1,12 +1,11 @@
 enable_testing()
 
 set(STF_TEST_FILES
-    # TODO (stouff) reenable all these tests
-    # "${CMAKE_CURRENT_SOURCE_DIR}/cpp/stf/alg/clipping_tests.cpp"
-    # "${CMAKE_CURRENT_SOURCE_DIR}/cpp/stf/alg/intersect_tests.cpp"
-    # "${CMAKE_CURRENT_SOURCE_DIR}/cpp/stf/alg/intersects_tests.cpp"
-    # "${CMAKE_CURRENT_SOURCE_DIR}/cpp/stf/alg/statistics_tests.cpp"
-    # "${CMAKE_CURRENT_SOURCE_DIR}/cpp/stf/alg/tessellation_tests.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/cpp/stf/alg/clipping_tests.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/cpp/stf/alg/intersect_tests.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/cpp/stf/alg/intersects_tests.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/cpp/stf/alg/statistics_tests.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/cpp/stf/alg/tessellation_tests.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/cpp/stf/ds/indexed_list_tests.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/cpp/stf/cam/frustum_tests.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/cpp/stf/cam/scamera_tests.cpp"

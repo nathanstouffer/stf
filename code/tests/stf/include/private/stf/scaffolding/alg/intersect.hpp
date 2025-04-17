@@ -11,21 +11,20 @@ namespace stf::scaffolding::alg::intersect
     template<typename T>
     struct ray_with_plane
     {
-        geom::ray3<T> ray;
-        geom::plane<T> plane;
-        std::optional<math::vec3<T>> expected;
-    };
+        stf::geom::ray3<T> ray;
+        stf::geom::plane<T> plane;
+        std::optional<stf::math::vec3<T>> expected;
 
-    template<typename T>
-    void verify(ray_with_plane<T> const& test)
-    {
-        geom::plane<T> flipped = geom::plane<T>(test.plane.point(), -test.plane.normal());
+        void verify(size_t const i) const
+        {
+            stf::geom::plane<T> flipped = stf::geom::plane<T>(plane.point(), -plane.normal());
 
-        ASSERT_EQ(test.expected, alg::intersect(test.ray, test.plane)) << "Failed intersect(ray, plane)";
-        ASSERT_EQ(test.expected, alg::intersect(test.plane, test.ray)) << "Failed intersect(plane, ray)";
+            ASSERT_EQ(expected, stf::alg::intersect(ray, plane)) << info(i) << "Failed intersect(ray, plane)";
+            ASSERT_EQ(expected, stf::alg::intersect(plane, ray)) << info(i) << "Failed intersect(plane, ray)";
         
-        ASSERT_EQ(test.expected, alg::intersect(test.ray, flipped)) << "Failed intersect(ray, flipped)";
-        ASSERT_EQ(test.expected, alg::intersect(flipped, test.ray)) << "Failed intersect(flipped, ray)";
-    }
+            ASSERT_EQ(expected, stf::alg::intersect(ray, flipped)) << info(i) << "Failed intersect(ray, flipped)";
+            ASSERT_EQ(expected, stf::alg::intersect(flipped, ray)) << info(i) << "Failed intersect(flipped, ray)";
+        }
+    };
 
 } // stf::scaffolding::alg::intersect

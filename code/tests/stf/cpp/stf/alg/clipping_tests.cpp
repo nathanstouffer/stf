@@ -5,6 +5,7 @@
 #include <stf/stf.hpp>
 
 #include "stf/scaffolding/alg/clipping.hpp"
+#include "stf/scaffolding/verify.hpp"
 
 namespace stf::alg
 {
@@ -13,7 +14,7 @@ namespace stf::alg
     {
         stff::aabb2 box(stff::vec2(10), stff::vec2(20));
         stff::segment2 irrelevent(stff::vec2(0), stff::vec2(0));
-        std::vector<scaffolding::clipping::segment<float>> tests =
+        std::vector<scaffolding::alg::clipping::segment<float>> tests =
         {
             // segments entirely in the box
             { box, stff::segment2(stff::vec2(11, 11), stff::vec2(19, 19)), true, stff::segment2(stff::vec2(11, 11), stff::vec2(19, 19)) },
@@ -33,17 +34,13 @@ namespace stf::alg
             // segments that do not intersect the box
             { box, stff::segment2(stff::vec2( 4, 15), stff::vec2(15,  4)), false, irrelevent},
         };
-
-        for (scaffolding::clipping::segment<float> const& test : tests)
-        {
-            scaffolding::clipping::verify(test);
-        }
+        scaffolding::verify(tests);
     }
 
     TEST(clipping, polyline)
     {
         stff::aabb2 box(stff::vec2(10), stff::vec2(20));
-        std::vector<scaffolding::clipping::polyline<float>> tests =
+        std::vector<scaffolding::alg::clipping::polyline<float>> tests =
         {
             // polylines entirely in the box
             { box, stff::polyline2({ stff::vec2(10), stff::vec2(20) }), { stff::polyline2({ stff::vec2(10), stff::vec2(20) }) } },
@@ -54,11 +51,7 @@ namespace stf::alg
             // polylines entirely outside the box
             { box, stff::polyline2({ stff::vec2(9), stff::vec2(21, 9), stff::vec2(21) }), {} },
         };
-
-        for (scaffolding::clipping::polyline<float> const& test : tests)
-        {
-            scaffolding::clipping::verify(test);
-        }
+        scaffolding::verify(tests);
     }
 
 } // stf::alg

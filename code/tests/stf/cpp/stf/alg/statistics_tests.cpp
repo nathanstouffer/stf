@@ -5,13 +5,14 @@
 #include <stf/stf.hpp>
 
 #include "stf/scaffolding/alg/statistics.hpp"
+#include "stf/scaffolding/verify.hpp"
 
 namespace stf::alg
 {
 
     TEST(statistics, median)
     {
-        std::vector<scaffolding::statistics::median<float>> tests =
+        std::vector<scaffolding::alg::statistics::median<float>> tests =
         {
             { { 0.f }, 0.f },
             { { 1.f }, 1.f },
@@ -20,11 +21,7 @@ namespace stf::alg
             { { 6.f, 3.f, 1.f }, 3.f },
             { { -5.f, -4.f, -12.f, 4.f, 5.f }, -4.f },
         };
-
-        for (scaffolding::statistics::median<float> const& test : tests)
-        {
-            scaffolding::statistics::verify(test);
-        }
+        scaffolding::verify(tests);
     }
 
 } // stf::alg

@@ -13,12 +13,11 @@ namespace stf::scaffolding::alg::statistics
     {
         std::vector<T> values;
         T expected;
-    };
 
-    template<typename T>
-    void verify(median<T> const& test)
-    {
-        ASSERT_EQ(test.expected, alg::median(test.values)) << "Failed to compute median(values)";
-    }
+        void verify(size_t const i) const
+        {
+            ASSERT_EQ(expected, stf::alg::median(values)) << info(i) << "Failed to compute median(values)";
+        }
+    };
 
 } // stf::scaffolding::alg::statistics
