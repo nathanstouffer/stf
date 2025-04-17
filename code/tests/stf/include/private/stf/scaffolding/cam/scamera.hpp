@@ -11,34 +11,32 @@ namespace stf::scaffolding::cam::scamera
     template<typename T>
     struct direction_vectors
     {
-        cam::scamera<T> camera;
-        math::vec3<T> look;
-        math::vec3<T> up;
-        math::vec3<T> right;
-    };
+        stf::cam::scamera<T> camera;
+        stf::math::vec3<T> look;
+        stf::math::vec3<T> up;
+        stf::math::vec3<T> right;
 
-    template<typename T>
-    void verify(direction_vectors<T> const& test)
-    {
-        ASSERT_EQ(test.look, test.camera.look()) << "Failed to compute look vector";
-        ASSERT_EQ(test.up, test.camera.up()) << "Failed to compute up vector";
-        ASSERT_EQ(test.right, test.camera.right()) << "Failed to compute right vector";
-    }
+        void verify(size_t const i) const
+        {
+            ASSERT_EQ(look, camera.look()) << info(i) << "Failed to compute look vector";
+            ASSERT_EQ(up, camera.up()) << info(i) << "Failed to compute up vector";
+            ASSERT_EQ(right, camera.right()) << info(i) << "Failed to compute right vector";
+        }
+    };
 
     template<typename T>
     struct orbit
     {
-        cam::scamera<T> initial;
-        math::vec3<T> focus;
+        stf::cam::scamera<T> initial;
+        stf::math::vec3<T> focus;
         T delta_phi;
         T delta_theta;
-        cam::scamera<T> expected;
-    };
+        stf::cam::scamera<T> expected;
 
-    template<typename T>
-    void verify(orbit<T> const& test)
-    {
-        ASSERT_EQ(test.expected, cam::orbit(test.initial, test.focus, test.delta_phi, test.delta_theta)) << "Failed scamera orbit function";
-    }
+        void verify(size_t const i) const
+        {
+            ASSERT_EQ(expected, stf::cam::orbit(initial, focus, delta_phi, delta_theta)) << info(i) << "Failed scamera orbit function";
+        }
+    };
 
 } // stf::scaffolding::cam::scamera
