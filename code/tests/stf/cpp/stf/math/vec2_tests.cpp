@@ -78,6 +78,7 @@ namespace stf::math
             { stfi::vec2(0, 0), 10, stfi::vec2(0, 0) },
             { stfi::vec2(100, 100), 1, stfi::vec2(100, 100) },
             { stfi::vec2(100, 100), 10, stfi::vec2(10, 10) },
+            { stfi::vec2(100, 100), 2, stfi::vec2(50, 50) },
         };
         scaffolding::verify(tests);
     }
