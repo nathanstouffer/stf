@@ -176,7 +176,7 @@ namespace stf::math
 
     TEST(vec2, hadamard_multipy)
     {
-        std::vector<scaffolding::math::vec::hadamard_multipy<float, 2>> tests =
+        std::vector<scaffolding::math::vec::hadamard_multiply<float, 2>> tests =
         {
             { stff::vec2(), stff::vec2(1), stff::vec2() },
             { stff::vec2(1, 0), stff::vec2(0, 1), stff::vec2() },

@@ -1069,6 +1069,25 @@ namespace stf::math
     }
 
     /**
+     * @brief Divide @p lhs by @p rhs
+     * @tparam T Number type (eg float)
+     * @tparam N Dimension
+     * @param [in] lhs
+     * @param [in] rhs
+     * @return @p lhs divided by @p rhs
+     */
+    template<typename T, size_t N>
+    inline vec<T, N> operator/(vec<T, N> const& lhs, vec<T, N> const& rhs)
+    {
+        vec<T, N> result;
+        for (size_t i = 0; i < N; ++i)
+        {
+            result[i] = lhs[i] / rhs[i];
+        }
+        return result;
+    }
+
+    /**
      * @brief Compute the dot product of two vectors
      * @tparam T Number type (eg float)
      * @tparam N Dimension
