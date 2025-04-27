@@ -174,4 +174,26 @@ namespace stf::math
         scaffolding::verify(tests);
     }
 
+    TEST(vec2, hadamard_multipy)
+    {
+        std::vector<scaffolding::math::vec::hadamard_multipy<float, 2>> tests =
+        {
+            { stff::vec2(), stff::vec2(1), stff::vec2() },
+            { stff::vec2(1, 0), stff::vec2(0, 1), stff::vec2() },
+            { stff::vec2(1, 0), stff::vec2(1, 0), stff::vec2(1, 0) },
+            { stff::vec2(0, 1), stff::vec2(0, 10), stff::vec2(0, 10) },
+            { stff::vec2(2, 5), stff::vec2(3, 4), stff::vec2(6, 20) },
+        };
+        scaffolding::verify(tests);
+    }
+
+    TEST(vec2, hadamard_divide)
+    {
+        std::vector<scaffolding::math::vec::hadamard_divide<float, 2>> tests =
+        {
+            { stff::vec2(), stff::vec2(1), stff::vec2() },
+        };
+        scaffolding::verify(tests);
+    }
+
 } // stf::math

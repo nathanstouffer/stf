@@ -219,6 +219,35 @@ namespace stf::scaffolding::math::vec
     };
 
     template<typename T, size_t N>
+    struct hadamard_multiply
+    {
+        stf::math::vec<T, N> lhs;
+        stf::math::vec<T, N> rhs;
+        stf::math::vec<T, N> expected;
+
+        void verify(size_t const i) const
+        {
+            ASSERT_EQ(expected, lhs * rhs) << info(i) << "Failed lhs * rhs";
+            ASSERT_EQ(expected, rhs * lhs) << info(i) << "Failed rhs * lhs";
+            ASSERT_EQ(expected, stf::math::hadamard(lhs, rhs)) << info(i) << "Failed stf::math::hadamard(lhs, rhs)";
+            ASSERT_EQ(expected, stf::math::hadamard(rhs, lhs)) << info(i) << "Failed stf::math::hadamard(rhs, lhs)";
+        }
+    };
+
+    template<typename T, size_t N>
+    struct hadamard_divide
+    {
+        stf::math::vec<T, N> lhs;
+        stf::math::vec<T, N> rhs;
+        stf::math::vec<T, N> expected;
+
+        void verify(size_t const i) const
+        {
+            ASSERT_EQ(expected, lhs / rhs) << info(i) << "Failed lhs / rhs";
+        }
+    };
+
+    template<typename T, size_t N>
     struct binary_op
     {
         stf::math::vec<T, N> lhs;
