@@ -297,8 +297,8 @@ namespace stf::cam
     {
         scamera<T> result;
         result.eye    = math::lerp(lhs.eye, rhs.eye, t);
-        result.theta  = math::lerp(lhs.theta, math::closest_equiv_angle(lhs.theta, rhs.theta), t);
-        result.phi    = math::lerp(lhs.phi, math::closest_equiv_angle(lhs.phi, rhs.phi), t);
+        result.theta  = math::lerp(lhs.theta, math::closest_equiv_angle(rhs.theta, lhs.theta), t);
+        result.phi    = math::lerp(lhs.phi, math::closest_equiv_angle(rhs.phi, lhs.phi), t);
         result.near   = math::lerp(lhs.near, rhs.near, t);
         result.far    = math::lerp(lhs.far, rhs.far, t);
         result.aspect = math::lerp(lhs.aspect, rhs.aspect, t);
