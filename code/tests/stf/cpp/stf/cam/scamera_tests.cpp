@@ -28,6 +28,29 @@ namespace stf::cam
         scaffolding::verify(tests);
     }
 
+    TEST(scamera, lerp)
+    {
+        float constexpr quarter_pi = stff::constants::quarter_pi;
+        float constexpr half_pi = stff::constants::half_pi;
+        float constexpr pi = stff::constants::pi;
+
+        std::vector<scaffolding::cam::scamera::lerp<float>> tests =
+        {
+            // lhs                                       rhs                                          // t   // expected
+            // same endpoints
+            { stff::scamera(half_pi, pi),                stff::scamera(half_pi, pi),                  0,     stff::scamera(half_pi, pi) },
+            { stff::scamera(half_pi, pi),                stff::scamera(half_pi, pi),                  0.25,  stff::scamera(half_pi, pi) },
+            { stff::scamera(half_pi, pi),                stff::scamera(half_pi, pi),                  0.5,   stff::scamera(half_pi, pi) },
+            { stff::scamera(half_pi, pi),                stff::scamera(half_pi, pi),                  0.75,  stff::scamera(half_pi, pi) },
+            { stff::scamera(half_pi, pi),                stff::scamera(half_pi, pi),                  1,     stff::scamera(half_pi, pi) },
+            // different endpoints
+            { stff::scamera(stff::vec3(0), half_pi, pi), stff::scamera(stff::vec3(1), 0, half_pi), 0,     stff::scamera(stff::vec3(0), half_pi, pi) },
+            { stff::scamera(stff::vec3(0), half_pi, pi), stff::scamera(stff::vec3(1), 0, half_pi), 0.5,   stff::scamera(stff::vec3(0.5), quarter_pi, 3.f * quarter_pi) },
+            { stff::scamera(stff::vec3(0), half_pi, pi), stff::scamera(stff::vec3(1), 0, half_pi), 1,     stff::scamera(stff::vec3(1), 0, half_pi) },
+        };
+        scaffolding::verify(tests);
+    }
+
     TEST(scamera, orbit)
     {
         float constexpr half_pi = stff::constants::half_pi;
