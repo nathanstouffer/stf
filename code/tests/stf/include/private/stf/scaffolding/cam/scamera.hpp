@@ -28,7 +28,7 @@ namespace stf::scaffolding::cam::scamera
     struct lerp
     {
         stf::cam::scamera<T> lhs;
-        stf::math::vec3<T> stf::cam::scamera<T> rhs;
+        stf::cam::scamera<T> rhs;
         T t;
         stf::cam::scamera<T> expected;
 

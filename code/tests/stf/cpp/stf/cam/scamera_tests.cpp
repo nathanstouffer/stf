@@ -28,6 +28,23 @@ namespace stf::cam
         scaffolding::verify(tests);
     }
 
+    TEST(scamera, lerp)
+    {
+        float constexpr half_pi = stff::constants::half_pi;
+        float constexpr pi = stff::constants::pi;
+
+        std::vector<scaffolding::cam::scamera::lerp<float>> tests =
+        {
+            // lhs                        rhs                         // t   // expected
+            { stff::scamera(half_pi, pi), stff::scamera(half_pi, pi), 0,     stff::scamera(half_pi, pi) },
+            { stff::scamera(half_pi, pi), stff::scamera(half_pi, pi), 0.25,  stff::scamera(half_pi, pi) },
+            { stff::scamera(half_pi, pi), stff::scamera(half_pi, pi), 0.5,   stff::scamera(half_pi, pi) },
+            { stff::scamera(half_pi, pi), stff::scamera(half_pi, pi), 0.75,  stff::scamera(half_pi, pi) },
+            { stff::scamera(half_pi, pi), stff::scamera(half_pi, pi), 1,     stff::scamera(half_pi, pi) },
+        };
+        scaffolding::verify(tests);
+    }
+
     TEST(scamera, orbit)
     {
         float constexpr half_pi = stff::constants::half_pi;
