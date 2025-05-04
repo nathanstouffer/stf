@@ -25,6 +25,20 @@ namespace stf::scaffolding::cam::scamera
     };
 
     template<typename T>
+    struct lerp
+    {
+        stf::cam::scamera<T> lhs;
+        stf::math::vec3<T> stf::cam::scamera<T> rhs;
+        T t;
+        stf::cam::scamera<T> expected;
+
+        void verify(size_t const i) const
+        {
+            ASSERT_EQ(expected, stf::cam::lerp(lhs, rhs, t)) << info(i) << "Failed scamera lerp function";
+        }
+    };
+
+    template<typename T>
     struct orbit
     {
         stf::cam::scamera<T> initial;
