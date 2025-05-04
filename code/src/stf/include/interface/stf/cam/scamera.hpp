@@ -299,7 +299,7 @@ namespace stf::cam
         result.eye    = math::lerp(lhs.eye, rhs.eye, t);
         result.theta  = math::lerp(lhs.theta, math::closest_equiv_angle(lhs.theta, rhs.theta), t);
         result.phi    = math::lerp(lhs.phi, math::closest_equiv_angle(lhs.phi, rhs.phi), t);
-        result.near   = math::lerp(lhs.near, rhs.far, t);
+        result.near   = math::lerp(lhs.near, rhs.near, t);
         result.far    = math::lerp(lhs.far, rhs.far, t);
         result.aspect = math::lerp(lhs.aspect, rhs.aspect, t);
         result.fov    = math::lerp(lhs.fov, rhs.fov, t);
