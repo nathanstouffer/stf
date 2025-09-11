@@ -340,8 +340,12 @@ namespace stf::spatial
         {
             m_entries = rhs.m_entries;
             m_root = interval_tree::construct(factory_args(m_entries));
+            m_end_flag = rhs.m_end_flag;
             return *this;
         }
+
+        interval_tree(interval_tree&& rhs) = default;
+        interval_tree& operator=(interval_tree&& rhs) = default;
 
         /**
          * @brief Find a range of entries whose intervals contain a query point
