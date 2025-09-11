@@ -26,7 +26,7 @@ namespace stf::scaffolding::spatial::interval_tree
             for (typename stf::spatial::interval_tree<T, std::string>::entry_t const& entry : tree.find(query))
             {
                 ++count;
-            
+
                 auto found = std::find(expected.begin(), expected.end(), entry);
                 ASSERT_NE(found, expected.end()) << info(index) << "interval_tree::find returned unexpected value: " + found->value;
             

@@ -22,7 +22,6 @@ namespace stf::spatial
      * the number of intervals and k is the number of intersecting intervals. Duplicate keys are supported,
      * they will just be returned separately with their associated values.
      * 
-     * @todo Make this class copyable
      * @todo Allocate nodes in chunks instead of one-by-one
      * @tparam T Number type (eg float)
      * @tparam V The value type stored in the tree
@@ -77,8 +76,8 @@ namespace stf::spatial
             T pivot;
 
             // these two lists are the same set of intervals (all containing the pivot), just sorted differently
-            std::vector<entry_ptr_t> lesser;					// sorted by begin point (ascending)
-            std::vector<entry_ptr_t> greater;					// sorted by end point (descending)
+            std::vector<entry_ptr_t> lesser;                    // sorted by begin point (ascending)
+            std::vector<entry_ptr_t> greater;                   // sorted by end point (descending)
 
             center_t(T const _pivot) : pivot(_pivot) {}
 
@@ -151,8 +150,8 @@ namespace stf::spatial
              */
             inline query_iterator& operator++()
             {
-                m_position.advance(m_query);	// advance once immediately
-                slide();						// slide forward until we hit something that matches the query
+                m_position.advance(m_query);    // advance once immediately
+                slide();                        // slide forward until we hit something that matches the query
                 return *this;
             }
 
@@ -192,7 +191,7 @@ namespace stf::spatial
                             return (*it)->interval.contains(query, boundary_types::closed);
                         }
                     }
-                    return false;	// fall-through to false
+                    return false;   // fall-through to false
                 }
 
                 // move the position to the next available interval that might contain the query (jumps nodes if necessary)
@@ -234,7 +233,7 @@ namespace stf::spatial
                     if (node)
                     {
                         center_t const& center = node->center;
-                        if (center.is_empty()) { jump(query); }		// if there are no intervals at this node, jump to the next
+                        if (center.is_empty()) { jump(query); }     // if there are no intervals at this node, jump to the next
                         else
                         {
                             std::vector<entry_ptr_t> const& sorted = (query <= center.pivot) ? center.lesser : center.greater;
@@ -249,13 +248,13 @@ namespace stf::spatial
                     if (node)
                     {
                         center_t const& center = node->center;
-                        if (query == center.pivot) { node = nullptr; }	// if the query is the pivot, no other nodes will contain it. set the iterator to end
-                        else if (query < center.pivot)					// if the query is less than the pivot, take the left child
+                        if (query == center.pivot) { node = nullptr; }  // if the query is the pivot, no other nodes will contain it. set the iterator to end
+                        else if (query < center.pivot)                  // if the query is less than the pivot, take the left child
                         {
                             node = node->left.get();
                             assign(query);
                         }
-                        else											// if the query is greater than the pivot, take the right child
+                        else                                            // if the query is greater than the pivot, take the right child
                         {
                             node = node->right.get();
                             assign(query);
@@ -324,9 +323,47 @@ namespace stf::spatial
 
         /**
          * @brief Construct an interval tree from a set of entries
-         * @param [in] entries The entries stored in the tree
+         * @param [in] entries The entries that will be copied into the tree
+         */
+        explicit interval_tree(std::vector<entry_t> const& entries) : m_entries(entries), m_root(interval_tree::construct(factory_args(m_entries))) {}
+
+        /**
+         * @brief Construct an interval tree from a set of entries
+         * @param [in] entries The entries that will be moved into the tree
          */
         explicit interval_tree(std::vector<entry_t>&& entries) : m_entries(std::move(entries)), m_root(interval_tree::construct(factory_args(m_entries))) {}
+
+        /**
+         * @brief Copy constructor for interval_tree
+         * @param [in] rhs The interval_tree to be copied
+         */
+        interval_tree(interval_tree const& rhs) : m_entries(rhs.m_entries), m_root(interval_tree::construct(factory_args(m_entries))) {}
+
+        /**
+         * @brief Copy assignment operator for interval_tree
+         * @param [in] rhs The interval_tree to be copied
+         * @return A reference to the calling object
+         */
+        interval_tree& operator=(interval_tree const& rhs)
+        {
+            m_entries = rhs.m_entries;
+            m_root = interval_tree::construct(factory_args(m_entries));
+            m_end_flag = rhs.m_end_flag;
+            return *this;
+        }
+
+        /**
+         * @brief Move constructor for interval_tree
+         * @param [in] rhs The interval_tree to be moved
+         */
+        interval_tree(interval_tree&& rhs) noexcept = default;
+
+        /**
+         * @brief Move assignment operator for interval_tree
+         * @param [in] rhs The interval_tree to be copied
+         * @return A reference to the calling object
+         */
+        interval_tree& operator=(interval_tree&& rhs) noexcept = default;
 
         /**
          * @brief Find a range of entries whose intervals contain a query point
@@ -339,7 +376,7 @@ namespace stf::spatial
             using iterator_t = typename position_t::iterator;
 
             query_iterator end(position_t(nullptr, m_end_flag.end()), query);
-            if (m_entries.empty()) { return query_range(end, end); }	// if there are no intervals, return an empty range
+            if (m_entries.empty()) { return query_range(end, end); }    // if there are no intervals, return an empty range
             else
             {
                 center_t const& center = m_root->center;
@@ -385,19 +422,19 @@ namespace stf::spatial
             // iterate over intervals, adding to the appropriate node
             for (entry_ptr_t entry : args.intervals)
             {
-                if (entry->interval.b < center.pivot) { left.intervals.push_back(entry); }			// interval is entirely to the left
-                else if (center.pivot < entry->interval.a) { right.intervals.push_back(entry); }		// interval is entirely to the right
-                else { center.insert(entry); }														// invterval contains the pivot
+                if (entry->interval.b < center.pivot) { left.intervals.push_back(entry); }              // interval is entirely to the left
+                else if (center.pivot < entry->interval.a) { right.intervals.push_back(entry); }        // interval is entirely to the right
+                else { center.insert(entry); }                                                          // invterval contains the pivot
             }
 
             // iterate over sorted points, adding to the appropriate node
             for (sortable_t sortable : args.sorted)
             {
-                if (sortable.entry->interval.b < center.pivot) { left.sorted.push_back(sortable); }			// interval is entirely to the left
-                else if (center.pivot < sortable.entry->interval.a) { right.sorted.push_back(sortable); }	// interval is entirely to the right
+                if (sortable.entry->interval.b < center.pivot) { left.sorted.push_back(sortable); }         // interval is entirely to the left
+                else if (center.pivot < sortable.entry->interval.a) { right.sorted.push_back(sortable); }   // interval is entirely to the right
             }
 
-            center.sort();		// sort the intervals that contain the pivot
+            center.sort();      // sort the intervals that contain the pivot
 
             return std::make_unique<node_t>(std::move(center), interval_tree::construct(left), interval_tree::construct(right));
         }
@@ -429,7 +466,7 @@ namespace stf::spatial
 
         std::vector<entry_t> m_entries;
         std::unique_ptr<node_t> m_root;
-        std::vector<entry_ptr_t> const m_end_flag;
+        std::vector<entry_ptr_t> m_end_flag;
 
     };
 
