@@ -22,7 +22,6 @@ namespace stf::spatial
      * the number of intervals and k is the number of intersecting intervals. Duplicate keys are supported,
      * they will just be returned separately with their associated values.
      * 
-     * @todo Make this class copyable
      * @todo Allocate nodes in chunks instead of one-by-one
      * @tparam T Number type (eg float)
      * @tparam V The value type stored in the tree
@@ -326,7 +325,7 @@ namespace stf::spatial
          * @brief Construct an interval tree from a set of entries
          * @param [in] entries The entries that will be copied into the tree
          */
-        explicit interval_tree(std::vector<entry> const& entries) : m_entries(entries), m_root(interval_tree::construct(factory_args(m_entries))) {}
+        explicit interval_tree(std::vector<entry_t> const& entries) : m_entries(entries), m_root(interval_tree::construct(factory_args(m_entries))) {}
 
         /**
          * @brief Construct an interval tree from a set of entries
@@ -334,7 +333,10 @@ namespace stf::spatial
          */
         explicit interval_tree(std::vector<entry_t>&& entries) : m_entries(std::move(entries)), m_root(interval_tree::construct(factory_args(m_entries))) {}
 
-        interval_tree(interval_tree const& rhs) : m_entries(rhs.m_entries), m_root(interval_tree::construct(factory_args(m_entries))) {}
+        interval_tree(interval_tree const& rhs) : m_entries(rhs.m_entries), m_root(interval_tree::construct(factory_args(m_entries)))
+        {
+            int a = 0;
+        }
 
         interval_tree& operator=(interval_tree const& rhs)
         {
