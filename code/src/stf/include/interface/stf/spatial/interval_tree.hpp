@@ -334,6 +334,15 @@ namespace stf::spatial
          */
         explicit interval_tree(std::vector<entry_t>&& entries) : m_entries(std::move(entries)), m_root(interval_tree::construct(factory_args(m_entries))) {}
 
+        interval_tree(interval_tree const& rhs) : m_entries(rhs.m_entries), m_root(interval_tree::construct(factory_args(m_entries))) {}
+
+        interval_tree& operator=(interval_tree const& rhs)
+        {
+            m_entries = rhs.m_entries;
+            m_root = interval_tree::construct(factory_args(m_entries));
+            return *this;
+        }
+
         /**
          * @brief Find a range of entries whose intervals contain a query point
          * @param [in] query The query value
@@ -435,7 +444,7 @@ namespace stf::spatial
 
         std::vector<entry_t> m_entries;
         std::unique_ptr<node_t> m_root;
-        std::vector<entry_ptr_t> const m_end_flag;
+        std::vector<entry_ptr_t> m_end_flag;
 
     };
 
