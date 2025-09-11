@@ -333,8 +333,17 @@ namespace stf::spatial
          */
         explicit interval_tree(std::vector<entry_t>&& entries) : m_entries(std::move(entries)), m_root(interval_tree::construct(factory_args(m_entries))) {}
 
+        /**
+         * @brief Copy constructor for interval_tree
+         * @param [in] rhs The interval_tree to be copied
+         */
         interval_tree(interval_tree const& rhs) : m_entries(rhs.m_entries), m_root(interval_tree::construct(factory_args(m_entries))) {}
 
+        /**
+         * @brief Copy assignment operator for interval_tree
+         * @param [in] rhs The interval_tree to be copied
+         * @return A reference to the calling object
+         */
         interval_tree& operator=(interval_tree const& rhs)
         {
             m_entries = rhs.m_entries;
@@ -343,8 +352,18 @@ namespace stf::spatial
             return *this;
         }
 
-        interval_tree(interval_tree&& rhs) = default;
-        interval_tree& operator=(interval_tree&& rhs) = default;
+        /**
+         * @brief Move constructor for interval_tree
+         * @param [in] rhs The interval_tree to be moved
+         */
+        interval_tree(interval_tree&& rhs) noexcept = default;
+
+        /**
+         * @brief Move assignment operator for interval_tree
+         * @param [in] rhs The interval_tree to be copied
+         * @return A reference to the calling object
+         */
+        interval_tree& operator=(interval_tree&& rhs) noexcept = default;
 
         /**
          * @brief Find a range of entries whose intervals contain a query point
