@@ -324,7 +324,13 @@ namespace stf::spatial
 
         /**
          * @brief Construct an interval tree from a set of entries
-         * @param [in] entries The entries stored in the tree
+         * @param [in] entries The entries that will be copied into the tree
+         */
+        explicit interval_tree(std::vector<entry> const& entries) : m_entries(entries), m_root(interval_tree::construct(factory_args(m_entries))) {}
+
+        /**
+         * @brief Construct an interval tree from a set of entries
+         * @param [in] entries The entries that will be moved into the tree
          */
         explicit interval_tree(std::vector<entry_t>&& entries) : m_entries(std::move(entries)), m_root(interval_tree::construct(factory_args(m_entries))) {}
 
