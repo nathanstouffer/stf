@@ -333,10 +333,7 @@ namespace stf::spatial
          */
         explicit interval_tree(std::vector<entry_t>&& entries) : m_entries(std::move(entries)), m_root(interval_tree::construct(factory_args(m_entries))) {}
 
-        interval_tree(interval_tree const& rhs) : m_entries(rhs.m_entries), m_root(interval_tree::construct(factory_args(m_entries)))
-        {
-            int a = 0;
-        }
+        interval_tree(interval_tree const& rhs) : m_entries(rhs.m_entries), m_root(interval_tree::construct(factory_args(m_entries))) {}
 
         interval_tree& operator=(interval_tree const& rhs)
         {
