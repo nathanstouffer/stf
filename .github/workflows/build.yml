@@ -18,13 +18,13 @@ jobs:
       matrix:
         build_type: [Debug, RelWithDebInfo, Release, MinSizeRel]
         # image states
-        # windows-2022: https://github.com/actions/runner-images/blob/main/images/macos/macos-14-Readme.md
+        # windows-2022: https://github.com/actions/runner-images/blob/main/images/windows/Windows2022-Readme.md
         # ubuntu-24.04: https://github.com/actions/runner-images/blob/main/images/ubuntu/Ubuntu2404-Readme.md
         # macos-14:     https://github.com/actions/runner-images/blob/main/images/macos/macos-14-Readme.md
         host:
           # cl configurations
-          - { cpp_compiler: cl,         c_compiler: cl,       image: windows-2019, generator: Visual Studio 16 2019 }
           - { cpp_compiler: cl,         c_compiler: cl,       image: windows-2022, generator: Visual Studio 17 2022 }
+          - { cpp_compiler: cl,         c_compiler: cl,       image: windows-2025, generator: Visual Studio 17 2022 }
           # clang++ configurations
           - { cpp_compiler: clang++-16, c_compiler: clang-16, image: ubuntu-24.04, generator: Unix Makefiles        }
           - { cpp_compiler: clang++-17, c_compiler: clang-17, image: ubuntu-24.04, generator: Unix Makefiles        }
