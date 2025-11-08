@@ -4,7 +4,7 @@
 
 #include <stf/stf.hpp>
 
-#include "stf/alg/scaffolding/triangulation.hpp"
+#include "stf/scaffolding/alg/triangulation.hpp"
 
 namespace stf::alg
 {
