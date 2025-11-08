@@ -5,6 +5,7 @@ set(STF_FILES
     "${CMAKE_CURRENT_SOURCE_DIR}/include/interface/stf/alg/intersects.hpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/include/interface/stf/alg/statistics.hpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/include/interface/stf/alg/tessellation.hpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/include/interface/stf/alg/triangulation.hpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/include/interface/stf/cam/frustum.hpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/include/interface/stf/cam/scamera.hpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/include/interface/stf/ds/indexed_list.hpp"

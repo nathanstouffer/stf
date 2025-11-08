@@ -148,10 +148,13 @@ namespace stf::geom
 
         // TODO write this function
         // bool is_simple() const;
-        
+
         /**
          * @brief Compute the signed area of a @ref polygon
          * Computed using the trapezoid formula for polygon area on https://en.wikipedia.org/wiki/Shoelace_formula
+         * The orientation of the polygon is determined based on the sign of the return value:
+         *    * + => counterclockwise
+         *    * - => clockwise
          * @return The signed area of @p this
          */
         T signed_area() const
