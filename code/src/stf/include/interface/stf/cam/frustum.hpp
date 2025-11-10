@@ -319,12 +319,12 @@ namespace stf::cam
         // unscoped enum so we can use it as an array index
         enum side : size_t
         {
-            NEAR   = 0,
-            FAR    = 1,
-            LEFT   = 2,
-            RIGHT  = 3,
-            TOP    = 4,
-            BOTTOM = 5
+            nearp  = 0,
+            farp   = 1,
+            left   = 2,
+            right  = 3,
+            top    = 4,
+            bottom = 5
         };
 
     private:
@@ -355,11 +355,11 @@ namespace stf::cam
                 basis[1],
                 basis[2],
                 // frustum normals
-                planes[side::FAR].normal(),
-                planes[side::LEFT].normal(),
-                planes[side::RIGHT].normal(),
-                planes[side::TOP].normal(),
-                planes[side::BOTTOM].normal(),
+                planes[side::farp].normal(),
+                planes[side::left].normal(),
+                planes[side::right].normal(),
+                planes[side::top].normal(),
+                planes[side::bottom].normal(),
             };
             size_t i = 8;
             for (vec_t const& axis : frustum::edge_axes(basis, verts))
@@ -373,12 +373,12 @@ namespace stf::cam
 
         explicit frustum(vertices const& verts) : m_vertices(verts)
         {
-            m_planes[FAR]    = geom::fit_plane(verts.ftl, verts.fbl, verts.ftr);
-            m_planes[NEAR]   = geom::plane<T>(verts.ntl, -m_planes[FAR].normal());     // define near plane as a function of the far plane to avoid precision issues
-            m_planes[LEFT]   = geom::fit_plane(verts.ftl, verts.ntl, verts.fbl);
-            m_planes[RIGHT]  = geom::fit_plane(verts.ftr, verts.fbr, verts.ntr);
-            m_planes[TOP]    = geom::fit_plane(verts.ftl, verts.ftr, verts.ntl);
-            m_planes[BOTTOM] = geom::fit_plane(verts.fbr, verts.fbl, verts.nbr);
+            m_planes[farp]   = geom::fit_plane(verts.ftl, verts.fbl, verts.ftr);
+            m_planes[nearp]  = geom::plane<T>(verts.ntl, -m_planes[farp].normal());     // define near plane as a function of the far plane to avoid precision issues
+            m_planes[left]   = geom::fit_plane(verts.ftl, verts.ntl, verts.fbl);
+            m_planes[right]  = geom::fit_plane(verts.ftr, verts.fbr, verts.ntr);
+            m_planes[top]    = geom::fit_plane(verts.ftl, verts.ftr, verts.ntl);
+            m_planes[bottom] = geom::fit_plane(verts.fbr, verts.fbl, verts.nbr);
 
             std::vector<vec_t> points =
             {
