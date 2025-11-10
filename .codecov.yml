@@ -20,7 +20,6 @@ coverage:
       default:
         informational: true
         target: 50% # the diff coverage must be 50%
-        
 
 # Pull request comments:
 # ----------------------
