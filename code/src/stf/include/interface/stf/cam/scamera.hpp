@@ -44,8 +44,8 @@ namespace stf::cam
         static vec_t constexpr c_default_eye = vec_t(0);
         static T constexpr c_default_theta = math::constants<T>::half_pi;
         static T constexpr c_default_phi = math::constants<T>::pi;
-        static T constexpr c_default_near = T(0.1);
-        static T constexpr c_default_far = T(1000);
+        static T constexpr c_default_nearp = T(0.1);
+        static T constexpr c_default_farp = T(1000);
         static T constexpr c_default_fov = T(45) * math::constants<T>::pi / T(180);
         static T constexpr c_default_aspect = T(16) / T(9);
         /// @endcond
@@ -70,12 +70,12 @@ namespace stf::cam
         /**
          * @brief The near plane
          */
-        T near;
+        T nearp;
 
         /**
          * @brief The far plane
          */
-        T far;
+        T farp;
 
         /**
          * @brief The aspect ratio (w / h)
@@ -90,8 +90,8 @@ namespace stf::cam
         /**
          * @brief Fully qualified scamera constructor
          */
-        scamera(vec_t const& _eye, T const _theta, T const _phi, T const _near, T const _far, T const _aspect, T const _fov) :
-            eye(_eye), theta(_theta), phi(_phi), near(_near), far(_far), aspect(_aspect), fov(_fov) {}
+        scamera(vec_t const& _eye, T const _theta, T const _phi, T const _nearp, T const _farp, T const _aspect, T const _fov) :
+            eye(_eye), theta(_theta), phi(_phi), nearp(_nearp), farp(_farp), aspect(_aspect), fov(_fov) {}
 
         /**
          * @brief Default constructor
@@ -117,28 +117,28 @@ namespace stf::cam
          * @param [in] _theta 
          * @param [in] _phi 
          */
-        scamera(vec_t const& _eye, T const _theta, T const _phi) : scamera(_eye, _theta, _phi, c_default_near, c_default_far) {}
+        scamera(vec_t const& _eye, T const _theta, T const _phi) : scamera(_eye, _theta, _phi, c_default_nearp, c_default_farp) {}
 
         /**
          * @brief Construct from a position, orientation, and near/far plane
          * @param [in] _eye 
          * @param [in] _theta 
          * @param [in] _phi 
-         * @param [in] _near 
-         * @param [in] _far 
+         * @param [in] _nearp
+         * @param [in] _farp
          */
-        scamera(vec_t const& _eye, T const _theta, T const _phi, T const _near, T const _far) : scamera(_eye, _theta, _phi, _near, _far, c_default_aspect) {}
+        scamera(vec_t const& _eye, T const _theta, T const _phi, T const _nearp, T const _farp) : scamera(_eye, _theta, _phi, _nearp, _farp, c_default_aspect) {}
 
         /**
          * @brief Construct from a position, orientation, near/far plane, and aspect ratio
          * @param [in] _eye 
          * @param [in] _theta 
          * @param [in] _phi 
-         * @param [in] _near 
-         * @param [in] _far 
+         * @param [in] _nearp 
+         * @param [in] _farp 
          * @param [in] _aspect 
          */
-        scamera(vec_t const& _eye, T const _theta, T const _phi, T const _near, T const _far, T const _aspect) : scamera(_eye, _theta, _phi, _near, _far, _aspect, c_default_fov) {}
+        scamera(vec_t const& _eye, T const _theta, T const _phi, T const _nearp, T const _farp, T const _aspect) : scamera(_eye, _theta, _phi, _nearp, _farp, _aspect, c_default_fov) {}
         
         /**
          * @brief Construct from a theta
@@ -203,7 +203,7 @@ namespace stf::cam
          * @brief Compute the perspective projection matrix for the scamera
          * @return The perspective projection matrix for @p this
          */
-        mtx_t perspective() const { return math::perspective<T>(fov, aspect, near, far); }
+        mtx_t perspective() const { return math::perspective<T>(fov, aspect, nearp, farp); }
 
         /**
          * @brief Compute the inverse of the view matrix for the scamera
@@ -234,8 +234,8 @@ namespace stf::cam
         return equ(lhs.eye, rhs.eye, eps)
                 && math::equ(lhs.theta, rhs.theta, eps)
                 && math::equ(lhs.phi, rhs.phi, eps)
-                && math::equ(lhs.near, rhs.near, eps)
-                && math::equ(lhs.far, rhs.far, eps)
+                && math::equ(lhs.nearp, rhs.nearp, eps)
+                && math::equ(lhs.farp, rhs.farp, eps)
                 && math::equ(lhs.aspect, rhs.aspect, eps)
                 && math::equ(lhs.fov, rhs.fov, eps);
     }
@@ -299,8 +299,8 @@ namespace stf::cam
         result.eye    = math::lerp(lhs.eye, rhs.eye, t);
         result.theta  = math::lerp(lhs.theta, math::closest_equiv_angle(rhs.theta, lhs.theta), t);
         result.phi    = math::lerp(lhs.phi, math::closest_equiv_angle(rhs.phi, lhs.phi), t);
-        result.near   = math::lerp(lhs.near, rhs.near, t);
-        result.far    = math::lerp(lhs.far, rhs.far, t);
+        result.nearp  = math::lerp(lhs.nearp, rhs.nearp, t);
+        result.farp   = math::lerp(lhs.farp, rhs.farp, t);
         result.aspect = math::lerp(lhs.aspect, rhs.aspect, t);
         result.fov    = math::lerp(lhs.fov, rhs.fov, t);
         return result;
@@ -373,8 +373,8 @@ namespace stf::cam
         s << " eye: " << rhs.eye;
         s << " theta: " << rhs.theta;
         s << " phi: " << rhs.phi;
-        s << " near: " << rhs.near;
-        s << " far: " << rhs.far;
+        s << " nearp: " << rhs.nearp;
+        s << " farp: " << rhs.farp;
         s << " aspect: " << rhs.aspect;
         s << " fov: " << rhs.fov;
         s << " ]";
