@@ -10,6 +10,12 @@ PointerAlignment: Left
 ReferenceAlignment: Left
 AlwaysBreakTemplateDeclarations: Yes
 BinPackTemplateParameters: true
+IndentPPDirectives: AfterHash
+ConstructorInitializerAllOnOneLineOrOnePerLine: true
+ConstructorInitializerIndentWidth: 4
+AllowShortFunctionsOnASingleLine: Inline
+AllowAllConstructorInitializersOnNextLine: false
+BreakConstructorInitializers: BeforeComma
 
 SortIncludes: false
 
