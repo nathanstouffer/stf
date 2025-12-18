@@ -1,4 +1,18 @@
 BasedOnStyle: LLVM
+
+# whitespace settings
+UseTab: Never
 IndentWidth: 4
+TabWidth: 4
 ColumnLimit: 100
+NamespaceIndentation: None
+PointerAlignment: Left
+ReferenceAlignment: Left
+AlwaysBreakTemplateDeclarations: Yes
+BinPackTemplateParameters: true
+
+SortIncludes: false
+
+# curly brace settings
 BreakBeforeBraces: Allman
+AllowShortIfStatementsOnASingleLine: true
