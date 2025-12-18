@@ -180,7 +180,7 @@ jobs:
       - name: Run clang-format check
         run: |
           # Find all tracked .cpp and .h files
-          FILES=$(git ls-files 'code/src/**/*.cpp' 'code/src/**/*.hpp')
+          FILES=$(git ls-files code/src/* code/tests/*)
           echo "Checking formatting of ${FILES}"
           FORMAT_ERRORS=0
           for f in $FILES; do
