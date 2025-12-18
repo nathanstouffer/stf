@@ -177,7 +177,7 @@ jobs:
       - name: Verify formatting and LF
         run: |
           # Fail on first file that has CRLF
-          for f in $(git ls-files code); do
+          for f in $(git ls-files); do
               # Check LF
               if grep -q $'\r' "$f"; then
                   echo "File $f has CRLF line endings. Please convert to LF."
