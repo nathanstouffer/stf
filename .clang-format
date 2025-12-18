@@ -28,4 +28,3 @@ BreakConstructorInitializers: BeforeComma
 
 # template settings
 AlwaysBreakTemplateDeclarations: Yes
-BinPackTemplateParameters: true
