@@ -178,22 +178,7 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y clang-format-20
 
       - name: Run clang-format check
-        run: |
-          # Find all tracked .cpp and .h files
-          FILES=$(git ls-files code/src/*.hpp code/tests/*.cpp code/tests/*.hpp)
-          echo "Checking formatting of ${FILES}"
-          FORMAT_ERRORS=0
-          for f in $FILES; do
-            clang-format-20 -style=file -output-replacements-xml "$f" | grep "<replacement " >/dev/null
-            if [[ $? -eq 0 ]]; then
-              echo "File $f is not properly formatted."
-              FORMAT_ERRORS=1
-            fi
-          done
-          if [[ $FORMAT_ERRORS -eq 1 ]]; then
-            echo "Formatting errors detected. Run clang-format to fix them."
-            exit 1
-          fi
+        run: clang-format -style=file --dry-run --Werror $(git ls-files 'code/src/*.hpp' 'code/tests/*.cpp' 'code/tests/*.hpp')
 
   docs:
     runs-on: ubuntu-24.04
