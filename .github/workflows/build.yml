@@ -167,7 +167,7 @@ jobs:
           files: ${{ steps.strings.outputs.tests-output-dir }}/coverage-lines.txt
           fail_ci_if_error: true
 
-  format-check:
+  format:
     runs-on: ubuntu-24.04
 
     steps:
@@ -184,7 +184,7 @@ jobs:
           echo "Checking formatting of ${FILES}"
           FORMAT_ERRORS=0
           for f in $FILES; do
-            clang-format -style=file -output-replacements-xml "$f" | grep "<replacement " >/dev/null
+            clang-format-20 -style=file -output-replacements-xml "$f" | grep "<replacement " >/dev/null
             if [[ $? -eq 0 ]]; then
               echo "File $f is not properly formatted."
               FORMAT_ERRORS=1
