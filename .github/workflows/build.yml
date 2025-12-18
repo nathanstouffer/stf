@@ -189,7 +189,7 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y clang-format-20
 
       - name: Run clang-format check
-        run: clang-format -style=file --dry-run --Werror $(git ls-files 'code/src/*.hpp' 'code/tests/*.cpp' 'code/tests/*.hpp')
+        run: clang-format -style=file --dry-run --Werror $(git ls-files code/src/*.hpp code/tests/*.cpp code/tests/*.hpp)
 
   docs:
     runs-on: ubuntu-24.04
