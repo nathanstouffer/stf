@@ -4,7 +4,6 @@
 ![build](https://github.com/nathanstouffer/stf/actions/workflows/build.yml/badge.svg)
 [![codecov](https://codecov.io/gh/nathanstouffer/stf/graph/badge.svg?token=WLB5Z8XTYE)](https://codecov.io/gh/nathanstouffer/stf)
 
-
 `stf` is a math library built primarily for graphics.
 
 ## Priorities
@@ -22,7 +21,7 @@ Any uninstantiated code is necessarily uncovered so the coverage is over-estimat
 
 Many thanks to the open-source software that enables this project.
 
-* [cmake](https://cmake.org/)
-* [googletest](https://github.com/google/googletest.git)
-* [doxygen](https://www.doxygen.nl/)
-* [doxygen-awesome-css](https://github.com/jothepro/doxygen-awesome-css)
+- [cmake](https://cmake.org/)
+- [googletest](https://github.com/google/googletest.git)
+- [doxygen](https://www.doxygen.nl/)
+- [doxygen-awesome-css](https://github.com/jothepro/doxygen-awesome-css)

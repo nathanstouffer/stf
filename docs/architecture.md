@@ -11,14 +11,14 @@
 `stf` is a header-only template math library built primarily for graphics.
 The library is split into a couple namespaces.
 
-| namespace | description |
-|-----------|-------------|
-| `math` | contains basic math structures and operations (eg `vector`, `matrix`, spherical coordinates) |
-| `geom` | contains geometric primitives (eg `segment`, `polyline`, and `polygon`) |
-| `gfx` | contains graphics-related structures (eg `rgba`) |
-| `cam` | contains camera-related structures (eg `camera` and `frustum`) |
-| `spatial` | contains structures that sort data spatially (eg `interval_tree`) |
-| `alg` | contains algorithms that operate on the `stf` structures (eg `intersect`) |
+| namespace | description                                                                                  |
+| --------- | -------------------------------------------------------------------------------------------- |
+| `math`    | contains basic math structures and operations (eg `vector`, `matrix`, spherical coordinates) |
+| `geom`    | contains geometric primitives (eg `segment`, `polyline`, and `polygon`)                      |
+| `gfx`     | contains graphics-related structures (eg `rgba`)                                             |
+| `cam`     | contains camera-related structures (eg `camera` and `frustum`)                               |
+| `spatial` | contains structures that sort data spatially (eg `interval_tree`)                            |
+| `alg`     | contains algorithms that operate on the `stf` structures (eg `intersect`)                    |
 
 Because the entire library is templated, you are free to create objects with the number type of your choice.
 As a convenience, `stf` takes advantage of `using` statements in [stf/stf.hpp](../code/src/stf/include/interface/stf/stf.hpp) to provide less verbose access to common types.
