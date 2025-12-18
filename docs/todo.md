@@ -65,8 +65,9 @@ A todo list separated out by category (typically a namespace)
 ## misc
 
  - [x] docs
- - [ ] include graph
  - [ ] warnings as errors
- - [ ] benchmarks project
  - [ ] auto-formatting
+ - [ ] linting
+ - [ ] benchmarks project
+ - [ ] include graph
  - [ ] valgrind
