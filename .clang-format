@@ -1,24 +1,31 @@
 BasedOnStyle: LLVM
 
-# whitespace settings
+# general whitespace settings
 UseTab: Never
 IndentWidth: 4
 TabWidth: 4
-ColumnLimit: 100
 NamespaceIndentation: None
 PointerAlignment: Left
 ReferenceAlignment: Left
-AlwaysBreakTemplateDeclarations: Yes
-BinPackTemplateParameters: true
 IndentPPDirectives: AfterHash
-ConstructorInitializerAllOnOneLineOrOnePerLine: true
-ConstructorInitializerIndentWidth: 4
-AllowShortFunctionsOnASingleLine: Inline
-AllowAllConstructorInitializersOnNextLine: false
-BreakConstructorInitializers: BeforeComma
 
+# general settings
 SortIncludes: false
+
+# line length settings
+ColumnLimit: 100
+AllowShortFunctionsOnASingleLine: Inline
+AllowShortIfStatementsOnASingleLine: true
 
 # curly brace settings
 BreakBeforeBraces: Allman
-AllowShortIfStatementsOnASingleLine: true
+
+# constructor formatting
+ConstructorInitializerIndentWidth: 4
+ConstructorInitializerAllOnOneLineOrOnePerLine: true
+AllowAllConstructorInitializersOnNextLine: false
+BreakConstructorInitializers: BeforeComma
+
+# template settings
+AlwaysBreakTemplateDeclarations: Yes
+BinPackTemplateParameters: true
