@@ -12,114 +12,99 @@
 namespace stf::ds
 {
 
-TEST(indexed_list, contains)
-{
-
-    std::vector<scaffolding::ds::indexed_list::element_t> elements =
-        scaffolding::ds::indexed_list::elements();
-    std::vector<std::string> missing = {"five", "six", "seven"};
-
-    scaffolding::ds::indexed_list::list_t list = scaffolding::ds::indexed_list::construct();
-
-    // verify list size and key presence
-    ASSERT_EQ(elements.size(), list.size()) << "Failed size check";
-    for (scaffolding::ds::indexed_list::element_t const& element : elements)
+    TEST(indexed_list, contains)
     {
-        ASSERT_TRUE(list.contains(element.key))
-            << "Failed to contain expected key '" << element.key << "'";
+
+        std::vector<scaffolding::ds::indexed_list::element_t> elements = scaffolding::ds::indexed_list::elements();
+        std::vector<std::string> missing = { "five", "six", "seven" };
+
+        scaffolding::ds::indexed_list::list_t list = scaffolding::ds::indexed_list::construct();
+
+        // verify list size and key presence
+        ASSERT_EQ(elements.size(), list.size()) << "Failed size check";
+        for (scaffolding::ds::indexed_list::element_t const& element : elements)
+        {
+            ASSERT_TRUE(list.contains(element.key)) << "Failed to contain expected key '" << element.key << "'";
+        }
+
+        // verify missing keys
+        for (auto const& key : missing)
+        {
+            ASSERT_FALSE(list.contains(key)) << "Failed to omit missing key '" << key << "'";
+        }
     }
 
-    // verify missing keys
-    for (auto const& key : missing)
+    TEST(indexed_list, erase)
     {
-        ASSERT_FALSE(list.contains(key)) << "Failed to omit missing key '" << key << "'";
+        scaffolding::ds::indexed_list::list_t list = scaffolding::ds::indexed_list::construct();
+
+        std::vector<scaffolding::ds::indexed_list::element_t> elements = scaffolding::ds::indexed_list::elements();
+
+        // erase some elements
+        list.erase("three");    elements.erase(elements.begin() + 3);
+        list.erase("zero");     elements.erase(elements.begin());
+
+        scaffolding::ds::indexed_list::verify(elements, list);
     }
-}
 
-TEST(indexed_list, erase)
-{
-    scaffolding::ds::indexed_list::list_t list = scaffolding::ds::indexed_list::construct();
-
-    std::vector<scaffolding::ds::indexed_list::element_t> elements =
-        scaffolding::ds::indexed_list::elements();
-
-    // erase some elements
-    list.erase("three");
-    elements.erase(elements.begin() + 3);
-    list.erase("zero");
-    elements.erase(elements.begin());
-
-    scaffolding::ds::indexed_list::verify(elements, list);
-}
-
-TEST(indexed_list, find)
-{
-    scaffolding::ds::indexed_list::list_t list = scaffolding::ds::indexed_list::construct();
-
-    for (scaffolding::ds::indexed_list::element_t const& element :
-         scaffolding::ds::indexed_list::elements())
+    TEST(indexed_list, find)
     {
-        scaffolding::ds::indexed_list::list_t::iterator found = list.find(element.key);
-        ASSERT_NE(list.end(), found) << "Failed to find entry for key '" << element.key << "'";
-        ASSERT_EQ(element.key, found->key)
-            << "Failed key comparison for key '" << element.key << "'";
-        ASSERT_EQ(element.entry, found->entry)
-            << "Failed entry comparison for key '" << element.key << "'";
+        scaffolding::ds::indexed_list::list_t list = scaffolding::ds::indexed_list::construct();
+
+        for (scaffolding::ds::indexed_list::element_t const& element : scaffolding::ds::indexed_list::elements())
+        {
+            scaffolding::ds::indexed_list::list_t::iterator found = list.find(element.key);
+            ASSERT_NE(list.end(), found) << "Failed to find entry for key '" << element.key << "'";
+            ASSERT_EQ(element.key, found->key) << "Failed key comparison for key '" << element.key << "'";
+            ASSERT_EQ(element.entry, found->entry) << "Failed entry comparison for key '" << element.key << "'";
+        }
     }
-}
 
-TEST(indexed_list, insert_or_assign)
-{
-    scaffolding::ds::indexed_list::list_t list = scaffolding::ds::indexed_list::construct();
+    TEST(indexed_list, insert_or_assign)
+    {
+        scaffolding::ds::indexed_list::list_t list = scaffolding::ds::indexed_list::construct();
 
-    std::vector<scaffolding::ds::indexed_list::element_t> elements =
-        scaffolding::ds::indexed_list::elements();
+        std::vector<scaffolding::ds::indexed_list::element_t> elements = scaffolding::ds::indexed_list::elements();
 
-    // insert some elements
-    list.insert_or_assign(list.end(), "five", 5);
-    elements.push_back({"five", 5});
-    list.insert_or_assign(list.end(), "six", 6);
-    elements.push_back({"six", 6});
+        // insert some elements
+        list.insert_or_assign(list.end(), "five", 5);       elements.push_back({ "five", 5 });
+        list.insert_or_assign(list.end(), "six", 6);        elements.push_back({ "six", 6 });
 
-    // assign some elements
-    list.insert_or_assign(list.find("five"), "one", -1);
-    list.insert_or_assign(list.find("two"), "four", -4);
-    elements[1].entry = -1;
-    elements[4].entry = -4;
-    std::swap(elements[1], elements[4]);
+        // assign some elements
+        list.insert_or_assign(list.find("five"), "one", -1);
+        list.insert_or_assign(list.find("two"), "four", -4);
+        elements[1].entry = -1;
+        elements[4].entry = -4;
+        std::swap(elements[1], elements[4]);
 
-    scaffolding::ds::indexed_list::verify(elements, list);
-}
+        scaffolding::ds::indexed_list::verify(elements, list);
+    }
 
-TEST(indexed_list, splice)
-{
-    scaffolding::ds::indexed_list::list_t list = scaffolding::ds::indexed_list::construct();
+    TEST(indexed_list, splice)
+    {
+        scaffolding::ds::indexed_list::list_t list = scaffolding::ds::indexed_list::construct();
 
-    std::vector<scaffolding::ds::indexed_list::element_t> elements =
-        scaffolding::ds::indexed_list::elements();
+        std::vector<scaffolding::ds::indexed_list::element_t> elements = scaffolding::ds::indexed_list::elements();
 
-    // splice some elements
-    list.splice(list.end(), "one");
-    list.splice(list.find("two"), list.find("four"));
-    std::swap(elements[1], elements[4]);
+        // splice some elements
+        list.splice(list.end(), "one");
+        list.splice(list.find("two"), list.find("four"));
+        std::swap(elements[1], elements[4]);
 
-    scaffolding::ds::indexed_list::verify(elements, list);
-}
+        scaffolding::ds::indexed_list::verify(elements, list);
+    }
 
-TEST(indexed_list, replace)
-{
-    scaffolding::ds::indexed_list::list_t list = scaffolding::ds::indexed_list::construct();
+    TEST(indexed_list, replace)
+    {
+        scaffolding::ds::indexed_list::list_t list = scaffolding::ds::indexed_list::construct();
 
-    std::vector<scaffolding::ds::indexed_list::element_t> elements =
-        scaffolding::ds::indexed_list::elements();
+        std::vector<scaffolding::ds::indexed_list::element_t> elements = scaffolding::ds::indexed_list::elements();
 
-    // erase some elements
-    list.replace("one", -1);
-    elements[1].entry = -1;
-    list.replace("three", -3);
-    elements[3].entry = -3;
+        // erase some elements
+        list.replace("one", -1);        elements[1].entry = -1;
+        list.replace("three", -3);      elements[3].entry = -3;
 
-    scaffolding::ds::indexed_list::verify(elements, list);
-}
+        scaffolding::ds::indexed_list::verify(elements, list);
+    }
 
-} // namespace stf::ds
+} // stf::ds

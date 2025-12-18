@@ -1,7 +1,6 @@
 #pragma once
 
-// NOTE: This file is not meant to be included in the library. It is here purely for the sake of
-// documentation
+// NOTE: This file is not meant to be included in the library. It is here purely for the sake of documentation
 
 /**
  * @namespace stf
