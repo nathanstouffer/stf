@@ -403,7 +403,7 @@ private:
         m_planes[bottom] = geom::fit_plane(verts.fbr, verts.fbl, verts.nbr);
 
         // clang-format off
-        std::array<vec_t, 8> points = {
+        std::vector<vec_t> points = {
             // near points                  // far points
             m_vertices.ntl, m_vertices.ntr, m_vertices.ftl, m_vertices.ftr,
             m_vertices.nbl, m_vertices.nbr, m_vertices.fbl, m_vertices.fbr,
