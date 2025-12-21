@@ -243,7 +243,7 @@ public:
                 if (query.x < x_range.a)
                 {
                     ++crossing_count;
-                }                              // avoid floating point work if we know the segment crosses
+                } // avoid floating point work if we know the segment crosses
                 else if (query.x <= x_range.b) // make sure the x-range is relevant
                 {
                     if (seg.a.x == seg.b.x) // check for a vertical line
