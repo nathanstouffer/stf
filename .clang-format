@@ -9,19 +9,18 @@ PointerAlignment: Left
 ReferenceAlignment: Left
 IndentPPDirectives: AfterHash
 AccessModifierOffset: -4
-SpacesInBracedLists: true
-Cpp11BracedListStyle: true
 
 # general settings
 SortIncludes: false
 
 # line length settings
-ColumnLimit: 100
+ColumnLimit: 120
 AllowShortFunctionsOnASingleLine: Inline
 AllowShortIfStatementsOnASingleLine: true
 
 # curly brace settings
 BreakBeforeBraces: Allman
+Cpp11BracedListStyle: true
 
 # constructor formatting
 ConstructorInitializerIndentWidth: 4
