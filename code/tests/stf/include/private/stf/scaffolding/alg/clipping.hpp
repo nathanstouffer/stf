@@ -8,52 +8,54 @@
 namespace stf::scaffolding::alg::clipping
 {
 
-    template<typename T>
-    struct segment
+template <typename T>
+struct segment
+{
+    stf::geom::aabb2<T> box;
+    stf::geom::segment2<T> input;
+    bool accept;
+    stf::geom::segment2<T> expected;
+
+    void verify(size_t const i) const
     {
-        stf::geom::aabb2<T> box;
-        stf::geom::segment2<T> input;
-        bool accept;
-        stf::geom::segment2<T> expected;
+        stf::geom::segment2<T> clipped = input;
+        ASSERT_EQ(accept, stf::alg::clip(box, clipped)) << info(i) << "Failed to accept/reject segment";
 
-        void verify(size_t const i) const
+        if (accept)
         {
-            stf::geom::segment2<T> clipped = input;
-            ASSERT_EQ(accept, stf::alg::clip(box, clipped)) << info(i) << "Failed to accept/reject segment";
-
-            if (accept)
-            {
-                ASSERT_EQ(expected, clipped) << info(i) << "Failed to clip segment";
-            }
-
-            stf::geom::segment2<T> flipped = stf::geom::segment2<T>(input.b, input.a);
-            ASSERT_EQ(accept, stf::alg::clip(box, flipped)) << info(i) << "Failed to accept/reject flipped segment";
-
-            if (accept)
-            {
-                stf::geom::segment2<T> flipped_clipped = stf::geom::segment2<T>(expected.b, expected.a);
-                ASSERT_EQ(flipped_clipped, flipped) << info(i) << "Failed to clip flipped segment";
-            }
+            ASSERT_EQ(expected, clipped) << info(i) << "Failed to clip segment";
         }
-    };
 
-    template<typename T>
-    struct polyline
+        stf::geom::segment2<T> flipped = stf::geom::segment2<T>(input.b, input.a);
+        ASSERT_EQ(accept, stf::alg::clip(box, flipped)) << info(i) << "Failed to accept/reject flipped segment";
+
+        if (accept)
+        {
+            stf::geom::segment2<T> flipped_clipped = stf::geom::segment2<T>(expected.b, expected.a);
+            ASSERT_EQ(flipped_clipped, flipped) << info(i) << "Failed to clip flipped segment";
+        }
+    }
+};
+
+template <typename T>
+struct polyline
+{
+    stf::geom::aabb2<T> box;
+    stf::geom::polyline2<T> input;
+    std::vector<geom::polyline2<T>> expected;
+
+    void verify(size_t const index) const
     {
-        stf::geom::aabb2<T> box;
-        stf::geom::polyline2<T> input;
-        std::vector<geom::polyline2<T>> expected;
+        std::vector<stf::geom::polyline2<T>> clipped = stf::alg::clip(box, input);
 
-        void verify(size_t const index) const
+        ASSERT_EQ(expected.size(), clipped.size())
+            << info(index) << "Failed to clip polyline to correct number of sub-polylines";
+        for (size_t i = 0; i < expected.size(); ++i)
         {
-            std::vector<stf::geom::polyline2<T>> clipped = stf::alg::clip(box, input);
-
-            ASSERT_EQ(expected.size(), clipped.size()) << info(index) << "Failed to clip polyline to correct number of sub-polylines";
-            for (size_t i = 0; i < expected.size(); ++i)
-            {
-                ASSERT_EQ(expected[i], clipped[i]) << info(index) << "Failed equality test for " << i << "th clipped sub-polyline";
-            }
+            ASSERT_EQ(expected[i], clipped[i])
+                << info(index) << "Failed equality test for " << i << "th clipped sub-polyline";
         }
-    };
+    }
+};
 
-} // stf::scaffolding::alg::clipping
+} // namespace stf::scaffolding::alg::clipping
