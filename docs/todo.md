@@ -66,7 +66,7 @@ A todo list separated out by category (typically a namespace)
 
 - [x] docs
 - [x] warnings as errors
-- [x] auto-formatting
+- [x] formatting
 - [ ] linting
 - [ ] benchmarks project
 - [ ] include graph
