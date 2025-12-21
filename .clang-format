@@ -17,6 +17,7 @@ SortIncludes: false
 ColumnLimit: 120
 AllowShortFunctionsOnASingleLine: Inline
 AllowShortIfStatementsOnASingleLine: true
+AlignTrailingComments: true
 
 # curly brace settings
 BreakBeforeBraces: Allman
