@@ -8,6 +8,9 @@ NamespaceIndentation: None
 PointerAlignment: Left
 ReferenceAlignment: Left
 IndentPPDirectives: AfterHash
+AccessModifierOffset: -4
+SpacesInBracedLists: true
+Cpp11BracedListStyle: true
 
 # general settings
 SortIncludes: false
