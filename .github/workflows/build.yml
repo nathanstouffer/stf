@@ -7,9 +7,8 @@ on:
     branches: ["main"]
 
 jobs:
-  project:
+  tests:
     runs-on: ${{ matrix.host.image }}
-
     strategy:
       # Cancel all in-progress and queued jobs in the matrix if any job in the matrix fails
       fail-fast: true
@@ -38,7 +37,6 @@ jobs:
         include:
           - build_type: Coverage
             host: { cpp_compiler: clang++-18, c_compiler: clang-18, image: ubuntu-24.04, generator: Unix Makefiles }
-
     steps:
       - name: checkout
         uses: actions/checkout@v3
@@ -107,7 +105,6 @@ jobs:
 
   docs:
     runs-on: ubuntu-24.04
-
     steps:
       - name: checkout
         uses: actions/checkout@v3
