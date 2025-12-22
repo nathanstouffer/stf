@@ -1,7 +1,7 @@
 name: Deploy docs
 on:
   push:
-    branches: ["stouffer/host-docs"]
+    branches: ["stouffer/host-docs"] # TODO (stouff) change this to main
     tags:
       - "v*.*.*"
 jobs:
