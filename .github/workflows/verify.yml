@@ -7,7 +7,7 @@ on:
     branches: ["main"]
 
 jobs:
-  format:
+  formatting:
     runs-on: ubuntu-24.04
     steps:
       - name: checkout
