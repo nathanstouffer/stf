@@ -57,7 +57,7 @@ jobs:
         if: steps.store_check_changelog.outputs.check_changelog == 'true'
         run: |
           git fetch origin ${{ github.base_ref }}
-          CHANGED_FILES=$(git diff --names-only origin/${{ github.base_ref }})
+          CHANGED_FILES=$(git diff --name-only origin/${{ github.base_ref }})
 
           CHANGELOG_CHANGED=false
           for file in $CHANGED_FILES; do
