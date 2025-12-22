@@ -1,0 +1,31 @@
+name: Deploy docs
+on:
+  push:
+    branches: ["stouffer/host-docs"]
+    tags:
+      - "v*.*.*"
+jobs:
+  docs:
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+
+      - name: Install Doxygen
+        run: sudo apt-get install doxygen graphviz -y
+
+      - name: Configure CMake
+        run: cmake -B ${{ github.workspace }}/build -S ${{ github.workspace }}
+
+      - name: Generate docs
+        run: cmake --build ${{ github.workspace }}/build --target docs
+
+      - name: Deploy docs
+        uses: peaceiris/actions-gh-pages@v6
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: ./docs/generated/html
+          destination_dir: ${{ github.ref_name }}
+          keep_files: true
