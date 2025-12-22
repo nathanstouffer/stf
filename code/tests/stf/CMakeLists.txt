@@ -79,6 +79,7 @@ elseif(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
 endif()
 
 option(STF_TESTS_WARNINGS_AS_ERRORS "Enable warnings as errors in tests" FALSE)
+
 if(STF_TESTS_WARNINGS_AS_ERRORS)
     if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU" OR CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
         target_compile_options(tests PRIVATE
@@ -100,5 +101,6 @@ target_link_libraries(tests PRIVATE stf GTest::gtest_main)
 target_precompile_headers(tests PRIVATE <vector> <gtest/gtest.h> "include/private/stf/scaffolding/verify.hpp")
 
 include(GoogleTest)
+
 # finds all the tests associated with the executable
 gtest_discover_tests(tests)

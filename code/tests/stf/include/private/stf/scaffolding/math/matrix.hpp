@@ -7,51 +7,50 @@
 namespace stf::scaffolding::math::mtx
 {
 
-    template<typename T, size_t N>
-    struct equality
+template <typename T, size_t N>
+struct equality
+{
+    stf::math::mtx<T, N> lhs;
+    stf::math::mtx<T, N> rhs;
+    bool equal;
+
+    void verify(size_t const i) const
     {
-        stf::math::mtx<T, N> lhs;
-        stf::math::mtx<T, N> rhs;
-        bool equal;
-
-        void verify(size_t const i) const
+        if (equal)
         {
-            if (equal)
-            {
-                ASSERT_EQ(lhs, rhs) << info(i) << "failed positive assertion";
-                ASSERT_FALSE(lhs != rhs) << info(i) << "failed negative assertion";
-            }
-            else
-            {
-                ASSERT_NE(lhs, rhs) << info(i) << "failed positive assertion";
-                ASSERT_FALSE(lhs == rhs) << info(i) << "failed negative assertion";
-            }
+            ASSERT_EQ(lhs, rhs) << info(i) << "failed positive assertion";
+            ASSERT_FALSE(lhs != rhs) << info(i) << "failed negative assertion";
         }
-    };
+        else
+        {
+            ASSERT_NE(lhs, rhs) << info(i) << "failed positive assertion";
+            ASSERT_FALSE(lhs == rhs) << info(i) << "failed negative assertion";
+        }
+    }
+};
 
-    template<typename T, size_t N>
-    struct determinant
+template <typename T, size_t N>
+struct determinant
+{
+    stf::math::mtx<T, N> matrix;
+    T det;
+
+    void verify(size_t const i) const { ASSERT_EQ(det, matrix.determinant()) << info(i) << "failed determinant test"; }
+};
+
+template <typename T, size_t N>
+struct inverted
+{
+    stf::math::mtx<T, N> matrix;
+
+    void verify(size_t const i) const
     {
-        stf::math::mtx<T, N> matrix;
-        T det;
+        stf::math::mtx<T, N> identity = stf::math::mtx<T, N>();
+        ASSERT_EQ(identity, matrix.inverted() * matrix)
+            << info(i) << "failed " << N << "x" << N << " left inverse test";
+        ASSERT_EQ(identity, matrix * matrix.inverted())
+            << info(i) << "failed " << N << "x" << N << " right inverse test";
+    }
+};
 
-        void verify(size_t const i) const
-        {
-            ASSERT_EQ(det, matrix.determinant()) << info(i) << "failed determinant test";
-        }
-    };
-
-    template<typename T, size_t N>
-    struct inverted
-    {
-        stf::math::mtx<T, N> matrix;
-
-        void verify(size_t const i) const
-        {
-            stf::math::mtx<T, N> identity = stf::math::mtx<T, N>();
-            ASSERT_EQ(identity, matrix.inverted() * matrix) << info(i) << "failed " << N << "x" << N << " left inverse test";
-            ASSERT_EQ(identity, matrix * matrix.inverted()) << info(i) << "failed " << N << "x" << N << " right inverse test";
-        }
-    };
-
-} // stf::scaffolding::math::mtx
+} // namespace stf::scaffolding::math::mtx
