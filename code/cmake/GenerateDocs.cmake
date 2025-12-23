@@ -6,6 +6,7 @@ if(BUILD_DOCS)
     set(DOXYGEN_QUIET YES)
 
     # configuration
+    set(DOXYGEN_PROJECT_NUMBER "0.0.0-dev")
     set(DOXYGEN_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/docs/generated")
     set(DOXYGEN_GENERATE_HTML YES)
     set(DOXYGEN_GENERATE_MAN YES)
