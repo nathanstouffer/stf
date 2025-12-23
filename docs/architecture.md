@@ -1,12 +1,12 @@
-# architecture
+# Architecture
 
-## priorities
+## Priorities
 
 1. correctness
 2. maintainability
 3. performance
 
-## library
+## Library
 
 `stf` is a header-only template math library built primarily for graphics.
 The library is split into a couple namespaces.
@@ -31,12 +31,12 @@ stfi::vec2 point(0, 0);     // integers
 stfu::vec2 point(0, 0);     // unsigned integers
 ```
 
-## building
+## Building
 
 `stf` uses [cmake](https://cmake.org/) to generate a build system of your choice.
 GHA builds `stf` with a number of compilers on various operating systems.
 
-## tests
+## Tests
 
 Testing architecture falls into two categories: scaffolding and data.
 Scaffolding defines what information is required for a test and the code to verify its correctness.

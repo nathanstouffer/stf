@@ -39,6 +39,11 @@ if(BUILD_DOCS)
         doxygen_add_docs(docs
             "${CMAKE_SOURCE_DIR}/code/src"
             "${CMAKE_SOURCE_DIR}/readme.md"
+            "${CMAKE_SOURCE_DIR}/changelog.md"
+            "${CMAKE_SOURCE_DIR}/docs/architecture.md"
+            "${CMAKE_SOURCE_DIR}/docs/contributing.md"
+            "${CMAKE_SOURCE_DIR}/docs/support.md"
+            "${CMAKE_SOURCE_DIR}/docs/todo.md"
 
             # ALL # enable this when you want to add the docs target to all
             COMMENT "Generating documentation"

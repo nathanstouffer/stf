@@ -1,4 +1,4 @@
-# contributing
+# Contributing
 
 - priorities
   1. correctness
@@ -9,6 +9,6 @@
 - fully qualify include paths (eg `#include "stf/math/vector.hpp"`)
 - prefer `#pragma once` to `#ifndef __HEADER_GUARD_H__`
 
-# releases
+# Releases
 
-TODO (stouff) document release process
+TODO document this once a release process is settled on
