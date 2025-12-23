@@ -19,6 +19,7 @@ The library is split into a couple namespaces.
 | `cam`     | contains camera-related structures (eg `camera` and `frustum`)                               |
 | `spatial` | contains structures that sort data spatially (eg `interval_tree`)                            |
 | `alg`     | contains algorithms that operate on the `stf` structures (eg `intersect`)                    |
+| `ds`      | contains general purpose data structures                                                     |
 
 Because the entire library is templated, you are free to create objects with the number type of your choice.
 As a convenience, `stf` takes advantage of `using` statements in [stf/stf.hpp](../code/src/stf/include/interface/stf/stf.hpp) to provide less verbose access to common types.
