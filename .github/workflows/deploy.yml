@@ -39,7 +39,7 @@ jobs:
             echo "No docs changes detected -- exiting"
           else
             echo "Docs changes detected -- deploying"
-            git commit -m 'Deploy docs for ${{ github.short_sha }}'
+            git commit -m 'Deploy dev docs for ${{ github.short_sha }}'
             git push
           fi
 
