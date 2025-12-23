@@ -1,0 +1,13 @@
+<map id="stf::math::mtx::row_major" name="stf::math::mtx::row_major">
+<area shape="rect" id="Node000001" title="Fill a raw array with scalars of the matrix in row&#45;major form." alt="" coords="5,31,196,56"/>
+<area shape="rect" id="Node000002" href="$structstf_1_1math_1_1mtx.html#ab6cc407bb31b8d8f0535e1cc1e6182bb" title="Fill a raw array with scalars of the matrix in column&#45;major form." alt="" coords="248,5,435,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="196,31,234,27,234,32,196,36"/>
+<area shape="rect" id="Node000003" href="$structstf_1_1math_1_1mtx.html#ad3b98191837083de6902748272148f90" title="Compute the transpose of a matrix." alt="" coords="244,55,439,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="196,50,231,54,230,59,196,55"/>
+<area shape="rect" id="Node000004" href="$structstf_1_1math_1_1mtx.html#a3af7d18a0bfae3637174b8dd9ece2893" title="Default constructor – intializes to the identity matrix." alt="" coords="506,29,654,55"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="439,54,492,49,492,54,439,60"/>
+<area shape="rect" id="Node000006" href="$structstf_1_1math_1_1mtx.html#addd61e9030ec8029a860a04c1e47439b" title="Transpose a matrix in&#45;place." alt="" coords="487,79,673,104"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="439,74,473,78,473,83,439,80"/>
+<area shape="rect" id="Node000005" href="$structstf_1_1math_1_1mtx.html#a1369a61fa33ee78d9075bc5fc75c839b" title="Set a matrix to the identity matrix." alt="" coords="721,29,892,55"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="654,39,708,39,708,45,654,45"/>
+</map>

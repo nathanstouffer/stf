@@ -1,0 +1,5 @@
+<map id="stf::math::orthogonal" name="stf::math::orthogonal">
+<area shape="rect" id="Node000001" title="Compute whethor or not two vectors are orthogonal." alt="" coords="5,5,164,31"/>
+<area shape="rect" id="Node000002" href="$namespacestf_1_1math.html#affb9352af7b68426cc6ca4e4f2b5e583" title="Compute the dot product of two vectors." alt="" coords="212,5,321,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="164,15,198,15,198,21,164,21"/>
+</map>

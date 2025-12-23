@@ -1,0 +1,16 @@
+<map id="stf::alg::intersects" name="stf::alg::intersects">
+<area shape="rect" id="Node000001" title="Compute whether or not two 2D obbs intersect." alt="" coords="5,31,144,56"/>
+<area shape="rect" id="Node000002" href="$namespacestf_1_1geom.html#a6c0d541eaa4f44ae6326aa4379a6fe53" title="Compute whether or not two 2D obbs intersect." alt="" coords="192,31,347,56"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="144,41,178,41,178,46,144,46"/>
+<area shape="rect" id="Node000003" href="$namespacestf_1_1geom.html#a5b4b10b152fe96bedb03a284cec27209" title="Compute whether or not an axis separates two obb." alt="" coords="395,31,549,56"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="347,41,380,41,380,46,347,46"/>
+<area shape="rect" id="Node000004" href="$structstf_1_1geom_1_1aabb.html#a5b5a3a3f83d5edeb89929eb46133db56" title="Compute if two aabb intersect." alt="" coords="598,5,793,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="550,32,584,28,584,33,550,37"/>
+<area shape="rect" id="Node000005" href="$structstf_1_1geom_1_1aabb.html#ae65c1b954f93ed0bdd726a085e3a4b88" title="Compute the projection of an aabb onto an axis." alt="" coords="597,55,793,80"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="550,49,584,53,583,58,550,54"/>
+<area shape="rect" id="Node000006" href="$namespacestf_1_1math.html#affb9352af7b68426cc6ca4e4f2b5e583" title="Compute the dot product of two vectors." alt="" coords="884,17,993,43"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="778,52,870,38,871,43,779,57"/>
+<area shape="rect" id="Node000007" href="$structstf_1_1geom_1_1aabb.html#ab24c36a1c6c5a85cce34acc4aeef3249" title="Compute an extremity of an aabb in a given direction." alt="" coords="841,91,1036,116"/>
+<area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="782,77,839,86,838,91,781,83"/>
+<area shape="poly" id="edge7_Node000007_Node000007" title=" " alt="" coords="899,92,891,82,895,72,912,66,939,64,973,68,983,73,986,78,982,81,979,77,972,73,939,69,913,71,899,76,896,82,903,89"/>
+</map>

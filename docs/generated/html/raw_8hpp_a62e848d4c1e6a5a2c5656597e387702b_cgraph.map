@@ -1,0 +1,11 @@
+<map id="stf::math::raw::scale" name="stf::math::raw::scale">
+<area shape="rect" id="Node000001" title="Scale a vector (stored as an array) in place." alt="" coords="5,5,159,31"/>
+<area shape="rect" id="Node000002" href="$namespacestf_1_1math.html#a612899b7860d515c5908b0410c0555ba" title="Construct a matrix that scales in x, y, and z." alt="" coords="207,5,329,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="159,15,193,15,193,21,159,21"/>
+<area shape="rect" id="Node000003" href="$structstf_1_1math_1_1mtx.html#a33ec84ea69fa23b489ea249793317db8" title="Compute a scale matrix." alt="" coords="377,5,533,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="330,15,364,15,364,21,330,21"/>
+<area shape="rect" id="Node000004" href="$structstf_1_1math_1_1mtx.html#a3af7d18a0bfae3637174b8dd9ece2893" title="Default constructor – intializes to the identity matrix." alt="" coords="581,5,729,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="534,15,567,15,567,21,534,21"/>
+<area shape="rect" id="Node000005" href="$structstf_1_1math_1_1mtx.html#a1369a61fa33ee78d9075bc5fc75c839b" title="Set a matrix to the identity matrix." alt="" coords="777,5,948,31"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="729,15,764,15,764,21,729,21"/>
+</map>

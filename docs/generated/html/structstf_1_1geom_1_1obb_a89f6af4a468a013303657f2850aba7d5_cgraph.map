@@ -1,0 +1,7 @@
+<map id="stf::geom::obb::contains" name="stf::geom::obb::contains">
+<area shape="rect" id="Node000001" title="Compute whether a point is contained in an obb." alt="" coords="5,31,184,56"/>
+<area shape="rect" id="Node000002" href="$structstf_1_1geom_1_1obb.html#ac132eabe042b2f02b327a85220005ce4" title="Getter for the basis of the obb." alt="" coords="232,5,389,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="184,30,218,26,219,31,184,36"/>
+<area shape="rect" id="Node000003" href="$namespacestf_1_1math.html#affb9352af7b68426cc6ca4e4f2b5e583" title="Compute the dot product of two vectors." alt="" coords="256,55,365,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="184,51,242,57,242,62,184,56"/>
+</map>

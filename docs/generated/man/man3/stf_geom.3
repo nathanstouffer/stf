@@ -1,0 +1,1417 @@
+.TH "stf::geom" 3 "Version 0.0.0" "stf" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+stf::geom \- Namespace for geometric functionality\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBaabb\fP"
+.br
+.RI "An aabb class representing axis aligned boxes in R^n\&. "
+.ti -1c
+.RI "class \fBholygon\fP"
+.br
+.RI "A class to represent a polyong with holes\&. "
+.ti -1c
+.RI "class \fBhyperplane\fP"
+.br
+.RI "A class to represent a R^{n-1} subspace of R^n\&. "
+.ti -1c
+.RI "struct \fBhypersphere\fP"
+.br
+.RI "A class representing a hypersphere in R^n\&. "
+.ti -1c
+.RI "struct \fBobb\fP"
+.br
+.RI "An obb class representing oriented boxes in R^n\&. "
+.ti -1c
+.RI "class \fBpolygon\fP"
+.br
+.RI "A class to represent a polygon\&. "
+.ti -1c
+.RI "class \fBpolyline\fP"
+.br
+.RI "A class to represent a polyline -- a connected sequence of straight line segments in R^n\&. "
+.ti -1c
+.RI "struct \fBray\fP"
+.br
+.RI "A class representing a ray in R^n\&. "
+.ti -1c
+.RI "struct \fBsegment\fP"
+.br
+.RI "A class to represent straight-line segments in R^n\&. "
+.in -1c
+.SS "Typedefs"
+
+.in +1c
+.ti -1c
+.RI "template<\fBtypename\fP T > \fBusing\fP \fBaabb2\fP = \fBaabb\fP< T, 2 >"
+.br
+.RI "Type alias for a 2D \fBaabb\fP\&. "
+.ti -1c
+.RI "template<\fBtypename\fP T > \fBusing\fP \fBaabb3\fP = \fBaabb\fP< T, 3 >"
+.br
+.RI "Type alias for a 3D \fBaabb\fP\&. "
+.ti -1c
+.RI "template<\fBtypename\fP T > \fBusing\fP \fBline\fP = \fBhyperplane\fP< T, 2 >"
+.br
+.RI "Type alias for a 2D \fBhyperplane\fP\&. "
+.ti -1c
+.RI "template<\fBtypename\fP T > \fBusing\fP \fBplane\fP = \fBhyperplane\fP< T, 3 >"
+.br
+.RI "Type alias for a 3D \fBhyperplane\fP\&. "
+.ti -1c
+.RI "template<\fBtypename\fP T > \fBusing\fP \fBcircle\fP = \fBhypersphere\fP< T, 2 >"
+.br
+.RI "Type alias for a \fBhypersphere\fP in 2 dimensions -- a circle\&. "
+.ti -1c
+.RI "template<\fBtypename\fP T > \fBusing\fP \fBsphere\fP = \fBhypersphere\fP< T, 3 >"
+.br
+.RI "Type alias for a \fBhypersphere\fP in 3 dimensions -- a sphere\&. "
+.ti -1c
+.RI "template<\fBtypename\fP T > \fBusing\fP \fBobb2\fP = \fBobb\fP< T, 2 >"
+.br
+.RI "Type alias for a 2D \fBobb\fP\&. "
+.ti -1c
+.RI "template<\fBtypename\fP T > \fBusing\fP \fBobb3\fP = \fBobb\fP< T, 3 >"
+.br
+.RI "Type alias for a 3D \fBobb\fP\&. "
+.ti -1c
+.RI "template<\fBtypename\fP T > \fBusing\fP \fBpolyline2\fP = \fBpolyline\fP< T, 2 >"
+.br
+.RI "Type alias for a 2D \fBpolyline\fP\&. "
+.ti -1c
+.RI "template<\fBtypename\fP T > \fBusing\fP \fBpolyline3\fP = \fBpolyline\fP< T, 3 >"
+.br
+.RI "Type alias for a 3D \fBpolyline\fP\&. "
+.ti -1c
+.RI "template<\fBtypename\fP T > \fBusing\fP \fBray2\fP = \fBray\fP< T, 2 >"
+.br
+.RI "Type alias for a 2D \fBray\fP\&. "
+.ti -1c
+.RI "template<\fBtypename\fP T > \fBusing\fP \fBray3\fP = \fBray\fP< T, 3 >"
+.br
+.RI "Type alias for a 3D \fBray\fP\&. "
+.ti -1c
+.RI "template<\fBtypename\fP T > \fBusing\fP \fBsegment2\fP = \fBsegment\fP< T, 2 >"
+.br
+.RI "Type alias for a 2D \fBsegment\fP\&. "
+.ti -1c
+.RI "template<\fBtypename\fP T > \fBusing\fP \fBsegment3\fP = \fBsegment\fP< T, 3 >"
+.br
+.RI "Type alias for a 3D \fBsegment\fP\&. "
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "template<\fBtypename\fP T , \fBsize_t\fP N> \fBaabb\fP< T, \fBN\fP > \fBfit\fP (\fBaabb\fP< T, \fBN\fP > \fBconst\fP &\fBlhs\fP, \fBaabb\fP< T, \fBN\fP > \fBconst\fP &\fBrhs\fP)"
+.br
+.RI "Fit two bounding boxes\&. "
+.ti -1c
+.RI "template<\fBtypename\fP T , \fBsize_t\fP N> T \fBdist_squared\fP (\fBaabb\fP< T, \fBN\fP > \fBconst\fP &\fBbox\fP, \fBmath::vec\fP< T, \fBN\fP > \fBconst\fP &point)"
+.br
+.RI "Compute the square of the distance between an aabb and a vector\&. "
+.ti -1c
+.RI "template<\fBtypename\fP T , \fBsize_t\fP N> T \fBdist_squared\fP (\fBmath::vec\fP< T, \fBN\fP > \fBconst\fP &point, \fBaabb\fP< T, \fBN\fP > \fBconst\fP &\fBbox\fP)"
+.br
+.RI "Compute the square of the distance between a vector and an aabb\&. "
+.ti -1c
+.RI "template<\fBtypename\fP T , \fBsize_t\fP N> T \fBdist\fP (\fBaabb\fP< T, \fBN\fP > \fBconst\fP &\fBbox\fP, \fBmath::vec\fP< T, \fBN\fP > \fBconst\fP &point)"
+.br
+.RI "Compute the distance between an aabb and a vector\&. "
+.ti -1c
+.RI "template<\fBtypename\fP T , \fBsize_t\fP N> T \fBdist\fP (\fBmath::vec\fP< T, \fBN\fP > \fBconst\fP &point, \fBaabb\fP< T, \fBN\fP > \fBconst\fP &\fBbox\fP)"
+.br
+.RI "Compute the distance between a vector and an aabb\&. "
+.ti -1c
+.RI "template<\fBtypename\fP T , \fBsize_t\fP N> std::ostream & \fBoperator<<\fP (std::ostream &\fBs\fP, \fBaabb\fP< T, \fBN\fP > \fBconst\fP &\fBrhs\fP)"
+.br
+.RI "Write the \fBaabb\fP \fCrhs\fP to the std::ostream \fCs\fP\&. "
+.ti -1c
+.RI "template<\fBtypename\fP T > T \fBdist_squared\fP (\fBholygon\fP< T > \fBconst\fP &\fBshape\fP, \fBmath::vec2\fP< T > \fBconst\fP &point)"
+.br
+.RI "Compute the square of the distance between a holygon and a vector\&. "
+.ti -1c
+.RI "template<\fBtypename\fP T > T \fBdist_squared\fP (\fBmath::vec2\fP< T > \fBconst\fP &point, \fBholygon\fP< T > \fBconst\fP &\fBshape\fP)"
+.br
+.RI "Compute the square of the distance between a vector and a holygon\&. "
+.ti -1c
+.RI "template<\fBtypename\fP T > T \fBdist\fP (\fBholygon\fP< T > \fBconst\fP &\fBshape\fP, \fBmath::vec2\fP< T > \fBconst\fP &point)"
+.br
+.RI "Compute the distance between a holygon and a vector\&. "
+.ti -1c
+.RI "template<\fBtypename\fP T > T \fBdist\fP (\fBmath::vec2\fP< T > \fBconst\fP &point, \fBholygon\fP< T > \fBconst\fP &\fBshape\fP)"
+.br
+.RI "Compute the distance between a vector and a holygon\&. "
+.ti -1c
+.RI "template<\fBtypename\fP T , \fBsize_t\fP N> T \fBdist\fP (\fBhyperplane\fP< T, \fBN\fP > \fBconst\fP &\fBplane\fP, \fBmath::vec\fP< T, \fBN\fP > \fBconst\fP &point)"
+.br
+.RI "Compute the distance between a hyperplane and a vector\&. "
+.ti -1c
+.RI "template<\fBtypename\fP T , \fBsize_t\fP N> T \fBdist\fP (\fBmath::vec\fP< T, \fBN\fP > \fBconst\fP &point, \fBhyperplane\fP< T, \fBN\fP > \fBconst\fP &\fBplane\fP)"
+.br
+.RI "Compute the distance between a vector and a hyperplane\&. "
+.ti -1c
+.RI "template<\fBtypename\fP T , \fBsize_t\fP N> T \fBsigned_dist\fP (\fBhyperplane\fP< T, \fBN\fP > \fBconst\fP &\fBplane\fP, \fBmath::vec\fP< T, \fBN\fP > \fBconst\fP &point)"
+.br
+.RI "Compute the signed distance between a hyperplane and a vector\&. "
+.ti -1c
+.RI "template<\fBtypename\fP T , \fBsize_t\fP N> T \fBsigned_dist\fP (\fBmath::vec\fP< T, \fBN\fP > \fBconst\fP &point, \fBhyperplane\fP< T, \fBN\fP > \fBconst\fP &\fBplane\fP)"
+.br
+.RI "Compute the signed distance between a vector and a hyperplane\&. "
+.ti -1c
+.RI "template<\fBtypename\fP T > \fBline\fP< T > \fBfit_line\fP (\fBmath::vec2\fP< T > \fBconst\fP &\fBp\fP, \fBmath::vec2\fP< T > \fBconst\fP &\fBq\fP)"
+.br
+.RI "Construct a line passing through two points\&. "
+.ti -1c
+.RI "template<\fBtypename\fP T > \fBplane\fP< T > \fBfit_plane\fP (\fBmath::vec3\fP< T > \fBconst\fP &\fBp\fP, \fBmath::vec3\fP< T > \fBconst\fP &\fBq\fP, \fBmath::vec3\fP< T > \fBconst\fP &r)"
+.br
+.RI "Construct a plane passing through three points\&. "
+.ti -1c
+.RI "template<\fBtypename\fP T , \fBsize_t\fP N> \fBbool\fP \fBseparates\fP (\fBmath::vec\fP< T, \fBN\fP > \fBconst\fP &\fBaxis\fP, \fBobb\fP< T, \fBN\fP > \fBconst\fP &\fBlhs\fP, \fBobb\fP< T, \fBN\fP > \fBconst\fP &\fBrhs\fP)"
+.br
+.RI "Compute whether or not an axis separates two \fBobb\fP\&. "
+.ti -1c
+.RI "template<\fBtypename\fP T > \fBbool\fP \fBintersects\fP (\fBobb2\fP< T > \fBconst\fP &\fBlhs\fP, \fBobb2\fP< T > \fBconst\fP &\fBrhs\fP)"
+.br
+.RI "Compute whether or not two 2D obbs intersect\&. "
+.ti -1c
+.RI "template<\fBtypename\fP T > \fBbool\fP \fBintersects\fP (\fBobb3\fP< T > \fBconst\fP &\fBlhs\fP, \fBobb3\fP< T > \fBconst\fP &\fBrhs\fP)"
+.br
+.RI "Compute whether or not two 3D obbs intersect\&. "
+.ti -1c
+.RI "template<\fBtypename\fP T > T \fBdist_squared\fP (\fBpolygon\fP< T > \fBconst\fP &\fBring\fP, \fBmath::vec2\fP< T > \fBconst\fP &point)"
+.br
+.RI "Compute the square of the distance between a polygon and a vector\&. "
+.ti -1c
+.RI "template<\fBtypename\fP T > T \fBdist_squared\fP (\fBmath::vec2\fP< T > \fBconst\fP &point, \fBpolygon\fP< T > \fBconst\fP &\fBring\fP)"
+.br
+.RI "Compute the square of the distance between a vector and a polygon\&. "
+.ti -1c
+.RI "template<\fBtypename\fP T > T \fBdist\fP (\fBpolygon\fP< T > \fBconst\fP &\fBring\fP, \fBmath::vec2\fP< T > \fBconst\fP &point)"
+.br
+.RI "Compute the distance between a polygon and a vector\&. "
+.ti -1c
+.RI "template<\fBtypename\fP T > T \fBdist\fP (\fBmath::vec2\fP< T > \fBconst\fP &point, \fBpolygon\fP< T > \fBconst\fP &\fBring\fP)"
+.br
+.RI "Compute the distance between a vector and a polygon\&. "
+.ti -1c
+.RI "template<\fBtypename\fP T > T \fBsigned_dist\fP (\fBpolygon\fP< T > \fBconst\fP &\fBring\fP, \fBmath::vec2\fP< T > \fBconst\fP &point)"
+.br
+.RI "Compute the signed distance between a polygon and a vector\&. "
+.ti -1c
+.RI "template<\fBtypename\fP T > T \fBsigned_dist\fP (\fBmath::vec2\fP< T > \fBconst\fP &point, \fBpolygon\fP< T > \fBconst\fP &\fBring\fP)"
+.br
+.RI "Compute the signed distance between a vector and a polygon\&. "
+.ti -1c
+.RI "template<\fBtypename\fP T , \fBsize_t\fP N> T \fBdist_squared\fP (\fBpolyline\fP< T, \fBN\fP > \fBconst\fP &\fBlinestring\fP, \fBmath::vec\fP< T, \fBN\fP > \fBconst\fP &point)"
+.br
+.RI "Compute the square of the distance between a polyline and a vector\&. "
+.ti -1c
+.RI "template<\fBtypename\fP T , \fBsize_t\fP N> T \fBdist_squared\fP (\fBmath::vec\fP< T, \fBN\fP > \fBconst\fP &point, \fBpolyline\fP< T, \fBN\fP > \fBconst\fP &\fBlinestring\fP)"
+.br
+.RI "Compute the square of the distance between a vector and a polyline\&. "
+.ti -1c
+.RI "template<\fBtypename\fP T , \fBsize_t\fP N> T \fBdist\fP (\fBpolyline\fP< T, \fBN\fP > \fBconst\fP &\fBlinestring\fP, \fBmath::vec\fP< T, \fBN\fP > \fBconst\fP &point)"
+.br
+.RI "Compute the distance between a polyline and a vector\&. "
+.ti -1c
+.RI "template<\fBtypename\fP T , \fBsize_t\fP N> T \fBdist\fP (\fBmath::vec\fP< T, \fBN\fP > \fBconst\fP &point, \fBpolyline\fP< T, \fBN\fP > \fBconst\fP &\fBlinestring\fP)"
+.br
+.RI "Compute the distance between a vector and a polyline\&. "
+.ti -1c
+.RI "template<\fBtypename\fP T , \fBsize_t\fP N> T \fBdist_squared\fP (\fBray\fP< T, \fBN\fP > \fBconst\fP &\fBbeam\fP, \fBmath::vec\fP< T, \fBN\fP > \fBconst\fP &point)"
+.br
+.RI "Compute the square of the distance between a ray and a vector\&. "
+.ti -1c
+.RI "template<\fBtypename\fP T , \fBsize_t\fP N> T \fBdist_squared\fP (\fBmath::vec\fP< T, \fBN\fP > \fBconst\fP &point, \fBray\fP< T, \fBN\fP > \fBconst\fP &\fBbeam\fP)"
+.br
+.RI "Compute the square of the distance between a vector and a ray\&. "
+.ti -1c
+.RI "template<\fBtypename\fP T , \fBsize_t\fP N> T \fBdist\fP (\fBray\fP< T, \fBN\fP > \fBconst\fP &\fBbeam\fP, \fBmath::vec\fP< T, \fBN\fP > \fBconst\fP &point)"
+.br
+.RI "Compute the distance between a ray and a vector\&. "
+.ti -1c
+.RI "template<\fBtypename\fP T , \fBsize_t\fP N> T \fBdist\fP (\fBmath::vec\fP< T, \fBN\fP > \fBconst\fP &point, \fBray\fP< T, \fBN\fP > \fBconst\fP &\fBbeam\fP)"
+.br
+.RI "Compute the distance between a vector and a ray\&. "
+.ti -1c
+.RI "template<\fBtypename\fP T , \fBsize_t\fP N> \fBbool\fP \fBoperator==\fP (\fBsegment\fP< T, \fBN\fP > \fBconst\fP &\fBlhs\fP, \fBsegment\fP< T, \fBN\fP > \fBconst\fP &\fBrhs\fP)"
+.br
+.RI "Compute whether \fClhs\fP is approximately equal to \fCrhs\fP (uses constants<T>::tol as epsilon) "
+.ti -1c
+.RI "template<\fBtypename\fP T , \fBsize_t\fP N> \fBbool\fP \fBoperator!=\fP (\fBsegment\fP< T, \fBN\fP > \fBconst\fP &\fBlhs\fP, \fBsegment\fP< T, \fBN\fP > \fBconst\fP &\fBrhs\fP)"
+.br
+.RI "Compute whether \fClhs\fP is approximately not equal to \fCrhs\fP (uses constants<T>::tol as epsilon) "
+.ti -1c
+.RI "template<\fBtypename\fP T , \fBsize_t\fP N> T \fBdist_squared\fP (\fBsegment\fP< T, \fBN\fP > \fBconst\fP &\fBseg\fP, \fBmath::vec\fP< T, \fBN\fP > \fBconst\fP &point)"
+.br
+.RI "Compute the square of the distance between a segment and a vector\&. "
+.ti -1c
+.RI "template<\fBtypename\fP T , \fBsize_t\fP N> T \fBdist_squared\fP (\fBmath::vec\fP< T, \fBN\fP > \fBconst\fP &point, \fBsegment\fP< T, \fBN\fP > \fBconst\fP &\fBseg\fP)"
+.br
+.RI "Compute the square of the distance between a vector and a segment\&. "
+.ti -1c
+.RI "template<\fBtypename\fP T , \fBsize_t\fP N> T \fBdist\fP (\fBsegment\fP< T, \fBN\fP > \fBconst\fP &\fBseg\fP, \fBmath::vec\fP< T, \fBN\fP > \fBconst\fP &point)"
+.br
+.RI "Compute the distance between a segment and a vector\&. "
+.ti -1c
+.RI "template<\fBtypename\fP T , \fBsize_t\fP N> T \fBdist\fP (\fBmath::vec\fP< T, \fBN\fP > \fBconst\fP &point, \fBsegment\fP< T, \fBN\fP > \fBconst\fP &\fBseg\fP)"
+.br
+.RI "Compute the distance between a vector and a segment\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+Namespace for geometric functionality\&. 
+.SH "Typedef Documentation"
+.PP 
+.SS "template<\fBtypename\fP T > \fBusing\fP \fBstf::geom::aabb2\fP = \fBtypedef\fP \fBaabb\fP<T, 2>"
+
+.PP
+Type alias for a 2D \fBaabb\fP\&. 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP Number type (eg float) 
+.RE
+.PP
+
+.SS "template<\fBtypename\fP T > \fBusing\fP \fBstf::geom::aabb3\fP = \fBtypedef\fP \fBaabb\fP<T, 3>"
+
+.PP
+Type alias for a 3D \fBaabb\fP\&. 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP Number type (eg float) 
+.RE
+.PP
+
+.SS "template<\fBtypename\fP T > \fBusing\fP \fBstf::geom::circle\fP = \fBtypedef\fP \fBhypersphere\fP<T, 2>"
+
+.PP
+Type alias for a \fBhypersphere\fP in 2 dimensions -- a circle\&. 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP Number type (eg float) 
+.RE
+.PP
+
+.SS "template<\fBtypename\fP T > \fBusing\fP \fBstf::geom::line\fP = \fBtypedef\fP \fBhyperplane\fP<T, 2>"
+
+.PP
+Type alias for a 2D \fBhyperplane\fP\&. 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP Number type (eg float) 
+.RE
+.PP
+
+.SS "template<\fBtypename\fP T > \fBusing\fP \fBstf::geom::obb2\fP = \fBtypedef\fP \fBobb\fP<T, 2>"
+
+.PP
+Type alias for a 2D \fBobb\fP\&. 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP Number type (eg float) 
+.RE
+.PP
+
+.SS "template<\fBtypename\fP T > \fBusing\fP \fBstf::geom::obb3\fP = \fBtypedef\fP \fBobb\fP<T, 3>"
+
+.PP
+Type alias for a 3D \fBobb\fP\&. 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP Number type (eg float) 
+.RE
+.PP
+
+.SS "template<\fBtypename\fP T > \fBusing\fP \fBstf::geom::plane\fP = \fBtypedef\fP \fBhyperplane\fP<T, 3>"
+
+.PP
+Type alias for a 3D \fBhyperplane\fP\&. 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP Number type (eg float) 
+.RE
+.PP
+
+.SS "template<\fBtypename\fP T > \fBusing\fP \fBstf::geom::polyline2\fP = \fBtypedef\fP \fBpolyline\fP<T, 2>"
+
+.PP
+Type alias for a 2D \fBpolyline\fP\&. 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP Number type (eg float) 
+.RE
+.PP
+
+.SS "template<\fBtypename\fP T > \fBusing\fP \fBstf::geom::polyline3\fP = \fBtypedef\fP \fBpolyline\fP<T, 3>"
+
+.PP
+Type alias for a 3D \fBpolyline\fP\&. 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP Number type (eg float) 
+.RE
+.PP
+
+.SS "template<\fBtypename\fP T > \fBusing\fP \fBstf::geom::ray2\fP = \fBtypedef\fP \fBray\fP<T, 2>"
+
+.PP
+Type alias for a 2D \fBray\fP\&. 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP Number type (eg float) 
+.RE
+.PP
+
+.SS "template<\fBtypename\fP T > \fBusing\fP \fBstf::geom::ray3\fP = \fBtypedef\fP \fBray\fP<T, 3>"
+
+.PP
+Type alias for a 3D \fBray\fP\&. 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP Number type (eg float) 
+.RE
+.PP
+
+.SS "template<\fBtypename\fP T > \fBusing\fP \fBstf::geom::segment2\fP = \fBtypedef\fP \fBsegment\fP<T, 2>"
+
+.PP
+Type alias for a 2D \fBsegment\fP\&. 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP Number type (eg float) 
+.RE
+.PP
+
+.SS "template<\fBtypename\fP T > \fBusing\fP \fBstf::geom::segment3\fP = \fBtypedef\fP \fBsegment\fP<T, 3>"
+
+.PP
+Type alias for a 3D \fBsegment\fP\&. 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP Number type (eg float) 
+.RE
+.PP
+
+.SS "template<\fBtypename\fP T > \fBusing\fP \fBstf::geom::sphere\fP = \fBtypedef\fP \fBhypersphere\fP<T, 3>"
+
+.PP
+Type alias for a \fBhypersphere\fP in 3 dimensions -- a sphere\&. 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP Number type (eg float) 
+.RE
+.PP
+
+.SH "Function Documentation"
+.PP 
+.SS "template<\fBtypename\fP T , \fBsize_t\fP N> T stf::geom::dist (\fBaabb\fP< T, \fBN\fP > \fBconst\fP & box, \fBmath::vec\fP< T, \fBN\fP > \fBconst\fP & point)\fC [inline]\fP"
+
+.PP
+Compute the distance between an aabb and a vector\&. 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP Number type (eg float) 
+.br
+\fIN\fP Dimension 
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIpoint\fP 
+.br
+\fIbox\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The distance between \fCbox\fP and \fCpoint\fP 
+.RE
+.PP
+
+.SS "template<\fBtypename\fP T > T stf::geom::dist (\fBholygon\fP< T > \fBconst\fP & shape, \fBmath::vec2\fP< T > \fBconst\fP & point)\fC [inline]\fP"
+
+.PP
+Compute the distance between a holygon and a vector\&. 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP Number type (eg float) 
+.br
+\fIN\fP Dimension 
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIshape\fP 
+.br
+\fIpoint\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The distance between \fCshape\fP and \fCpoint\fP 
+.RE
+.PP
+
+.SS "template<\fBtypename\fP T , \fBsize_t\fP N> T stf::geom::dist (\fBhyperplane\fP< T, \fBN\fP > \fBconst\fP & plane, \fBmath::vec\fP< T, \fBN\fP > \fBconst\fP & point)\fC [inline]\fP"
+
+.PP
+Compute the distance between a hyperplane and a vector\&. 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP Number type (eg float) 
+.br
+\fIN\fP Dimension 
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIplane\fP 
+.br
+\fIpoint\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The distance between \fCplane\fP and \fCpoint\fP 
+.RE
+.PP
+
+.SS "template<\fBtypename\fP T > T stf::geom::dist (\fBmath::vec2\fP< T > \fBconst\fP & point, \fBholygon\fP< T > \fBconst\fP & shape)\fC [inline]\fP"
+
+.PP
+Compute the distance between a vector and a holygon\&. 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP Number type (eg float) 
+.br
+\fIN\fP Dimension 
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIshape\fP 
+.br
+\fIpoint\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The distance between \fCpoint\fP and \fCshape\fP 
+.RE
+.PP
+
+.SS "template<\fBtypename\fP T > T stf::geom::dist (\fBmath::vec2\fP< T > \fBconst\fP & point, \fBpolygon\fP< T > \fBconst\fP & ring)\fC [inline]\fP"
+
+.PP
+Compute the distance between a vector and a polygon\&. 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP Number type (eg float) 
+.br
+\fIN\fP Dimension 
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIring\fP 
+.br
+\fIpoint\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The distance between \fCpoint\fP and \fCring\fP 
+.RE
+.PP
+
+.SS "template<\fBtypename\fP T , \fBsize_t\fP N> T stf::geom::dist (\fBmath::vec\fP< T, \fBN\fP > \fBconst\fP & point, \fBaabb\fP< T, \fBN\fP > \fBconst\fP & box)\fC [inline]\fP"
+
+.PP
+Compute the distance between a vector and an aabb\&. 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP Number type (eg float) 
+.br
+\fIN\fP Dimension 
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIpoint\fP 
+.br
+\fIbox\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The distance between \fCpoint\fP and \fCbox\fP 
+.RE
+.PP
+
+.SS "template<\fBtypename\fP T , \fBsize_t\fP N> T stf::geom::dist (\fBmath::vec\fP< T, \fBN\fP > \fBconst\fP & point, \fBhyperplane\fP< T, \fBN\fP > \fBconst\fP & plane)\fC [inline]\fP"
+
+.PP
+Compute the distance between a vector and a hyperplane\&. 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP Number type (eg float) 
+.br
+\fIN\fP Dimension 
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIplane\fP 
+.br
+\fIpoint\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The distance between \fCpoint\fP and \fCplane\fP 
+.RE
+.PP
+
+.SS "template<\fBtypename\fP T , \fBsize_t\fP N> T stf::geom::dist (\fBmath::vec\fP< T, \fBN\fP > \fBconst\fP & point, \fBpolyline\fP< T, \fBN\fP > \fBconst\fP & linestring)\fC [inline]\fP"
+
+.PP
+Compute the distance between a vector and a polyline\&. 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP Number type (eg float) 
+.br
+\fIN\fP Dimension 
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIlinestring\fP 
+.br
+\fIpoint\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The distance between \fCpoint\fP and \fClinestring\fP 
+.RE
+.PP
+
+.SS "template<\fBtypename\fP T , \fBsize_t\fP N> T stf::geom::dist (\fBmath::vec\fP< T, \fBN\fP > \fBconst\fP & point, \fBray\fP< T, \fBN\fP > \fBconst\fP & beam)\fC [inline]\fP"
+
+.PP
+Compute the distance between a vector and a ray\&. 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP Number type (eg float) 
+.br
+\fIN\fP Dimension 
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIbeam\fP 
+.br
+\fIpoint\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The distance between \fCpoint\fP and \fCbeam\fP 
+.RE
+.PP
+
+.SS "template<\fBtypename\fP T , \fBsize_t\fP N> T stf::geom::dist (\fBmath::vec\fP< T, \fBN\fP > \fBconst\fP & point, \fBsegment\fP< T, \fBN\fP > \fBconst\fP & seg)\fC [inline]\fP"
+
+.PP
+Compute the distance between a vector and a segment\&. 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP Number type (eg float) 
+.br
+\fIN\fP Dimension 
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIseg\fP 
+.br
+\fIpoint\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The distance between \fCpoint\fP and \fCseg\fP 
+.RE
+.PP
+
+.SS "template<\fBtypename\fP T > T stf::geom::dist (\fBpolygon\fP< T > \fBconst\fP & ring, \fBmath::vec2\fP< T > \fBconst\fP & point)\fC [inline]\fP"
+
+.PP
+Compute the distance between a polygon and a vector\&. 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP Number type (eg float) 
+.br
+\fIN\fP Dimension 
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIring\fP 
+.br
+\fIpoint\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The distance between \fCring\fP and \fCpoint\fP 
+.RE
+.PP
+
+.SS "template<\fBtypename\fP T , \fBsize_t\fP N> T stf::geom::dist (\fBpolyline\fP< T, \fBN\fP > \fBconst\fP & linestring, \fBmath::vec\fP< T, \fBN\fP > \fBconst\fP & point)\fC [inline]\fP"
+
+.PP
+Compute the distance between a polyline and a vector\&. 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP Number type (eg float) 
+.br
+\fIN\fP Dimension 
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIlinestring\fP 
+.br
+\fIpoint\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The distance between \fClinestring\fP and \fCpoint\fP 
+.RE
+.PP
+
+.SS "template<\fBtypename\fP T , \fBsize_t\fP N> T stf::geom::dist (\fBray\fP< T, \fBN\fP > \fBconst\fP & beam, \fBmath::vec\fP< T, \fBN\fP > \fBconst\fP & point)\fC [inline]\fP"
+
+.PP
+Compute the distance between a ray and a vector\&. 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP Number type (eg float) 
+.br
+\fIN\fP Dimension 
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIbeam\fP 
+.br
+\fIpoint\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The distance between \fCbeam\fP and \fCpoint\fP 
+.RE
+.PP
+
+.SS "template<\fBtypename\fP T , \fBsize_t\fP N> T stf::geom::dist (\fBsegment\fP< T, \fBN\fP > \fBconst\fP & seg, \fBmath::vec\fP< T, \fBN\fP > \fBconst\fP & point)\fC [inline]\fP"
+
+.PP
+Compute the distance between a segment and a vector\&. 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP Number type (eg float) 
+.br
+\fIN\fP Dimension 
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIseg\fP 
+.br
+\fIpoint\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The distance between \fCseg\fP and \fCpoint\fP 
+.RE
+.PP
+
+.SS "template<\fBtypename\fP T , \fBsize_t\fP N> T stf::geom::dist_squared (\fBaabb\fP< T, \fBN\fP > \fBconst\fP & box, \fBmath::vec\fP< T, \fBN\fP > \fBconst\fP & point)\fC [inline]\fP"
+
+.PP
+Compute the square of the distance between an aabb and a vector\&. 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP Number type (eg float) 
+.br
+\fIN\fP Dimension 
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIbox\fP 
+.br
+\fIpoint\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The square of the distance between \fCbox\fP and \fCpoint\fP 
+.RE
+.PP
+
+.SS "template<\fBtypename\fP T > T stf::geom::dist_squared (\fBholygon\fP< T > \fBconst\fP & shape, \fBmath::vec2\fP< T > \fBconst\fP & point)\fC [inline]\fP"
+
+.PP
+Compute the square of the distance between a holygon and a vector\&. 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP Number type (eg float) 
+.br
+\fIN\fP Dimension 
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIshape\fP 
+.br
+\fIpoint\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The square of the distance between \fCshape\fP and \fCpoint\fP 
+.RE
+.PP
+
+.SS "template<\fBtypename\fP T > T stf::geom::dist_squared (\fBmath::vec2\fP< T > \fBconst\fP & point, \fBholygon\fP< T > \fBconst\fP & shape)\fC [inline]\fP"
+
+.PP
+Compute the square of the distance between a vector and a holygon\&. 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP Number type (eg float) 
+.br
+\fIN\fP Dimension 
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIpoint\fP 
+.br
+\fIshape\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The square of the distance between \fCpoint\fP and \fCshape\fP 
+.RE
+.PP
+
+.SS "template<\fBtypename\fP T > T stf::geom::dist_squared (\fBmath::vec2\fP< T > \fBconst\fP & point, \fBpolygon\fP< T > \fBconst\fP & ring)\fC [inline]\fP"
+
+.PP
+Compute the square of the distance between a vector and a polygon\&. 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP Number type (eg float) 
+.br
+\fIN\fP Dimension 
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIpoint\fP 
+.br
+\fIring\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The square of the distance between \fCpoint\fP and \fCring\fP 
+.RE
+.PP
+
+.SS "template<\fBtypename\fP T , \fBsize_t\fP N> T stf::geom::dist_squared (\fBmath::vec\fP< T, \fBN\fP > \fBconst\fP & point, \fBaabb\fP< T, \fBN\fP > \fBconst\fP & box)\fC [inline]\fP"
+
+.PP
+Compute the square of the distance between a vector and an aabb\&. 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP Number type (eg float) 
+.br
+\fIN\fP Dimension 
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIpoint\fP 
+.br
+\fIbox\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The square of the distance between \fCpoint\fP and \fCbox\fP 
+.RE
+.PP
+
+.SS "template<\fBtypename\fP T , \fBsize_t\fP N> T stf::geom::dist_squared (\fBmath::vec\fP< T, \fBN\fP > \fBconst\fP & point, \fBpolyline\fP< T, \fBN\fP > \fBconst\fP & linestring)\fC [inline]\fP"
+
+.PP
+Compute the square of the distance between a vector and a polyline\&. 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP Number type (eg float) 
+.br
+\fIN\fP Dimension 
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIpoint\fP 
+.br
+\fIlinestring\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The square of the distance between \fCpoint\fP and \fClinestring\fP 
+.RE
+.PP
+
+.SS "template<\fBtypename\fP T , \fBsize_t\fP N> T stf::geom::dist_squared (\fBmath::vec\fP< T, \fBN\fP > \fBconst\fP & point, \fBray\fP< T, \fBN\fP > \fBconst\fP & beam)\fC [inline]\fP"
+
+.PP
+Compute the square of the distance between a vector and a ray\&. 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP Number type (eg float) 
+.br
+\fIN\fP Dimension 
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIpoint\fP 
+.br
+\fIbeam\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The square of the distance between \fCpoint\fP and \fCbeam\fP 
+.RE
+.PP
+
+.SS "template<\fBtypename\fP T , \fBsize_t\fP N> T stf::geom::dist_squared (\fBmath::vec\fP< T, \fBN\fP > \fBconst\fP & point, \fBsegment\fP< T, \fBN\fP > \fBconst\fP & seg)\fC [inline]\fP"
+
+.PP
+Compute the square of the distance between a vector and a segment\&. 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP Number type (eg float) 
+.br
+\fIN\fP Dimension 
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIpoint\fP 
+.br
+\fIseg\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The square of the distance between \fCpoint\fP and \fCseg\fP 
+.RE
+.PP
+
+.SS "template<\fBtypename\fP T > T stf::geom::dist_squared (\fBpolygon\fP< T > \fBconst\fP & ring, \fBmath::vec2\fP< T > \fBconst\fP & point)\fC [inline]\fP"
+
+.PP
+Compute the square of the distance between a polygon and a vector\&. 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP Number type (eg float) 
+.br
+\fIN\fP Dimension 
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIring\fP 
+.br
+\fIpoint\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The square of the distance between \fCring\fP and \fCpoint\fP 
+.RE
+.PP
+
+.SS "template<\fBtypename\fP T , \fBsize_t\fP N> T stf::geom::dist_squared (\fBpolyline\fP< T, \fBN\fP > \fBconst\fP & linestring, \fBmath::vec\fP< T, \fBN\fP > \fBconst\fP & point)\fC [inline]\fP"
+
+.PP
+Compute the square of the distance between a polyline and a vector\&. 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP Number type (eg float) 
+.br
+\fIN\fP Dimension 
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIlinestring\fP 
+.br
+\fIpoint\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The square of the distance between \fClinestring\fP and \fCpoint\fP 
+.RE
+.PP
+
+.SS "template<\fBtypename\fP T , \fBsize_t\fP N> T stf::geom::dist_squared (\fBray\fP< T, \fBN\fP > \fBconst\fP & beam, \fBmath::vec\fP< T, \fBN\fP > \fBconst\fP & point)\fC [inline]\fP"
+
+.PP
+Compute the square of the distance between a ray and a vector\&. 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP Number type (eg float) 
+.br
+\fIN\fP Dimension 
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIbeam\fP 
+.br
+\fIpoint\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The square of the distance between \fCbeam\fP and \fCpoint\fP 
+.RE
+.PP
+
+.SS "template<\fBtypename\fP T , \fBsize_t\fP N> T stf::geom::dist_squared (\fBsegment\fP< T, \fBN\fP > \fBconst\fP & seg, \fBmath::vec\fP< T, \fBN\fP > \fBconst\fP & point)\fC [inline]\fP"
+
+.PP
+Compute the square of the distance between a segment and a vector\&. 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP Number type (eg float) 
+.br
+\fIN\fP Dimension 
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIseg\fP 
+.br
+\fIpoint\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The square of the distance between \fCseg\fP and \fCpoint\fP 
+.RE
+.PP
+
+.SS "template<\fBtypename\fP T , \fBsize_t\fP N> \fBaabb\fP< T, \fBN\fP > stf::geom::fit (\fBaabb\fP< T, \fBN\fP > \fBconst\fP & lhs, \fBaabb\fP< T, \fBN\fP > \fBconst\fP & rhs)"
+
+.PP
+Fit two bounding boxes\&. 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP Number type (float) 
+.br
+\fIN\fP Dimension 
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIlhs\fP 
+.br
+\fIrhs\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+A new bounding box that minimally encompasses \fClhs\fP and \fCrhs\fP 
+.RE
+.PP
+
+.SS "template<\fBtypename\fP T > \fBline\fP< T > stf::geom::fit_line (\fBmath::vec2\fP< T > \fBconst\fP & p, \fBmath::vec2\fP< T > \fBconst\fP & q)"
+
+.PP
+Construct a line passing through two points\&. 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP Number type (eg float) 
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIp\fP 
+.br
+\fIq\fP 
+.RE
+.PP
+\fBNote\fP
+.RS 4
+\fCp\fP is used as the point defining the line 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+.RE
+.PP
+
+.SS "template<\fBtypename\fP T > \fBplane\fP< T > stf::geom::fit_plane (\fBmath::vec3\fP< T > \fBconst\fP & p, \fBmath::vec3\fP< T > \fBconst\fP & q, \fBmath::vec3\fP< T > \fBconst\fP & r)"
+
+.PP
+Construct a plane passing through three points\&. 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP Number type (eg float) 
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIp\fP 
+.br
+\fIq\fP 
+.br
+\fIr\fP 
+.RE
+.PP
+\fBNote\fP
+.RS 4
+\fCp\fP is used as the point defining the point 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+.RE
+.PP
+
+.SS "template<\fBtypename\fP T > \fBbool\fP stf::geom::intersects (\fBobb2\fP< T > \fBconst\fP & lhs, \fBobb2\fP< T > \fBconst\fP & rhs)"
+
+.PP
+Compute whether or not two 2D obbs intersect\&. 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP Number type (eg float) 
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIlhs\fP 
+.br
+\fIrhs\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+Whether or not \fClhs\fP intersects \fCrhs\fP 
+.RE
+.PP
+
+.SS "template<\fBtypename\fP T > \fBbool\fP stf::geom::intersects (\fBobb3\fP< T > \fBconst\fP & lhs, \fBobb3\fP< T > \fBconst\fP & rhs)"
+
+.PP
+Compute whether or not two 3D obbs intersect\&. 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP Number type (eg float) 
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIlhs\fP 
+.br
+\fIrhs\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+Whether or not \fClhs\fP intersects \fCrhs\fP 
+.RE
+.PP
+
+.SS "template<\fBtypename\fP T , \fBsize_t\fP N> \fBbool\fP \fBstf::geom::operator!\fP= (\fBsegment\fP< T, \fBN\fP > \fBconst\fP & lhs, \fBsegment\fP< T, \fBN\fP > \fBconst\fP & rhs)\fC [inline]\fP"
+
+.PP
+Compute whether \fClhs\fP is approximately not equal to \fCrhs\fP (uses constants<T>::tol as epsilon) 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP Number type (eg float) 
+.br
+\fIN\fP Dimension 
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIlhs\fP 
+.br
+\fIrhs\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+Whether or not \fClhs\fP and \fCrhs\fP are approximately not equal 
+.RE
+.PP
+
+.SS "template<\fBtypename\fP T , \fBsize_t\fP N> std::ostream & \fBstf::geom::operator\fP<< (std::ostream & s, \fBaabb\fP< T, \fBN\fP > \fBconst\fP & rhs)\fC [inline]\fP"
+
+.PP
+Write the \fBaabb\fP \fCrhs\fP to the std::ostream \fCs\fP\&. 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP Number type (eg float) 
+.br
+\fIN\fP Dimension 
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIs\fP 
+.br
+\fIrhs\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+A reference to \fCs\fP 
+.RE
+.PP
+
+.SS "template<\fBtypename\fP T , \fBsize_t\fP N> \fBbool\fP \fBstf::geom::operator\fP== (\fBsegment\fP< T, \fBN\fP > \fBconst\fP & lhs, \fBsegment\fP< T, \fBN\fP > \fBconst\fP & rhs)\fC [inline]\fP"
+
+.PP
+Compute whether \fClhs\fP is approximately equal to \fCrhs\fP (uses constants<T>::tol as epsilon) 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP Number type (eg float) 
+.br
+\fIN\fP Dimension 
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIlhs\fP 
+.br
+\fIrhs\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+Whether or not \fClhs\fP and \fCrhs\fP are approximately equal 
+.RE
+.PP
+
+.SS "template<\fBtypename\fP T , \fBsize_t\fP N> \fBbool\fP stf::geom::separates (\fBmath::vec\fP< T, \fBN\fP > \fBconst\fP & axis, \fBobb\fP< T, \fBN\fP > \fBconst\fP & lhs, \fBobb\fP< T, \fBN\fP > \fBconst\fP & rhs)"
+
+.PP
+Compute whether or not an axis separates two \fBobb\fP\&. 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP Number type (eg float) 
+.br
+\fIN\fP Dimension 
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIaxis\fP 
+.br
+\fIlhs\fP 
+.br
+\fIrhs\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+Whether or not \fCaxis\fP separates \fClhs\fP and \fCrhs\fP 
+.RE
+.PP
+\fBNote\fP
+.RS 4
+\fCaxis\fP is assumed to be a unit vector 
+.RE
+.PP
+
+.SS "template<\fBtypename\fP T , \fBsize_t\fP N> T stf::geom::signed_dist (\fBhyperplane\fP< T, \fBN\fP > \fBconst\fP & plane, \fBmath::vec\fP< T, \fBN\fP > \fBconst\fP & point)\fC [inline]\fP"
+
+.PP
+Compute the signed distance between a hyperplane and a vector\&. 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP Number type (eg float) 
+.br
+\fIN\fP Dimension 
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIplane\fP 
+.br
+\fIpoint\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The distance between \fCring\fP and \fCpoint\fP 
+.RE
+.PP
+
+.SS "template<\fBtypename\fP T > T stf::geom::signed_dist (\fBmath::vec2\fP< T > \fBconst\fP & point, \fBpolygon\fP< T > \fBconst\fP & ring)\fC [inline]\fP"
+
+.PP
+Compute the signed distance between a vector and a polygon\&. 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP Number type (eg float) 
+.br
+\fIN\fP Dimension 
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIring\fP 
+.br
+\fIpoint\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The distance between \fCpoint\fP and \fCring\fP 
+.RE
+.PP
+
+.SS "template<\fBtypename\fP T , \fBsize_t\fP N> T stf::geom::signed_dist (\fBmath::vec\fP< T, \fBN\fP > \fBconst\fP & point, \fBhyperplane\fP< T, \fBN\fP > \fBconst\fP & plane)\fC [inline]\fP"
+
+.PP
+Compute the signed distance between a vector and a hyperplane\&. 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP Number type (eg float) 
+.br
+\fIN\fP Dimension 
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIplane\fP 
+.br
+\fIpoint\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The distance between \fCpoint\fP and \fCplane\fP 
+.RE
+.PP
+
+.SS "template<\fBtypename\fP T > T stf::geom::signed_dist (\fBpolygon\fP< T > \fBconst\fP & ring, \fBmath::vec2\fP< T > \fBconst\fP & point)\fC [inline]\fP"
+
+.PP
+Compute the signed distance between a polygon and a vector\&. 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP Number type (eg float) 
+.br
+\fIN\fP Dimension 
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIring\fP 
+.br
+\fIpoint\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The distance between \fCring\fP and \fCpoint\fP 
+.RE
+.PP
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for stf from the source code\&.

@@ -1,0 +1,10 @@
+<map id="stf::math::orbit" name="stf::math::orbit">
+<area shape="rect" id="Node000001" title="Compute a matrix that orbits 3&#45;space around focus by delta_phi and delta_theta." alt="" coords="5,55,124,80"/>
+<area shape="rect" id="Node000002" href="$namespacestf_1_1math.html#a39fc2acde1310e70f82f9eaed0efd4be" title="Construct a matrix that rotates the plane." alt="" coords="182,5,309,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="111,52,183,32,185,37,113,57"/>
+<area shape="rect" id="Node000003" href="$namespacestf_1_1math.html#af4d854bb00563557b5ade45a95f671c2" title="Construct a matrix that translates in x, y, and z." alt="" coords="172,55,319,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="124,65,158,65,158,70,124,70"/>
+<area shape="rect" id="Node000004" href="$structstf_1_1math_1_1mtx.html#a8047848dbbccdc0834492c2bbd10328f" title="Compute a translation matrix." alt="" coords="367,80,547,105"/>
+<area shape="poly" id="edge4_Node000001_Node000004" title=" " alt="" coords="113,77,172,89,265,95,353,95,353,100,265,100,172,94,112,83"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="319,73,353,78,353,83,319,79"/>
+</map>

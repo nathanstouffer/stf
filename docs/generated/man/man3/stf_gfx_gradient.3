@@ -1,0 +1,88 @@
+.TH "stf::gfx::gradient" 3 "Version 0.0.0" "stf" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+stf::gfx::gradient \- A class that represents a gradient\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <gradient\&.hpp>\fP
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBstop\fP"
+.br
+.RI "Struct to represent an interpolation anchor\&. "
+.in -1c
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "using \fBtime_t\fP = float"
+.br
+.RI "Type alias for the input\&. "
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBgradient\fP (std::vector< \fBstop\fP > const &stops, float period=\fBmath::constants\fP< \fBtime_t\fP >::zero)"
+.br
+.RI "Construct a gradient from a vector of stops\&. "
+.ti -1c
+.RI "\fBrgba\fP \fBsample\fP (\fBtime_t\fP const x) const"
+.br
+.RI "Sample a color at a specified time value \fCx\fP\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+A class that represents a gradient\&. 
+
+
+.PP
+\fBTodo\fP
+.RS 4
+Possibly template the gradient class 
+.RE
+.PP
+
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "stf::gfx::gradient::gradient (std::vector< \fBstop\fP > const & stops, float period = \fC\fBmath::constants\fP<\fBtime_t\fP>::zero\fP)\fC [inline]\fP"
+
+.PP
+Construct a gradient from a vector of stops\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIstops\fP 
+.br
+\fIperiod\fP The period used when sampling the color -- 0 signifies that there is no period 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "\fBrgba\fP stf::gfx::gradient::sample (\fBtime_t\fP const x) const\fC [inline]\fP"
+
+.PP
+Sample a color at a specified time value \fCx\fP\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIx\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The sampled \fBrgba\fP value 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for stf from the source code\&.

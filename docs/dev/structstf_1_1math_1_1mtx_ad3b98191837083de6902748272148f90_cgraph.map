@@ -1,0 +1,9 @@
+<map id="stf::math::mtx::transposed" name="stf::math::mtx::transposed">
+<area shape="rect" id="Node000001" title="Compute the transpose of a matrix." alt="" coords="5,31,200,56"/>
+<area shape="rect" id="Node000002" href="$structstf_1_1math_1_1mtx.html#a3af7d18a0bfae3637174b8dd9ece2893" title="Default constructor – intializes to the identity matrix." alt="" coords="267,5,415,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="200,30,253,25,254,30,201,36"/>
+<area shape="rect" id="Node000004" href="$structstf_1_1math_1_1mtx.html#addd61e9030ec8029a860a04c1e47439b" title="Transpose a matrix in&#45;place." alt="" coords="248,55,435,80"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="201,50,235,54,234,59,200,56"/>
+<area shape="rect" id="Node000003" href="$structstf_1_1math_1_1mtx.html#a1369a61fa33ee78d9075bc5fc75c839b" title="Set a matrix to the identity matrix." alt="" coords="483,5,653,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="415,15,469,15,469,21,415,21"/>
+</map>

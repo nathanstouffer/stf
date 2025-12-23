@@ -1,0 +1,9 @@
+<map id="stf::geom::polygon::translated" name="stf::geom::polygon::translated">
+<area shape="rect" id="Node000001" title="Translate a polygon." alt="" coords="5,31,223,56"/>
+<area shape="rect" id="Node000002" href="$classstf_1_1geom_1_1polygon.html#ac64128ec47826b4af8215e4fb5590235" title="Default constructor – empty polygon." alt="" coords="274,5,477,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="223,30,260,26,261,32,223,35"/>
+<area shape="rect" id="Node000003" href="$classstf_1_1geom_1_1polygon.html#aad864c45a12e3c6c7105a2063a20864f" title="Translate a polygon in place." alt="" coords="271,55,480,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="223,51,257,54,257,59,223,56"/>
+<area shape="rect" id="Node000004" href="$structstf_1_1geom_1_1aabb.html#a0c7a3fdc4a29eb563674fa2b11735e05" title="Translate an aabb in place." alt="" coords="528,55,717,80"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="480,65,514,65,514,70,480,70"/>
+</map>

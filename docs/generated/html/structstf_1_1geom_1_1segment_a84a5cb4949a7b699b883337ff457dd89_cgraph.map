@@ -1,0 +1,9 @@
+<map id="stf::geom::segment::aabb" name="stf::geom::segment::aabb">
+<area shape="rect" id="Node000001" title="Compute an aabb that minimally encompasses the segment." alt="" coords="5,31,193,56"/>
+<area shape="rect" id="Node000002" href="$structstf_1_1geom_1_1aabb.html#ab2df26065fbf161fc22489a70b4c67d7" title="Fit a point to an aabb in place." alt="" coords="259,5,403,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="194,30,246,25,246,30,194,36"/>
+<area shape="rect" id="Node000003" href="$structstf_1_1geom_1_1aabb.html#ae458452dbc8bd983ddc7bdad1e2c639f" title="Construct an aabb that is the empty set." alt="" coords="241,55,421,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="194,50,228,54,227,59,194,56"/>
+<area shape="rect" id="Node000004" href="$structstf_1_1geom_1_1aabb.html#a253abdd92a65fb20d5f4d358f9697628" title="Default constructor – encompasses all of R^n." alt="" coords="469,55,632,80"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="421,65,455,65,455,70,421,70"/>
+</map>

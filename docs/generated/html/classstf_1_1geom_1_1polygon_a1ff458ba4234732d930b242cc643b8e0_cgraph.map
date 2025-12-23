@@ -1,0 +1,9 @@
+<map id="stf::geom::polygon::byte_count" name="stf::geom::polygon::byte_count">
+<area shape="rect" id="Node000001" title="Compute the number of bytes allocated by a polygon." alt="" coords="5,31,228,56"/>
+<area shape="rect" id="Node000002" href="$structstf_1_1geom_1_1aabb.html#a11a3a357131783ac639736b05aa52efb" title="Compute the number of bytes allocated by aabb." alt="" coords="297,5,500,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="228,31,283,26,284,31,229,36"/>
+<area shape="rect" id="Node000004" href="$structstf_1_1math_1_1vec_3_01T_00_012_01_4.html#a3e1d4b73eb67542f54af5035173a6f11" title="Compute the number of bytes allocated by vector." alt="" coords="276,55,521,80"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="229,50,263,53,262,58,228,55"/>
+<area shape="rect" id="Node000003" href="$structstf_1_1math_1_1vec.html#a3b95b849471a47b6f1a07fb090a2d162" title="Compute the number of bytes allocated by vector." alt="" coords="569,5,760,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="500,15,555,15,555,21,500,21"/>
+</map>

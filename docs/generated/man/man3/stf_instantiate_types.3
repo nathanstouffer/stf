@@ -1,0 +1,151 @@
+.TH "stf::instantiate_types< T >" 3 "Version 0.0.0" "stf" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+stf::instantiate_types< T > \- Struct that defines type aliases for various templated types\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <stf\&.hpp>\fP
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "\fBusing\fP \fBconstants\fP = \fBmath::constants\fP< T >"
+.br
+.RI "Type alias for constants\&. "
+.ti -1c
+.RI "\fBusing\fP \fBvec2\fP = \fBmath::vec2\fP< T >"
+.br
+.RI "Type alias for vec2\&. "
+.ti -1c
+.RI "\fBusing\fP \fBvec3\fP = \fBmath::vec3\fP< T >"
+.br
+.RI "Type alias for vec3\&. "
+.ti -1c
+.RI "\fBusing\fP \fBvec4\fP = \fBmath::vec4\fP< T >"
+.br
+.RI "Type alias for vec4\&. "
+.ti -1c
+.RI "template<\fBsize_t\fP N> \fBusing\fP \fBvec\fP = \fBmath::vec\fP< T, \fBN\fP >"
+.br
+.RI "Type alias for n-dimensional vector\&. "
+.ti -1c
+.RI "\fBusing\fP \fBmtx2\fP = \fBmath::mtx2\fP< T >"
+.br
+.RI "Type alias for mtx2\&. "
+.ti -1c
+.RI "\fBusing\fP \fBmtx3\fP = \fBmath::mtx3\fP< T >"
+.br
+.RI "Type alias for mtx3\&. "
+.ti -1c
+.RI "\fBusing\fP \fBmtx4\fP = \fBmath::mtx4\fP< T >"
+.br
+.RI "Type alias for mtx4\&. "
+.ti -1c
+.RI "\fBusing\fP \fBcinterval\fP = \fBmath::cinterval\fP< T >"
+.br
+.RI "Type alias for circular interval\&. "
+.ti -1c
+.RI "\fBusing\fP \fBinterval\fP = \fBmath::interval\fP< T >"
+.br
+.RI "Type alias for interval\&. "
+.ti -1c
+.RI "\fBusing\fP \fBaabb2\fP = \fBgeom::aabb2\fP< T >"
+.br
+.RI "Type alias for aabb2\&. "
+.ti -1c
+.RI "\fBusing\fP \fBaabb3\fP = \fBgeom::aabb3\fP< T >"
+.br
+.RI "Type alias for aabb3\&. "
+.ti -1c
+.RI "\fBusing\fP \fBobb2\fP = \fBgeom::obb2\fP< T >"
+.br
+.RI "Type alias for obb2\&. "
+.ti -1c
+.RI "\fBusing\fP \fBobb3\fP = \fBgeom::obb3\fP< T >"
+.br
+.RI "Type alias for obb3\&. "
+.ti -1c
+.RI "\fBusing\fP \fBsegment2\fP = \fBgeom::segment2\fP< T >"
+.br
+.RI "Type alias for segment2\&. "
+.ti -1c
+.RI "\fBusing\fP \fBsegment3\fP = \fBgeom::segment3\fP< T >"
+.br
+.RI "Type alias for segment3\&. "
+.ti -1c
+.RI "\fBusing\fP \fBray2\fP = \fBgeom::ray2\fP< T >"
+.br
+.RI "Type alias for ray2\&. "
+.ti -1c
+.RI "\fBusing\fP \fBray3\fP = \fBgeom::ray3\fP< T >"
+.br
+.RI "Type alias for ray3\&. "
+.ti -1c
+.RI "\fBusing\fP \fBplane\fP = \fBgeom::plane\fP< T >"
+.br
+.RI "Type alias for plane\&. "
+.ti -1c
+.RI "\fBusing\fP \fBcircle\fP = \fBgeom::circle\fP< T >"
+.br
+.RI "Type alias for circle\&. "
+.ti -1c
+.RI "\fBusing\fP \fBsphere\fP = \fBgeom::sphere\fP< T >"
+.br
+.RI "Type alias for sphere\&. "
+.ti -1c
+.RI "\fBusing\fP \fBpolyline2\fP = \fBgeom::polyline2\fP< T >"
+.br
+.RI "Type alias for polyline2\&. "
+.ti -1c
+.RI "\fBusing\fP \fBpolygon\fP = \fBgeom::polygon\fP< T >"
+.br
+.RI "Type alias for polygon\&. "
+.ti -1c
+.RI "\fBusing\fP \fBholygon\fP = \fBgeom::holygon\fP< T >"
+.br
+.RI "Type alias for holygon\&. "
+.ti -1c
+.RI "\fBusing\fP \fBscamera\fP = \fBcam::scamera\fP< T >"
+.br
+.RI "Type alias for scamera\&. "
+.ti -1c
+.RI "\fBusing\fP \fBfrustum\fP = \fBcam::frustum\fP< T >"
+.br
+.RI "Type alias for frustum\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<\fBtypename\fP T>
+.br
+struct stf::instantiate_types< T >"Struct that defines type aliases for various templated types\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP Number type (eg float) 
+.RE
+.PP
+
+.SH "Member Typedef Documentation"
+.PP 
+.SS "template<\fBtypename\fP T > template<\fBsize_t\fP N> \fBusing\fP \fBstf::instantiate_types\fP< T >::vec =  \fBmath::vec\fP<T, \fBN\fP>"
+
+.PP
+Type alias for n-dimensional vector\&. 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIN\fP Dimension 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for stf from the source code\&.

@@ -1,0 +1,7 @@
+<map id="stf::math::mtx::scale" name="stf::math::mtx::scale">
+<area shape="rect" id="Node000001" title="Compute a scale matrix." alt="" coords="5,5,161,31"/>
+<area shape="rect" id="Node000002" href="$structstf_1_1math_1_1mtx.html#a3af7d18a0bfae3637174b8dd9ece2893" title="Default constructor – intializes to the identity matrix." alt="" coords="209,5,357,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="162,15,195,15,195,21,162,21"/>
+<area shape="rect" id="Node000003" href="$structstf_1_1math_1_1mtx.html#a1369a61fa33ee78d9075bc5fc75c839b" title="Set a matrix to the identity matrix." alt="" coords="405,5,576,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="357,15,392,15,392,21,357,21"/>
+</map>

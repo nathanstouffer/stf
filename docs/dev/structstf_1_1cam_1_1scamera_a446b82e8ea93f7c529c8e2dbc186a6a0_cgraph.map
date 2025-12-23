@@ -1,0 +1,5 @@
+<map id="stf::cam::scamera::look" name="stf::cam::scamera::look">
+<area shape="rect" id="Node000001" title="Compute the look direction of the camera." alt="" coords="5,5,180,31"/>
+<area shape="rect" id="Node000002" href="$namespacestf_1_1math.html#a731976438129a4b458e42de14270eaae" title="Compute unit vector in the direction of theta." alt="" coords="228,5,389,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="180,15,214,15,214,21,180,21"/>
+</map>

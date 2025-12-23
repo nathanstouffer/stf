@@ -1,0 +1,31 @@
+<map id="src/stf/include/interface/stf/gfx/color.hpp" name="src/stf/include/interface/stf/gfx/color.hpp">
+<area shape="rect" id="Node000001" title="A file containing various color classes along with associated functions." alt="" coords="34,5,318,31"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,79,88,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="156,33,81,74,79,69,154,28"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="163,152,248,177"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="181,31,203,138,198,139,176,32"/>
+<area shape="rect" id="Node000004" href="$constants_8hpp.html" title="A file containing mathematical constants." alt="" coords="75,225,247,251"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="175,31,159,94,153,135,153,177,158,211,153,212,148,178,148,135,154,93,170,30"/>
+<area shape="rect" id="Node000007" href="$interpolation_8hpp.html" title="A file containing various interpolation functions." alt="" coords="213,79,405,104"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="199,28,277,70,274,74,196,33"/>
+<area shape="rect" id="Node000008" href="$vector_8hpp.html" title="A file containing a templated vector class along with associated functions." alt="" coords="440,152,589,177"/>
+<area shape="poly" id="edge17_Node000001_Node000008" title=" " alt="" coords="265,28,342,46,381,60,419,76,463,107,497,139,493,143,459,111,416,81,379,64,340,51,264,33"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="381,299,443,324"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="202,248,368,295,367,300,201,253"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="132,299,191,324"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="164,251,164,285,159,285,159,251"/>
+<area shape="poly" id="edge8_Node000007_Node000003" title=" " alt="" coords="294,106,235,146,232,142,291,102"/>
+<area shape="poly" id="edge7_Node000007_Node000005" title=" " alt="" coords="309,105,303,133,298,170,301,211,314,249,338,275,369,293,366,298,335,279,310,252,296,212,293,170,297,132,303,104"/>
+<area shape="poly" id="edge9_Node000007_Node000008" title=" " alt="" coords="343,101,469,145,468,150,341,107"/>
+<area shape="poly" id="edge13_Node000008_Node000004" title=" " alt="" coords="458,180,232,225,231,220,457,175"/>
+<area shape="poly" id="edge10_Node000008_Node000005" title=" " alt="" coords="590,162,676,166,759,179,791,190,812,206,817,216,818,227,805,252,780,270,744,284,699,294,649,302,544,310,457,313,457,308,544,305,648,297,698,289,742,279,778,266,801,249,813,226,812,217,808,209,789,195,758,184,676,172,590,168"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="631,225,687,251"/>
+<area shape="poly" id="edge11_Node000008_Node000009" title=" " alt="" coords="539,175,624,217,622,221,537,180"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="711,225,791,251"/>
+<area shape="poly" id="edge12_Node000008_Node000010" title=" " alt="" coords="553,175,700,219,699,224,552,180"/>
+<area shape="rect" id="Node000011" href="$raw_8hpp.html" title="A file containing templated functions for working with scalars stored in raw arrays." alt="" coords="474,225,606,251"/>
+<area shape="poly" id="edge14_Node000008_Node000011" title=" " alt="" coords="521,177,534,212,529,213,516,179"/>
+<area shape="rect" id="Node000012" href="$platform_8hpp_source.html" title=" " alt="" coords="323,225,450,251"/>
+<area shape="poly" id="edge16_Node000008_Node000012" title=" " alt="" coords="495,180,421,221,419,216,493,175"/>
+<area shape="poly" id="edge15_Node000011_Node000005" title=" " alt="" coords="521,253,446,294,444,289,518,248"/>
+</map>

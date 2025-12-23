@@ -1,0 +1,5 @@
+<map id="stf::geom::polyline::push_back" name="stf::geom::polyline::push_back">
+<area shape="rect" id="Node000001" title="Add a vertex to the end of a polyline." alt="" coords="5,5,225,31"/>
+<area shape="rect" id="Node000002" href="$structstf_1_1geom_1_1aabb.html#ab2df26065fbf161fc22489a70b4c67d7" title="Fit a point to an aabb in place." alt="" coords="273,5,417,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="226,15,260,15,260,21,226,21"/>
+</map>

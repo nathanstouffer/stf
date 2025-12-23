@@ -1,0 +1,11 @@
+<map id="stf::math::mtx::operator*=" name="stf::math::mtx::operator*=">
+<area shape="rect" id="Node000001" title="Multiply a matrix by a matrix in place." alt="" coords="5,80,200,105"/>
+<area shape="rect" id="Node000002" href="$structstf_1_1math_1_1mtx_1_1const__col__proxy.html#acbfca00a0adecd7cfe89a8876e4ce1ee" title="Convert a col_proxy to a vec." alt="" coords="248,5,527,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="135,77,187,58,247,39,286,31,287,36,249,45,189,63,136,82"/>
+<area shape="rect" id="Node000003" href="$structstf_1_1math_1_1mtx.html#a9634d5b1a26314750d4b68d7a5ab59fc" title="Const access to a single column of the matrix." alt="" coords="317,55,458,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="200,81,303,72,303,77,200,87"/>
+<area shape="rect" id="Node000004" href="$namespacestf_1_1math.html#affb9352af7b68426cc6ca4e4f2b5e583" title="Compute the dot product of two vectors." alt="" coords="333,104,442,129"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="200,98,319,108,319,114,200,104"/>
+<area shape="rect" id="Node000005" href="$structstf_1_1math_1_1mtx.html#a67fb547b4a002484b260779e286f88ad" title="Const access to a single row of the matrix." alt="" coords="314,153,461,179"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="139,103,249,138,301,150,300,155,247,143,137,108"/>
+</map>

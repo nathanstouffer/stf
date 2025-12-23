@@ -1,0 +1,6 @@
+<map id="stf::math::mtx::determinant" name="stf::math::mtx::determinant">
+<area shape="rect" id="Node000001" title="Compute the determinant of a matrix." alt="" coords="5,29,208,55"/>
+<area shape="poly" id="edge1_Node000001_Node000001" title=" " alt="" coords="69,31,61,21,65,11,81,5,107,3,139,7,151,16,148,20,137,11,107,8,82,10,69,15,66,20,73,27"/>
+<area shape="rect" id="Node000002" href="$structstf_1_1math_1_1mtx.html#a0c1f66961d3c7b222539cdb348c4ad70" title="Compute the minor a matrix for a particular index." alt="" coords="256,29,416,55"/>
+<area shape="poly" id="edge2_Node000001_Node000002" title=" " alt="" coords="208,39,242,39,242,45,208,45"/>
+</map>

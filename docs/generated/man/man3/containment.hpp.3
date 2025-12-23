@@ -1,0 +1,46 @@
+.TH "src/stf/include/interface/stf/alg/containment.hpp" 3 "Version 0.0.0" "stf" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+src/stf/include/interface/stf/alg/containment.hpp \- A file containing functions that report whether or not one geometric object contains another\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+\fC#include 'stf/geom/aabb\&.hpp'\fP
+.br
+\fC#include 'stf/math/vector\&.hpp'\fP
+.br
+
+.SS "Namespaces"
+
+.in +1c
+.ti -1c
+.RI "namespace \fBstf\fP"
+.br
+.RI "Namespace for stf -- a templated math library\&. "
+.ti -1c
+.RI "namespace \fBstf::alg\fP"
+.br
+.RI "Namespace for algorithms\&. "
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "template<typename T , size_t N> bool \fBstf::alg::contains\fP (\fBgeom::aabb\fP< T, N > const &box, \fBmath::vec\fP< T, N > const &point)"
+.br
+.RI "Compute whether an aabb contains a point\&. "
+.ti -1c
+.RI "template<typename T , size_t N> bool \fBstf::alg::contains\fP (\fBgeom::aabb\fP< T, N > const &lhs, \fBgeom::aabb\fP< T, N > const &rhs)"
+.br
+.RI "Compute whether an aabb contains another aabb\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+A file containing functions that report whether or not one geometric object contains another\&. 
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for stf from the source code\&.

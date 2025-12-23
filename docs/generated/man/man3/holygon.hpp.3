@@ -1,0 +1,70 @@
+.TH "src/stf/include/interface/stf/geom/holygon.hpp" 3 "Version 0.0.0" "stf" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+src/stf/include/interface/stf/geom/holygon.hpp \- A file containing a templated holygon class along with associated functions\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <vector>\fP
+.br
+\fC#include 'stf/enums\&.hpp'\fP
+.br
+\fC#include 'stf/geom/aabb\&.hpp'\fP
+.br
+\fC#include 'stf/geom/segment\&.hpp'\fP
+.br
+\fC#include 'stf/geom/polygon\&.hpp'\fP
+.br
+\fC#include 'stf/math/vector\&.hpp'\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBstf::geom::holygon< T >\fP"
+.br
+.RI "A class to represent a polyong with holes\&. "
+.in -1c
+.SS "Namespaces"
+
+.in +1c
+.ti -1c
+.RI "namespace \fBstf\fP"
+.br
+.RI "Namespace for stf -- a templated math library\&. "
+.ti -1c
+.RI "namespace \fBstf::geom\fP"
+.br
+.RI "Namespace for geometric functionality\&. "
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "template<\fBtypename\fP T > T \fBstf::geom::dist_squared\fP (\fBholygon\fP< T > \fBconst\fP &\fBshape\fP, \fBmath::vec2\fP< T > \fBconst\fP &point)"
+.br
+.RI "Compute the square of the distance between a holygon and a vector\&. "
+.ti -1c
+.RI "template<\fBtypename\fP T > T \fBstf::geom::dist_squared\fP (\fBmath::vec2\fP< T > \fBconst\fP &point, \fBholygon\fP< T > \fBconst\fP &\fBshape\fP)"
+.br
+.RI "Compute the square of the distance between a vector and a holygon\&. "
+.ti -1c
+.RI "template<\fBtypename\fP T > T \fBstf::geom::dist\fP (\fBholygon\fP< T > \fBconst\fP &\fBshape\fP, \fBmath::vec2\fP< T > \fBconst\fP &point)"
+.br
+.RI "Compute the distance between a holygon and a vector\&. "
+.ti -1c
+.RI "template<\fBtypename\fP T > T \fBstf::geom::dist\fP (\fBmath::vec2\fP< T > \fBconst\fP &point, \fBholygon\fP< T > \fBconst\fP &\fBshape\fP)"
+.br
+.RI "Compute the distance between a vector and a holygon\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+A file containing a templated holygon class along with associated functions\&. 
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for stf from the source code\&.

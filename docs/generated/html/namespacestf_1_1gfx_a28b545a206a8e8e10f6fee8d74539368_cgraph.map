@@ -1,0 +1,6 @@
+<map id="stf::gfx::lerp" name="stf::gfx::lerp">
+<area shape="rect" id="Node000001" title="Linearly interpolate rgba." alt="" coords="5,29,105,55"/>
+<area shape="poly" id="edge2_Node000001_Node000001" title=" " alt="" coords="26,31,20,21,23,11,35,5,55,3,80,6,90,15,86,19,77,11,55,8,37,10,27,15,25,20,30,28"/>
+<area shape="rect" id="Node000002" href="$structstf_1_1gfx_1_1rgba.html#a958c5193e6b31167a481f936b8c1a0fa" title="Compute the color as a vec4." alt="" coords="153,29,311,55"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="106,39,139,39,139,45,106,45"/>
+</map>

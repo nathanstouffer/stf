@@ -1,0 +1,441 @@
+.TH "stf::math::vec< T, N >" 3 "Version 0.0.0" "stf" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+stf::math::vec< T, N > \- A class representing elements of R^n\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <vector\&.hpp>\fP
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "using \fBconst_array_t\fP = T const [N]"
+.br
+.RI "A type alias for the array that stores the underlying values\&. "
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "constexpr \fBvec\fP ()"
+.br
+.RI "Default constructor -- intializes all dimensions to 0\&. "
+.ti -1c
+.RI "constexpr \fBvec\fP (T const value)"
+.br
+.RI "Construct from a single scalar -- initializes all dimensions to \fCvalue\fP\&. "
+.ti -1c
+.RI "constexpr \fBvec\fP (\fBvec\fP< T, N \- 1 > const &\fBprefix\fP, T const suffix)"
+.br
+.RI "Construct from a N - 1 dimensional vector and a scalar\&. "
+.ti -1c
+.RI "constexpr \fBvec\fP (\fBconst_array_t\fP const &_values)"
+.br
+.RI "Construct from a raw array of scalars\&. "
+.ti -1c
+.RI "constexpr \fBvec\fP (std::array< T, N > const &_values)"
+.br
+.RI "Construct from a std::array of scalars\&. "
+.ti -1c
+.RI "size_t \fBsize\fP () const"
+.br
+.RI "Return the dimension of the vector\&. "
+.ti -1c
+.RI "T const & \fBoperator[]\fP (size_t i) const"
+.br
+.RI "Return a scalar from the vector\&. "
+.ti -1c
+.RI "T & \fBoperator[]\fP (size_t i)"
+.br
+.RI "Return a scalar from the vector\&. "
+.ti -1c
+.RI "\fBvec\fP & \fBoperator+=\fP (\fBvec\fP const &rhs)"
+.br
+.RI "Add to a vector in place\&. "
+.ti -1c
+.RI "\fBvec\fP & \fBoperator\-=\fP (\fBvec\fP const &rhs)"
+.br
+.RI "Subtract from a vector in place\&. "
+.ti -1c
+.RI "\fBvec\fP & \fBoperator*=\fP (T const scalar)"
+.br
+.RI "Scale a vector in place\&. "
+.ti -1c
+.RI "\fBvec\fP & \fBoperator*=\fP (\fBvec\fP const &rhs)"
+.br
+.RI "Compute a hadamard product in place\&. "
+.ti -1c
+.RI "\fBvec\fP & \fBoperator/=\fP (T const divisor)"
+.br
+.RI "Divide a vector in place\&. "
+.ti -1c
+.RI "T \fBdot\fP (\fBvec\fP const &rhs) const"
+.br
+.RI "Compute a dot product\&. "
+.ti -1c
+.RI "T \fBlength_squared\fP () const"
+.br
+.RI "Compute the square of the length of a vector\&. "
+.ti -1c
+.RI "T \fBlength\fP () const"
+.br
+.RI "Compute the length of a vector\&. "
+.ti -1c
+.RI "\fBvec\fP & \fBnormalize\fP ()"
+.br
+.RI "Normalize a vector in place\&. "
+.ti -1c
+.RI "\fBvec\fP \fBnormalized\fP () const"
+.br
+.RI "Compute a normalized vector\&. "
+.ti -1c
+.RI "\fBvec\fP \fBprojected_on\fP (\fBvec\fP const &rhs) const"
+.br
+.RI "Compute the component of a vector in the direction of another vector\&. "
+.ti -1c
+.RI "\fBvec\fP \fBorthogonal_to\fP (\fBvec\fP const &rhs) const"
+.br
+.RI "Compute the component of a vector orthogonal to another vector\&. "
+.ti -1c
+.RI "template<typename U > \fBvec\fP< U, N > \fBas\fP () const"
+.br
+.RI "Cast a vector to a different precision\&. "
+.in -1c
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "static size_t \fBbyte_count\fP ()"
+.br
+.RI "Compute the number of bytes allocated by vector\&. "
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "T \fBvalues\fP [N]"
+.br
+.RI "A raw array to store the values making up the vector\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<typename T, size_t N>
+.br
+struct stf::math::vec< T, N >"A class representing elements of R^n\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP Number type (eg float) 
+.br
+\fIN\fP Dimension
+.RE
+.PP
+\fBTodo\fP
+.RS 4
+Possibly use the CRTP to reduce verbosity -- just make sure to test performance/memory layout implications\&. Unfortunately there is a lot of duplication between the generic vector class and the specializations when the dimension is specialized for N = 2, 3, 4\&. This could be avoided by pairing Curiously Recurring Template Pattern with some casting to the derived class type\&. But I opted for simplicity even though it involves more duplication\&. To reduce some of the unwanted duplication, many of the member functions call through to templated functions that operate directly on the underlying raw pointers 
+.RE
+.PP
+
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<typename T , size_t N> constexpr \fBstf::math::vec\fP< T, N >::vec (T const value)\fC [inline]\fP, \fC [explicit]\fP, \fC [constexpr]\fP"
+
+.PP
+Construct from a single scalar -- initializes all dimensions to \fCvalue\fP\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIvalue\fP 
+.RE
+.PP
+
+.SS "template<typename T , size_t N> constexpr \fBstf::math::vec\fP< T, N >::vec (\fBvec\fP< T, N \- 1 > const & prefix, T const suffix)\fC [inline]\fP, \fC [constexpr]\fP"
+
+.PP
+Construct from a N - 1 dimensional vector and a scalar\&. \fCprefix\fP is used to fill the first N - 1 dimensions and \fCsuffix\fP is used as the value for the N dimension
+.PP
+\fBParameters\fP
+.RS 4
+\fIprefix\fP 
+.br
+\fIsuffix\fP 
+.RE
+.PP
+
+.SS "template<typename T , size_t N> constexpr \fBstf::math::vec\fP< T, N >::vec (\fBconst_array_t\fP const & _values)\fC [inline]\fP, \fC [explicit]\fP, \fC [constexpr]\fP"
+
+.PP
+Construct from a raw array of scalars\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fI_values\fP 
+.RE
+.PP
+
+.SS "template<typename T , size_t N> constexpr \fBstf::math::vec\fP< T, N >::vec (std::array< T, N > const & _values)\fC [inline]\fP, \fC [explicit]\fP, \fC [constexpr]\fP"
+
+.PP
+Construct from a std::array of scalars\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fI_values\fP 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "template<typename T , size_t N> template<typename U > \fBvec\fP< U, N > \fBstf::math::vec\fP< T, N >::as () const\fC [inline]\fP"
+
+.PP
+Cast a vector to a different precision\&. 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIU\fP Destination number type (eg float) 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+\fCthis\fP casted to the precision of \fCU\fP 
+.RE
+.PP
+
+.SS "template<typename T , size_t N> static size_t \fBstf::math::vec\fP< T, N >::byte_count ()\fC [inline]\fP, \fC [static]\fP"
+
+.PP
+Compute the number of bytes allocated by vector\&. 
+.PP
+\fBReturns\fP
+.RS 4
+The byte count 
+.RE
+.PP
+
+.SS "template<typename T , size_t N> T \fBstf::math::vec\fP< T, N >::dot (\fBvec\fP< T, N > const & rhs) const\fC [inline]\fP"
+
+.PP
+Compute a dot product\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIrhs\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The dot product of \fCthis\fP with \fCrhs\fP 
+.RE
+.PP
+
+.SS "template<typename T , size_t N> T \fBstf::math::vec\fP< T, N >::length () const\fC [inline]\fP"
+
+.PP
+Compute the length of a vector\&. 
+.PP
+\fBReturns\fP
+.RS 4
+The length of \fCthis\fP 
+.RE
+.PP
+
+.SS "template<typename T , size_t N> T \fBstf::math::vec\fP< T, N >::length_squared () const\fC [inline]\fP"
+
+.PP
+Compute the square of the length of a vector\&. 
+.PP
+\fBReturns\fP
+.RS 4
+The length squared of \fCthis\fP 
+.RE
+.PP
+
+.SS "template<typename T , size_t N> \fBvec\fP & \fBstf::math::vec\fP< T, N >::normalize ()\fC [inline]\fP"
+
+.PP
+Normalize a vector in place\&. 
+.PP
+\fBReturns\fP
+.RS 4
+A reference to \fCthis\fP 
+.RE
+.PP
+
+.SS "template<typename T , size_t N> \fBvec\fP \fBstf::math::vec\fP< T, N >::normalized () const\fC [inline]\fP"
+
+.PP
+Compute a normalized vector\&. 
+.PP
+\fBReturns\fP
+.RS 4
+A normalized vector in the direction of \fCthis\fP 
+.RE
+.PP
+
+.SS "template<typename T , size_t N> \fBvec\fP & \fBstf::math::vec\fP< T, N >::operator*= (T const scalar)\fC [inline]\fP"
+
+.PP
+Scale a vector in place\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIscalar\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+A reference to \fCthis\fP 
+.RE
+.PP
+
+.SS "template<typename T , size_t N> \fBvec\fP & \fBstf::math::vec\fP< T, N >::operator*= (\fBvec\fP< T, N > const & rhs)\fC [inline]\fP"
+
+.PP
+Compute a hadamard product in place\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIrhs\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+A reference to \fCthis\fP 
+.RE
+.PP
+
+.SS "template<typename T , size_t N> \fBvec\fP & \fBstf::math::vec\fP< T, N >::operator+= (\fBvec\fP< T, N > const & rhs)\fC [inline]\fP"
+
+.PP
+Add to a vector in place\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIrhs\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+A reference to \fCthis\fP 
+.RE
+.PP
+
+.SS "template<typename T , size_t N> \fBvec\fP & \fBstf::math::vec\fP< T, N >::operator\-= (\fBvec\fP< T, N > const & rhs)\fC [inline]\fP"
+
+.PP
+Subtract from a vector in place\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIrhs\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+A reference to \fCthis\fP 
+.RE
+.PP
+
+.SS "template<typename T , size_t N> \fBvec\fP & \fBstf::math::vec\fP< T, N >::operator/= (T const divisor)\fC [inline]\fP"
+
+.PP
+Divide a vector in place\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIdivisor\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+A reference to \fCthis\fP 
+.RE
+.PP
+
+.SS "template<typename T , size_t N> T & \fBstf::math::vec\fP< T, N >::operator[] (size_t i)\fC [inline]\fP"
+
+.PP
+Return a scalar from the vector\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIi\fP The dimension of the vector to read 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+A reference to the scalar at dimension \fCi\fP 
+.RE
+.PP
+
+.SS "template<typename T , size_t N> T const  & \fBstf::math::vec\fP< T, N >::operator[] (size_t i) const\fC [inline]\fP"
+
+.PP
+Return a scalar from the vector\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIi\fP The dimension of the vector to read 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+A const reference to the scalar at dimension \fCi\fP 
+.RE
+.PP
+
+.SS "template<typename T , size_t N> \fBvec\fP \fBstf::math::vec\fP< T, N >::orthogonal_to (\fBvec\fP< T, N > const & rhs) const\fC [inline]\fP"
+
+.PP
+Compute the component of a vector orthogonal to another vector\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIrhs\fP The direction orthogonal to the projection 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The component of \fCthis\fP orthogonal to \fCrhs\fP 
+.RE
+.PP
+
+.SS "template<typename T , size_t N> \fBvec\fP \fBstf::math::vec\fP< T, N >::projected_on (\fBvec\fP< T, N > const & rhs) const\fC [inline]\fP"
+
+.PP
+Compute the component of a vector in the direction of another vector\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIrhs\fP The direction of the projection 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The component of \fCthis\fP in the direction of \fCrhs\fP 
+.RE
+.PP
+
+.SS "template<typename T , size_t N> size_t \fBstf::math::vec\fP< T, N >::size () const\fC [inline]\fP"
+
+.PP
+Return the dimension of the vector\&. 
+.PP
+\fBReturns\fP
+.RS 4
+The dimension of the vector 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for stf from the source code\&.

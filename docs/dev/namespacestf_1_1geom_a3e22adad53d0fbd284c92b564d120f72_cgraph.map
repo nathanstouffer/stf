@@ -1,0 +1,5 @@
+<map id="stf::geom::signed_dist" name="stf::geom::signed_dist">
+<area shape="rect" id="Node000001" title="Compute the signed distance between a vector and a polygon." alt="" coords="5,5,171,31"/>
+<area shape="rect" id="Node000002" href="$namespacestf_1_1geom.html#acb6af2df60111eb94a7bfd4c26d541dd" title="Compute the signed distance between a hyperplane and a vector." alt="" coords="219,5,384,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="171,15,205,15,205,21,171,21"/>
+</map>

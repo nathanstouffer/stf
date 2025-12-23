@@ -1,0 +1,11 @@
+<map id="stf::alg::intersects" name="stf::alg::intersects">
+<area shape="rect" id="Node000001" title="Compute whether or not two segment2s intersect." alt="" coords="5,31,144,56"/>
+<area shape="rect" id="Node000002" href="$namespacestf_1_1alg.html#a2dd40179e42ebc262c82349808573e2c" title="Compute whether or not two intervals intersect." alt="" coords="202,5,341,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="144,32,188,26,189,31,145,37"/>
+<area shape="rect" id="Node000004" href="$namespacestf_1_1math.html#a73d9e43eb556d940a4473faf756b0772" title="Compute the orientation of p, q, and r." alt="" coords="192,55,351,80"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="145,49,179,53,178,59,144,54"/>
+<area shape="rect" id="Node000003" href="$structstf_1_1math_1_1interval.html#af38f0eee33fe03ccb3abfd59db3896cb" title="Compute if two intervals intersect." alt="" coords="399,5,609,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="341,15,385,15,385,21,341,21"/>
+<area shape="rect" id="Node000005" href="$namespacestf_1_1math.html#a2a4e3d257a2f7cc1a961d613ae161333" title="Compute the 2D cross product of lhs and rhs." alt="" coords="443,55,565,80"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="351,65,429,65,429,70,351,70"/>
+</map>

@@ -1,0 +1,8 @@
+<map id="stf::geom::polyline::interpolate" name="stf::geom::polyline::interpolate">
+<area shape="rect" id="Node000001" title="Interpolate along a polyline t = 0 is the first vertex and t = 1 is the final vertex." alt="" coords="5,43,228,68"/>
+<area shape="rect" id="Node000002" href="$classstf_1_1geom_1_1polyline.html#a3ba378e24fa3e0884ff3bf1b49d3b6e7" title="Access an edge of a polyline." alt="" coords="281,5,463,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="204,40,271,30,271,35,204,45"/>
+<area shape="rect" id="Node000003" href="$classstf_1_1geom_1_1polyline.html#ae430505baaef4623facec80eb9fd3ca7" title="Compute the length of a polyline." alt="" coords="276,79,468,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="207,65,268,74,267,79,207,71"/>
+<area shape="poly" id="edge3_Node000003_Node000003" title=" " alt="" coords="331,80,322,70,327,60,344,54,372,52,408,56,418,61,422,66,417,69,414,65,406,61,372,57,345,59,330,64,327,70,335,77"/>
+</map>

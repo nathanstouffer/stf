@@ -1,0 +1,5 @@
+<map id="stf::cam::frustum::projection" name="stf::cam::frustum::projection">
+<area shape="rect" id="Node000001" title="Compute the projection of a frustum onto an axis." alt="" coords="5,5,212,31"/>
+<area shape="rect" id="Node000002" href="$namespacestf_1_1math.html#affb9352af7b68426cc6ca4e4f2b5e583" title="Compute the dot product of two vectors." alt="" coords="260,5,369,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="212,15,246,15,246,21,212,21"/>
+</map>

@@ -1,0 +1,9 @@
+<map id="stf::math::scale_z" name="stf::math::scale_z">
+<area shape="rect" id="Node000001" title="Construct a matrix that scales in z." alt="" coords="5,5,141,31"/>
+<area shape="rect" id="Node000002" href="$structstf_1_1math_1_1mtx.html#a33ec84ea69fa23b489ea249793317db8" title="Compute a scale matrix." alt="" coords="189,5,345,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="142,15,176,15,176,21,142,21"/>
+<area shape="rect" id="Node000003" href="$structstf_1_1math_1_1mtx.html#a3af7d18a0bfae3637174b8dd9ece2893" title="Default constructor – intializes to the identity matrix." alt="" coords="393,5,541,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="346,15,379,15,379,21,346,21"/>
+<area shape="rect" id="Node000004" href="$structstf_1_1math_1_1mtx.html#a1369a61fa33ee78d9075bc5fc75c839b" title="Set a matrix to the identity matrix." alt="" coords="589,5,760,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="541,15,576,15,576,21,541,21"/>
+</map>

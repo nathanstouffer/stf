@@ -1,0 +1,18 @@
+<map id="stf::math::mtx::inverted" name="stf::math::mtx::inverted">
+<area shape="rect" id="Node000001" title="Compute the inverse of a matrix." alt="" coords="5,80,181,105"/>
+<area shape="rect" id="Node000002" href="$structstf_1_1math_1_1mtx.html#a6a7476283ced64000f41fce6ff1dd753" title="Compute the cofactor matrix." alt="" coords="229,80,420,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="182,90,216,90,216,95,182,95"/>
+<area shape="rect" id="Node000003" href="$structstf_1_1math_1_1mtx.html#a99284fc89e13fc8af925ae05b919f8a3" title="Compute the determinant of a matrix." alt="" coords="468,29,671,55"/>
+<area shape="poly" id="edge8_Node000001_Node000003" title=" " alt="" coords="154,77,229,65,345,52,454,45,455,50,345,58,230,70,155,83"/>
+<area shape="rect" id="Node000007" href="$structstf_1_1math_1_1mtx.html#addd61e9030ec8029a860a04c1e47439b" title="Transpose a matrix in&#45;place." alt="" coords="231,129,418,155"/>
+<area shape="poly" id="edge9_Node000001_Node000007" title=" " alt="" coords="154,103,252,124,251,129,153,108"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="387,77,494,55,495,60,388,82"/>
+<area shape="rect" id="Node000004" href="$structstf_1_1math_1_1mtx.html#a0c1f66961d3c7b222539cdb348c4ad70" title="Compute the minor a matrix for a particular index." alt="" coords="724,55,884,80"/>
+<area shape="poly" id="edge5_Node000002_Node000004" title=" " alt="" coords="420,85,710,70,710,75,420,90"/>
+<area shape="rect" id="Node000005" href="$structstf_1_1math_1_1mtx.html#a3af7d18a0bfae3637174b8dd9ece2893" title="Default constructor – intializes to the identity matrix." alt="" coords="495,131,643,156"/>
+<area shape="poly" id="edge6_Node000002_Node000005" title=" " alt="" coords="388,103,495,125,494,130,387,108"/>
+<area shape="poly" id="edge3_Node000003_Node000003" title=" " alt="" coords="531,31,523,21,527,11,543,5,569,3,602,7,615,16,612,20,600,11,569,8,544,10,531,15,528,20,535,27"/>
+<area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="671,50,711,55,710,60,670,56"/>
+<area shape="rect" id="Node000006" href="$structstf_1_1math_1_1mtx.html#a1369a61fa33ee78d9075bc5fc75c839b" title="Set a matrix to the identity matrix." alt="" coords="719,131,889,156"/>
+<area shape="poly" id="edge7_Node000005_Node000006" title=" " alt="" coords="643,141,705,141,705,146,643,146"/>
+</map>

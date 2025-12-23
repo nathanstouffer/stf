@@ -1,0 +1,13 @@
+<map id="src/stf/include/interface/stf/alg/statistics.hpp" name="src/stf/include/interface/stf/alg/statistics.hpp">
+<area shape="rect" id="Node000001" title="A file containing functions that compute statistics." alt="" coords="5,5,316,31"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="19,79,105,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="146,33,91,73,88,68,143,29"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="129,79,192,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="163,31,163,65,158,65,158,31"/>
+<area shape="rect" id="Node000004" href="$constants_8hpp.html" title="A file containing mathematical constants." alt="" coords="216,79,388,104"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="185,28,268,70,266,75,182,33"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="228,152,291,177"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="297,106,275,142,271,139,293,103"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="315,152,374,177"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="311,103,333,139,329,142,307,106"/>
+</map>

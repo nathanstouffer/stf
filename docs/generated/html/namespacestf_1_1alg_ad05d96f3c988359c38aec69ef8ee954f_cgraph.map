@@ -1,0 +1,22 @@
+<map id="stf::alg::intersects" name="stf::alg::intersects">
+<area shape="rect" id="Node000001" title="Compute whether or not a frustum and an aabb intersect." alt="" coords="5,80,144,105"/>
+<area shape="rect" id="Node000002" href="$classstf_1_1cam_1_1frustum.html#a613bf0dd73cf9b52eec7ec0f281e018d" title="Compute whether or not an aabb intersects a frustum." alt="" coords="192,80,397,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="144,90,178,90,178,95,144,95"/>
+<area shape="rect" id="Node000003" href="$structstf_1_1math_1_1interval.html#af38f0eee33fe03ccb3abfd59db3896cb" title="Compute if two intervals intersect." alt="" coords="459,5,669,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="329,77,445,39,479,31,480,36,446,45,330,83"/>
+<area shape="rect" id="Node000004" href="$classstf_1_1cam_1_1frustum.html#a98912913e71533d4ccfb6dfd9408a855" title="Compute whether or not an aabb intersects a frustum." alt="" coords="445,55,683,80"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="397,80,432,77,432,82,398,86"/>
+<area shape="rect" id="Node000007" href="$classstf_1_1cam_1_1frustum.html#a916fb6de4494128c1733bc6a6258f3e1" title="Compute the projection of a frustum onto an axis." alt="" coords="461,153,667,179"/>
+<area shape="poly" id="edge7_Node000002_Node000007" title=" " alt="" coords="333,103,446,138,486,148,485,153,445,143,332,108"/>
+<area shape="rect" id="Node000009" href="$structstf_1_1geom_1_1aabb.html#ae65c1b954f93ed0bdd726a085e3a4b88" title="Compute the projection of an aabb onto an axis." alt="" coords="466,104,662,129"/>
+<area shape="poly" id="edge9_Node000002_Node000009" title=" " alt="" coords="398,99,452,104,452,109,397,104"/>
+<area shape="rect" id="Node000005" href="$structstf_1_1geom_1_1aabb.html#ab24c36a1c6c5a85cce34acc4aeef3249" title="Compute an extremity of an aabb in a given direction." alt="" coords="731,104,925,129"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="633,77,746,99,745,104,632,83"/>
+<area shape="rect" id="Node000006" href="$structstf_1_1geom_1_1aabb.html#a5b5a3a3f83d5edeb89929eb46133db56" title="Compute if two aabb intersect." alt="" coords="731,31,925,56"/>
+<area shape="poly" id="edge6_Node000004_Node000006" title=" " alt="" coords="683,54,717,51,717,56,683,59"/>
+<area shape="poly" id="edge5_Node000005_Node000005" title=" " alt="" coords="785,106,776,96,781,86,799,79,828,77,866,81,876,86,880,92,875,95,873,90,864,87,828,83,800,85,784,90,781,95,789,102"/>
+<area shape="rect" id="Node000008" href="$namespacestf_1_1math.html#affb9352af7b68426cc6ca4e4f2b5e583" title="Compute the dot product of two vectors." alt="" coords="773,153,883,179"/>
+<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="667,163,759,163,759,169,667,169"/>
+<area shape="poly" id="edge11_Node000009_Node000005" title=" " alt="" coords="662,114,717,114,717,119,662,119"/>
+<area shape="poly" id="edge10_Node000009_Node000008" title=" " alt="" coords="633,127,760,151,759,156,632,132"/>
+</map>

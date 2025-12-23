@@ -1,0 +1,29 @@
+.TH "todo" 3 "Version 0.0.0" "stf" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+todo \- Todo List 
+.PP
+
+.IP "\fBMember \fBstf::alg::clip\fP (\fBgeom::aabb2< T >\fP const &box, \fBgeom::segment2< T >\fP &seg)\fP" 1c
+possibly refactor this to return a std::optional<geom::segment2<T>> 
+.PP
+.PP
+possibly rename this to include the name of the algorithm (cohen-sutherland) 
+.PP
+.PP
+possibly add the liang-barsky clipping algorithm as well  
+.IP "\fBClass \fBstf::gfx::gradient\fP \fP" 1c
+Possibly template the gradient class  
+.IP "\fBStruct \fBstf::gfx::rgba\fP \fP" 1c
+Possibly template this class?  
+.IP "\fBStruct \fBstf::math::cinterval< T >\fP \fP" 1c
+Consider renaming this to angular_interval or ainterval  
+.IP "\fBStruct \fBstf::math::vec< T, N >\fP \fP" 1c
+Possibly use the CRTP to reduce verbosity -- just make sure to test performance/memory layout implications\&. Unfortunately there is a lot of duplication between the generic vector class and the specializations when the dimension is specialized for N = 2, 3, 4\&. This could be avoided by pairing Curiously Recurring Template Pattern with some casting to the derived class type\&. But I opted for simplicity even though it involves more duplication\&. To reduce some of the unwanted duplication, many of the member functions call through to templated functions that operate directly on the underlying raw pointers  
+.IP "\fBClass \fBstf::spatial::interval_tree< T, V >\fP \fP" 1c
+Allocate nodes in chunks instead of one-by-one  
+.IP "\fBFile \fBtessellation\&.hpp\fP \fP" 1c
+Write a polyline tessellation algorithm that adds vertices at all intersections with a grid 
+.PP
+

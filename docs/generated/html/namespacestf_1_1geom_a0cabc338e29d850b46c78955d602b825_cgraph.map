@@ -1,0 +1,15 @@
+<map id="stf::geom::dist" name="stf::geom::dist">
+<area shape="rect" id="Node000001" title="Compute the distance between a vector and a polygon." alt="" coords="5,55,120,80"/>
+<area shape="rect" id="Node000002" href="$namespacestf_1_1geom.html#a6f1b60785c72850c01e929a2584f7d9f" title="Compute the distance between an aabb and a vector." alt="" coords="168,55,283,80"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="120,65,154,65,154,70,120,70"/>
+<area shape="rect" id="Node000003" href="$structstf_1_1geom_1_1aabb.html#a3e33ff195a65f18443eea82353b95d94" title="Compute the distance between an aabb and a vector." alt="" coords="331,55,485,80"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="283,65,317,65,317,70,283,70"/>
+<area shape="rect" id="Node000004" href="$structstf_1_1geom_1_1aabb.html#a94ea7b34e6fa3ddd7449ebc414303c04" title="Compute the square of the distance between an aabb and a vector." alt="" coords="533,55,748,80"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="486,65,520,65,520,70,486,70"/>
+<area shape="rect" id="Node000005" href="$namespacestf_1_1math.html#a434400353fc8f81cbea4653948b7dadd" title="Clamp a vector." alt="" coords="825,5,953,31"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="705,52,811,31,813,36,706,57"/>
+<area shape="rect" id="Node000006" href="$structstf_1_1geom_1_1aabb.html#af25c4484fee1f0937bb4349390fc5ae9" title="Compute whether a point is contained in an aabb." alt="" coords="796,55,983,80"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="748,65,782,65,782,70,748,70"/>
+<area shape="rect" id="Node000007" href="$namespacestf_1_1math.html#ad82b998efe770c215834daefd24494d9" title="Compute the square of the distance between lhs and rhs." alt="" coords="804,104,975,129"/>
+<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="706,77,812,99,811,104,705,83"/>
+</map>

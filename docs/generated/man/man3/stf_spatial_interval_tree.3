@@ -1,0 +1,189 @@
+.TH "stf::spatial::interval_tree< T, V >" 3 "Version 0.0.0" "stf" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+stf::spatial::interval_tree< T, V > \- A class that stores key-value pairs of intervals and values for querying\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <interval_tree\&.hpp>\fP
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBentry_t\fP"
+.br
+.RI "A struct to store entries in the tree\&. "
+.ti -1c
+.RI "struct \fBquery_iterator\fP"
+.br
+.RI "An iterator pointing to an underlying entry that also knows how to jump to the next entry that contains a query point\&. "
+.ti -1c
+.RI "struct \fBquery_range\fP"
+.br
+.RI "A range returned from a query\&. "
+.in -1c
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "using \fBinterval_t\fP = \fBmath::interval\fP< T >"
+.br
+.RI "Type alias for an interval\&. "
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBinterval_tree\fP (std::vector< \fBentry_t\fP > const &entries)"
+.br
+.RI "Construct an interval tree from a set of entries\&. "
+.ti -1c
+.RI "\fBinterval_tree\fP (std::vector< \fBentry_t\fP > &&entries)"
+.br
+.RI "Construct an interval tree from a set of entries\&. "
+.ti -1c
+.RI "\fBinterval_tree\fP (\fBinterval_tree\fP const &rhs)"
+.br
+.RI "Copy constructor for \fBinterval_tree\fP\&. "
+.ti -1c
+.RI "\fBinterval_tree\fP & \fBoperator=\fP (\fBinterval_tree\fP const &rhs)"
+.br
+.RI "Copy assignment operator for \fBinterval_tree\fP\&. "
+.ti -1c
+.RI "\fBinterval_tree\fP (\fBinterval_tree\fP &&rhs) noexcept=default"
+.br
+.RI "Move constructor for \fBinterval_tree\fP\&. "
+.ti -1c
+.RI "\fBinterval_tree\fP & \fBoperator=\fP (\fBinterval_tree\fP &&rhs) noexcept=default"
+.br
+.RI "Move assignment operator for \fBinterval_tree\fP\&. "
+.ti -1c
+.RI "\fBquery_range\fP \fBfind\fP (T const query) const"
+.br
+.RI "Find a range of entries whose intervals contain a query point\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<typename T, typename V>
+.br
+class stf::spatial::interval_tree< T, V >"A class that stores key-value pairs of intervals and values for querying\&. 
+
+Given a query number x, the intersecting intervals can be computed in O(log(n) + k) time where n is the number of intervals and k is the number of intersecting intervals\&. Duplicate keys are supported, they will just be returned separately with their associated values\&.
+.PP
+\fBTodo\fP
+.RS 4
+Allocate nodes in chunks instead of one-by-one 
+.RE
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP Number type (eg float) 
+.br
+\fIV\fP The value type stored in the tree 
+.RE
+.PP
+
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<typename T , typename V > \fBstf::spatial::interval_tree\fP< T, V >::interval_tree (std::vector< \fBentry_t\fP > const & entries)\fC [inline]\fP, \fC [explicit]\fP"
+
+.PP
+Construct an interval tree from a set of entries\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIentries\fP The entries that will be copied into the tree 
+.RE
+.PP
+
+.SS "template<typename T , typename V > \fBstf::spatial::interval_tree\fP< T, V >::interval_tree (std::vector< \fBentry_t\fP > && entries)\fC [inline]\fP, \fC [explicit]\fP"
+
+.PP
+Construct an interval tree from a set of entries\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIentries\fP The entries that will be moved into the tree 
+.RE
+.PP
+
+.SS "template<typename T , typename V > \fBstf::spatial::interval_tree\fP< T, V >::interval_tree (\fBinterval_tree\fP< T, V > const & rhs)\fC [inline]\fP"
+
+.PP
+Copy constructor for \fBinterval_tree\fP\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIrhs\fP The \fBinterval_tree\fP to be copied 
+.RE
+.PP
+
+.SS "template<typename T , typename V > \fBstf::spatial::interval_tree\fP< T, V >::interval_tree (\fBinterval_tree\fP< T, V > && rhs)\fC [default]\fP, \fC [noexcept]\fP"
+
+.PP
+Move constructor for \fBinterval_tree\fP\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIrhs\fP The \fBinterval_tree\fP to be moved 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "template<typename T , typename V > \fBquery_range\fP \fBstf::spatial::interval_tree\fP< T, V >::find (T const query) const\fC [inline]\fP"
+
+.PP
+Find a range of entries whose intervals contain a query point\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIquery\fP The query value 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The range of entries that contain \fCquery\fP 
+.RE
+.PP
+
+.SS "template<typename T , typename V > \fBinterval_tree\fP & \fBstf::spatial::interval_tree\fP< T, V >::operator= (\fBinterval_tree\fP< T, V > && rhs)\fC [default]\fP, \fC [noexcept]\fP"
+
+.PP
+Move assignment operator for \fBinterval_tree\fP\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIrhs\fP The \fBinterval_tree\fP to be copied 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+A reference to the calling object 
+.RE
+.PP
+
+.SS "template<typename T , typename V > \fBinterval_tree\fP & \fBstf::spatial::interval_tree\fP< T, V >::operator= (\fBinterval_tree\fP< T, V > const & rhs)\fC [inline]\fP"
+
+.PP
+Copy assignment operator for \fBinterval_tree\fP\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIrhs\fP The \fBinterval_tree\fP to be copied 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+A reference to the calling object 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for stf from the source code\&.

@@ -1,0 +1,5 @@
+<map id="stf::geom::polyline::size" name="stf::geom::polyline::size">
+<area shape="rect" id="Node000001" title="Compute the size of the polyline." alt="" coords="5,5,183,31"/>
+<area shape="rect" id="Node000002" href="$classstf_1_1geom_1_1polyline.html#a2a39470967b9c554d71d6630bc9fc785" title="Report whether or not a polyline is empty." alt="" coords="231,5,441,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="183,15,217,15,217,21,183,21"/>
+</map>

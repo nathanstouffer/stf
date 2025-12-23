@@ -1,0 +1,5 @@
+<map id="stf::math::equ" name="stf::math::equ">
+<area shape="rect" id="Node000001" title="Compute whether the distance between lhs and rhs is less than or equal to eps." alt="" coords="5,5,117,31"/>
+<area shape="rect" id="Node000002" href="$namespacestf_1_1math.html#a0cbb8839da3544d5ca8a34863bdc8250" title="Compute the distance between lhs and rhs." alt="" coords="165,5,277,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="118,15,152,15,152,21,118,21"/>
+</map>

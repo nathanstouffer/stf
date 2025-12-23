@@ -1,0 +1,13 @@
+<map id="stf::geom::segment::direction" name="stf::geom::segment::direction">
+<area shape="rect" id="Node000001" title="Compute the (normalized) direction of the segment." alt="" coords="5,31,219,56"/>
+<area shape="rect" id="Node000002" href="$structstf_1_1geom_1_1segment.html#a0868c17d40c531f5cc16805748c19ff9" title="Compute the delta between the second and first point of the segment." alt="" coords="267,5,456,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="219,30,253,26,253,32,219,35"/>
+<area shape="rect" id="Node000003" href="$structstf_1_1math_1_1vec.html#ad20fe288fff2a716d572da78d9d9096f" title="Normalize a vector in place." alt="" coords="269,55,453,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="219,51,256,55,255,60,219,56"/>
+<area shape="rect" id="Node000004" href="$structstf_1_1math_1_1vec.html#a97f2c2a8d720424c4ccef251e67c1a88" title="Compute the length of a vector." alt="" coords="504,55,664,80"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="453,65,490,65,490,70,453,70"/>
+<area shape="rect" id="Node000005" href="$structstf_1_1math_1_1vec.html#a610217eefffe4b0f4198566f38fb1a65" title="Compute the square of the length of a vector." alt="" coords="712,55,931,80"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="664,65,698,65,698,70,664,70"/>
+<area shape="rect" id="Node000006" href="$structstf_1_1math_1_1vec.html#a792befdb144d88254663fbdbe7ad1624" title="Compute a dot product." alt="" coords="979,55,1119,80"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="931,65,965,65,965,70,931,70"/>
+</map>

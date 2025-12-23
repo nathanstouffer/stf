@@ -1,0 +1,7 @@
+<map id="stf::geom::polyline::reserve" name="stf::geom::polyline::reserve">
+<area shape="rect" id="Node000001" title="Reserve memory for a polyline with size vertices." alt="" coords="5,5,205,31"/>
+<area shape="rect" id="Node000002" href="$classstf_1_1geom_1_1polyline.html#a8b498b558b0fea714be91d3f20ba2d95" title="Compute the size of the polyline." alt="" coords="253,5,431,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="206,15,240,15,240,21,206,21"/>
+<area shape="rect" id="Node000003" href="$classstf_1_1geom_1_1polyline.html#a2a39470967b9c554d71d6630bc9fc785" title="Report whether or not a polyline is empty." alt="" coords="479,5,689,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="431,15,465,15,465,21,431,21"/>
+</map>

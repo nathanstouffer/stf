@@ -1,0 +1,566 @@
+.TH "stf::ds::indexed_list< key_t, entry_t >" 3 "Version 0.0.0" "stf" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+stf::ds::indexed_list< key_t, entry_t > \- A class that stores a list with an overlaid index for quick access for a key\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <indexed_list\&.hpp>\fP
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBelement_t\fP"
+.br
+.RI "A struct to represent the items stored in \fBindexed_list\fP\&. "
+.in -1c
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "using \fBiterator\fP = list_iterator"
+.br
+.RI "Iterator exposed for element access\&. "
+.ti -1c
+.RI "using \fBconst_iterator\fP = list_const_iterator"
+.br
+.RI "Read-only iterator exposed for element access\&. "
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "size_t \fBsize\fP () const"
+.br
+.RI "Compute the number of elements in the list\&. "
+.ti -1c
+.RI "bool \fBis_empty\fP () const"
+.br
+.RI "Compute whether or not the list is empty\&. "
+.ti -1c
+.RI "void \fBclear\fP ()"
+.br
+.RI "Clear all elements in the list\&. "
+.ti -1c
+.RI "\fBconst_iterator\fP \fBfind\fP (key_t const &key) const"
+.br
+.RI "Find a particular element in the list\&. "
+.ti -1c
+.RI "\fBiterator\fP \fBfind\fP (key_t const &key)"
+.br
+.RI "Find a particular element in the list\&. "
+.ti -1c
+.RI "bool \fBcontains\fP (key_t const &key) const"
+.br
+.RI "Compute whether or not a particular key is present in the list\&. "
+.ti -1c
+.RI "\fBelement_t\fP const & \fBat\fP (key_t const &key) const"
+.br
+.RI "Access the element at a particular key\&. "
+.ti -1c
+.RI "\fBelement_t\fP & \fBat\fP (key_t const &key)"
+.br
+.RI "Access the element at a particular key\&. "
+.ti -1c
+.RI "void \fBerase\fP (\fBconst_iterator\fP it)"
+.br
+.RI "Erase an element of the list\&. "
+.ti -1c
+.RI "void \fBerase\fP (key_t const &key)"
+.br
+.RI "Erase an element of the list\&. "
+.ti -1c
+.RI "\fBconst_iterator\fP \fBreplace\fP (key_t const &key, entry_t entry)"
+.br
+.RI "Replace the entry at a key in the list\&. "
+.ti -1c
+.RI "void \fBsplice\fP (\fBconst_iterator\fP pos, \fBconst_iterator\fP it)"
+.br
+.RI "Move an element of the list to a new position\&. "
+.ti -1c
+.RI "void \fBsplice\fP (\fBconst_iterator\fP pos, key_t const &key)"
+.br
+.RI "Move an element of the list to a new position\&. "
+.ti -1c
+.RI "\fBiterator\fP \fBinsert_or_assign\fP (\fBconst_iterator\fP pos, key_t const &key, entry_t entry)"
+.br
+.RI "Write an element to the list\&. "
+.ti -1c
+.RI "\fBiterator\fP \fBmove_to_front\fP (\fBiterator\fP it)"
+.br
+.RI "Move an element to the front of the list\&. "
+.ti -1c
+.RI "\fBiterator\fP \fBmove_to_front\fP (key_t const &key)"
+.br
+.RI "Move an element to the front of the list\&. "
+.ti -1c
+.RI "\fBiterator\fP \fBmove_to_back\fP (\fBiterator\fP it)"
+.br
+.RI "Move an element to the back of the list\&. "
+.ti -1c
+.RI "\fBiterator\fP \fBmove_to_back\fP (key_t const &key)"
+.br
+.RI "Move an element to the back of the list\&. "
+.ti -1c
+.RI "void \fBpush_front\fP (key_t const &key, entry_t entry)"
+.br
+.RI "Push an element to the front of the list\&. "
+.ti -1c
+.RI "void \fBpush_back\fP (key_t const &key, entry_t entry)"
+.br
+.RI "Push an element to the back of the list\&. "
+.ti -1c
+.RI "void \fBpop_front\fP ()"
+.br
+.RI "Pop the front of the list\&. "
+.ti -1c
+.RI "void \fBpop_back\fP ()"
+.br
+.RI "Pop the back of the list\&. "
+.ti -1c
+.RI "\fBelement_t\fP const & \fBfront\fP () const"
+.br
+.RI "Access to the front of the list\&. "
+.ti -1c
+.RI "\fBelement_t\fP & \fBfront\fP ()"
+.br
+.RI "Access to the front of the list\&. "
+.ti -1c
+.RI "\fBelement_t\fP const & \fBback\fP () const"
+.br
+.RI "Access to the back of the list\&. "
+.ti -1c
+.RI "\fBelement_t\fP & \fBback\fP ()"
+.br
+.RI "Access to the back of the list\&. "
+.ti -1c
+.RI "\fBconst_iterator\fP \fBbegin\fP () const"
+.br
+.RI "Access to the front of the list\&. "
+.ti -1c
+.RI "\fBconst_iterator\fP \fBend\fP () const"
+.br
+.RI "Access to the end of the list\&. "
+.ti -1c
+.RI "\fBiterator\fP \fBbegin\fP ()"
+.br
+.RI "Access to the front of the list\&. "
+.ti -1c
+.RI "\fBiterator\fP \fBend\fP ()"
+.br
+.RI "Access to the end of the list\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<typename key_t, typename entry_t>
+.br
+class stf::ds::indexed_list< key_t, entry_t >"A class that stores a list with an overlaid index for quick access for a key\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIkey_t\fP The type of the key that is used to index the list 
+.br
+\fIentry_t\fP The type of the entry that is stored in the list 
+.RE
+.PP
+\fBNote\fP
+.RS 4
+key_t must have a hash function defined that is compatible with std::unordered_map 
+.PP
+entry_t must have a correct move constructor 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "template<typename key_t , typename entry_t > \fBelement_t\fP & \fBstf::ds::indexed_list\fP< key_t, entry_t >::at (key_t const & key)\fC [inline]\fP"
+
+.PP
+Access the element at a particular key\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIkey\fP The search key 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+A reference to the element 
+.RE
+.PP
+
+.SS "template<typename key_t , typename entry_t > \fBelement_t\fP const  & \fBstf::ds::indexed_list\fP< key_t, entry_t >::at (key_t const & key) const\fC [inline]\fP"
+
+.PP
+Access the element at a particular key\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIkey\fP The search key 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+A const reference to the element 
+.RE
+.PP
+
+.SS "template<typename key_t , typename entry_t > \fBelement_t\fP & \fBstf::ds::indexed_list\fP< key_t, entry_t >::back ()\fC [inline]\fP"
+
+.PP
+Access to the back of the list\&. 
+.PP
+\fBReturns\fP
+.RS 4
+A reference to the back of the list 
+.RE
+.PP
+
+.SS "template<typename key_t , typename entry_t > \fBelement_t\fP const  & \fBstf::ds::indexed_list\fP< key_t, entry_t >::back () const\fC [inline]\fP"
+
+.PP
+Access to the back of the list\&. 
+.PP
+\fBReturns\fP
+.RS 4
+A const reference to the back of the list 
+.RE
+.PP
+
+.SS "template<typename key_t , typename entry_t > \fBiterator\fP \fBstf::ds::indexed_list\fP< key_t, entry_t >::begin ()\fC [inline]\fP"
+
+.PP
+Access to the front of the list\&. 
+.PP
+\fBReturns\fP
+.RS 4
+An iterator pointing to the front of the list 
+.RE
+.PP
+
+.SS "template<typename key_t , typename entry_t > \fBconst_iterator\fP \fBstf::ds::indexed_list\fP< key_t, entry_t >::begin () const\fC [inline]\fP"
+
+.PP
+Access to the front of the list\&. 
+.PP
+\fBReturns\fP
+.RS 4
+A const iterator pointing to the front of the list 
+.RE
+.PP
+
+.SS "template<typename key_t , typename entry_t > bool \fBstf::ds::indexed_list\fP< key_t, entry_t >::contains (key_t const & key) const\fC [inline]\fP"
+
+.PP
+Compute whether or not a particular key is present in the list\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIkey\fP The search key 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+Whether or not the key is present 
+.RE
+.PP
+
+.SS "template<typename key_t , typename entry_t > \fBiterator\fP \fBstf::ds::indexed_list\fP< key_t, entry_t >::end ()\fC [inline]\fP"
+
+.PP
+Access to the end of the list\&. 
+.PP
+\fBReturns\fP
+.RS 4
+An iterator pointing to the end of the list 
+.RE
+.PP
+
+.SS "template<typename key_t , typename entry_t > \fBconst_iterator\fP \fBstf::ds::indexed_list\fP< key_t, entry_t >::end () const\fC [inline]\fP"
+
+.PP
+Access to the end of the list\&. 
+.PP
+\fBReturns\fP
+.RS 4
+A const iterator pointing to the end of the list 
+.RE
+.PP
+
+.SS "template<typename key_t , typename entry_t > void \fBstf::ds::indexed_list\fP< key_t, entry_t >::erase (\fBconst_iterator\fP it)\fC [inline]\fP"
+
+.PP
+Erase an element of the list\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIit\fP An iterator pointing to the element to be erased 
+.RE
+.PP
+
+.SS "template<typename key_t , typename entry_t > void \fBstf::ds::indexed_list\fP< key_t, entry_t >::erase (key_t const & key)\fC [inline]\fP"
+
+.PP
+Erase an element of the list\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIkey\fP The key of the element that is to be erased 
+.RE
+.PP
+
+.SS "template<typename key_t , typename entry_t > \fBiterator\fP \fBstf::ds::indexed_list\fP< key_t, entry_t >::find (key_t const & key)\fC [inline]\fP"
+
+.PP
+Find a particular element in the list\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIkey\fP The search key 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+An iterator to the element 
+.RE
+.PP
+
+.SS "template<typename key_t , typename entry_t > \fBconst_iterator\fP \fBstf::ds::indexed_list\fP< key_t, entry_t >::find (key_t const & key) const\fC [inline]\fP"
+
+.PP
+Find a particular element in the list\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIkey\fP The search key 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+A const iterator to the element 
+.RE
+.PP
+
+.SS "template<typename key_t , typename entry_t > \fBelement_t\fP & \fBstf::ds::indexed_list\fP< key_t, entry_t >::front ()\fC [inline]\fP"
+
+.PP
+Access to the front of the list\&. 
+.PP
+\fBReturns\fP
+.RS 4
+A reference to the front of the list 
+.RE
+.PP
+
+.SS "template<typename key_t , typename entry_t > \fBelement_t\fP const  & \fBstf::ds::indexed_list\fP< key_t, entry_t >::front () const\fC [inline]\fP"
+
+.PP
+Access to the front of the list\&. 
+.PP
+\fBReturns\fP
+.RS 4
+A const reference to the front of the list 
+.RE
+.PP
+
+.SS "template<typename key_t , typename entry_t > \fBiterator\fP \fBstf::ds::indexed_list\fP< key_t, entry_t >::insert_or_assign (\fBconst_iterator\fP pos, key_t const & key, entry_t entry)\fC [inline]\fP"
+
+.PP
+Write an element to the list\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIpos\fP The position at which to insert the element 
+.br
+\fIkey\fP The key to store the element 
+.br
+\fIentry\fP The entry that is to be stored 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+An iterator to the inserted element 
+.RE
+.PP
+\fBNote\fP
+.RS 4
+The element is placed directly preceding \fCpos\fP 
+.RE
+.PP
+
+.SS "template<typename key_t , typename entry_t > bool \fBstf::ds::indexed_list\fP< key_t, entry_t >::is_empty () const\fC [inline]\fP"
+
+.PP
+Compute whether or not the list is empty\&. 
+.PP
+\fBReturns\fP
+.RS 4
+Whether or not the list is empty 
+.RE
+.PP
+
+.SS "template<typename key_t , typename entry_t > \fBiterator\fP \fBstf::ds::indexed_list\fP< key_t, entry_t >::move_to_back (\fBiterator\fP it)\fC [inline]\fP"
+
+.PP
+Move an element to the back of the list\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIit\fP An iterator pointing to the element that is to be moved 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+An iterator pointing to the moved element 
+.RE
+.PP
+
+.SS "template<typename key_t , typename entry_t > \fBiterator\fP \fBstf::ds::indexed_list\fP< key_t, entry_t >::move_to_back (key_t const & key)\fC [inline]\fP"
+
+.PP
+Move an element to the back of the list\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIkey\fP The key of the element that is to be moved 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+An iterator pointing to the moved element 
+.RE
+.PP
+
+.SS "template<typename key_t , typename entry_t > \fBiterator\fP \fBstf::ds::indexed_list\fP< key_t, entry_t >::move_to_front (\fBiterator\fP it)\fC [inline]\fP"
+
+.PP
+Move an element to the front of the list\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIit\fP An iterator pointing to the element that is to be moved 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+An iterator pointing to the moved element 
+.RE
+.PP
+
+.SS "template<typename key_t , typename entry_t > \fBiterator\fP \fBstf::ds::indexed_list\fP< key_t, entry_t >::move_to_front (key_t const & key)\fC [inline]\fP"
+
+.PP
+Move an element to the front of the list\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIkey\fP The key of the element that is to be moved 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+An iterator pointing to the moved element 
+.RE
+.PP
+
+.SS "template<typename key_t , typename entry_t > void \fBstf::ds::indexed_list\fP< key_t, entry_t >::push_back (key_t const & key, entry_t entry)\fC [inline]\fP"
+
+.PP
+Push an element to the back of the list\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIkey\fP The key of the element 
+.br
+\fIentry\fP The entry to be stored 
+.RE
+.PP
+
+.SS "template<typename key_t , typename entry_t > void \fBstf::ds::indexed_list\fP< key_t, entry_t >::push_front (key_t const & key, entry_t entry)\fC [inline]\fP"
+
+.PP
+Push an element to the front of the list\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIkey\fP The key of the element 
+.br
+\fIentry\fP The entry to be stored 
+.RE
+.PP
+
+.SS "template<typename key_t , typename entry_t > \fBconst_iterator\fP \fBstf::ds::indexed_list\fP< key_t, entry_t >::replace (key_t const & key, entry_t entry)\fC [inline]\fP"
+
+.PP
+Replace the entry at a key in the list\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIkey\fP The key of the element 
+.br
+\fIentry\fP The new value of the entry 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+A const iterator to the element 
+.RE
+.PP
+
+.SS "template<typename key_t , typename entry_t > size_t \fBstf::ds::indexed_list\fP< key_t, entry_t >::size () const\fC [inline]\fP"
+
+.PP
+Compute the number of elements in the list\&. 
+.PP
+\fBReturns\fP
+.RS 4
+The number of elements in the list 
+.RE
+.PP
+
+.SS "template<typename key_t , typename entry_t > void \fBstf::ds::indexed_list\fP< key_t, entry_t >::splice (\fBconst_iterator\fP pos, \fBconst_iterator\fP it)\fC [inline]\fP"
+
+.PP
+Move an element of the list to a new position\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIpos\fP The destination position in the list 
+.br
+\fIit\fP The iterator that is to be moved 
+.RE
+.PP
+\fBNote\fP
+.RS 4
+\fCit\fP is placed directly preceding \fCpos\fP 
+.RE
+.PP
+
+.SS "template<typename key_t , typename entry_t > void \fBstf::ds::indexed_list\fP< key_t, entry_t >::splice (\fBconst_iterator\fP pos, key_t const & key)\fC [inline]\fP"
+
+.PP
+Move an element of the list to a new position\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIpos\fP The destination position in the list 
+.br
+\fIkey\fP The key of the element that is to be moved 
+.RE
+.PP
+\fBNote\fP
+.RS 4
+\fCit\fP is placed directly preceding \fCpos\fP 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for stf from the source code\&.

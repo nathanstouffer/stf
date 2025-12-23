@@ -1,0 +1,5 @@
+<map id="stf::geom::holygon::translate" name="stf::geom::holygon::translate">
+<area shape="rect" id="Node000001" title="Translate a holygon in place." alt="" coords="5,5,215,31"/>
+<area shape="rect" id="Node000002" href="$structstf_1_1geom_1_1aabb.html#a0c7a3fdc4a29eb563674fa2b11735e05" title="Translate an aabb in place." alt="" coords="263,5,452,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="215,15,249,15,249,21,215,21"/>
+</map>

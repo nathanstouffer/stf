@@ -1,0 +1,7 @@
+<map id="stf::geom::segment::dist_squared" name="stf::geom::segment::dist_squared">
+<area shape="rect" id="Node000001" title="Compute the square of the distance between a segment and a vector." alt="" coords="5,31,244,56"/>
+<area shape="rect" id="Node000002" href="$structstf_1_1geom_1_1segment.html#a0868c17d40c531f5cc16805748c19ff9" title="Compute the delta between the second and first point of the segment." alt="" coords="292,5,481,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="244,29,278,26,278,31,245,34"/>
+<area shape="rect" id="Node000003" href="$namespacestf_1_1math.html#affb9352af7b68426cc6ca4e4f2b5e583" title="Compute the dot product of two vectors." alt="" coords="332,55,441,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="245,52,318,58,318,64,244,57"/>
+</map>

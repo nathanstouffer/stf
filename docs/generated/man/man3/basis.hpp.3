@@ -1,0 +1,56 @@
+.TH "src/stf/include/interface/stf/math/basis.hpp" 3 "Version 0.0.0" "stf" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+src/stf/include/interface/stf/math/basis.hpp \- A file containing items related to a basis for R^n\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <array>\fP
+.br
+\fC#include 'stf/math/matrix\&.hpp'\fP
+.br
+\fC#include 'stf/math/vector\&.hpp'\fP
+.br
+
+.SS "Namespaces"
+
+.in +1c
+.ti -1c
+.RI "namespace \fBstf\fP"
+.br
+.RI "Namespace for stf -- a templated math library\&. "
+.ti -1c
+.RI "namespace \fBstf::math\fP"
+.br
+.RI "Namespace for mathematical functionality\&. "
+.in -1c
+.SS "Typedefs"
+
+.in +1c
+.ti -1c
+.RI "template<typename T , size_t N> using \fBstf::math::basis\fP = std::array< \fBvec\fP< T, N >, N >"
+.br
+.RI "Type alias for the basis of the box\&. "
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "template<typename T , size_t N> \fBbasis\fP< T, N > \fBstf::math::canonical_basis\fP ()"
+.br
+.RI "Compute the canonical basis for the dimension of the\&. "
+.ti -1c
+.RI "template<typename T , size_t N> \fBbasis\fP< T, N > \fBstf::math::to_basis\fP (\fBmtx\fP< T, N > const &rotation)"
+.br
+.RI "Convert a rotation matrix to a basis\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+A file containing items related to a basis for R^n\&. 
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for stf from the source code\&.

@@ -1,0 +1,8 @@
+<map id="stf::cam::frustum::intersects_fast" name="stf::cam::frustum::intersects_fast">
+<area shape="rect" id="Node000001" title="Compute whether or not an aabb intersects a frustum." alt="" coords="5,55,243,80"/>
+<area shape="rect" id="Node000002" href="$structstf_1_1geom_1_1aabb.html#ab24c36a1c6c5a85cce34acc4aeef3249" title="Compute an extremity of an aabb in a given direction." alt="" coords="291,29,485,55"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="243,53,277,50,277,55,243,59"/>
+<area shape="rect" id="Node000003" href="$structstf_1_1geom_1_1aabb.html#a5b5a3a3f83d5edeb89929eb46133db56" title="Compute if two aabb intersect." alt="" coords="291,79,485,104"/>
+<area shape="poly" id="edge3_Node000001_Node000003" title=" " alt="" coords="243,75,277,79,277,84,243,81"/>
+<area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="345,31,336,21,341,11,359,5,388,3,426,7,436,12,440,18,435,20,433,16,424,12,388,8,360,10,344,15,341,20,349,27"/>
+</map>

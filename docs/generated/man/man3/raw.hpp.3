@@ -1,0 +1,237 @@
+.TH "src/stf/include/interface/stf/math/raw.hpp" 3 "Version 0.0.0" "stf" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+src/stf/include/interface/stf/math/raw.hpp \- A file containing templated functions for working with scalars stored in raw arrays\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <cmath>\fP
+.br
+
+.SS "Namespaces"
+
+.in +1c
+.ti -1c
+.RI "namespace \fBstf\fP"
+.br
+.RI "Namespace for stf -- a templated math library\&. "
+.ti -1c
+.RI "namespace \fBstf::math\fP"
+.br
+.RI "Namespace for mathematical functionality\&. "
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "template<typename T , size_t N> void \fBstf::math::raw::plus_equals\fP (T lhs[N], T const rhs[N])"
+.br
+.RI "Add to a vector (stored as an array) in place\&. "
+.ti -1c
+.RI "template<typename T , size_t N> void \fBstf::math::raw::minus_equals\fP (T lhs[N], T const rhs[N])"
+.br
+.RI "Subtract from a vector (stored as an array) in place\&. "
+.ti -1c
+.RI "template<typename T , size_t N> void \fBstf::math::raw::scale\fP (T lhs[N], T const scalar)"
+.br
+.RI "Scale a vector (stored as an array) in place\&. "
+.ti -1c
+.RI "template<typename T , size_t N> void \fBstf::math::raw::divide\fP (T lhs[N], T const divisor)"
+.br
+.RI "Divide a vector (stored as an array) in place\&. "
+.ti -1c
+.RI "template<typename T , size_t N> T \fBstf::math::raw::dot\fP (T const lhs[N], T const rhs[N])"
+.br
+.RI "Compute the dot product of two vectors (stored as arrays) "
+.ti -1c
+.RI "template<typename T , size_t N> void \fBstf::math::raw::hadamard_equals\fP (T lhs[N], T const rhs[N])"
+.br
+.RI "Compute the hadamard product of two vectors (stored as arrays) in place\&. "
+.ti -1c
+.RI "template<typename T , size_t N> void \fBstf::math::raw::prefix\fP (T lhs[N \- 1], T const rhs[N])"
+.br
+.RI "Write the prefix of one array into another\&. "
+.ti -1c
+.RI "template<typename T , typename U , size_t N> void \fBstf::math::raw::as\fP (T const src[N], U dst[N])"
+.br
+.RI "Cast a vector (stored as an array) to a different precision\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+A file containing templated functions for working with scalars stored in raw arrays\&. 
+
+
+.SH "Function Documentation"
+.PP 
+.SS "template<typename T , typename U , size_t N> void stf::math::raw::as (T const src[N], U dst[N])\fC [inline]\fP"
+
+.PP
+Cast a vector (stored as an array) to a different precision\&. 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP Source number type (eg float) 
+.br
+\fIU\fP Destination number type (eg double) 
+.br
+\fIN\fP Dimension 
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIsrc\fP 
+.br
+\fIdst\fP 
+.RE
+.PP
+
+.SS "template<typename T , size_t N> void stf::math::raw::divide (T lhs[N], T const divisor)\fC [inline]\fP"
+
+.PP
+Divide a vector (stored as an array) in place\&. 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP Number type (eg float) 
+.br
+\fIN\fP Dimension 
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIlhs\fP 
+.br
+\fIdivisor\fP 
+.RE
+.PP
+
+.SS "template<typename T , size_t N> T stf::math::raw::dot (T const lhs[N], T const rhs[N])\fC [inline]\fP"
+
+.PP
+Compute the dot product of two vectors (stored as arrays) 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP Number type (eg float) 
+.br
+\fIN\fP Dimension 
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIlhs\fP 
+.br
+\fIrhs\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The dot product of \fClhs\fP and \fCrhs\fP 
+.RE
+.PP
+
+.SS "template<typename T , size_t N> void stf::math::raw::hadamard_equals (T lhs[N], T const rhs[N])\fC [inline]\fP"
+
+.PP
+Compute the hadamard product of two vectors (stored as arrays) in place\&. 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP Number type (eg float) 
+.br
+\fIN\fP Dimension 
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIlhs\fP 
+.br
+\fIrhs\fP 
+.RE
+.PP
+
+.SS "template<typename T , size_t N> void stf::math::raw::minus_equals (T lhs[N], T const rhs[N])\fC [inline]\fP"
+
+.PP
+Subtract from a vector (stored as an array) in place\&. 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP Number type (eg float) 
+.br
+\fIN\fP Dimension 
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIlhs\fP 
+.br
+\fIrhs\fP 
+.RE
+.PP
+
+.SS "template<typename T , size_t N> void stf::math::raw::plus_equals (T lhs[N], T const rhs[N])\fC [inline]\fP"
+
+.PP
+Add to a vector (stored as an array) in place\&. 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP Number type (eg float) 
+.br
+\fIN\fP Dimension 
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIlhs\fP 
+.br
+\fIrhs\fP 
+.RE
+.PP
+
+.SS "template<typename T , size_t N> void stf::math::raw::prefix (T lhs[N \- 1], T const rhs[N])\fC [inline]\fP"
+
+.PP
+Write the prefix of one array into another\&. 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP Number type (eg float) 
+.br
+\fIN\fP Dimension 
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIlhs\fP 
+.br
+\fIrhs\fP 
+.RE
+.PP
+
+.SS "template<typename T , size_t N> void stf::math::raw::scale (T lhs[N], T const scalar)\fC [inline]\fP"
+
+.PP
+Scale a vector (stored as an array) in place\&. 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP Number type (eg float) 
+.br
+\fIN\fP Dimension 
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIlhs\fP 
+.br
+\fIscalar\fP 
+.RE
+.PP
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for stf from the source code\&.

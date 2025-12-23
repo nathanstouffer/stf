@@ -1,0 +1,5 @@
+<map id="stf::gfx::rgba::to_hex_abgr" name="stf::gfx::rgba::to_hex_abgr">
+<area shape="rect" id="Node000001" title="Convert to 32&#45;bit integer in ABGR format." alt="" coords="5,5,197,31"/>
+<area shape="rect" id="Node000002" href="$structstf_1_1gfx_1_1rgba.html#aec96d2367ed8113ed5df4538f251e372" title="Convert a float in [0, 1] to an 8&#45;bit integer in [0, 255]." alt="" coords="245,5,401,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="198,15,232,15,232,21,198,21"/>
+</map>

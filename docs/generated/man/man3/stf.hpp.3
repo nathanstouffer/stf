@@ -1,0 +1,96 @@
+.TH "src/stf/include/interface/stf/stf.hpp" 3 "Version 0.0.0" "stf" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+src/stf/include/interface/stf/stf.hpp \- A file containing type instantiations to reduce verbosity for users of stf\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <cstdint>\fP
+.br
+\fC#include 'stf/cam/frustum\&.hpp'\fP
+.br
+\fC#include 'stf/cam/scamera\&.hpp'\fP
+.br
+\fC#include 'stf/geom/aabb\&.hpp'\fP
+.br
+\fC#include 'stf/geom/holygon\&.hpp'\fP
+.br
+\fC#include 'stf/geom/obb\&.hpp'\fP
+.br
+\fC#include 'stf/geom/polygon\&.hpp'\fP
+.br
+\fC#include 'stf/geom/polyline\&.hpp'\fP
+.br
+\fC#include 'stf/geom/ray\&.hpp'\fP
+.br
+\fC#include 'stf/geom/segment\&.hpp'\fP
+.br
+\fC#include 'stf/geom/hyperplane\&.hpp'\fP
+.br
+\fC#include 'stf/geom/hypersphere\&.hpp'\fP
+.br
+\fC#include 'stf/math/constants\&.hpp'\fP
+.br
+\fC#include 'stf/math/cinterval\&.hpp'\fP
+.br
+\fC#include 'stf/math/matrix\&.hpp'\fP
+.br
+\fC#include 'stf/math/interval\&.hpp'\fP
+.br
+\fC#include 'stf/math/vector\&.hpp'\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBstf::instantiate_types< T >\fP"
+.br
+.RI "Struct that defines type aliases for various templated types\&. "
+.in -1c
+.SS "Namespaces"
+
+.in +1c
+.ti -1c
+.RI "namespace \fBstf\fP"
+.br
+.RI "Namespace for stf -- a templated math library\&. "
+.in -1c
+.SS "Typedefs"
+
+.in +1c
+.ti -1c
+.RI "using \fBgpu_float_t\fP = float"
+.br
+.RI "Type alias for floats on the gpu\&. "
+.ti -1c
+.RI "using \fBstf::gpu\fP = \fBinstantiate_types\fP< \fBgpu_float_t\fP >"
+.br
+.RI "Type alias to instantiate structs for gpu floats\&. "
+.ti -1c
+.RI "using \fBstff\fP = \fBstf::instantiate_types\fP< float >"
+.br
+.RI "Type alias to instantiate structs for floats\&. "
+.ti -1c
+.RI "using \fBstfd\fP = \fBstf::instantiate_types\fP< double >"
+.br
+.RI "Type alias to instantiate structs for doubles\&. "
+.ti -1c
+.RI "using \fBstfi\fP = \fBstf::instantiate_types\fP< int >"
+.br
+.RI "Type alias to instantiate structs for ints\&. "
+.ti -1c
+.RI "using \fBstfu\fP = \fBstf::instantiate_types\fP< uint32_t >"
+.br
+.RI "Type alias to instantiate structs for unsigned integers\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+A file containing type instantiations to reduce verbosity for users of stf\&. 
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for stf from the source code\&.

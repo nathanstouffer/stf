@@ -1,0 +1,5 @@
+<map id="stf::math::mtx::prefix" name="stf::math::mtx::prefix">
+<area shape="rect" id="Node000001" title="Compute a mtx that is the top left section of a matrix." alt="" coords="5,5,164,31"/>
+<area shape="rect" id="Node000002" href="$structstf_1_1math_1_1mtx.html#a0c1f66961d3c7b222539cdb348c4ad70" title="Compute the minor a matrix for a particular index." alt="" coords="212,5,372,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="165,15,198,15,198,21,165,21"/>
+</map>

@@ -1,0 +1,22 @@
+<map id="stf::cam::scamera::inv_perspective" name="stf::cam::scamera::inv_perspective">
+<area shape="rect" id="Node000001" title="Compute the inverse of the perspective projection matrix for the scamera." alt="" coords="5,105,255,131"/>
+<area shape="rect" id="Node000002" href="$structstf_1_1math_1_1mtx.html#a860bfc9c17b3e7ae53cdc89d4e57c8cf" title="Compute the inverse of a matrix." alt="" coords="326,80,502,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="254,104,312,99,313,104,255,110"/>
+<area shape="rect" id="Node000009" href="$structstf_1_1cam_1_1scamera.html#a8e3e7235772d34fc2e5dff57a8d75abd" title="Compute the perspective projection matrix for the scamera." alt="" coords="303,129,525,155"/>
+<area shape="poly" id="edge11_Node000001_Node000009" title=" " alt="" coords="255,126,289,129,289,134,255,131"/>
+<area shape="rect" id="Node000003" href="$structstf_1_1math_1_1mtx.html#a6a7476283ced64000f41fce6ff1dd753" title="Compute the cofactor matrix." alt="" coords="573,80,764,105"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="502,90,559,90,559,95,502,95"/>
+<area shape="rect" id="Node000004" href="$structstf_1_1math_1_1mtx.html#a99284fc89e13fc8af925ae05b919f8a3" title="Compute the determinant of a matrix." alt="" coords="812,29,1015,55"/>
+<area shape="poly" id="edge9_Node000002_Node000004" title=" " alt="" coords="486,77,573,65,798,45,799,51,574,70,487,83"/>
+<area shape="rect" id="Node000008" href="$structstf_1_1math_1_1mtx.html#addd61e9030ec8029a860a04c1e47439b" title="Transpose a matrix in&#45;place." alt="" coords="575,129,762,155"/>
+<area shape="poly" id="edge10_Node000002_Node000008" title=" " alt="" coords="481,103,590,124,589,129,480,108"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="731,77,838,55,839,60,732,82"/>
+<area shape="rect" id="Node000005" href="$structstf_1_1math_1_1mtx.html#a0c1f66961d3c7b222539cdb348c4ad70" title="Compute the minor a matrix for a particular index." alt="" coords="1068,55,1228,80"/>
+<area shape="poly" id="edge6_Node000003_Node000005" title=" " alt="" coords="764,85,1054,70,1054,75,764,90"/>
+<area shape="rect" id="Node000006" href="$structstf_1_1math_1_1mtx.html#a3af7d18a0bfae3637174b8dd9ece2893" title="Default constructor – intializes to the identity matrix." alt="" coords="839,131,987,156"/>
+<area shape="poly" id="edge7_Node000003_Node000006" title=" " alt="" coords="732,103,839,125,838,130,731,108"/>
+<area shape="poly" id="edge4_Node000004_Node000004" title=" " alt="" coords="875,31,867,21,871,11,887,5,913,3,946,7,959,16,956,20,944,11,913,8,888,10,875,15,872,20,879,27"/>
+<area shape="poly" id="edge5_Node000004_Node000005" title=" " alt="" coords="1015,50,1055,55,1054,60,1014,56"/>
+<area shape="rect" id="Node000007" href="$structstf_1_1math_1_1mtx.html#a1369a61fa33ee78d9075bc5fc75c839b" title="Set a matrix to the identity matrix." alt="" coords="1063,131,1233,156"/>
+<area shape="poly" id="edge8_Node000006_Node000007" title=" " alt="" coords="987,141,1049,141,1049,146,987,146"/>
+</map>

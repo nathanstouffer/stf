@@ -1,0 +1,7 @@
+<map id="stf::ds::indexed_list::move_to_front" name="stf::ds::indexed_list::move_to_front">
+<area shape="rect" id="Node000001" title="Move an element to the front of the list." alt="" coords="5,31,256,56"/>
+<area shape="rect" id="Node000002" href="$classstf_1_1ds_1_1indexed__list.html#aa47155024cc5cdbfe585ca3b56708880" title="Access to the front of the list." alt="" coords="305,5,496,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="256,29,291,26,292,31,257,34"/>
+<area shape="rect" id="Node000003" href="$classstf_1_1ds_1_1indexed__list.html#a499bd225b80b717b23a67110b33fc0b0" title="Move an element of the list to a new position." alt="" coords="304,55,497,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="257,52,290,55,290,60,256,57"/>
+</map>

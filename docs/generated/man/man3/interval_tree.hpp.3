@@ -1,0 +1,60 @@
+.TH "src/stf/include/interface/stf/spatial/interval_tree.hpp" 3 "Version 0.0.0" "stf" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+src/stf/include/interface/stf/spatial/interval_tree.hpp \- A file containing a class that implements an interval tree\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <algorithm>\fP
+.br
+\fC#include <memory>\fP
+.br
+\fC#include <vector>\fP
+.br
+\fC#include 'stf/math/constants\&.hpp'\fP
+.br
+\fC#include 'stf/math/interval\&.hpp'\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBstf::spatial::interval_tree< T, V >\fP"
+.br
+.RI "A class that stores key-value pairs of intervals and values for querying\&. "
+.ti -1c
+.RI "struct \fBstf::spatial::interval_tree< T, V >::entry_t\fP"
+.br
+.RI "A struct to store entries in the tree\&. "
+.ti -1c
+.RI "struct \fBstf::spatial::interval_tree< T, V >::query_iterator\fP"
+.br
+.RI "An iterator pointing to an underlying entry that also knows how to jump to the next entry that contains a query point\&. "
+.ti -1c
+.RI "struct \fBstf::spatial::interval_tree< T, V >::query_range\fP"
+.br
+.RI "A range returned from a query\&. "
+.in -1c
+.SS "Namespaces"
+
+.in +1c
+.ti -1c
+.RI "namespace \fBstf\fP"
+.br
+.RI "Namespace for stf -- a templated math library\&. "
+.ti -1c
+.RI "namespace \fBstf::spatial\fP"
+.br
+.RI "Namespace for spatial data structures\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+A file containing a class that implements an interval tree\&. 
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for stf from the source code\&.

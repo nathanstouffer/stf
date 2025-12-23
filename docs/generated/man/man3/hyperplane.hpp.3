@@ -1,0 +1,86 @@
+.TH "src/stf/include/interface/stf/geom/hyperplane.hpp" 3 "Version 0.0.0" "stf" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+src/stf/include/interface/stf/geom/hyperplane.hpp \- A file containing a templated hyperplane class along with associated functions\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+\fC#include 'stf/geom/aabb\&.hpp'\fP
+.br
+\fC#include 'stf/math/constants\&.hpp'\fP
+.br
+\fC#include 'stf/math/transform\&.hpp'\fP
+.br
+\fC#include 'stf/math/vector\&.hpp'\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBstf::geom::hyperplane< T, N >\fP"
+.br
+.RI "A class to represent a R^{n-1} subspace of R^n\&. "
+.in -1c
+.SS "Namespaces"
+
+.in +1c
+.ti -1c
+.RI "namespace \fBstf\fP"
+.br
+.RI "Namespace for stf -- a templated math library\&. "
+.ti -1c
+.RI "namespace \fBstf::geom\fP"
+.br
+.RI "Namespace for geometric functionality\&. "
+.in -1c
+.SS "Typedefs"
+
+.in +1c
+.ti -1c
+.RI "template<\fBtypename\fP T > \fBusing\fP \fBstf::geom::line\fP = \fBhyperplane\fP< T, 2 >"
+.br
+.RI "Type alias for a 2D \fBhyperplane\fP\&. "
+.ti -1c
+.RI "template<\fBtypename\fP T > \fBusing\fP \fBstf::geom::plane\fP = \fBhyperplane\fP< T, 3 >"
+.br
+.RI "Type alias for a 3D \fBhyperplane\fP\&. "
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "template<\fBtypename\fP T , \fBsize_t\fP N> T \fBstf::geom::dist\fP (\fBhyperplane\fP< T, \fBN\fP > \fBconst\fP &\fBplane\fP, \fBmath::vec\fP< T, \fBN\fP > \fBconst\fP &point)"
+.br
+.RI "Compute the distance between a hyperplane and a vector\&. "
+.ti -1c
+.RI "template<\fBtypename\fP T , \fBsize_t\fP N> T \fBstf::geom::dist\fP (\fBmath::vec\fP< T, \fBN\fP > \fBconst\fP &point, \fBhyperplane\fP< T, \fBN\fP > \fBconst\fP &\fBplane\fP)"
+.br
+.RI "Compute the distance between a vector and a hyperplane\&. "
+.ti -1c
+.RI "template<\fBtypename\fP T , \fBsize_t\fP N> T \fBstf::geom::signed_dist\fP (\fBhyperplane\fP< T, \fBN\fP > \fBconst\fP &\fBplane\fP, \fBmath::vec\fP< T, \fBN\fP > \fBconst\fP &point)"
+.br
+.RI "Compute the signed distance between a hyperplane and a vector\&. "
+.ti -1c
+.RI "template<\fBtypename\fP T , \fBsize_t\fP N> T \fBstf::geom::signed_dist\fP (\fBmath::vec\fP< T, \fBN\fP > \fBconst\fP &point, \fBhyperplane\fP< T, \fBN\fP > \fBconst\fP &\fBplane\fP)"
+.br
+.RI "Compute the signed distance between a vector and a hyperplane\&. "
+.ti -1c
+.RI "template<\fBtypename\fP T > \fBline\fP< T > \fBstf::geom::fit_line\fP (\fBmath::vec2\fP< T > \fBconst\fP &\fBp\fP, \fBmath::vec2\fP< T > \fBconst\fP &\fBq\fP)"
+.br
+.RI "Construct a line passing through two points\&. "
+.ti -1c
+.RI "template<\fBtypename\fP T > \fBplane\fP< T > \fBstf::geom::fit_plane\fP (\fBmath::vec3\fP< T > \fBconst\fP &\fBp\fP, \fBmath::vec3\fP< T > \fBconst\fP &\fBq\fP, \fBmath::vec3\fP< T > \fBconst\fP &r)"
+.br
+.RI "Construct a plane passing through three points\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+A file containing a templated hyperplane class along with associated functions\&. 
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for stf from the source code\&.

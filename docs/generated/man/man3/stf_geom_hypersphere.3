@@ -1,0 +1,97 @@
+.TH "stf::geom::hypersphere< T, N >" 3 "Version 0.0.0" "stf" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+stf::geom::hypersphere< T, N > \- A class representing a hypersphere in R^n\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <hypersphere\&.hpp>\fP
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "\fBusing\fP \fBvec_t\fP = \fBmath::vec\fP< T, \fBN\fP >"
+.br
+.RI "Type alias for vector type\&. "
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBhypersphere\fP (\fBvec_t\fP \fBconst\fP &\fB_center\fP, T \fBconst\fP \fB_radius\fP)"
+.br
+.RI "Construct from a center point and radius\&. "
+.ti -1c
+.RI "\fBbool\fP \fBencloses\fP (\fBvec_t\fP \fBconst\fP &\fBquery\fP) \fBconst\fP"
+.br
+.RI "Compute whether or not the hypersphere encloses a point\&. "
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBvec_t\fP \fBcenter\fP"
+.br
+.RI "The center of the hypersphere\&. "
+.ti -1c
+.RI "T \fBradius\fP"
+.br
+.RI "The radius of the hypersphere\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<\fBtypename\fP T, \fBsize_t\fP N>
+.br
+struct stf::geom::hypersphere< T, N >"A class representing a hypersphere in R^n\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP Number type (eg float) 
+.br
+\fIN\fP Dimension 
+.RE
+.PP
+
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<\fBtypename\fP T , \fBsize_t\fP N> \fBstf::geom::hypersphere\fP< T, \fBN\fP >::hypersphere (\fBvec_t\fP \fBconst\fP & _center, T \fBconst\fP _radius)\fC [inline]\fP"
+
+.PP
+Construct from a center point and radius\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fI_center\fP 
+.br
+\fI_radius\fP 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "template<\fBtypename\fP T , \fBsize_t\fP N> \fBbool\fP \fBstf::geom::hypersphere\fP< T, \fBN\fP >::encloses (\fBvec_t\fP \fBconst\fP & query) const\fC [inline]\fP"
+
+.PP
+Compute whether or not the hypersphere encloses a point\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIquery\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+Whether or not \fCthis\fP encloses \fCquery\fP 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for stf from the source code\&.

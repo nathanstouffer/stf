@@ -1,0 +1,5 @@
+<map id="stf::alg::intersects" name="stf::alg::intersects">
+<area shape="rect" id="Node000001" title="Compute whether or not two aabbs intersect." alt="" coords="5,5,144,31"/>
+<area shape="rect" id="Node000002" href="$structstf_1_1geom_1_1aabb.html#a5b5a3a3f83d5edeb89929eb46133db56" title="Compute if two aabb intersect." alt="" coords="192,5,387,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="144,15,178,15,178,21,144,21"/>
+</map>

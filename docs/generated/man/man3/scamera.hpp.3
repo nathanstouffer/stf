@@ -1,0 +1,94 @@
+.TH "src/stf/include/interface/stf/cam/scamera.hpp" 3 "Version 0.0.0" "stf" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+src/stf/include/interface/stf/cam/scamera.hpp \- A file containing a class that represents a simple camera defined by a point in R^3 and a look direction in spherical coordinates\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+\fC#include 'stf/geom/ray\&.hpp'\fP
+.br
+\fC#include 'stf/math/constants\&.hpp'\fP
+.br
+\fC#include 'stf/math/interpolation\&.hpp'\fP
+.br
+\fC#include 'stf/math/matrix\&.hpp'\fP
+.br
+\fC#include 'stf/math/scalar\&.hpp'\fP
+.br
+\fC#include 'stf/math/spherical\&.hpp'\fP
+.br
+\fC#include 'stf/math/transform\&.hpp'\fP
+.br
+\fC#include 'stf/math/vector\&.hpp'\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBstf::cam::scamera< T >\fP"
+.br
+.RI "Struct to represent a simple camera -- one where the right vector is always in the plane normal to (0, 0, 1)\&. The look direction is represented by spherical coordinates with the eye as the origin\&. "
+.in -1c
+.SS "Namespaces"
+
+.in +1c
+.ti -1c
+.RI "namespace \fBstf\fP"
+.br
+.RI "Namespace for stf -- a templated math library\&. "
+.ti -1c
+.RI "namespace \fBstf::cam\fP"
+.br
+.RI "Namespace for camera-related functionality\&. "
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "template<typename T > bool \fBstf::cam::equ\fP (\fBscamera\fP< T > const &lhs, \fBscamera\fP< T > const &rhs, T eps)"
+.br
+.RI "Compute whether the distance between \fClhs\fP and \fCrhs\fP is less than or equal to \fCeps\fP\&. "
+.ti -1c
+.RI "template<typename T > bool \fBstf::cam::neq\fP (\fBscamera\fP< T > const &lhs, \fBscamera\fP< T > const &rhs, T eps)"
+.br
+.RI "Compute whether the distance between \fClhs\fP and \fCrhs\fP is strictly greater than eps\&. "
+.ti -1c
+.RI "template<typename T > bool \fBstf::cam::operator==\fP (\fBscamera\fP< T > const &lhs, \fBscamera\fP< T > const &rhs)"
+.br
+.RI "Compute whether \fClhs\fP is approximately equal to \fCrhs\fP (uses constants<T>::tol as epsilon) "
+.ti -1c
+.RI "template<typename T > bool \fBstf::cam::operator!=\fP (\fBscamera\fP< T > const &lhs, \fBscamera\fP< T > const &rhs)"
+.br
+.RI "Compute whether \fClhs\fP is approximately not equal to \fCrhs\fP (uses constants<T>::tol as epsilon) "
+.ti -1c
+.RI "template<typename T > \fBscamera\fP< T > \fBstf::cam::lerp\fP (\fBscamera\fP< T > const &lhs, \fBscamera\fP< T > const &rhs, T const t)"
+.br
+.RI "Linearly interpolate scameras\&. "
+.ti -1c
+.RI "template<typename T > \fBscamera\fP< T > \fBstf::cam::lerpstep\fP (\fBscamera\fP< T > const &lhs, \fBscamera\fP< T > const &rhs, T const t)"
+.br
+.RI "Linearly interpolate scameras (clamped to the endpoint values) "
+.ti -1c
+.RI "template<typename T > \fBscamera\fP< T > \fBstf::cam::smoothstep\fP (\fBscamera\fP< T > const &lhs, \fBscamera\fP< T > const &rhs, T const t)"
+.br
+.RI "Interpolate smoothly between the scamera endpoints\&. "
+.ti -1c
+.RI "template<typename T > \fBscamera\fP< T > \fBstf::cam::orbit\fP (\fBscamera\fP< T > const &camera, \fBmath::vec3\fP< T > const &focus, T const delta_phi, T const delta_theta)"
+.br
+.RI "Orbits \fCcamera\fP around \fCfocus\fP by \fCdelta_phi\fP and \fCdelta_theta\fP\&. "
+.ti -1c
+.RI "template<typename T > std::ostream & \fBstf::cam::operator<<\fP (std::ostream &s, \fBscamera\fP< T > const &rhs)"
+.br
+.RI "Write the sccamera \fCrhs\fP to the std::ostream \fCs\fP\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+A file containing a class that represents a simple camera defined by a point in R^3 and a look direction in spherical coordinates\&. 
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for stf from the source code\&.

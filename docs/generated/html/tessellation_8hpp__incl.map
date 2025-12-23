@@ -1,0 +1,48 @@
+<map id="src/stf/include/interface/stf/alg/tessellation.hpp" name="src/stf/include/interface/stf/alg/tessellation.hpp">
+<area shape="rect" id="Node000001" title="A file containing functions that tessellate geometric primitives." alt="" coords="91,5,419,31"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,299,68,324"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="231,33,196,53,163,81,122,133,89,191,64,245,47,287,42,285,59,243,84,188,117,130,159,77,193,48,229,28"/>
+<area shape="rect" id="Node000003" href="$polyline_8hpp.html" title="A file containing a templated polyline class along with associated functions." alt="" coords="173,79,337,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="258,31,258,65,253,65,253,31"/>
+<area shape="rect" id="Node000007" href="$constants_8hpp.html" title="A file containing mathematical constants." alt="" coords="384,372,556,397"/>
+<area shape="poly" id="edge29_Node000001_Node000007" title=" " alt="" coords="311,28,385,51,428,68,470,89,511,115,549,146,580,182,603,224,608,247,605,269,595,290,581,309,544,343,506,368,503,363,541,338,577,306,591,287,600,268,603,247,598,226,576,185,545,149,508,119,468,94,426,73,384,56,309,33"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="245,106,119,227,59,290,55,286,115,223,241,102"/>
+<area shape="rect" id="Node000004" href="$aabb_8hpp.html" title="A file containing a templated aabb class along with associated functions." alt="" coords="129,225,273,251"/>
+<area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="253,105,212,213,207,212,248,104"/>
+<area shape="rect" id="Node000011" href="$vector_8hpp.html" title="A file containing a templated vector class along with associated functions." alt="" coords="625,299,774,324"/>
+<area shape="poly" id="edge28_Node000003_Node000011" title=" " alt="" coords="266,102,297,137,338,175,397,218,463,248,543,275,620,293,619,299,541,280,461,253,395,222,335,179,293,140,262,106"/>
+<area shape="rect" id="Node000016" href="$segment_8hpp.html" title="A file containing a templated segment class along with associated functions." alt="" coords="348,152,517,177"/>
+<area shape="poly" id="edge22_Node000003_Node000016" title=" " alt="" coords="285,102,392,144,390,149,283,106"/>
+<area shape="poly" id="edge7_Node000004_Node000002" title=" " alt="" coords="175,253,77,296,75,291,173,248"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="93,299,159,324"/>
+<area shape="poly" id="edge5_Node000004_Node000005" title=" " alt="" coords="191,253,150,291,146,287,187,249"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="305,445,363,471"/>
+<area shape="poly" id="edge6_Node000004_Node000006" title=" " alt="" coords="203,251,203,279,206,317,216,358,235,396,262,421,293,439,291,444,258,426,231,399,211,360,201,318,197,279,197,251"/>
+<area shape="poly" id="edge8_Node000004_Node000007" title=" " alt="" coords="210,250,235,285,253,305,274,322,328,349,385,366,384,371,326,354,271,326,250,309,231,289,205,253"/>
+<area shape="rect" id="Node000009" href="$interval_8hpp.html" title="A file containing a templated interval class along with associated functions." alt="" coords="285,299,444,324"/>
+<area shape="poly" id="edge11_Node000004_Node000009" title=" " alt="" coords="228,248,327,291,324,296,226,253"/>
+<area shape="poly" id="edge14_Node000004_Node000011" title=" " alt="" coords="274,247,611,295,610,300,273,252"/>
+<area shape="poly" id="edge10_Node000007_Node000006" title=" " alt="" coords="449,400,369,441,367,437,447,395"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="563,445,625,471"/>
+<area shape="poly" id="edge9_Node000007_Node000008" title=" " alt="" coords="491,395,563,436,561,441,489,400"/>
+<area shape="poly" id="edge13_Node000009_Node000007" title=" " alt="" coords="383,322,443,362,440,367,380,326"/>
+<area shape="rect" id="Node000010" href="$enums_8hpp_source.html" title=" " alt="" coords="245,372,359,397"/>
+<area shape="poly" id="edge12_Node000009_Node000010" title=" " alt="" coords="356,326,323,363,319,360,352,323"/>
+<area shape="poly" id="edge18_Node000011_Node000007" title=" " alt="" coords="663,327,521,370,520,365,662,321"/>
+<area shape="poly" id="edge15_Node000011_Node000008" title=" " alt="" coords="678,326,649,346,622,374,607,403,600,433,595,431,602,401,617,370,645,342,675,322"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="631,372,687,397"/>
+<area shape="poly" id="edge16_Node000011_Node000012" title=" " alt="" coords="695,326,675,361,670,359,690,323"/>
+<area shape="rect" id="Node000013" title=" " alt="" coords="711,372,791,397"/>
+<area shape="poly" id="edge17_Node000011_Node000013" title=" " alt="" coords="710,323,737,359,733,362,706,326"/>
+<area shape="rect" id="Node000014" href="$raw_8hpp.html" title="A file containing templated functions for working with scalars stored in raw arrays." alt="" coords="816,372,948,397"/>
+<area shape="poly" id="edge19_Node000011_Node000014" title=" " alt="" coords="730,322,840,364,838,369,728,327"/>
+<area shape="rect" id="Node000015" href="$platform_8hpp_source.html" title=" " alt="" coords="972,372,1099,397"/>
+<area shape="poly" id="edge21_Node000011_Node000015" title=" " alt="" coords="754,321,968,366,967,372,753,327"/>
+<area shape="poly" id="edge20_Node000014_Node000008" title=" " alt="" coords="836,400,639,448,638,443,835,395"/>
+<area shape="poly" id="edge24_Node000016_Node000004" title=" " alt="" coords="396,180,252,224,250,219,395,175"/>
+<area shape="poly" id="edge25_Node000016_Node000007" title=" " alt="" coords="437,177,459,298,469,358,464,359,454,299,432,178"/>
+<area shape="poly" id="edge26_Node000016_Node000009" title=" " alt="" coords="427,179,399,227,375,286,370,284,394,224,423,176"/>
+<area shape="poly" id="edge27_Node000016_Node000011" title=" " alt="" coords="440,176,460,212,475,232,493,249,521,265,551,278,612,296,611,301,549,283,518,270,490,253,471,236,455,215,435,179"/>
+<area shape="rect" id="Node000017" title=" " alt="" coords="503,225,589,251"/>
+<area shape="poly" id="edge23_Node000016_Node000017" title=" " alt="" coords="452,175,518,216,515,220,449,180"/>
+</map>

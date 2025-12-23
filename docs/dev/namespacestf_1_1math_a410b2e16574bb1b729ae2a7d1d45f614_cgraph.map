@@ -1,0 +1,5 @@
+<map id="stf::math::translate_y" name="stf::math::translate_y">
+<area shape="rect" id="Node000001" title="Construct a matrix that translates in y." alt="" coords="5,5,167,31"/>
+<area shape="rect" id="Node000002" href="$structstf_1_1math_1_1mtx.html#a8047848dbbccdc0834492c2bbd10328f" title="Compute a translation matrix." alt="" coords="215,5,395,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="167,15,201,15,201,21,167,21"/>
+</map>

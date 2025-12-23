@@ -1,0 +1,129 @@
+.TH "stf::spatial::interval_tree< T, V >::query_iterator" 3 "Version 0.0.0" "stf" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+stf::spatial::interval_tree< T, V >::query_iterator \- An iterator pointing to an underlying entry that also knows how to jump to the next entry that contains a query point\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <interval_tree\&.hpp>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "bool \fBoperator==\fP (\fBquery_iterator\fP const &rhs) const"
+.br
+.RI "Compute whether or not both iterators are the end\&. "
+.ti -1c
+.RI "bool \fBoperator!=\fP (\fBquery_iterator\fP const &rhs) const"
+.br
+.RI "Compute whether or not both iterators are not the end\&. "
+.ti -1c
+.RI "\fBentry_t\fP const & \fBoperator*\fP ()"
+.br
+.RI "Dereference the iterator\&. "
+.ti -1c
+.RI "\fBquery_iterator\fP & \fBoperator++\fP ()"
+.br
+.RI "Pre-increment the iterator\&. "
+.ti -1c
+.RI "\fBquery_iterator\fP \fBoperator++\fP (int)"
+.br
+.RI "Post-increment the iterator\&. "
+.in -1c
+.SS "Friends"
+
+.in +1c
+.ti -1c
+.RI "class \fBinterval_tree\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<typename T, typename V>
+.br
+struct stf::spatial::interval_tree< T, V >::query_iterator"An iterator pointing to an underlying entry that also knows how to jump to the next entry that contains a query point\&. 
+.SH "Member Function Documentation"
+.PP 
+.SS "template<typename T , typename V > bool \fBstf::spatial::interval_tree\fP< T, V >::query_iterator::operator!= (\fBquery_iterator\fP const & rhs) const\fC [inline]\fP"
+
+.PP
+Compute whether or not both iterators are not the end\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIrhs\fP 
+.RE
+.PP
+\fBNote\fP
+.RS 4
+Unfortunately, we have to overload the appropriate operators for range-based for loops to work\&. This is NOT true inequality 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+Whether or not either iterator is not the end 
+.RE
+.PP
+
+.SS "template<typename T , typename V > \fBentry_t\fP const  & \fBstf::spatial::interval_tree\fP< T, V >::query_iterator::operator* ()\fC [inline]\fP"
+
+.PP
+Dereference the iterator\&. 
+.PP
+\fBReturns\fP
+.RS 4
+A const reference to underlying entry 
+.RE
+.PP
+
+.SS "template<typename T , typename V > \fBquery_iterator\fP & \fBstf::spatial::interval_tree\fP< T, V >::query_iterator::operator++ ()\fC [inline]\fP"
+
+.PP
+Pre-increment the iterator\&. 
+.PP
+\fBReturns\fP
+.RS 4
+A reference to \fCthis\fP after incrementing 
+.RE
+.PP
+
+.SS "template<typename T , typename V > \fBquery_iterator\fP \fBstf::spatial::interval_tree\fP< T, V >::query_iterator::operator++ (int)\fC [inline]\fP"
+
+.PP
+Post-increment the iterator\&. 
+.PP
+\fBReturns\fP
+.RS 4
+An incremented copy of \fCthis\fP 
+.RE
+.PP
+
+.SS "template<typename T , typename V > bool \fBstf::spatial::interval_tree\fP< T, V >::query_iterator::operator== (\fBquery_iterator\fP const & rhs) const\fC [inline]\fP"
+
+.PP
+Compute whether or not both iterators are the end\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIrhs\fP 
+.RE
+.PP
+\fBNote\fP
+.RS 4
+Unfortunately, we have to overload the appropriate operators for range-based for loops to work\&. This is NOT true equality 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+Whether or not both iterators are the end 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for stf from the source code\&.

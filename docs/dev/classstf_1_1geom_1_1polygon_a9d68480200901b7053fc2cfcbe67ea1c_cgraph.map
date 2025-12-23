@@ -1,0 +1,9 @@
+<map id="stf::geom::polygon::scaled" name="stf::geom::polygon::scaled">
+<area shape="rect" id="Node000001" title="Scale a polygon." alt="" coords="5,31,199,56"/>
+<area shape="rect" id="Node000002" href="$classstf_1_1geom_1_1polygon.html#ac64128ec47826b4af8215e4fb5590235" title="Default constructor – empty polygon." alt="" coords="247,5,449,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="199,31,233,27,233,32,199,36"/>
+<area shape="rect" id="Node000003" href="$classstf_1_1geom_1_1polygon.html#ab70aa0ca732d6382e250b5ef37f182fa" title="Scale a polygon in place." alt="" coords="255,55,441,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="199,50,242,54,241,60,199,55"/>
+<area shape="rect" id="Node000004" href="$structstf_1_1geom_1_1aabb.html#a92f9c98f52b5dfb62e719d72081aa6e2" title="Scale an aabb in place." alt="" coords="497,55,663,80"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="441,65,483,65,483,70,441,70"/>
+</map>

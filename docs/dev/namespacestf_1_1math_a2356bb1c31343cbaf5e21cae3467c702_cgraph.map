@@ -1,0 +1,7 @@
+<map id="stf::math::rotate" name="stf::math::rotate">
+<area shape="rect" id="Node000001" title="Rotate point about axis by theta radians." alt="" coords="5,31,132,56"/>
+<area shape="rect" id="Node000002" href="$namespacestf_1_1math.html#a2a4e3d257a2f7cc1a961d613ae161333" title="Compute the 2D cross product of lhs and rhs." alt="" coords="180,5,303,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="132,31,166,26,167,32,133,37"/>
+<area shape="rect" id="Node000003" href="$namespacestf_1_1math.html#affb9352af7b68426cc6ca4e4f2b5e583" title="Compute the dot product of two vectors." alt="" coords="187,55,296,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="133,49,174,55,173,61,132,55"/>
+</map>

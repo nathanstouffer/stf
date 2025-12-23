@@ -1,0 +1,9 @@
+<map id="stf::math::counterclockwise_angle" name="stf::math::counterclockwise_angle">
+<area shape="rect" id="Node000001" title="Compute the counterclockwise angle from u to v." alt="" coords="5,55,249,80"/>
+<area shape="rect" id="Node000002" href="$namespacestf_1_1math.html#a2888d4e52fada9facf208ac2235b119d" title="Compute the equivalent angle to theta in [0, 2pi)" alt="" coords="297,5,491,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="196,52,311,31,312,36,197,57"/>
+<area shape="rect" id="Node000003" href="$namespacestf_1_1math.html#a2a4e3d257a2f7cc1a961d613ae161333" title="Compute the 2D cross product of lhs and rhs." alt="" coords="333,55,455,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="249,65,319,65,319,70,249,70"/>
+<area shape="rect" id="Node000004" href="$namespacestf_1_1math.html#affb9352af7b68426cc6ca4e4f2b5e583" title="Compute the dot product of two vectors." alt="" coords="339,104,449,129"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="197,77,326,102,325,107,196,83"/>
+</map>

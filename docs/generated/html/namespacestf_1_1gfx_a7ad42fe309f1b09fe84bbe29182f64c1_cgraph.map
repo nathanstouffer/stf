@@ -1,0 +1,6 @@
+<map id="stf::gfx::smoothstep" name="stf::gfx::smoothstep">
+<area shape="rect" id="Node000001" title="Interpolate smoothly between the rgba endpoints." alt="" coords="5,29,157,55"/>
+<area shape="poly" id="edge2_Node000001_Node000001" title=" " alt="" coords="48,31,41,21,45,11,58,5,81,3,110,6,121,16,117,20,107,11,81,8,60,10,48,15,46,20,52,28"/>
+<area shape="rect" id="Node000002" href="$structstf_1_1gfx_1_1rgba.html#a958c5193e6b31167a481f936b8c1a0fa" title="Compute the color as a vec4." alt="" coords="205,29,363,55"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="158,39,192,39,192,45,158,45"/>
+</map>

@@ -1,0 +1,390 @@
+.TH "stf::geom::obb< T, N >" 3 "Version 0.0.0" "stf" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+stf::geom::obb< T, N > \- An obb class representing oriented boxes in R^n\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <obb\&.hpp>\fP
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "\fBusing\fP \fBvec_t\fP = \fBmath::vec\fP< T, \fBN\fP >"
+.br
+.RI "Type alias for vector type\&. "
+.ti -1c
+.RI "\fBusing\fP \fBbasis_t\fP = \fBmath::basis\fP< T, \fBN\fP >"
+.br
+.RI "Type alias for basis type\&. "
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBobb\fP ()"
+.br
+.RI "Default constructor -- encompasses all of R^n\&. "
+.ti -1c
+.RI "\fBobb\fP (\fBbasis_t\fP \fBconst\fP &\fBbasis\fP)"
+.br
+.RI "Construct from a basis -- encompasses all of R^n\&. "
+.ti -1c
+.RI "\fBobb\fP (\fBmath::mtx\fP< T, \fBN\fP > \fBconst\fP &\fBrotation\fP)"
+.br
+.RI "Construct from a rotation -- encompasses all of R^n\&. "
+.ti -1c
+.RI "\fBobb\fP (\fBaabb\fP< T, \fBN\fP > \fBconst\fP &\fBaabb\fP)"
+.br
+.RI "Construct from an \fBaabb\fP\&. "
+.ti -1c
+.RI "\fBobb\fP (\fBvec_t\fP \fBconst\fP &\fBcenter\fP, \fBmath::mtx\fP< T, \fBN\fP > \fBconst\fP &\fBrotation\fP, \fBvec_t\fP \fBconst\fP &\fBhalf_extents\fP)"
+.br
+.RI "Construct from a center, a rotation matrix, and half-extents\&. "
+.ti -1c
+.RI "\fBobb\fP (\fBvec_t\fP \fBconst\fP &\fBcenter\fP, \fBbasis_t\fP \fBconst\fP &\fBbasis\fP, \fBvec_t\fP \fBconst\fP &\fBhalf_extents\fP)"
+.br
+.RI "Construct from a center, basis, and half-extents\&. "
+.ti -1c
+.RI "\fBvec_t\fP \fBvertex\fP (\fBsize_t\fP \fBconst\fP \fBi\fP) \fBconst\fP"
+.br
+.RI "Compute the \fCi\fP vertex of an \fBobb\fP\&. "
+.ti -1c
+.RI "\fBvec_t\fP \fBextremity\fP (\fBvec_t\fP \fBconst\fP &direction) \fBconst\fP"
+.br
+.RI "Compute an extremity of an \fBobb\fP in a given direction\&. "
+.ti -1c
+.RI "\fBbool\fP \fBcontains\fP (\fBvec_t\fP \fBconst\fP &point) \fBconst\fP"
+.br
+.RI "Compute whether a point is contained in an \fBobb\fP\&. "
+.ti -1c
+.RI "\fBbool\fP \fBcontains\fP (\fBobb\fP \fBconst\fP &\fBrhs\fP) \fBconst\fP"
+.br
+.RI "Compute whether one \fBobb\fP contains another\&. "
+.ti -1c
+.RI "\fBmath::interval\fP< T > \fBprojection\fP (\fBvec_t\fP \fBconst\fP &\fBaxis\fP) \fBconst\fP"
+.br
+.RI "Compute the projection of an \fBobb\fP onto an axis\&. "
+.ti -1c
+.RI "\fBobb\fP & \fBfit\fP (\fBvec_t\fP \fBconst\fP &point)"
+.br
+.RI "Fit a point to an \fBobb\fP in place\&. "
+.ti -1c
+.RI "\fBobb\fP \fBfitted\fP (\fBvec_t\fP \fBconst\fP &x) \fBconst\fP"
+.br
+.RI "Fit an \fBobb\fP\&. "
+.ti -1c
+.RI "\fBvec_t\fP \fBconst\fP & \fBcenter\fP () \fBconst\fP"
+.br
+.RI "Getter for the center of the obb\&. "
+.ti -1c
+.RI "\fBbasis_t\fP \fBconst\fP & \fBbasis\fP () \fBconst\fP"
+.br
+.RI "Getter for the basis of the obb\&. "
+.ti -1c
+.RI "\fBvec_t\fP \fBconst\fP & \fBhalf_extents\fP () \fBconst\fP"
+.br
+.RI "Getter for the half extent of the obb\&. "
+.in -1c
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBstatic\fP \fBobb\fP \fBfit\fP (\fBbasis_t\fP \fBconst\fP &\fBbasis\fP, std::vector< \fBvec_t\fP > \fBconst\fP &\fBpoints\fP)"
+.br
+.RI "Construct an \fBobb\fP that minimally encompasses a set of points\&. "
+.ti -1c
+.RI "\fBstatic\fP \fBsize_t\fP \fBvertex_count\fP ()"
+.br
+.RI "Compute the number of vertices of the obb\&. "
+.ti -1c
+.RI "\fBstatic\fP \fBsize_t\fP \fBbyte_count\fP ()"
+.br
+.RI "Compute the number of bytes allocated by \fBobb\fP\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<\fBtypename\fP T, \fBsize_t\fP N>
+.br
+struct stf::geom::obb< T, N >"An obb class representing oriented boxes in R^n\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP Number type (eg float) 
+.br
+\fIN\fP Dimension 
+.RE
+.PP
+
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<\fBtypename\fP T , \fBsize_t\fP N> \fBstf::geom::obb\fP< T, \fBN\fP >::obb (\fBbasis_t\fP \fBconst\fP & basis)\fC [inline]\fP, \fC [explicit]\fP"
+
+.PP
+Construct from a basis -- encompasses all of R^n\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIbasis\fP 
+.RE
+.PP
+
+.SS "template<\fBtypename\fP T , \fBsize_t\fP N> \fBstf::geom::obb\fP< T, \fBN\fP >::obb (\fBmath::mtx\fP< T, \fBN\fP > \fBconst\fP & rotation)\fC [inline]\fP, \fC [explicit]\fP"
+
+.PP
+Construct from a rotation -- encompasses all of R^n\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIrotation\fP 
+.RE
+.PP
+
+.SS "template<\fBtypename\fP T , \fBsize_t\fP N> \fBstf::geom::obb\fP< T, \fBN\fP >::obb (\fBaabb\fP< T, \fBN\fP > \fBconst\fP & aabb)\fC [inline]\fP, \fC [explicit]\fP"
+
+.PP
+Construct from an \fBaabb\fP\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIaabb\fP 
+.RE
+.PP
+
+.SS "template<\fBtypename\fP T , \fBsize_t\fP N> \fBstf::geom::obb\fP< T, \fBN\fP >::obb (\fBvec_t\fP \fBconst\fP & center, \fBmath::mtx\fP< T, \fBN\fP > \fBconst\fP & rotation, \fBvec_t\fP \fBconst\fP & half_extents)\fC [inline]\fP"
+
+.PP
+Construct from a center, a rotation matrix, and half-extents\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIcenter\fP 
+.br
+\fIrotation\fP 
+.br
+\fIhalf_extents\fP 
+.RE
+.PP
+\fBNote\fP
+.RS 4
+\fCrotation\fP is assumed to be orthonormal 
+.RE
+.PP
+
+.SS "template<\fBtypename\fP T , \fBsize_t\fP N> \fBstf::geom::obb\fP< T, \fBN\fP >::obb (\fBvec_t\fP \fBconst\fP & center, \fBbasis_t\fP \fBconst\fP & basis, \fBvec_t\fP \fBconst\fP & half_extents)\fC [inline]\fP"
+
+.PP
+Construct from a center, basis, and half-extents\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIcenter\fP 
+.br
+\fIbasis\fP 
+.br
+\fIhalf_extents\fP 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "template<\fBtypename\fP T , \fBsize_t\fP N> \fBbasis_t\fP \fBconst\fP  & \fBstf::geom::obb\fP< T, \fBN\fP >::basis () const\fC [inline]\fP"
+
+.PP
+Getter for the basis of the obb\&. 
+.PP
+\fBReturns\fP
+.RS 4
+A const ref to the basis 
+.RE
+.PP
+
+.SS "template<\fBtypename\fP T , \fBsize_t\fP N> \fBstatic\fP \fBsize_t\fP \fBstf::geom::obb\fP< T, \fBN\fP >::byte_count ()\fC [inline]\fP, \fC [static]\fP"
+
+.PP
+Compute the number of bytes allocated by \fBobb\fP\&. 
+.PP
+\fBReturns\fP
+.RS 4
+The byte count 
+.RE
+.PP
+
+.SS "template<\fBtypename\fP T , \fBsize_t\fP N> \fBvec_t\fP \fBconst\fP  & \fBstf::geom::obb\fP< T, \fBN\fP >::center () const\fC [inline]\fP"
+
+.PP
+Getter for the center of the obb\&. 
+.PP
+\fBReturns\fP
+.RS 4
+A const ref to the center 
+.RE
+.PP
+
+.SS "template<\fBtypename\fP T , \fBsize_t\fP N> \fBbool\fP \fBstf::geom::obb\fP< T, \fBN\fP >::contains (\fBobb\fP< T, \fBN\fP > \fBconst\fP & rhs) const\fC [inline]\fP"
+
+.PP
+Compute whether one \fBobb\fP contains another\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIrhs\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+Whether or not \fCrhs\fP is contained in \fCthis\fP 
+.RE
+.PP
+
+.SS "template<\fBtypename\fP T , \fBsize_t\fP N> \fBbool\fP \fBstf::geom::obb\fP< T, \fBN\fP >::contains (\fBvec_t\fP \fBconst\fP & point) const\fC [inline]\fP"
+
+.PP
+Compute whether a point is contained in an \fBobb\fP\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIpoint\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+Whether or not \fCpoint\fP is contained in \fCthis\fP 
+.RE
+.PP
+
+.SS "template<\fBtypename\fP T , \fBsize_t\fP N> \fBvec_t\fP \fBstf::geom::obb\fP< T, \fBN\fP >::extremity (\fBvec_t\fP \fBconst\fP & direction) const\fC [inline]\fP"
+
+.PP
+Compute an extremity of an \fBobb\fP in a given direction\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIdirection\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+A vertex of \fCthis\fP that is maximally extreme in \fCdirection\fP 
+.RE
+.PP
+
+.SS "template<\fBtypename\fP T , \fBsize_t\fP N> \fBstatic\fP \fBobb\fP \fBstf::geom::obb\fP< T, \fBN\fP >::fit (\fBbasis_t\fP \fBconst\fP & basis, std::vector< \fBvec_t\fP > \fBconst\fP & points)\fC [inline]\fP, \fC [static]\fP"
+
+.PP
+Construct an \fBobb\fP that minimally encompasses a set of points\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIbasis\fP 
+.br
+\fIpoints\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+An \fBobb\fP that minimally encompasses \fCpoints\fP 
+.RE
+.PP
+
+.SS "template<\fBtypename\fP T , \fBsize_t\fP N> \fBobb\fP & \fBstf::geom::obb\fP< T, \fBN\fP >::fit (\fBvec_t\fP \fBconst\fP & point)\fC [inline]\fP"
+
+.PP
+Fit a point to an \fBobb\fP in place\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIpoint\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+A reference to \fCthis\fP 
+.RE
+.PP
+
+.SS "template<\fBtypename\fP T , \fBsize_t\fP N> \fBobb\fP \fBstf::geom::obb\fP< T, \fBN\fP >::fitted (\fBvec_t\fP \fBconst\fP & x) const\fC [inline]\fP"
+
+.PP
+Fit an \fBobb\fP\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIx\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+A fitted copy of \fCthis\fP 
+.RE
+.PP
+
+.SS "template<\fBtypename\fP T , \fBsize_t\fP N> \fBvec_t\fP \fBconst\fP  & \fBstf::geom::obb\fP< T, \fBN\fP >::half_extents () const\fC [inline]\fP"
+
+.PP
+Getter for the half extent of the obb\&. 
+.PP
+\fBReturns\fP
+.RS 4
+A const ref to the half extent 
+.RE
+.PP
+
+.SS "template<\fBtypename\fP T , \fBsize_t\fP N> \fBmath::interval\fP< T > \fBstf::geom::obb\fP< T, \fBN\fP >::projection (\fBvec_t\fP \fBconst\fP & axis) const\fC [inline]\fP"
+
+.PP
+Compute the projection of an \fBobb\fP onto an axis\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIaxis\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The interval of projection onto the axis 
+.RE
+.PP
+\fBNote\fP
+.RS 4
+\fCaxis\fP is assumed to be a unit vector 
+.RE
+.PP
+
+.SS "template<\fBtypename\fP T , \fBsize_t\fP N> \fBvec_t\fP \fBstf::geom::obb\fP< T, \fBN\fP >::vertex (\fBsize_t\fP \fBconst\fP i) const\fC [inline]\fP"
+
+.PP
+Compute the \fCi\fP vertex of an \fBobb\fP\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIi\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The position of the \fCi\fP vertex 
+.RE
+.PP
+
+.SS "template<\fBtypename\fP T , \fBsize_t\fP N> \fBstatic\fP \fBsize_t\fP \fBstf::geom::obb\fP< T, \fBN\fP >::vertex_count ()\fC [inline]\fP, \fC [static]\fP"
+
+.PP
+Compute the number of vertices of the obb\&. 
+.PP
+\fBReturns\fP
+.RS 4
+The number of vertices 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for stf from the source code\&.

@@ -1,0 +1,5 @@
+<map id="stf::geom::polygon::size" name="stf::geom::polygon::size">
+<area shape="rect" id="Node000001" title="Compute the size of a polygon." alt="" coords="5,5,183,31"/>
+<area shape="rect" id="Node000002" href="$classstf_1_1geom_1_1polygon.html#af24e276b25c2edf8de20446a4191584a" title="Compute whether or not a polygon is empty." alt="" coords="231,5,441,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="183,15,217,15,217,21,183,21"/>
+</map>

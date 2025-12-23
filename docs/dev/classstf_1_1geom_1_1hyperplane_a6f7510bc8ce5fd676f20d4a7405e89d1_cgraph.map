@@ -1,0 +1,7 @@
+<map id="stf::geom::hyperplane::dist" name="stf::geom::hyperplane::dist">
+<area shape="rect" id="Node000001" title="Compute the distance from a hyperplane to a point." alt="" coords="5,5,201,31"/>
+<area shape="rect" id="Node000002" href="$classstf_1_1geom_1_1hyperplane.html#acfe6da963051cafaf29b83c57e92be09" title="Compute the signed distance from a hyperplane to a point." alt="" coords="249,5,496,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="202,15,236,15,236,21,202,21"/>
+<area shape="rect" id="Node000003" href="$namespacestf_1_1math.html#affb9352af7b68426cc6ca4e4f2b5e583" title="Compute the dot product of two vectors." alt="" coords="544,5,653,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="496,15,530,15,530,21,496,21"/>
+</map>

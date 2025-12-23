@@ -1,0 +1,5 @@
+<map id="stf::geom::segment::slope" name="stf::geom::segment::slope">
+<area shape="rect" id="Node000001" title="Compute the slope of a segment." alt="" coords="5,5,196,31"/>
+<area shape="rect" id="Node000002" href="$structstf_1_1geom_1_1segment.html#a0868c17d40c531f5cc16805748c19ff9" title="Compute the delta between the second and first point of the segment." alt="" coords="244,5,433,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="196,15,230,15,230,21,196,21"/>
+</map>

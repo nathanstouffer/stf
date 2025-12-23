@@ -1,0 +1,55 @@
+.TH "src/stf/include/interface/stf/alg/tessellation.hpp" 3 "Version 0.0.0" "stf" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+src/stf/include/interface/stf/alg/tessellation.hpp \- A file containing functions that tessellate geometric primitives\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <vector>\fP
+.br
+\fC#include 'stf/geom/polyline\&.hpp'\fP
+.br
+\fC#include 'stf/math/constants\&.hpp'\fP
+.br
+
+.SS "Namespaces"
+
+.in +1c
+.ti -1c
+.RI "namespace \fBstf\fP"
+.br
+.RI "Namespace for stf -- a templated math library\&. "
+.ti -1c
+.RI "namespace \fBstf::alg\fP"
+.br
+.RI "Namespace for algorithms\&. "
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "template<typename T > void \fBstf::alg::tessellate_via_length\fP (std::vector< \fBmath::vec2\fP< T > > &vertices, \fBgeom::segment2\fP< T > const &segment, T const max_len, bool const add_end)"
+.br
+.RI "Tessellate a line segment by adding vertices so that each portion is longer than a specified length\&. "
+.ti -1c
+.RI "template<typename T > std::vector< \fBmath::vec2\fP< T > > \fBstf::alg::tessellate_via_length\fP (\fBgeom::polyline2\fP< T > const &polyline, T const max_len, bool const loop)"
+.br
+.RI "Tessellate a polyline by adding vertices so that no segment is longer than a specified length\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+A file containing functions that tessellate geometric primitives\&. 
+
+
+.PP
+\fBTodo\fP
+.RS 4
+Write a polyline tessellation algorithm that adds vertices at all intersections with a grid 
+.RE
+.PP
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for stf from the source code\&.

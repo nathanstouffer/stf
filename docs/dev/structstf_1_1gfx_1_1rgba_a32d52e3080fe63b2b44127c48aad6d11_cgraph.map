@@ -1,0 +1,7 @@
+<map id="stf::gfx::rgba::from_hex_abgr" name="stf::gfx::rgba::from_hex_abgr">
+<area shape="rect" id="Node000001" title="Construct a rgba from a 32&#45;bit ABGR integer." alt="" coords="5,31,216,56"/>
+<area shape="rect" id="Node000002" href="$structstf_1_1gfx_1_1rgba.html#a286d49bfcbb9582713b0447eb2838978" title="Convert a single byte of a 32&#45;bit integer to." alt="" coords="264,5,439,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="216,30,250,26,251,31,216,35"/>
+<area shape="rect" id="Node000003" href="$structstf_1_1gfx_1_1rgba.html#a8b17791232c295e2834619fd489faea1" title="Default constructor – initializes to all black with full opacity." alt="" coords="281,55,422,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="216,51,267,56,267,62,216,56"/>
+</map>

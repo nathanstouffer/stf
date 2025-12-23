@@ -1,0 +1,7 @@
+<map id="stf::geom::polygon::boundary" name="stf::geom::polygon::boundary">
+<area shape="rect" id="Node000001" title="Compute the boundary of a polygon." alt="" coords="5,5,217,31"/>
+<area shape="rect" id="Node000002" href="$classstf_1_1geom_1_1polyline.html#acc44ecf3aff6d015c22771133b6db300" title="Add a vertex to the end of a polyline." alt="" coords="265,5,485,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="217,15,251,15,251,21,217,21"/>
+<area shape="rect" id="Node000003" href="$structstf_1_1geom_1_1aabb.html#ab2df26065fbf161fc22489a70b4c67d7" title="Fit a point to an aabb in place." alt="" coords="533,5,677,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="486,15,520,15,520,21,486,21"/>
+</map>

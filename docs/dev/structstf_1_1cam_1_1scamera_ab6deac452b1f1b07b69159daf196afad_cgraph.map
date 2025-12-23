@@ -1,0 +1,35 @@
+<map id="stf::cam::scamera::inv_view" name="stf::cam::scamera::inv_view">
+<area shape="rect" id="Node000001" title="Compute the inverse of the view matrix for the scamera." alt="" coords="5,180,209,205"/>
+<area shape="rect" id="Node000002" href="$structstf_1_1math_1_1mtx.html#a860bfc9c17b3e7ae53cdc89d4e57c8cf" title="Compute the inverse of a matrix." alt="" coords="258,105,434,131"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="148,177,291,132,293,137,150,182"/>
+<area shape="rect" id="Node000009" href="$structstf_1_1cam_1_1scamera.html#a9471369c018f7aa23951cb2f1177d978" title="Compute the view matrix for the scamera." alt="" coords="257,205,435,231"/>
+<area shape="poly" id="edge11_Node000001_Node000009" title=" " alt="" coords="210,201,244,205,244,210,209,206"/>
+<area shape="rect" id="Node000003" href="$structstf_1_1math_1_1mtx.html#a6a7476283ced64000f41fce6ff1dd753" title="Compute the cofactor matrix." alt="" coords="483,80,673,105"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="434,106,469,102,470,107,434,111"/>
+<area shape="rect" id="Node000004" href="$structstf_1_1math_1_1mtx.html#a99284fc89e13fc8af925ae05b919f8a3" title="Compute the determinant of a matrix." alt="" coords="721,29,924,55"/>
+<area shape="poly" id="edge9_Node000002_Node000004" title=" " alt="" coords="374,103,423,82,482,65,598,47,707,40,708,45,598,52,483,70,425,87,376,108"/>
+<area shape="rect" id="Node000008" href="$structstf_1_1math_1_1mtx.html#addd61e9030ec8029a860a04c1e47439b" title="Transpose a matrix in&#45;place." alt="" coords="485,129,671,155"/>
+<area shape="poly" id="edge10_Node000002_Node000008" title=" " alt="" coords="434,124,471,128,471,134,434,130"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="640,77,747,55,748,60,641,82"/>
+<area shape="rect" id="Node000005" href="$structstf_1_1math_1_1mtx.html#a0c1f66961d3c7b222539cdb348c4ad70" title="Compute the minor a matrix for a particular index." alt="" coords="977,55,1137,80"/>
+<area shape="poly" id="edge6_Node000003_Node000005" title=" " alt="" coords="673,85,963,70,964,75,674,90"/>
+<area shape="rect" id="Node000006" href="$structstf_1_1math_1_1mtx.html#a3af7d18a0bfae3637174b8dd9ece2893" title="Default constructor – intializes to the identity matrix." alt="" coords="749,131,897,156"/>
+<area shape="poly" id="edge7_Node000003_Node000006" title=" " alt="" coords="641,103,748,125,747,130,640,108"/>
+<area shape="poly" id="edge4_Node000004_Node000004" title=" " alt="" coords="785,31,776,21,781,11,796,5,823,3,856,7,868,16,865,20,854,11,823,8,798,10,784,15,781,20,788,27"/>
+<area shape="poly" id="edge5_Node000004_Node000005" title=" " alt="" coords="924,50,964,55,964,60,924,56"/>
+<area shape="rect" id="Node000007" href="$structstf_1_1math_1_1mtx.html#a1369a61fa33ee78d9075bc5fc75c839b" title="Set a matrix to the identity matrix." alt="" coords="972,131,1143,156"/>
+<area shape="poly" id="edge8_Node000006_Node000007" title=" " alt="" coords="897,141,958,141,958,146,897,146"/>
+<area shape="rect" id="Node000010" href="$structstf_1_1cam_1_1scamera.html#a446b82e8ea93f7c529c8e2dbc186a6a0" title="Compute the look direction of the camera." alt="" coords="735,181,910,207"/>
+<area shape="poly" id="edge12_Node000009_Node000010" title=" " alt="" coords="435,211,721,196,721,202,435,216"/>
+<area shape="rect" id="Node000012" href="$structstf_1_1cam_1_1scamera.html#a33a6c257bda11227773a7b9b4c577bd7" title="Compute the right direction of the camera." alt="" coords="490,231,666,256"/>
+<area shape="poly" id="edge14_Node000009_Node000012" title=" " alt="" coords="435,225,477,230,476,235,434,230"/>
+<area shape="rect" id="Node000014" href="$structstf_1_1cam_1_1scamera.html#a61ca12cc0168b3439432633e95bfa581" title="Compute the up direction of the camera." alt="" coords="741,280,904,305"/>
+<area shape="poly" id="edge19_Node000009_Node000014" title=" " alt="" coords="376,228,425,249,483,266,546,277,610,284,728,291,728,296,610,290,545,282,482,271,423,254,374,233"/>
+<area shape="rect" id="Node000011" href="$namespacestf_1_1math.html#a731976438129a4b458e42de14270eaae" title="Compute unit vector in the direction of theta." alt="" coords="977,231,1138,256"/>
+<area shape="poly" id="edge13_Node000010_Node000011" title=" " alt="" coords="884,204,983,225,982,230,883,209"/>
+<area shape="poly" id="edge16_Node000012_Node000010" title=" " alt="" coords="641,228,745,207,746,212,642,233"/>
+<area shape="rect" id="Node000013" href="$namespacestf_1_1math.html#a2a4e3d257a2f7cc1a961d613ae161333" title="Compute the 2D cross product of lhs and rhs." alt="" coords="761,231,884,256"/>
+<area shape="poly" id="edge15_Node000012_Node000013" title=" " alt="" coords="666,241,748,241,748,246,666,246"/>
+<area shape="poly" id="edge17_Node000012_Node000014" title=" " alt="" coords="642,253,746,275,745,280,641,259"/>
+<area shape="poly" id="edge18_Node000014_Node000011" title=" " alt="" coords="883,277,982,256,983,262,884,283"/>
+</map>

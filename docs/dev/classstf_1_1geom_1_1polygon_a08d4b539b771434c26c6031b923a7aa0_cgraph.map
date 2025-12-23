@@ -1,0 +1,11 @@
+<map id="stf::geom::polygon::is_convex" name="stf::geom::polygon::is_convex">
+<area shape="rect" id="Node000001" title="Compute whether or not a polygon is convex." alt="" coords="5,31,221,56"/>
+<area shape="rect" id="Node000002" href="$namespacestf_1_1math.html#a73d9e43eb556d940a4473faf756b0772" title="Compute the orientation of p, q, and r." alt="" coords="279,5,437,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="221,29,265,25,265,30,222,35"/>
+<area shape="rect" id="Node000004" href="$classstf_1_1geom_1_1polygon.html#a7735905ea132cbdd6e209089d86eb967" title="Compute the size of a polygon." alt="" coords="269,55,447,80"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="222,51,256,55,255,60,221,57"/>
+<area shape="rect" id="Node000003" href="$namespacestf_1_1math.html#a2a4e3d257a2f7cc1a961d613ae161333" title="Compute the 2D cross product of lhs and rhs." alt="" coords="539,5,661,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="438,15,525,15,525,21,438,21"/>
+<area shape="rect" id="Node000005" href="$classstf_1_1geom_1_1polygon.html#af24e276b25c2edf8de20446a4191584a" title="Compute whether or not a polygon is empty." alt="" coords="495,55,705,80"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="447,65,481,65,481,70,447,70"/>
+</map>

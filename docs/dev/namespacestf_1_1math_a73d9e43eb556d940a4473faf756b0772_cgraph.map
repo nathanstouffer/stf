@@ -1,0 +1,5 @@
+<map id="stf::math::orientation" name="stf::math::orientation">
+<area shape="rect" id="Node000001" title="Compute the orientation of p, q, and r." alt="" coords="5,5,164,31"/>
+<area shape="rect" id="Node000002" href="$namespacestf_1_1math.html#a2a4e3d257a2f7cc1a961d613ae161333" title="Compute the 2D cross product of lhs and rhs." alt="" coords="212,5,335,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="164,15,198,15,198,21,164,21"/>
+</map>

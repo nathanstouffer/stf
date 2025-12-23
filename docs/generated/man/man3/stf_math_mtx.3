@@ -1,0 +1,704 @@
+.TH "stf::math::mtx< T, N >" 3 "Version 0.0.0" "stf" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+stf::math::mtx< T, N > \- A square matrix class templated on number type and dimension\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <matrix\&.hpp>\fP
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBcol_proxy\fP"
+.br
+.RI "A proxy struct that gives access to a single column of a \fBmtx\fP\&. "
+.ti -1c
+.RI "struct \fBconst_col_proxy\fP"
+.br
+.RI "A proxy struct that gives const access to a single column of a \fBmtx\fP\&. "
+.ti -1c
+.RI "struct \fBconst_row_proxy\fP"
+.br
+.RI "A proxy struct that gives const access to a single row of a \fBmtx\fP\&. "
+.ti -1c
+.RI "struct \fBrow_proxy\fP"
+.br
+.RI "A proxy struct that gives access to a single row of a \fBmtx\fP\&. "
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBmtx\fP ()"
+.br
+.RI "Default constructor -- intializes to the identity matrix\&. "
+.ti -1c
+.RI "\fBmtx\fP (T const value)"
+.br
+.RI "Construct from a single scalar -- initializes all scalars to \fCvalue\fP\&. "
+.ti -1c
+.RI "\fBmtx\fP (\fBvec\fP< T, N > const &diagonal)"
+.br
+.RI "Construct from an N-dimensional vector -- intializes the diagonal to the value of the vector\&. "
+.ti -1c
+.RI "\fBmtx\fP (\fBvec\fP< T, \fBD\fP > const &_values)"
+.br
+.RI "Construct from an NxN-dimensional vector -- an explicit column-major initialization of every entry in the matrix\&. "
+.ti -1c
+.RI "\fBconst_col_proxy\fP \fBcol\fP (size_t const j) const"
+.br
+.RI "Const access to a single column of the matrix\&. "
+.ti -1c
+.RI "\fBcol_proxy\fP \fBcol\fP (size_t const j)"
+.br
+.RI "Access to a single column of the matrix\&. "
+.ti -1c
+.RI "\fBconst_row_proxy\fP \fBrow\fP (size_t const i) const"
+.br
+.RI "Const access to a single row of the matrix\&. "
+.ti -1c
+.RI "\fBrow_proxy\fP \fBrow\fP (size_t const i)"
+.br
+.RI "Access to a single row of the matrix\&. "
+.ti -1c
+.RI "\fBconst_row_proxy\fP \fBoperator[]\fP (size_t const i) const"
+.br
+.RI "Const access to a single row of the matrix\&. "
+.ti -1c
+.RI "\fBrow_proxy\fP \fBoperator[]\fP (size_t const i)"
+.br
+.RI "Access to a single row of the matrix\&. "
+.ti -1c
+.RI "\fBmtx\fP & \fBoperator*=\fP (T const scalar)"
+.br
+.RI "Multiply a matrix by a scalar in place\&. "
+.ti -1c
+.RI "\fBmtx\fP & \fBoperator*=\fP (\fBmtx\fP const &rhs)"
+.br
+.RI "Multiply a matrix by a matrix in place\&. "
+.ti -1c
+.RI "\fBmtx\fP & \fBidentify\fP ()"
+.br
+.RI "Set a matrix to the identity matrix\&. "
+.ti -1c
+.RI "\fBmtx\fP< T, N \- 1 > \fBminor\fP (size_t const i, size_t const j) const"
+.br
+.RI "Compute the minor a matrix for a particular index\&. "
+.ti -1c
+.RI "T \fBdeterminant\fP () const"
+.br
+.RI "Compute the determinant of a matrix\&. "
+.ti -1c
+.RI "bool \fBinvertible\fP () const"
+.br
+.RI "Compute whether or not a matrix is invertible\&. "
+.ti -1c
+.RI "\fBmtx\fP & \fBtranspose\fP ()"
+.br
+.RI "Transpose a matrix in-place\&. "
+.ti -1c
+.RI "\fBmtx\fP \fBtransposed\fP () const"
+.br
+.RI "Compute the transpose of a matrix\&. "
+.ti -1c
+.RI "\fBmtx\fP \fBcofactored\fP () const"
+.br
+.RI "Compute the cofactor matrix\&. "
+.ti -1c
+.RI "\fBmtx\fP \fBinverted\fP () const"
+.br
+.RI "Compute the inverse of a matrix\&. "
+.ti -1c
+.RI "\fBmtx\fP & \fBscale_by\fP (\fBvec\fP< T, N > const &scalars)"
+.br
+.RI "Multiply a matrix by a scale matrix in place\&. "
+.ti -1c
+.RI "\fBmtx\fP \fBscaled_by\fP (\fBvec\fP< T, N > const &scalars) const"
+.br
+.RI "Multiply a matrix by a scale matrix\&. "
+.ti -1c
+.RI "\fBmtx\fP & \fBscale_by\fP (\fBvec\fP< T, N \- 1 > const &scalars)"
+.br
+.RI "Multiply a matrix by a scale matrix in place\&. "
+.ti -1c
+.RI "\fBmtx\fP \fBscaled_by\fP (\fBvec\fP< T, N \- 1 > const &scalars) const"
+.br
+.RI "Multiply a matrix by a scale matrix\&. "
+.ti -1c
+.RI "\fBmtx\fP & \fBtranslate_by\fP (\fBvec\fP< T, N \- 1 > const &scalars)"
+.br
+.RI "Multiply a matrix by a translation matrix in place\&. "
+.ti -1c
+.RI "\fBmtx\fP \fBtranslated_by\fP (\fBvec\fP< T, N \- 1 > const &scalars) const"
+.br
+.RI "Multiply a matrix by a translation matrix\&. "
+.ti -1c
+.RI "\fBmtx\fP< T, N \- 1 > \fBprefix\fP () const"
+.br
+.RI "Compute a mtx that is the top left section of a matrix\&. "
+.ti -1c
+.RI "void \fBcol_major\fP (T fill[N *N]) const"
+.br
+.RI "Fill a raw array with scalars of the matrix in column-major form\&. "
+.ti -1c
+.RI "void \fBrow_major\fP (T fill[N *N]) const"
+.br
+.RI "Fill a raw array with scalars of the matrix in row-major form\&. "
+.ti -1c
+.RI "template<typename U > \fBmtx\fP< U, N > \fBas\fP () const"
+.br
+.RI "Cast a matrix to a different precision\&. "
+.in -1c
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "static \fBmtx\fP \fBidentity\fP ()"
+.br
+.RI "Compute the identity matrix\&. "
+.ti -1c
+.RI "static \fBmtx\fP \fBscale\fP (\fBvec\fP< T, N > const &scalars)"
+.br
+.RI "Compute a scale matrix\&. "
+.ti -1c
+.RI "static \fBmtx\fP \fBscale\fP (\fBvec\fP< T, N \- 1 > const &scalars)"
+.br
+.RI "Compute a scale matrix\&. "
+.ti -1c
+.RI "static \fBmtx\fP \fBtranslate\fP (\fBvec\fP< T, N \- 1 > const &scalars)"
+.br
+.RI "Compute a translation matrix\&. "
+.ti -1c
+.RI "static size_t \fBbyte_count\fP ()"
+.br
+.RI "Compute the number of bytes allocated by matrix\&. "
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "T \fBvalues\fP [N *N]"
+.br
+.RI "The scalars defining this matrix\&. "
+.in -1c
+.SS "Static Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "static size_t constexpr \fBD\fP = N * N"
+.br
+.RI "The number of scalars stored in the matrix\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<typename T, size_t N>
+.br
+struct stf::math::mtx< T, N >"A square matrix class templated on number type and dimension\&. 
+
+
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP Number type (eg float) 
+.br
+\fIN\fP Dimension 
+.RE
+.PP
+
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<typename T , size_t N> \fBstf::math::mtx\fP< T, N >::mtx (T const value)\fC [inline]\fP, \fC [explicit]\fP"
+
+.PP
+Construct from a single scalar -- initializes all scalars to \fCvalue\fP\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIvalue\fP 
+.RE
+.PP
+
+.SS "template<typename T , size_t N> \fBstf::math::mtx\fP< T, N >::mtx (\fBvec\fP< T, N > const & diagonal)\fC [inline]\fP, \fC [explicit]\fP"
+
+.PP
+Construct from an N-dimensional vector -- intializes the diagonal to the value of the vector\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIdiagonal\fP 
+.RE
+.PP
+
+.SS "template<typename T , size_t N> \fBstf::math::mtx\fP< T, N >::mtx (\fBvec\fP< T, \fBD\fP > const & _values)\fC [inline]\fP, \fC [explicit]\fP"
+
+.PP
+Construct from an NxN-dimensional vector -- an explicit column-major initialization of every entry in the matrix\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fI_values\fP 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "template<typename T , size_t N> template<typename U > \fBmtx\fP< U, N > \fBstf::math::mtx\fP< T, N >::as () const\fC [inline]\fP"
+
+.PP
+Cast a matrix to a different precision\&. 
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIU\fP Destination number type (eg float) 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+\fCthis\fP casted to the precision of \fCU\fP 
+.RE
+.PP
+
+.SS "template<typename T , size_t N> static size_t \fBstf::math::mtx\fP< T, N >::byte_count ()\fC [inline]\fP, \fC [static]\fP"
+
+.PP
+Compute the number of bytes allocated by matrix\&. 
+.PP
+\fBReturns\fP
+.RS 4
+The byte count 
+.RE
+.PP
+
+.SS "template<typename T , size_t N> \fBmtx\fP \fBstf::math::mtx\fP< T, N >::cofactored () const\fC [inline]\fP"
+
+.PP
+Compute the cofactor matrix\&. 
+.PP
+\fBReturns\fP
+.RS 4
+The cofactor matrix of \fCthis\fP 
+.RE
+.PP
+
+.SS "template<typename T , size_t N> \fBcol_proxy\fP \fBstf::math::mtx\fP< T, N >::col (size_t const j)\fC [inline]\fP"
+
+.PP
+Access to a single column of the matrix\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIj\fP The index of the column 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+A proxy class that gives access to the column 
+.RE
+.PP
+
+.SS "template<typename T , size_t N> \fBconst_col_proxy\fP \fBstf::math::mtx\fP< T, N >::col (size_t const j) const\fC [inline]\fP"
+
+.PP
+Const access to a single column of the matrix\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIj\fP The index of the column 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+A proxy class that gives const access to the column 
+.RE
+.PP
+
+.SS "template<typename T , size_t N> void \fBstf::math::mtx\fP< T, N >::col_major (T fill[N *N]) const\fC [inline]\fP"
+
+.PP
+Fill a raw array with scalars of the matrix in column-major form\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIfill\fP 
+.RE
+.PP
+
+.SS "template<typename T , size_t N> T \fBstf::math::mtx\fP< T, N >::determinant () const\fC [inline]\fP"
+
+.PP
+Compute the determinant of a matrix\&. 
+.PP
+\fBReturns\fP
+.RS 4
+The determinant of \fCthis\fP 
+.RE
+.PP
+
+.SS "template<typename T , size_t N> \fBmtx\fP & \fBstf::math::mtx\fP< T, N >::identify ()\fC [inline]\fP"
+
+.PP
+Set a matrix to the identity matrix\&. 
+.PP
+\fBReturns\fP
+.RS 4
+A reference to \fCthis\fP 
+.RE
+.PP
+
+.SS "template<typename T , size_t N> static \fBmtx\fP \fBstf::math::mtx\fP< T, N >::identity ()\fC [inline]\fP, \fC [static]\fP"
+
+.PP
+Compute the identity matrix\&. 
+.PP
+\fBReturns\fP
+.RS 4
+The identity matrix 
+.RE
+.PP
+
+.SS "template<typename T , size_t N> \fBmtx\fP \fBstf::math::mtx\fP< T, N >::inverted () const\fC [inline]\fP"
+
+.PP
+Compute the inverse of a matrix\&. 
+.PP
+\fBReturns\fP
+.RS 4
+The inverse of \fCthis\fP 
+.RE
+.PP
+
+.SS "template<typename T , size_t N> bool \fBstf::math::mtx\fP< T, N >::invertible () const\fC [inline]\fP"
+
+.PP
+Compute whether or not a matrix is invertible\&. 
+.PP
+\fBReturns\fP
+.RS 4
+Whether or not \fCthis\fP is invertible 
+.RE
+.PP
+
+.SS "template<typename T , size_t N> \fBmtx\fP< T, N \- 1 > \fBstf::math::mtx\fP< T, N >::minor (size_t const i, size_t const j) const\fC [inline]\fP"
+
+.PP
+Compute the minor a matrix for a particular index\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIi\fP The row index for the minor 
+.br
+\fIj\fP The column index for the minor 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The minor matrix \fCM(i,j)\fP 
+.RE
+.PP
+
+.SS "template<typename T , size_t N> \fBmtx\fP & \fBstf::math::mtx\fP< T, N >::operator*= (\fBmtx\fP< T, N > const & rhs)\fC [inline]\fP"
+
+.PP
+Multiply a matrix by a matrix in place\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIrhs\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+A reference to \fCthis\fP 
+.RE
+.PP
+
+.SS "template<typename T , size_t N> \fBmtx\fP & \fBstf::math::mtx\fP< T, N >::operator*= (T const scalar)\fC [inline]\fP"
+
+.PP
+Multiply a matrix by a scalar in place\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIscalar\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+A reference to \fCthis\fP 
+.RE
+.PP
+
+.SS "template<typename T , size_t N> \fBrow_proxy\fP \fBstf::math::mtx\fP< T, N >::operator[] (size_t const i)\fC [inline]\fP"
+
+.PP
+Access to a single row of the matrix\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIi\fP The index of the row 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+A proxy class that gives access to the row 
+.RE
+.PP
+
+.SS "template<typename T , size_t N> \fBconst_row_proxy\fP \fBstf::math::mtx\fP< T, N >::operator[] (size_t const i) const\fC [inline]\fP"
+
+.PP
+Const access to a single row of the matrix\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIi\fP The index of the row 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+A proxy class that gives const access to the row 
+.RE
+.PP
+
+.SS "template<typename T , size_t N> \fBmtx\fP< T, N \- 1 > \fBstf::math::mtx\fP< T, N >::prefix () const\fC [inline]\fP"
+
+.PP
+Compute a mtx that is the top left section of a matrix\&. 
+.PP
+\fBReturns\fP
+.RS 4
+The top left section of \fCthis\fP 
+.RE
+.PP
+
+.SS "template<typename T , size_t N> \fBrow_proxy\fP \fBstf::math::mtx\fP< T, N >::row (size_t const i)\fC [inline]\fP"
+
+.PP
+Access to a single row of the matrix\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIi\fP The index of the row 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+A proxy class that gives access to the row 
+.RE
+.PP
+
+.SS "template<typename T , size_t N> \fBconst_row_proxy\fP \fBstf::math::mtx\fP< T, N >::row (size_t const i) const\fC [inline]\fP"
+
+.PP
+Const access to a single row of the matrix\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIi\fP The index of the row 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+A proxy class that gives const access to the row 
+.RE
+.PP
+
+.SS "template<typename T , size_t N> void \fBstf::math::mtx\fP< T, N >::row_major (T fill[N *N]) const\fC [inline]\fP"
+
+.PP
+Fill a raw array with scalars of the matrix in row-major form\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIfill\fP 
+.RE
+.PP
+
+.SS "template<typename T , size_t N> static \fBmtx\fP \fBstf::math::mtx\fP< T, N >::scale (\fBvec\fP< T, N \- 1 > const & scalars)\fC [inline]\fP, \fC [static]\fP"
+
+.PP
+Compute a scale matrix\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIscalars\fP The scalars defining the scale matrix -- sets the Nth scalar to 1 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+A scale matrix 
+.RE
+.PP
+
+.SS "template<typename T , size_t N> static \fBmtx\fP \fBstf::math::mtx\fP< T, N >::scale (\fBvec\fP< T, N > const & scalars)\fC [inline]\fP, \fC [static]\fP"
+
+.PP
+Compute a scale matrix\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIscalars\fP The scalars defining the scale matrix 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+A scale matrix 
+.RE
+.PP
+
+.SS "template<typename T , size_t N> \fBmtx\fP & \fBstf::math::mtx\fP< T, N >::scale_by (\fBvec\fP< T, N \- 1 > const & scalars)\fC [inline]\fP"
+
+.PP
+Multiply a matrix by a scale matrix in place\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIscalars\fP The scalars defining the scale matrix -- sets the Nth scalar to 1 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+A reference to \fCthis\fP 
+.RE
+.PP
+
+.SS "template<typename T , size_t N> \fBmtx\fP & \fBstf::math::mtx\fP< T, N >::scale_by (\fBvec\fP< T, N > const & scalars)\fC [inline]\fP"
+
+.PP
+Multiply a matrix by a scale matrix in place\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIscalars\fP The scalars defining the scale matrix 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+A reference to \fCthis\fP 
+.RE
+.PP
+
+.SS "template<typename T , size_t N> \fBmtx\fP \fBstf::math::mtx\fP< T, N >::scaled_by (\fBvec\fP< T, N \- 1 > const & scalars) const\fC [inline]\fP"
+
+.PP
+Multiply a matrix by a scale matrix\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIscalars\fP The scalars defining the scale matrix -- sets the Nth scalar to 1 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The resulting transformation matrix 
+.RE
+.PP
+
+.SS "template<typename T , size_t N> \fBmtx\fP \fBstf::math::mtx\fP< T, N >::scaled_by (\fBvec\fP< T, N > const & scalars) const\fC [inline]\fP"
+
+.PP
+Multiply a matrix by a scale matrix\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIscalars\fP The scalars defining the scale matrix 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The resulting transformation matrix 
+.RE
+.PP
+
+.SS "template<typename T , size_t N> static \fBmtx\fP \fBstf::math::mtx\fP< T, N >::translate (\fBvec\fP< T, N \- 1 > const & scalars)\fC [inline]\fP, \fC [static]\fP"
+
+.PP
+Compute a translation matrix\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIscalars\fP The scalars defining the translation matrix 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+A translation matrix 
+.RE
+.PP
+
+.SS "template<typename T , size_t N> \fBmtx\fP & \fBstf::math::mtx\fP< T, N >::translate_by (\fBvec\fP< T, N \- 1 > const & scalars)\fC [inline]\fP"
+
+.PP
+Multiply a matrix by a translation matrix in place\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIscalars\fP The scalars definining the translation matrix 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+A reference to \fCthis\fP 
+.RE
+.PP
+
+.SS "template<typename T , size_t N> \fBmtx\fP \fBstf::math::mtx\fP< T, N >::translated_by (\fBvec\fP< T, N \- 1 > const & scalars) const\fC [inline]\fP"
+
+.PP
+Multiply a matrix by a translation matrix\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIscalars\fP The scalars definining the translation matrix 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The resulting transformation matrix 
+.RE
+.PP
+
+.SS "template<typename T , size_t N> \fBmtx\fP & \fBstf::math::mtx\fP< T, N >::transpose ()\fC [inline]\fP"
+
+.PP
+Transpose a matrix in-place\&. 
+.PP
+\fBReturns\fP
+.RS 4
+A reference to \fCthis\fP 
+.RE
+.PP
+
+.SS "template<typename T , size_t N> \fBmtx\fP \fBstf::math::mtx\fP< T, N >::transposed () const\fC [inline]\fP"
+
+.PP
+Compute the transpose of a matrix\&. 
+.PP
+\fBReturns\fP
+.RS 4
+The transpose of \fCthis\fP 
+.RE
+.PP
+
+.SH "Member Data Documentation"
+.PP 
+.SS "template<typename T , size_t N> T \fBstf::math::mtx\fP< T, N >::values[N *N]"
+
+.PP
+The scalars defining this matrix\&. 
+.PP
+\fBNote\fP
+.RS 4
+Stored in column-major form 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for stf from the source code\&.
