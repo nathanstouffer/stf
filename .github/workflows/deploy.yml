@@ -1,9 +1,7 @@
 name: deploy
 on:
   push:
-    branches: ["stouffer/host-docs"] # TODO (stouff) change this to main
-    tags:
-      - "v*.*.*"
+    branches: ["main"]
 
 permissions:
   contents: write
@@ -42,4 +40,3 @@ jobs:
             git commit -m 'Deploy dev docs for ${{ github.short_sha }}'
             git push
           fi
-
