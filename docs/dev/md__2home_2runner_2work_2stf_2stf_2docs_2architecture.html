@@ -119,7 +119,9 @@ Library</h1>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone"><code>spatial</code>   </td><td class="markdownTableBodyNone">contains structures that sort data spatially (eg <code>interval_tree</code>)    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><code>alg</code>   </td><td class="markdownTableBodyNone">contains algorithms that operate on the <code>stf</code> structures (eg <code>intersect</code>)   </td></tr>
+<td class="markdownTableBodyNone"><code>alg</code>   </td><td class="markdownTableBodyNone">contains algorithms that operate on the <code>stf</code> structures (eg <code>intersect</code>)    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><code>ds</code>   </td><td class="markdownTableBodyNone">contains general purpose data structures   </td></tr>
 </table>
 <p>Because the entire library is templated, you are free to create objects with the number type of your choice. As a convenience, <code>stf</code> takes advantage of <code>using</code> statements in <a href="../code/src/stf/include/interface/stf/stf.hpp">stf/stf.hpp</a> to provide less verbose access to common types. There is a slight awkwardness in that it twists the namespace <code>stf</code>, but the brevity is nice.</p>
 <div class="fragment"><div class="line"> ++</div>
