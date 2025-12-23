@@ -4,6 +4,10 @@ on:
     branches: ["stouffer/host-docs"] # TODO (stouff) change this to main
     tags:
       - "v*.*.*"
+
+permissions:
+  contents: write
+
 jobs:
   docs:
     runs-on: ubuntu-24.04
@@ -22,10 +26,15 @@ jobs:
         run: cmake --build ${{ github.workspace }}/build --target docs
 
       - name: Deploy docs
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: gh-pages
-          publish_dir: ./docs/generated/html
-          destination_dir: ${{ github.ref_name }}
-          keep_files: true
+        run: |
+          git checkout gh-pages
+          rm -rf docs/dev
+          mkdir -p docs
+          mkdir -p docs/dev
+          cp -r docs/generated/html/* docs/dev
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .
+          git commit -m 'Deploy docs for ${{ github.ref }}'
+          git push
+
