@@ -40,7 +40,7 @@ jobs:
             echo "Exiting -- nothing is staged."
           else
             echo "Staged files -- deploying"
-            git commit -m 'Deploy docs for ${{ github.ref }}'
+            git commit -m 'Deploy docs for ${{ github.short_sha }}'
             git push
           fi
 
