@@ -1,5 +1,0 @@
-<map id="stf::geom::fit" name="stf::geom::fit">
-<area shape="rect" id="Node000001" title="Fit two bounding boxes." alt="" coords="5,5,109,31"/>
-<area shape="rect" id="Node000002" href="$structstf_1_1geom_1_1aabb.html#ab2df26065fbf161fc22489a70b4c67d7" title="Fit a point to an aabb in place." alt="" coords="157,5,301,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="109,15,144,15,144,21,109,21"/>
-</map>

@@ -1,9 +1,0 @@
-<map id="stf::math::mtx::scale_by" name="stf::math::mtx::scale_by">
-<area shape="rect" id="Node000001" title="Multiply a matrix by a scale matrix in place." alt="" coords="5,5,184,31"/>
-<area shape="rect" id="Node000002" href="$structstf_1_1math_1_1mtx.html#a33ec84ea69fa23b489ea249793317db8" title="Compute a scale matrix." alt="" coords="232,5,388,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="184,15,218,15,218,21,184,21"/>
-<area shape="rect" id="Node000003" href="$structstf_1_1math_1_1mtx.html#a3af7d18a0bfae3637174b8dd9ece2893" title="Default constructor – intializes to the identity matrix." alt="" coords="436,5,584,31"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="388,15,422,15,422,21,388,21"/>
-<area shape="rect" id="Node000004" href="$structstf_1_1math_1_1mtx.html#a1369a61fa33ee78d9075bc5fc75c839b" title="Set a matrix to the identity matrix." alt="" coords="632,5,803,31"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="584,15,618,15,618,21,584,21"/>
-</map>

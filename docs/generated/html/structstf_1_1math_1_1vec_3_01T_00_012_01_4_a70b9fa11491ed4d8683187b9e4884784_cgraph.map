@@ -1,9 +1,0 @@
-<map id="stf::math::vec&lt; T, 2 &gt;::orthogonal_to" name="stf::math::vec&lt; T, 2 &gt;::orthogonal_to">
-<area shape="rect" id="Node000001" title="Compute the component of a vector orthogonal to another vector." alt="" coords="5,31,268,56"/>
-<area shape="rect" id="Node000002" href="$structstf_1_1math_1_1vec.html#acc9607608ca502fa5bc5e8972b996bb4" title="Compute the component of a vector in the direction of another vector." alt="" coords="316,5,519,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="268,29,302,26,303,31,268,34"/>
-<area shape="rect" id="Node000004" href="$structstf_1_1math_1_1vec.html#af70a31bc726df80ebfdb5ef14be55f9e" title="Default constructor – intializes all dimensions to 0." alt="" coords="346,55,489,80"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="268,52,332,57,332,63,268,57"/>
-<area shape="rect" id="Node000003" href="$structstf_1_1math_1_1vec.html#a792befdb144d88254663fbdbe7ad1624" title="Compute a dot product." alt="" coords="567,5,707,31"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="519,15,553,15,553,21,519,21"/>
-</map>

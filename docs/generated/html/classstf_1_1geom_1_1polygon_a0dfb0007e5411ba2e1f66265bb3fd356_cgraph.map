@@ -1,7 +1,0 @@
-<map id="stf::geom::polygon::reserve" name="stf::geom::polygon::reserve">
-<area shape="rect" id="Node000001" title="Reserve memory for a polygon with size vertices." alt="" coords="5,5,205,31"/>
-<area shape="rect" id="Node000002" href="$classstf_1_1geom_1_1polygon.html#a7735905ea132cbdd6e209089d86eb967" title="Compute the size of a polygon." alt="" coords="253,5,431,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="206,15,240,15,240,21,206,21"/>
-<area shape="rect" id="Node000003" href="$classstf_1_1geom_1_1polygon.html#af24e276b25c2edf8de20446a4191584a" title="Compute whether or not a polygon is empty." alt="" coords="479,5,689,31"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="431,15,465,15,465,21,431,21"/>
-</map>

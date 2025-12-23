@@ -1,5 +1,0 @@
-<map id="stf::geom::aabb::unit" name="stf::geom::aabb::unit">
-<area shape="rect" id="Node000001" title="Construct an aabb that minimally encompasses the unit cube in R^n." alt="" coords="5,5,161,31"/>
-<area shape="rect" id="Node000002" href="$structstf_1_1geom_1_1aabb.html#a253abdd92a65fb20d5f4d358f9697628" title="Default constructor – encompasses all of R^n." alt="" coords="209,5,372,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="161,15,196,15,196,21,161,21"/>
-</map>

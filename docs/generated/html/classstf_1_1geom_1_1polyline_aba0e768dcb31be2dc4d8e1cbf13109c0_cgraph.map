@@ -1,8 +1,0 @@
-<map id="stf::geom::polyline::dist" name="stf::geom::polyline::dist">
-<area shape="rect" id="Node000001" title="Compute the distance between a polyline and a vector." alt="" coords="5,29,180,55"/>
-<area shape="rect" id="Node000002" href="$classstf_1_1geom_1_1polyline.html#a58892bf9339ff912944648022338c85b" title="Compute the distance from a polyline to a point." alt="" coords="228,29,463,55"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="180,39,214,39,214,45,180,45"/>
-<area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="305,31,296,21,300,11,317,5,345,3,381,7,391,11,395,17,390,20,387,15,379,12,345,8,318,10,304,15,301,20,309,27"/>
-<area shape="rect" id="Node000003" href="$classstf_1_1geom_1_1polyline.html#a3ba378e24fa3e0884ff3bf1b49d3b6e7" title="Access an edge of a polyline." alt="" coords="511,29,693,55"/>
-<area shape="poly" id="edge3_Node000002_Node000003" title=" " alt="" coords="463,39,497,39,497,45,463,45"/>
-</map>

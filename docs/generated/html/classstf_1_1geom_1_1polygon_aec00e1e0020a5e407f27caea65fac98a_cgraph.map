@@ -1,5 +1,0 @@
-<map id="stf::geom::polygon::signed_area" name="stf::geom::polygon::signed_area">
-<area shape="rect" id="Node000001" title="Compute the signed area of a polygon Computed using the trapezoid formula for polygon area on https:/..." alt="" coords="5,5,236,31"/>
-<area shape="rect" id="Node000002" href="$classstf_1_1geom_1_1polygon.html#a9afba61f856b770a167c2e25c8d0ec3b" title="Access an edge of a polygon." alt="" coords="284,5,467,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="236,15,270,15,270,21,236,21"/>
-</map>

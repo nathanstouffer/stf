@@ -1,9 +1,0 @@
-<map id="stf::math::cubic_bezier" name="stf::math::cubic_bezier">
-<area shape="rect" id="Node000001" title="Interpolate between the four scalar anchors via a cubic bezier curve." alt="" coords="5,31,175,56"/>
-<area shape="rect" id="Node000002" href="$namespacestf_1_1math.html#a72fa8ca1fb0d9248d11f7c51f93a0343" title="Linearly interpolate scalars." alt="" coords="223,31,336,56"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="175,41,209,41,209,46,175,46"/>
-<area shape="rect" id="Node000003" href="$namespacestf_1_1math.html#aa63af2216d6187253f38288212bfe0fb" title="Multiply and add instruction." alt="" coords="384,5,501,31"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="336,32,370,27,370,32,337,37"/>
-<area shape="rect" id="Node000004" href="$namespacestf_1_1math.html#aebd7a6357567b213ee03181eb244008d" title="Negate the result of multiply and subtract." alt="" coords="385,55,501,80"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="337,49,372,54,371,59,336,54"/>
-</map>

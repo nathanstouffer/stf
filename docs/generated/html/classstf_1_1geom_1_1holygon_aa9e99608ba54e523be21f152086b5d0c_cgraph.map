@@ -1,9 +1,0 @@
-<map id="stf::geom::holygon::contains" name="stf::geom::holygon::contains">
-<area shape="rect" id="Node000001" title="Compute whether or not a query point is contained in a holygon." alt="" coords="5,55,212,80"/>
-<area shape="rect" id="Node000002" href="$structstf_1_1geom_1_1aabb.html#a253abdd92a65fb20d5f4d358f9697628" title="Default constructor – encompasses all of R^n." alt="" coords="272,5,435,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="172,52,275,31,277,36,173,57"/>
-<area shape="rect" id="Node000003" href="$namespacestf.html#a1ea05ddbf38711cc433f22d8e5ca04bf" title="Compute the complement of the boundary type." alt="" coords="289,55,417,80"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="212,65,275,65,275,70,212,70"/>
-<area shape="rect" id="Node000004" href="$structstf_1_1geom_1_1aabb.html#af25c4484fee1f0937bb4349390fc5ae9" title="Compute whether a point is contained in an aabb." alt="" coords="260,104,447,129"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="173,77,277,99,275,104,172,83"/>
-</map>

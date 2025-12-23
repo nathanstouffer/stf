@@ -1,7 +1,0 @@
-<map id="stf::geom::hyperplane::contains" name="stf::geom::hyperplane::contains">
-<area shape="rect" id="Node000001" title="Compute whether a point is contained in R^{n&#45;1} subspace that is the hyperplane." alt="" coords="5,5,232,31"/>
-<area shape="rect" id="Node000002" href="$classstf_1_1geom_1_1hyperplane.html#acfe6da963051cafaf29b83c57e92be09" title="Compute the signed distance from a hyperplane to a point." alt="" coords="280,5,527,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="232,15,267,15,267,21,232,21"/>
-<area shape="rect" id="Node000003" href="$namespacestf_1_1math.html#affb9352af7b68426cc6ca4e4f2b5e583" title="Compute the dot product of two vectors." alt="" coords="575,5,684,31"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="527,15,561,15,561,21,527,21"/>
-</map>

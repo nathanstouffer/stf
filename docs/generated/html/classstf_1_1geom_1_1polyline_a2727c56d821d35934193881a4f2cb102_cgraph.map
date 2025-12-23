@@ -1,8 +1,0 @@
-<map id="stf::geom::polyline::byte_count" name="stf::geom::polyline::byte_count">
-<area shape="rect" id="Node000001" title="Compute the number of bytes allocated by a polyline." alt="" coords="5,31,228,56"/>
-<area shape="rect" id="Node000002" href="$structstf_1_1geom_1_1aabb.html#a11a3a357131783ac639736b05aa52efb" title="Compute the number of bytes allocated by aabb." alt="" coords="276,5,479,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="228,30,262,27,262,32,228,35"/>
-<area shape="rect" id="Node000003" href="$structstf_1_1math_1_1vec.html#a3b95b849471a47b6f1a07fb090a2d162" title="Compute the number of bytes allocated by vector." alt="" coords="527,31,717,56"/>
-<area shape="poly" id="edge3_Node000001_Node000003" title=" " alt="" coords="228,41,513,41,513,46,228,46"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="479,26,513,29,513,35,479,31"/>
-</map>

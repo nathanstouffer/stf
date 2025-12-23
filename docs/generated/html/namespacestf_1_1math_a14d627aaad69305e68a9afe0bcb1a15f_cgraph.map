@@ -1,5 +1,0 @@
-<map id="stf::math::cubic_hermite_spline" name="stf::math::cubic_hermite_spline">
-<area shape="rect" id="Node000001" title="Interpolate between vectors using cubic hermite splines." alt="" coords="5,5,232,31"/>
-<area shape="rect" id="Node000002" href="$namespacestf_1_1math.html#ad7c918df85e92af354a00b828bb12e26" title="Interpolate between scalars using cubic hermite splines." alt="" coords="280,5,507,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="232,15,266,15,266,21,232,21"/>
-</map>

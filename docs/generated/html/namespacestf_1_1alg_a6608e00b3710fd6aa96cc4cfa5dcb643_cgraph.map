@@ -1,9 +1,0 @@
-<map id="stf::alg::intersects" name="stf::alg::intersects">
-<area shape="rect" id="Node000001" title="Compute whether or not a polygon and a polyline intersect." alt="" coords="5,31,144,56"/>
-<area shape="rect" id="Node000002" href="$structstf_1_1geom_1_1aabb.html#a253abdd92a65fb20d5f4d358f9697628" title="Default constructor – encompasses all of R^n." alt="" coords="192,5,355,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="144,32,178,27,179,33,144,37"/>
-<area shape="rect" id="Node000003" href="$namespacestf_1_1alg.html#a2dd40179e42ebc262c82349808573e2c" title="Compute whether or not two intervals intersect." alt="" coords="204,55,343,80"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="144,49,190,55,190,60,144,54"/>
-<area shape="rect" id="Node000004" href="$structstf_1_1math_1_1interval.html#af38f0eee33fe03ccb3abfd59db3896cb" title="Compute if two intervals intersect." alt="" coords="403,55,613,80"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="343,65,389,65,389,70,343,70"/>
-</map>

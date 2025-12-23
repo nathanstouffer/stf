@@ -1,5 +1,0 @@
-<map id="stf::math::operator==" name="stf::math::operator==">
-<area shape="rect" id="Node000001" title="Compute whether lhs is approximately equal to rhs (uses constants&lt;T&gt;::tol as epsilon)" alt="" coords="5,5,171,31"/>
-<area shape="rect" id="Node000002" href="$namespacestf_1_1math.html#a8456a9732b6af9e5b7d05675efabf42a" title="Compute whether two scalars are less than or equal to eps apart." alt="" coords="219,5,331,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="171,15,205,15,205,21,171,21"/>
-</map>

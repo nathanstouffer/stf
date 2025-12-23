@@ -1,7 +1,0 @@
-<map id="stf::geom::hypersphere::encloses" name="stf::geom::hypersphere::encloses">
-<area shape="rect" id="Node000001" title="Compute whether or not the hypersphere encloses a point." alt="" coords="5,5,243,31"/>
-<area shape="rect" id="Node000002" href="$structstf_1_1math_1_1vec.html#a610217eefffe4b0f4198566f38fb1a65" title="Compute the square of the length of a vector." alt="" coords="291,5,509,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="243,15,277,15,277,21,243,21"/>
-<area shape="rect" id="Node000003" href="$structstf_1_1math_1_1vec.html#a792befdb144d88254663fbdbe7ad1624" title="Compute a dot product." alt="" coords="557,5,697,31"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="510,15,543,15,543,21,510,21"/>
-</map>

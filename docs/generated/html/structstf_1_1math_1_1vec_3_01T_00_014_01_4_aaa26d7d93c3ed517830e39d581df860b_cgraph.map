@@ -1,9 +1,0 @@
-<map id="stf::math::vec&lt; T, 4 &gt;::normalize" name="stf::math::vec&lt; T, 4 &gt;::normalize">
-<area shape="rect" id="Node000001" title="Normalize a vector in place." alt="" coords="5,5,244,31"/>
-<area shape="rect" id="Node000002" href="$structstf_1_1math_1_1vec.html#a97f2c2a8d720424c4ccef251e67c1a88" title="Compute the length of a vector." alt="" coords="292,5,452,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="244,15,278,15,278,21,244,21"/>
-<area shape="rect" id="Node000003" href="$structstf_1_1math_1_1vec.html#a610217eefffe4b0f4198566f38fb1a65" title="Compute the square of the length of a vector." alt="" coords="500,5,719,31"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="452,15,486,15,486,21,452,21"/>
-<area shape="rect" id="Node000004" href="$structstf_1_1math_1_1vec.html#a792befdb144d88254663fbdbe7ad1624" title="Compute a dot product." alt="" coords="767,5,907,31"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="719,15,753,15,753,21,719,21"/>
-</map>

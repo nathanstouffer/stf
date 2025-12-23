@@ -1,9 +1,0 @@
-<map id="stf::geom::obb::fit" name="stf::geom::obb::fit">
-<area shape="rect" id="Node000001" title="Construct an obb that minimally encompasses a set of points." alt="" coords="5,55,141,80"/>
-<area shape="rect" id="Node000002" href="$structstf_1_1geom_1_1obb.html#ac132eabe042b2f02b327a85220005ce4" title="Getter for the basis of the obb." alt="" coords="189,5,347,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="123,52,203,32,204,37,125,57"/>
-<area shape="rect" id="Node000003" href="$structstf_1_1geom_1_1aabb.html#ab2df26065fbf161fc22489a70b4c67d7" title="Fit a point to an aabb in place." alt="" coords="196,55,340,80"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="142,65,183,65,183,70,142,70"/>
-<area shape="rect" id="Node000004" href="$structstf_1_1geom_1_1obb.html#a2ad665a7d89e18688894be57b3581c96" title="Default constructor – encompasses all of R^n." alt="" coords="195,104,341,129"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="125,77,204,98,203,103,123,83"/>
-</map>

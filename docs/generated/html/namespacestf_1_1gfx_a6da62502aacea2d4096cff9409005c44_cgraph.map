@@ -1,6 +1,0 @@
-<map id="stf::gfx::neq" name="stf::gfx::neq">
-<area shape="rect" id="Node000001" title="Compute whether the distance between lhs and rhs is strictly greater than eps." alt="" coords="5,29,104,55"/>
-<area shape="rect" id="Node000002" href="$namespacestf_1_1gfx.html#a0647a9711ef21692faa8a5496e57d673" title="Compute whether the distance between lhs and rhs is less than or equal to eps." alt="" coords="152,29,251,55"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="104,39,138,39,138,45,104,45"/>
-<area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="176,31,171,21,174,11,184,5,201,3,222,6,230,15,227,18,219,11,201,8,186,10,178,15,177,20,181,28"/>
-</map>

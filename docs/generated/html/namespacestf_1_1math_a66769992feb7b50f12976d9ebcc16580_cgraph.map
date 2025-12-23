@@ -1,5 +1,0 @@
-<map id="stf::math::closest_equiv_angle" name="stf::math::closest_equiv_angle">
-<area shape="rect" id="Node000001" title="Of all angles that are equivalent to phi, compute the one closest to theta." alt="" coords="5,5,225,31"/>
-<area shape="rect" id="Node000002" href="$namespacestf_1_1math.html#a2888d4e52fada9facf208ac2235b119d" title="Compute the equivalent angle to theta in [0, 2pi)" alt="" coords="273,5,467,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="225,15,259,15,259,21,225,21"/>
-</map>

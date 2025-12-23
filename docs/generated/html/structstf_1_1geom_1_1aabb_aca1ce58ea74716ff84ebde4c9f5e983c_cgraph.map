@@ -1,5 +1,0 @@
-<map id="stf::geom::aabb::volume" name="stf::geom::aabb::volume">
-<area shape="rect" id="Node000001" title="Compute the volume of a aabb." alt="" coords="5,5,185,31"/>
-<area shape="rect" id="Node000002" href="$structstf_1_1geom_1_1aabb.html#ae7da763d6df0706aa3a695f740193f62" title="Compute the diagonal of an aabb." alt="" coords="233,5,420,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="186,15,219,15,219,21,186,21"/>
-</map>

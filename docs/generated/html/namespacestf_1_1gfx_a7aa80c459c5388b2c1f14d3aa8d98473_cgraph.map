@@ -1,6 +1,0 @@
-<map id="stf::gfx::lerpstep" name="stf::gfx::lerpstep">
-<area shape="rect" id="Node000001" title="Linearly interpolate rgba (clamped to the endpoint values)" alt="" coords="5,29,133,55"/>
-<area shape="poly" id="edge2_Node000001_Node000001" title=" " alt="" coords="38,31,31,21,35,11,48,5,69,3,95,6,106,15,103,19,93,11,69,8,49,10,39,15,37,20,42,28"/>
-<area shape="rect" id="Node000002" href="$structstf_1_1gfx_1_1rgba.html#a958c5193e6b31167a481f936b8c1a0fa" title="Compute the color as a vec4." alt="" coords="181,29,339,55"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="134,39,168,39,168,45,134,45"/>
-</map>

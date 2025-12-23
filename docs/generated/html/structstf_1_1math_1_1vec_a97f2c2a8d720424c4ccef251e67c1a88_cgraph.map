@@ -1,7 +1,0 @@
-<map id="stf::math::vec::length" name="stf::math::vec::length">
-<area shape="rect" id="Node000001" title="Compute the length of a vector." alt="" coords="5,5,165,31"/>
-<area shape="rect" id="Node000002" href="$structstf_1_1math_1_1vec.html#a610217eefffe4b0f4198566f38fb1a65" title="Compute the square of the length of a vector." alt="" coords="213,5,432,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="165,15,200,15,200,21,165,21"/>
-<area shape="rect" id="Node000003" href="$structstf_1_1math_1_1vec.html#a792befdb144d88254663fbdbe7ad1624" title="Compute a dot product." alt="" coords="480,5,620,31"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="432,15,466,15,466,21,432,21"/>
-</map>

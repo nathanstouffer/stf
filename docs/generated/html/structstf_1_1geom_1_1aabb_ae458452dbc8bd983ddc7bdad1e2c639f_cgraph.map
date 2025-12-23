@@ -1,5 +1,0 @@
-<map id="stf::geom::aabb::nothing" name="stf::geom::aabb::nothing">
-<area shape="rect" id="Node000001" title="Construct an aabb that is the empty set." alt="" coords="5,5,185,31"/>
-<area shape="rect" id="Node000002" href="$structstf_1_1geom_1_1aabb.html#a253abdd92a65fb20d5f4d358f9697628" title="Default constructor – encompasses all of R^n." alt="" coords="233,5,396,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="185,15,219,15,219,21,185,21"/>
-</map>

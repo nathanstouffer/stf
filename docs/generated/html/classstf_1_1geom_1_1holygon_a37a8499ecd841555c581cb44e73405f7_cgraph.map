@@ -1,7 +1,0 @@
-<map id="stf::geom::holygon::byte_count" name="stf::geom::holygon::byte_count">
-<area shape="rect" id="Node000001" title="Compute the number of bytes allocated by a holygon." alt="" coords="5,5,228,31"/>
-<area shape="rect" id="Node000002" href="$structstf_1_1geom_1_1aabb.html#a11a3a357131783ac639736b05aa52efb" title="Compute the number of bytes allocated by aabb." alt="" coords="276,5,479,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="228,15,262,15,262,21,228,21"/>
-<area shape="rect" id="Node000003" href="$structstf_1_1math_1_1vec.html#a3b95b849471a47b6f1a07fb090a2d162" title="Compute the number of bytes allocated by vector." alt="" coords="527,5,717,31"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="479,15,513,15,513,21,479,21"/>
-</map>

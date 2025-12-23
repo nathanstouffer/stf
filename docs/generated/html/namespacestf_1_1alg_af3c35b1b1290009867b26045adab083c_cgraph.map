@@ -1,7 +1,0 @@
-<map id="stf::alg::intersects" name="stf::alg::intersects">
-<area shape="rect" id="Node000001" title="Compute whether or not a plane and a ray intersect." alt="" coords="5,5,144,31"/>
-<area shape="rect" id="Node000002" href="$namespacestf_1_1alg.html#a2dd40179e42ebc262c82349808573e2c" title="Compute whether or not two intervals intersect." alt="" coords="192,5,331,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="145,15,178,15,178,21,145,21"/>
-<area shape="rect" id="Node000003" href="$structstf_1_1math_1_1interval.html#af38f0eee33fe03ccb3abfd59db3896cb" title="Compute if two intervals intersect." alt="" coords="379,5,589,31"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="331,15,365,15,365,21,331,21"/>
-</map>

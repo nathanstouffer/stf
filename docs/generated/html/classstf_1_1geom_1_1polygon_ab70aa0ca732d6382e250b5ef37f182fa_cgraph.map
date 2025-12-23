@@ -1,5 +1,0 @@
-<map id="stf::geom::polygon::scale" name="stf::geom::polygon::scale">
-<area shape="rect" id="Node000001" title="Scale a polygon in place." alt="" coords="5,5,191,31"/>
-<area shape="rect" id="Node000002" href="$structstf_1_1geom_1_1aabb.html#a92f9c98f52b5dfb62e719d72081aa6e2" title="Scale an aabb in place." alt="" coords="239,5,404,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="191,15,225,15,225,21,191,21"/>
-</map>

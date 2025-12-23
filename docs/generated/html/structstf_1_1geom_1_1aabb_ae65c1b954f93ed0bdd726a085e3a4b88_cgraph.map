@@ -1,8 +1,0 @@
-<map id="stf::geom::aabb::projection" name="stf::geom::aabb::projection">
-<area shape="rect" id="Node000001" title="Compute the projection of an aabb onto an axis." alt="" coords="5,43,201,68"/>
-<area shape="rect" id="Node000002" href="$namespacestf_1_1math.html#affb9352af7b68426cc6ca4e4f2b5e583" title="Compute the dot product of two vectors." alt="" coords="292,5,401,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="186,40,278,26,279,31,187,45"/>
-<area shape="rect" id="Node000003" href="$structstf_1_1geom_1_1aabb.html#ab24c36a1c6c5a85cce34acc4aeef3249" title="Compute an extremity of an aabb in a given direction." alt="" coords="249,79,444,104"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="190,65,247,74,246,79,189,71"/>
-<area shape="poly" id="edge3_Node000003_Node000003" title=" " alt="" coords="307,80,299,70,303,60,320,54,347,52,381,56,391,61,394,66,390,69,387,65,380,61,347,57,321,59,307,64,304,70,311,77"/>
-</map>

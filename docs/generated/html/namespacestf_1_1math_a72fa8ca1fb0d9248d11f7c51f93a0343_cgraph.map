@@ -1,7 +1,0 @@
-<map id="stf::math::lerp" name="stf::math::lerp">
-<area shape="rect" id="Node000001" title="Linearly interpolate scalars." alt="" coords="5,31,119,56"/>
-<area shape="rect" id="Node000002" href="$namespacestf_1_1math.html#aa63af2216d6187253f38288212bfe0fb" title="Multiply and add instruction." alt="" coords="167,5,284,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="119,32,152,27,153,32,119,37"/>
-<area shape="rect" id="Node000003" href="$namespacestf_1_1math.html#aebd7a6357567b213ee03181eb244008d" title="Negate the result of multiply and subtract." alt="" coords="167,55,283,80"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="119,49,154,54,153,59,119,54"/>
-</map>

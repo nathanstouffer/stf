@@ -1,9 +1,0 @@
-<map id="stf::geom::aabb::dist_squared" name="stf::geom::aabb::dist_squared">
-<area shape="rect" id="Node000001" title="Compute the square of the distance between an aabb and a vector." alt="" coords="5,55,220,80"/>
-<area shape="rect" id="Node000002" href="$namespacestf_1_1math.html#a434400353fc8f81cbea4653948b7dadd" title="Clamp a vector." alt="" coords="297,5,425,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="177,52,283,31,285,36,178,57"/>
-<area shape="rect" id="Node000003" href="$structstf_1_1geom_1_1aabb.html#af25c4484fee1f0937bb4349390fc5ae9" title="Compute whether a point is contained in an aabb." alt="" coords="268,55,455,80"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="220,65,254,65,254,70,220,70"/>
-<area shape="rect" id="Node000004" href="$namespacestf_1_1math.html#ad82b998efe770c215834daefd24494d9" title="Compute the square of the distance between lhs and rhs." alt="" coords="276,104,447,129"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="178,77,284,99,283,104,177,83"/>
-</map>

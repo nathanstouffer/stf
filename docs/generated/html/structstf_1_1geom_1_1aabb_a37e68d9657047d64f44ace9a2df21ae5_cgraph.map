@@ -1,7 +1,0 @@
-<map id="stf::geom::aabb::fitted" name="stf::geom::aabb::fitted">
-<area shape="rect" id="Node000001" title="Fit an aabb." alt="" coords="5,31,171,56"/>
-<area shape="rect" id="Node000002" href="$structstf_1_1geom_1_1aabb.html#a253abdd92a65fb20d5f4d358f9697628" title="Default constructor – encompasses all of R^n." alt="" coords="219,5,381,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="171,31,205,27,205,32,171,36"/>
-<area shape="rect" id="Node000003" href="$structstf_1_1geom_1_1aabb.html#ab2df26065fbf161fc22489a70b4c67d7" title="Fit a point to an aabb in place." alt="" coords="228,55,372,80"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="171,50,215,55,214,60,171,55"/>
-</map>

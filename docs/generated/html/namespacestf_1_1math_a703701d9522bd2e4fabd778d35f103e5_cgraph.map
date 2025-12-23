@@ -1,5 +1,0 @@
-<map id="stf::math::smooth_time" name="stf::math::smooth_time">
-<area shape="rect" id="Node000001" title="Smooths the input time for use in smoothstep." alt="" coords="5,5,180,31"/>
-<area shape="rect" id="Node000002" href="$namespacestf_1_1math.html#a474ddf09b4433b212a9cd307c3e54f65" title="Clamp the input time to [0, 1]." alt="" coords="228,5,393,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="180,15,214,15,214,21,180,21"/>
-</map>

@@ -1,5 +1,0 @@
-<map id="stf::gfx::gradient::stop" name="stf::gfx::gradient::stop">
-<area shape="rect" id="Node000001" title="Struct to represent an interpolation anchor." alt="" coords="145,513,303,579"/>
-<area shape="rect" id="Node000002" href="$structstf_1_1gfx_1_1rgba.html" title="A class that represents a color as four floats." alt="" coords="5,5,443,451"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="227,451,227,497,221,497,221,451"/>
-</map>

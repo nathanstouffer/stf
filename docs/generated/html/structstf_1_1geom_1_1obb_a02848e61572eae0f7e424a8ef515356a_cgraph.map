@@ -1,9 +1,0 @@
-<map id="stf::geom::obb::projection" name="stf::geom::obb::projection">
-<area shape="rect" id="Node000001" title="Compute the projection of an obb onto an axis." alt="" coords="5,8,193,33"/>
-<area shape="rect" id="Node000002" href="$namespacestf_1_1math.html#affb9352af7b68426cc6ca4e4f2b5e583" title="Compute the dot product of two vectors." alt="" coords="476,8,585,33"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="193,9,241,6,335,3,428,6,463,9,462,14,428,11,335,8,241,11,194,14"/>
-<area shape="rect" id="Node000003" href="$structstf_1_1geom_1_1obb.html#ae5008150a58702b052ff0bc07b64325b" title="Compute an extremity of an obb in a given direction." alt="" coords="241,45,428,71"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="181,31,241,40,240,46,180,36"/>
-<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="401,43,462,31,463,36,402,48"/>
-<area shape="poly" id="edge4_Node000003_Node000003" title=" " alt="" coords="303,47,296,37,299,27,313,21,335,19,361,22,373,31,369,35,359,27,335,24,314,26,303,31,301,36,307,44"/>
-</map>

@@ -1,5 +1,0 @@
-<map id="stf::alg::clip" name="stf::alg::clip">
-<area shape="rect" id="Node000001" title="Clip a polyline to a bounding box." alt="" coords="5,5,103,31"/>
-<area shape="rect" id="Node000002" href="$namespacestf_1_1alg.html#ab983d65ed9a6b469a22fc96bffce1350" title="Clip a line segment to a bounding box." alt="" coords="151,5,248,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="103,15,137,15,137,21,103,21"/>
-</map>
