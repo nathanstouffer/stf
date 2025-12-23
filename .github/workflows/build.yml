@@ -21,6 +21,7 @@ jobs:
         # ubuntu-24.04: https://github.com/actions/runner-images/blob/main/images/ubuntu/Ubuntu2404-Readme.md
         # macos-14:     https://github.com/actions/runner-images/blob/main/images/macos/macos-14-Readme.md
         host:
+          # cl configurations
           - { cpp_compiler: cl,         c_compiler: cl,       image: windows-2022, generator: Visual Studio 17 2022 }
           - { cpp_compiler: cl,         c_compiler: cl,       image: windows-2025, generator: Visual Studio 17 2022 }
           # clang++ configurations
