@@ -11,6 +11,13 @@ This means that
 
 ### Added
 
+* basic math primitives (e.g. vector, matrix, and interval)
+* basic geometric primitives (e.g. aabb, obb, segment, polyline, polygon, and hyperplane)
+* simple simple camera and frustum
+* intersection algorithms
+* interval tree
+* indexed list data structure
+
 ### Changed
 
 ### Deprecated
