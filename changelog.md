@@ -18,6 +18,7 @@ This means that
 * interval tree
 * indexed list data structure
 * tests for much of the library
+* documentation
 
 ### Changed
 
