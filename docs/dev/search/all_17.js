@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['zero_0',['zero',['../structstf_1_1math_1_1constants.html#af6cb53ac2408fb815ea4e1dd6a749b11',1,'stf::math::constants']]]
+  ['yyyy_20mm_20dd_0',['[Unreleased] - YYYY/MM/DD',['../md__2home_2runner_2work_2stf_2stf_2changelog.html#autotoc_md5',1,'']]]
 ];

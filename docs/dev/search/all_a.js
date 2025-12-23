@@ -5,7 +5,8 @@ var searchData=
   ['lerp_2',['lerp',['../namespacestf_1_1cam.html#ac4c2fd68802ac25d0c752778c2ee3ebb',1,'stf::cam::lerp()'],['../namespacestf_1_1math.html#acc59c171c2d2950a06a0f4efaa257027',1,'stf::math::lerp(math::vec&lt; T, N &gt; const &amp;a, math::vec&lt; T, N &gt; const &amp;b, T const t)'],['../namespacestf_1_1math.html#a72fa8ca1fb0d9248d11f7c51f93a0343',1,'stf::math::lerp(T const a, T const b, T const t)'],['../namespacestf_1_1gfx.html#a28b545a206a8e8e10f6fee8d74539368',1,'stf::gfx::lerp()']]],
   ['lerp_5finv_3',['lerp_inv',['../namespacestf_1_1math.html#a350ee3c7dd0cd862d7ad1dce52cec068',1,'stf::math']]],
   ['lerpstep_4',['lerpstep',['../namespacestf_1_1cam.html#ae21f4b8549c40077a75a3fb8da902c48',1,'stf::cam::lerpstep()'],['../namespacestf_1_1gfx.html#a7aa80c459c5388b2c1f14d3aa8d98473',1,'stf::gfx::lerpstep()'],['../namespacestf_1_1math.html#a05eb9c110c1fbb96aa868a4815a07326',1,'stf::math::lerpstep(T const a, T const b, T const t)'],['../namespacestf_1_1math.html#acbae5e01d51e37ee6de1d186e5548264',1,'stf::math::lerpstep(math::vec&lt; T, N &gt; const &amp;a, math::vec&lt; T, N &gt; const &amp;b, T const t)']]],
-  ['line_5',['line',['../namespacestf_1_1geom.html#a1fcfb74757139c9fa6f55cd365f09493',1,'stf::geom']]],
-  ['list_6',['Todo List',['../todo.html',1,'']]],
-  ['look_7',['look',['../structstf_1_1cam_1_1scamera.html#a446b82e8ea93f7c529c8e2dbc186a6a0',1,'stf::cam::scamera']]]
+  ['library_5',['Library',['../md__2home_2runner_2work_2stf_2stf_2docs_2architecture.html#autotoc_md14',1,'']]],
+  ['line_6',['line',['../namespacestf_1_1geom.html#a1fcfb74757139c9fa6f55cd365f09493',1,'stf::geom']]],
+  ['list_7',['Todo List',['../todo.html',1,'']]],
+  ['look_8',['look',['../structstf_1_1cam_1_1scamera.html#a446b82e8ea93f7c529c8e2dbc186a6a0',1,'stf::cam::scamera']]]
 ];
