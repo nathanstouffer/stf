@@ -1,4 +1,4 @@
-# support
+# Support
 
 `stf` officially supports the following combinations of operating systems and compilers.
 Other combinations may work but are not actively tested in our automated build.

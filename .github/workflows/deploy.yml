@@ -1,0 +1,46 @@
+name: deploy
+on:
+  push:
+    branches: ["main"]
+
+permissions:
+  contents: write
+
+jobs:
+  docs:
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+
+      - name: Compute short sha
+        id: hash
+        run: echo "short_sha=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+
+      - name: Install Doxygen
+        run: sudo apt-get install doxygen graphviz -y
+
+      - name: Configure CMake
+        run: cmake -B ${{ github.workspace }}/build -S ${{ github.workspace }}
+
+      - name: Generate docs
+        run: cmake --build ${{ github.workspace }}/build --target docs
+
+      - name: Deploy docs
+        run: |
+          git fetch origin gh-pages
+          git checkout gh-pages
+          rm -rf docs/dev
+          mkdir docs/dev
+          cp -r docs/generated/html/* docs/dev
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs/dev
+          if [ -z "$(git diff --staged)" ]; then
+            echo "No docs changes detected -> exiting"
+          else
+            echo "Docs changes detected -> deploying"
+            git commit -m 'Deploy dev docs for ${{ steps.hash.outputs.short_sha }}'
+            git push
+          fi

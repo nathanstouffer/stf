@@ -1,0 +1,74 @@
+name: verify
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  formatting:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+
+      - name: Verify formatting and LF
+        run: |
+          # Fail on first file that has CRLF
+          for f in $(git ls-files); do
+              # Check LF
+              if grep -q $'\r' "$f"; then
+                  echo "File $f has CRLF line endings. Please convert to LF."
+                  exit 1
+              fi
+          done
+
+      - name: Install clang-format
+        run: sudo apt-get update && sudo apt-get install -y clang-format-20
+
+      - name: Run clang-format check
+        run: clang-format -style=file --dry-run --Werror $(git ls-files code/src/*.hpp code/tests/*.cpp code/tests/*.hpp)
+
+  changelog:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-24.04
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+
+      - name: Read labels
+        run: echo "LABELS=$(gh pr view ${{ github.event.pull_request.number }} --json labels --jq '.labels[].name')" >> "$GITHUB_ENV"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Store changelog check indicator
+        id: store_check_changelog
+        run: |
+          if echo "${LABELS}" | grep -q "skip-changelog"; then
+            echo "changelog update not required"
+            echo "check_changelog=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changelog update required"
+            echo "check_changelog=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Check for changelog update
+        if: steps.store_check_changelog.outputs.check_changelog == 'true'
+        run: |
+          git fetch origin ${{ github.base_ref }}
+          CHANGED_FILES=$(git diff --name-only origin/${{ github.base_ref }})
+
+          CHANGELOG_CHANGED=false
+          for file in $CHANGED_FILES; do
+            if [[ "$file" == "changelog.md" ]]; then
+              CHANGELOG_CHANGED=true
+              break
+            fi
+          done
+
+          if [[ $CHANGELOG_CHANGED == false ]]; then
+            echo "ERROR: changelog.md must be updated"
+            echo "To ignore this error, mark the PR with the 'skip-changelog' label"
+            exit 1
+          fi
