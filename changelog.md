@@ -17,6 +17,7 @@ This means that
 * intersection algorithms
 * interval tree
 * indexed list data structure
+* tests for much of the library
 
 ### Changed
 
