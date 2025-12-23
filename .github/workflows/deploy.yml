@@ -1,7 +1,7 @@
 name: deploy
 on:
   push:
-    branches: ["stouffer/host-docs"]
+    branches: ["main"]
 
 permissions:
   contents: write
@@ -38,9 +38,9 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add docs/dev
           if [ -z "$(git diff --staged)" ]; then
-            echo "No docs changes detected -- exiting"
+            echo "No docs changes detected -> exiting"
           else
-            echo "Docs changes detected -- deploying"
+            echo "Docs changes detected -> deploying"
             git commit -m 'Deploy dev docs for ${{ steps.hash.outputs.short_sha }}'
             git push
           fi
