@@ -49,4 +49,5 @@ struct find
 };
 
 } // namespace stf::scaffolding::spatial::interval_tree
+
 #endif

@@ -25,4 +25,5 @@ inline std::string info(size_t const i)
 }
 
 } // namespace stf::scaffolding
+
 #endif

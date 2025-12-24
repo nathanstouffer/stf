@@ -22,4 +22,5 @@ struct median
 };
 
 } // namespace stf::scaffolding::alg::statistics
+
 #endif

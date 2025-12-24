@@ -44,4 +44,5 @@ struct interpolate
 };
 
 } // namespace stf::scaffolding::geom::segment
+
 #endif

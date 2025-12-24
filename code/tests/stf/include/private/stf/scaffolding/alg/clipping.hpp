@@ -60,4 +60,5 @@ struct polyline
 };
 
 } // namespace stf::scaffolding::alg::clipping
+
 #endif

@@ -55,4 +55,5 @@ struct inverted
 };
 
 } // namespace stf::scaffolding::math::mtx
+
 #endif

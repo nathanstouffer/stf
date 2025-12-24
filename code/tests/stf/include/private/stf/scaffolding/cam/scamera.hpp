@@ -56,4 +56,5 @@ struct orbit
 };
 
 } // namespace stf::scaffolding::cam::scamera
+
 #endif

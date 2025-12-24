@@ -84,4 +84,5 @@ struct rgba_hex_conversion
 };
 
 } // namespace stf::scaffolding::gfx::color
+
 #endif

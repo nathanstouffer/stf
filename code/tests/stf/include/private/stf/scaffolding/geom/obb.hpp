@@ -94,4 +94,5 @@ struct intersect
 };
 
 } // namespace stf::scaffolding::geom::obb
+
 #endif

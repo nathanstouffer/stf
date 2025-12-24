@@ -52,4 +52,5 @@ struct lerpstep
 };
 
 } // namespace stf::scaffolding::math::interpolation
+
 #endif

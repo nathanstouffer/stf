@@ -45,4 +45,5 @@ inline void verify(std::vector<element_t> const& elements, list_t const& list)
 }
 
 } // namespace stf::scaffolding::ds::indexed_list
+
 #endif

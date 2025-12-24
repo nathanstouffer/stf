@@ -34,4 +34,5 @@ struct dist_and_dist_squared
 };
 
 } // namespace stf::scaffolding::geom::ray
+
 #endif

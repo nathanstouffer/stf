@@ -75,4 +75,5 @@ struct orbit3
 };
 
 } // namespace stf::scaffolding::math::transform
+
 #endif

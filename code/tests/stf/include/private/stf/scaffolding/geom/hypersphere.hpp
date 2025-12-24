@@ -22,4 +22,5 @@ struct encloses
 };
 
 } // namespace stf::scaffolding::geom::hypersphere
+
 #endif

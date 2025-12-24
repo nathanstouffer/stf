@@ -92,4 +92,5 @@ struct to_euclidean
 };
 
 } // namespace stf::scaffolding::math::spherical
+
 #endif

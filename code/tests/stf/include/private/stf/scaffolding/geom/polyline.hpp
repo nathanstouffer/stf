@@ -55,4 +55,5 @@ struct interpolate
 };
 
 } // namespace stf::scaffolding::geom::polyline
+
 #endif

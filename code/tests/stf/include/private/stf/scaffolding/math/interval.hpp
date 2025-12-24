@@ -23,4 +23,5 @@ struct contains_point
 };
 
 } // namespace stf::scaffolding::math::interval
+
 #endif

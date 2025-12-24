@@ -25,4 +25,5 @@ struct polyline_via_length
 };
 
 } // namespace stf::scaffolding::alg::tessellation
+
 #endif

@@ -134,4 +134,5 @@ struct ray_with_plane
 };
 
 } // namespace stf::scaffolding::alg::intersects
+
 #endif

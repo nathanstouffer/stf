@@ -255,4 +255,5 @@ struct binary_op
 };
 
 } // namespace stf::scaffolding::math::vec
+
 #endif

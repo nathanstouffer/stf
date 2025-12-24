@@ -78,4 +78,5 @@ struct distances
 };
 
 } // namespace stf::scaffolding::geom::polygon
+
 #endif

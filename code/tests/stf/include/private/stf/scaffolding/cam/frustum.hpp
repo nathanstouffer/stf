@@ -69,4 +69,5 @@ struct intersects
 };
 
 } // namespace stf::scaffolding::cam::frustum
+
 #endif
