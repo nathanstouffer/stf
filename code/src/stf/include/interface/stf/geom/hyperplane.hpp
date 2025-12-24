@@ -1,4 +1,5 @@
-#pragma once
+#ifndef STF_GEOM_HYPERPLANE_HPP_HEADER_GUARD
+#define STF_GEOM_HYPERPLANE_HPP_HEADER_GUARD
 
 #include "stf/geom/aabb.hpp"
 #include "stf/math/constants.hpp"
@@ -217,3 +218,5 @@ plane<T> fit_plane(math::vec3<T> const& p, math::vec3<T> const& q, math::vec3<T>
 }
 
 } // namespace stf::geom
+
+#endif

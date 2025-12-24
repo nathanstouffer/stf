@@ -1,4 +1,5 @@
-#pragma once
+#ifndef STF_CAM_FRUSTUM_HPP_HEADER_GUARD
+#define STF_CAM_FRUSTUM_HPP_HEADER_GUARD
 
 #include <array>
 #include <vector>
@@ -422,3 +423,5 @@ private:
 };
 
 } // namespace stf::cam
+
+#endif

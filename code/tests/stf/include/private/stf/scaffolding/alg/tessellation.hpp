@@ -1,4 +1,5 @@
-#pragma once
+#ifndef STF_SCAFFOLDING_ALG_TESSELLATION_HPP_HEADER_GUARD
+#define STF_SCAFFOLDING_ALG_TESSELLATION_HPP_HEADER_GUARD
 
 #include <gtest/gtest.h>
 
@@ -24,3 +25,5 @@ struct polyline_via_length
 };
 
 } // namespace stf::scaffolding::alg::tessellation
+
+#endif

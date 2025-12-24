@@ -1,4 +1,5 @@
-#pragma once
+#ifndef STF_ALG_INTERSECTS_HPP_HEADER_GUARD
+#define STF_ALG_INTERSECTS_HPP_HEADER_GUARD
 
 #include "stf/cam/frustum.hpp"
 #include "stf/geom/aabb.hpp"
@@ -435,3 +436,5 @@ inline bool intersects(geom::obb3<T> const& obb, cam::frustum<T> const& frustum)
 }
 
 } // namespace stf::alg
+
+#endif

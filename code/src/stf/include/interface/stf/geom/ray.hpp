@@ -1,4 +1,5 @@
-#pragma once
+#ifndef STF_GEOM_RAY_HPP_HEADER_GUARD
+#define STF_GEOM_RAY_HPP_HEADER_GUARD
 
 #include "stf/math/vector.hpp"
 
@@ -162,3 +163,5 @@ inline T dist(math::vec<T, N> const& point, ray<T, N> const& beam)
 }
 
 } // namespace stf::geom
+
+#endif

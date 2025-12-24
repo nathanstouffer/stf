@@ -1,4 +1,5 @@
-#pragma once
+#ifndef STF_SCAFFOLDING_CAM_SCAMERA_HPP_HEADER_GUARD
+#define STF_SCAFFOLDING_CAM_SCAMERA_HPP_HEADER_GUARD
 
 #include <gtest/gtest.h>
 
@@ -55,3 +56,5 @@ struct orbit
 };
 
 } // namespace stf::scaffolding::cam::scamera
+
+#endif

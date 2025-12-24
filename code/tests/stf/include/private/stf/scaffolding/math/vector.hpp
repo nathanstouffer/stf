@@ -1,4 +1,5 @@
-#pragma once
+#ifndef STF_SCAFFOLDING_MATH_VECTOR_HPP_HEADER_GUARD
+#define STF_SCAFFOLDING_MATH_VECTOR_HPP_HEADER_GUARD
 
 #include <gtest/gtest.h>
 
@@ -254,3 +255,5 @@ struct binary_op
 };
 
 } // namespace stf::scaffolding::math::vec
+
+#endif

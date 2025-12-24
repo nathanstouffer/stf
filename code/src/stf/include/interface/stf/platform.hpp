@@ -1,4 +1,5 @@
-#pragma once
+#ifndef STF_PLATFORM_HPP_HEADER_GUARD
+#define STF_PLATFORM_HPP_HEADER_GUARD
 
 // compiler settings
 
@@ -32,3 +33,5 @@
 #    error                                                                                                             \
         "STF_COMPILER undefined, your compiler may not be supported by stf. Add #define STF_COMPILER 0 to ignore this message."
 #endif // STF_COMPILER
+
+#endif

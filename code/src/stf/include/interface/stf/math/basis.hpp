@@ -1,4 +1,5 @@
-#pragma once
+#ifndef STF_MATH_BASIS_HPP_HEADER_GUARD
+#define STF_MATH_BASIS_HPP_HEADER_GUARD
 
 #include <array>
 
@@ -59,3 +60,5 @@ basis<T, N> to_basis(mtx<T, N> const& rotation)
 }
 
 } // namespace stf::math
+
+#endif

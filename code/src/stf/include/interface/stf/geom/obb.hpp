@@ -1,4 +1,5 @@
-#pragma once
+#ifndef STF_GEOM_OBB_HPP_HEADER_GUARD
+#define STF_GEOM_OBB_HPP_HEADER_GUARD
 
 #include <cstring>
 
@@ -378,3 +379,5 @@ bool intersects(obb3<T> const& lhs, obb3<T> const& rhs)
 }
 
 } // namespace stf::geom
+
+#endif

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef STF_SCAFFOLDING_MATH_INTERVAL_HPP_HEADER_GUARD
+#define STF_SCAFFOLDING_MATH_INTERVAL_HPP_HEADER_GUARD
 
 #include <gtest/gtest.h>
 
@@ -22,3 +23,5 @@ struct contains_point
 };
 
 } // namespace stf::scaffolding::math::interval
+
+#endif

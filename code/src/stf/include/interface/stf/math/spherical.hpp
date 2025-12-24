@@ -1,4 +1,5 @@
-#pragma once
+#ifndef STF_MATH_SPHERICAL_HPP_HEADER_GUARD
+#define STF_MATH_SPHERICAL_HPP_HEADER_GUARD
 
 #include "stf/math/constants.hpp"
 #include "stf/math/vector.hpp"
@@ -119,3 +120,5 @@ inline math::vec3<T> to_euclidean(T const radius, T const theta, T const phi)
 }
 
 } // namespace stf::math
+
+#endif

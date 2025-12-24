@@ -1,4 +1,5 @@
-#pragma once
+#ifndef STF_DS_INDEXED_LIST_HPP_HEADER_GUARD
+#define STF_DS_INDEXED_LIST_HPP_HEADER_GUARD
 
 #include <list>
 #include <unordered_map>
@@ -337,3 +338,5 @@ public:
 };
 
 } // namespace stf::ds
+
+#endif

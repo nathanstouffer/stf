@@ -1,4 +1,5 @@
-#pragma once
+#ifndef STF_SCAFFOLDING_ALG_INTERSECT_HPP_HEADER_GUARD
+#define STF_SCAFFOLDING_ALG_INTERSECT_HPP_HEADER_GUARD
 
 #include <gtest/gtest.h>
 
@@ -28,3 +29,5 @@ struct ray_with_plane
 };
 
 } // namespace stf::scaffolding::alg::intersect
+
+#endif

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef STF_MATH_INTERVAL_HPP_HEADER_GUARD
+#define STF_MATH_INTERVAL_HPP_HEADER_GUARD
 
 #include "stf/enums.hpp"
 #include "stf/math/constants.hpp"
@@ -115,3 +116,5 @@ struct interval final
 };
 
 } // namespace stf::math
+
+#endif

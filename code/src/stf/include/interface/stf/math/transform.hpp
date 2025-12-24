@@ -1,4 +1,5 @@
-#pragma once
+#ifndef STF_MATH_TRANSFORM_HPP_HEADER_GUARD
+#define STF_MATH_TRANSFORM_HPP_HEADER_GUARD
 
 #include "stf/math/matrix.hpp"
 #include "stf/math/vector.hpp"
@@ -80,3 +81,5 @@ inline math::vec3<T> orbit(math::vec3<T> const& point, math::vec3<T> const& focu
 }
 
 } // namespace stf::math
+
+#endif

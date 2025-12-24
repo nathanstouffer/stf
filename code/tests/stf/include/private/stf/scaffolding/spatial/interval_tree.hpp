@@ -1,4 +1,5 @@
-#pragma once
+#ifndef STF_SCAFFOLDING_SPATIAL_INTERVAL_TREE_HPP_HEADER_GUARD
+#define STF_SCAFFOLDING_SPATIAL_INTERVAL_TREE_HPP_HEADER_GUARD
 
 #include <string>
 #include <vector>
@@ -48,3 +49,5 @@ struct find
 };
 
 } // namespace stf::scaffolding::spatial::interval_tree
+
+#endif

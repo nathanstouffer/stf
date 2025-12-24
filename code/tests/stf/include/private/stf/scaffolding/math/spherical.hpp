@@ -1,4 +1,5 @@
-#pragma once
+#ifndef STF_SCAFFOLDING_MATH_SPHERICAL_HPP_HEADER_GUARD
+#define STF_SCAFFOLDING_MATH_SPHERICAL_HPP_HEADER_GUARD
 
 #include <gtest/gtest.h>
 
@@ -91,3 +92,5 @@ struct to_euclidean
 };
 
 } // namespace stf::scaffolding::math::spherical
+
+#endif

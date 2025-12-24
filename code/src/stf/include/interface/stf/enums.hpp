@@ -1,4 +1,5 @@
-#pragma once
+#ifndef STF_ENUMS_HPP_HEADER_GUARD
+#define STF_ENUMS_HPP_HEADER_GUARD
 
 namespace stf
 {
@@ -24,3 +25,5 @@ inline boundary_types complement(boundary_types input)
 }
 
 } // namespace stf
+
+#endif

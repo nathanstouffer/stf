@@ -1,4 +1,5 @@
-#pragma once
+#ifndef STF_GFX_GRADIENT_HPP_HEADER_GUARD
+#define STF_GFX_GRADIENT_HPP_HEADER_GUARD
 
 #include <vector>
 
@@ -134,3 +135,5 @@ private:
 };
 
 } // namespace stf::gfx
+
+#endif

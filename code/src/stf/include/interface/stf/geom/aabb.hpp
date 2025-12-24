@@ -1,4 +1,5 @@
-#pragma once
+#ifndef STF_GEOM_AABB_HPP_HEADER_GUARD
+#define STF_GEOM_AABB_HPP_HEADER_GUARD
 
 #include <cstring>
 
@@ -483,3 +484,5 @@ inline std::ostream& operator<<(std::ostream& s, aabb<T, N> const& rhs)
 }
 
 } // namespace stf::geom
+
+#endif

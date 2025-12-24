@@ -1,4 +1,5 @@
-#pragma once
+#ifndef STF_SCAFFOLDING_VERIFY_HPP_HEADER_GUARD
+#define STF_SCAFFOLDING_VERIFY_HPP_HEADER_GUARD
 
 #include <string>
 #include <vector>
@@ -24,3 +25,5 @@ inline std::string info(size_t const i)
 }
 
 } // namespace stf::scaffolding
+
+#endif

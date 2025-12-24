@@ -1,4 +1,5 @@
-#pragma once
+#ifndef STF_SCAFFOLDING_MATH_TRANSFORM_HPP_HEADER_GUARD
+#define STF_SCAFFOLDING_MATH_TRANSFORM_HPP_HEADER_GUARD
 
 #include <gtest/gtest.h>
 
@@ -74,3 +75,5 @@ struct orbit3
 };
 
 } // namespace stf::scaffolding::math::transform
+
+#endif

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef STF_SCAFFOLDING_ALG_CLIPPING_HPP_HEADER_GUARD
+#define STF_SCAFFOLDING_ALG_CLIPPING_HPP_HEADER_GUARD
 
 #include <gtest/gtest.h>
 
@@ -59,3 +60,5 @@ struct polyline
 };
 
 } // namespace stf::scaffolding::alg::clipping
+
+#endif

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef STF_SCAFFOLDING_MATH_INTERPOLATION_HPP_HEADER_GUARD
+#define STF_SCAFFOLDING_MATH_INTERPOLATION_HPP_HEADER_GUARD
 
 #include <gtest/gtest.h>
 
@@ -51,3 +52,5 @@ struct lerpstep
 };
 
 } // namespace stf::scaffolding::math::interpolation
+
+#endif

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef STF_GEOM_HYPERSPHERE_HPP_HEADER_GUARD
+#define STF_GEOM_HYPERSPHERE_HPP_HEADER_GUARD
 
 #include "stf/math/vector.hpp"
 
@@ -80,3 +81,5 @@ template <typename T>
 using sphere = hypersphere<T, 3>;
 
 } // namespace stf::geom
+
+#endif

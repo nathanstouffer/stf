@@ -1,4 +1,5 @@
-#pragma once
+#ifndef STF_SCAFFOLDING_GFX_COLOR_HPP_HEADER_GUARD
+#define STF_SCAFFOLDING_GFX_COLOR_HPP_HEADER_GUARD
 
 #include <gtest/gtest.h>
 
@@ -83,3 +84,5 @@ struct rgba_hex_conversion
 };
 
 } // namespace stf::scaffolding::gfx::color
+
+#endif

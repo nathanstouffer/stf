@@ -1,4 +1,5 @@
-#pragma once
+#ifndef STF_SPATIAL_INTERVAL_TREE_HPP_HEADER_GUARD
+#define STF_SPATIAL_INTERVAL_TREE_HPP_HEADER_GUARD
 
 #include <algorithm>
 #include <memory>
@@ -515,3 +516,5 @@ private:
 };
 
 } // namespace stf::spatial
+
+#endif

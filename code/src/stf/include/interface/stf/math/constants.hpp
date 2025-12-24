@@ -1,4 +1,5 @@
-#pragma once
+#ifndef STF_MATH_CONSTANTS_HPP_HEADER_GUARD
+#define STF_MATH_CONSTANTS_HPP_HEADER_GUARD
 
 #include <cmath>
 
@@ -147,3 +148,5 @@ struct constants
 };
 
 } // namespace stf::math
+
+#endif
