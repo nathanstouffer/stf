@@ -11,28 +11,28 @@ jobs:
     runs-on: ${{ matrix.host.image }}
     strategy:
       # Cancel all in-progress and queued jobs in the matrix if any job in the matrix fails
-      fail-fast: false
+      fail-fast: true
 
       # matrix docs: https://docs.github.com/en/actions/writing-workflows/workflow-syntax-for-github-actions#jobsjob_idstrategymatrix
       matrix:
-        build_type: [Debug, Release] #[Debug, RelWithDebInfo, Release, MinSizeRel]
+        build_type: [Debug, RelWithDebInfo, Release, MinSizeRel]
         # image states
         # windows-2022: https://github.com/actions/runner-images/blob/main/images/windows/Windows2022-Readme.md
         # ubuntu-24.04: https://github.com/actions/runner-images/blob/main/images/ubuntu/Ubuntu2404-Readme.md
         # macos-14:     https://github.com/actions/runner-images/blob/main/images/macos/macos-14-Readme.md
         host:
           # cl configurations
-          # - { cpp_compiler: cl,         c_compiler: cl,       image: windows-2022, generator: Visual Studio 17 2022 }
-          # - { cpp_compiler: cl,         c_compiler: cl,       image: windows-2025, generator: Visual Studio 17 2022 }
+          - { cpp_compiler: cl,         c_compiler: cl,       image: windows-2022, generator: Visual Studio 17 2022 }
+          - { cpp_compiler: cl,         c_compiler: cl,       image: windows-2025, generator: Visual Studio 17 2022 }
           # clang++ configurations
-          # - { cpp_compiler: clang++-16, c_compiler: clang-16, image: ubuntu-24.04, generator: Unix Makefiles        }
-          # - { cpp_compiler: clang++-17, c_compiler: clang-17, image: ubuntu-24.04, generator: Unix Makefiles        }
+          - { cpp_compiler: clang++-16, c_compiler: clang-16, image: ubuntu-24.04, generator: Unix Makefiles        }
+          - { cpp_compiler: clang++-17, c_compiler: clang-17, image: ubuntu-24.04, generator: Unix Makefiles        }
           - { cpp_compiler: clang++-18, c_compiler: clang-18, image: ubuntu-24.04, generator: Unix Makefiles        }
           - { cpp_compiler: clang++,    c_compiler: clang,    image: macos-14,     generator: Unix Makefiles        } # GHA docs say this is version 15.0.0
           # g++ configurations
-          # - { cpp_compiler: g++,        c_compiler: gcc,      image: windows-2022, generator: MinGW Makefiles       } # GHA docs say this is version 12.2.0
-          # - { cpp_compiler: g++-12,     c_compiler: gcc-12,   image: ubuntu-24.04, generator: Unix Makefiles        }
-          # - { cpp_compiler: g++-13,     c_compiler: gcc-13,   image: ubuntu-24.04, generator: Unix Makefiles        }
+          - { cpp_compiler: g++,        c_compiler: gcc,      image: windows-2022, generator: MinGW Makefiles       } # GHA docs say this is version 12.2.0
+          - { cpp_compiler: g++-12,     c_compiler: gcc-12,   image: ubuntu-24.04, generator: Unix Makefiles        }
+          - { cpp_compiler: g++-13,     c_compiler: gcc-13,   image: ubuntu-24.04, generator: Unix Makefiles        }
           - { cpp_compiler: g++-14,     c_compiler: gcc-14,   image: ubuntu-24.04, generator: Unix Makefiles        }
           - { cpp_compiler: g++,        c_compiler: gcc,      image: macos-14,     generator: Unix Makefiles        }
         # include:
