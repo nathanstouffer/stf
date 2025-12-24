@@ -8,6 +8,8 @@ set(CXX_STANDARD_REQUIRED ON)
 # set property so Visual Studio generates filters corresponding to folders
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
 if(${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_CURRENT_SOURCE_DIR})
     set(BUILD_TESTS TRUE)
     enable_testing()
