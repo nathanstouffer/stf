@@ -1,3 +1,4 @@
+#include <iostream>
 #include <vector>
 
 #include <gtest/gtest.h>
@@ -77,12 +78,14 @@ TEST(clipping, index_out_of_stack_array_bounds)
     int i = 50;
     int arr[10];
     arr[i] = 0;
+    std::cout << arr[i] << std::endl;
 }
 
 TEST(clipping, index_out_of_heap_array_bounds)
 {
     int* arr = new int[50];
     arr[50] = 90;
+    std::cout << arr[50] << std::endl;
 }
 
 TEST(clipping, use_heap_after_free)
@@ -91,6 +94,7 @@ TEST(clipping, use_heap_after_free)
     arr[0] = 7;
     delete[] arr;
     arr[0] = 8;
+    std::cout << arr[0] << std::endl;
 }
 
 TEST(clipping, use_stl_container_after_free)
