@@ -1,24 +1,25 @@
-# architecture
+# Architecture
 
-## priorities
+## Priorities
 
 1. correctness
 2. maintainability
 3. performance
 
-## library
+## Library
 
 `stf` is a header-only template math library built primarily for graphics.
 The library is split into a couple namespaces.
 
-| namespace | description |
-|-----------|-------------|
-| `math` | contains basic math structures and operations (eg `vector`, `matrix`, spherical coordinates) |
-| `geom` | contains geometric primitives (eg `segment`, `polyline`, and `polygon`) |
-| `gfx` | contains graphics-related structures (eg `rgba`) |
-| `cam` | contains camera-related structures (eg `camera` and `frustum`) |
-| `spatial` | contains structures that sort data spatially (eg `interval_tree`) |
-| `alg` | contains algorithms that operate on the `stf` structures (eg `intersect`) |
+| namespace | description                                                                                  |
+| --------- | -------------------------------------------------------------------------------------------- |
+| `math`    | contains basic math structures and operations (eg `vector`, `matrix`, spherical coordinates) |
+| `geom`    | contains geometric primitives (eg `segment`, `polyline`, and `polygon`)                      |
+| `gfx`     | contains graphics-related structures (eg `rgba`)                                             |
+| `cam`     | contains camera-related structures (eg `camera` and `frustum`)                               |
+| `spatial` | contains structures that sort data spatially (eg `interval_tree`)                            |
+| `alg`     | contains algorithms that operate on the `stf` structures (eg `intersect`)                    |
+| `ds`      | contains general purpose data structures                                                     |
 
 Because the entire library is templated, you are free to create objects with the number type of your choice.
 As a convenience, `stf` takes advantage of `using` statements in [stf/stf.hpp](../code/src/stf/include/interface/stf/stf.hpp) to provide less verbose access to common types.
@@ -31,12 +32,12 @@ stfi::vec2 point(0, 0);     // integers
 stfu::vec2 point(0, 0);     // unsigned integers
 ```
 
-## building
+## Building
 
 `stf` uses [cmake](https://cmake.org/) to generate a build system of your choice.
 GHA builds `stf` with a number of compilers on various operating systems.
 
-## tests
+## Tests
 
 Testing architecture falls into two categories: scaffolding and data.
 Scaffolding defines what information is required for a test and the code to verify its correctness.

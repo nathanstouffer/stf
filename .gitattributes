@@ -1,0 +1,22 @@
+# C/C++ source code
+*.cpp text eol=lf
+*.c   text eol=lf
+*.hpp text eol=lf
+*.h   text eol=lf
+
+# scripts / build files
+*.sh  text eol=lf
+*.py  text eol=lf
+*.cmake text eol=lf
+CMakeLists.txt text eol=lf
+
+# markdown / documentation
+*.md text eol=lf
+*.txt text eol=lf
+
+# ignore line ending normalization for binaries
+*.png binary
+*.jpg binary
+*.ico binary
+*.exe binary
+*.dll binary

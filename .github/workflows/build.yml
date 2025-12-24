@@ -7,9 +7,8 @@ on:
     branches: ["main"]
 
 jobs:
-  build:
+  tests:
     runs-on: ${{ matrix.host.image }}
-
     strategy:
       # Cancel all in-progress and queued jobs in the matrix if any job in the matrix fails
       fail-fast: false
@@ -18,13 +17,13 @@ jobs:
       matrix:
         build_type: [Debug, Release] #[Debug, RelWithDebInfo, Release, MinSizeRel]
         # image states
-        # windows-2022: https://github.com/actions/runner-images/blob/main/images/macos/macos-14-Readme.md
+        # windows-2022: https://github.com/actions/runner-images/blob/main/images/windows/Windows2022-Readme.md
         # ubuntu-24.04: https://github.com/actions/runner-images/blob/main/images/ubuntu/Ubuntu2404-Readme.md
         # macos-14:     https://github.com/actions/runner-images/blob/main/images/macos/macos-14-Readme.md
         host:
           # cl configurations
-          # - { cpp_compiler: cl,         c_compiler: cl,       image: windows-2019, generator: Visual Studio 16 2019 }
           # - { cpp_compiler: cl,         c_compiler: cl,       image: windows-2022, generator: Visual Studio 17 2022 }
+          # - { cpp_compiler: cl,         c_compiler: cl,       image: windows-2025, generator: Visual Studio 17 2022 }
           # clang++ configurations
           # - { cpp_compiler: clang++-16, c_compiler: clang-16, image: ubuntu-24.04, generator: Unix Makefiles        }
           # - { cpp_compiler: clang++-17, c_compiler: clang-17, image: ubuntu-24.04, generator: Unix Makefiles        }
@@ -61,12 +60,14 @@ jobs:
         # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only required if you are using a single-configuration generator such as make.
         # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
         run: >
-          cmake -B ${{ steps.strings.outputs.build-output-dir }}
+          cmake
+          -G "${{ matrix.host.generator }}"
+          -S ${{ github.workspace }}
+          -B ${{ steps.strings.outputs.build-output-dir }}
           -DCMAKE_CXX_COMPILER=${{ matrix.host.cpp_compiler }}
           -DCMAKE_C_COMPILER=${{ matrix.host.c_compiler }}
           -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}
-          -G "${{ matrix.host.generator }}"
-          -S ${{ github.workspace }}
+          -DSTF_TESTS_WARNINGS_AS_ERRORS=TRUE
 
       - name: Build
         # Build your program with the given configuration. Note that --config is needed because the default Windows generator is a multi-config generator (Visual Studio generator).
@@ -106,7 +107,6 @@ jobs:
 
   docs:
     runs-on: ubuntu-24.04
-
     steps:
       - name: checkout
         uses: actions/checkout@v3
@@ -119,5 +119,3 @@ jobs:
 
       - name: Generate docs
         run: cmake --build ${{ github.workspace }}/build --target docs
-
-      # TODO: possibly host docs on github pages (helpful link: https://github.com/DenverCoder1/doxygen-github-pages-action)
