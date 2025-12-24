@@ -1,4 +1,5 @@
-#pragma once
+#ifndef STF_ALG_CLIPPING_HPP_HEADER_GUARD
+#define STF_ALG_CLIPPING_HPP_HEADER_GUARD
 
 #include "stf/geom/segment.hpp"
 #include "stf/geom/polyline.hpp"
@@ -178,3 +179,4 @@ std::vector<geom::polyline2<T>> clip(geom::aabb2<T> const& box, geom::polyline2<
 }
 
 } // namespace stf::alg
+#endif

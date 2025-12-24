@@ -1,4 +1,5 @@
-#pragma once
+#ifndef STF_GEOM_SEGMENT_HPP_HEADER_GUARD
+#define STF_GEOM_SEGMENT_HPP_HEADER_GUARD
 
 #include <algorithm>
 
@@ -269,3 +270,4 @@ inline T dist(math::vec<T, N> const& point, segment<T, N> const& seg)
 }
 
 } // namespace stf::geom
+#endif

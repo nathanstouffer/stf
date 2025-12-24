@@ -1,4 +1,5 @@
-#pragma once
+#ifndef STF_MATH_MATRIX_HPP_HEADER_GUARD
+#define STF_MATH_MATRIX_HPP_HEADER_GUARD
 
 #include <cstring>
 
@@ -1168,3 +1169,4 @@ std::ostream& operator<<(std::ostream& s, mtx<T, N> const& rhs)
 }
 
 } // namespace stf::math
+#endif

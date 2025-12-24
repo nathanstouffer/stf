@@ -1,4 +1,5 @@
-#pragma once
+#ifndef STF_GEOM_POLYGON_HPP_HEADER_GUARD
+#define STF_GEOM_POLYGON_HPP_HEADER_GUARD
 
 #include <vector>
 
@@ -473,3 +474,4 @@ inline T signed_dist(math::vec2<T> const& point, polygon<T> const& ring)
 }
 
 } // namespace stf::geom
+#endif

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef STF_ALG_CONTAINMENT_HPP_HEADER_GUARD
+#define STF_ALG_CONTAINMENT_HPP_HEADER_GUARD
 
 #include "stf/geom/aabb.hpp"
 #include "stf/math/vector.hpp"
@@ -40,3 +41,4 @@ inline bool contains(geom::aabb<T, N> const& lhs, geom::aabb<T, N> const& rhs)
 }
 
 } // namespace stf::alg
+#endif

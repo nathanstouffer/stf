@@ -1,4 +1,5 @@
-#pragma once
+#ifndef STF_MATH_INTERPOLATION_HPP_HEADER_GUARD
+#define STF_MATH_INTERPOLATION_HPP_HEADER_GUARD
 
 #include <cmath>
 
@@ -345,3 +346,4 @@ inline math::vec<T, N> cubic_hermite_spline(math::vec<T, N> const p0, math::vec<
 }
 
 } // namespace stf::math
+#endif

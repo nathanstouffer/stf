@@ -1,4 +1,5 @@
-#pragma once
+#ifndef STF_ALG_STATISTICS_HPP_HEADER_GUARD
+#define STF_ALG_STATISTICS_HPP_HEADER_GUARD
 
 #include <algorithm>
 #include <vector>
@@ -39,3 +40,4 @@ T median(std::vector<T> const& values)
 }
 
 } // namespace stf::alg
+#endif

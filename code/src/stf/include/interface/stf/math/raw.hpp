@@ -1,4 +1,5 @@
-#pragma once
+#ifndef STF_MATH_RAW_HPP_HEADER_GUARD
+#define STF_MATH_RAW_HPP_HEADER_GUARD
 
 #include <cmath>
 
@@ -143,3 +144,4 @@ inline void as(T const src[N], U dst[N])
 }
 
 } // namespace stf::math::raw
+#endif

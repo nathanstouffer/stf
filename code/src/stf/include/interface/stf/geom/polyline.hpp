@@ -1,4 +1,5 @@
-#pragma once
+#ifndef STF_GEOM_POLYLINE_HPP_HEADER_GUARD
+#define STF_GEOM_POLYLINE_HPP_HEADER_GUARD
 
 #include <vector>
 
@@ -367,3 +368,4 @@ inline T dist(math::vec<T, N> const& point, polyline<T, N> const& linestring)
 }
 
 } // namespace stf::geom
+#endif

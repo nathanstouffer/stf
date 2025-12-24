@@ -1,4 +1,5 @@
-#pragma once
+#ifndef STF_MATH_VECTOR_HPP_HEADER_GUARD
+#define STF_MATH_VECTOR_HPP_HEADER_GUARD
 
 #include <cmath>
 
@@ -1392,3 +1393,4 @@ struct hash<stf::math::vec<T, N>>
 };
 
 } // namespace std
+#endif

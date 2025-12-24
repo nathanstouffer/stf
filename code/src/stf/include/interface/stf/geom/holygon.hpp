@@ -1,4 +1,5 @@
-#pragma once
+#ifndef STF_GEOM_HOLYGON_HPP_HEADER_GUARD
+#define STF_GEOM_HOLYGON_HPP_HEADER_GUARD
 
 #include <vector>
 
@@ -282,3 +283,4 @@ inline T dist(math::vec2<T> const& point, holygon<T> const& shape)
 }
 
 } // namespace stf::geom
+#endif

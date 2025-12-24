@@ -1,4 +1,5 @@
-#pragma once
+#ifndef STF_ALG_TESSELLATION_HPP_HEADER_GUARD
+#define STF_ALG_TESSELLATION_HPP_HEADER_GUARD
 
 #include <vector>
 
@@ -83,3 +84,4 @@ std::vector<math::vec2<T>> tessellate_via_length(geom::polyline2<T> const& polyl
 }
 
 } // namespace stf::alg
+#endif

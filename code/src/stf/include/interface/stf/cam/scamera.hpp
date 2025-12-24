@@ -1,4 +1,5 @@
-#pragma once
+#ifndef STF_CAM_SCAMERA_HPP_HEADER_GUARD
+#define STF_CAM_SCAMERA_HPP_HEADER_GUARD
 
 #include "stf/geom/ray.hpp"
 #include "stf/math/constants.hpp"
@@ -393,3 +394,4 @@ std::ostream& operator<<(std::ostream& s, scamera<T> const& rhs)
 }
 
 } // namespace stf::cam
+#endif

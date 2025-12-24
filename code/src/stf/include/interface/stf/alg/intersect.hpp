@@ -1,4 +1,5 @@
-#pragma once
+#ifndef STF_ALG_INTERSECT_HPP_HEADER_GUARD
+#define STF_ALG_INTERSECT_HPP_HEADER_GUARD
 
 #include <optional>
 
@@ -60,3 +61,4 @@ inline std::optional<math::vec3<T>> intersect(geom::plane<T> const& plane, geom:
 }
 
 } // namespace stf::alg
+#endif

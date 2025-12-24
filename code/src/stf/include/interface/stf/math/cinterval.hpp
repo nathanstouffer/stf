@@ -1,4 +1,5 @@
-#pragma once
+#ifndef STF_MATH_CINTERVAL_HPP_HEADER_GUARD
+#define STF_MATH_CINTERVAL_HPP_HEADER_GUARD
 
 #include "stf/enums.hpp"
 #include "stf/math/constants.hpp"
@@ -80,3 +81,4 @@ struct cinterval final
 };
 
 } // namespace stf::math
+#endif

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef STF_MATH_SCALAR_HPP_HEADER_GUARD
+#define STF_MATH_SCALAR_HPP_HEADER_GUARD
 
 #include <cmath>
 
@@ -39,3 +40,4 @@ inline bool neq(T const lhs, T const rhs, T const eps)
 }
 
 } // namespace stf::math
+#endif
