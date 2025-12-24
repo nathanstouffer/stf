@@ -40,4 +40,5 @@ T median(std::vector<T> const& values)
 }
 
 } // namespace stf::alg
+
 #endif

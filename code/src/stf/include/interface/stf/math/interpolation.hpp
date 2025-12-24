@@ -346,4 +346,5 @@ inline math::vec<T, N> cubic_hermite_spline(math::vec<T, N> const p0, math::vec<
 }
 
 } // namespace stf::math
+
 #endif

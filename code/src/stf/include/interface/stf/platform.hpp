@@ -33,4 +33,5 @@
 #    error                                                                                                             \
         "STF_COMPILER undefined, your compiler may not be supported by stf. Add #define STF_COMPILER 0 to ignore this message."
 #endif // STF_COMPILER
+
 #endif

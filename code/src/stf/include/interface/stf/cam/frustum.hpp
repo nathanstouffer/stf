@@ -423,4 +423,5 @@ private:
 };
 
 } // namespace stf::cam
+
 #endif

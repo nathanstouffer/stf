@@ -60,4 +60,5 @@ basis<T, N> to_basis(mtx<T, N> const& rotation)
 }
 
 } // namespace stf::math
+
 #endif

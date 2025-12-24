@@ -163,4 +163,5 @@ inline T dist(math::vec<T, N> const& point, ray<T, N> const& beam)
 }
 
 } // namespace stf::geom
+
 #endif

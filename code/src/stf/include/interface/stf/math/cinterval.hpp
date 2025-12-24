@@ -81,4 +81,5 @@ struct cinterval final
 };
 
 } // namespace stf::math
+
 #endif

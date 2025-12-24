@@ -84,4 +84,5 @@ std::vector<math::vec2<T>> tessellate_via_length(geom::polyline2<T> const& polyl
 }
 
 } // namespace stf::alg
+
 #endif

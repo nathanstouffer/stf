@@ -368,4 +368,5 @@ inline T dist(math::vec<T, N> const& point, polyline<T, N> const& linestring)
 }
 
 } // namespace stf::geom
+
 #endif

@@ -270,4 +270,5 @@ inline T dist(math::vec<T, N> const& point, segment<T, N> const& seg)
 }
 
 } // namespace stf::geom
+
 #endif

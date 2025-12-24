@@ -200,4 +200,5 @@ using stfi = stf::instantiate_types<int>;
  * @brief Type alias to instantiate structs for unsigned integers
  */
 using stfu = stf::instantiate_types<uint32_t>;
+
 #endif

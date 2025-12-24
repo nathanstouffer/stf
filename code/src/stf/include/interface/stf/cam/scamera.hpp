@@ -394,4 +394,5 @@ std::ostream& operator<<(std::ostream& s, scamera<T> const& rhs)
 }
 
 } // namespace stf::cam
+
 #endif

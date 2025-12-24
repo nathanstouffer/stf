@@ -25,4 +25,5 @@ inline boundary_types complement(boundary_types input)
 }
 
 } // namespace stf
+
 #endif

@@ -379,4 +379,5 @@ bool intersects(obb3<T> const& lhs, obb3<T> const& rhs)
 }
 
 } // namespace stf::geom
+
 #endif

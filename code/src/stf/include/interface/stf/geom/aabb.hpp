@@ -484,4 +484,5 @@ inline std::ostream& operator<<(std::ostream& s, aabb<T, N> const& rhs)
 }
 
 } // namespace stf::geom
+
 #endif

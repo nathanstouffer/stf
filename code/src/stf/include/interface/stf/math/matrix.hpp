@@ -1169,4 +1169,5 @@ std::ostream& operator<<(std::ostream& s, mtx<T, N> const& rhs)
 }
 
 } // namespace stf::math
+
 #endif

@@ -474,4 +474,5 @@ inline T signed_dist(math::vec2<T> const& point, polygon<T> const& ring)
 }
 
 } // namespace stf::geom
+
 #endif

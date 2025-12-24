@@ -310,4 +310,5 @@ inline std::ostream& operator<<(std::ostream& s, rgba const& rhs)
 // TODO class for hsv and other ways of representing color
 
 } // namespace stf::gfx
+
 #endif

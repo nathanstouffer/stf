@@ -218,4 +218,5 @@ plane<T> fit_plane(math::vec3<T> const& p, math::vec3<T> const& q, math::vec3<T>
 }
 
 } // namespace stf::geom
+
 #endif

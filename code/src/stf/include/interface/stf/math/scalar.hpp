@@ -40,4 +40,5 @@ inline bool neq(T const lhs, T const rhs, T const eps)
 }
 
 } // namespace stf::math
+
 #endif

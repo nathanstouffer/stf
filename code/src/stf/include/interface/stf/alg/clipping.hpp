@@ -179,4 +179,5 @@ std::vector<geom::polyline2<T>> clip(geom::aabb2<T> const& box, geom::polyline2<
 }
 
 } // namespace stf::alg
+
 #endif

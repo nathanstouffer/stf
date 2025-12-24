@@ -283,4 +283,5 @@ inline T dist(math::vec2<T> const& point, holygon<T> const& shape)
 }
 
 } // namespace stf::geom
+
 #endif

@@ -116,4 +116,5 @@ struct interval final
 };
 
 } // namespace stf::math
+
 #endif

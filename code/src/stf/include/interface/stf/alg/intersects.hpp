@@ -436,4 +436,5 @@ inline bool intersects(geom::obb3<T> const& obb, cam::frustum<T> const& frustum)
 }
 
 } // namespace stf::alg
+
 #endif

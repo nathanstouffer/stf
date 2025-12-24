@@ -1,4 +1,5 @@
-#pragma once
+#ifndef STF_DOCS_HPP_HEADER_GUARD
+#define STF_DOCS_HPP_HEADER_GUARD
 
 // NOTE: This file is not meant to be included in the library. It is here purely for the sake of documentation
 
@@ -41,3 +42,5 @@
  * @namespace stf::spatial
  * @brief Namespace for spatial data structures
  */
+
+#endif

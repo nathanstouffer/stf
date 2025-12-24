@@ -516,4 +516,5 @@ private:
 };
 
 } // namespace stf::spatial
+
 #endif

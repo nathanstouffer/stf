@@ -144,4 +144,5 @@ inline void as(T const src[N], U dst[N])
 }
 
 } // namespace stf::math::raw
+
 #endif

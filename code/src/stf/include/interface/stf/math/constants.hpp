@@ -148,4 +148,5 @@ struct constants
 };
 
 } // namespace stf::math
+
 #endif

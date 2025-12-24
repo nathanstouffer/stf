@@ -120,4 +120,5 @@ inline math::vec3<T> to_euclidean(T const radius, T const theta, T const phi)
 }
 
 } // namespace stf::math
+
 #endif

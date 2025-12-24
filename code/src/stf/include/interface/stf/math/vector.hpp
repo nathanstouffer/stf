@@ -1393,4 +1393,5 @@ struct hash<stf::math::vec<T, N>>
 };
 
 } // namespace std
+
 #endif

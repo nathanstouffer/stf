@@ -41,4 +41,5 @@ inline bool contains(geom::aabb<T, N> const& lhs, geom::aabb<T, N> const& rhs)
 }
 
 } // namespace stf::alg
+
 #endif

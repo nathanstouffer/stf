@@ -81,4 +81,5 @@ template <typename T>
 using sphere = hypersphere<T, 3>;
 
 } // namespace stf::geom
+
 #endif

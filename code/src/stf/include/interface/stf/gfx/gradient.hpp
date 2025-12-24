@@ -135,4 +135,5 @@ private:
 };
 
 } // namespace stf::gfx
+
 #endif

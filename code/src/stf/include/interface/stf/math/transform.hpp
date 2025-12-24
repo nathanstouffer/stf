@@ -81,4 +81,5 @@ inline math::vec3<T> orbit(math::vec3<T> const& point, math::vec3<T> const& focu
 }
 
 } // namespace stf::math
+
 #endif
