@@ -1,6 +1,6 @@
 if(ENABLE_ASAN)
     # set up the address sanitizer -- this is clang/gcc only
-    set(ASAN_FLAGS "-fsanitize=address,undefined" "-fno-omit-frame-pointer")
+    set(ASAN_FLAGS "-fsanitize=address,undefined -fno-omit-frame-pointer")
 
     message("Setting ASan flags")
 
