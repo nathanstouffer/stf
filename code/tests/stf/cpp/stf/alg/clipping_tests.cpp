@@ -12,10 +12,6 @@ namespace stf::alg
 
 TEST(clipping, segment)
 {
-    int i = 50;
-    int arr[10];
-    arr[i] = 0;
-
     stff::aabb2 box(stff::vec2(10), stff::vec2(20));
     stff::segment2 irrelevent(stff::vec2(0), stff::vec2(0));
     std::vector<scaffolding::alg::clipping::segment<float>> tests = {
@@ -57,14 +53,6 @@ TEST(clipping, segment)
 
 TEST(clipping, polyline)
 {
-    std::vector<int> vec = {1, 2, 3};
-    auto it = vec.begin();
-    for (size_t i = 0; i < 4096; ++i)
-    {
-        vec.push_back(i);
-    }
-    std::cout << *it << std::endl;
-
     stff::aabb2 box(stff::vec2(10), stff::vec2(20));
     std::vector<scaffolding::alg::clipping::polyline<float>> tests = {
         // polylines entirely in the box
@@ -82,6 +70,38 @@ TEST(clipping, polyline)
         {box, stff::polyline2({stff::vec2(9), stff::vec2(21, 9), stff::vec2(21)}), {}},
     };
     scaffolding::verify(tests);
+}
+
+TEST(clipping, index_out_of_stack_array_bounds)
+{
+    int i = 50;
+    int arr[10];
+    arr[i] = 0;
+}
+
+TEST(clipping, index_out_of_heap_array_bounds)
+{
+    int* arr = new int[50];
+    arr[50] = 90;
+}
+
+TEST(clipping, use_heap_after_free)
+{
+    int* arr = new int[50];
+    arr[0] = 7;
+    delete[] arr;
+    arr[0] = 8;
+}
+
+TEST(clipping, use_stl_container_after_free)
+{
+    std::vector<int> vec = {1, 2, 3};
+    auto it = vec.begin();
+    for (size_t i = 0; i < 4096; ++i)
+    {
+        vec.push_back(i);
+    }
+    std::cout << *it << std::endl;
 }
 
 } // namespace stf::alg
