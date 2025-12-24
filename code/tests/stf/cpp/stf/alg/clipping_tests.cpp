@@ -13,6 +13,11 @@ namespace stf::alg
 
 TEST(clipping, segment)
 {
+    int i = 50;
+    int arr[10];
+    arr[i] = 0;
+    std::cout << arr[i] << std::endl;
+
     stff::aabb2 box(stff::vec2(10), stff::vec2(20));
     stff::segment2 irrelevent(stff::vec2(0), stff::vec2(0));
     std::vector<scaffolding::alg::clipping::segment<float>> tests = {
