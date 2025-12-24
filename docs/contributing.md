@@ -7,7 +7,7 @@
 - `snake_case` naming convention
 - `*.hpp` file names
 - fully qualify include paths (eg `#include "stf/math/vector.hpp"`)
-- prefer `#pragma once` to `#ifndef __HEADER_GUARD_H__`
+- prefer `#ifndef` header guards to `#pragma once`
 
 # Releases
 
