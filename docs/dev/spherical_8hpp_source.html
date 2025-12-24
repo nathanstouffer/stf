@@ -99,99 +99,102 @@ $(document).ready(function(){initNavTree('spherical_8hpp_source.html',''); initR
   <div class="headertitle"><div class="title">spherical.hpp</div></div>
 </div><!--header-->
 <div class="contents">
-<a href="spherical_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
-<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &quot;<a class="code" href="constants_8hpp.html">stf/math/constants.hpp</a>&quot;</span></div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="vector_8hpp.html">stf/math/vector.hpp</a>&quot;</span></div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacestf_1_1math.html">stf::math</a></div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>{</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="foldopen" id="foldopen00021" data-start="{" data-end="}">
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="namespacestf_1_1math.html#aeb991336cd40e9b939bc08400bbd41b3">   21</a></span><span class="keyword">inline</span> T <a class="code hl_function" href="namespacestf_1_1math.html#aeb991336cd40e9b939bc08400bbd41b3">to_radians</a>(T <span class="keyword">const</span> deg)</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>{</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <span class="keywordflow">return</span> deg * <a class="code hl_struct" href="structstf_1_1math_1_1constants.html">math::constants&lt;T&gt;::deg2rad</a>;</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>}</div>
+<a href="spherical_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef STF_MATH_SPHERICAL_HPP_HEADER_GUARD</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define STF_MATH_SPHERICAL_HPP_HEADER_GUARD</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="constants_8hpp.html">stf/math/constants.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="vector_8hpp.html">stf/math/vector.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacestf_1_1math.html">stf::math</a></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>{</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="foldopen" id="foldopen00022" data-start="{" data-end="}">
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="namespacestf_1_1math.html#aeb991336cd40e9b939bc08400bbd41b3">   22</a></span><span class="keyword">inline</span> T <a class="code hl_function" href="namespacestf_1_1math.html#aeb991336cd40e9b939bc08400bbd41b3">to_radians</a>(T <span class="keyword">const</span> deg)</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>{</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    <span class="keywordflow">return</span> deg * <a class="code hl_struct" href="structstf_1_1math_1_1constants.html">math::constants&lt;T&gt;::deg2rad</a>;</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>}</div>
 </div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="foldopen" id="foldopen00033" data-start="{" data-end="}">
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="namespacestf_1_1math.html#a0db343b05b5137368f26a08ace47a94b">   33</a></span><span class="keyword">inline</span> T <a class="code hl_function" href="namespacestf_1_1math.html#a0db343b05b5137368f26a08ace47a94b">to_degrees</a>(T <span class="keyword">const</span> rad)</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>{</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="keywordflow">return</span> rad * <a class="code hl_struct" href="structstf_1_1math_1_1constants.html">math::constants&lt;T&gt;::rad2deg</a>;</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>}</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="foldopen" id="foldopen00034" data-start="{" data-end="}">
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="namespacestf_1_1math.html#a0db343b05b5137368f26a08ace47a94b">   34</a></span><span class="keyword">inline</span> T <a class="code hl_function" href="namespacestf_1_1math.html#a0db343b05b5137368f26a08ace47a94b">to_degrees</a>(T <span class="keyword">const</span> rad)</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>{</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="keywordflow">return</span> rad * <a class="code hl_struct" href="structstf_1_1math_1_1constants.html">math::constants&lt;T&gt;::rad2deg</a>;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>}</div>
 </div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="foldopen" id="foldopen00045" data-start="{" data-end="}">
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="namespacestf_1_1math.html#a2888d4e52fada9facf208ac2235b119d">   45</a></span><span class="keyword">inline</span> T <a class="code hl_function" href="namespacestf_1_1math.html#a2888d4e52fada9facf208ac2235b119d">canonical_angle</a>(T <span class="keyword">const</span> theta)</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>{</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    T canonical = std::fmod(theta, <a class="code hl_struct" href="structstf_1_1math_1_1constants.html">math::constants&lt;T&gt;::tau</a>);</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <span class="keywordflow">if</span> (canonical &lt; T(0))</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    {</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>        canonical += <a class="code hl_struct" href="structstf_1_1math_1_1constants.html">math::constants&lt;T&gt;::tau</a>;</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    }</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    <span class="keywordflow">return</span> canonical;</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>}</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="foldopen" id="foldopen00046" data-start="{" data-end="}">
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="namespacestf_1_1math.html#a2888d4e52fada9facf208ac2235b119d">   46</a></span><span class="keyword">inline</span> T <a class="code hl_function" href="namespacestf_1_1math.html#a2888d4e52fada9facf208ac2235b119d">canonical_angle</a>(T <span class="keyword">const</span> theta)</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>{</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    T canonical = std::fmod(theta, <a class="code hl_struct" href="structstf_1_1math_1_1constants.html">math::constants&lt;T&gt;::tau</a>);</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <span class="keywordflow">if</span> (canonical &lt; T(0))</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    {</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>        canonical += <a class="code hl_struct" href="structstf_1_1math_1_1constants.html">math::constants&lt;T&gt;::tau</a>;</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    }</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <span class="keywordflow">return</span> canonical;</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>}</div>
 </div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="foldopen" id="foldopen00063" data-start="{" data-end="}">
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="namespacestf_1_1math.html#a66769992feb7b50f12976d9ebcc16580">   63</a></span><span class="keyword">inline</span> T <a class="code hl_function" href="namespacestf_1_1math.html#a66769992feb7b50f12976d9ebcc16580">closest_equiv_angle</a>(T <span class="keyword">const</span> phi, T <span class="keyword">const</span> theta)</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>{</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    T <span class="keyword">const</span> delta = <a class="code hl_function" href="namespacestf_1_1math.html#a2888d4e52fada9facf208ac2235b119d">canonical_angle</a>(phi) - <a class="code hl_function" href="namespacestf_1_1math.html#a2888d4e52fada9facf208ac2235b119d">canonical_angle</a>(theta);</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    <span class="keywordflow">return</span> (delta &lt;= <a class="code hl_struct" href="structstf_1_1math_1_1constants.html">math::constants&lt;T&gt;::pi</a>) ? theta + delta : theta + delta - <a class="code hl_struct" href="structstf_1_1math_1_1constants.html">math::constants&lt;T&gt;::tau</a>;</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>}</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="foldopen" id="foldopen00064" data-start="{" data-end="}">
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="namespacestf_1_1math.html#a66769992feb7b50f12976d9ebcc16580">   64</a></span><span class="keyword">inline</span> T <a class="code hl_function" href="namespacestf_1_1math.html#a66769992feb7b50f12976d9ebcc16580">closest_equiv_angle</a>(T <span class="keyword">const</span> phi, T <span class="keyword">const</span> theta)</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>{</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    T <span class="keyword">const</span> delta = <a class="code hl_function" href="namespacestf_1_1math.html#a2888d4e52fada9facf208ac2235b119d">canonical_angle</a>(phi) - <a class="code hl_function" href="namespacestf_1_1math.html#a2888d4e52fada9facf208ac2235b119d">canonical_angle</a>(theta);</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    <span class="keywordflow">return</span> (delta &lt;= <a class="code hl_struct" href="structstf_1_1math_1_1constants.html">math::constants&lt;T&gt;::pi</a>) ? theta + delta : theta + delta - <a class="code hl_struct" href="structstf_1_1math_1_1constants.html">math::constants&lt;T&gt;::tau</a>;</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>}</div>
 </div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="foldopen" id="foldopen00077" data-start="{" data-end="}">
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno"><a class="line" href="namespacestf_1_1math.html#a1f25def3b146b03aee8ca35a9cb00e0e">   77</a></span><span class="keyword">inline</span> T <a class="code hl_function" href="namespacestf_1_1math.html#a1f25def3b146b03aee8ca35a9cb00e0e">counterclockwise_angle</a>(<a class="code hl_struct" href="structstf_1_1math_1_1vec_3_01T_00_012_01_4.html">vec2&lt;T&gt;</a> <span class="keyword">const</span>&amp; u, <a class="code hl_struct" href="structstf_1_1math_1_1vec_3_01T_00_012_01_4.html">vec2&lt;T&gt;</a> <span class="keyword">const</span>&amp; v)</div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>{</div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="namespacestf_1_1math.html#a2888d4e52fada9facf208ac2235b119d">canonical_angle</a>(std::atan2(<a class="code hl_function" href="namespacestf_1_1math.html#a2a4e3d257a2f7cc1a961d613ae161333">cross</a>(u, v), <a class="code hl_function" href="namespacestf_1_1math.html#affb9352af7b68426cc6ca4e4f2b5e583">dot</a>(u, v)));</div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>}</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="foldopen" id="foldopen00078" data-start="{" data-end="}">
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno"><a class="line" href="namespacestf_1_1math.html#a1f25def3b146b03aee8ca35a9cb00e0e">   78</a></span><span class="keyword">inline</span> T <a class="code hl_function" href="namespacestf_1_1math.html#a1f25def3b146b03aee8ca35a9cb00e0e">counterclockwise_angle</a>(<a class="code hl_struct" href="structstf_1_1math_1_1vec_3_01T_00_012_01_4.html">vec2&lt;T&gt;</a> <span class="keyword">const</span>&amp; u, <a class="code hl_struct" href="structstf_1_1math_1_1vec_3_01T_00_012_01_4.html">vec2&lt;T&gt;</a> <span class="keyword">const</span>&amp; v)</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>{</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="namespacestf_1_1math.html#a2888d4e52fada9facf208ac2235b119d">canonical_angle</a>(std::atan2(<a class="code hl_function" href="namespacestf_1_1math.html#a2a4e3d257a2f7cc1a961d613ae161333">cross</a>(u, v), <a class="code hl_function" href="namespacestf_1_1math.html#affb9352af7b68426cc6ca4e4f2b5e583">dot</a>(u, v)));</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>}</div>
 </div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="foldopen" id="foldopen00089" data-start="{" data-end="}">
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno"><a class="line" href="namespacestf_1_1math.html#a731976438129a4b458e42de14270eaae">   89</a></span><span class="keyword">inline</span> <a class="code hl_struct" href="structstf_1_1math_1_1vec_3_01T_00_012_01_4.html">vec2&lt;T&gt;</a> <a class="code hl_function" href="namespacestf_1_1math.html#a731976438129a4b458e42de14270eaae">unit_vector</a>(T <span class="keyword">const</span> theta)</div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>{</div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    <span class="keywordflow">return</span> <a class="code hl_struct" href="structstf_1_1math_1_1vec_3_01T_00_012_01_4.html">vec2&lt;T&gt;</a>(std::cos(theta), std::sin(theta));</div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>}</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="foldopen" id="foldopen00090" data-start="{" data-end="}">
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno"><a class="line" href="namespacestf_1_1math.html#a731976438129a4b458e42de14270eaae">   90</a></span><span class="keyword">inline</span> <a class="code hl_struct" href="structstf_1_1math_1_1vec_3_01T_00_012_01_4.html">vec2&lt;T&gt;</a> <a class="code hl_function" href="namespacestf_1_1math.html#a731976438129a4b458e42de14270eaae">unit_vector</a>(T <span class="keyword">const</span> theta)</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>{</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    <span class="keywordflow">return</span> <a class="code hl_struct" href="structstf_1_1math_1_1vec_3_01T_00_012_01_4.html">vec2&lt;T&gt;</a>(std::cos(theta), std::sin(theta));</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>}</div>
 </div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span> </div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="foldopen" id="foldopen00102" data-start="{" data-end="}">
-<div class="line"><a id="l00102" name="l00102"></a><span class="lineno"><a class="line" href="namespacestf_1_1math.html#a182c445b1dfe2d55a7761bf111fb12fb">  102</a></span><span class="keyword">inline</span> <a class="code hl_struct" href="structstf_1_1math_1_1vec_3_01T_00_013_01_4.html">vec3&lt;T&gt;</a> <a class="code hl_function" href="namespacestf_1_1math.html#a731976438129a4b458e42de14270eaae">unit_vector</a>(T <span class="keyword">const</span> theta, T <span class="keyword">const</span> phi)</div>
-<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>{</div>
-<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    <span class="keywordflow">return</span> <a class="code hl_struct" href="structstf_1_1math_1_1vec_3_01T_00_013_01_4.html">vec3&lt;T&gt;</a>(std::cos(theta) * std::sin(phi), std::sin(theta) * std::sin(phi), std::cos(phi));</div>
-<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>}</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span> </div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="foldopen" id="foldopen00103" data-start="{" data-end="}">
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno"><a class="line" href="namespacestf_1_1math.html#a182c445b1dfe2d55a7761bf111fb12fb">  103</a></span><span class="keyword">inline</span> <a class="code hl_struct" href="structstf_1_1math_1_1vec_3_01T_00_013_01_4.html">vec3&lt;T&gt;</a> <a class="code hl_function" href="namespacestf_1_1math.html#a731976438129a4b458e42de14270eaae">unit_vector</a>(T <span class="keyword">const</span> theta, T <span class="keyword">const</span> phi)</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>{</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    <span class="keywordflow">return</span> <a class="code hl_struct" href="structstf_1_1math_1_1vec_3_01T_00_013_01_4.html">vec3&lt;T&gt;</a>(std::cos(theta) * std::sin(phi), std::sin(theta) * std::sin(phi), std::cos(phi));</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>}</div>
 </div>
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span> </div>
-<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="foldopen" id="foldopen00116" data-start="{" data-end="}">
-<div class="line"><a id="l00116" name="l00116"></a><span class="lineno"><a class="line" href="namespacestf_1_1math.html#ab20df763f820598019d628e96c1916b8">  116</a></span><span class="keyword">inline</span> <a class="code hl_struct" href="structstf_1_1math_1_1vec_3_01T_00_013_01_4.html">math::vec3&lt;T&gt;</a> <a class="code hl_function" href="namespacestf_1_1math.html#ab20df763f820598019d628e96c1916b8">to_euclidean</a>(T <span class="keyword">const</span> radius, T <span class="keyword">const</span> theta, T <span class="keyword">const</span> phi)</div>
-<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>{</div>
-<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    <span class="keywordflow">return</span> radius * <a class="code hl_function" href="namespacestf_1_1math.html#a731976438129a4b458e42de14270eaae">unit_vector</a>(theta, phi);</div>
-<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>}</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span> </div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="foldopen" id="foldopen00117" data-start="{" data-end="}">
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno"><a class="line" href="namespacestf_1_1math.html#ab20df763f820598019d628e96c1916b8">  117</a></span><span class="keyword">inline</span> <a class="code hl_struct" href="structstf_1_1math_1_1vec_3_01T_00_013_01_4.html">math::vec3&lt;T&gt;</a> <a class="code hl_function" href="namespacestf_1_1math.html#ab20df763f820598019d628e96c1916b8">to_euclidean</a>(T <span class="keyword">const</span> radius, T <span class="keyword">const</span> theta, T <span class="keyword">const</span> phi)</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>{</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    <span class="keywordflow">return</span> radius * <a class="code hl_function" href="namespacestf_1_1math.html#a731976438129a4b458e42de14270eaae">unit_vector</a>(theta, phi);</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>}</div>
 </div>
-<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span> </div>
-<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>} <span class="comment">// namespace stf::math</span></div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span> </div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>} <span class="comment">// namespace stf::math</span></div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span> </div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span><span class="preprocessor">#endif</span></div>
 <div class="ttc" id="aconstants_8hpp_html"><div class="ttname"><a href="constants_8hpp.html">constants.hpp</a></div><div class="ttdoc">A file containing mathematical constants.</div></div>
 <div class="ttc" id="anamespacestf_1_1math_html"><div class="ttname"><a href="namespacestf_1_1math.html">stf::math</a></div><div class="ttdoc">Namespace for mathematical functionality.</div></div>
-<div class="ttc" id="anamespacestf_1_1math_html_a0db343b05b5137368f26a08ace47a94b"><div class="ttname"><a href="namespacestf_1_1math.html#a0db343b05b5137368f26a08ace47a94b">stf::math::to_degrees</a></div><div class="ttdeci">T to_degrees(T const rad)</div><div class="ttdoc">Convert radieans to degrees.</div><div class="ttdef"><b>Definition</b> spherical.hpp:33</div></div>
-<div class="ttc" id="anamespacestf_1_1math_html_a1f25def3b146b03aee8ca35a9cb00e0e"><div class="ttname"><a href="namespacestf_1_1math.html#a1f25def3b146b03aee8ca35a9cb00e0e">stf::math::counterclockwise_angle</a></div><div class="ttdeci">T counterclockwise_angle(vec2&lt; T &gt; const &amp;u, vec2&lt; T &gt; const &amp;v)</div><div class="ttdoc">Compute the counterclockwise angle from u to v.</div><div class="ttdef"><b>Definition</b> spherical.hpp:77</div></div>
-<div class="ttc" id="anamespacestf_1_1math_html_a2888d4e52fada9facf208ac2235b119d"><div class="ttname"><a href="namespacestf_1_1math.html#a2888d4e52fada9facf208ac2235b119d">stf::math::canonical_angle</a></div><div class="ttdeci">T canonical_angle(T const theta)</div><div class="ttdoc">Compute the equivalent angle to theta in [0, 2pi)</div><div class="ttdef"><b>Definition</b> spherical.hpp:45</div></div>
-<div class="ttc" id="anamespacestf_1_1math_html_a2a4e3d257a2f7cc1a961d613ae161333"><div class="ttname"><a href="namespacestf_1_1math.html#a2a4e3d257a2f7cc1a961d613ae161333">stf::math::cross</a></div><div class="ttdeci">T cross(vec2&lt; T &gt; const &amp;lhs, vec2&lt; T &gt; const &amp;rhs)</div><div class="ttdoc">Compute the 2D cross product of lhs and rhs.</div><div class="ttdef"><b>Definition</b> vector.hpp:1253</div></div>
-<div class="ttc" id="anamespacestf_1_1math_html_a66769992feb7b50f12976d9ebcc16580"><div class="ttname"><a href="namespacestf_1_1math.html#a66769992feb7b50f12976d9ebcc16580">stf::math::closest_equiv_angle</a></div><div class="ttdeci">T closest_equiv_angle(T const phi, T const theta)</div><div class="ttdoc">Of all angles that are equivalent to phi, compute the one closest to theta.</div><div class="ttdef"><b>Definition</b> spherical.hpp:63</div></div>
-<div class="ttc" id="anamespacestf_1_1math_html_a731976438129a4b458e42de14270eaae"><div class="ttname"><a href="namespacestf_1_1math.html#a731976438129a4b458e42de14270eaae">stf::math::unit_vector</a></div><div class="ttdeci">vec2&lt; T &gt; unit_vector(T const theta)</div><div class="ttdoc">Compute unit vector in the direction of theta.</div><div class="ttdef"><b>Definition</b> spherical.hpp:89</div></div>
-<div class="ttc" id="anamespacestf_1_1math_html_ab20df763f820598019d628e96c1916b8"><div class="ttname"><a href="namespacestf_1_1math.html#ab20df763f820598019d628e96c1916b8">stf::math::to_euclidean</a></div><div class="ttdeci">math::vec3&lt; T &gt; to_euclidean(T const radius, T const theta, T const phi)</div><div class="ttdoc">Convert spherical coordinates to euclidean.</div><div class="ttdef"><b>Definition</b> spherical.hpp:116</div></div>
-<div class="ttc" id="anamespacestf_1_1math_html_aeb991336cd40e9b939bc08400bbd41b3"><div class="ttname"><a href="namespacestf_1_1math.html#aeb991336cd40e9b939bc08400bbd41b3">stf::math::to_radians</a></div><div class="ttdeci">T to_radians(T const deg)</div><div class="ttdoc">Convert degrees to radians.</div><div class="ttdef"><b>Definition</b> spherical.hpp:21</div></div>
-<div class="ttc" id="anamespacestf_1_1math_html_affb9352af7b68426cc6ca4e4f2b5e583"><div class="ttname"><a href="namespacestf_1_1math.html#affb9352af7b68426cc6ca4e4f2b5e583">stf::math::dot</a></div><div class="ttdeci">T dot(vec&lt; T, N &gt; const &amp;lhs, vec&lt; T, N &gt; const &amp;rhs)</div><div class="ttdoc">Compute the dot product of two vectors.</div><div class="ttdef"><b>Definition</b> vector.hpp:1221</div></div>
-<div class="ttc" id="astructstf_1_1math_1_1constants_html"><div class="ttname"><a href="structstf_1_1math_1_1constants.html">stf::math::constants</a></div><div class="ttdoc">A templated class that has some common mathematical constants.</div><div class="ttdef"><b>Definition</b> constants.hpp:21</div></div>
-<div class="ttc" id="astructstf_1_1math_1_1vec_3_01T_00_012_01_4_html"><div class="ttname"><a href="structstf_1_1math_1_1vec_3_01T_00_012_01_4.html">stf::math::vec&lt; T, 2 &gt;</a></div><div class="ttdoc">Specialization of vec for N=2.</div><div class="ttdef"><b>Definition</b> vector.hpp:255</div></div>
-<div class="ttc" id="astructstf_1_1math_1_1vec_3_01T_00_013_01_4_html"><div class="ttname"><a href="structstf_1_1math_1_1vec_3_01T_00_013_01_4.html">stf::math::vec&lt; T, 3 &gt;</a></div><div class="ttdoc">Specialization of vec for N=3.</div><div class="ttdef"><b>Definition</b> vector.hpp:477</div></div>
+<div class="ttc" id="anamespacestf_1_1math_html_a0db343b05b5137368f26a08ace47a94b"><div class="ttname"><a href="namespacestf_1_1math.html#a0db343b05b5137368f26a08ace47a94b">stf::math::to_degrees</a></div><div class="ttdeci">T to_degrees(T const rad)</div><div class="ttdoc">Convert radieans to degrees.</div><div class="ttdef"><b>Definition</b> spherical.hpp:34</div></div>
+<div class="ttc" id="anamespacestf_1_1math_html_a1f25def3b146b03aee8ca35a9cb00e0e"><div class="ttname"><a href="namespacestf_1_1math.html#a1f25def3b146b03aee8ca35a9cb00e0e">stf::math::counterclockwise_angle</a></div><div class="ttdeci">T counterclockwise_angle(vec2&lt; T &gt; const &amp;u, vec2&lt; T &gt; const &amp;v)</div><div class="ttdoc">Compute the counterclockwise angle from u to v.</div><div class="ttdef"><b>Definition</b> spherical.hpp:78</div></div>
+<div class="ttc" id="anamespacestf_1_1math_html_a2888d4e52fada9facf208ac2235b119d"><div class="ttname"><a href="namespacestf_1_1math.html#a2888d4e52fada9facf208ac2235b119d">stf::math::canonical_angle</a></div><div class="ttdeci">T canonical_angle(T const theta)</div><div class="ttdoc">Compute the equivalent angle to theta in [0, 2pi)</div><div class="ttdef"><b>Definition</b> spherical.hpp:46</div></div>
+<div class="ttc" id="anamespacestf_1_1math_html_a2a4e3d257a2f7cc1a961d613ae161333"><div class="ttname"><a href="namespacestf_1_1math.html#a2a4e3d257a2f7cc1a961d613ae161333">stf::math::cross</a></div><div class="ttdeci">T cross(vec2&lt; T &gt; const &amp;lhs, vec2&lt; T &gt; const &amp;rhs)</div><div class="ttdoc">Compute the 2D cross product of lhs and rhs.</div><div class="ttdef"><b>Definition</b> vector.hpp:1254</div></div>
+<div class="ttc" id="anamespacestf_1_1math_html_a66769992feb7b50f12976d9ebcc16580"><div class="ttname"><a href="namespacestf_1_1math.html#a66769992feb7b50f12976d9ebcc16580">stf::math::closest_equiv_angle</a></div><div class="ttdeci">T closest_equiv_angle(T const phi, T const theta)</div><div class="ttdoc">Of all angles that are equivalent to phi, compute the one closest to theta.</div><div class="ttdef"><b>Definition</b> spherical.hpp:64</div></div>
+<div class="ttc" id="anamespacestf_1_1math_html_a731976438129a4b458e42de14270eaae"><div class="ttname"><a href="namespacestf_1_1math.html#a731976438129a4b458e42de14270eaae">stf::math::unit_vector</a></div><div class="ttdeci">vec2&lt; T &gt; unit_vector(T const theta)</div><div class="ttdoc">Compute unit vector in the direction of theta.</div><div class="ttdef"><b>Definition</b> spherical.hpp:90</div></div>
+<div class="ttc" id="anamespacestf_1_1math_html_ab20df763f820598019d628e96c1916b8"><div class="ttname"><a href="namespacestf_1_1math.html#ab20df763f820598019d628e96c1916b8">stf::math::to_euclidean</a></div><div class="ttdeci">math::vec3&lt; T &gt; to_euclidean(T const radius, T const theta, T const phi)</div><div class="ttdoc">Convert spherical coordinates to euclidean.</div><div class="ttdef"><b>Definition</b> spherical.hpp:117</div></div>
+<div class="ttc" id="anamespacestf_1_1math_html_aeb991336cd40e9b939bc08400bbd41b3"><div class="ttname"><a href="namespacestf_1_1math.html#aeb991336cd40e9b939bc08400bbd41b3">stf::math::to_radians</a></div><div class="ttdeci">T to_radians(T const deg)</div><div class="ttdoc">Convert degrees to radians.</div><div class="ttdef"><b>Definition</b> spherical.hpp:22</div></div>
+<div class="ttc" id="anamespacestf_1_1math_html_affb9352af7b68426cc6ca4e4f2b5e583"><div class="ttname"><a href="namespacestf_1_1math.html#affb9352af7b68426cc6ca4e4f2b5e583">stf::math::dot</a></div><div class="ttdeci">T dot(vec&lt; T, N &gt; const &amp;lhs, vec&lt; T, N &gt; const &amp;rhs)</div><div class="ttdoc">Compute the dot product of two vectors.</div><div class="ttdef"><b>Definition</b> vector.hpp:1222</div></div>
+<div class="ttc" id="astructstf_1_1math_1_1constants_html"><div class="ttname"><a href="structstf_1_1math_1_1constants.html">stf::math::constants</a></div><div class="ttdoc">A templated class that has some common mathematical constants.</div><div class="ttdef"><b>Definition</b> constants.hpp:22</div></div>
+<div class="ttc" id="astructstf_1_1math_1_1vec_3_01T_00_012_01_4_html"><div class="ttname"><a href="structstf_1_1math_1_1vec_3_01T_00_012_01_4.html">stf::math::vec&lt; T, 2 &gt;</a></div><div class="ttdoc">Specialization of vec for N=2.</div><div class="ttdef"><b>Definition</b> vector.hpp:256</div></div>
+<div class="ttc" id="astructstf_1_1math_1_1vec_3_01T_00_013_01_4_html"><div class="ttname"><a href="structstf_1_1math_1_1vec_3_01T_00_013_01_4.html">stf::math::vec&lt; T, 3 &gt;</a></div><div class="ttdoc">Specialization of vec for N=3.</div><div class="ttdef"><b>Definition</b> vector.hpp:478</div></div>
 <div class="ttc" id="avector_8hpp_html"><div class="ttname"><a href="vector_8hpp.html">vector.hpp</a></div><div class="ttdoc">A file containing a templated vector class along with associated functions.</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->

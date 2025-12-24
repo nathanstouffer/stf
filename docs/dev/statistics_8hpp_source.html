@@ -99,42 +99,45 @@ $(document).ready(function(){initNavTree('statistics_8hpp_source.html',''); init
   <div class="headertitle"><div class="title">statistics.hpp</div></div>
 </div><!--header-->
 <div class="contents">
-<a href="statistics_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
-<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;algorithm&gt;</span></div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;<a class="code" href="constants_8hpp.html">stf/math/constants.hpp</a>&quot;</span></div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacestf_1_1alg.html">stf::alg</a></div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>{</div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="foldopen" id="foldopen00023" data-start="{" data-end="}">
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="namespacestf_1_1alg.html#ae7631bda6ed5ce824eef2cf4983d563f">   23</a></span>T <a class="code hl_function" href="namespacestf_1_1alg.html#ae7631bda6ed5ce824eef2cf4983d563f">median</a>(std::vector&lt;T&gt; <span class="keyword">const</span>&amp; values)</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>{</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    std::vector&lt;T&gt; sorted = values;</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    std::stable_sort(sorted.begin(), sorted.end());</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <span class="keywordtype">size_t</span> size = sorted.size();</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    <span class="keywordtype">size_t</span> mid = size / 2;</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <span class="keywordflow">if</span> (size &amp; <span class="keyword">static_cast&lt;</span><span class="keywordtype">size_t</span><span class="keyword">&gt;</span>(1)) <span class="comment">// if the size is odd, just return the middle element</span></div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    {</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>        <span class="keywordflow">return</span> sorted[mid];</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    }</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <span class="keywordflow">else</span> <span class="comment">// otherwise, average the middle two elements</span></div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    {</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        T left = sorted[mid - 1];</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        T right = sorted[mid];</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        <span class="keywordflow">return</span> <a class="code hl_struct" href="structstf_1_1math_1_1constants.html">math::constants&lt;T&gt;::half</a> * (left + right);</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    }</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>}</div>
+<a href="statistics_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef STF_ALG_STATISTICS_HPP_HEADER_GUARD</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define STF_ALG_STATISTICS_HPP_HEADER_GUARD</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;algorithm&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;<a class="code" href="constants_8hpp.html">stf/math/constants.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacestf_1_1alg.html">stf::alg</a></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>{</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="foldopen" id="foldopen00024" data-start="{" data-end="}">
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="namespacestf_1_1alg.html#ae7631bda6ed5ce824eef2cf4983d563f">   24</a></span>T <a class="code hl_function" href="namespacestf_1_1alg.html#ae7631bda6ed5ce824eef2cf4983d563f">median</a>(std::vector&lt;T&gt; <span class="keyword">const</span>&amp; values)</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>{</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    std::vector&lt;T&gt; sorted = values;</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    std::stable_sort(sorted.begin(), sorted.end());</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    <span class="keywordtype">size_t</span> size = sorted.size();</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <span class="keywordtype">size_t</span> mid = size / 2;</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <span class="keywordflow">if</span> (size &amp; <span class="keyword">static_cast&lt;</span><span class="keywordtype">size_t</span><span class="keyword">&gt;</span>(1)) <span class="comment">// if the size is odd, just return the middle element</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    {</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>        <span class="keywordflow">return</span> sorted[mid];</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    }</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <span class="keywordflow">else</span> <span class="comment">// otherwise, average the middle two elements</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    {</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        T left = sorted[mid - 1];</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        T right = sorted[mid];</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>        <span class="keywordflow">return</span> <a class="code hl_struct" href="structstf_1_1math_1_1constants.html">math::constants&lt;T&gt;::half</a> * (left + right);</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    }</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>}</div>
 </div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>} <span class="comment">// namespace stf::alg</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>} <span class="comment">// namespace stf::alg</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="preprocessor">#endif</span></div>
 <div class="ttc" id="aconstants_8hpp_html"><div class="ttname"><a href="constants_8hpp.html">constants.hpp</a></div><div class="ttdoc">A file containing mathematical constants.</div></div>
 <div class="ttc" id="anamespacestf_1_1alg_html"><div class="ttname"><a href="namespacestf_1_1alg.html">stf::alg</a></div><div class="ttdoc">Namespace for algorithms.</div></div>
-<div class="ttc" id="anamespacestf_1_1alg_html_ae7631bda6ed5ce824eef2cf4983d563f"><div class="ttname"><a href="namespacestf_1_1alg.html#ae7631bda6ed5ce824eef2cf4983d563f">stf::alg::median</a></div><div class="ttdeci">T median(std::vector&lt; T &gt; const &amp;values)</div><div class="ttdoc">Compute the median of a set of scalar values.</div><div class="ttdef"><b>Definition</b> statistics.hpp:23</div></div>
-<div class="ttc" id="astructstf_1_1math_1_1constants_html"><div class="ttname"><a href="structstf_1_1math_1_1constants.html">stf::math::constants</a></div><div class="ttdoc">A templated class that has some common mathematical constants.</div><div class="ttdef"><b>Definition</b> constants.hpp:21</div></div>
+<div class="ttc" id="anamespacestf_1_1alg_html_ae7631bda6ed5ce824eef2cf4983d563f"><div class="ttname"><a href="namespacestf_1_1alg.html#ae7631bda6ed5ce824eef2cf4983d563f">stf::alg::median</a></div><div class="ttdeci">T median(std::vector&lt; T &gt; const &amp;values)</div><div class="ttdoc">Compute the median of a set of scalar values.</div><div class="ttdef"><b>Definition</b> statistics.hpp:24</div></div>
+<div class="ttc" id="astructstf_1_1math_1_1constants_html"><div class="ttname"><a href="structstf_1_1math_1_1constants.html">stf::math::constants</a></div><div class="ttdoc">A templated class that has some common mathematical constants.</div><div class="ttdef"><b>Definition</b> constants.hpp:22</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

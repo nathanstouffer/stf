@@ -99,37 +99,40 @@ $(document).ready(function(){initNavTree('containment_8hpp_source.html',''); ini
   <div class="headertitle"><div class="title">containment.hpp</div></div>
 </div><!--header-->
 <div class="contents">
-<a href="containment_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
-<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &quot;<a class="code" href="aabb_8hpp.html">stf/geom/aabb.hpp</a>&quot;</span></div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="vector_8hpp.html">stf/math/vector.hpp</a>&quot;</span></div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacestf_1_1alg.html">stf::alg</a></div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>{</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keywordtype">size_t</span> N&gt;</div>
-<div class="foldopen" id="foldopen00023" data-start="{" data-end="}">
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="namespacestf_1_1alg.html#a1302af3ed51525cdf4fe9b225ca4958a">   23</a></span><span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="namespacestf_1_1alg.html#a1302af3ed51525cdf4fe9b225ca4958a">contains</a>(<a class="code hl_struct" href="structstf_1_1geom_1_1aabb.html">geom::aabb&lt;T, N&gt;</a> <span class="keyword">const</span>&amp; box, <a class="code hl_struct" href="structstf_1_1math_1_1vec.html">math::vec&lt;T, N&gt;</a> <span class="keyword">const</span>&amp; point)</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>{</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <span class="keywordflow">return</span> box.<a class="code hl_function" href="structstf_1_1geom_1_1aabb.html#af25c4484fee1f0937bb4349390fc5ae9">contains</a>(point);</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>}</div>
+<a href="containment_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef STF_ALG_CONTAINMENT_HPP_HEADER_GUARD</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define STF_ALG_CONTAINMENT_HPP_HEADER_GUARD</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="aabb_8hpp.html">stf/geom/aabb.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="vector_8hpp.html">stf/math/vector.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacestf_1_1alg.html">stf::alg</a></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>{</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keywordtype">size_t</span> N&gt;</div>
+<div class="foldopen" id="foldopen00024" data-start="{" data-end="}">
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="namespacestf_1_1alg.html#a1302af3ed51525cdf4fe9b225ca4958a">   24</a></span><span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="namespacestf_1_1alg.html#a1302af3ed51525cdf4fe9b225ca4958a">contains</a>(<a class="code hl_struct" href="structstf_1_1geom_1_1aabb.html">geom::aabb&lt;T, N&gt;</a> <span class="keyword">const</span>&amp; box, <a class="code hl_struct" href="structstf_1_1math_1_1vec.html">math::vec&lt;T, N&gt;</a> <span class="keyword">const</span>&amp; point)</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>{</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <span class="keywordflow">return</span> box.<a class="code hl_function" href="structstf_1_1geom_1_1aabb.html#af25c4484fee1f0937bb4349390fc5ae9">contains</a>(point);</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>}</div>
 </div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keywordtype">size_t</span> N&gt;</div>
-<div class="foldopen" id="foldopen00037" data-start="{" data-end="}">
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="namespacestf_1_1alg.html#a62f30ff3ffa5262677958e2155294a13">   37</a></span><span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="namespacestf_1_1alg.html#a1302af3ed51525cdf4fe9b225ca4958a">contains</a>(<a class="code hl_struct" href="structstf_1_1geom_1_1aabb.html">geom::aabb&lt;T, N&gt;</a> <span class="keyword">const</span>&amp; lhs, <a class="code hl_struct" href="structstf_1_1geom_1_1aabb.html">geom::aabb&lt;T, N&gt;</a> <span class="keyword">const</span>&amp; rhs)</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>{</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <span class="keywordflow">return</span> lhs.<a class="code hl_function" href="structstf_1_1geom_1_1aabb.html#af25c4484fee1f0937bb4349390fc5ae9">contains</a>(rhs);</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>}</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keywordtype">size_t</span> N&gt;</div>
+<div class="foldopen" id="foldopen00038" data-start="{" data-end="}">
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="namespacestf_1_1alg.html#a62f30ff3ffa5262677958e2155294a13">   38</a></span><span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="namespacestf_1_1alg.html#a1302af3ed51525cdf4fe9b225ca4958a">contains</a>(<a class="code hl_struct" href="structstf_1_1geom_1_1aabb.html">geom::aabb&lt;T, N&gt;</a> <span class="keyword">const</span>&amp; lhs, <a class="code hl_struct" href="structstf_1_1geom_1_1aabb.html">geom::aabb&lt;T, N&gt;</a> <span class="keyword">const</span>&amp; rhs)</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>{</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="keywordflow">return</span> lhs.<a class="code hl_function" href="structstf_1_1geom_1_1aabb.html#af25c4484fee1f0937bb4349390fc5ae9">contains</a>(rhs);</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>}</div>
 </div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>} <span class="comment">// namespace stf::alg</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>} <span class="comment">// namespace stf::alg</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="preprocessor">#endif</span></div>
 <div class="ttc" id="aaabb_8hpp_html"><div class="ttname"><a href="aabb_8hpp.html">aabb.hpp</a></div><div class="ttdoc">A file containing a templated aabb class along with associated functions.</div></div>
 <div class="ttc" id="anamespacestf_1_1alg_html"><div class="ttname"><a href="namespacestf_1_1alg.html">stf::alg</a></div><div class="ttdoc">Namespace for algorithms.</div></div>
-<div class="ttc" id="anamespacestf_1_1alg_html_a1302af3ed51525cdf4fe9b225ca4958a"><div class="ttname"><a href="namespacestf_1_1alg.html#a1302af3ed51525cdf4fe9b225ca4958a">stf::alg::contains</a></div><div class="ttdeci">bool contains(geom::aabb&lt; T, N &gt; const &amp;box, math::vec&lt; T, N &gt; const &amp;point)</div><div class="ttdoc">Compute whether an aabb contains a point.</div><div class="ttdef"><b>Definition</b> containment.hpp:23</div></div>
-<div class="ttc" id="astructstf_1_1geom_1_1aabb_html"><div class="ttname"><a href="structstf_1_1geom_1_1aabb.html">stf::geom::aabb</a></div><div class="ttdoc">An aabb class representing axis aligned boxes in R^n.</div><div class="ttdef"><b>Definition</b> aabb.hpp:27</div></div>
-<div class="ttc" id="astructstf_1_1geom_1_1aabb_html_af25c4484fee1f0937bb4349390fc5ae9"><div class="ttname"><a href="structstf_1_1geom_1_1aabb.html#af25c4484fee1f0937bb4349390fc5ae9">stf::geom::aabb::contains</a></div><div class="ttdeci">bool contains(vec_t const &amp;x) const</div><div class="ttdoc">Compute whether a point is contained in an aabb.</div><div class="ttdef"><b>Definition</b> aabb.hpp:134</div></div>
-<div class="ttc" id="astructstf_1_1math_1_1vec_html"><div class="ttname"><a href="structstf_1_1math_1_1vec.html">stf::math::vec</a></div><div class="ttdoc">A class representing elements of R^n.</div><div class="ttdef"><b>Definition</b> vector.hpp:34</div></div>
+<div class="ttc" id="anamespacestf_1_1alg_html_a1302af3ed51525cdf4fe9b225ca4958a"><div class="ttname"><a href="namespacestf_1_1alg.html#a1302af3ed51525cdf4fe9b225ca4958a">stf::alg::contains</a></div><div class="ttdeci">bool contains(geom::aabb&lt; T, N &gt; const &amp;box, math::vec&lt; T, N &gt; const &amp;point)</div><div class="ttdoc">Compute whether an aabb contains a point.</div><div class="ttdef"><b>Definition</b> containment.hpp:24</div></div>
+<div class="ttc" id="astructstf_1_1geom_1_1aabb_html"><div class="ttname"><a href="structstf_1_1geom_1_1aabb.html">stf::geom::aabb</a></div><div class="ttdoc">An aabb class representing axis aligned boxes in R^n.</div><div class="ttdef"><b>Definition</b> aabb.hpp:28</div></div>
+<div class="ttc" id="astructstf_1_1geom_1_1aabb_html_af25c4484fee1f0937bb4349390fc5ae9"><div class="ttname"><a href="structstf_1_1geom_1_1aabb.html#af25c4484fee1f0937bb4349390fc5ae9">stf::geom::aabb::contains</a></div><div class="ttdeci">bool contains(vec_t const &amp;x) const</div><div class="ttdoc">Compute whether a point is contained in an aabb.</div><div class="ttdef"><b>Definition</b> aabb.hpp:135</div></div>
+<div class="ttc" id="astructstf_1_1math_1_1vec_html"><div class="ttname"><a href="structstf_1_1math_1_1vec.html">stf::math::vec</a></div><div class="ttdoc">A class representing elements of R^n.</div><div class="ttdef"><b>Definition</b> vector.hpp:35</div></div>
 <div class="ttc" id="avector_8hpp_html"><div class="ttname"><a href="vector_8hpp.html">vector.hpp</a></div><div class="ttdoc">A file containing a templated vector class along with associated functions.</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->

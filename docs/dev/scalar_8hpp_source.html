@@ -99,33 +99,36 @@ $(document).ready(function(){initNavTree('scalar_8hpp_source.html',''); initResi
   <div class="headertitle"><div class="title">scalar.hpp</div></div>
 </div><!--header-->
 <div class="contents">
-<a href="scalar_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
-<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;cmath&gt;</span></div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacestf_1_1math.html">stf::math</a></div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>{</div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="foldopen" id="foldopen00022" data-start="{" data-end="}">
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="namespacestf_1_1math.html#a8456a9732b6af9e5b7d05675efabf42a">   22</a></span><span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="namespacestf_1_1math.html#a8456a9732b6af9e5b7d05675efabf42a">equ</a>(T <span class="keyword">const</span> lhs, T <span class="keyword">const</span> rhs, T <span class="keyword">const</span> eps)</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>{</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    <span class="keywordflow">return</span> (std::abs(lhs - rhs) &lt;= eps) ? true : <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>}</div>
+<a href="scalar_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef STF_MATH_SCALAR_HPP_HEADER_GUARD</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define STF_MATH_SCALAR_HPP_HEADER_GUARD</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;cmath&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacestf_1_1math.html">stf::math</a></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>{</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="foldopen" id="foldopen00023" data-start="{" data-end="}">
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="namespacestf_1_1math.html#a8456a9732b6af9e5b7d05675efabf42a">   23</a></span><span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="namespacestf_1_1math.html#a8456a9732b6af9e5b7d05675efabf42a">equ</a>(T <span class="keyword">const</span> lhs, T <span class="keyword">const</span> rhs, T <span class="keyword">const</span> eps)</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>{</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <span class="keywordflow">return</span> (std::abs(lhs - rhs) &lt;= eps) ? true : <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>}</div>
 </div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="foldopen" id="foldopen00036" data-start="{" data-end="}">
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="namespacestf_1_1math.html#a9777f4cdd2384cf37748bcb11f0d1d02">   36</a></span><span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="namespacestf_1_1math.html#a9777f4cdd2384cf37748bcb11f0d1d02">neq</a>(T <span class="keyword">const</span> lhs, T <span class="keyword">const</span> rhs, T <span class="keyword">const</span> eps)</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>{</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="keywordflow">return</span> !<a class="code hl_function" href="namespacestf_1_1math.html#a8456a9732b6af9e5b7d05675efabf42a">equ</a>(lhs, rhs, eps);</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>}</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="foldopen" id="foldopen00037" data-start="{" data-end="}">
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="namespacestf_1_1math.html#a9777f4cdd2384cf37748bcb11f0d1d02">   37</a></span><span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="namespacestf_1_1math.html#a9777f4cdd2384cf37748bcb11f0d1d02">neq</a>(T <span class="keyword">const</span> lhs, T <span class="keyword">const</span> rhs, T <span class="keyword">const</span> eps)</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>{</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <span class="keywordflow">return</span> !<a class="code hl_function" href="namespacestf_1_1math.html#a8456a9732b6af9e5b7d05675efabf42a">equ</a>(lhs, rhs, eps);</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>}</div>
 </div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>} <span class="comment">// namespace stf::math</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>} <span class="comment">// namespace stf::math</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="preprocessor">#endif</span></div>
 <div class="ttc" id="anamespacestf_1_1math_html"><div class="ttname"><a href="namespacestf_1_1math.html">stf::math</a></div><div class="ttdoc">Namespace for mathematical functionality.</div></div>
-<div class="ttc" id="anamespacestf_1_1math_html_a8456a9732b6af9e5b7d05675efabf42a"><div class="ttname"><a href="namespacestf_1_1math.html#a8456a9732b6af9e5b7d05675efabf42a">stf::math::equ</a></div><div class="ttdeci">bool equ(T const lhs, T const rhs, T const eps)</div><div class="ttdoc">Compute whether two scalars are less than or equal to eps apart.</div><div class="ttdef"><b>Definition</b> scalar.hpp:22</div></div>
-<div class="ttc" id="anamespacestf_1_1math_html_a9777f4cdd2384cf37748bcb11f0d1d02"><div class="ttname"><a href="namespacestf_1_1math.html#a9777f4cdd2384cf37748bcb11f0d1d02">stf::math::neq</a></div><div class="ttdeci">bool neq(T const lhs, T const rhs, T const eps)</div><div class="ttdoc">Compute whether two scalars are greater than eps apart.</div><div class="ttdef"><b>Definition</b> scalar.hpp:36</div></div>
+<div class="ttc" id="anamespacestf_1_1math_html_a8456a9732b6af9e5b7d05675efabf42a"><div class="ttname"><a href="namespacestf_1_1math.html#a8456a9732b6af9e5b7d05675efabf42a">stf::math::equ</a></div><div class="ttdeci">bool equ(T const lhs, T const rhs, T const eps)</div><div class="ttdoc">Compute whether two scalars are less than or equal to eps apart.</div><div class="ttdef"><b>Definition</b> scalar.hpp:23</div></div>
+<div class="ttc" id="anamespacestf_1_1math_html_a9777f4cdd2384cf37748bcb11f0d1d02"><div class="ttname"><a href="namespacestf_1_1math.html#a9777f4cdd2384cf37748bcb11f0d1d02">stf::math::neq</a></div><div class="ttdeci">bool neq(T const lhs, T const rhs, T const eps)</div><div class="ttdoc">Compute whether two scalars are greater than eps apart.</div><div class="ttdef"><b>Definition</b> scalar.hpp:37</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

@@ -99,81 +99,84 @@ $(document).ready(function(){initNavTree('tessellation_8hpp_source.html',''); in
   <div class="headertitle"><div class="title">tessellation.hpp</div></div>
 </div><!--header-->
 <div class="contents">
-<a href="tessellation_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
-<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="polyline_8hpp.html">stf/geom/polyline.hpp</a>&quot;</span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;<a class="code" href="constants_8hpp.html">stf/math/constants.hpp</a>&quot;</span></div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacestf_1_1alg.html">stf::alg</a></div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>{</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="foldopen" id="foldopen00026" data-start="{" data-end="}">
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="namespacestf_1_1alg.html#a4d357b9eccaab8e9b4bd0ada7e92d8da">   26</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="namespacestf_1_1alg.html#a4d357b9eccaab8e9b4bd0ada7e92d8da">tessellate_via_length</a>(std::vector&lt;<a class="code hl_struct" href="structstf_1_1math_1_1vec_3_01T_00_012_01_4.html">math::vec2&lt;T&gt;</a>&gt;&amp; vertices, <a class="code hl_typedef" href="namespacestf_1_1geom.html#a0b6dc84035906aae8bf62a659a6cee9f">geom::segment2&lt;T&gt;</a> <span class="keyword">const</span>&amp; segment, T <span class="keyword">const</span> max_len,</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>                           <span class="keywordtype">bool</span> <span class="keyword">const</span> add_end)</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>{</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    vertices.push_back(segment.a); <span class="comment">// immediately push the first vertex in the segment</span></div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    T <span class="keyword">const</span> length = segment.length();</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <span class="keywordflow">if</span> (length &gt; max_len) <span class="comment">// if necessary, add tessellated vertices</span></div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    {</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>        <span class="comment">// the number of vertices we add to the interior of the segment</span></div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>        <span class="keywordtype">size_t</span> count = <span class="keyword">static_cast&lt;</span><span class="keywordtype">size_t</span><span class="keyword">&gt;</span>(std::ceil(length / max_len - <a class="code hl_struct" href="structstf_1_1math_1_1constants.html">math::constants&lt;T&gt;::one</a>));</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        T <span class="keyword">const</span> delta_t = <a class="code hl_struct" href="structstf_1_1math_1_1constants.html">math::constants&lt;T&gt;::one</a> / <span class="keyword">static_cast&lt;</span>T<span class="keyword">&gt;</span>(count + 1);</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> j = 1; j &lt;= count; ++j)</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>        {</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>            vertices.push_back(segment.interpolate(<span class="keyword">static_cast&lt;</span>T<span class="keyword">&gt;</span>(j) * delta_t));</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        }</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    }</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <span class="keywordflow">if</span> (add_end)</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    {</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>        vertices.push_back(segment.b);</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    }</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>}</div>
+<a href="tessellation_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef STF_ALG_TESSELLATION_HPP_HEADER_GUARD</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define STF_ALG_TESSELLATION_HPP_HEADER_GUARD</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;<a class="code" href="polyline_8hpp.html">stf/geom/polyline.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;<a class="code" href="constants_8hpp.html">stf/math/constants.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacestf_1_1alg.html">stf::alg</a></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>{</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="foldopen" id="foldopen00027" data-start="{" data-end="}">
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="namespacestf_1_1alg.html#a4d357b9eccaab8e9b4bd0ada7e92d8da">   27</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="namespacestf_1_1alg.html#a4d357b9eccaab8e9b4bd0ada7e92d8da">tessellate_via_length</a>(std::vector&lt;<a class="code hl_struct" href="structstf_1_1math_1_1vec_3_01T_00_012_01_4.html">math::vec2&lt;T&gt;</a>&gt;&amp; vertices, <a class="code hl_typedef" href="namespacestf_1_1geom.html#a0b6dc84035906aae8bf62a659a6cee9f">geom::segment2&lt;T&gt;</a> <span class="keyword">const</span>&amp; segment, T <span class="keyword">const</span> max_len,</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>                           <span class="keywordtype">bool</span> <span class="keyword">const</span> add_end)</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>{</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    vertices.push_back(segment.a); <span class="comment">// immediately push the first vertex in the segment</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    T <span class="keyword">const</span> length = segment.length();</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="keywordflow">if</span> (length &gt; max_len) <span class="comment">// if necessary, add tessellated vertices</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    {</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>        <span class="comment">// the number of vertices we add to the interior of the segment</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        <span class="keywordtype">size_t</span> count = <span class="keyword">static_cast&lt;</span><span class="keywordtype">size_t</span><span class="keyword">&gt;</span>(std::ceil(length / max_len - <a class="code hl_struct" href="structstf_1_1math_1_1constants.html">math::constants&lt;T&gt;::one</a>));</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        T <span class="keyword">const</span> delta_t = <a class="code hl_struct" href="structstf_1_1math_1_1constants.html">math::constants&lt;T&gt;::one</a> / <span class="keyword">static_cast&lt;</span>T<span class="keyword">&gt;</span>(count + 1);</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>        <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> j = 1; j &lt;= count; ++j)</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>        {</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>            vertices.push_back(segment.interpolate(<span class="keyword">static_cast&lt;</span>T<span class="keyword">&gt;</span>(j) * delta_t));</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        }</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    }</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <span class="keywordflow">if</span> (add_end)</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    {</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>        vertices.push_back(segment.b);</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    }</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>}</div>
 </div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="foldopen" id="foldopen00057" data-start="{" data-end="}">
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="namespacestf_1_1alg.html#a080ba9097191c880b7cdee13d183d816">   57</a></span>std::vector&lt;math::vec2&lt;T&gt;&gt; <a class="code hl_function" href="namespacestf_1_1alg.html#a4d357b9eccaab8e9b4bd0ada7e92d8da">tessellate_via_length</a>(<a class="code hl_struct" href="structstf_1_1geom_1_1aabb.html">geom::polyline2&lt;T&gt;</a> <span class="keyword">const</span>&amp; polyline, T <span class="keyword">const</span> max_len, <span class="keywordtype">bool</span> <span class="keyword">const</span> loop)</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>{</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    std::vector&lt;math::vec2&lt;T&gt;&gt; vertices;</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    <span class="keywordflow">if</span> (polyline.is_empty())</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    {</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>        <span class="keywordflow">return</span> vertices;</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    }</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    vertices.reserve(<span class="keyword">static_cast&lt;</span><span class="keywordtype">size_t</span><span class="keyword">&gt;</span>(polyline.length() / max_len));</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i + 1 &lt; polyline.size(); ++i) <span class="comment">// iterate over all polyline edges, adding vertices</span></div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    {</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>        <a class="code hl_typedef" href="namespacestf_1_1geom.html#a0b6dc84035906aae8bf62a659a6cee9f">geom::segment2&lt;T&gt;</a> edge = polyline.edge(i);</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>        <a class="code hl_function" href="namespacestf_1_1alg.html#a4d357b9eccaab8e9b4bd0ada7e92d8da">tessellate_via_length</a>(vertices, edge, max_len, <span class="keyword">false</span>);</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    }</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <span class="keywordflow">if</span> (loop)</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    {</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>        <a class="code hl_typedef" href="namespacestf_1_1geom.html#a0b6dc84035906aae8bf62a659a6cee9f">geom::segment2&lt;T&gt;</a> edge(polyline.vertices().back(), polyline.vertices().front());</div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>        <a class="code hl_function" href="namespacestf_1_1alg.html#a4d357b9eccaab8e9b4bd0ada7e92d8da">tessellate_via_length</a>(vertices, edge, max_len, <span class="keyword">false</span>);</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    }</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    <span class="keywordflow">else</span></div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    {</div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>        vertices.push_back(polyline.vertices().back());</div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    }</div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    <span class="keywordflow">return</span> vertices;</div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>}</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="foldopen" id="foldopen00058" data-start="{" data-end="}">
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="namespacestf_1_1alg.html#a080ba9097191c880b7cdee13d183d816">   58</a></span>std::vector&lt;math::vec2&lt;T&gt;&gt; <a class="code hl_function" href="namespacestf_1_1alg.html#a4d357b9eccaab8e9b4bd0ada7e92d8da">tessellate_via_length</a>(<a class="code hl_struct" href="structstf_1_1geom_1_1aabb.html">geom::polyline2&lt;T&gt;</a> <span class="keyword">const</span>&amp; polyline, T <span class="keyword">const</span> max_len, <span class="keywordtype">bool</span> <span class="keyword">const</span> loop)</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>{</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    std::vector&lt;math::vec2&lt;T&gt;&gt; vertices;</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <span class="keywordflow">if</span> (polyline.is_empty())</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    {</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>        <span class="keywordflow">return</span> vertices;</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    }</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    vertices.reserve(<span class="keyword">static_cast&lt;</span><span class="keywordtype">size_t</span><span class="keyword">&gt;</span>(polyline.length() / max_len));</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i + 1 &lt; polyline.size(); ++i) <span class="comment">// iterate over all polyline edges, adding vertices</span></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    {</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>        <a class="code hl_typedef" href="namespacestf_1_1geom.html#a0b6dc84035906aae8bf62a659a6cee9f">geom::segment2&lt;T&gt;</a> edge = polyline.edge(i);</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>        <a class="code hl_function" href="namespacestf_1_1alg.html#a4d357b9eccaab8e9b4bd0ada7e92d8da">tessellate_via_length</a>(vertices, edge, max_len, <span class="keyword">false</span>);</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    }</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    <span class="keywordflow">if</span> (loop)</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    {</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>        <a class="code hl_typedef" href="namespacestf_1_1geom.html#a0b6dc84035906aae8bf62a659a6cee9f">geom::segment2&lt;T&gt;</a> edge(polyline.vertices().back(), polyline.vertices().front());</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>        <a class="code hl_function" href="namespacestf_1_1alg.html#a4d357b9eccaab8e9b4bd0ada7e92d8da">tessellate_via_length</a>(vertices, edge, max_len, <span class="keyword">false</span>);</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    }</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    {</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>        vertices.push_back(polyline.vertices().back());</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    }</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    <span class="keywordflow">return</span> vertices;</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>}</div>
 </div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span> </div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>} <span class="comment">// namespace stf::alg</span></div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>} <span class="comment">// namespace stf::alg</span></div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span> </div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span><span class="preprocessor">#endif</span></div>
 <div class="ttc" id="aconstants_8hpp_html"><div class="ttname"><a href="constants_8hpp.html">constants.hpp</a></div><div class="ttdoc">A file containing mathematical constants.</div></div>
 <div class="ttc" id="anamespacestf_1_1alg_html"><div class="ttname"><a href="namespacestf_1_1alg.html">stf::alg</a></div><div class="ttdoc">Namespace for algorithms.</div></div>
-<div class="ttc" id="anamespacestf_1_1alg_html_a4d357b9eccaab8e9b4bd0ada7e92d8da"><div class="ttname"><a href="namespacestf_1_1alg.html#a4d357b9eccaab8e9b4bd0ada7e92d8da">stf::alg::tessellate_via_length</a></div><div class="ttdeci">void tessellate_via_length(std::vector&lt; math::vec2&lt; T &gt; &gt; &amp;vertices, geom::segment2&lt; T &gt; const &amp;segment, T const max_len, bool const add_end)</div><div class="ttdoc">Tessellate a line segment by adding vertices so that each portion is longer than a specified length.</div><div class="ttdef"><b>Definition</b> tessellation.hpp:26</div></div>
-<div class="ttc" id="anamespacestf_1_1geom_html_a0b6dc84035906aae8bf62a659a6cee9f"><div class="ttname"><a href="namespacestf_1_1geom.html#a0b6dc84035906aae8bf62a659a6cee9f">stf::geom::aabb2</a></div><div class="ttdeci">aabb&lt; T, 2 &gt; aabb2</div><div class="ttdoc">Type alias for a 2D aabb.</div><div class="ttdef"><b>Definition</b> aabb.hpp:391</div></div>
+<div class="ttc" id="anamespacestf_1_1alg_html_a4d357b9eccaab8e9b4bd0ada7e92d8da"><div class="ttname"><a href="namespacestf_1_1alg.html#a4d357b9eccaab8e9b4bd0ada7e92d8da">stf::alg::tessellate_via_length</a></div><div class="ttdeci">void tessellate_via_length(std::vector&lt; math::vec2&lt; T &gt; &gt; &amp;vertices, geom::segment2&lt; T &gt; const &amp;segment, T const max_len, bool const add_end)</div><div class="ttdoc">Tessellate a line segment by adding vertices so that each portion is longer than a specified length.</div><div class="ttdef"><b>Definition</b> tessellation.hpp:27</div></div>
+<div class="ttc" id="anamespacestf_1_1geom_html_a0b6dc84035906aae8bf62a659a6cee9f"><div class="ttname"><a href="namespacestf_1_1geom.html#a0b6dc84035906aae8bf62a659a6cee9f">stf::geom::aabb2</a></div><div class="ttdeci">aabb&lt; T, 2 &gt; aabb2</div><div class="ttdoc">Type alias for a 2D aabb.</div><div class="ttdef"><b>Definition</b> aabb.hpp:392</div></div>
 <div class="ttc" id="apolyline_8hpp_html"><div class="ttname"><a href="polyline_8hpp.html">polyline.hpp</a></div><div class="ttdoc">A file containing a templated polyline class along with associated functions.</div></div>
-<div class="ttc" id="astructstf_1_1geom_1_1aabb_html"><div class="ttname"><a href="structstf_1_1geom_1_1aabb.html">stf::geom::aabb</a></div><div class="ttdoc">An aabb class representing axis aligned boxes in R^n.</div><div class="ttdef"><b>Definition</b> aabb.hpp:27</div></div>
-<div class="ttc" id="astructstf_1_1math_1_1constants_html"><div class="ttname"><a href="structstf_1_1math_1_1constants.html">stf::math::constants</a></div><div class="ttdoc">A templated class that has some common mathematical constants.</div><div class="ttdef"><b>Definition</b> constants.hpp:21</div></div>
-<div class="ttc" id="astructstf_1_1math_1_1vec_3_01T_00_012_01_4_html"><div class="ttname"><a href="structstf_1_1math_1_1vec_3_01T_00_012_01_4.html">stf::math::vec&lt; T, 2 &gt;</a></div><div class="ttdoc">Specialization of vec for N=2.</div><div class="ttdef"><b>Definition</b> vector.hpp:255</div></div>
+<div class="ttc" id="astructstf_1_1geom_1_1aabb_html"><div class="ttname"><a href="structstf_1_1geom_1_1aabb.html">stf::geom::aabb</a></div><div class="ttdoc">An aabb class representing axis aligned boxes in R^n.</div><div class="ttdef"><b>Definition</b> aabb.hpp:28</div></div>
+<div class="ttc" id="astructstf_1_1math_1_1constants_html"><div class="ttname"><a href="structstf_1_1math_1_1constants.html">stf::math::constants</a></div><div class="ttdoc">A templated class that has some common mathematical constants.</div><div class="ttdef"><b>Definition</b> constants.hpp:22</div></div>
+<div class="ttc" id="astructstf_1_1math_1_1vec_3_01T_00_012_01_4_html"><div class="ttname"><a href="structstf_1_1math_1_1vec_3_01T_00_012_01_4.html">stf::math::vec&lt; T, 2 &gt;</a></div><div class="ttdoc">Specialization of vec for N=2.</div><div class="ttdef"><b>Definition</b> vector.hpp:256</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

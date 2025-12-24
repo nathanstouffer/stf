@@ -99,112 +99,115 @@ $(document).ready(function(){initNavTree('raw_8hpp_source.html',''); initResizab
   <div class="headertitle"><div class="title">raw.hpp</div></div>
 </div><!--header-->
 <div class="contents">
-<a href="raw_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
-<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;cmath&gt;</span></div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="keyword">namespace </span>stf::math::raw</div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>{</div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keywordtype">size_t</span> N&gt;</div>
-<div class="foldopen" id="foldopen00021" data-start="{" data-end="}">
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="raw_8hpp.html#aadcd9d5a05c15b546864f7fd97e54283">   21</a></span><span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="raw_8hpp.html#aadcd9d5a05c15b546864f7fd97e54283">plus_equals</a>(T lhs[N], T <span class="keyword">const</span> rhs[N])</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>{</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; N; ++i)</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    {</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>        lhs[i] += rhs[i];</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    }</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>}</div>
+<a href="raw_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef STF_MATH_RAW_HPP_HEADER_GUARD</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define STF_MATH_RAW_HPP_HEADER_GUARD</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;cmath&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keyword">namespace </span>stf::math::raw</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>{</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keywordtype">size_t</span> N&gt;</div>
+<div class="foldopen" id="foldopen00022" data-start="{" data-end="}">
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="raw_8hpp.html#aadcd9d5a05c15b546864f7fd97e54283">   22</a></span><span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="raw_8hpp.html#aadcd9d5a05c15b546864f7fd97e54283">plus_equals</a>(T lhs[N], T <span class="keyword">const</span> rhs[N])</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>{</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; N; ++i)</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    {</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>        lhs[i] += rhs[i];</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    }</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>}</div>
 </div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keywordtype">size_t</span> N&gt;</div>
-<div class="foldopen" id="foldopen00037" data-start="{" data-end="}">
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="raw_8hpp.html#a709c52823d0c5183d06824904a5d6b78">   37</a></span><span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="raw_8hpp.html#a709c52823d0c5183d06824904a5d6b78">minus_equals</a>(T lhs[N], T <span class="keyword">const</span> rhs[N])</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>{</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; N; ++i)</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    {</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        lhs[i] -= rhs[i];</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    }</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>}</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keywordtype">size_t</span> N&gt;</div>
+<div class="foldopen" id="foldopen00038" data-start="{" data-end="}">
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="raw_8hpp.html#a709c52823d0c5183d06824904a5d6b78">   38</a></span><span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="raw_8hpp.html#a709c52823d0c5183d06824904a5d6b78">minus_equals</a>(T lhs[N], T <span class="keyword">const</span> rhs[N])</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>{</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; N; ++i)</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    {</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        lhs[i] -= rhs[i];</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    }</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>}</div>
 </div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keywordtype">size_t</span> N&gt;</div>
-<div class="foldopen" id="foldopen00053" data-start="{" data-end="}">
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="raw_8hpp.html#a62e848d4c1e6a5a2c5656597e387702b">   53</a></span><span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="namespacestf_1_1math.html#a612899b7860d515c5908b0410c0555ba">scale</a>(T lhs[N], T <span class="keyword">const</span> scalar)</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>{</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; N; ++i)</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    {</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>        lhs[i] *= scalar;</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    }</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>}</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keywordtype">size_t</span> N&gt;</div>
+<div class="foldopen" id="foldopen00054" data-start="{" data-end="}">
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="raw_8hpp.html#a62e848d4c1e6a5a2c5656597e387702b">   54</a></span><span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="namespacestf_1_1math.html#a612899b7860d515c5908b0410c0555ba">scale</a>(T lhs[N], T <span class="keyword">const</span> scalar)</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>{</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; N; ++i)</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    {</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        lhs[i] *= scalar;</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    }</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>}</div>
 </div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keywordtype">size_t</span> N&gt;</div>
-<div class="foldopen" id="foldopen00069" data-start="{" data-end="}">
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="raw_8hpp.html#a440eb88eaa0cb8ac10621c2523066f66">   69</a></span><span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="raw_8hpp.html#a440eb88eaa0cb8ac10621c2523066f66">divide</a>(T lhs[N], T <span class="keyword">const</span> divisor)</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>{</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; N; ++i)</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    {</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>        lhs[i] /= divisor;</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    }</div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>}</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keywordtype">size_t</span> N&gt;</div>
+<div class="foldopen" id="foldopen00070" data-start="{" data-end="}">
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno"><a class="line" href="raw_8hpp.html#a440eb88eaa0cb8ac10621c2523066f66">   70</a></span><span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="raw_8hpp.html#a440eb88eaa0cb8ac10621c2523066f66">divide</a>(T lhs[N], T <span class="keyword">const</span> divisor)</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>{</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; N; ++i)</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    {</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>        lhs[i] /= divisor;</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    }</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>}</div>
 </div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span> </div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keywordtype">size_t</span> N&gt;</div>
-<div class="foldopen" id="foldopen00086" data-start="{" data-end="}">
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno"><a class="line" href="raw_8hpp.html#ae2370a42a99e298d003c35f51948d0a1">   86</a></span><span class="keyword">inline</span> T <a class="code hl_function" href="raw_8hpp.html#ae2370a42a99e298d003c35f51948d0a1">dot</a>(T <span class="keyword">const</span> lhs[N], T <span class="keyword">const</span> rhs[N])</div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>{</div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    T d = T(0);</div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; N; ++i)</div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    {</div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>        d += lhs[i] * rhs[i];</div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    }</div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    <span class="keywordflow">return</span> d;</div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>}</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keywordtype">size_t</span> N&gt;</div>
+<div class="foldopen" id="foldopen00087" data-start="{" data-end="}">
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno"><a class="line" href="raw_8hpp.html#ae2370a42a99e298d003c35f51948d0a1">   87</a></span><span class="keyword">inline</span> T <a class="code hl_function" href="raw_8hpp.html#ae2370a42a99e298d003c35f51948d0a1">dot</a>(T <span class="keyword">const</span> lhs[N], T <span class="keyword">const</span> rhs[N])</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>{</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    T d = T(0);</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; N; ++i)</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    {</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>        d += lhs[i] * rhs[i];</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    }</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    <span class="keywordflow">return</span> d;</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>}</div>
 </div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span> </div>
-<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keywordtype">size_t</span> N&gt;</div>
-<div class="foldopen" id="foldopen00104" data-start="{" data-end="}">
-<div class="line"><a id="l00104" name="l00104"></a><span class="lineno"><a class="line" href="raw_8hpp.html#afb2a532131f65e0931faca4af5bf85aa">  104</a></span><span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="raw_8hpp.html#afb2a532131f65e0931faca4af5bf85aa">hadamard_equals</a>(T lhs[N], T <span class="keyword">const</span> rhs[N])</div>
-<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>{</div>
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; N; ++i)</div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    {</div>
-<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>        lhs[i] *= rhs[i];</div>
-<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    }</div>
-<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>}</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span> </div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keywordtype">size_t</span> N&gt;</div>
+<div class="foldopen" id="foldopen00105" data-start="{" data-end="}">
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno"><a class="line" href="raw_8hpp.html#afb2a532131f65e0931faca4af5bf85aa">  105</a></span><span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="raw_8hpp.html#afb2a532131f65e0931faca4af5bf85aa">hadamard_equals</a>(T lhs[N], T <span class="keyword">const</span> rhs[N])</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>{</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; N; ++i)</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    {</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>        lhs[i] *= rhs[i];</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    }</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>}</div>
 </div>
-<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span> </div>
-<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keywordtype">size_t</span> N&gt;</div>
-<div class="foldopen" id="foldopen00120" data-start="{" data-end="}">
-<div class="line"><a id="l00120" name="l00120"></a><span class="lineno"><a class="line" href="raw_8hpp.html#a7526ff36b9d57d2331871368d654e790">  120</a></span><span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="raw_8hpp.html#a7526ff36b9d57d2331871368d654e790">prefix</a>(T lhs[N - 1], T <span class="keyword">const</span> rhs[N])</div>
-<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>{</div>
-<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; N - 1; ++i)</div>
-<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>    {</div>
-<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>        lhs[i] = rhs[i];</div>
-<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>    }</div>
-<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>}</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span> </div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keywordtype">size_t</span> N&gt;</div>
+<div class="foldopen" id="foldopen00121" data-start="{" data-end="}">
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno"><a class="line" href="raw_8hpp.html#a7526ff36b9d57d2331871368d654e790">  121</a></span><span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="raw_8hpp.html#a7526ff36b9d57d2331871368d654e790">prefix</a>(T lhs[N - 1], T <span class="keyword">const</span> rhs[N])</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>{</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; N - 1; ++i)</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    {</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>        lhs[i] = rhs[i];</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>    }</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>}</div>
 </div>
-<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span> </div>
-<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span> U, <span class="keywordtype">size_t</span> N&gt;</div>
-<div class="foldopen" id="foldopen00137" data-start="{" data-end="}">
-<div class="line"><a id="l00137" name="l00137"></a><span class="lineno"><a class="line" href="raw_8hpp.html#a31846a6fd7042d261e60a71750fc6d24">  137</a></span><span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="raw_8hpp.html#a31846a6fd7042d261e60a71750fc6d24">as</a>(T <span class="keyword">const</span> src[N], U dst[N])</div>
-<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>{</div>
-<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; N; ++i)</div>
-<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>    {</div>
-<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>        dst[i] = <span class="keyword">static_cast&lt;</span>U<span class="keyword">&gt;</span>(src[i]);</div>
-<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>    }</div>
-<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>}</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span> </div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span> U, <span class="keywordtype">size_t</span> N&gt;</div>
+<div class="foldopen" id="foldopen00138" data-start="{" data-end="}">
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno"><a class="line" href="raw_8hpp.html#a31846a6fd7042d261e60a71750fc6d24">  138</a></span><span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="raw_8hpp.html#a31846a6fd7042d261e60a71750fc6d24">as</a>(T <span class="keyword">const</span> src[N], U dst[N])</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>{</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; N; ++i)</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>    {</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>        dst[i] = <span class="keyword">static_cast&lt;</span>U<span class="keyword">&gt;</span>(src[i]);</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>    }</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>}</div>
 </div>
-<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span> </div>
-<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>} <span class="comment">// namespace stf::math::raw</span></div>
-<div class="ttc" id="anamespacestf_1_1math_html_a612899b7860d515c5908b0410c0555ba"><div class="ttname"><a href="namespacestf_1_1math.html#a612899b7860d515c5908b0410c0555ba">stf::math::scale</a></div><div class="ttdeci">mtx4&lt; T &gt; scale(vec&lt; T, 3 &gt; const &amp;scalars)</div><div class="ttdoc">Construct a matrix that scales in x, y, and z.</div><div class="ttdef"><b>Definition</b> matrix.hpp:796</div></div>
-<div class="ttc" id="araw_8hpp_html_a31846a6fd7042d261e60a71750fc6d24"><div class="ttname"><a href="raw_8hpp.html#a31846a6fd7042d261e60a71750fc6d24">stf::math::raw::as</a></div><div class="ttdeci">void as(T const src[N], U dst[N])</div><div class="ttdoc">Cast a vector (stored as an array) to a different precision.</div><div class="ttdef"><b>Definition</b> raw.hpp:137</div></div>
-<div class="ttc" id="araw_8hpp_html_a440eb88eaa0cb8ac10621c2523066f66"><div class="ttname"><a href="raw_8hpp.html#a440eb88eaa0cb8ac10621c2523066f66">stf::math::raw::divide</a></div><div class="ttdeci">void divide(T lhs[N], T const divisor)</div><div class="ttdoc">Divide a vector (stored as an array) in place.</div><div class="ttdef"><b>Definition</b> raw.hpp:69</div></div>
-<div class="ttc" id="araw_8hpp_html_a709c52823d0c5183d06824904a5d6b78"><div class="ttname"><a href="raw_8hpp.html#a709c52823d0c5183d06824904a5d6b78">stf::math::raw::minus_equals</a></div><div class="ttdeci">void minus_equals(T lhs[N], T const rhs[N])</div><div class="ttdoc">Subtract from a vector (stored as an array) in place.</div><div class="ttdef"><b>Definition</b> raw.hpp:37</div></div>
-<div class="ttc" id="araw_8hpp_html_a7526ff36b9d57d2331871368d654e790"><div class="ttname"><a href="raw_8hpp.html#a7526ff36b9d57d2331871368d654e790">stf::math::raw::prefix</a></div><div class="ttdeci">void prefix(T lhs[N - 1], T const rhs[N])</div><div class="ttdoc">Write the prefix of one array into another.</div><div class="ttdef"><b>Definition</b> raw.hpp:120</div></div>
-<div class="ttc" id="araw_8hpp_html_aadcd9d5a05c15b546864f7fd97e54283"><div class="ttname"><a href="raw_8hpp.html#aadcd9d5a05c15b546864f7fd97e54283">stf::math::raw::plus_equals</a></div><div class="ttdeci">void plus_equals(T lhs[N], T const rhs[N])</div><div class="ttdoc">Add to a vector (stored as an array) in place.</div><div class="ttdef"><b>Definition</b> raw.hpp:21</div></div>
-<div class="ttc" id="araw_8hpp_html_ae2370a42a99e298d003c35f51948d0a1"><div class="ttname"><a href="raw_8hpp.html#ae2370a42a99e298d003c35f51948d0a1">stf::math::raw::dot</a></div><div class="ttdeci">T dot(T const lhs[N], T const rhs[N])</div><div class="ttdoc">Compute the dot product of two vectors (stored as arrays)</div><div class="ttdef"><b>Definition</b> raw.hpp:86</div></div>
-<div class="ttc" id="araw_8hpp_html_afb2a532131f65e0931faca4af5bf85aa"><div class="ttname"><a href="raw_8hpp.html#afb2a532131f65e0931faca4af5bf85aa">stf::math::raw::hadamard_equals</a></div><div class="ttdeci">void hadamard_equals(T lhs[N], T const rhs[N])</div><div class="ttdoc">Compute the hadamard product of two vectors (stored as arrays) in place.</div><div class="ttdef"><b>Definition</b> raw.hpp:104</div></div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span> </div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>} <span class="comment">// namespace stf::math::raw</span></div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span> </div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="anamespacestf_1_1math_html_a612899b7860d515c5908b0410c0555ba"><div class="ttname"><a href="namespacestf_1_1math.html#a612899b7860d515c5908b0410c0555ba">stf::math::scale</a></div><div class="ttdeci">mtx4&lt; T &gt; scale(vec&lt; T, 3 &gt; const &amp;scalars)</div><div class="ttdoc">Construct a matrix that scales in x, y, and z.</div><div class="ttdef"><b>Definition</b> matrix.hpp:797</div></div>
+<div class="ttc" id="araw_8hpp_html_a31846a6fd7042d261e60a71750fc6d24"><div class="ttname"><a href="raw_8hpp.html#a31846a6fd7042d261e60a71750fc6d24">stf::math::raw::as</a></div><div class="ttdeci">void as(T const src[N], U dst[N])</div><div class="ttdoc">Cast a vector (stored as an array) to a different precision.</div><div class="ttdef"><b>Definition</b> raw.hpp:138</div></div>
+<div class="ttc" id="araw_8hpp_html_a440eb88eaa0cb8ac10621c2523066f66"><div class="ttname"><a href="raw_8hpp.html#a440eb88eaa0cb8ac10621c2523066f66">stf::math::raw::divide</a></div><div class="ttdeci">void divide(T lhs[N], T const divisor)</div><div class="ttdoc">Divide a vector (stored as an array) in place.</div><div class="ttdef"><b>Definition</b> raw.hpp:70</div></div>
+<div class="ttc" id="araw_8hpp_html_a709c52823d0c5183d06824904a5d6b78"><div class="ttname"><a href="raw_8hpp.html#a709c52823d0c5183d06824904a5d6b78">stf::math::raw::minus_equals</a></div><div class="ttdeci">void minus_equals(T lhs[N], T const rhs[N])</div><div class="ttdoc">Subtract from a vector (stored as an array) in place.</div><div class="ttdef"><b>Definition</b> raw.hpp:38</div></div>
+<div class="ttc" id="araw_8hpp_html_a7526ff36b9d57d2331871368d654e790"><div class="ttname"><a href="raw_8hpp.html#a7526ff36b9d57d2331871368d654e790">stf::math::raw::prefix</a></div><div class="ttdeci">void prefix(T lhs[N - 1], T const rhs[N])</div><div class="ttdoc">Write the prefix of one array into another.</div><div class="ttdef"><b>Definition</b> raw.hpp:121</div></div>
+<div class="ttc" id="araw_8hpp_html_aadcd9d5a05c15b546864f7fd97e54283"><div class="ttname"><a href="raw_8hpp.html#aadcd9d5a05c15b546864f7fd97e54283">stf::math::raw::plus_equals</a></div><div class="ttdeci">void plus_equals(T lhs[N], T const rhs[N])</div><div class="ttdoc">Add to a vector (stored as an array) in place.</div><div class="ttdef"><b>Definition</b> raw.hpp:22</div></div>
+<div class="ttc" id="araw_8hpp_html_ae2370a42a99e298d003c35f51948d0a1"><div class="ttname"><a href="raw_8hpp.html#ae2370a42a99e298d003c35f51948d0a1">stf::math::raw::dot</a></div><div class="ttdeci">T dot(T const lhs[N], T const rhs[N])</div><div class="ttdoc">Compute the dot product of two vectors (stored as arrays)</div><div class="ttdef"><b>Definition</b> raw.hpp:87</div></div>
+<div class="ttc" id="araw_8hpp_html_afb2a532131f65e0931faca4af5bf85aa"><div class="ttname"><a href="raw_8hpp.html#afb2a532131f65e0931faca4af5bf85aa">stf::math::raw::hadamard_equals</a></div><div class="ttdeci">void hadamard_equals(T lhs[N], T const rhs[N])</div><div class="ttdoc">Compute the hadamard product of two vectors (stored as arrays) in place.</div><div class="ttdef"><b>Definition</b> raw.hpp:105</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

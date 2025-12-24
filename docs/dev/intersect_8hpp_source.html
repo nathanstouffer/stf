@@ -99,61 +99,64 @@ $(document).ready(function(){initNavTree('intersect_8hpp_source.html',''); initR
   <div class="headertitle"><div class="title">intersect.hpp</div></div>
 </div><!--header-->
 <div class="contents">
-<a href="intersect_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
-<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;optional&gt;</span></div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="intersects_8hpp.html">stf/alg/intersects.hpp</a>&quot;</span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;<a class="code" href="ray_8hpp.html">stf/geom/ray.hpp</a>&quot;</span></div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;<a class="code" href="hyperplane_8hpp.html">stf/geom/hyperplane.hpp</a>&quot;</span></div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacestf_1_1alg.html">stf::alg</a></div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>{</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="foldopen" id="foldopen00026" data-start="{" data-end="}">
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="namespacestf_1_1alg.html#a42aaa311dc70ffaf0f26701f8149486e">   26</a></span>std::optional&lt;math::vec3&lt;T&gt;&gt; <a class="code hl_function" href="namespacestf_1_1alg.html#a42aaa311dc70ffaf0f26701f8149486e">intersect</a>(<a class="code hl_struct" href="structstf_1_1geom_1_1aabb.html">geom::ray3&lt;T&gt;</a> <span class="keyword">const</span>&amp; ray, <a class="code hl_struct" href="structstf_1_1geom_1_1aabb.html">geom::plane&lt;T&gt;</a> <span class="keyword">const</span>&amp; plane)</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>{</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    <span class="keywordflow">if</span> (<a class="code hl_function" href="namespacestf_1_1alg.html#a2dd40179e42ebc262c82349808573e2c">intersects</a>(ray, plane))</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    {</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>        <span class="keywordflow">if</span> (plane.<a class="code hl_function" href="structstf_1_1geom_1_1aabb.html#af25c4484fee1f0937bb4349390fc5ae9">contains</a>(ray.origin))</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>        {</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>            <span class="keywordflow">return</span> ray.origin;</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>        }</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>        <span class="keywordflow">else</span></div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        {</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>            T <span class="keyword">const</span> dist = plane.<a class="code hl_function" href="structstf_1_1geom_1_1aabb.html#a3e33ff195a65f18443eea82353b95d94">dist</a>(ray.origin);</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>            T <span class="keyword">const</span> dot = <a class="code hl_function" href="namespacestf_1_1math.html#affb9352af7b68426cc6ca4e4f2b5e583">math::dot</a>(plane.normal(), ray.direction);</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>            T <span class="keyword">const</span> scalar = dist / std::abs(dot);</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>            <span class="keywordflow">return</span> ray.origin + scalar * ray.direction;</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        }</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    }</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <span class="keywordflow">else</span></div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    {</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>        <span class="keywordflow">return</span> std::nullopt;</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    }</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>}</div>
+<a href="intersect_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef STF_ALG_INTERSECT_HPP_HEADER_GUARD</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define STF_ALG_INTERSECT_HPP_HEADER_GUARD</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;optional&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;<a class="code" href="intersects_8hpp.html">stf/alg/intersects.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;<a class="code" href="ray_8hpp.html">stf/geom/ray.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;<a class="code" href="hyperplane_8hpp.html">stf/geom/hyperplane.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacestf_1_1alg.html">stf::alg</a></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>{</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="foldopen" id="foldopen00027" data-start="{" data-end="}">
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="namespacestf_1_1alg.html#a42aaa311dc70ffaf0f26701f8149486e">   27</a></span>std::optional&lt;math::vec3&lt;T&gt;&gt; <a class="code hl_function" href="namespacestf_1_1alg.html#a42aaa311dc70ffaf0f26701f8149486e">intersect</a>(<a class="code hl_struct" href="structstf_1_1geom_1_1aabb.html">geom::ray3&lt;T&gt;</a> <span class="keyword">const</span>&amp; ray, <a class="code hl_struct" href="structstf_1_1geom_1_1aabb.html">geom::plane&lt;T&gt;</a> <span class="keyword">const</span>&amp; plane)</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>{</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <span class="keywordflow">if</span> (<a class="code hl_function" href="namespacestf_1_1alg.html#a2dd40179e42ebc262c82349808573e2c">intersects</a>(ray, plane))</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    {</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>        <span class="keywordflow">if</span> (plane.<a class="code hl_function" href="structstf_1_1geom_1_1aabb.html#af25c4484fee1f0937bb4349390fc5ae9">contains</a>(ray.origin))</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>        {</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>            <span class="keywordflow">return</span> ray.origin;</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>        }</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        {</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>            T <span class="keyword">const</span> dist = plane.<a class="code hl_function" href="structstf_1_1geom_1_1aabb.html#a3e33ff195a65f18443eea82353b95d94">dist</a>(ray.origin);</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>            T <span class="keyword">const</span> dot = <a class="code hl_function" href="namespacestf_1_1math.html#affb9352af7b68426cc6ca4e4f2b5e583">math::dot</a>(plane.normal(), ray.direction);</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>            T <span class="keyword">const</span> scalar = dist / std::abs(dot);</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>            <span class="keywordflow">return</span> ray.origin + scalar * ray.direction;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        }</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    }</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    {</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>        <span class="keywordflow">return</span> std::nullopt;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    }</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>}</div>
 </div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="foldopen" id="foldopen00057" data-start="{" data-end="}">
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="namespacestf_1_1alg.html#a5a4dcad594b342683e1a8484607278a3">   57</a></span><span class="keyword">inline</span> std::optional&lt;math::vec3&lt;T&gt;&gt; <a class="code hl_function" href="namespacestf_1_1alg.html#a42aaa311dc70ffaf0f26701f8149486e">intersect</a>(<a class="code hl_struct" href="structstf_1_1geom_1_1aabb.html">geom::plane&lt;T&gt;</a> <span class="keyword">const</span>&amp; plane, <a class="code hl_struct" href="structstf_1_1geom_1_1aabb.html">geom::ray3&lt;T&gt;</a> <span class="keyword">const</span>&amp; ray)</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>{</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="namespacestf_1_1alg.html#a42aaa311dc70ffaf0f26701f8149486e">intersect</a>(ray, plane);</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>}</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="foldopen" id="foldopen00058" data-start="{" data-end="}">
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="namespacestf_1_1alg.html#a5a4dcad594b342683e1a8484607278a3">   58</a></span><span class="keyword">inline</span> std::optional&lt;math::vec3&lt;T&gt;&gt; <a class="code hl_function" href="namespacestf_1_1alg.html#a42aaa311dc70ffaf0f26701f8149486e">intersect</a>(<a class="code hl_struct" href="structstf_1_1geom_1_1aabb.html">geom::plane&lt;T&gt;</a> <span class="keyword">const</span>&amp; plane, <a class="code hl_struct" href="structstf_1_1geom_1_1aabb.html">geom::ray3&lt;T&gt;</a> <span class="keyword">const</span>&amp; ray)</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>{</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="namespacestf_1_1alg.html#a42aaa311dc70ffaf0f26701f8149486e">intersect</a>(ray, plane);</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>}</div>
 </div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>} <span class="comment">// namespace stf::alg</span></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>} <span class="comment">// namespace stf::alg</span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span><span class="preprocessor">#endif</span></div>
 <div class="ttc" id="ahyperplane_8hpp_html"><div class="ttname"><a href="hyperplane_8hpp.html">hyperplane.hpp</a></div><div class="ttdoc">A file containing a templated hyperplane class along with associated functions.</div></div>
 <div class="ttc" id="aintersects_8hpp_html"><div class="ttname"><a href="intersects_8hpp.html">intersects.hpp</a></div><div class="ttdoc">A file containing functions that report whether or not two geometric objects intersect.</div></div>
 <div class="ttc" id="anamespacestf_1_1alg_html"><div class="ttname"><a href="namespacestf_1_1alg.html">stf::alg</a></div><div class="ttdoc">Namespace for algorithms.</div></div>
-<div class="ttc" id="anamespacestf_1_1alg_html_a2dd40179e42ebc262c82349808573e2c"><div class="ttname"><a href="namespacestf_1_1alg.html#a2dd40179e42ebc262c82349808573e2c">stf::alg::intersects</a></div><div class="ttdeci">bool intersects(math::interval&lt; T &gt; const &amp;lhs, math::interval&lt; T &gt; const &amp;rhs)</div><div class="ttdoc">Compute whether or not two intervals intersect.</div><div class="ttdef"><b>Definition</b> intersects.hpp:30</div></div>
-<div class="ttc" id="anamespacestf_1_1alg_html_a42aaa311dc70ffaf0f26701f8149486e"><div class="ttname"><a href="namespacestf_1_1alg.html#a42aaa311dc70ffaf0f26701f8149486e">stf::alg::intersect</a></div><div class="ttdeci">std::optional&lt; math::vec3&lt; T &gt; &gt; intersect(geom::ray3&lt; T &gt; const &amp;ray, geom::plane&lt; T &gt; const &amp;plane)</div><div class="ttdoc">Compute the intersection of a ray and a plane.</div><div class="ttdef"><b>Definition</b> intersect.hpp:26</div></div>
-<div class="ttc" id="anamespacestf_1_1math_html_affb9352af7b68426cc6ca4e4f2b5e583"><div class="ttname"><a href="namespacestf_1_1math.html#affb9352af7b68426cc6ca4e4f2b5e583">stf::math::dot</a></div><div class="ttdeci">T dot(vec&lt; T, N &gt; const &amp;lhs, vec&lt; T, N &gt; const &amp;rhs)</div><div class="ttdoc">Compute the dot product of two vectors.</div><div class="ttdef"><b>Definition</b> vector.hpp:1221</div></div>
+<div class="ttc" id="anamespacestf_1_1alg_html_a2dd40179e42ebc262c82349808573e2c"><div class="ttname"><a href="namespacestf_1_1alg.html#a2dd40179e42ebc262c82349808573e2c">stf::alg::intersects</a></div><div class="ttdeci">bool intersects(math::interval&lt; T &gt; const &amp;lhs, math::interval&lt; T &gt; const &amp;rhs)</div><div class="ttdoc">Compute whether or not two intervals intersect.</div><div class="ttdef"><b>Definition</b> intersects.hpp:31</div></div>
+<div class="ttc" id="anamespacestf_1_1alg_html_a42aaa311dc70ffaf0f26701f8149486e"><div class="ttname"><a href="namespacestf_1_1alg.html#a42aaa311dc70ffaf0f26701f8149486e">stf::alg::intersect</a></div><div class="ttdeci">std::optional&lt; math::vec3&lt; T &gt; &gt; intersect(geom::ray3&lt; T &gt; const &amp;ray, geom::plane&lt; T &gt; const &amp;plane)</div><div class="ttdoc">Compute the intersection of a ray and a plane.</div><div class="ttdef"><b>Definition</b> intersect.hpp:27</div></div>
+<div class="ttc" id="anamespacestf_1_1math_html_affb9352af7b68426cc6ca4e4f2b5e583"><div class="ttname"><a href="namespacestf_1_1math.html#affb9352af7b68426cc6ca4e4f2b5e583">stf::math::dot</a></div><div class="ttdeci">T dot(vec&lt; T, N &gt; const &amp;lhs, vec&lt; T, N &gt; const &amp;rhs)</div><div class="ttdoc">Compute the dot product of two vectors.</div><div class="ttdef"><b>Definition</b> vector.hpp:1222</div></div>
 <div class="ttc" id="aray_8hpp_html"><div class="ttname"><a href="ray_8hpp.html">ray.hpp</a></div><div class="ttdoc">A file containing a templated ray class along with associated functions.</div></div>
-<div class="ttc" id="astructstf_1_1geom_1_1aabb_html"><div class="ttname"><a href="structstf_1_1geom_1_1aabb.html">stf::geom::aabb</a></div><div class="ttdoc">An aabb class representing axis aligned boxes in R^n.</div><div class="ttdef"><b>Definition</b> aabb.hpp:27</div></div>
-<div class="ttc" id="astructstf_1_1geom_1_1aabb_html_a3e33ff195a65f18443eea82353b95d94"><div class="ttname"><a href="structstf_1_1geom_1_1aabb.html#a3e33ff195a65f18443eea82353b95d94">stf::geom::aabb::dist</a></div><div class="ttdeci">T dist(vec_t const &amp;point) const</div><div class="ttdoc">Compute the distance between an aabb and a vector.</div><div class="ttdef"><b>Definition</b> aabb.hpp:233</div></div>
-<div class="ttc" id="astructstf_1_1geom_1_1aabb_html_af25c4484fee1f0937bb4349390fc5ae9"><div class="ttname"><a href="structstf_1_1geom_1_1aabb.html#af25c4484fee1f0937bb4349390fc5ae9">stf::geom::aabb::contains</a></div><div class="ttdeci">bool contains(vec_t const &amp;x) const</div><div class="ttdoc">Compute whether a point is contained in an aabb.</div><div class="ttdef"><b>Definition</b> aabb.hpp:134</div></div>
+<div class="ttc" id="astructstf_1_1geom_1_1aabb_html"><div class="ttname"><a href="structstf_1_1geom_1_1aabb.html">stf::geom::aabb</a></div><div class="ttdoc">An aabb class representing axis aligned boxes in R^n.</div><div class="ttdef"><b>Definition</b> aabb.hpp:28</div></div>
+<div class="ttc" id="astructstf_1_1geom_1_1aabb_html_a3e33ff195a65f18443eea82353b95d94"><div class="ttname"><a href="structstf_1_1geom_1_1aabb.html#a3e33ff195a65f18443eea82353b95d94">stf::geom::aabb::dist</a></div><div class="ttdeci">T dist(vec_t const &amp;point) const</div><div class="ttdoc">Compute the distance between an aabb and a vector.</div><div class="ttdef"><b>Definition</b> aabb.hpp:234</div></div>
+<div class="ttc" id="astructstf_1_1geom_1_1aabb_html_af25c4484fee1f0937bb4349390fc5ae9"><div class="ttname"><a href="structstf_1_1geom_1_1aabb.html#af25c4484fee1f0937bb4349390fc5ae9">stf::geom::aabb::contains</a></div><div class="ttdeci">bool contains(vec_t const &amp;x) const</div><div class="ttdoc">Compute whether a point is contained in an aabb.</div><div class="ttdef"><b>Definition</b> aabb.hpp:135</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
