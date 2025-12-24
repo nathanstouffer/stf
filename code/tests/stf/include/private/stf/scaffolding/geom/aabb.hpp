@@ -1,4 +1,5 @@
-#pragma once
+#ifndef STF_SCAFFOLDING_GEOM_AABB_HPP_HEADER_GUARD
+#define STF_SCAFFOLDING_GEOM_AABB_HPP_HEADER_GUARD
 
 #include <gtest/gtest.h>
 
@@ -77,3 +78,4 @@ struct dist_and_dist_squared
 };
 
 } // namespace stf::scaffolding::geom::aabb
+#endif

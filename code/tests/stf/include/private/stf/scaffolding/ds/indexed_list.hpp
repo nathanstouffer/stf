@@ -1,4 +1,5 @@
-#pragma once
+#ifndef STF_SCAFFOLDING_DS_INDEXED_LIST_HPP_HEADER_GUARD
+#define STF_SCAFFOLDING_DS_INDEXED_LIST_HPP_HEADER_GUARD
 
 #include <array>
 #include <string>
@@ -44,3 +45,4 @@ inline void verify(std::vector<element_t> const& elements, list_t const& list)
 }
 
 } // namespace stf::scaffolding::ds::indexed_list
+#endif

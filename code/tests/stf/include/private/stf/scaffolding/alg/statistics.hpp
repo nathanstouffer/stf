@@ -1,4 +1,5 @@
-#pragma once
+#ifndef STF_SCAFFOLDING_ALG_STATISTICS_HPP_HEADER_GUARD
+#define STF_SCAFFOLDING_ALG_STATISTICS_HPP_HEADER_GUARD
 
 #include <gtest/gtest.h>
 
@@ -21,3 +22,4 @@ struct median
 };
 
 } // namespace stf::scaffolding::alg::statistics
+#endif

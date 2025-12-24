@@ -1,4 +1,5 @@
-#pragma once
+#ifndef STF_SCAFFOLDING_GEOM_SEGMENT_HPP_HEADER_GUARD
+#define STF_SCAFFOLDING_GEOM_SEGMENT_HPP_HEADER_GUARD
 
 #include <gtest/gtest.h>
 
@@ -43,3 +44,4 @@ struct interpolate
 };
 
 } // namespace stf::scaffolding::geom::segment
+#endif

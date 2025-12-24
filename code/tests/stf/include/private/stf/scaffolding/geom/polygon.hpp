@@ -1,4 +1,5 @@
-#pragma once
+#ifndef STF_SCAFFOLDING_GEOM_POLYGON_HPP_HEADER_GUARD
+#define STF_SCAFFOLDING_GEOM_POLYGON_HPP_HEADER_GUARD
 
 #include <gtest/gtest.h>
 
@@ -77,3 +78,4 @@ struct distances
 };
 
 } // namespace stf::scaffolding::geom::polygon
+#endif

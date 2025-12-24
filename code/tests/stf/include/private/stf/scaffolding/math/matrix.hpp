@@ -1,4 +1,5 @@
-#pragma once
+#ifndef STF_SCAFFOLDING_MATH_MATRIX_HPP_HEADER_GUARD
+#define STF_SCAFFOLDING_MATH_MATRIX_HPP_HEADER_GUARD
 
 #include <gtest/gtest.h>
 
@@ -54,3 +55,4 @@ struct inverted
 };
 
 } // namespace stf::scaffolding::math::mtx
+#endif

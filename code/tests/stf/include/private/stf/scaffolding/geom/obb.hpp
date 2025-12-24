@@ -1,4 +1,5 @@
-#pragma once
+#ifndef STF_SCAFFOLDING_GEOM_OBB_HPP_HEADER_GUARD
+#define STF_SCAFFOLDING_GEOM_OBB_HPP_HEADER_GUARD
 
 #include <gtest/gtest.h>
 
@@ -93,3 +94,4 @@ struct intersect
 };
 
 } // namespace stf::scaffolding::geom::obb
+#endif

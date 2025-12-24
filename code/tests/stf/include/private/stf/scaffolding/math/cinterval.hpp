@@ -1,4 +1,5 @@
-#pragma once
+#ifndef STF_SCAFFOLDING_MATH_CINTERVAL_HPP_HEADER_GUARD
+#define STF_SCAFFOLDING_MATH_CINTERVAL_HPP_HEADER_GUARD
 
 #include <gtest/gtest.h>
 
@@ -22,3 +23,4 @@ struct contains_point
 };
 
 } // namespace stf::scaffolding::math::cinterval
+#endif

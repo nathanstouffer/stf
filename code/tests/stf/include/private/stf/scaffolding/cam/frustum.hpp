@@ -1,4 +1,5 @@
-#pragma once
+#ifndef STF_SCAFFOLDING_CAM_FRUSTUM_HPP_HEADER_GUARD
+#define STF_SCAFFOLDING_CAM_FRUSTUM_HPP_HEADER_GUARD
 
 #include <gtest/gtest.h>
 
@@ -68,3 +69,4 @@ struct intersects
 };
 
 } // namespace stf::scaffolding::cam::frustum
+#endif
