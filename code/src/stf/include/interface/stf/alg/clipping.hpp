@@ -60,7 +60,7 @@ region_code code(geom::aabb2<T> const& box, math::vec2<T> const& point)
         y = region_code::top;
     }
 
-    return static_cast<region_code>(x | y);
+    return x | y;
 }
 
 } // namespace stf::alg::guts
