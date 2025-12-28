@@ -24,12 +24,14 @@ enum class region_code : int
 
 constexpr region_code operator|(region_code lhs, region_code rhs)
 {
-    return static_cast<region_code>(static_cast<int>(lhs) | static_cast<int>(rhs));
+    return static_cast<region_code>(static_cast<int>(lhs) |
+                                    static_cast<int>(rhs)); // NOLINT(clang-analyzer-optin.core.EnumCastOutOfRange)
 }
 
 constexpr region_code operator&(region_code lhs, region_code rhs)
 {
-    return static_cast<region_code>(static_cast<int>(lhs) & static_cast<int>(rhs));
+    return static_cast<region_code>(static_cast<int>(lhs) &
+                                    static_cast<int>(rhs)); // NOLINT(clang-analyzer-optin.core.EnumCastOutOfRange)
 }
 
 constexpr bool has_flag(region_code value, region_code query)
