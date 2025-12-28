@@ -61,7 +61,7 @@ set(STF_TEST_FILES
 
 add_executable(tests ${STF_TEST_FILES})
 
-if(${CLANG_TIDY_EXE})
+if(CLANG_TIDY_EXE)
     set_target_properties(tests
         PROPERTIES
         CXX_CLANG_TIDY ${CLANG_TIDY_EXE}

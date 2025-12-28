@@ -38,7 +38,9 @@ set(STF_FILES
 
 add_library(stf INTERFACE ${STF_FILES})
 
-if(${CLANG_TIDY_EXE})
+message("CLANG_TIDY_EXE: ${CLANG_TIDY_EXE}")
+if(CLANG_TIDY_EXE)
+    message("Setting clang-tidy flags")
     set_target_properties(stf
         PROPERTIES
         CXX_CLANG_TIDY ${CLANG_TIDY_EXE}
