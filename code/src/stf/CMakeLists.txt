@@ -38,6 +38,13 @@ set(STF_FILES
 
 add_library(stf INTERFACE ${STF_FILES})
 
+if(${CLANG_TIDY_EXE})
+    set_target_properties(stf
+        PROPERTIES
+        CXX_CLANG_TIDY ${CLANG_TIDY_EXE}
+    )
+endif()
+
 target_compile_definitions(stf INTERFACE
     STF_ENABLED=1
     STF_DISABLED=0

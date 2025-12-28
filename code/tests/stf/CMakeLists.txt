@@ -61,6 +61,13 @@ set(STF_TEST_FILES
 
 add_executable(tests ${STF_TEST_FILES})
 
+if(${CLANG_TIDY_EXE})
+    set_target_properties(tests
+        PROPERTIES
+        CXX_CLANG_TIDY ${CLANG_TIDY_EXE}
+    )
+endif()
+
 # add directory structure to IDEs
 source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}/" FILES ${STF_TEST_FILES})
 
