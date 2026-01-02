@@ -13,7 +13,7 @@
 namespace stf::alg::guts
 {
 
-enum class region_code : int
+enum class region_code : std::uint8_t
 {
     inside = 0x0,
     left = 0x1,

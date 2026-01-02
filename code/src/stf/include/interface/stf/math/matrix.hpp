@@ -62,7 +62,7 @@ struct mtx final
         inline vec<T, N> as_vec() const { return static_cast<vec<T, N>>(*this); }
 
     private:
-        mtx const& m;
+        mtx const& m; // NOLINT(cppcoreguidelines-avoid-const-or-ref-data-members)
         size_t c;
     };
 
@@ -132,7 +132,7 @@ struct mtx final
         inline vec<T, N> as_vec() const { return static_cast<vec<T, N>>(*this); }
 
     private:
-        mtx& m;
+        mtx& m; // NOLINT(cppcoreguidelines-avoid-const-or-ref-data-members)
         size_t c;
     };
 
@@ -176,7 +176,7 @@ struct mtx final
         inline vec<T, N> as_vec() const { return static_cast<vec<T, N>>(*this); }
 
     private:
-        mtx const& m;
+        mtx const& m; // NOLINT(cppcoreguidelines-avoid-const-or-ref-data-members)
         size_t r;
     };
 
@@ -246,7 +246,7 @@ struct mtx final
         inline vec<T, N> as_vec() const { return static_cast<vec<T, N>>(*this); }
 
     private:
-        mtx& m;
+        mtx& m; // NOLINT(cppcoreguidelines-avoid-const-or-ref-data-members)
         size_t r;
     };
 

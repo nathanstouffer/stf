@@ -22,7 +22,7 @@ namespace stf::math
 template <typename T>
 inline bool equ(T const lhs, T const rhs, T const eps)
 {
-    return (std::abs(lhs - rhs) <= eps) ? true : false;
+    return std::abs(lhs - rhs) <= eps;
 }
 
 /**
