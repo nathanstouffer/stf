@@ -10,6 +10,7 @@ Checks: |
   # disabled checks
   ,-bugprone-easily-swappable-parameters
   ,-cppcoreguidelines-pro-type-union-access
+  ,-cppcoreguidelines-pro-bounds-constant-array-index
   ,-cppcoreguidelines-avoid-magic-numbers
   ,-readability-magic-numbers
   ,-readability-identifier-length
