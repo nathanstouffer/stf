@@ -3,6 +3,8 @@
 
 // compiler settings
 
+// NOLINTBEGIN(cppcoreguidelines-macro-to-enum,cppcoreguidelines-macro-usage)
+
 #define STF_COMPILER_UNKNOWN 0x00000000
 
 // Visual C++ defines
@@ -28,6 +30,8 @@
 #else
 #    define STF_COMPILER STF_COMPILER_UNKNOWN
 #endif
+
+// NOLINTEND(cppcoreguidelines-macro-to-enum,cppcoreguidelines-macro-usage)
 
 #ifndef STF_COMPILER
 #    error                                                                                                             \
