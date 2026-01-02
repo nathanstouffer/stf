@@ -11,6 +11,8 @@
 namespace stf::math::raw
 {
 
+// NOLINTBEGIN(cppcoreguidelines-avoid-c-arrays)
+
 /**
  * @brief Add to a vector (stored as an array) in place
  * @tparam T Number type (eg float)
@@ -142,6 +144,8 @@ inline void as(T const src[N], U dst[N])
         dst[i] = static_cast<U>(src[i]);
     }
 }
+
+// NOLINTEND(cppcoreguidelines-avoid-c-arrays)
 
 } // namespace stf::math::raw
 

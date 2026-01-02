@@ -37,7 +37,7 @@ struct vec final
     /**
      * @brief A type alias for the array that stores the underlying values
      */
-    using const_array_t = T const[N];
+    using const_array_t = T const[N]; // NOLINT(cppcoreguidelines-avoid-c-arrays)
 
     /**
      * @brief A raw array to store the values making up the vector
@@ -258,7 +258,7 @@ struct vec<T, 2> final
     /**
      * @brief A type alias for the array that stores the underlying values
      */
-    using const_array_t = T const[2];
+    using const_array_t = T const[2]; // NOLINT(cppcoreguidelines-avoid-c-arrays)
 
 #if STF_SUPPRESS_ANONYMOUS_STRUCT_WARNINGS == STF_ENABLED
 #    if STF_COMPILER & STF_COMPILER_GCC
@@ -480,7 +480,7 @@ struct vec<T, 3> final
     /**
      * @brief A type alias for the array that stores the underlying values
      */
-    using const_array_t = T const[3];
+    using const_array_t = T const[3]; // NOLINT(cppcoreguidelines-avoid-c-arrays)
 
 #if STF_SUPPRESS_ANONYMOUS_STRUCT_WARNINGS == STF_ENABLED
 #    if STF_COMPILER & STF_COMPILER_GCC
@@ -712,7 +712,7 @@ struct vec<T, 4> final
     /**
      * @brief A type alias for the array that stores the underlying values
      */
-    using const_array_t = T const[4];
+    using const_array_t = T const[4]; // NOLINT(cppcoreguidelines-avoid-c-arrays)
 
 #if STF_SUPPRESS_ANONYMOUS_STRUCT_WARNINGS == STF_ENABLED
 #    if STF_COMPILER & STF_COMPILER_GCC
