@@ -122,21 +122,9 @@ bool intersects(geom::segment2<T> const& segment, geom::aabb2<T> const& aabb)
     }
 
     // both points are outside the box => an intersection can only occur if the segment crosses a diagonal
-    geom::segment2<T> const diagonal_0(aabb.min, aabb.max);
-    if (intersects(segment, diagonal_0))
-    {
-        return true;
-    }
-
-    math::vec2<T> const a(aabb.min.x, aabb.max.y);
-    math::vec2<T> const b(aabb.max.x, aabb.min.y);
-    geom::segment2<T> const diagonal_1(a, b);
-    if (intersects(segment, diagonal_1))
-    {
-        return true;
-    }
-
-    return false; // fallthrough to return false
+    geom::segment2<T> const diagonal_0(aabb.vertex(0), aabb.vertex(3));
+    geom::segment2<T> const diagonal_1(aabb.vertex(1), aabb.vertex(2));
+    return intersects(segment, diagonal_0) || intersects(segment, diagonal_1);
 }
 
 /**
