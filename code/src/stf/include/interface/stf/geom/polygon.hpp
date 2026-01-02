@@ -142,8 +142,8 @@ public:
             return false;
         }
 
-        size_t clockwise = 0;
-        size_t counterclockwise = 0;
+        bool clockwise = false;
+        bool counterclockwise = false;
 
         size_t size = m_vertices.size();
         for (size_t i = 0; i < size; ++i)
@@ -157,11 +157,11 @@ public:
             // update counts
             if (orientation > math::constants<T>::zero)
             {
-                ++counterclockwise;
+                counterclockwise = true;
             }
             if (orientation < math::constants<T>::zero)
             {
-                ++clockwise;
+                clockwise = true;
             }
 
             // if we have different orientations, then the polygon is not convex
