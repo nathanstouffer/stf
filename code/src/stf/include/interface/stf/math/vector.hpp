@@ -330,6 +330,7 @@ struct vec<T, 2> final
      */
     inline size_t size() const { return 2; }
 
+    // NOLINTBEGIN(cppcoreguidelines-pro-bounds-constant-array-index)
     /**
      * @brief Return a scalar from the vector
      * @param [in] i The dimension of the vector to read
@@ -343,6 +344,7 @@ struct vec<T, 2> final
      * @return A reference to the scalar at dimension @p i
      */
     inline T& operator[](size_t i) { return values[i]; }
+    // NOLINTEND(cppcoreguidelines-pro-bounds-constant-array-index)
 
     /**
      * @brief Add to a vector in place
@@ -562,6 +564,7 @@ struct vec<T, 3> final
      */
     inline size_t size() const { return 3; }
 
+    // NOLINTBEGIN(cppcoreguidelines-pro-bounds-constant-array-index)
     /**
      * @brief Return a scalar from the vector
      * @param [in] i The dimension of the vector to read
@@ -575,6 +578,7 @@ struct vec<T, 3> final
      * @return A reference to the scalar at dimension @p i
      */
     inline T& operator[](size_t i) { return values[i]; }
+    // NOLINTEND(cppcoreguidelines-pro-bounds-constant-array-index)
 
     /**
      * @brief Add to a vector in place
@@ -814,6 +818,7 @@ struct vec<T, 4> final
      */
     inline size_t size() const { return 4; }
 
+    // NOLINTBEGIN(cppcoreguidelines-pro-bounds-constant-array-index)
     /**
      * @brief Return a scalar from the vector
      * @param [in] i The dimension of the vector to read
@@ -827,6 +832,7 @@ struct vec<T, 4> final
      * @return A reference to the scalar at dimension @p i
      */
     inline T& operator[](size_t i) { return values[i]; }
+    // NOLINTEND(cppcoreguidelines-pro-bounds-constant-array-index)
 
     /**
      * @brief Add to a vector in place
