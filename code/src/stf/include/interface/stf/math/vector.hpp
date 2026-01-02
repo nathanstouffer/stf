@@ -113,14 +113,20 @@ struct vec final
      * @param [in] i The dimension of the vector to read
      * @return A const reference to the scalar at dimension @p i
      */
-    inline T const& operator[](size_t i) const { return values[i]; }
+    inline T const& operator[](size_t i) const
+    {
+        return values[i]; // NOLINT(cppcoreguidelines-pro-bounds-constant-array-index)
+    }
 
     /**
      * @brief Return a scalar from the vector
      * @param [in] i The dimension of the vector to read
      * @return A reference to the scalar at dimension @p i
      */
-    inline T& operator[](size_t i) { return values[i]; }
+    inline T& operator[](size_t i)
+    {
+        return values[i]; // NOLINT(cppcoreguidelines-pro-bounds-constant-array-index)
+    }
 
     /**
      * @brief Add to a vector in place
@@ -129,7 +135,7 @@ struct vec final
      */
     inline vec& operator+=(vec const& rhs)
     {
-        raw::plus_equals<T, N>(values, rhs.values);
+        raw::plus_equals<T, N>(values, rhs.values); // NOLINT(cppcoreguidelines-pro-bounds-array-to-pointer-decay)
         return *this;
     }
 
@@ -140,7 +146,7 @@ struct vec final
      */
     inline vec& operator-=(vec const& rhs)
     {
-        raw::minus_equals<T, N>(values, rhs.values);
+        raw::minus_equals<T, N>(values, rhs.values); // NOLINT(cppcoreguidelines-pro-bounds-array-to-pointer-decay)
         return *this;
     }
 
@@ -162,7 +168,7 @@ struct vec final
      */
     inline vec& operator*=(vec const& rhs)
     {
-        raw::hadamard_equals<T, N>(values, rhs.values);
+        raw::hadamard_equals<T, N>(values, rhs.values); // NOLINT(cppcoreguidelines-pro-bounds-array-to-pointer-decay)
         return *this;
     }
 
@@ -182,7 +188,10 @@ struct vec final
      * @param [in] rhs
      * @return The dot product of @p this with @p rhs
      */
-    inline T dot(vec const& rhs) const { return raw::dot<T, N>(values, rhs.values); }
+    inline T dot(vec const& rhs) const
+    {
+        return raw::dot<T, N>(values, rhs.values); // NOLINT(cppcoreguidelines-pro-bounds-array-to-pointer-decay)
+    }
 
     /**
      * @brief Compute the square of the length of a vector
@@ -235,7 +244,7 @@ struct vec final
     vec<U, N> as() const
     {
         vec<U, N> result;
-        raw::as<T, U, N>(values, result.values, N);
+        raw::as<T, U, N>(values, result.values, N); // NOLINT(cppcoreguidelines-pro-bounds-array-to-pointer-decay)
         return result;
     }
 
@@ -330,21 +339,25 @@ struct vec<T, 2> final
      */
     inline size_t size() const { return 2; }
 
-    // NOLINTBEGIN(cppcoreguidelines-pro-bounds-constant-array-index)
     /**
      * @brief Return a scalar from the vector
      * @param [in] i The dimension of the vector to read
      * @return A const reference to the scalar at dimension @p i
      */
-    inline T const& operator[](size_t i) const { return values[i]; }
+    inline T const& operator[](size_t i) const
+    {
+        return values[i]; // NOLINT(cppcoreguidelines-pro-bounds-constant-array-index)
+    }
 
     /**
      * @brief Return a scalar from the vector
      * @param [in] i The dimension of the vector to read
      * @return A reference to the scalar at dimension @p i
      */
-    inline T& operator[](size_t i) { return values[i]; }
-    // NOLINTEND(cppcoreguidelines-pro-bounds-constant-array-index)
+    inline T& operator[](size_t i)
+    {
+        return values[i]; // NOLINT(cppcoreguidelines-pro-bounds-constant-array-index)
+    }
 
     /**
      * @brief Add to a vector in place
@@ -353,7 +366,7 @@ struct vec<T, 2> final
      */
     inline vec& operator+=(vec const& rhs)
     {
-        raw::plus_equals<T, 2>(values, rhs.values);
+        raw::plus_equals<T, 2>(values, rhs.values); // NOLINT(cppcoreguidelines-pro-bounds-array-to-pointer-decay)
         return *this;
     }
 
@@ -386,7 +399,7 @@ struct vec<T, 2> final
      */
     inline vec& operator*=(vec const& rhs)
     {
-        raw::hadamard_equals<T, 2>(values, rhs.values);
+        raw::hadamard_equals<T, 2>(values, rhs.values); // NOLINT(cppcoreguidelines-pro-bounds-array-to-pointer-decay)
         return *this;
     }
 
@@ -462,7 +475,7 @@ struct vec<T, 2> final
     vec<U, 2> as() const
     {
         vec<U, 2> result;
-        raw::as<T, U, 2>(values, result.values);
+        raw::as<T, U, 2>(values, result.values); // NOLINT(cppcoreguidelines-pro-bounds-array-to-pointer-decay)
         return result;
     }
 
@@ -567,21 +580,25 @@ struct vec<T, 3> final
      */
     inline size_t size() const { return 3; }
 
-    // NOLINTBEGIN(cppcoreguidelines-pro-bounds-constant-array-index)
     /**
      * @brief Return a scalar from the vector
      * @param [in] i The dimension of the vector to read
      * @return A const reference to the scalar at dimension @p i
      */
-    inline T const& operator[](size_t i) const { return values[i]; }
+    inline T const& operator[](size_t i) const
+    {
+        return values[i]; // NOLINT(cppcoreguidelines-pro-bounds-constant-array-index)
+    }
 
     /**
      * @brief Return a scalar from the vector
      * @param [in] i The dimension of the vector to read
      * @return A reference to the scalar at dimension @p i
      */
-    inline T& operator[](size_t i) { return values[i]; }
-    // NOLINTEND(cppcoreguidelines-pro-bounds-constant-array-index)
+    inline T& operator[](size_t i)
+    {
+        return values[i]; // NOLINT(cppcoreguidelines-pro-bounds-constant-array-index)
+    }
 
     /**
      * @brief Add to a vector in place
@@ -590,7 +607,7 @@ struct vec<T, 3> final
      */
     inline vec& operator+=(vec const& rhs)
     {
-        raw::plus_equals<T, 3>(values, rhs.values);
+        raw::plus_equals<T, 3>(values, rhs.values); // NOLINT(cppcoreguidelines-pro-bounds-array-to-pointer-decay)
         return *this;
     }
 
@@ -601,7 +618,7 @@ struct vec<T, 3> final
      */
     inline vec& operator-=(vec const& rhs)
     {
-        raw::minus_equals<T, 3>(values, rhs.values);
+        raw::minus_equals<T, 3>(values, rhs.values); // NOLINT(cppcoreguidelines-pro-bounds-array-to-pointer-decay)
         return *this;
     }
 
@@ -623,7 +640,7 @@ struct vec<T, 3> final
      */
     inline vec& operator*=(vec const& rhs)
     {
-        raw::hadamard_equals<T, 3>(values, rhs.values);
+        raw::hadamard_equals<T, 3>(values, rhs.values); // NOLINT(cppcoreguidelines-pro-bounds-array-to-pointer-decay)
         return *this;
     }
 
@@ -643,7 +660,10 @@ struct vec<T, 3> final
      * @param [in] rhs
      * @return The dot product of @p this with @p rhs
      */
-    inline T dot(vec const& rhs) const { return raw::dot<T, 3>(values, rhs.values); }
+    inline T dot(vec const& rhs) const
+    {
+        return raw::dot<T, 3>(values, rhs.values); // NOLINT(cppcoreguidelines-pro-bounds-array-to-pointer-decay)
+    }
 
     /**
      * @brief Compute the square of the length of a vector
@@ -696,7 +716,7 @@ struct vec<T, 3> final
     vec<U, 3> as() const
     {
         vec<U, 3> result;
-        raw::as<T, U, 3>(values, result.values);
+        raw::as<T, U, 3>(values, result.values); // NOLINT(cppcoreguidelines-pro-bounds-array-to-pointer-decay)
         return result;
     }
 
@@ -821,21 +841,25 @@ struct vec<T, 4> final
      */
     inline size_t size() const { return 4; }
 
-    // NOLINTBEGIN(cppcoreguidelines-pro-bounds-constant-array-index)
     /**
      * @brief Return a scalar from the vector
      * @param [in] i The dimension of the vector to read
      * @return A const reference to the scalar at dimension @p i
      */
-    inline T const& operator[](size_t i) const { return values[i]; }
+    inline T const& operator[](size_t i) const
+    {
+        return values[i]; // NOLINT(cppcoreguidelines-pro-bounds-constant-array-index)
+    }
 
     /**
      * @brief Return a scalar from the vector
      * @param [in] i The dimension of the vector to read
      * @return A reference to the scalar at dimension @p i
      */
-    inline T& operator[](size_t i) { return values[i]; }
-    // NOLINTEND(cppcoreguidelines-pro-bounds-constant-array-index)
+    inline T& operator[](size_t i)
+    {
+        return values[i]; // NOLINT(cppcoreguidelines-pro-bounds-constant-array-index)
+    }
 
     /**
      * @brief Add to a vector in place
@@ -844,7 +868,7 @@ struct vec<T, 4> final
      */
     inline vec& operator+=(vec const& rhs)
     {
-        raw::plus_equals<T, 4>(values, rhs.values);
+        raw::plus_equals<T, 4>(values, rhs.values); // NOLINT(cppcoreguidelines-pro-bounds-array-to-pointer-decay)
         return *this;
     }
 
@@ -855,7 +879,7 @@ struct vec<T, 4> final
      */
     inline vec& operator-=(vec const& rhs)
     {
-        raw::minus_equals<T, 4>(values, rhs.values);
+        raw::minus_equals<T, 4>(values, rhs.values); // NOLINT(cppcoreguidelines-pro-bounds-array-to-pointer-decay)
         return *this;
     }
 
@@ -877,7 +901,7 @@ struct vec<T, 4> final
      */
     inline vec& operator*=(vec const& rhs)
     {
-        raw::hadamard_equals<T, 4>(values, rhs.values);
+        raw::hadamard_equals<T, 4>(values, rhs.values); // NOLINT(cppcoreguidelines-pro-bounds-array-to-pointer-decay)
         return *this;
     }
 
@@ -897,7 +921,10 @@ struct vec<T, 4> final
      * @param [in] rhs
      * @return The dot product of @p this with @p rhs
      */
-    inline T dot(vec const& rhs) const { return raw::dot<T, 4>(values, rhs.values); }
+    inline T dot(vec const& rhs) const
+    {
+        return raw::dot<T, 4>(values, rhs.values); // NOLINT(cppcoreguidelines-pro-bounds-array-to-pointer-decay)
+    }
 
     /**
      * @brief Compute the square of the length of a vector
@@ -950,7 +977,7 @@ struct vec<T, 4> final
     vec<U, 4> as() const
     {
         vec<U, 4> result;
-        raw::as<T, U, 4>(values, result.values);
+        raw::as<T, U, 4>(values, result.values); // NOLINT(cppcoreguidelines-pro-bounds-array-to-pointer-decay)
         return result;
     }
 
