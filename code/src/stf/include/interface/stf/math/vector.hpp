@@ -113,20 +113,14 @@ struct vec final
      * @param [in] i The dimension of the vector to read
      * @return A const reference to the scalar at dimension @p i
      */
-    inline T const& operator[](size_t i) const
-    {
-        return values[i]; // NOLINT(cppcoreguidelines-pro-bounds-constant-array-index)
-    }
+    inline T const& operator[](size_t i) const { return values[i]; }
 
     /**
      * @brief Return a scalar from the vector
      * @param [in] i The dimension of the vector to read
      * @return A reference to the scalar at dimension @p i
      */
-    inline T& operator[](size_t i)
-    {
-        return values[i]; // NOLINT(cppcoreguidelines-pro-bounds-constant-array-index)
-    }
+    inline T& operator[](size_t i) { return values[i]; }
 
     /**
      * @brief Add to a vector in place
@@ -344,20 +338,14 @@ struct vec<T, 2> final
      * @param [in] i The dimension of the vector to read
      * @return A const reference to the scalar at dimension @p i
      */
-    inline T const& operator[](size_t i) const
-    {
-        return values[i]; // NOLINT(cppcoreguidelines-pro-bounds-constant-array-index)
-    }
+    inline T const& operator[](size_t i) const { return values[i]; }
 
     /**
      * @brief Return a scalar from the vector
      * @param [in] i The dimension of the vector to read
      * @return A reference to the scalar at dimension @p i
      */
-    inline T& operator[](size_t i)
-    {
-        return values[i]; // NOLINT(cppcoreguidelines-pro-bounds-constant-array-index)
-    }
+    inline T& operator[](size_t i) { return values[i]; }
 
     /**
      * @brief Add to a vector in place
@@ -585,20 +573,14 @@ struct vec<T, 3> final
      * @param [in] i The dimension of the vector to read
      * @return A const reference to the scalar at dimension @p i
      */
-    inline T const& operator[](size_t i) const
-    {
-        return values[i]; // NOLINT(cppcoreguidelines-pro-bounds-constant-array-index)
-    }
+    inline T const& operator[](size_t i) const { return values[i]; }
 
     /**
      * @brief Return a scalar from the vector
      * @param [in] i The dimension of the vector to read
      * @return A reference to the scalar at dimension @p i
      */
-    inline T& operator[](size_t i)
-    {
-        return values[i]; // NOLINT(cppcoreguidelines-pro-bounds-constant-array-index)
-    }
+    inline T& operator[](size_t i) { return values[i]; }
 
     /**
      * @brief Add to a vector in place
@@ -846,20 +828,14 @@ struct vec<T, 4> final
      * @param [in] i The dimension of the vector to read
      * @return A const reference to the scalar at dimension @p i
      */
-    inline T const& operator[](size_t i) const
-    {
-        return values[i]; // NOLINT(cppcoreguidelines-pro-bounds-constant-array-index)
-    }
+    inline T const& operator[](size_t i) const { return values[i]; }
 
     /**
      * @brief Return a scalar from the vector
      * @param [in] i The dimension of the vector to read
      * @return A reference to the scalar at dimension @p i
      */
-    inline T& operator[](size_t i)
-    {
-        return values[i]; // NOLINT(cppcoreguidelines-pro-bounds-constant-array-index)
-    }
+    inline T& operator[](size_t i) { return values[i]; }
 
     /**
      * @brief Add to a vector in place
