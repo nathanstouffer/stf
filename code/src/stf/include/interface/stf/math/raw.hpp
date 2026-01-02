@@ -11,7 +11,7 @@
 namespace stf::math::raw
 {
 
-// NOLINTBEGIN(cppcoreguidelines-avoid-c-arrays)
+// NOLINTBEGIN(cppcoreguidelines-avoid-c-arrays,cppcoreguidelines-pro-bounds-pointer-arithmetic)
 
 /**
  * @brief Add to a vector (stored as an array) in place
@@ -145,7 +145,7 @@ inline void as(T const src[N], U dst[N])
     }
 }
 
-// NOLINTEND(cppcoreguidelines-avoid-c-arrays)
+// NOLINTEND(cppcoreguidelines-avoid-c-arrays,cppcoreguidelines-pro-bounds-pointer-arithmetic)
 
 } // namespace stf::math::raw
 

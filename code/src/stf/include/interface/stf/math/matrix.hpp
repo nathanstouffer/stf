@@ -259,7 +259,7 @@ struct mtx final
      * @brief The scalars defining this matrix
      * @note Stored in column-major form
      */
-    T values[N * N];
+    T values[N * N]; // NOLINT(cppcoreguidelines-avoid-c-arrays)
 
     /**
      * @brief Default constructor -- intializes to the identity matrix
@@ -569,6 +569,7 @@ struct mtx final
      */
     inline mtx<T, N - 1> prefix() const { return minor(N - 1, N - 1); }
 
+    // NOLINTBEGIN(cppcoreguidelines-avoid-c-arrays)
     /**
      * @brief Fill a raw array with scalars of the matrix in column-major form
      * @param [out] fill
@@ -583,6 +584,7 @@ struct mtx final
      * @param [out] fill
      */
     inline void row_major(T fill[N * N]) const { return transposed().col_major(fill); }
+    // NOLINTEND(cppcoreguidelines-avoid-c-arrays)
 
     /**
      * @brief Cast a matrix to a different precision
