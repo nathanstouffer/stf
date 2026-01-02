@@ -1038,7 +1038,7 @@ inline T dist(vec<T, N> const& lhs, vec<T, N> const& rhs)
 template <typename T, size_t N>
 inline bool equ(vec<T, N> const& lhs, vec<T, N> const& rhs, T const eps)
 {
-    return (dist(lhs, rhs) <= eps) ? true : false;
+    return dist(lhs, rhs) <= eps;
 }
 
 /**
