@@ -406,8 +406,10 @@ struct vec<T, 2> final
      * @param [in] rhs
      * @return The dot product of @p this with @p rhs
      */
-    inline T dot(vec const& rhs) const { return raw::dot<T, 2>(values, rhs.values); // NOLINT(cppcoreguidelines-pro-bounds-array-to-pointer-decay)
-										    }
+    inline T dot(vec const& rhs) const
+    {
+        return raw::dot<T, 2>(values, rhs.values); // NOLINT(cppcoreguidelines-pro-bounds-array-to-pointer-decay)
+    }
 
     /**
      * @brief Compute the square of the length of a vector
