@@ -139,71 +139,69 @@ public:
      */
     bool intersects_fast(aabb_t const& aabb) const
     {
-        if (m_aabb.intersects(aabb))
-        {
-            // check if any frustum plane entirely excludes the box
-            for (size_t i = 0; i < c_num_planes; ++i)
-            {
-                // check if the extremity in the direction of the normal is contained in the halfspace
-                plane_t const& plane = m_planes[i];
-                vec_t extremity = aabb.extremity(plane.normal());
-                bool contained = plane.side(extremity) >= math::constants<T>::zero;
-                if (!contained)
-                {
-                    return false;
-                }
-            }
-
-            // check if any box plane entirely excludes the frustum
-            {
-                // clang-format off
-                std::array<vec_t, 8> verts = {
-                    // near points                  // far points
-                    m_vertices.ntl, m_vertices.ntr, m_vertices.ftl, m_vertices.ftr,
-                    m_vertices.nbl, m_vertices.nbr, m_vertices.fbl, m_vertices.fbr,
-                };
-                // clang-format on
-
-                for (size_t d = 0; d < 3; ++d) // iterate over each dimension (x, y, and z)
-                {
-                    // check the plane at the minimum of the box that has a normal in the +d direction
-                    {
-                        // count the number of frustum vertices outside the box
-                        size_t outside = 0;
-                        for (vec_t const& vert : verts)
-                        {
-                            outside += vert[d] < aabb.min[d] ? 1 : 0;
-                        }
-                        if (outside == 8)
-                        {
-                            return false;
-                        }
-                    }
-
-                    // check the plane at the maximum of the box that has a normal in the -d direction
-                    {
-                        // count the number of frustum vertices outside the box
-                        size_t outside = 0;
-                        for (vec_t const& vert : verts)
-                        {
-                            outside += aabb.max[d] < vert[d] ? 1 : 0;
-                        }
-                        if (outside == 8)
-                        {
-                            return false;
-                        }
-                    }
-                }
-            }
-
-            // if we arrive here, we were not able to prove that the frustum/aabb do not intersect. so we must assume
-            // that they do intersect, though this maybe be incorrect (resulting in a false positive)
-            return true; // fallthrough to return true
-        }
-        else
+        if (!m_aabb.intersects(aabb))
         {
             return false;
         }
+
+        // check if any frustum plane entirely excludes the box
+        for (size_t i = 0; i < c_num_planes; ++i)
+        {
+            // check if the extremity in the direction of the normal is contained in the halfspace
+            plane_t const& plane = m_planes[i];
+            vec_t extremity = aabb.extremity(plane.normal());
+            bool contained = plane.side(extremity) >= math::constants<T>::zero;
+            if (!contained)
+            {
+                return false;
+            }
+        }
+
+        // check if any box plane entirely excludes the frustum
+        {
+            // clang-format off
+            std::array<vec_t, 8> verts = {
+                // near points                  // far points
+                m_vertices.ntl, m_vertices.ntr, m_vertices.ftl, m_vertices.ftr,
+                m_vertices.nbl, m_vertices.nbr, m_vertices.fbl, m_vertices.fbr,
+            };
+            // clang-format on
+
+            for (size_t d = 0; d < 3; ++d) // iterate over each dimension (x, y, and z)
+            {
+                // check the plane at the minimum of the box that has a normal in the +d direction
+                {
+                    // count the number of frustum vertices outside the box
+                    size_t outside = 0;
+                    for (vec_t const& vert : verts)
+                    {
+                        outside += vert[d] < aabb.min[d] ? 1 : 0;
+                    }
+                    if (outside == 8)
+                    {
+                        return false;
+                    }
+                }
+
+                // check the plane at the maximum of the box that has a normal in the -d direction
+                {
+                    // count the number of frustum vertices outside the box
+                    size_t outside = 0;
+                    for (vec_t const& vert : verts)
+                    {
+                        outside += aabb.max[d] < vert[d] ? 1 : 0;
+                    }
+                    if (outside == 8)
+                    {
+                        return false;
+                    }
+                }
+            }
+        }
+
+        // if we arrive here, we were not able to prove that the frustum/aabb do not intersect. so we must assume
+        // that they do intersect, though this maybe be incorrect (resulting in a false positive)
+        return true; // fallthrough to return true
     }
 
     /**
