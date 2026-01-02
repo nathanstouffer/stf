@@ -364,7 +364,7 @@ struct vec<T, 2> final
      */
     inline vec& operator-=(vec const& rhs)
     {
-        raw::minus_equals<T, 2>(values, rhs.values);
+        raw::minus_equals<T, 2>(values, rhs.values); // NOLINT(cppcoreguidelines-pro-bounds-array-to-pointer-decay)
         return *this;
     }
 
@@ -406,7 +406,8 @@ struct vec<T, 2> final
      * @param [in] rhs
      * @return The dot product of @p this with @p rhs
      */
-    inline T dot(vec const& rhs) const { return raw::dot<T, 2>(values, rhs.values); }
+    inline T dot(vec const& rhs) const { return raw::dot<T, 2>(values, rhs.values); // NOLINT(cppcoreguidelines-pro-bounds-array-to-pointer-decay)
+										    }
 
     /**
      * @brief Compute the square of the length of a vector
