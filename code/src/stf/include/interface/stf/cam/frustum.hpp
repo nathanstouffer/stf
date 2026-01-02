@@ -339,7 +339,7 @@ private:
     };
 
     // unscoped enum so we can use it as an array index
-    enum side : size_t
+    enum side : std::uint8_t
     {
         nearp = 0,
         farp = 1,
@@ -392,7 +392,9 @@ private:
     }
 
 private:
-    explicit frustum(vertices const& verts) : m_vertices(verts)
+    explicit frustum(vertices const& verts)
+        : m_vertices(verts)
+        , m_canonical_edge_axes(frustum::edge_axes(math::canonical_basis<T, 3>(), m_vertices))
     {
         m_planes[farp] = geom::fit_plane(verts.ftl, verts.fbl, verts.ftr);
         m_planes[nearp] = geom::plane<T>(verts.ntl, -m_planes[farp].normal()); // flip far plane avoid precision issues
@@ -409,8 +411,6 @@ private:
         };
         // clang-format on
         m_aabb = aabb_t::fit(points);
-
-        m_canonical_edge_axes = frustum::edge_axes(math::canonical_basis<T, 3>(), m_vertices);
     }
 
 private:
