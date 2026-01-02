@@ -157,7 +157,7 @@ struct vec final
      */
     inline vec& operator*=(T const scalar)
     {
-        raw::scale<T, N>(values, scalar);
+        raw::scale<T, N>(values, scalar); // NOLINT(cppcoreguidelines-pro-bounds-array-to-pointer-decay)
         return *this;
     }
 
@@ -179,7 +179,7 @@ struct vec final
      */
     inline vec& operator/=(T const divisor)
     {
-        raw::divide<T, N>(values, divisor);
+        raw::divide<T, N>(values, divisor); // NOLINT(cppcoreguidelines-pro-bounds-array-to-pointer-decay)
         return *this;
     }
 
@@ -388,7 +388,7 @@ struct vec<T, 2> final
      */
     inline vec& operator*=(T const scalar)
     {
-        raw::scale<T, 2>(values, scalar);
+        raw::scale<T, 2>(values, scalar); // NOLINT(cppcoreguidelines-pro-bounds-array-to-pointer-decay)
         return *this;
     }
 
@@ -410,7 +410,7 @@ struct vec<T, 2> final
      */
     inline vec& operator/=(T const divisor)
     {
-        raw::divide<T, 2>(values, divisor);
+        raw::divide<T, 2>(values, divisor); // NOLINT(cppcoreguidelines-pro-bounds-array-to-pointer-decay)
         return *this;
     }
 
@@ -629,7 +629,7 @@ struct vec<T, 3> final
      */
     inline vec& operator*=(T const scalar)
     {
-        raw::scale<T, 3>(values, scalar);
+        raw::scale<T, 3>(values, scalar); // NOLINT(cppcoreguidelines-pro-bounds-array-to-pointer-decay)
         return *this;
     }
 
@@ -651,7 +651,7 @@ struct vec<T, 3> final
      */
     inline vec& operator/=(T const divisor)
     {
-        raw::divide<T, 3>(values, divisor);
+        raw::divide<T, 3>(values, divisor); // NOLINT(cppcoreguidelines-pro-bounds-array-to-pointer-decay)
         return *this;
     }
 
@@ -890,7 +890,7 @@ struct vec<T, 4> final
      */
     inline vec& operator*=(T const scalar)
     {
-        raw::scale<T, 4>(values, scalar);
+        raw::scale<T, 4>(values, scalar); // NOLINT(cppcoreguidelines-pro-bounds-array-to-pointer-decay)
         return *this;
     }
 
@@ -912,7 +912,7 @@ struct vec<T, 4> final
      */
     inline vec& operator/=(T const divisor)
     {
-        raw::divide<T, 4>(values, divisor);
+        raw::divide<T, 4>(values, divisor); // NOLINT(cppcoreguidelines-pro-bounds-array-to-pointer-decay)
         return *this;
     }
 
@@ -1257,7 +1257,7 @@ inline vec<T, N> operator/(vec<T, N> const& lhs, vec<T, N> const& rhs)
 template <typename T, size_t N>
 inline T dot(vec<T, N> const& lhs, vec<T, N> const& rhs)
 {
-    return raw::dot<T, N>(lhs.values, rhs.values);
+    return raw::dot<T, N>(lhs.values, rhs.values); // NOLINT(cppcoreguidelines-pro-bounds-array-to-pointer-decay)
 }
 
 /**
@@ -1374,7 +1374,7 @@ template <typename T, size_t N>
 vec<T, N - 1> prefix(vec<T, N> const& rhs)
 {
     vec<T, N - 1> ret;
-    raw::prefix<T, N>(ret.values, rhs.values);
+    raw::prefix<T, N>(ret.values, rhs.values); // NOLINT(cppcoreguidelines-pro-bounds-array-to-pointer-decay)
     return ret;
 }
 
