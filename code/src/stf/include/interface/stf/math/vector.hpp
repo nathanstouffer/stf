@@ -42,7 +42,7 @@ struct vec final
     /**
      * @brief A raw array to store the values making up the vector
      */
-    T values[N];
+    T values[N]; // NOLINT(cppcoreguidelines-avoid-c-arrays)
 
     /**
      * @brief Default constructor -- intializes all dimensions to 0
@@ -282,7 +282,7 @@ struct vec<T, 2> final
     union
     {
         /// @cond DELETED
-        T values[2];
+        T values[2]; // NOLINT(cppcoreguidelines-avoid-c-arrays)
         struct
         {
             T x, y;
@@ -502,7 +502,7 @@ struct vec<T, 3> final
     union
     {
         /// @cond DELETED
-        T values[3];
+        T values[3]; // NOLINT(cppcoreguidelines-avoid-c-arrays)
         struct
         {
             T x, y, z;
@@ -734,7 +734,7 @@ struct vec<T, 4> final
     union
     {
         /// @cond DELETED
-        T values[4];
+        T values[4]; // NOLINT(cppcoreguidelines-avoid-c-arrays)
         struct
         {
             T x, y, z, w;
