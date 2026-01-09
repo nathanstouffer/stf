@@ -52,7 +52,7 @@ geom::polygon<T> convex_hull(std::vector<math::vec2<T>> const& input)
         {
             upper.pop_back();
         }
-        while (lower.size() >= 2 && math::orientation(*(lower.rbegin() + 1), *lower.rbegin(), candidate) >= 0)
+        while (lower.size() >= 2 && math::orientation(*(lower.rbegin() + 1), *lower.rbegin(), candidate) <= 0)
         {
             lower.pop_back();
         }
@@ -67,7 +67,7 @@ geom::polygon<T> convex_hull(std::vector<math::vec2<T>> const& input)
         hull.insert(hull.end(), lower.begin(), lower.end());
         if (upper.size() > 2)
         {
-            hull.insert(hull.end(), upper.begin() + 1, upper.end() - 1);
+            hull.insert(hull.end(), upper.rbegin() + 1, upper.rend() - 1);
         }
     }
 
