@@ -36,7 +36,6 @@ struct convex_hull_random_points
 
     void verify(size_t const i) const
     {
-        // TODO (stouff) generate random points
         std::vector<stf::math::vec2<T>> points;
         {
             points.reserve(count);
