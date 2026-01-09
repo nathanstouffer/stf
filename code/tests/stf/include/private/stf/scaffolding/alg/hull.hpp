@@ -55,7 +55,9 @@ struct convex_hull_random_points
 
         ASSERT_TRUE(hull.is_convex()) << info(i) << "Failed to compute a hull that is convex";
 
-        // TODO (stouff) test winding order (counterclockwise)
+        std::vector<math::vec2<T>> const& vertices = hull.vertices();
+        T orientation = math::orientation(vertices[0], vertices[1], vertices[2]);
+        ASSERT_LT(math::constants<T>::zero, orientation) << "Failed to have correct orientation";
 
         for (stf::math::vec2<T> const& p : points)
         {
