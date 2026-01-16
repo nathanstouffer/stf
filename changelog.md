@@ -10,14 +10,15 @@ There is some looseness on ABI changes because it is a header-only library so re
 
 ### Added
 
-* basic math primitives (e.g. vector, matrix, and interval)
-* basic geometric primitives (e.g. aabb, obb, segment, polyline, polygon, and hyperplane)
-* simple simple camera and frustum
-* intersection algorithms
-* interval tree
-* indexed list data structure
-* tests for much of the library
-* documentation
+- basic math primitives (e.g. vector, matrix, and interval)
+- basic geometric primitives (e.g. aabb, obb, segment, polyline, polygon, and hyperplane)
+- simple simple camera and frustum
+- intersection algorithms
+- convex hull algorithm
+- interval tree
+- indexed list data structure
+- tests for much of the library
+- documentation
 
 ### Changed
 
