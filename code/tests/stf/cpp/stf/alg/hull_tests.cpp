@@ -25,6 +25,7 @@ TEST(hull, convex_hull_random_points)
         { 0, 100 },
         { 1, 50 },
         { 2, 500 },
+        { -1, 2000 },
     };
     scaffolding::verify(tests);
 }

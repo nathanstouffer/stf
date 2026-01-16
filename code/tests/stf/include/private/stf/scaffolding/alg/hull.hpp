@@ -23,7 +23,17 @@ struct convex_hull_fixed_points
         stf::geom::polygon<T> actual = stf::alg::convex_hull(input);
 
         ASSERT_TRUE(actual.is_convex()) << info(i) << "Failed to compute a hull that is convex";
-        // TODO (stouff) test winding order
+        
+        std::vector<math::vec2<T>> const& vertices = hull.vertices();
+        for (size_t i = 0; i < vertices.size(); ++i)
+        {
+            math::vec2<T> const& p = vertices[(i + 0) % vertices.size()];
+            math::vec2<T> const& q = vertices[(i + 1) % vertices.size()];
+            math::vec2<T> const& r = vertices[(i + 2) % vertices.size()];
+            T orientation = math::orientation(p, q, r);
+            ASSERT_LT(math::constants<T>::zero, orientation) << "Failed to have correct orientation";
+        }
+
         ASSERT_EQ(expected, actual) << info(i) << "Failed to compute correct hull";
     }
 };
@@ -55,8 +65,14 @@ struct convex_hull_random_points
         ASSERT_TRUE(hull.is_convex()) << info(i) << "Failed to compute a hull that is convex";
 
         std::vector<math::vec2<T>> const& vertices = hull.vertices();
-        T orientation = math::orientation(vertices[0], vertices[1], vertices[2]);
-        ASSERT_LT(math::constants<T>::zero, orientation) << "Failed to have correct orientation";
+        for (size_t i = 0; i < vertices.size(); ++i)
+        {
+            math::vec2<T> const& p = vertices[(i + 0) % vertices.size()];
+            math::vec2<T> const& q = vertices[(i + 1) % vertices.size()];
+            math::vec2<T> const& r = vertices[(i + 2) % vertices.size()];
+            T orientation = math::orientation(p, q, r);
+            ASSERT_LT(math::constants<T>::zero, orientation) << "Failed to have correct orientation";
+        }
 
         for (stf::math::vec2<T> const& p : points)
         {
