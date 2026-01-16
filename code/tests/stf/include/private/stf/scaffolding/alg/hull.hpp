@@ -23,7 +23,7 @@ struct convex_hull_fixed_points
         stf::geom::polygon<T> actual = stf::alg::convex_hull(input);
 
         ASSERT_TRUE(actual.is_convex()) << info(i) << "Failed to compute a hull that is convex";
-        
+
         std::vector<math::vec2<T>> const& vertices = hull.vertices();
         for (size_t i = 0; i < vertices.size(); ++i)
         {
