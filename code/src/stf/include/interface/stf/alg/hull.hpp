@@ -93,7 +93,7 @@ std::vector<math::vec2<T>> convex_hull(std::vector<math::vec2<T>> const& input)
 }
 
 /**
- * @brief Compute the convex hull of a @ref polygon
+ * @brief Compute the convex hull of a polygon
  * @tparam T Number type (eg float)
  * @param polygon [in] The polygon from which to compute the convex hull
  * @return The convex hull as a ring of counter-clockwise points
@@ -105,9 +105,9 @@ std::vector<math::vec2<T>> convex_hull(geom::polygon<T> const& polygon)
 }
 
 /**
- * @brief Compute the convex hull of a @ref holygon
+ * @brief Compute the convex hull of a holygon
  * @tparam T Number type (eg float)
- * @param polygon [in] The holygon from which to compute the convex hull
+ * @param holygon [in] The holygon from which to compute the convex hull
  * @return The convex hull as a ring of counter-clockwise points
  */
 template <typename T>
