@@ -12,10 +12,22 @@ namespace stf::alg
 
 TEST(hull, convex_hull_fixed_points)
 {
-    // TODO (stouff) write tests with edge cases here
-    // std::vector<scaffolding::alg::hull::convex_hull_fixed_points<float>> tests = {
-    //};
-    // scaffolding::verify(tests);
+    std::vector<scaffolding::alg::hull::convex_hull_fixed_points<float>> tests = {
+        // degenerate cases
+        {{}, {}},
+        {{stff::vec2(0)}, {stff::vec2(0)}},
+        {{stff::vec2(1)}, {stff::vec2(1)}},
+        {{stff::vec2(0), stff::vec2(0)}, {stff::vec2(0)}},
+        {{stff::vec2(0), stff::vec2(1)}, {stff::vec2(0), stff::vec2(1)}},
+        // non-degenerate cases
+        {{stff::vec2(0), stff::vec2(2, 0), stff::vec2(2), stff::vec2(1)},
+         {stff::vec2(0), stff::vec2(2, 0), stff::vec2(2)}},
+        {{stff::vec2(0), stff::vec2(1), stff::vec2(2), stff::vec2(4, -4)},
+         {stff::vec2(0), stff::vec2(4, -4), stff::vec2(2)}},
+        {{stff::vec2(0), stff::vec2(2, 3), stff::vec2(1), stff::vec2(2, -4)},
+         {stff::vec2(0), stff::vec2(2, -4), stff::vec2(2, 3)}},
+    };
+    scaffolding::verify(tests);
 }
 
 TEST(hull, convex_hull_random_points)

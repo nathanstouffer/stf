@@ -15,23 +15,28 @@ namespace stf::scaffolding::alg::hull
 template <typename T>
 struct convex_hull_fixed_points
 {
-    stf::geom::holygon<T> input;
-    stf::geom::polygon<T> expected;
+    std::vector<math::vec2<T>> input;
+    std::vector<math::vec2<T>> expected;
 
     void verify(size_t const i) const
     {
-        stf::geom::polygon<T> actual = stf::alg::convex_hull(input);
+        std::vector<math::vec2<T>> actual = stf::alg::convex_hull(input);
 
-        ASSERT_TRUE(actual.is_convex()) << info(i) << "Failed to compute a hull that is convex";
-
-        std::vector<math::vec2<T>> const& vertices = hull.vertices();
-        for (size_t i = 0; i < vertices.size(); ++i)
+        if (actual.size() > 2)
         {
-            math::vec2<T> const& p = vertices[(i + 0) % vertices.size()];
-            math::vec2<T> const& q = vertices[(i + 1) % vertices.size()];
-            math::vec2<T> const& r = vertices[(i + 2) % vertices.size()];
-            T orientation = math::orientation(p, q, r);
-            ASSERT_LT(math::constants<T>::zero, orientation) << "Failed to have correct orientation";
+            stf::geom::polygon<T> hull = stf::geom::polygon<T>(actual);
+
+            ASSERT_TRUE(hull.is_convex()) << info(i) << "Failed to compute a hull that is convex";
+
+            std::vector<math::vec2<T>> const& vertices = hull.vertices();
+            for (size_t j = 0; j < vertices.size(); ++j)
+            {
+                math::vec2<T> const& p = vertices[(j + 0) % vertices.size()];
+                math::vec2<T> const& q = vertices[(j + 1) % vertices.size()];
+                math::vec2<T> const& r = vertices[(j + 2) % vertices.size()];
+                T orientation = math::orientation(p, q, r);
+                ASSERT_LT(math::constants<T>::zero, orientation) << info(i) << "Failed to have correct orientation";
+            }
         }
 
         ASSERT_EQ(expected, actual) << info(i) << "Failed to compute correct hull";
@@ -72,7 +77,7 @@ struct convex_hull_random_points
             math::vec2<T> const& q = vertices[(j + 1) % vertices.size()];
             math::vec2<T> const& r = vertices[(j + 2) % vertices.size()];
             T orientation = math::orientation(p, q, r);
-            ASSERT_LT(math::constants<T>::zero, orientation) << "Failed to have correct orientation";
+            ASSERT_LT(math::constants<T>::zero, orientation) << info(i) << "Failed to have correct orientation";
         }
 
         for (stf::math::vec2<T> const& p : points)
