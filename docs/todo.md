@@ -50,11 +50,15 @@ A todo list separated out by category (typically a namespace)
 
 ## alg
 
-- [x] intersect
-- [ ] intersection
-- [ ] containment
+- [x] intersects
+- [ ] intersect
 - [ ] clipping
 - [ ] tessellation
+- [ ] triangulation
+  - [ ] earclip
+  - [ ] delaunay
+  - [ ] using y-monotone polygons
+- [ ] containment
 - [ ] linear programming?
 
 ## ds
