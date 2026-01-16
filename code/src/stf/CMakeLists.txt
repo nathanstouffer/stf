@@ -1,6 +1,7 @@
 set(STF_FILES
     "${CMAKE_CURRENT_SOURCE_DIR}/include/interface/stf/alg/clipping.hpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/include/interface/stf/alg/containment.hpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/include/interface/stf/alg/hull.hpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/include/interface/stf/alg/intersect.hpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/include/interface/stf/alg/intersects.hpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/include/interface/stf/alg/statistics.hpp"
