@@ -10,8 +10,9 @@ var searchData=
   ['holygon_7',['holygon',['../structstf_1_1instantiate__types.html#ad64d355cdc1def956767ab265a1b30d8',1,'stf::instantiate_types::holygon'],['../classstf_1_1geom_1_1holygon.html#a20cb3b7058bff52636c7cc7819452d22',1,'stf::geom::holygon::holygon()'],['../classstf_1_1geom_1_1holygon.html#a62a989a5b1d17d448ce1c3fc27431c14',1,'stf::geom::holygon::holygon(polygon_t const &amp;hull)'],['../classstf_1_1geom_1_1holygon.html#aef557cf988b1c85d82cf06879c99eb1a',1,'stf::geom::holygon::holygon(polygon_t const &amp;hull, std::vector&lt; polygon_t &gt; const &amp;holes)'],['../classstf_1_1geom_1_1holygon.html',1,'stf::geom::holygon&lt; T &gt;']]],
   ['holygon_2ehpp_8',['holygon.hpp',['../holygon_8hpp.html',1,'']]],
   ['hull_9',['hull',['../classstf_1_1geom_1_1holygon.html#a01bb226d4ca1e4f9cc9b901a424a7119',1,'stf::geom::holygon']]],
-  ['hyperplane_10',['hyperplane',['../classstf_1_1geom_1_1hyperplane.html#a05059f78ffdd07dbff8aeb8aca52e88f',1,'stf::geom::hyperplane::hyperplane()'],['../classstf_1_1geom_1_1hyperplane.html#a21b89249468cc1ad0a96937eb1a0fdfc',1,'stf::geom::hyperplane::hyperplane(vec_t const &amp;point, vec_t const &amp;normal)'],['../classstf_1_1geom_1_1hyperplane.html',1,'stf::geom::hyperplane&lt; T, N &gt;']]],
-  ['hyperplane_2ehpp_11',['hyperplane.hpp',['../hyperplane_8hpp.html',1,'']]],
-  ['hypersphere_12',['hypersphere',['../structstf_1_1geom_1_1hypersphere.html',1,'stf::geom::hypersphere&lt; T, N &gt;'],['../structstf_1_1geom_1_1hypersphere.html#a4d1f592d4f61734ed8037008e9ec5916',1,'stf::geom::hypersphere::hypersphere()']]],
-  ['hypersphere_2ehpp_13',['hypersphere.hpp',['../hypersphere_8hpp.html',1,'']]]
+  ['hull_2ehpp_10',['hull.hpp',['../hull_8hpp.html',1,'']]],
+  ['hyperplane_11',['hyperplane',['../classstf_1_1geom_1_1hyperplane.html#a05059f78ffdd07dbff8aeb8aca52e88f',1,'stf::geom::hyperplane::hyperplane()'],['../classstf_1_1geom_1_1hyperplane.html#a21b89249468cc1ad0a96937eb1a0fdfc',1,'stf::geom::hyperplane::hyperplane(vec_t const &amp;point, vec_t const &amp;normal)'],['../classstf_1_1geom_1_1hyperplane.html',1,'stf::geom::hyperplane&lt; T, N &gt;']]],
+  ['hyperplane_2ehpp_12',['hyperplane.hpp',['../hyperplane_8hpp.html',1,'']]],
+  ['hypersphere_13',['hypersphere',['../structstf_1_1geom_1_1hypersphere.html',1,'stf::geom::hypersphere&lt; T, N &gt;'],['../structstf_1_1geom_1_1hypersphere.html#a4d1f592d4f61734ed8037008e9ec5916',1,'stf::geom::hypersphere::hypersphere()']]],
+  ['hypersphere_2ehpp_14',['hypersphere.hpp',['../hypersphere_8hpp.html',1,'']]]
 ];

@@ -1,0 +1,9 @@
+<map id="stf::alg::convex_hull" name="stf::alg::convex_hull">
+<area shape="rect" id="Node000001" title="Compute the convex hull of a holygon." alt="" coords="5,5,157,31"/>
+<area shape="rect" id="Node000002" href="$namespacestf_1_1alg.html#aa0dbc7b63634c28112317cf973839bab" title="Compute the convex hull of a set of points." alt="" coords="205,5,357,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="158,15,191,15,191,21,158,21"/>
+<area shape="rect" id="Node000003" href="$namespacestf_1_1math.html#a73d9e43eb556d940a4473faf756b0772" title="Compute the orientation of p, q, and r." alt="" coords="405,5,564,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="357,15,392,15,392,21,357,21"/>
+<area shape="rect" id="Node000004" href="$namespacestf_1_1math.html#a2a4e3d257a2f7cc1a961d613ae161333" title="Compute the 2D cross product of lhs and rhs." alt="" coords="612,5,735,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="564,15,598,15,598,21,564,21"/>
+</map>

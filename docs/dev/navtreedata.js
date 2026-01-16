@@ -96,11 +96,11 @@ var NAVTREEINDEX =
 [
 "aabb_8hpp.html",
 "classstf_1_1geom_1_1polyline.html#a2727c56d821d35934193881a4f2cb102",
-"matrix_8hpp.html#a46513ba64d6968b3462b6686c11b8169",
-"namespacestf_1_1math.html#a7d8db87f09533563fde95c24959b9386",
-"structstf_1_1geom_1_1hypersphere.html",
-"structstf_1_1math_1_1mtx.html#a48568a4dfe91c6d4f8962a523a845a3f",
-"structstf_1_1math_1_1vec_3_01T_00_014_01_4.html#a4f89f8b553d54f174b0a9ed4aabdd632"
+"matrix_8hpp.html#a2ed3bcf49ecb8bec1019fe374390d9f3",
+"namespacestf_1_1math.html#a731976438129a4b458e42de14270eaae",
+"structstf_1_1geom_1_1aabb.html#ae65c1b954f93ed0bdd726a085e3a4b88",
+"structstf_1_1math_1_1mtx.html#a16ae735eb4059d4aea9e7c9a0ea0daf4",
+"structstf_1_1math_1_1vec_3_01T_00_014_01_4.html#a2c139f3eceede5d463821d730c27f115"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
