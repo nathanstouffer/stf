@@ -30,10 +30,28 @@ std::vector<math::vec2<T>> base_case_hull(std::vector<math::vec2<T>> const& poin
 namespace stf::alg
 {
 
-// TODO (stoufF) decide what to do about ill-formed inputs
+/**
+ * @brief Compute the convex hull of a set of points
+ * @tparam T Number type (eg float)
+ * @param input [in] The set of points
+ * @return The convex hull as a ring of counter-clockwise points
+ */
 template <typename T>
-geom::polygon<T> convex_hull(std::vector<math::vec2<T>> const& input)
+std::vector<math::vec2<T>> convex_hull(std::vector<math::vec2<T>> const& input)
 {
+    if (input.size() < 3)
+    {
+        // the operator[] is valid because we know the size of input to be 2 in the third condition
+        if (input.empty() || input.size() == 1 || input[0] != input[1])
+        {
+            return input;
+        }
+        else
+        {
+            return std::vector<math::vec2<T>>{input[0]};
+        }
+    }
+
     // first sort the points based on x-coordinate
     std::vector<math::vec2<T>> points = input;
     std::sort(points.begin(), points.end(),
@@ -71,17 +89,29 @@ geom::polygon<T> convex_hull(std::vector<math::vec2<T>> const& input)
         }
     }
 
-    return geom::polygon<T>(hull);
+    return hull;
 }
 
+/**
+ * @brief Compute the convex hull of a @ref polygon
+ * @tparam T Number type (eg float)
+ * @param polygon [in] The polygon from which to compute the convex hull
+ * @return The convex hull as a ring of counter-clockwise points
+ */
 template <typename T>
-geom::polygon<T> convex_hull(geom::polygon<T> const& polygon)
+std::vector<math::vec2<T>> convex_hull(geom::polygon<T> const& polygon)
 {
     return convex_hull(polygon.vertices());
 }
 
+/**
+ * @brief Compute the convex hull of a @ref holygon
+ * @tparam T Number type (eg float)
+ * @param polygon [in] The holygon from which to compute the convex hull
+ * @return The convex hull as a ring of counter-clockwise points
+ */
 template <typename T>
-geom::polygon<T> convex_hull(geom::holygon<T> const& holygon)
+std::vector<math::vec2<T>> convex_hull(geom::holygon<T> const& holygon)
 {
     return convex_hull(holygon.hull());
 }

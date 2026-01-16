@@ -60,16 +60,17 @@ struct convex_hull_random_points
             }
         }
 
-        stf::geom::polygon<T> hull = stf::alg::convex_hull(points);
+        std::vector<math::vec2<T>> ring = stf::alg::convex_hull(points);
+        stf::geom::polygon<T> hull = stf::geom::polygon<T>(ring);
 
         ASSERT_TRUE(hull.is_convex()) << info(i) << "Failed to compute a hull that is convex";
 
         std::vector<math::vec2<T>> const& vertices = hull.vertices();
-        for (size_t i = 0; i < vertices.size(); ++i)
+        for (size_t j = 0; j < vertices.size(); ++j)
         {
-            math::vec2<T> const& p = vertices[(i + 0) % vertices.size()];
-            math::vec2<T> const& q = vertices[(i + 1) % vertices.size()];
-            math::vec2<T> const& r = vertices[(i + 2) % vertices.size()];
+            math::vec2<T> const& p = vertices[(j + 0) % vertices.size()];
+            math::vec2<T> const& q = vertices[(j + 1) % vertices.size()];
+            math::vec2<T> const& r = vertices[(j + 2) % vertices.size()];
             T orientation = math::orientation(p, q, r);
             ASSERT_LT(math::constants<T>::zero, orientation) << "Failed to have correct orientation";
         }
