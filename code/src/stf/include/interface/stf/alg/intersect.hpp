@@ -1,4 +1,5 @@
-#pragma once
+#ifndef STF_ALG_INTERSECT_HPP_HEADER_GUARD
+#define STF_ALG_INTERSECT_HPP_HEADER_GUARD
 
 #include <optional>
 
@@ -14,49 +15,51 @@
 namespace stf::alg
 {
 
-    /**
-     * @brief Compute the intersection of a ray and a plane
-     * @tparam T Number type (eg float)
-     * @param [in] ray
-     * @param [in] plane
-     * @note If @p ray is a subset of @p plane, the origin of @p ray will be returned
-     * @return The (possibly empty) intersection of @p ray and @p plane
-     */
-    template<typename T>
-    std::optional<math::vec3<T>> intersect(geom::ray3<T> const& ray, geom::plane<T> const& plane)
+/**
+ * @brief Compute the intersection of a ray and a plane
+ * @tparam T Number type (eg float)
+ * @param [in] ray
+ * @param [in] plane
+ * @note If @p ray is a subset of @p plane, the origin of @p ray will be returned
+ * @return The (possibly empty) intersection of @p ray and @p plane
+ */
+template <typename T>
+std::optional<math::vec3<T>> intersect(geom::ray3<T> const& ray, geom::plane<T> const& plane)
+{
+    if (intersects(ray, plane))
     {
-        if (intersects(ray, plane))
+        if (plane.contains(ray.origin))
         {
-            if (plane.contains(ray.origin))
-            {
-                return ray.origin;
-            }
-            else
-            {
-                T const dist = plane.dist(ray.origin);
-                T const dot = math::dot(plane.normal(), ray.direction);
-                T const scalar = dist / std::abs(dot);
-                return ray.origin + scalar * ray.direction;
-            }
+            return ray.origin;
         }
         else
         {
-            return std::nullopt;
+            T const dist = plane.dist(ray.origin);
+            T const dot = math::dot(plane.normal(), ray.direction);
+            T const scalar = dist / std::abs(dot);
+            return ray.origin + scalar * ray.direction;
         }
     }
-
-    /**
-     * @brief Compute the intersection of a plane and a ray
-     * @tparam T Number type (eg float)
-     * @param [in] plane
-     * @param [in] ray
-     * @note If @p ray is a subset of @p plane, the origin of @p ray will be returned
-     * @return The (possibly empty) intersection of @p plane and @p ray
-     */
-    template<typename T>
-    inline std::optional<math::vec3<T>> intersect(geom::plane<T> const& plane, geom::ray3<T> const& ray)
+    else
     {
-        return intersect(ray, plane);
+        return std::nullopt;
     }
+}
 
-} // stf::alg
+/**
+ * @brief Compute the intersection of a plane and a ray
+ * @tparam T Number type (eg float)
+ * @param [in] plane
+ * @param [in] ray
+ * @note If @p ray is a subset of @p plane, the origin of @p ray will be returned
+ * @return The (possibly empty) intersection of @p plane and @p ray
+ */
+template <typename T>
+inline std::optional<math::vec3<T>> intersect(geom::plane<T> const& plane, geom::ray3<T> const& ray)
+{
+    return intersect(ray, plane);
+}
+
+} // namespace stf::alg
+
+#endif

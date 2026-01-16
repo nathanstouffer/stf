@@ -4,39 +4,39 @@ A todo list separated out by category (typically a namespace)
 
 ## math
 
- - [x] constants
- - [x] spherical
- - [x] vector
- - [x] matrix
- - [x] interval/cinterval
- - [x] interpolation
- - [ ] quaternion
+- [x] constants
+- [x] spherical
+- [x] vector
+- [x] matrix
+- [x] interval/cinterval
+- [x] interpolation
+- [ ] quaternion
 
 ## geom
 
- - [x] aabb
- - [x] obb
- - [x] segment
- - [x] polyline
- - [x] polygon
- - [x] holygon
- - [x] ray
- - [x] plane/hyperplane
- - [ ] halfplane/halfspace
- - [x] sphere/hypersphere
- - [ ] triangle
+- [x] aabb
+- [x] obb
+- [x] segment
+- [x] polyline
+- [x] polygon
+- [x] holygon
+- [x] ray
+- [x] plane/hyperplane
+- [ ] halfplane/halfspace
+- [x] sphere/hypersphere
+- [ ] triangle
 
 ## gfx
 
- - [x] color
- - [x] gradient
- - [ ] triple buffer?
+- [x] color
+- [x] gradient
+- [ ] triple buffer?
 
 ## cam
 
- - [x] simple camera
- - [x] frustum
- - [ ] quaternion camera
+- [x] simple camera
+- [x] frustum
+- [ ] quaternion camera
 
 ## spatial
 
@@ -50,23 +50,28 @@ A todo list separated out by category (typically a namespace)
 
 ## alg
 
- - [x] intersect
- - [ ] intersection
- - [ ] containment
- - [ ] clipping
- - [ ] tessellation
- - [ ] linear programming?
+- [x] intersects
+- [ ] intersect
+- [ ] clipping
+- [ ] tessellation
+- [ ] triangulation
+  - [ ] earclip
+  - [ ] delaunay
+  - [ ] using y-monotone polygons
+- [ ] containment
+- [ ] linear programming?
 
 ## ds
 
- - [x] indexed list
- - [ ] indexed vector
+- [x] indexed list
+- [ ] indexed vector
 
 ## misc
 
- - [x] docs
- - [ ] include graph
- - [ ] warnings as errors
- - [ ] benchmarks project
- - [ ] auto-formatting
- - [ ] valgrind
+- [x] docs
+- [x] warnings as errors
+- [x] formatting
+- [ ] linting
+- [ ] benchmarks project
+- [ ] include graph
+- [ ] valgrind

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef STF_MATH_MATRIX_HPP_HEADER_GUARD
+#define STF_MATH_MATRIX_HPP_HEADER_GUARD
 
 #include <cstring>
 
@@ -12,1074 +13,1161 @@
 
 namespace stf::math
 {
+/**
+ * @brief A square matrix class templated on number type and dimension
+ * @tparam T Number type (eg float)
+ * @tparam N Dimension
+ */
+template <typename T, size_t N>
+struct mtx final
+{
+
     /**
-     * @brief A square matrix class templated on number type and dimension
-     * @tparam T Number type (eg float)
-     * @tparam N Dimension
+     * @brief A proxy struct that gives const access to a single column of a @ref mtx
      */
-    template<typename T, size_t N>
-    struct mtx final
+    struct const_col_proxy
     {
 
         /**
-         * @brief A proxy struct that gives const access to a single column of a @ref mtx
+         * @brief Construct from a @ref mtx const reference and a column index
+         * @param [in] _m
+         * @param [in] _c
          */
-        struct const_col_proxy
+        const_col_proxy(mtx const& _m, size_t _c) : m(_m), c(_c) {}
+
+        /**
+         * @brief Const access to a single scalar in the column
+         * @param [in] i The index of the row
+         * @return A const reference to the scalar
+         */
+        inline T const& operator[](size_t i) const { return m.values[c * N + i]; }
+
+        /**
+         * @brief Conversion operator from a @ref col_proxy to a @ref vec
+         */
+        inline operator vec<T, N>() const
         {
-
-            /**
-             * @brief Construct from a @ref mtx const reference and a column index
-             * @param [in] _m
-             * @param [in] _c
-             */
-            const_col_proxy(mtx const& _m, size_t _c) : m(_m), c(_c) {}
-
-            /**
-             * @brief Const access to a single scalar in the column
-             * @param [in] i The index of the row
-             * @return A const reference to the scalar
-             */
-            inline T const& operator[](size_t i) const { return m.values[c * N + i]; }
-
-            /**
-             * @brief Conversion operator from a @ref col_proxy to a @ref vec
-             */
-            inline operator vec<T, N>() const
-            {
-                vec<T, N> vec;
-                for (size_t i = 0; i < N; ++i) { vec[i] = (*this)[i]; }
-                return vec;
-            }
-
-            /**
-             * @brief Convert a @ref col_proxy to a @ref vec
-             * @return The column proxy as a vector
-             */
-            inline vec<T, N> as_vec() const { return static_cast<vec<T, N>>(*this); }
-
-        private:
-
-            mtx const& m;
-            size_t c;
-
-        };
-
-        /**
-         * @brief A proxy struct that gives access to a single column of a @ref mtx
-         */
-        struct col_proxy
-        {
-
-            /**
-             * @brief Construct from a @ref mtx reference and a column index
-             * @param [in] _m
-             * @param [in] _c
-             */
-            col_proxy(mtx& _m, size_t _c) : m(_m), c(_c) {}
-
-            /**
-             * @brief Const access to a single scalar in the column
-             * @param [in] i The index of the row
-             * @return A const reference to the scalar
-             */
-            inline T const& operator[](size_t i) const { return m.values[c * N + i]; }
-
-            /**
-             * @brief Access to a single scalar in the column
-             * @param [in] i The index of the row
-             * @return A reference to the scalar
-             */
-            inline T& operator[](size_t i) { return m.values[c * N + i]; }
-
-            /**
-             * @brief Assignment operator
-             * @param [in] rhs
-             * @return A reference to @p this
-             */
-            inline col_proxy& operator=(vec<T, N> const& rhs)
-            {
-                for (size_t i = 0; i < N; ++i) { (*this)[i] = rhs[i]; }
-                return *this;
-            }
-
-            /**
-             * @brief Conversion operator from a @ref col_proxy to a @ref const_col_proxy
-             */
-            inline operator const_col_proxy() const { return const_col_proxy(m, c); }
-
-            /**
-             * @brief Conversion operator from a @ref col_proxy to a @ref vec
-             */
-            inline operator vec<T, N>() const
-            {
-                vec<T, N> vec;
-                for (size_t i = 0; i < N; ++i) { vec[i] = (*this)[i]; }
-                return vec;
-            }
-
-            /**
-             * @brief Convert a @ref col_proxy to a @ref vec
-             * @return The column proxy as a vector
-             */
-            inline vec<T, N> as_vec() const { return static_cast<vec<T, N>>(*this); }
-
-        private:
-
-            mtx& m;
-            size_t c;
-
-        };
-
-        /**
-         * @brief A proxy struct that gives const access to a single row of a @ref mtx
-         */
-        struct const_row_proxy
-        {
-
-            /**
-             * @brief Construct from a @ref mtx const reference and a row index
-             * @param [in] _m
-             * @param [in] _r
-             */
-            const_row_proxy(mtx const& _m, size_t _r) : m(_m), r(_r) {}
-
-            /**
-             * @brief Const access to a single scalar in the row
-             * @param [in] j The index of the column
-             * @return A const reference to the scalar
-             */
-            inline T const& operator[](size_t j) const { return m.values[r + j * N]; }
-
-            /**
-             * @brief Conversion operator from a @ref const_row_proxy to a @ref vec
-             */
-            inline operator vec<T, N>() const
-            {
-                vec<T, N> vec;
-                for (size_t j = 0; j < N; ++j) { vec[j] = (*this)[j]; }
-                return vec;
-            }
-
-            /**
-             * @brief Convert a @ref const_row_proxy to a @ref vec
-             * @return The row proxy as a vector
-             */
-            inline vec<T, N> as_vec() const { return static_cast<vec<T, N>>(*this); }
-
-        private:
-
-            mtx const& m;
-            size_t r;
-
-        };
-
-        /**
-         * @brief A proxy struct that gives access to a single row of a @ref mtx
-         */
-        struct row_proxy
-        {
-
-            /**
-             * @brief Construct from a @ref mtx reference and a row index
-             * @param [in] _m
-             * @param [in] _r
-             */
-            row_proxy(mtx& _m, size_t _r) : m(_m), r(_r) {}
-
-            /**
-             * @brief Const access to a single scalar in the row
-             * @param [in] j The index of the column
-             * @return A const reference to the scalar
-             */
-            inline T const& operator[](size_t j) const { return m.values[r + j * N]; }
-
-            /**
-             * @brief Access to a single scalar in the rwo
-             * @param [in] j The index of the column
-             * @return A reference to the scalar
-             */
-            inline T& operator[](size_t j) { return m.values[r + j * N]; }
-
-            /**
-             * @brief Assignment operator
-             * @param [in] rhs
-             * @return A reference to @p this
-             */
-            inline row_proxy& operator=(vec<T, N> const& rhs)
-            {
-                for (size_t j = 0; j < N; ++j) { (*this)[j] = rhs[j]; }
-                return *this;
-            }
-
-            /**
-             * @brief Conversion operator from a @ref row_proxy to a @ref const_row_proxy
-             */
-            inline operator const_row_proxy() const { return const_row_proxy(m, r); }
-
-            /**
-             * @brief Conversion operator from a @ref row_proxy to a @ref vec
-             */
-            inline operator vec<T, N>() const
-            {
-                vec<T, N> vec;
-                for (size_t j = 0; j < N; ++j) { vec[j] = (*this)[j]; }
-                return vec;
-            }
-
-            /**
-             * @brief Convert a @ref row_proxy to a @ref vec
-             * @return The row proxy as a vector
-             */
-            inline vec<T, N> as_vec() const { return static_cast<vec<T, N>>(*this); }
-
-        private:
-
-            mtx& m;
-            size_t r;
-
-        };
-
-        /**
-         * @brief The number of scalars stored in the matrix
-         */
-        static size_t constexpr D = N * N;
-
-        /**
-         * @brief The scalars defining this matrix
-         * @note Stored in column-major form
-         */
-        T values[N * N];
-
-        /**
-         * @brief Default constructor -- intializes to the identity matrix
-         */
-        mtx() { identify(); }
-
-        /**
-         * @brief Construct from a single scalar -- initializes all scalars to @p value
-         * @param [in] value
-         */
-        explicit mtx(T const value)
-        {
-            for (size_t i = 0; i < D; ++i)
-            {
-                values[i] = value;
-            }
-        }
-
-        /**
-         * @brief Construct from an N-dimensional vector -- intializes the diagonal to the value of the vector
-         * @param [in] diagonal
-         */
-        explicit mtx(vec<T, N> const& diagonal) : mtx()
-        {
+            vec<T, N> vec;
             for (size_t i = 0; i < N; ++i)
             {
-                (*this)[i][i] = diagonal[i];
+                vec[i] = (*this)[i];
             }
+            return vec;
         }
 
         /**
-         * @brief Construct from an NxN-dimensional vector -- an explicit column-major initialization of every entry in the matrix
-         * @param [in] _values
+         * @brief Convert a @ref col_proxy to a @ref vec
+         * @return The column proxy as a vector
          */
-        explicit mtx(vec<T, D> const& _values) : mtx()
-        {
-            for (size_t i = 0; i < D; ++i)
-            {
-                values[i] = _values[i];
-            }
-        }
+        inline vec<T, N> as_vec() const { return static_cast<vec<T, N>>(*this); }
+
+    private:
+        mtx const& m;
+        size_t c;
+    };
+
+    /**
+     * @brief A proxy struct that gives access to a single column of a @ref mtx
+     */
+    struct col_proxy
+    {
 
         /**
-         * @brief Const access to a single column of the matrix
-         * @param [in] j The index of the column
-         * @return A proxy class that gives const access to the column
+         * @brief Construct from a @ref mtx reference and a column index
+         * @param [in] _m
+         * @param [in] _c
          */
-        inline const_col_proxy col(size_t const j) const { return const_col_proxy(*this, j); }
+        col_proxy(mtx& _m, size_t _c) : m(_m), c(_c) {}
 
         /**
-         * @brief Access to a single column of the matrix
-         * @param [in] j The index of the column
-         * @return A proxy class that gives access to the column
-         */
-        inline col_proxy col(size_t const j) { return col_proxy(*this, j); }
-
-        /**
-         * @brief Const access to a single row of the matrix
+         * @brief Const access to a single scalar in the column
          * @param [in] i The index of the row
-         * @return A proxy class that gives const access to the row
+         * @return A const reference to the scalar
          */
-        inline const_row_proxy row(size_t const i) const { return const_row_proxy(*this, i); }
+        inline T const& operator[](size_t i) const { return m.values[c * N + i]; }
 
         /**
-         * @brief Access to a single row of the matrix
+         * @brief Access to a single scalar in the column
          * @param [in] i The index of the row
-         * @return A proxy class that gives access to the row
+         * @return A reference to the scalar
          */
-        inline row_proxy row(size_t const i) { return row_proxy(*this, i); }
+        inline T& operator[](size_t i) { return m.values[c * N + i]; }
 
         /**
-         * @brief Const access to a single row of the matrix
-         * @param [in] i The index of the row
-         * @return A proxy class that gives const access to the row
-         */
-        inline const_row_proxy operator[](size_t const i) const { return row(i); }
-
-        /**
-         * @brief Access to a single row of the matrix
-         * @param [in] i The index of the row
-         * @return A proxy class that gives access to the row
-         */
-        inline row_proxy operator[](size_t const i) { return row(i); }
-
-        /**
-         * @brief Multiply a matrix by a scalar in place
-         * @param [in] scalar
-         * @return A reference to @p this
-         */
-        inline mtx& operator*=(T const scalar)
-        {
-            for (size_t d = 0; d < D; ++d)
-            {
-                values[d] *= scalar;
-            }
-            return *this;
-        }
-
-        /**
-         * @brief Multiply a matrix by a matrix in place
+         * @brief Assignment operator
          * @param [in] rhs
          * @return A reference to @p this
          */
-        mtx& operator*=(mtx const& rhs)
+        inline col_proxy& operator=(vec<T, N> const& rhs)
         {
-            mtx tmp;
-            for (size_t i = 0; i < N; ++i)          // iterate over rows
+            for (size_t i = 0; i < N; ++i)
             {
-                for (size_t j = 0; j < N; ++j)      // iterate over columns
-                {
-                    tmp[i][j] = dot(row(i).as_vec(), rhs.col(j).as_vec());
-                }
-            }
-
-            *this = tmp;
-            return *this;
-        }
-
-        /**
-         * @brief Set a matrix to the identity matrix
-         * @return A reference to @p this
-         */
-        inline mtx& identify()
-        {
-            for (size_t i = 0; i < N; ++i)          // iterate over rows
-            {
-                for (size_t j = 0; j < N; ++j)      // iterate over columns
-                {
-                    (*this)[i][j] = (i == j) ? T(1) : T(0);
-                }
+                (*this)[i] = rhs[i];
             }
             return *this;
         }
 
         /**
-         * @brief Compute the minor a matrix for a particular index
-         * @param [in] i The row index for the minor
-         * @param [in] j The column index for the minor
-         * @return The minor matrix @p M(i,j)
+         * @brief Conversion operator from a @ref col_proxy to a @ref const_col_proxy
          */
-        inline mtx<T, N - 1> minor(size_t const i, size_t const j) const
+        inline operator const_col_proxy() const { return const_col_proxy(m, c); }
+
+        /**
+         * @brief Conversion operator from a @ref col_proxy to a @ref vec
+         */
+        inline operator vec<T, N>() const
         {
-            vec<T, (N - 1) * (N - 1)> entries;
-            size_t d = 0;
-            for (size_t x = 0; x < N; ++x)
+            vec<T, N> vec;
+            for (size_t i = 0; i < N; ++i)
             {
-                for (size_t y = 0; y < N; ++y)
-                {
-                    if (y != i && x != j)
-                    {
-                        entries[d++] = (*this)[y][x];
-                    }
-                }
+                vec[i] = (*this)[i];
             }
-            return mtx<T, N - 1>(entries);
+            return vec;
         }
 
         /**
-         * @brief Compute the determinant of a matrix
-         * @return The determinant of @p this
+         * @brief Convert a @ref col_proxy to a @ref vec
+         * @return The column proxy as a vector
          */
-        T determinant() const
-        {
-            if constexpr (N == 2)
-            {
-                T const a = (*this)[0][0]; T const b = (*this)[0][1];
-                T const c = (*this)[1][0]; T const d = (*this)[1][1];
-                return a * d - c * b;
-            }
-            else
-            {
-                T det = constants<T>::zero;
-                for (size_t i = 0; i < N; ++i)
-                {
-                    mtx<T, N - 1> const submatrix = minor(0, i);
-                    T const expansion = (*this)[0][i] * submatrix.determinant();
-                    bool const even = (i & 1) == 0;
-                    det += (even) ? expansion : -expansion;   // even i => sign is positve; odd i => sign is negative
-                }
-                return det;
-            }
-        }
+        inline vec<T, N> as_vec() const { return static_cast<vec<T, N>>(*this); }
 
-        /**
-         * @brief Compute whether or not a matrix is invertible
-         * @return Whether or not @p this is invertible
-         */
-        inline bool invertible() const { return determinant() != constants<T>::zero; }
-
-        /**
-         * @brief Transpose a matrix in-place
-         * @return A reference to @p this
-         */
-        inline mtx& transpose()
-        {
-            // TODO write this method by swapping the values in place
-            mtx trans;
-            for (size_t i = 0; i < N; ++i)          // iterate over rows
-            {
-                for (size_t j = 0; j < N; ++j)      // iterate over columns
-                {
-                    trans[j][i] = (*this)[i][j];
-                }
-            }
-
-            // copy matrix and return reference
-            *this = trans;
-            return *this;
-        }
-
-        /**
-         * @brief Compute the transpose of a matrix
-         * @return The transpose of @p this
-         */
-        inline mtx transposed() const { return mtx(*this).transpose(); }
-
-        /**
-         * @brief Compute the cofactor matrix
-         * @return The cofactor matrix of @p this
-         */
-        mtx cofactored() const
-        {
-            if constexpr (N == 2)
-            {
-                T const a = (*this)[0][0]; T const b = (*this)[0][1];
-                T const c = (*this)[1][0]; T const d = (*this)[1][1];
-                return mtx(vec<T, 4>(d, -b, -c, a));
-            }
-            else
-            {
-                mtx cof;
-                for (size_t i = 0; i < N; ++i)
-                {
-                    for (size_t j = 0; j < N; ++j)
-                    {
-                        T const subdet = minor(i, j).determinant();
-                        bool even = ((i + j) & 1) == 0;
-                        cof[i][j] = (even) ? subdet : -subdet;
-                    }
-                }
-                return cof;
-            }
-        }
-
-        /**
-         * @brief Compute the inverse of a matrix
-         * @return The inverse of @p this
-         */
-        mtx inverted() const
-        {
-            T const scalar = constants<T>::one / determinant();
-            mtx inv = cofactored().transpose();
-            inv *= scalar;
-            return inv;
-        }
-
-        /**
-         * @brief Multiply a matrix by a scale matrix in place
-         * @param [in] scalars The scalars defining the scale matrix
-         * @return A reference to @p this
-         */
-        inline mtx& scale_by(vec<T, N> const& scalars) { return (*this) *= mtx::scale(scalars); }
-
-        /**
-         * @brief Multiply a matrix by a scale matrix
-         * @param [in] scalars The scalars defining the scale matrix
-         * @return The resulting transformation matrix
-         */
-        inline mtx scaled_by(vec<T, N> const& scalars) const { return mtx(*this).scale_by(scalars); }
-
-        /**
-         * @brief Multiply a matrix by a scale matrix in place
-         * @param [in] scalars The scalars defining the scale matrix -- sets the Nth scalar to 1
-         * @return A reference to @p this
-         */
-        inline mtx& scale_by(vec<T, N - 1> const& scalars) { return scale_by(vec<T, N>(scalars, T(1))); }
-
-        /**
-         * @brief Multiply a matrix by a scale matrix
-         * @param [in] scalars The scalars defining the scale matrix -- sets the Nth scalar to 1
-         * @return The resulting transformation matrix
-         */
-        inline mtx scaled_by(vec<T, N - 1> const& scalars) const { return mtx(*this).scale_by(vec<T, N>(scalars, T(1))); }
-
-        /**
-         * @brief Multiply a matrix by a translation matrix in place
-         * @param [in] scalars The scalars definining the translation matrix
-         * @return A reference to @p this 
-         */
-        inline mtx& translate_by(vec<T, N - 1> const& scalars) { return (*this) *= mtx::translate(scalars); }
-
-        /**
-         * @brief Multiply a matrix by a translation matrix
-         * @param [in] scalars The scalars definining the translation matrix
-         * @return The resulting transformation matrix
-         */
-        inline mtx translated_by(vec<T, N - 1> const& scalars) const { return mtx(*this).translate_by(scalars); }
-
-        /**
-         * @brief Compute a mtx that is the top left section of a matrix
-         * @return The top left section of @p this
-         */
-        inline mtx<T, N - 1> prefix() const { return minor(N - 1, N - 1); }
-
-        /**
-         * @brief Fill a raw array with scalars of the matrix in column-major form
-         * @param [out] fill 
-         */
-        inline void col_major(T fill[N * N]) const { std::memcpy(static_cast<void*>(fill), static_cast<void*>(values), sizeof(T) * D); }
-
-        /**
-         * @brief Fill a raw array with scalars of the matrix in row-major form
-         * @param [out] fill
-         */
-        inline void row_major(T fill[N * N]) const { return transposed().col_major(fill); }
-
-        /**
-         * @brief Cast a matrix to a different precision
-         * @tparam U Destination number type (eg float)
-         * @return @p this casted to the precision of @p U
-         */
-        template<typename U>
-        mtx<U, N> as() const
-        {
-            mtx<U, N> result;
-            raw::as<T, U, N * N>(values, result.values);
-            return result;
-        }
-
-
-    public:
-
-        /**
-         * @brief Compute the identity matrix
-         * @return The identity matrix
-         */
-        inline static mtx identity() { return mtx(); }
-
-        /**
-         * @brief Compute a scale matrix
-         * @param [in] scalars The scalars defining the scale matrix
-         * @return A scale matrix
-         */
-        inline static mtx scale(vec<T, N> const& scalars) { return mtx(scalars); }
-
-        /**
-         * @brief Compute a scale matrix
-         * @param [in] scalars The scalars defining the scale matrix -- sets the Nth scalar to 1
-         * @return A scale matrix
-         */
-        inline static mtx scale(vec<T, N - 1> const& scalars) { return mtx(vec<T, N>(scalars, T(1))); }
-
-        /**
-         * @brief Compute a translation matrix
-         * @param [in] scalars The scalars defining the translation matrix
-         * @return A translation matrix
-         */
-        inline static mtx translate(vec<T, N - 1> const& scalars)
-        {
-            mtx result;
-            for (size_t i = 0; i < N - 1; ++i) { result[i][N - 1] = scalars[i]; }
-            return result;
-        }
-
-        /**
-         * @brief Compute the number of bytes allocated by matrix
-         * @return The byte count
-         */
-        inline static size_t byte_count() { return sizeof(T) * D; }
-
+    private:
+        mtx& m;
+        size_t c;
     };
 
-    /// @cond DELETED
     /**
-     * @brief Delete invalid matrix specializations
+     * @brief A proxy struct that gives const access to a single row of a @ref mtx
      */
-    template<typename T> struct mtx<T, 0> { mtx() = delete; };
-    template<typename T> struct mtx<T, 1> { mtx() = delete; };
-    /// @endcond
-
-    /**
-     * @brief Type alias for a 2x2 matrix
-     * @tparam T Number type (eg float)
-     */
-    template<typename T> using mtx2 = mtx<T, 2>;
-
-    /**
-     * @brief Type alias for a 3x3 matrix
-     * @tparam T Number type (eg float)
-     */
-    template<typename T> using mtx3 = mtx<T, 3>;
-
-    /**
-     * @brief Type alias for a 4x4 matrix
-     * @tparam T Number type (eg float)
-     */
-    template<typename T> using mtx4 = mtx<T, 4>;
-
-    /**
-     * @brief Compute whether @p lhs is approximately equal to @p rhs (uses constants<T>::tol as epsilon)
-     * @tparam T Number type (eg float)
-     * @tparam N Dimension
-     * @param [in] lhs
-     * @param [in] rhs
-     * @return Whether or not @p lhs and @p rhs are approximately equal
-     */
-    template<typename T, size_t N>
-    inline bool operator==(mtx<T, N> const& lhs, mtx<T, N> const& rhs)
+    struct const_row_proxy
     {
-        vec<T, N * N> lhs_as_vec = vec<T, N * N>(lhs.values);
-        vec<T, N * N> rhs_as_vec = vec<T, N * N>(rhs.values);
-        return equ(lhs_as_vec, rhs_as_vec, constants<T>::tol);
-    }
 
-    /**
-     * @brief Compute whether @p lhs is approximately not equal to @p rhs (uses constants<T>::tol as epsilon)
-     * @tparam T Number type (eg float)
-     * @tparam N Dimension
-     * @param [in] lhs
-     * @param [in] rhs
-     * @return Whether or not @p lhs and @p rhs are approximately not equal
-     */
-    template<typename T, size_t N>
-    inline bool operator!=(mtx<T, N> const& lhs, mtx<T, N> const& rhs)
-    {
-        return !(lhs == rhs);
-    }
+        /**
+         * @brief Construct from a @ref mtx const reference and a row index
+         * @param [in] _m
+         * @param [in] _r
+         */
+        const_row_proxy(mtx const& _m, size_t _r) : m(_m), r(_r) {}
 
-    /**
-     * @brief Compute the product of two matrices
-     * @tparam T Number type (eg float)
-     * @tparam N Dimension
-     * @param [in] lhs 
-     * @param [in] rhs 
-     * @return The matrix result of the product between @p lhs and @p rhs
-     */
-    template<typename T, size_t N>
-    inline mtx<T, N> operator*(mtx<T, N> const& lhs, mtx<T, N> const& rhs)
-    {
-        return mtx<T, N>(lhs) *= rhs;
-    }
+        /**
+         * @brief Const access to a single scalar in the row
+         * @param [in] j The index of the column
+         * @return A const reference to the scalar
+         */
+        inline T const& operator[](size_t j) const { return m.values[r + j * N]; }
 
-    /**
-     * @brief Compute the product of a matrix with a column vector
-     * @tparam T Number type (eg float)
-     * @tparam N Dimension
-     * @param [in] lhs A matrix
-     * @param [in] rhs A column vector
-     * @return The column vector result of the product between @p lhs and @p rhs
-     */
-    template<typename T, size_t N>
-    inline vec<T, N> operator*(mtx<T, N> const& lhs, vec<T, N> const& rhs)
-    {
-        vec<T, N> result;
-        for (size_t j = 0; j < N; ++j)
+        /**
+         * @brief Conversion operator from a @ref const_row_proxy to a @ref vec
+         */
+        inline operator vec<T, N>() const
         {
-            result[j] = dot(lhs.row(j).as_vec(), rhs);
+            vec<T, N> vec;
+            for (size_t j = 0; j < N; ++j)
+            {
+                vec[j] = (*this)[j];
+            }
+            return vec;
         }
-        return result;
+
+        /**
+         * @brief Convert a @ref const_row_proxy to a @ref vec
+         * @return The row proxy as a vector
+         */
+        inline vec<T, N> as_vec() const { return static_cast<vec<T, N>>(*this); }
+
+    private:
+        mtx const& m;
+        size_t r;
+    };
+
+    /**
+     * @brief A proxy struct that gives access to a single row of a @ref mtx
+     */
+    struct row_proxy
+    {
+
+        /**
+         * @brief Construct from a @ref mtx reference and a row index
+         * @param [in] _m
+         * @param [in] _r
+         */
+        row_proxy(mtx& _m, size_t _r) : m(_m), r(_r) {}
+
+        /**
+         * @brief Const access to a single scalar in the row
+         * @param [in] j The index of the column
+         * @return A const reference to the scalar
+         */
+        inline T const& operator[](size_t j) const { return m.values[r + j * N]; }
+
+        /**
+         * @brief Access to a single scalar in the rwo
+         * @param [in] j The index of the column
+         * @return A reference to the scalar
+         */
+        inline T& operator[](size_t j) { return m.values[r + j * N]; }
+
+        /**
+         * @brief Assignment operator
+         * @param [in] rhs
+         * @return A reference to @p this
+         */
+        inline row_proxy& operator=(vec<T, N> const& rhs)
+        {
+            for (size_t j = 0; j < N; ++j)
+            {
+                (*this)[j] = rhs[j];
+            }
+            return *this;
+        }
+
+        /**
+         * @brief Conversion operator from a @ref row_proxy to a @ref const_row_proxy
+         */
+        inline operator const_row_proxy() const { return const_row_proxy(m, r); }
+
+        /**
+         * @brief Conversion operator from a @ref row_proxy to a @ref vec
+         */
+        inline operator vec<T, N>() const
+        {
+            vec<T, N> vec;
+            for (size_t j = 0; j < N; ++j)
+            {
+                vec[j] = (*this)[j];
+            }
+            return vec;
+        }
+
+        /**
+         * @brief Convert a @ref row_proxy to a @ref vec
+         * @return The row proxy as a vector
+         */
+        inline vec<T, N> as_vec() const { return static_cast<vec<T, N>>(*this); }
+
+    private:
+        mtx& m;
+        size_t r;
+    };
+
+    /**
+     * @brief The number of scalars stored in the matrix
+     */
+    static size_t constexpr D = N * N;
+
+    /**
+     * @brief The scalars defining this matrix
+     * @note Stored in column-major form
+     */
+    T values[N * N];
+
+    /**
+     * @brief Default constructor -- intializes to the identity matrix
+     */
+    mtx() { identify(); }
+
+    /**
+     * @brief Construct from a single scalar -- initializes all scalars to @p value
+     * @param [in] value
+     */
+    explicit mtx(T const value)
+    {
+        for (size_t i = 0; i < D; ++i)
+        {
+            values[i] = value;
+        }
     }
 
     /**
-     * @brief Compute the product of a row vector with a matrix
-     * @tparam T Number type (eg float)
-     * @tparam N Dimension
-     * @param [in] lhs A row vector
-     * @param [in] rhs A matrix
-     * @return The rwo vector result of the product between @p lhs and @p rhs
+     * @brief Construct from an N-dimensional vector -- intializes the diagonal to the value of the vector
+     * @param [in] diagonal
      */
-    template<typename T, size_t N>
-    inline vec<T, N> operator*(vec<T, N> const& lhs, mtx<T, N> const& rhs)
+    explicit mtx(vec<T, N> const& diagonal) : mtx()
     {
-        vec<T, N> result;
         for (size_t i = 0; i < N; ++i)
         {
-            result[i] = dot(lhs, rhs.col(i).as_vec());
+            (*this)[i][i] = diagonal[i];
         }
-        return result;
     }
 
     /**
-     * @brief Compute the product of a matrix with a scalar
-     * @tparam T Number type (eg float)
-     * @tparam N Dimension
-     * @param [in] lhs A scalar
-     * @param [in] rhs A matrix
-     * @return The matrix @p rhs scaled by @p lhs
+     * @brief Construct from an NxN-dimensional vector -- an explicit column-major initialization of every entry in the
+     * matrix
+     * @param [in] _values
      */
-    template<typename T, size_t N>
-    inline mtx<T, N> operator*(T const lhs, mtx<T, N> const& rhs)
+    explicit mtx(vec<T, D> const& _values) : mtx()
     {
-        return mtx<T, N>(rhs) *= lhs;
-    }
-
-    /**
-     * @brief Compute the product of a matrix with a scalar
-     * @tparam T Number type (eg float)
-     * @tparam N Dimension
-     * @param [in] lhs A matrix
-     * @param [in] rhs A scalar
-     * @return The matrix @p lhs scaled by @p rhs
-     */
-    template<typename T, size_t N>
-    inline mtx<T, N> operator*(mtx<T, N> const& lhs, T const rhs)
-    {
-        return rhs * lhs;
-    }
-
-    /**
-     * @brief Construct a matrix that scales in x, y, and z
-     * @tparam T Number type (eg float)
-     * @param [in] scalars The scalars for scaling in x, y, and z
-     * @return The scale matrix
-     */
-    template<typename T> inline mtx4<T> scale(vec<T, 3> const& scalars) { return mtx4<T>::scale(scalars); }
-
-    /**
-     * @brief Construct a matrix that scales in x
-     * @tparam T Number type (eg float)
-     * @param [in] scalar 
-     * @return The scale matrix
-     */
-    template<typename T> inline mtx4<T> scale_x(T const scalar) { return mtx4<T>::scale(vec<T, 3>(scalar, T(1), T(1))); }
-
-    /**
-     * @brief Construct a matrix that scales in y
-     * @tparam T Number type (eg float)
-     * @param [in] scalar
-     * @return The scale matrix
-     */
-    template<typename T> inline mtx4<T> scale_y(T const scalar) { return mtx4<T>::scale(vec<T, 3>(T(1), scalar, T(1))); }
-
-    /**
-     * @brief Construct a matrix that scales in z
-     * @tparam T Number type (eg float)
-     * @param [in] scalar
-     * @return The scale matrix
-     */
-    template<typename T> inline mtx4<T> scale_z(T const scalar) { return mtx4<T>::scale(vec<T, 3>(T(1), T(1)), scalar); }
-
-    /**
-     * @brief Construct a matrix that translates in x, y, and z
-     * @tparam T Number type (eg float)
-     * @param [in] scalars The scalars for translating in x, y, and z
-     * @return The translation matrix
-     */
-    template<typename T> inline mtx4<T> translate(vec<T, 3> const& scalars) { return mtx4<T>::translate(scalars); }
-
-    /**
-     * @brief Construct a matrix that translates in x
-     * @tparam T Number type (eg float)
-     * @param [in] scalar
-     * @return The translation matrix
-     */
-    template<typename T> inline mtx4<T> translate_x(T const scalar) { return mtx4<T>::translate(vec<T, 3>(scalar, T(0), T(0))); }
-
-    /**
-     * @brief Construct a matrix that translates in y
-     * @tparam T Number type (eg float)
-     * @param [in] scalar
-     * @return The translation matrix
-     */
-    template<typename T> inline mtx4<T> translate_y(T const scalar) { return mtx4<T>::translate(vec<T, 3>(T(0), scalar, T(0))); }
-
-    /**
-     * @brief Construct a matrix that translates in z
-     * @tparam T Number type (eg float)
-     * @param [in] scalar
-     * @return The translation matrix
-     */
-    template<typename T> inline mtx4<T> translate_z(T const scalar) { return mtx4<T>::translate(vec<T, 3>(T(0), T(0)), scalar); }
-
-    /**
-     * @brief Construct a matrix that rotates about the x-axis
-     * @tparam T Number type (eg float)
-     * @param [in] theta 
-     * @return The rotation matrix
-     */
-    template<typename T>
-    inline mtx4<T> rotate_x(T const theta)
-    {
-        mtx4<T> result;
-        result.row(1) = vec<T, 4>(T(0), std::cos(theta), -std::sin(theta), T(0));
-        result.row(2) = vec<T, 4>(T(0), std::sin(theta),  std::cos(theta), T(0));
-        return result;
-    }
-
-    /**
-     * @brief Construct a matrix that rotates about the y-axis
-     * @tparam T Number type (eg float)
-     * @param [in] theta
-     * @return The rotation matrix
-     */
-    template<typename T>
-    inline mtx4<T> rotate_y(T const theta)
-    {
-        mtx4<T> result;
-        result.row(0) = vec<T, 4>( std::cos(theta), T(0), std::sin(theta), T(0));
-        result.row(2) = vec<T, 4>(-std::sin(theta), T(0), std::cos(theta), T(0));
-        return result;
-    }
-
-    /**
-     * @brief Construct a matrix that rotates about the z-axis
-     * @tparam T Number type (eg float)
-     * @param [in] theta
-     * @return The rotation matrix
-     */
-    template<typename T>
-    inline mtx4<T> rotate_z(T const theta)
-    {
-        mtx4<T> result;
-        result.row(0) = vec<T, 4>(std::cos(theta), -std::sin(theta), T(0), T(0));
-        result.row(1) = vec<T, 4>(std::sin(theta),  std::cos(theta), T(0), T(0));
-        return result;
-    }
-
-    /**
-     * @brief Compute a rotation matrix from euler angles about x -> y -> z
-     * @tparam T Number Type (eg float)
-     * @param [in] x 
-     * @param [in] y 
-     * @param [in] z 
-     * @return The rotation matrix
-     */
-    template<typename T> inline mtx4<T> rotate_xyz(T const x, T const y, T const z) { return (rotate_x(x) *= rotate_y(y)) *= rotate_z(z); }
-
-    /**
-     * @brief Compute a rotation matrix from euler angles about x -> z -> y
-     * @tparam T Number Type (eg float)
-     * @param [in] x 
-     * @param [in] z 
-     * @param [in] y 
-     * @return The rotation matrix
-     */
-    template<typename T> inline mtx4<T> rotate_xzy(T const x, T const z, T const y) { return (rotate_x(x) *= rotate_z(z)) *= rotate_y(y); }
-
-    /**
-     * @brief Compute a rotation matrix from euler angles about y -> x -> z
-     * @tparam T Number Type (eg float)
-     * @param [in] y 
-     * @param [in] x 
-     * @param [in] z 
-     * @return The rotation matrix
-     */
-    template<typename T> inline mtx4<T> rotate_yxz(T const y, T const x, T const z) { return (rotate_y(y) *= rotate_x(x)) *= rotate_z(z); }
-
-    /**
-     * @brief Compute a rotation matrix from euler angles about y -> z -> x
-     * @tparam T Number Type (eg float)
-     * @param [in] y 
-     * @param [in] z 
-     * @param [in] x 
-     * @return The rotation matrix
-     */
-    template<typename T> inline mtx4<T> rotate_yzx(T const y, T const z, T const x) { return (rotate_y(y) *= rotate_z(z)) *= rotate_x(x); }
-
-    /**
-     * @brief Compute a rotation matrix from euler angles about z -> x -> y
-     * @tparam T Number Type (eg float)
-     * @param [in] z 
-     * @param [in] x 
-     * @param [in] y 
-     * @return The rotation matrix
-     */
-    template<typename T> inline mtx4<T> rotate_zxy(T const z, T const x, T const y) { return (rotate_z(z) *= rotate_x(x)) *= rotate_y(y); }
-
-    /**
-     * @brief Compute a rotation matrix from euler angles about z -> y -> x
-     * @tparam T Number Type (eg float)
-     * @param [in] z 
-     * @param [in] y 
-     * @param [in] x 
-     * @return The rotation matrix
-     */
-    template<typename T> inline mtx4<T> rotate_zyx(T const z, T const y, T const x) { return (rotate_z(z) *= rotate_y(y)) *= rotate_x(x); }
-
-    /**
-     * @brief Construct a matrix that rotates the plane
-     * @tparam T Number type (eg float)
-     * @param [in] theta
-     * @return The rotation matrix
-     */
-    template<typename T>
-    inline mtx<T, 2> rotate(T const theta)
-    {
-        mtx<T, 2> result;
-        result.row(0) = vec<T, 2>(std::cos(theta), -std::sin(theta));
-        result.row(1) = vec<T, 2>(std::sin(theta),  std::cos(theta));
-        return result;
-    }
-
-    /**
-     * @brief Construct a view matrix
-     * @tparam T Number type (eg float)
-     * @param [in] eye The camera eye
-     * @param [in] look The look direction
-     * @param [in] right The right direction
-     * @param [in] up The up direction
-     * @return The view matrix
-     */
-    template<typename T>
-    inline mtx4<T> view(vec3<T> const& eye, vec3<T> const& look, vec3<T> const& right, vec3<T> const& up)
-    {
-        vec3<T> v = -look;
-        vec3<T> r = right;
-        vec3<T> u = up;
-
-        mtx4<T> transform;
-        transform[0] = vec4<T>(r, -dot(r, eye));
-        transform[1] = vec4<T>(u, -dot(u, eye));
-        transform[2] = vec4<T>(v, -dot(v, eye));
-        transform[3] = vec4<T>(vec3<T>(), constants<T>::one);
-        return transform;
-    }
-
-    /**
-     * @brief Construct a matrix that computes an orthographic projection
-     * @tparam T Number type (eg float)
-     * @param [in] l Left plane
-     * @param [in] r Right plane
-     * @param [in] b Bottom plane
-     * @param [in] t Top plane
-     * @param [in] n Near plane
-     * @param [in] f Far plane
-     * @return The projection matrix
-     */
-    template<typename T>
-    inline mtx4<T> orthographic(T const l, T const r, T const b, T const t, T const n, T const f)
-    {
-        T constexpr two = constants<T>::two;
-        vec<T, 3> scalars(two / (r - l), two / (t - b), -two / (f - n));
-        vec<T, 3> translators(-(r + l) / (r - l), -(t + b) / (t - b), -(f + n) / (f - n));
-        return mtx4<T>::scale(scalars) * mtx4<T>::translate(translators);
-    }
-
-    /**
-     * @brief Construct a matrix that computes a perspective projection
-     * @tparam T Number type (eg float)
-     * @param [in] fov_y Field of view in the y axis
-     * @param [in] aspect Aspect ratio (width/height = x/y)
-     * @param [in] near_plane Near plane
-     * @param [in] far_plane Far plane
-     * @return The projection matrix
-     */
-    template<typename T>
-    inline mtx4<T> perspective(T const fov_y, T const aspect, T const near_plane, T const far_plane)
-    {
-        T y_scale = T(1.0) / std::tan(T(0.5) * fov_y);
-        T x_scale = y_scale / aspect;
-        mtx4<T> result;
-        result[0][0] = x_scale;
-        result[1][1] = y_scale;
-        result[2][2] = far_plane / (near_plane - far_plane);
-        result[2][3] = near_plane * far_plane / (near_plane - far_plane);
-        result[3][2] = -1;
-        return result;
-    }
-
-    /**
-     * @brief Compute a matrix that rotates 3-space around @p axis by @p theta
-     * @tparam T Number type (eg float)
-     * @param [in] axis Unit vector defining the axis of rotation
-     * @param [in] theta 
-     * @note @p axis must be a unit vector
-     * @return The rotation matrix
-     */
-    template<typename T>
-    inline mtx4<T> rotate(vec<T, 3> const& axis, T const theta)
-    {
-        // perform computations once
-        T const cosine = std::cos(theta);
-        T const sine   = std::sin(theta);
-        T const comp   = T(1) - cosine;     // complement of the cosine
-
-        // local variables for less verbose code
-        T const x = axis.x;
-        T const y = axis.y;
-        T const z = axis.z;
-
-        // compute row vectors
-        vec<T, 4> row_0(x * x * comp + cosine,   x * y * comp - z * sine, x * z * comp + y * sine, T(0));
-        vec<T, 4> row_1(y * x * comp + z * sine, y * y * comp + cosine,   y * z * comp - x * sine, T(0));
-        vec<T, 4> row_2(x * z * comp - y * sine, y * z * comp + x * sine, z * z * comp + cosine,   T(0));
-
-        // construct return matrix
-        mtx4<T> rotation;
-        rotation.row(0) = row_0;
-        rotation.row(1) = row_1;
-        rotation.row(2) = row_2;
-        return rotation;
-    }
-
-    /**
-     * @brief Compute a matrix that orbits 3-space around @p focus by @p delta_phi and @p delta_theta
-     * @tparam T Number type (eg float)
-     * @param [in] focus Center point of the orbit
-     * @param [in] right Direction defining what direction is to the right
-     * @param [in] delta_phi
-     * @param [in] delta_theta 
-     * @note Angles @p delta_phi and @p delta_theta are spherical coordinates measured with @p focus as the origin
-     * @note @p right must be a unit vector
-     * @return The transformation matrix
-     */
-    template<typename T>
-    inline mtx4<T> orbit(vec<T, 3> const& focus, vec<T, 3> const& right, T const delta_phi, T const delta_theta)
-    {
-        mtx4<T> translate = mtx4<T>::translate(-focus);
-        mtx4<T> pitch = rotate(right, delta_phi);
-        mtx4<T> yaw = rotate(vec<T, 3>(0, 0, 1), delta_theta);
-        mtx4<T> invert_translation = mtx4<T>::translate(focus);
-        return invert_translation * yaw * pitch * translate;
-    }
-
-    /**
-     * @brief Write the matrix @p rhs to the std::ostream @p s
-     * @tparam T Number type (eg float)
-     * @tparam N Dimension
-     * @param [in,out] s
-     * @param [in] rhs
-     * @return A reference to @p s
-     */
-    template <typename T, size_t N>
-    std::ostream& operator<<(std::ostream& s, mtx<T, N> const& rhs)
-    {
-        s << rhs.row(0).as_vec();
-        for (size_t i = 1; i < N; ++i)
+        for (size_t i = 0; i < D; ++i)
         {
-            s << ", " << rhs.row(i).as_vec();
+            values[i] = _values[i];
         }
-        return s;
     }
 
-} // stf::math
+    /**
+     * @brief Const access to a single column of the matrix
+     * @param [in] j The index of the column
+     * @return A proxy class that gives const access to the column
+     */
+    inline const_col_proxy col(size_t const j) const { return const_col_proxy(*this, j); }
+
+    /**
+     * @brief Access to a single column of the matrix
+     * @param [in] j The index of the column
+     * @return A proxy class that gives access to the column
+     */
+    inline col_proxy col(size_t const j) { return col_proxy(*this, j); }
+
+    /**
+     * @brief Const access to a single row of the matrix
+     * @param [in] i The index of the row
+     * @return A proxy class that gives const access to the row
+     */
+    inline const_row_proxy row(size_t const i) const { return const_row_proxy(*this, i); }
+
+    /**
+     * @brief Access to a single row of the matrix
+     * @param [in] i The index of the row
+     * @return A proxy class that gives access to the row
+     */
+    inline row_proxy row(size_t const i) { return row_proxy(*this, i); }
+
+    /**
+     * @brief Const access to a single row of the matrix
+     * @param [in] i The index of the row
+     * @return A proxy class that gives const access to the row
+     */
+    inline const_row_proxy operator[](size_t const i) const { return row(i); }
+
+    /**
+     * @brief Access to a single row of the matrix
+     * @param [in] i The index of the row
+     * @return A proxy class that gives access to the row
+     */
+    inline row_proxy operator[](size_t const i) { return row(i); }
+
+    /**
+     * @brief Multiply a matrix by a scalar in place
+     * @param [in] scalar
+     * @return A reference to @p this
+     */
+    inline mtx& operator*=(T const scalar)
+    {
+        for (size_t d = 0; d < D; ++d)
+        {
+            values[d] *= scalar;
+        }
+        return *this;
+    }
+
+    /**
+     * @brief Multiply a matrix by a matrix in place
+     * @param [in] rhs
+     * @return A reference to @p this
+     */
+    mtx& operator*=(mtx const& rhs)
+    {
+        mtx tmp;
+        for (size_t i = 0; i < N; ++i) // iterate over rows
+        {
+            for (size_t j = 0; j < N; ++j) // iterate over columns
+            {
+                tmp[i][j] = dot(row(i).as_vec(), rhs.col(j).as_vec());
+            }
+        }
+
+        *this = tmp;
+        return *this;
+    }
+
+    /**
+     * @brief Set a matrix to the identity matrix
+     * @return A reference to @p this
+     */
+    inline mtx& identify()
+    {
+        for (size_t i = 0; i < N; ++i) // iterate over rows
+        {
+            for (size_t j = 0; j < N; ++j) // iterate over columns
+            {
+                (*this)[i][j] = (i == j) ? T(1) : T(0);
+            }
+        }
+        return *this;
+    }
+
+    /**
+     * @brief Compute the minor a matrix for a particular index
+     * @param [in] i The row index for the minor
+     * @param [in] j The column index for the minor
+     * @return The minor matrix @p M(i,j)
+     */
+    inline mtx<T, N - 1> minor(size_t const i, size_t const j) const
+    {
+        vec<T, (N - 1) * (N - 1)> entries;
+        size_t d = 0;
+        for (size_t x = 0; x < N; ++x)
+        {
+            for (size_t y = 0; y < N; ++y)
+            {
+                if (y != i && x != j)
+                {
+                    entries[d++] = (*this)[y][x];
+                }
+            }
+        }
+        return mtx<T, N - 1>(entries);
+    }
+
+    /**
+     * @brief Compute the determinant of a matrix
+     * @return The determinant of @p this
+     */
+    T determinant() const
+    {
+        if constexpr (N == 2)
+        {
+            T const a = (*this)[0][0];
+            T const b = (*this)[0][1];
+            T const c = (*this)[1][0];
+            T const d = (*this)[1][1];
+            return a * d - c * b;
+        }
+        else
+        {
+            T det = constants<T>::zero;
+            for (size_t i = 0; i < N; ++i)
+            {
+                mtx<T, N - 1> const submatrix = minor(0, i);
+                T const expansion = (*this)[0][i] * submatrix.determinant();
+                bool const even = (i & 1) == 0;
+                det += (even) ? expansion : -expansion; // even i => sign is positve; odd i => sign is negative
+            }
+            return det;
+        }
+    }
+
+    /**
+     * @brief Compute whether or not a matrix is invertible
+     * @return Whether or not @p this is invertible
+     */
+    inline bool invertible() const { return determinant() != constants<T>::zero; }
+
+    /**
+     * @brief Transpose a matrix in-place
+     * @return A reference to @p this
+     */
+    inline mtx& transpose()
+    {
+        // TODO write this method by swapping the values in place
+        mtx trans;
+        for (size_t i = 0; i < N; ++i) // iterate over rows
+        {
+            for (size_t j = 0; j < N; ++j) // iterate over columns
+            {
+                trans[j][i] = (*this)[i][j];
+            }
+        }
+
+        // copy matrix and return reference
+        *this = trans;
+        return *this;
+    }
+
+    /**
+     * @brief Compute the transpose of a matrix
+     * @return The transpose of @p this
+     */
+    inline mtx transposed() const { return mtx(*this).transpose(); }
+
+    /**
+     * @brief Compute the cofactor matrix
+     * @return The cofactor matrix of @p this
+     */
+    mtx cofactored() const
+    {
+        if constexpr (N == 2)
+        {
+            T const a = (*this)[0][0];
+            T const b = (*this)[0][1];
+            T const c = (*this)[1][0];
+            T const d = (*this)[1][1];
+            return mtx(vec<T, 4>(d, -b, -c, a));
+        }
+        else
+        {
+            mtx cof;
+            for (size_t i = 0; i < N; ++i)
+            {
+                for (size_t j = 0; j < N; ++j)
+                {
+                    T const subdet = minor(i, j).determinant();
+                    bool even = ((i + j) & 1) == 0;
+                    cof[i][j] = (even) ? subdet : -subdet;
+                }
+            }
+            return cof;
+        }
+    }
+
+    /**
+     * @brief Compute the inverse of a matrix
+     * @return The inverse of @p this
+     */
+    mtx inverted() const
+    {
+        T const scalar = constants<T>::one / determinant();
+        mtx inv = cofactored().transpose();
+        inv *= scalar;
+        return inv;
+    }
+
+    /**
+     * @brief Multiply a matrix by a scale matrix in place
+     * @param [in] scalars The scalars defining the scale matrix
+     * @return A reference to @p this
+     */
+    inline mtx& scale_by(vec<T, N> const& scalars) { return (*this) *= mtx::scale(scalars); }
+
+    /**
+     * @brief Multiply a matrix by a scale matrix
+     * @param [in] scalars The scalars defining the scale matrix
+     * @return The resulting transformation matrix
+     */
+    inline mtx scaled_by(vec<T, N> const& scalars) const { return mtx(*this).scale_by(scalars); }
+
+    /**
+     * @brief Multiply a matrix by a scale matrix in place
+     * @param [in] scalars The scalars defining the scale matrix -- sets the Nth scalar to 1
+     * @return A reference to @p this
+     */
+    inline mtx& scale_by(vec<T, N - 1> const& scalars) { return scale_by(vec<T, N>(scalars, T(1))); }
+
+    /**
+     * @brief Multiply a matrix by a scale matrix
+     * @param [in] scalars The scalars defining the scale matrix -- sets the Nth scalar to 1
+     * @return The resulting transformation matrix
+     */
+    inline mtx scaled_by(vec<T, N - 1> const& scalars) const { return mtx(*this).scale_by(vec<T, N>(scalars, T(1))); }
+
+    /**
+     * @brief Multiply a matrix by a translation matrix in place
+     * @param [in] scalars The scalars definining the translation matrix
+     * @return A reference to @p this
+     */
+    inline mtx& translate_by(vec<T, N - 1> const& scalars) { return (*this) *= mtx::translate(scalars); }
+
+    /**
+     * @brief Multiply a matrix by a translation matrix
+     * @param [in] scalars The scalars definining the translation matrix
+     * @return The resulting transformation matrix
+     */
+    inline mtx translated_by(vec<T, N - 1> const& scalars) const { return mtx(*this).translate_by(scalars); }
+
+    /**
+     * @brief Compute a mtx that is the top left section of a matrix
+     * @return The top left section of @p this
+     */
+    inline mtx<T, N - 1> prefix() const { return minor(N - 1, N - 1); }
+
+    /**
+     * @brief Fill a raw array with scalars of the matrix in column-major form
+     * @param [out] fill
+     */
+    inline void col_major(T fill[N * N]) const
+    {
+        std::memcpy(static_cast<void*>(fill), static_cast<void*>(values), sizeof(T) * D);
+    }
+
+    /**
+     * @brief Fill a raw array with scalars of the matrix in row-major form
+     * @param [out] fill
+     */
+    inline void row_major(T fill[N * N]) const { return transposed().col_major(fill); }
+
+    /**
+     * @brief Cast a matrix to a different precision
+     * @tparam U Destination number type (eg float)
+     * @return @p this casted to the precision of @p U
+     */
+    template <typename U>
+    mtx<U, N> as() const
+    {
+        mtx<U, N> result;
+        raw::as<T, U, N * N>(values, result.values);
+        return result;
+    }
+
+public:
+    /**
+     * @brief Compute the identity matrix
+     * @return The identity matrix
+     */
+    inline static mtx identity() { return mtx(); }
+
+    /**
+     * @brief Compute a scale matrix
+     * @param [in] scalars The scalars defining the scale matrix
+     * @return A scale matrix
+     */
+    inline static mtx scale(vec<T, N> const& scalars) { return mtx(scalars); }
+
+    /**
+     * @brief Compute a scale matrix
+     * @param [in] scalars The scalars defining the scale matrix -- sets the Nth scalar to 1
+     * @return A scale matrix
+     */
+    inline static mtx scale(vec<T, N - 1> const& scalars) { return mtx(vec<T, N>(scalars, T(1))); }
+
+    /**
+     * @brief Compute a translation matrix
+     * @param [in] scalars The scalars defining the translation matrix
+     * @return A translation matrix
+     */
+    inline static mtx translate(vec<T, N - 1> const& scalars)
+    {
+        mtx result;
+        for (size_t i = 0; i < N - 1; ++i)
+        {
+            result[i][N - 1] = scalars[i];
+        }
+        return result;
+    }
+
+    /**
+     * @brief Compute the number of bytes allocated by matrix
+     * @return The byte count
+     */
+    inline static size_t byte_count() { return sizeof(T) * D; }
+};
+
+/// @cond DELETED
+/**
+ * @brief Delete invalid matrix specializations
+ */
+template <typename T>
+struct mtx<T, 0>
+{
+    mtx() = delete;
+};
+template <typename T>
+struct mtx<T, 1>
+{
+    mtx() = delete;
+};
+/// @endcond
+
+/**
+ * @brief Type alias for a 2x2 matrix
+ * @tparam T Number type (eg float)
+ */
+template <typename T>
+using mtx2 = mtx<T, 2>;
+
+/**
+ * @brief Type alias for a 3x3 matrix
+ * @tparam T Number type (eg float)
+ */
+template <typename T>
+using mtx3 = mtx<T, 3>;
+
+/**
+ * @brief Type alias for a 4x4 matrix
+ * @tparam T Number type (eg float)
+ */
+template <typename T>
+using mtx4 = mtx<T, 4>;
+
+/**
+ * @brief Compute whether @p lhs is approximately equal to @p rhs (uses constants<T>::tol as epsilon)
+ * @tparam T Number type (eg float)
+ * @tparam N Dimension
+ * @param [in] lhs
+ * @param [in] rhs
+ * @return Whether or not @p lhs and @p rhs are approximately equal
+ */
+template <typename T, size_t N>
+inline bool operator==(mtx<T, N> const& lhs, mtx<T, N> const& rhs)
+{
+    vec<T, N * N> lhs_as_vec = vec<T, N * N>(lhs.values);
+    vec<T, N * N> rhs_as_vec = vec<T, N * N>(rhs.values);
+    return equ(lhs_as_vec, rhs_as_vec, constants<T>::tol);
+}
+
+/**
+ * @brief Compute whether @p lhs is approximately not equal to @p rhs (uses constants<T>::tol as epsilon)
+ * @tparam T Number type (eg float)
+ * @tparam N Dimension
+ * @param [in] lhs
+ * @param [in] rhs
+ * @return Whether or not @p lhs and @p rhs are approximately not equal
+ */
+template <typename T, size_t N>
+inline bool operator!=(mtx<T, N> const& lhs, mtx<T, N> const& rhs)
+{
+    return !(lhs == rhs);
+}
+
+/**
+ * @brief Compute the product of two matrices
+ * @tparam T Number type (eg float)
+ * @tparam N Dimension
+ * @param [in] lhs
+ * @param [in] rhs
+ * @return The matrix result of the product between @p lhs and @p rhs
+ */
+template <typename T, size_t N>
+inline mtx<T, N> operator*(mtx<T, N> const& lhs, mtx<T, N> const& rhs)
+{
+    return mtx<T, N>(lhs) *= rhs;
+}
+
+/**
+ * @brief Compute the product of a matrix with a column vector
+ * @tparam T Number type (eg float)
+ * @tparam N Dimension
+ * @param [in] lhs A matrix
+ * @param [in] rhs A column vector
+ * @return The column vector result of the product between @p lhs and @p rhs
+ */
+template <typename T, size_t N>
+inline vec<T, N> operator*(mtx<T, N> const& lhs, vec<T, N> const& rhs)
+{
+    vec<T, N> result;
+    for (size_t j = 0; j < N; ++j)
+    {
+        result[j] = dot(lhs.row(j).as_vec(), rhs);
+    }
+    return result;
+}
+
+/**
+ * @brief Compute the product of a row vector with a matrix
+ * @tparam T Number type (eg float)
+ * @tparam N Dimension
+ * @param [in] lhs A row vector
+ * @param [in] rhs A matrix
+ * @return The rwo vector result of the product between @p lhs and @p rhs
+ */
+template <typename T, size_t N>
+inline vec<T, N> operator*(vec<T, N> const& lhs, mtx<T, N> const& rhs)
+{
+    vec<T, N> result;
+    for (size_t i = 0; i < N; ++i)
+    {
+        result[i] = dot(lhs, rhs.col(i).as_vec());
+    }
+    return result;
+}
+
+/**
+ * @brief Compute the product of a matrix with a scalar
+ * @tparam T Number type (eg float)
+ * @tparam N Dimension
+ * @param [in] lhs A scalar
+ * @param [in] rhs A matrix
+ * @return The matrix @p rhs scaled by @p lhs
+ */
+template <typename T, size_t N>
+inline mtx<T, N> operator*(T const lhs, mtx<T, N> const& rhs)
+{
+    return mtx<T, N>(rhs) *= lhs;
+}
+
+/**
+ * @brief Compute the product of a matrix with a scalar
+ * @tparam T Number type (eg float)
+ * @tparam N Dimension
+ * @param [in] lhs A matrix
+ * @param [in] rhs A scalar
+ * @return The matrix @p lhs scaled by @p rhs
+ */
+template <typename T, size_t N>
+inline mtx<T, N> operator*(mtx<T, N> const& lhs, T const rhs)
+{
+    return rhs * lhs;
+}
+
+/**
+ * @brief Construct a matrix that scales in x, y, and z
+ * @tparam T Number type (eg float)
+ * @param [in] scalars The scalars for scaling in x, y, and z
+ * @return The scale matrix
+ */
+template <typename T>
+inline mtx4<T> scale(vec<T, 3> const& scalars)
+{
+    return mtx4<T>::scale(scalars);
+}
+
+/**
+ * @brief Construct a matrix that scales in x
+ * @tparam T Number type (eg float)
+ * @param [in] scalar
+ * @return The scale matrix
+ */
+template <typename T>
+inline mtx4<T> scale_x(T const scalar)
+{
+    return mtx4<T>::scale(vec<T, 3>(scalar, T(1), T(1)));
+}
+
+/**
+ * @brief Construct a matrix that scales in y
+ * @tparam T Number type (eg float)
+ * @param [in] scalar
+ * @return The scale matrix
+ */
+template <typename T>
+inline mtx4<T> scale_y(T const scalar)
+{
+    return mtx4<T>::scale(vec<T, 3>(T(1), scalar, T(1)));
+}
+
+/**
+ * @brief Construct a matrix that scales in z
+ * @tparam T Number type (eg float)
+ * @param [in] scalar
+ * @return The scale matrix
+ */
+template <typename T>
+inline mtx4<T> scale_z(T const scalar)
+{
+    return mtx4<T>::scale(vec<T, 3>(T(1), T(1)), scalar);
+}
+
+/**
+ * @brief Construct a matrix that translates in x, y, and z
+ * @tparam T Number type (eg float)
+ * @param [in] scalars The scalars for translating in x, y, and z
+ * @return The translation matrix
+ */
+template <typename T>
+inline mtx4<T> translate(vec<T, 3> const& scalars)
+{
+    return mtx4<T>::translate(scalars);
+}
+
+/**
+ * @brief Construct a matrix that translates in x
+ * @tparam T Number type (eg float)
+ * @param [in] scalar
+ * @return The translation matrix
+ */
+template <typename T>
+inline mtx4<T> translate_x(T const scalar)
+{
+    return mtx4<T>::translate(vec<T, 3>(scalar, T(0), T(0)));
+}
+
+/**
+ * @brief Construct a matrix that translates in y
+ * @tparam T Number type (eg float)
+ * @param [in] scalar
+ * @return The translation matrix
+ */
+template <typename T>
+inline mtx4<T> translate_y(T const scalar)
+{
+    return mtx4<T>::translate(vec<T, 3>(T(0), scalar, T(0)));
+}
+
+/**
+ * @brief Construct a matrix that translates in z
+ * @tparam T Number type (eg float)
+ * @param [in] scalar
+ * @return The translation matrix
+ */
+template <typename T>
+inline mtx4<T> translate_z(T const scalar)
+{
+    return mtx4<T>::translate(vec<T, 3>(T(0), T(0)), scalar);
+}
+
+/**
+ * @brief Construct a matrix that rotates about the x-axis
+ * @tparam T Number type (eg float)
+ * @param [in] theta
+ * @return The rotation matrix
+ */
+template <typename T>
+inline mtx4<T> rotate_x(T const theta)
+{
+    mtx4<T> result;
+    result.row(1) = vec<T, 4>(T(0), std::cos(theta), -std::sin(theta), T(0));
+    result.row(2) = vec<T, 4>(T(0), std::sin(theta), std::cos(theta), T(0));
+    return result;
+}
+
+/**
+ * @brief Construct a matrix that rotates about the y-axis
+ * @tparam T Number type (eg float)
+ * @param [in] theta
+ * @return The rotation matrix
+ */
+template <typename T>
+inline mtx4<T> rotate_y(T const theta)
+{
+    mtx4<T> result;
+    result.row(0) = vec<T, 4>(std::cos(theta), T(0), std::sin(theta), T(0));
+    result.row(2) = vec<T, 4>(-std::sin(theta), T(0), std::cos(theta), T(0));
+    return result;
+}
+
+/**
+ * @brief Construct a matrix that rotates about the z-axis
+ * @tparam T Number type (eg float)
+ * @param [in] theta
+ * @return The rotation matrix
+ */
+template <typename T>
+inline mtx4<T> rotate_z(T const theta)
+{
+    mtx4<T> result;
+    result.row(0) = vec<T, 4>(std::cos(theta), -std::sin(theta), T(0), T(0));
+    result.row(1) = vec<T, 4>(std::sin(theta), std::cos(theta), T(0), T(0));
+    return result;
+}
+
+/**
+ * @brief Compute a rotation matrix from euler angles about x -> y -> z
+ * @tparam T Number Type (eg float)
+ * @param [in] x
+ * @param [in] y
+ * @param [in] z
+ * @return The rotation matrix
+ */
+template <typename T>
+inline mtx4<T> rotate_xyz(T const x, T const y, T const z)
+{
+    return (rotate_x(x) *= rotate_y(y)) *= rotate_z(z);
+}
+
+/**
+ * @brief Compute a rotation matrix from euler angles about x -> z -> y
+ * @tparam T Number Type (eg float)
+ * @param [in] x
+ * @param [in] z
+ * @param [in] y
+ * @return The rotation matrix
+ */
+template <typename T>
+inline mtx4<T> rotate_xzy(T const x, T const z, T const y)
+{
+    return (rotate_x(x) *= rotate_z(z)) *= rotate_y(y);
+}
+
+/**
+ * @brief Compute a rotation matrix from euler angles about y -> x -> z
+ * @tparam T Number Type (eg float)
+ * @param [in] y
+ * @param [in] x
+ * @param [in] z
+ * @return The rotation matrix
+ */
+template <typename T>
+inline mtx4<T> rotate_yxz(T const y, T const x, T const z)
+{
+    return (rotate_y(y) *= rotate_x(x)) *= rotate_z(z);
+}
+
+/**
+ * @brief Compute a rotation matrix from euler angles about y -> z -> x
+ * @tparam T Number Type (eg float)
+ * @param [in] y
+ * @param [in] z
+ * @param [in] x
+ * @return The rotation matrix
+ */
+template <typename T>
+inline mtx4<T> rotate_yzx(T const y, T const z, T const x)
+{
+    return (rotate_y(y) *= rotate_z(z)) *= rotate_x(x);
+}
+
+/**
+ * @brief Compute a rotation matrix from euler angles about z -> x -> y
+ * @tparam T Number Type (eg float)
+ * @param [in] z
+ * @param [in] x
+ * @param [in] y
+ * @return The rotation matrix
+ */
+template <typename T>
+inline mtx4<T> rotate_zxy(T const z, T const x, T const y)
+{
+    return (rotate_z(z) *= rotate_x(x)) *= rotate_y(y);
+}
+
+/**
+ * @brief Compute a rotation matrix from euler angles about z -> y -> x
+ * @tparam T Number Type (eg float)
+ * @param [in] z
+ * @param [in] y
+ * @param [in] x
+ * @return The rotation matrix
+ */
+template <typename T>
+inline mtx4<T> rotate_zyx(T const z, T const y, T const x)
+{
+    return (rotate_z(z) *= rotate_y(y)) *= rotate_x(x);
+}
+
+/**
+ * @brief Construct a matrix that rotates the plane
+ * @tparam T Number type (eg float)
+ * @param [in] theta
+ * @return The rotation matrix
+ */
+template <typename T>
+inline mtx<T, 2> rotate(T const theta)
+{
+    mtx<T, 2> result;
+    result.row(0) = vec<T, 2>(std::cos(theta), -std::sin(theta));
+    result.row(1) = vec<T, 2>(std::sin(theta), std::cos(theta));
+    return result;
+}
+
+/**
+ * @brief Construct a view matrix
+ * @tparam T Number type (eg float)
+ * @param [in] eye The camera eye
+ * @param [in] look The look direction
+ * @param [in] right The right direction
+ * @param [in] up The up direction
+ * @return The view matrix
+ */
+template <typename T>
+inline mtx4<T> view(vec3<T> const& eye, vec3<T> const& look, vec3<T> const& right, vec3<T> const& up)
+{
+    vec3<T> v = -look;
+    vec3<T> r = right;
+    vec3<T> u = up;
+
+    mtx4<T> transform;
+    transform[0] = vec4<T>(r, -dot(r, eye));
+    transform[1] = vec4<T>(u, -dot(u, eye));
+    transform[2] = vec4<T>(v, -dot(v, eye));
+    transform[3] = vec4<T>(vec3<T>(), constants<T>::one);
+    return transform;
+}
+
+/**
+ * @brief Construct a matrix that computes an orthographic projection
+ * @tparam T Number type (eg float)
+ * @param [in] l Left plane
+ * @param [in] r Right plane
+ * @param [in] b Bottom plane
+ * @param [in] t Top plane
+ * @param [in] n Near plane
+ * @param [in] f Far plane
+ * @return The projection matrix
+ */
+template <typename T>
+inline mtx4<T> orthographic(T const l, T const r, T const b, T const t, T const n, T const f)
+{
+    T constexpr two = constants<T>::two;
+    vec<T, 3> scalars(two / (r - l), two / (t - b), -two / (f - n));
+    vec<T, 3> translators(-(r + l) / (r - l), -(t + b) / (t - b), -(f + n) / (f - n));
+    return mtx4<T>::scale(scalars) * mtx4<T>::translate(translators);
+}
+
+/**
+ * @brief Construct a matrix that computes a perspective projection
+ * @tparam T Number type (eg float)
+ * @param [in] fov_y Field of view in the y axis
+ * @param [in] aspect Aspect ratio (width/height = x/y)
+ * @param [in] near_plane Near plane
+ * @param [in] far_plane Far plane
+ * @return The projection matrix
+ */
+template <typename T>
+inline mtx4<T> perspective(T const fov_y, T const aspect, T const near_plane, T const far_plane)
+{
+    T y_scale = T(1.0) / std::tan(T(0.5) * fov_y);
+    T x_scale = y_scale / aspect;
+    mtx4<T> result;
+    result[0][0] = x_scale;
+    result[1][1] = y_scale;
+    result[2][2] = far_plane / (near_plane - far_plane);
+    result[2][3] = near_plane * far_plane / (near_plane - far_plane);
+    result[3][2] = -1;
+    return result;
+}
+
+/**
+ * @brief Compute a matrix that rotates 3-space around @p axis by @p theta
+ * @tparam T Number type (eg float)
+ * @param [in] axis Unit vector defining the axis of rotation
+ * @param [in] theta
+ * @note @p axis must be a unit vector
+ * @return The rotation matrix
+ */
+template <typename T>
+inline mtx4<T> rotate(vec<T, 3> const& axis, T const theta)
+{
+    // perform computations once
+    T const cosine = std::cos(theta);
+    T const sine = std::sin(theta);
+    T const comp = T(1) - cosine; // complement of the cosine
+
+    // local variables for less verbose code
+    T const x = axis.x;
+    T const y = axis.y;
+    T const z = axis.z;
+
+    // compute row vectors
+    vec<T, 4> row_0(x * x * comp + cosine, x * y * comp - z * sine, x * z * comp + y * sine, T(0));
+    vec<T, 4> row_1(y * x * comp + z * sine, y * y * comp + cosine, y * z * comp - x * sine, T(0));
+    vec<T, 4> row_2(x * z * comp - y * sine, y * z * comp + x * sine, z * z * comp + cosine, T(0));
+
+    // construct return matrix
+    mtx4<T> rotation;
+    rotation.row(0) = row_0;
+    rotation.row(1) = row_1;
+    rotation.row(2) = row_2;
+    return rotation;
+}
+
+/**
+ * @brief Compute a matrix that orbits 3-space around @p focus by @p delta_phi and @p delta_theta
+ * @tparam T Number type (eg float)
+ * @param [in] focus Center point of the orbit
+ * @param [in] right Direction defining what direction is to the right
+ * @param [in] delta_phi
+ * @param [in] delta_theta
+ * @note Angles @p delta_phi and @p delta_theta are spherical coordinates measured with @p focus as the origin
+ * @note @p right must be a unit vector
+ * @return The transformation matrix
+ */
+template <typename T>
+inline mtx4<T> orbit(vec<T, 3> const& focus, vec<T, 3> const& right, T const delta_phi, T const delta_theta)
+{
+    mtx4<T> translate = mtx4<T>::translate(-focus);
+    mtx4<T> pitch = rotate(right, delta_phi);
+    mtx4<T> yaw = rotate(vec<T, 3>(0, 0, 1), delta_theta);
+    mtx4<T> invert_translation = mtx4<T>::translate(focus);
+    return invert_translation * yaw * pitch * translate;
+}
+
+/**
+ * @brief Write the matrix @p rhs to the std::ostream @p s
+ * @tparam T Number type (eg float)
+ * @tparam N Dimension
+ * @param [in,out] s
+ * @param [in] rhs
+ * @return A reference to @p s
+ */
+template <typename T, size_t N>
+std::ostream& operator<<(std::ostream& s, mtx<T, N> const& rhs)
+{
+    s << rhs.row(0).as_vec();
+    for (size_t i = 1; i < N; ++i)
+    {
+        s << ", " << rhs.row(i).as_vec();
+    }
+    return s;
+}
+
+} // namespace stf::math
+
+#endif

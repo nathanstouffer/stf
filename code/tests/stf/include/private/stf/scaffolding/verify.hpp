@@ -1,4 +1,5 @@
-#pragma once
+#ifndef STF_SCAFFOLDING_VERIFY_HPP_HEADER_GUARD
+#define STF_SCAFFOLDING_VERIFY_HPP_HEADER_GUARD
 
 #include <string>
 #include <vector>
@@ -6,21 +7,23 @@
 namespace stf::scaffolding
 {
 
-    template<typename test_t>
-    void verify(std::vector<test_t> const& tests)
+template <typename test_t>
+void verify(std::vector<test_t> const& tests)
+{
+    size_t i = 0;
+    for (test_t const& test : tests)
     {
-        size_t i = 0;
-        for (test_t const& test : tests)
-        {
-            test.verify(i++);
-        }
+        test.verify(i++);
     }
-
-    inline std::string info(size_t const i)
-    {
-        std::ostringstream msg;
-        msg << "(test index: " << i << ") ";
-        return msg.str();
-    }
-
 }
+
+inline std::string info(size_t const i)
+{
+    std::ostringstream msg;
+    msg << "(test index: " << i << ") ";
+    return msg.str();
+}
+
+} // namespace stf::scaffolding
+
+#endif

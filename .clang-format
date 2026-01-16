@@ -1,0 +1,33 @@
+BasedOnStyle: LLVM
+
+# general whitespace settings
+UseTab: Never
+IndentWidth: 4
+TabWidth: 4
+NamespaceIndentation: None
+PointerAlignment: Left
+ReferenceAlignment: Left
+IndentPPDirectives: AfterHash
+AccessModifierOffset: -4
+
+# general settings
+SortIncludes: false
+
+# line length settings
+ColumnLimit: 120
+AllowShortFunctionsOnASingleLine: Inline
+AllowShortIfStatementsOnASingleLine: true
+AlignTrailingComments: true
+
+# curly brace settings
+BreakBeforeBraces: Allman
+Cpp11BracedListStyle: true
+
+# constructor formatting
+ConstructorInitializerIndentWidth: 4
+ConstructorInitializerAllOnOneLineOrOnePerLine: true
+AllowAllConstructorInitializersOnNextLine: false
+BreakConstructorInitializers: BeforeComma
+
+# template settings
+AlwaysBreakTemplateDeclarations: Yes

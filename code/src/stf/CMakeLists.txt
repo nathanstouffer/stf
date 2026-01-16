@@ -1,6 +1,7 @@
 set(STF_FILES
     "${CMAKE_CURRENT_SOURCE_DIR}/include/interface/stf/alg/clipping.hpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/include/interface/stf/alg/containment.hpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/include/interface/stf/alg/hull.hpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/include/interface/stf/alg/intersect.hpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/include/interface/stf/alg/intersects.hpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/include/interface/stf/alg/statistics.hpp"
@@ -45,7 +46,8 @@ target_compile_definitions(stf INTERFACE
 )
 
 option(STF_SUPPRESS_ANONYMOUS_STRUCT_WARNINGS "Suppress warnings related to anonymous structs" TRUE)
-if (STF_SUPPRESS_ANONYMOUS_STRUCT_WARNINGS)
+
+if(STF_SUPPRESS_ANONYMOUS_STRUCT_WARNINGS)
     target_compile_definitions(stf INTERFACE STF_SUPPRESS_ANONYMOUS_STRUCT_WARNINGS=1)
 else()
     target_compile_definitions(stf INTERFACE STF_SUPPRESS_ANONYMOUS_STRUCT_WARNINGS=0)

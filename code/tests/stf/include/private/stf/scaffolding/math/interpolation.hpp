@@ -1,4 +1,5 @@
-#pragma once
+#ifndef STF_SCAFFOLDING_MATH_INTERPOLATION_HPP_HEADER_GUARD
+#define STF_SCAFFOLDING_MATH_INTERPOLATION_HPP_HEADER_GUARD
 
 #include <gtest/gtest.h>
 
@@ -8,46 +9,48 @@
 namespace stf::scaffolding::math::interpolation
 {
 
-    template<typename T>
-    struct lerp
+template <typename T>
+struct lerp
+{
+    T a;
+    T b;
+    T t;
+    T expected;
+
+    void verify(size_t const i) const
     {
-        T a;
-        T b;
-        T t;
-        T expected;
+        ASSERT_EQ(expected, stf::math::lerp(a, b, t)) << info(i) << "Failed to compute lerp";
+    }
+};
 
-        void verify(size_t const i) const
-        {
-            ASSERT_EQ(expected, stf::math::lerp(a, b, t)) << info(i) << "Failed to compute lerp";
-        }
-    };
+template <typename T>
+struct lerp_inv
+{
+    T a;
+    T b;
+    T x;
+    T expected;
 
-    template<typename T>
-    struct lerp_inv
+    void verify(size_t const i) const
     {
-        T a;
-        T b;
-        T x;
-        T expected;
+        ASSERT_EQ(expected, stf::math::lerp_inv(a, b, x)) << info(i) << "Failed to compute lerp_inv";
+    }
+};
 
-        void verify(size_t const i) const
-        {
-            ASSERT_EQ(expected, stf::math::lerp_inv(a, b, x)) << info(i) << "Failed to compute lerp_inv";
-        }
-    };
+template <typename T>
+struct lerpstep
+{
+    T a;
+    T b;
+    T t;
+    T expected;
 
-    template<typename T>
-    struct lerpstep
+    void verify(size_t const i) const
     {
-        T a;
-        T b;
-        T t;
-        T expected;
+        ASSERT_EQ(expected, stf::math::lerpstep(a, b, t)) << info(i) << "Failed to compute lerp_step";
+    }
+};
 
-        void verify(size_t const i) const
-        {
-            ASSERT_EQ(expected, stf::math::lerpstep(a, b, t)) << info(i) << "Failed to compute lerp_step";
-        }
-    };
+} // namespace stf::scaffolding::math::interpolation
 
-} // stf::scaffolding::math::interpolation
+#endif
