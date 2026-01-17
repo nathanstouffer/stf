@@ -185,6 +185,10 @@ TEST(vec2, projected_on)
         {stff::vec2(3, 4), stff::vec2(1, 0), stff::vec2(3, 0)},
         {stff::vec2(3, 4), stff::vec2(0, 1), stff::vec2(0, 4)},
         {stff::vec2(3, 4), stff::vec2(1, 1), stff::vec2(3.5, 3.5)},
+        {stff::vec2(0, 0), stff::vec2(1, 0), stff::vec2(0, 0)},
+        {stff::vec2(1, 0), stff::vec2(-1, 0), stff::vec2(1, 0)},
+        {stff::vec2(1, 0), stff::vec2(0, 1), stff::vec2(0, 0)},
+        {stff::vec2(-1, -1), stff::vec2(1, 0), stff::vec2(-1, 0)},
     };
     scaffolding::verify(tests);
 }
@@ -198,6 +202,10 @@ TEST(vec2, orthogonal_to)
         {stff::vec2(3, 4), stff::vec2(1, 0), stff::vec2(0, 4)},
         {stff::vec2(3, 4), stff::vec2(0, 1), stff::vec2(3, 0)},
         {stff::vec2(3, 4), stff::vec2(1, 1), stff::vec2(-0.5, 0.5)},
+        {stff::vec2(0, 0), stff::vec2(1, 0), stff::vec2(0, 0)},
+        {stff::vec2(1, 0), stff::vec2(-1, 0), stff::vec2(0, 0)},
+        {stff::vec2(1, 0), stff::vec2(0, 1), stff::vec2(1, 0)},
+        {stff::vec2(-1, -1), stff::vec2(1, 0), stff::vec2(0, -1)},
     };
     scaffolding::verify(tests);
 }
