@@ -176,4 +176,30 @@ TEST(vec2, hadamard_divide)
     scaffolding::verify(tests);
 }
 
+TEST(vec2, projected_on)
+{
+    std::vector<scaffolding::math::vec::projected_on<float, 2>> tests = {
+        {stff::vec2(1, 0), stff::vec2(1, 0), stff::vec2(1, 0)},
+        {stff::vec2(1, 1), stff::vec2(1, 0), stff::vec2(1, 0)},
+        {stff::vec2(1, 1), stff::vec2(0, 1), stff::vec2(0, 1)},
+        {stff::vec2(3, 4), stff::vec2(1, 0), stff::vec2(3, 0)},
+        {stff::vec2(3, 4), stff::vec2(0, 1), stff::vec2(0, 4)},
+        {stff::vec2(3, 4), stff::vec2(1, 1), stff::vec2(3.5, 3.5)},
+    };
+    scaffolding::verify(tests);
+}
+
+TEST(vec2, orthogonal_to)
+{
+    std::vector<scaffolding::math::vec::orthogonal_to<float, 2>> tests = {
+        {stff::vec2(1, 0), stff::vec2(1, 0), stff::vec2(0, 0)},
+        {stff::vec2(1, 1), stff::vec2(1, 0), stff::vec2(0, 1)},
+        {stff::vec2(1, 1), stff::vec2(0, 1), stff::vec2(1, 0)},
+        {stff::vec2(3, 4), stff::vec2(1, 0), stff::vec2(0, 4)},
+        {stff::vec2(3, 4), stff::vec2(0, 1), stff::vec2(3, 0)},
+        {stff::vec2(3, 4), stff::vec2(1, 1), stff::vec2(-0.5, 0.5)},
+    };
+    scaffolding::verify(tests);
+}
+
 } // namespace stf::math
