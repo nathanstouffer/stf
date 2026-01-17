@@ -254,6 +254,32 @@ struct binary_op
     stf::math::vec<T, N> expected;
 };
 
+template <typename T, size_t N>
+struct projected_on
+{
+    stf::math::vec<T, N> lhs;
+    stf::math::vec<T, N> rhs;
+    stf::math::vec<T, N> expected;
+
+    void verify(size_t const i) const
+    {
+        ASSERT_EQ(expected, lhs.projected_on(rhs)) << info(i) << "Failed lhs.projected_on(rhs)";
+    }
+};
+
+template <typename T, size_t N>
+struct orthogonal_to
+{
+    stf::math::vec<T, N> lhs;
+    stf::math::vec<T, N> rhs;
+    stf::math::vec<T, N> expected;
+
+    void verify(size_t const i) const
+    {
+        ASSERT_EQ(expected, lhs.orthogonal_to(rhs)) << info(i) << "Failed lhs.orthogonal_to(rhs)";
+    }
+};
+
 } // namespace stf::scaffolding::math::vec
 
 #endif
