@@ -1,6 +1,7 @@
 #ifndef STF_DS_SLOT_MAP_HPP_HEADER_GUARD
 #define STF_DS_SLOT_MAP_HPP_HEADER_GUARD
 
+#include <utility>
 #include <vector>
 
 namespace stf::ds
@@ -43,8 +44,28 @@ public:
 
     void erase(size_t const id)
     {
-        // TODO (stouff) implement this
+        if (size() == 0 || id >= m_offsets.size())
+        {
+            return;
+        }
+
+        size_t offset = m_offsets[id];
+        if (offset >= m_entries.size())
+        {
+            return;
+        }
+
+        size_t last_id = m_ids[m_entries.size() - 1];
+        size_t last_offset = m_offsets[last_id];
+        using std::swap;
+        swap(m_ids[offset], m_ids[last_offset]);
+        swap(m_entries[offset], m_entries[last_offset]);
+        swap(m_offsets[id], m_offsets[last_id]);
+        m_entries.pop_back();
     }
+
+    // TODO (stouff) set up iterators
+    // TODO (stouff) set up find
 
     T const& operator[](size_t const id) const { return m_entries[m_offsets[id]]; }
 
