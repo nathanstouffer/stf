@@ -1,6 +1,6 @@
 # stf
 
-[![c++-version](https://img.shields.io/badge/C++-17-gray.svg?style=flat&logo=c%2B%2B&logoColor=white&labelColor=1575F9)](https://en.cppreference.com/w/cpp/17)
+[![c++-version](https://img.shields.io/badge/C++-20-gray.svg?style=flat&logo=c%2B%2B&logoColor=white&labelColor=1575F9)](https://en.cppreference.com/w/cpp/20)
 ![build](https://github.com/nathanstouffer/stf/actions/workflows/build.yml/badge.svg)
 [![codecov](https://codecov.io/gh/nathanstouffer/stf/graph/badge.svg?token=WLB5Z8XTYE)](https://codecov.io/gh/nathanstouffer/stf)
 
