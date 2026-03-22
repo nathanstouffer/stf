@@ -1,4 +1,5 @@
 var dir_6327e3c4808f5604daf2758f96bc017f =
 [
-    [ "indexed_list.hpp", "indexed__list_8hpp.html", "indexed__list_8hpp" ]
+    [ "indexed_list.hpp", "indexed__list_8hpp.html", "indexed__list_8hpp" ],
+    [ "slot_map.hpp", "slot__map_8hpp_source.html", null ]
 ];

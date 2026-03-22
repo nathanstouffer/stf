@@ -1,0 +1,5 @@
+<map id="stf::ds::slot_map::erase" name="stf::ds::slot_map::erase">
+<area shape="rect" id="Node000001" title="Erase a key from the map." alt="" coords="5,5,179,31"/>
+<area shape="rect" id="Node000002" href="$classstf_1_1ds_1_1slot__map.html#a515117c725b8762e5196d2c0d6cbba26" title="Return the number of elements in the map." alt="" coords="227,5,389,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="179,15,213,15,213,21,179,21"/>
+</map>

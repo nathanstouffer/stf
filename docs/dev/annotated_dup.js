@@ -9,7 +9,8 @@ var annotated_dup =
         [ "scamera", "structstf_1_1cam_1_1scamera.html", "structstf_1_1cam_1_1scamera" ]
       ] ],
       [ "ds", "namespacestf_1_1ds.html", [
-        [ "indexed_list", "classstf_1_1ds_1_1indexed__list.html", "classstf_1_1ds_1_1indexed__list" ]
+        [ "indexed_list", "classstf_1_1ds_1_1indexed__list.html", "classstf_1_1ds_1_1indexed__list" ],
+        [ "slot_map", "classstf_1_1ds_1_1slot__map.html", "classstf_1_1ds_1_1slot__map" ]
       ] ],
       [ "geom", "namespacestf_1_1geom.html", [
         [ "aabb", "structstf_1_1geom_1_1aabb.html", "structstf_1_1geom_1_1aabb" ],
