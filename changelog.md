@@ -16,7 +16,7 @@ There is some looseness on ABI changes because it is a header-only library so re
 - intersection algorithms
 - convex hull algorithm
 - interval tree
-- indexed list data structure
+- indexed list and slot map data structures
 - tests for much of the library
 - documentation
 
