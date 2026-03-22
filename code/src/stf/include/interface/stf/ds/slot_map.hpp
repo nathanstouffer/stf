@@ -12,19 +12,14 @@ template <typename T>
 class slot_map
 {
 public:
-    struct pair
-    {
-        size_t key;
-        T value;
-    };
 
-    size_t size() const { return m_size; }
+    size_t size() const { return m_values.size(); }
 
     void clear()
     {
         m_size = 0;
         m_index.clear();
-        m_pairs.clear();
+        m_values.clear();
     }
 
     void reserve(size_t const size)
@@ -39,22 +34,20 @@ public:
 
     size_t push(T const& value)
     {
-        size_t i = m_size;
-        if (i >= m_pairs.size()) // assign key and push back
+        size_t i = m_values.size();
+        if (i >= m_keys.size()) // assign key and push back
         {
             size_t key = i;
             m_index.push_back(i);
-            m_pairs.push_back({key, value});
-            ++m_size;
+            m_keys.push_back(key);
+            m_values.push_back(value);
             return key;
         }
         else // use the next available key and overwrite
         {
-            pair& next = m_pairs[i];
-            size_t key = next.key;
-            next.value = value;
+            size_t key = m_keys[i];
             m_index[key] = i;
-            ++m_size;
+            m_values[i] = value;
             return key;
         }
     }
@@ -67,43 +60,43 @@ public:
         }
 
         size_t i = m_index[key];
-        if (i >= m_size)
+        if (i >= m_values.size())
         {
             return;
         }
 
-        size_t key_of_last = m_pairs[m_size - 1].key;
+        size_t i_of_last = m_values.size() - 1;
+        size_t key_of_last = m_keys[i_of_last];
         if (key != key_of_last)
         {
-            size_t i_of_last = m_index[key_of_last];
             using std::swap;
-            swap(m_pairs[i], m_pairs[i_of_last]);
-            swap(m_index[key], m_index[key_of_last]);
+            swap(m_keys[i], m_keys[i_of_last]);
+            swap(m_values[i], m_values[i_of_last]);
         }
-        --m_size;
+        m_values.pop_back();
     }
 
-    T const& operator[](size_t const key) const { return m_pairs[m_index[key]].value; }
+    T const& operator[](size_t const key) const { return m_values[m_index[key]]; }
 
     T& operator[](size_t const key) { return const_cast<T&>(static_cast<const slot_map&>(*this)[key]); }
 
-    using iterator = typename std::vector<pair>::iterator;
-    using const_iterator = typename std::vector<pair>::const_iterator;
+    using iterator = typename std::vector<T>::iterator;
+    using const_iterator = typename std::vector<T>::const_iterator;
 
-    const_iterator begin() const { return m_pairs.begin(); }
-    const_iterator end() const { return m_pairs.begin() + m_size; }
+    const_iterator begin() const { return m_values.begin(); }
+    const_iterator end() const { return m_values.end(); }
 
-    iterator begin() { return m_pairs.begin(); }
-    iterator end() { return m_pairs.begin() + m_size; }
+    iterator begin() { return m_values.begin(); }
+    iterator end() { return m_values.end(); }
 
     iterator find(size_t const key)
     {
         if (key < m_index.size())
         {
             size_t i = m_index[key];
-            if (i < m_size)
+            if (i < m_values.size())
             {
-                return m_pairs.begin() + i;
+                return m_values.begin() + i;
             }
         }
         return end();
@@ -114,19 +107,19 @@ public:
         if (key < m_index.size())
         {
             size_t i = m_index[key];
-            if (i < m_size)
+            if (i < m_values.size())
             {
-                return m_pairs.begin() + i;
+                return m_values.begin() + i;
             }
         }
         return end();
     }
 
 private:
-    // indexed by the offset, this is the underlying data structure
-    std::vector<pair> m_pairs;
-    // stores the size of the utilizes portion of m_pairs
-    size_t m_size = 0;
+    // keyed by m_index, this is the underlying data structure
+    std::vector<T> m_values;
+    // back-pointers from m_values to m_index (indexed in parallel)
+    std::vector<size_t> m_keys;
     // indexed by key, returns the index in the underlying data structure
     std::vector<size_t> m_index;
 };
