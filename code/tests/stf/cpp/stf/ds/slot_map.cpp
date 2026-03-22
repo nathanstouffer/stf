@@ -66,7 +66,7 @@ TEST(slot_map, erase)
 
     {
         auto found = map.find(1);
-        ASSERT_EQ(map.end(), found) << "Erroneously erased id 1";
+        ASSERT_NE(map.end(), found) << "Erroneously erased id 1";
         // TODO (stouff) add assertion bound found entry
     }
 }
