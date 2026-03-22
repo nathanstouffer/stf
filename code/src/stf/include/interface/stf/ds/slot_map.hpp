@@ -8,13 +8,26 @@
 namespace stf::ds
 {
 
+/**
+ * @brief A class for storing key-value pairs in contiguous memory
+ * @tparam T Value type
+ *
+ * A map for storing key-value pairs in contiguous memory with O(1) insertions/deletions and stable identifiers. The
+ * identifiers are stable but the order of the values in the underlying data structure may change.
+ */
 template <std::swappable T>
 class slot_map
 {
 public:
-
+    /**
+     * @brief Return the number of elements in the map
+     * @return The number of elements in the map
+     */
     size_t size() const { return m_values.size(); }
 
+    /**
+     * @brief Clear the map
+     */
     void clear()
     {
         m_index.clear();
@@ -22,18 +35,27 @@ public:
         m_values.clear();
     }
 
-    void reserve(size_t const size)
+    /**
+     * @brief Reserve contiguous memory blocks
+     * @param [in] capacity The number of values to reserve for
+     */
+    void reserve(size_t const capacity)
     {
         // check against index because we can never reduce its capacity
-        if (size > m_index.capacity())
+        if (capacity > m_index.capacity())
         {
-            m_index.reserve(size);
-            m_keys.reserve(size);
+            m_index.reserve(capacity);
+            m_keys.reserve(capacity);
             m_values.reserve(size);
         }
     }
 
-    size_t push(T const& value)
+    /**
+     * @brief Insert a value into the map
+     * @param [in] value The value to insert
+     * @return The id that can be used to access the inserted value
+     */
+    size_t insert(T const& value)
     {
         size_t i = m_values.size();
         if (i >= m_keys.size()) // assign key and push back
@@ -53,6 +75,10 @@ public:
         }
     }
 
+    /**
+     * @brief Erase a key from the map
+     * @param [in] key The key to erase
+     */
     void erase(size_t const key)
     {
         if (size() == 0 || key >= m_index.size())
@@ -78,19 +104,59 @@ public:
         m_values.pop_back();
     }
 
+    /**
+     * @brief Access a specific value of the map
+     * @param [in] key The key to access
+     * @return A const reference to the value
+     */
     T const& operator[](size_t const key) const { return m_values[m_index[key]]; }
 
+    /**
+     * @brief Access a specific value of the map
+     * @param [in] key The key to access
+     * @return A reference to the value
+     */
     T& operator[](size_t const key) { return const_cast<T&>(static_cast<const slot_map&>(*this)[key]); }
 
+    /**
+     * @brief iterator type alias
+     */
     using iterator = typename std::vector<T>::iterator;
+
+    /**
+     * @brief const iterator type alias
+     */
     using const_iterator = typename std::vector<T>::const_iterator;
 
+    /**
+     * @brief Return the begin iterator
+     * @return The begin iterator
+     */
     const_iterator begin() const { return m_values.begin(); }
+
+    /**
+     * @brief Return the end iterator
+     * @return The end iterator
+     */
     const_iterator end() const { return m_values.end(); }
 
+    /**
+     * @brief Return the begin iterator
+     * @return The begin iterator
+     */
     iterator begin() { return m_values.begin(); }
+
+    /**
+     * @brief Return the end iterator
+     * @return The end iterator
+     */
     iterator end() { return m_values.end(); }
 
+    /**
+     * @brief Find an element in the map
+     * @param [in] key The search key
+     * @return Iterator holding the value or end if the key is not present
+     */
     iterator find(size_t const key)
     {
         if (key < m_index.size())
@@ -104,6 +170,11 @@ public:
         return end();
     }
 
+    /**
+     * @brief Find an element in the map
+     * @param [in] key The search key
+     * @return Iterator holding the value or end if the key is not present
+     */
     const_iterator find(size_t const key) const
     {
         if (key < m_index.size())

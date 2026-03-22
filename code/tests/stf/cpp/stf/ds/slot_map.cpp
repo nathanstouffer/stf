@@ -11,7 +11,7 @@
 namespace stf::ds
 {
 
-TEST(slot_map, simple_push)
+TEST(slot_map, simple_insert)
 {
     slot_map<std::string> map;
 
@@ -27,7 +27,7 @@ TEST(slot_map, simple_push)
 
     for (auto& test : tests)
     {
-        map.push(test.value);
+        map.insert(test.value);
     };
 
     for (auto& test : tests)
@@ -52,7 +52,7 @@ TEST(slot_map, erase)
 
     for (auto& test : tests)
     {
-        map.push(test.value);
+        map.insert(test.value);
     };
 
     map.erase(0);
@@ -97,7 +97,7 @@ TEST(slot_map, erase_end)
 
     for (auto& test : tests)
     {
-        map.push(test.value);
+        map.insert(test.value);
     };
 
     map.erase(4);
