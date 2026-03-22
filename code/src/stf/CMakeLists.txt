@@ -35,6 +35,7 @@ set(STF_FILES
     "${CMAKE_CURRENT_SOURCE_DIR}/include/interface/stf/math/vector.hpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/include/interface/stf/platform.hpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/include/interface/stf/spatial/interval_tree.hpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/include/interface/stf/spatial/quad_tree.hpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/include/interface/stf/stf.hpp"
 )
 
