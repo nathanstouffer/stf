@@ -12,92 +12,123 @@ template <typename T>
 class slot_map
 {
 public:
-    size_t size() const { return m_entries.size(); }
+    struct pair
+    {
+        size_t key;
+        T value;
+    };
+
+    size_t size() const { return m_size; }
 
     void clear()
     {
-        m_offsets.clear();
-        m_ids.clear();
-        m_entries.clear();
+        m_size = 0;
+        m_index.clear();
+        m_pairs.clear();
     }
 
     void reserve(size_t const size)
     {
-        // check against offsets size because we can never reduce the capacity of m_offsets or m_ids
-        if (size > m_offsets.size())
+        // check against index because we can never reduce its capacity
+        if (size > m_index.capacity())
         {
-            m_offsets.reserve(size);
-            m_ids.reserve(size);
-            m_entries.reserve(size);
+            m_index.reserve(size);
+            m_pairs.reserve(size);
         }
     }
 
-    size_t push(T const& entry)
+    size_t push(T const& value)
     {
-        // insert to entries
-        size_t offset = m_entries.size();
-        m_entries.push_back(entry);
-
-        // update indexing
-        if (offset >= m_ids.size())
+        size_t i = m_size;
+        if (i >= m_pairs.size()) // assign key and push back
         {
-            size_t id = offset;
-            m_offsets.push_back(id);
-            m_ids.push_back(offset);
-            return id;
+            size_t key = i;
+            m_index.push_back(i);
+            m_pairs.push_back({key, value});
+            ++m_size;
+            return key;
         }
-        else
+        else // use the next available key and overwrite
         {
-            size_t id = m_ids[offset];
-            m_offsets[id] = offset;
-            return id;
+            pair& next = m_pairs[i];
+            size_t key = next.key;
+            next.value = value;
+            m_index[key] = i;
+            ++m_size;
+            return key;
         }
     }
 
-    void erase(size_t const id)
+    void erase(size_t const key)
     {
-        if (size() == 0 || id >= m_offsets.size())
+        if (size() == 0 || key >= m_index.size())
         {
             return;
         }
 
-        size_t offset = m_offsets[id];
-        if (offset >= m_entries.size())
+        size_t i = m_index[key];
+        if (i >= m_size)
         {
             return;
         }
 
-        size_t last_id = m_ids[m_entries.size() - 1];
-        size_t last_offset = m_offsets[last_id];
-        using std::swap;
-        swap(m_ids[offset], m_ids[last_offset]);
-        swap(m_entries[offset], m_entries[last_offset]);
-        swap(m_offsets[id], m_offsets[last_id]);
-        m_entries.pop_back();
+        size_t key_of_last = m_pairs[m_size - 1].key;
+        if (key != key_of_last)
+        {
+            size_t i_of_last = m_index[key_of_last];
+            using std::swap;
+            swap(m_pairs[i], m_pairs[i_of_last]);
+            swap(m_index[key], m_index[key_of_last]);
+        }
+        --m_size;
     }
 
-    struct iterator
+    T const& operator[](size_t const key) const { return m_pairs[m_index[key]].value; }
+
+    T& operator[](size_t const key) { return const_cast<T&>(static_cast<const slot_map&>(*this)[key]); }
+
+    using iterator = typename std::vector<pair>::iterator;
+    using const_iterator = typename std::vector<pair>::const_iterator;
+
+    const_iterator begin() const { return m_pairs.begin(); }
+    const_iterator end() const { return m_pairs.begin() + m_size; }
+
+    iterator begin() { return m_pairs.begin(); }
+    iterator end() { return m_pairs.begin() + m_size; }
+
+    iterator find(size_t const key)
     {
-    private:
-        using id_iterator = std::vector<size_t>::iterator;
-        using entry_iterator = std::vector<T>::iterator;
-        iterator(id_iterator id, entry_iterator entry) :
-    };
+        if (key < m_index.size())
+        {
+            size_t i = m_index[key];
+            if (i < m_size)
+            {
+                return m_pairs.begin() + i;
+            }
+        }
+        return end();
+    }
 
-    // TODO (stouff) set up iterators
-    // TODO (stouff) set up find
-
-    T const& operator[](size_t const id) const { return m_entries[m_offsets[id]]; }
-
-    T& operator[](size_t const id) { return const_cast<T&>(static_cast<const slot_map&>(*this)[id]); }
+    const_iterator find(size_t const key) const
+    {
+        if (key < m_index.size())
+        {
+            size_t i = m_index[key];
+            if (i < m_size)
+            {
+                return m_pairs.begin() + i;
+            }
+        }
+        return end();
+    }
 
 private:
-    // indexed by id, returns the index of the entry in m_entries
-    std::vector<size_t> m_offsets;
-    // indexed by the offset, returns the associated id
-    std::vector<size_t> m_ids;
-    // indexed by the offset, returns the entry
-    std::vector<T> m_entries;
+    // indexed by the offset, this is the underlying data structure
+    std::vector<pair> m_pairs;
+    // stores the size of the utilizes portion of m_pairs
+    size_t m_size = 0;
+    // indexed by key, returns the index in the underlying data structure
+    std::vector<size_t> m_index;
 };
 
 } // namespace stf::ds

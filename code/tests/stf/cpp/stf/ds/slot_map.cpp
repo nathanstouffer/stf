@@ -20,7 +20,7 @@ TEST(slot_map, simple_push)
     struct test_t
     {
         std::string value;
-        size_t id;
+        size_t key;
     };
 
     std::vector<test_t> tests = {
@@ -34,7 +34,7 @@ TEST(slot_map, simple_push)
 
     for (auto& test : tests)
     {
-        ASSERT_EQ(test.value, map[test.id]) << "Failed to push item";
+        ASSERT_EQ(test.value, map[test.key]) << "Failed to push item";
     }
 }
 
@@ -45,7 +45,7 @@ TEST(slot_map, erase)
     struct test_t
     {
         std::string value;
-        size_t id;
+        size_t key;
     };
 
     std::vector<test_t> tests = {
@@ -66,7 +66,7 @@ TEST(slot_map, erase)
 
     {
         auto found = map.find(1);
-        ASSERT_EQ(map.end() != found) << "Erroneously erased id 1";
+        ASSERT_EQ(map.end(), found) << "Erroneously erased id 1";
         // TODO (stouff) add assertion bound found entry
     }
 }
@@ -78,7 +78,7 @@ TEST(slot_map, erase_end)
     struct test_t
     {
         std::string value;
-        size_t id;
+        size_t key;
     };
 
     std::vector<test_t> tests = {
