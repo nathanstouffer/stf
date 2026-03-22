@@ -1,14 +1,14 @@
 #ifndef STF_DS_SLOT_MAP_HPP_HEADER_GUARD
 #define STF_DS_SLOT_MAP_HPP_HEADER_GUARD
 
+#include <concepts>
 #include <utility>
 #include <vector>
 
 namespace stf::ds
 {
 
-template <typename T>
-// TODO (stouff) maybe swappable or movable constraint?
+template <std::swappable T>
 class slot_map
 {
 public:
