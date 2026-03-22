@@ -6,10 +6,8 @@
 
 #include <stf/ds/slot_map.hpp>
 
-#include "stf/scaffolding/ds/slot_map.hpp"
 #include "stf/scaffolding/verify.hpp"
 
-// TODO (stouff) perhaps extract scaffolding to header file?
 namespace stf::ds
 {
 
