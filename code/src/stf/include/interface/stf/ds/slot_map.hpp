@@ -70,6 +70,7 @@ public:
         if (key != key_of_last)
         {
             using std::swap;
+            swap(m_index[key], m_index[key_of_last]);
             swap(m_keys[i], m_keys[i_of_last]);
             swap(m_values[i], m_values[i_of_last]);
         }
