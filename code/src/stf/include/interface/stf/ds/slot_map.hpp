@@ -46,7 +46,7 @@ public:
         {
             m_index.reserve(capacity);
             m_keys.reserve(capacity);
-            m_values.reserve(size);
+            m_values.reserve(capacity);
         }
     }
 
