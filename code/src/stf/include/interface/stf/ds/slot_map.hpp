@@ -17,8 +17,8 @@ public:
 
     void clear()
     {
-        m_size = 0;
         m_index.clear();
+        m_keys.clear();
         m_values.clear();
     }
 
@@ -28,7 +28,8 @@ public:
         if (size > m_index.capacity())
         {
             m_index.reserve(size);
-            m_pairs.reserve(size);
+            m_keys.reserve(size);
+            m_values.reserve(size);
         }
     }
 

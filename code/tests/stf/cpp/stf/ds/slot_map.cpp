@@ -61,13 +61,25 @@ TEST(slot_map, erase)
     map.erase(2);
 
     ASSERT_EQ(3, map.size()) << "Failed size check for map";
-    ASSERT_EQ(map.end(), map.find(0)) << "Failed to erase id 0";
-    ASSERT_EQ(map.end(), map.find(2)) << "Failed to erase id 2";
+    ASSERT_EQ(map.end(), map.find(0)) << "Failed to erase key 0";
+    ASSERT_EQ(map.end(), map.find(2)) << "Failed to erase key 2";
 
     {
         auto found = map.find(1);
-        ASSERT_NE(map.end(), found) << "Erroneously erased id 1";
-        // TODO (stouff) add assertion bound found entry
+        ASSERT_NE(map.end(), found) << "Erroneously erased key 1";
+        ASSERT_EQ("one", *found) << "Incorrect value at key 1";
+    }
+
+    {
+        auto found = map.find(3);
+        ASSERT_NE(map.end(), found) << "Erroneously erased key 3";
+        ASSERT_EQ("three", *found) << "Incorrect value at key 3";
+    }
+
+    {
+        auto found = map.find(4);
+        ASSERT_NE(map.end(), found) << "Erroneously erased key 4";
+        ASSERT_EQ("four", *found) << "Incorrect value at key 4";
     }
 }
 
@@ -93,6 +105,10 @@ TEST(slot_map, erase_end)
     map.erase(4);
 
     ASSERT_EQ(4, map.size()) << "Failed size check for map";
+    {
+        auto found = map.find(4);
+        ASSERT_EQ(map.end(), found) << "Failed to erase key 4";
+    }
 }
 
 } // namespace stf::ds
