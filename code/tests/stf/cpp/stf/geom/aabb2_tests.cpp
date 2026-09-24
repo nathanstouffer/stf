@@ -50,6 +50,14 @@ TEST(aabb2, contains)
     scaffolding::verify(tests);
 }
 
+TEST(aabb2, center)
+{
+    std::vector<scaffolding::geom::aabb::center<int, 2>> tests = {
+        {stfi::aabb2(stfi::vec2(0), stfi::vec2(2)), stfi::vec2(1)},
+    };
+    scaffolding::verify(tests);
+}
+
 TEST(aabb2, dist_and_dist_squared)
 {
     std::vector<scaffolding::geom::aabb::dist_and_dist_squared<float, 2>> tests = {
