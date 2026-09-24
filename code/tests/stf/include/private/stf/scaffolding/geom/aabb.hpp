@@ -55,6 +55,15 @@ struct contains
 };
 
 template <typename T, size_t N>
+struct center
+{
+    stf::geom::aabb<T, N> box;
+    stf::math::vec<T, N> center;
+
+    void verify(size_t const i) const { ASSERT_EQ(center, box.center()) << info(i) << "failed to compute box center"; }
+};
+
+template <typename T, size_t N>
 struct dist_and_dist_squared
 {
     stf::geom::aabb<T, N> box;
