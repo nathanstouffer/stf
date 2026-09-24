@@ -18,6 +18,7 @@ jobs:
         build_type: [Debug, RelWithDebInfo, Release, MinSizeRel]
         # image states
         # windows-2022: https://github.com/actions/runner-images/blob/main/images/windows/Windows2022-Readme.md
+        # windows-2025: https://github.com/actions/runner-images/blob/main/images/windows/Windows2025-VS2026-Readme.md
         # ubuntu-24.04: https://github.com/actions/runner-images/blob/main/images/ubuntu/Ubuntu2404-Readme.md
         # macos-14:     https://github.com/actions/runner-images/blob/main/images/macos/macos-14-Readme.md
         host:
