@@ -54,6 +54,8 @@ TEST(aabb2, center)
 {
     std::vector<scaffolding::geom::aabb::center<int, 2>> tests = {
         {stfi::aabb2(stfi::vec2(0), stfi::vec2(2)), stfi::vec2(1)},
+        {stfi::aabb2(stfi::vec2(0), stfi::vec2(10)), stfi::vec2(5)},
+        {stfi::aabb2(stfi::vec2(-2, 2), stfi::vec2(2, 6)), stfi::vec2(0, 4)},
     };
     scaffolding::verify(tests);
 }
