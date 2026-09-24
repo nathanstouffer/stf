@@ -125,7 +125,7 @@ public:
      * @brief Compute the center of an @ref aabb
      * @return The center point of @p this
      */
-    inline vec_t center() const { return min + (math::constants<T>::half * diagonal()); }
+    inline vec_t center() const { return min + (diagonal() / math::constants<T>::two); }
 
     /**
      * @brief Compute whether a point is contained in an @ref aabb
