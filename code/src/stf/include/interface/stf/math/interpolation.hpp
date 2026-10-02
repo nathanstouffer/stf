@@ -218,9 +218,8 @@ inline T cubic_hermite_spline(T const p0, T const m0, T const p1, T const m1, T 
  * @param [in] t Time in [t0, t1] used for interpolation
  * @return The interpolated scalar
  */
-template <typename T, size_t N>
-inline math::vec<T, N> cubic_hermite_spline(T const t0, T const p0, T const m0, T const t1, T const p1, T const m1,
-                                            T const t)
+template <typename T>
+inline T cubic_hermite_spline(T const t0, T const p0, T const m0, T const t1, T const p1, T const m1, T const t)
 {
     T const delta = t1 - t0;
     return cubic_hermite_spline(p0, m0 * delta, p1, m1 * delta, (t - t0) / delta);
