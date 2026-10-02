@@ -7,6 +7,8 @@ var interpolation_8hpp =
     [ "cubic_bezier", "interpolation_8hpp.html#a6849132b25c2ba3d20162b29baf00b74", null ],
     [ "cubic_hermite_spline", "interpolation_8hpp.html#a14d627aaad69305e68a9afe0bcb1a15f", null ],
     [ "cubic_hermite_spline", "interpolation_8hpp.html#ad7c918df85e92af354a00b828bb12e26", null ],
+    [ "cubic_hermite_spline", "interpolation_8hpp.html#a3c934d5c08ce1579812580d11b2f6303", null ],
+    [ "cubic_hermite_spline", "interpolation_8hpp.html#a1a7c18645318b90bec5509e6b811fb74", null ],
     [ "lerp", "interpolation_8hpp.html#acc59c171c2d2950a06a0f4efaa257027", null ],
     [ "lerp", "interpolation_8hpp.html#a72fa8ca1fb0d9248d11f7c51f93a0343", null ],
     [ "lerp_inv", "interpolation_8hpp.html#a350ee3c7dd0cd862d7ad1dce52cec068", null ],

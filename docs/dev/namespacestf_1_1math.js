@@ -28,6 +28,8 @@ var namespacestf_1_1math =
     [ "cubic_bezier", "namespacestf_1_1math.html#a6849132b25c2ba3d20162b29baf00b74", null ],
     [ "cubic_hermite_spline", "namespacestf_1_1math.html#a14d627aaad69305e68a9afe0bcb1a15f", null ],
     [ "cubic_hermite_spline", "namespacestf_1_1math.html#ad7c918df85e92af354a00b828bb12e26", null ],
+    [ "cubic_hermite_spline", "namespacestf_1_1math.html#a3c934d5c08ce1579812580d11b2f6303", null ],
+    [ "cubic_hermite_spline", "namespacestf_1_1math.html#a1a7c18645318b90bec5509e6b811fb74", null ],
     [ "dist", "namespacestf_1_1math.html#a0cbb8839da3544d5ca8a34863bdc8250", null ],
     [ "dist_squared", "namespacestf_1_1math.html#ad82b998efe770c215834daefd24494d9", null ],
     [ "dot", "namespacestf_1_1math.html#affb9352af7b68426cc6ca4e4f2b5e583", null ],
