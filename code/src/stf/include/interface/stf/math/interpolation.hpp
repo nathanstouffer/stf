@@ -209,17 +209,17 @@ inline T cubic_hermite_spline(T const p0, T const m0, T const p1, T const m1, T 
  *
  * @tparam T Number type (eg float)
  * @tparam N Dimension
+ * @param [in] t0 Time at the beginning of the interpolation interval
  * @param [in] p0 Anchor value at the beginning of the interpolation interval
  * @param [in] m0 Derivative at the beginning of the interpolation interval
- * @param [in] t0 Time at the beginning of the interpolation interval
+ * @param [in] t1 Time at the end of the interpolation interval
  * @param [in] p1 Anchor value at the end of the interpolation interval
  * @param [in] m1 Derivative at the end of the interpolation interval
- * @param [in] t1 Time at the end of the interpolation interval
  * @param [in] t Time in [t0, t1] used for interpolation
  * @return The interpolated scalar
  */
 template <typename T, size_t N>
-inline math::vec<T, N> cubic_hermite_spline(T const p0, T const m0, T const t0, T const p1, T const m1, T const t1,
+inline math::vec<T, N> cubic_hermite_spline(T const t0, T const p0, T const m0, T const t1, T const p1, T const m1,
                                             T const t)
 {
     T const delta = t1 - t0;
@@ -392,18 +392,18 @@ inline math::vec<T, N> cubic_hermite_spline(math::vec<T, N> const p0, math::vec<
  *
  * @tparam T Number type (eg float)
  * @tparam N Dimension
+ * @param [in] t0 Time at the beginning of the interpolation interval
  * @param [in] p0 Anchor value at the beginning of the interpolation interval
  * @param [in] m0 Derivative at the beginning of the interpolation interval
- * @param [in] t0 Time at the beginning of the interpolation interval
+ * @param [in] t1 Time at the end of the interpolation interval
  * @param [in] p1 Anchor value at the end of the interpolation interval
  * @param [in] m1 Derivative at the end of the interpolation interval
- * @param [in] t1 Time at the end of the interpolation interval
  * @param [in] t Time in [t0, t1] used for interpolation
  * @return The interpolated vector
  */
 template <typename T, size_t N>
-inline math::vec<T, N> cubic_hermite_spline(math::vec<T, N> const p0, math::vec<T, N> const m0, T const t0,
-                                            math::vec<T, N> const p1, math::vec<T, N> const m1, T const t1, T const t)
+inline math::vec<T, N> cubic_hermite_spline(T const t0, math::vec<T, N> const p0, math::vec<T, N> const m0, T const t1,
+                                            math::vec<T, N> const p1, math::vec<T, N> const m1, T const t)
 {
     T const delta = t1 - t0;
     return cubic_hermite_spline(p0, m0 * delta, p1, m1 * delta, (t - t0) / delta);
