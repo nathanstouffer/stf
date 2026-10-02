@@ -345,6 +345,38 @@ inline math::vec<T, N> cubic_hermite_spline(math::vec<T, N> const p0, math::vec<
     return result;
 }
 
+/**
+ * @brief Interpolate between vectors using cubic hermite splines
+ *
+ * The spline function f(t) is defined on [0, 1] and satisfies the following constraints
+ *      * f(0) = p0
+ *      * f(1) = p1
+ *      * f'(0) = m0
+ *      * f'(1) = m1
+ *
+ * This can be leveraged so that consecutive splines are C^1 at the boundary of interpolation intervals
+ *
+ * reference: https://en.wikipedia.org/wiki/Cubic_Hermite_spline
+ *
+ * @tparam T Number type (eg float)
+ * @tparam N Dimension
+ * @param [in] p0 Anchor value at the beginning of the interpolation interval
+ * @param [in] m0 Derivative at the beginning of the interpolation interval
+ * @param [in] t0 Time at the beginning of the interpolation interval
+ * @param [in] p1 Anchor value at the end of the interpolation interval
+ * @param [in] m1 Derivative at the end of the interpolation interval
+ * @param [in] t1 Time at the end of the interpolation interval
+ * @param [in] t Time in [t0, t1] used for interpolation
+ * @return The interpolated vector
+ */
+template <typename T, size_t N>
+inline math::vec<T, N> cubic_hermite_spline(math::vec<T, N> const p0, math::vec<T, N> const m0, T const t0,
+                                            math::vec<T, N> const p1, math::vec<T, N> const m1, T const t1, T const t)
+{
+    T const delta = t1 - t0;
+    return cubic_hermite_spline(p0, m0 * delta, p1, m1 * delta, (t - t0) / delta);
+}
+
 } // namespace stf::math
 
 #endif
