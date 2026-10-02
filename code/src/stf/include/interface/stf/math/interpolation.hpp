@@ -216,7 +216,7 @@ inline T cubic_hermite_spline(T const p0, T const m0, T const p1, T const m1, T 
  * @param [in] m1 Derivative at the end of the interpolation interval
  * @param [in] t1 Time at the end of the interpolation interval
  * @param [in] t Time in [t0, t1] used for interpolation
- * @return The interpolated vector
+ * @return The interpolated scalar
  */
 template <typename T, size_t N>
 inline math::vec<T, N> cubic_hermite_spline(T const p0, T const m0, T const t0, T const p1, T const m1, T const t1,
